@@ -1,0 +1,10 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+  Elliot J. Reed - @elliotjreed - www.elliotjreed.com
+
+# TECHNOLOGY COLOPHON
+
+  Arch Linux, CentOS, HTML5, CSS3, jQuery, PHP, Geany (Text Editor), GIMP (Image Editor)
