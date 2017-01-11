@@ -1,4 +1,4 @@
 #!/bin/bash
 echo "Beginning Composer Install..."
-cd ../www
+cd /var/www/html/www/public_html
 composer install
