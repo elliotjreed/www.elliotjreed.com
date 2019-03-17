@@ -1,4 +1,3 @@
-// shared config (dev and prod)
 const { resolve } = require("path");
 const { CheckerPlugin } = require("awesome-typescript-loader");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -42,7 +41,16 @@ module.exports = {
   },
   plugins: [
     new CheckerPlugin(),
-    new HtmlWebpackPlugin({ template: "index.html.ejs" })
+    new HtmlWebpackPlugin({
+      title: 'Elliot J. Reed',
+      template: './index.html',
+      filename: './index.html',
+      minify: {
+        'removeComments': true,
+        'removeScriptTypeAttributes': true,
+        'collapseWhitespace': true
+      }
+    }),
   ],
   performance: {
     hints: false

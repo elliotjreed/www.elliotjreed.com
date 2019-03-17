@@ -12,10 +12,16 @@ module.exports = merge(commonConfig, {
     "./index.tsx" // the entry point of our app
   ],
   devServer: {
+    publicPath: "/",
     historyApiFallback: true,
     hot: true // enable HMR on the server
   },
-  devtool: "cheap-module-eval-source-map",
+  devtool: "inline-source-map",
+  node: {
+    net: 'mock',
+    dns: 'mock',
+    fs: 'empty'
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // enable HMR globally
     new webpack.NamedModulesPlugin() // prints more readable module names in the browser console on HMR updates

@@ -64,7 +64,9 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
+    "marked": "^0.6.1",
     "react": "^16.8.4",
+    "react-dom": "^16.8.4",
     "react-router-dom": "^4.4.0"
   }
 }

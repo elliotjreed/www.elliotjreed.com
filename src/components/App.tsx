@@ -6,9 +6,9 @@ import Routes from "./Routes";
 export default class App extends React.Component {
   public render() {
     return (
-      <BrowserRouter>
+      <div>
         <Routes/>
-      </BrowserRouter>
+      </div>
     );
   }
 }
