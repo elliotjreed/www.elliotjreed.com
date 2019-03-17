@@ -1,12 +1,12 @@
 import * as React from "react";
-import { BrowserRouter, Link, Switch, Route, browserHistory } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./../assets/scss/App.scss";
 import Posts from "./Posts";
 import Post from "./Post";
 import Home from "./Home";
 import PageNotFound from "./PageNotFound";
 
-interface CategoriesProps {
+interface EmptyProps {
 }
 
 interface CategoriesState {
@@ -14,7 +14,7 @@ interface CategoriesState {
   loading: boolean
 }
 
-export default class Routes extends React.Component<CategoriesProps, CategoriesState> {
+export default class Routes extends React.Component<EmptyProps, CategoriesState> {
 
   public render(): React.ReactNode {
     return (

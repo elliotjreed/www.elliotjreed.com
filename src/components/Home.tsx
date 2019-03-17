@@ -5,8 +5,14 @@ import AllPosts from "./AllPosts";
 
 const reactLogo = require("../assets/img/react_logo.svg");
 
-export default class Home extends React.Component {
-  public render() {
+interface EmptyProps {
+}
+
+interface EmptyState {
+}
+
+export default class Home extends React.Component<EmptyProps, EmptyState> {
+  public render(): React.ReactNode {
     return (
       <div className="app">
         <h1>Hello World!</h1>
