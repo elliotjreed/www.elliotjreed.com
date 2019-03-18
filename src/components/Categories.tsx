@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import "./../assets/scss/App.scss";
 import Loading from "./Loading";
 
 interface EmptyProps {
@@ -12,10 +11,11 @@ interface CategoriesState {
 }
 
 export default class Categories extends React.Component<EmptyProps, CategoriesState> {
-  private _isMounted: boolean = false;
+  private controller: AbortController;
 
   constructor(props: EmptyProps) {
     super(props);
+    this.controller = new AbortController();
 
     this.state = {
       categories: [],
@@ -24,29 +24,25 @@ export default class Categories extends React.Component<EmptyProps, CategoriesSt
   }
 
   public componentDidMount(): void {
-    this._isMounted = true;
     fetch("http://127.0.0.1:5000/categories")
       .then(response => response.json())
-      .then(categories => this._isMounted && this.setState({ categories, loading: false }));
+      .then(categories => this.setState({ categories, loading: false }));
   }
 
-  componentWillUnmount(): void {
-    this._isMounted = false;
+  public componentWillUnmount(): void {
+    this.controller.abort();
   }
 
   public render(): React.ReactNode {
     return (
-      <nav>
+      <div className="navbar-start">
         {this.state.loading ? <Loading/>
-          : <ul>
-            {this.state.categories.map((category, index) => (
-              <li key={index}>
-                <Link to={"/category/" + category.toLowerCase()}>{category}</Link>
-              </li>
-            ))}
-          </ul>
+          :
+            this.state.categories.map((category, index) => (
+              <Link key={index} className="navbar-item" to={"/category/" + category.toLowerCase()}>{category}</Link>
+            ))
         }
-      </nav>
+      </div>
     );
   }
 }

@@ -13,10 +13,11 @@ interface PostsState {
 }
 
 export default class AllPosts extends React.Component<EmptyProps, PostsState> {
-  private _isMounted: boolean = false;
+  private controller: AbortController;
 
   constructor(props: EmptyProps) {
     super(props);
+    this.controller = new AbortController();
 
     this.state = {
       posts: {},
@@ -25,14 +26,13 @@ export default class AllPosts extends React.Component<EmptyProps, PostsState> {
   }
 
   public componentDidMount(): void {
-    this._isMounted = true;
     fetch("http://127.0.0.1:5000/")
       .then(response => response.json())
-      .then(posts => this._isMounted && this.setState({ posts, loading: false }));
+      .then(posts => this.setState({ posts, loading: false }));
   }
 
-  componentWillUnmount(): void {
-    this._isMounted = false;
+  public componentWillUnmount(): void {
+    this.controller.abort();
   }
 
   private listOfPosts(posts): React.ReactFragment {
@@ -53,7 +53,7 @@ export default class AllPosts extends React.Component<EmptyProps, PostsState> {
     return <React.Fragment>
       {this.state.posts[category].map(post => (
         <li key={post}>
-          <Link to={"/post/" + category.toLowerCase() + "/" + post}>{post}</Link>
+          <Link to={"/post/" + category.toLowerCase() + "/" + post.slice(0, -3).replace(/\s+/g, '_')}>{post}</Link>
         </li>
       ))}
     </React.Fragment>;
