@@ -1,4 +1,7 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faTwitter, faGithub, faLinkedin} from '@fortawesome/free-brands-svg-icons'
 import Categories from "./Categories";
 
 interface EmptyProps {
@@ -12,9 +15,16 @@ export default class TopBar extends React.Component<EmptyProps, TopBarState> {
   constructor(props: EmptyProps) {
     super(props);
 
+    this.toggleMobileMenu = this.toggleMobileMenu.bind(this);
+
     this.state = {
       menuActive: false
     };
+  }
+
+  private toggleMobileMenu(): void {
+    const currentMenuActive = this.state.menuActive;
+    this.setState({ menuActive: !currentMenuActive });
   }
 
   public render(): React.ReactNode {
@@ -22,27 +32,37 @@ export default class TopBar extends React.Component<EmptyProps, TopBarState> {
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="container">
           <div className="navbar-brand">
-            <a className="navbar-item" href="https://bulma.io">
-              <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"/>
-            </a>
-
-            <a role="button" className={"navbar-burger burger" + (this.state.menuActive && " is-active")} aria-label="menu" aria-expanded="false"
+            <Link to="/" className="navbar-item">
+              <img src="https://elliotjreed.com/elliotjreed.jpg" width="32" height="32"/>
+            </Link>
+            <a role="button"
+               className={this.state.menuActive ? "navbar-burger burger is-active" : "navbar-burger burger"}
+               aria-label="menu" aria-expanded="false"
                onClick={this.toggleMobileMenu}>
               <span aria-hidden="true"/>
               <span aria-hidden="true"/>
               <span aria-hidden="true"/>
             </a>
           </div>
-          <div className={"navbar-menu" + (this.state.menuActive && " is-active")}>
+          <div className={this.state.menuActive ? "navbar-menu is-active" : "navbar-menu"}>
             <Categories/>
             <div className="navbar-end">
               <div className="navbar-item">
                 <div className="buttons">
-                  <a className="button is-primary">
-                    <strong>Sign up</strong>
+                  <a href="https://github.com/elliotjreed" className="button">
+                    <span className="icon">
+                      <FontAwesomeIcon icon={faGithub} />
+                    </span>
                   </a>
-                  <a className="button is-light">
-                    Log in
+                  <a href="https://twitter.com/elliotjreed" className="button">
+                    <span className="icon">
+                      <FontAwesomeIcon icon={faTwitter} />
+                    </span>
+                  </a>
+                  <a href="https://www.linkedin.com/in/elliotjreed/" className="button">
+                    <span className="icon">
+                      <FontAwesomeIcon icon={faLinkedin} />
+                    </span>
                   </a>
                 </div>
               </div>
@@ -51,10 +71,5 @@ export default class TopBar extends React.Component<EmptyProps, TopBarState> {
         </div>
       </nav>
     );
-  }
-
-  private toggleMobileMenu(): void {
-    let current = this.state.menuActive;
-    this.setState({ menuActive: !current });
   }
 }

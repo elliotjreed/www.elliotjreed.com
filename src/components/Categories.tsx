@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import Loading from "./Loading";
 
 interface EmptyProps {
 }
@@ -36,8 +35,7 @@ export default class Categories extends React.Component<EmptyProps, CategoriesSt
   public render(): React.ReactNode {
     return (
       <div className="navbar-start">
-        {this.state.loading ? <Loading/>
-          :
+        {!this.state.loading &&
             this.state.categories.map((category, index) => (
               <Link key={index} className="navbar-item" to={"/category/" + category.toLowerCase()}>{category}</Link>
             ))

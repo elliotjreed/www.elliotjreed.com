@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import "./../assets/scss/App.scss";
+import Spinner from "./Spinner";
 import Loading from "./Loading";
 
 interface PostsProps {
@@ -38,18 +39,18 @@ export default class Posts extends React.Component<PostsProps, PostsState> {
     this.controller.abort();
   }
 
-  private listOfPostsInCategory(posts: Array<string>): React.ReactFragment {
-    return <React.Fragment>
+  private listOfPostsInCategory(posts: Array<string>): React.ReactNode {
+    return <ul>
       {posts.map(post => (
         <li key={post}>
           <Link to={"/post/" + this.category.toLowerCase() + "/" + post.slice(0, -3).replace(/\s+/g, "_")}>{post.substr(11).slice(0, -3)}</Link>
         </li>
       ))}
-    </React.Fragment>;
+    </ul>;
   }
 
-  private capitalise(category: string): string {
-    return category.charAt(0).toUpperCase() + category.slice(1)
+  private static capitalise(category: string): string {
+    return category.charAt(0).toUpperCase() + category.slice(1);
   }
 
   public render(): React.ReactNode {
@@ -61,15 +62,11 @@ export default class Posts extends React.Component<PostsProps, PostsState> {
               <div className="card-content">
                 <div className="media">
                   <div className="media-content has-text-centered">
-                    <h2 className="title article-title">{this.capitalise(this.category)}</h2>
+                    <h2 className="title article-title">{Posts.capitalise(this.category)}</h2>
                   </div>
                 </div>
                 <div className="content article-body">
-                {this.state.loading ? <Loading/>
-                  : <ul>
-                    {this.listOfPostsInCategory(this.state.posts[Object.keys(this.state.posts)[0]])}
-                  </ul>
-                }
+                  {this.state.loading ? <Spinner/> : this.listOfPostsInCategory(this.state.posts[Object.keys(this.state.posts)[0]])}
                 </div>
               </div>
             </div>
