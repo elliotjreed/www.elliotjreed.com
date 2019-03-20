@@ -2,6 +2,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import "./../assets/scss/App.scss";
 import Spinner from "./Spinner";
+import PostCard from "./PostCard";
 
 interface PostsProps {
   match: { params: { category: string } }
@@ -33,10 +34,9 @@ export default class Posts extends React.Component<PostsProps, PostsState> {
     this.fetchPostsInCategory();
   }
 
-
   public componentDidUpdate(prevProps: Readonly<PostsProps>, prevState: Readonly<PostsState>): void {
     if (this.state.category !== this.props.match.params.category) {
-      this.setState({category: this.props.match.params.category}, this.fetchPostsInCategory)
+      this.setState({ category: this.props.match.params.category }, this.fetchPostsInCategory);
     }
   }
 
@@ -53,9 +53,7 @@ export default class Posts extends React.Component<PostsProps, PostsState> {
   private listOfPostsInCategory(posts: Array<string>): React.ReactNode {
     return <ul>
       {posts.map(post => (
-        <li key={post}>
-          <Link to={"/post/" + this.state.category.toLowerCase() + "/" + post.slice(0, -3).replace(/\s+/g, "_")}>{post.substr(11).slice(0, -3)}</Link>
-        </li>
+        <PostCard key={post} category={this.state.category.toLowerCase()} post={post}/>
       ))}
     </ul>;
   }
@@ -68,19 +66,10 @@ export default class Posts extends React.Component<PostsProps, PostsState> {
     return (
       <section className="container">
         <div className="articles">
-          <div className="column is-8 is-offset-2">
-            <div className="card article">
-              <div className="card-content">
-                <div className="media">
-                  <div className="media-content has-text-centered">
-                    <h2 className="title article-title">{Posts.capitalise(this.state.category)}</h2>
-                  </div>
-                </div>
-                <div className="content article-body">
-                  {this.state.loading ? <Spinner/> : this.listOfPostsInCategory(this.state.posts[Object.keys(this.state.posts)[0]])}
-                </div>
-              </div>
-            </div>
+          <div className="column is-10 is-offset-1">
+            <h2 className="title article-title">{Posts.capitalise(this.state.category)}</h2>
+            {this.state.loading ?
+              <Spinner/> : this.listOfPostsInCategory(this.state.posts[Object.keys(this.state.posts)[0]])}
           </div>
         </div>
       </section>

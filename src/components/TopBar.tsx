@@ -45,23 +45,23 @@ export default class TopBar extends React.Component<EmptyProps, TopBarState> {
             </a>
           </div>
           <div className={"navbar-menu" + (this.state.menuActive ? " is-active" : "")}>
-            <Categories/>
             <div className="navbar-end">
+              <Categories/>
               <div className="navbar-item">
                 <div className="buttons">
                   <a href="https://github.com/elliotjreed" className="button">
-                    <span className="icon">
-                      <FontAwesomeIcon icon={faGithub} />
+                    <span className="icon is-medium">
+                      <FontAwesomeIcon className="fas fa-lg" icon={faGithub} />
                     </span>
                   </a>
                   <a href="https://twitter.com/elliotjreed" className="button">
-                    <span className="icon">
-                      <FontAwesomeIcon icon={faTwitter} />
+                    <span className="icon is-medium">
+                      <FontAwesomeIcon className="fas fa-lg" icon={faTwitter} />
                     </span>
                   </a>
                   <a href="https://www.linkedin.com/in/elliotjreed/" className="button">
-                    <span className="icon">
-                      <FontAwesomeIcon icon={faLinkedin} />
+                    <span className="icon is-medium">
+                      <FontAwesomeIcon className="fas fa-lg" icon={faLinkedin} />
                     </span>
                   </a>
                 </div>

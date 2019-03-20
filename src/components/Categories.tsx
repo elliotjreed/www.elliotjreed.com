@@ -34,13 +34,10 @@ export default class Categories extends React.Component<EmptyProps, CategoriesSt
 
   public render(): React.ReactNode {
     return (
-      <div className="navbar-start">
-        {!this.state.loading &&
-            this.state.categories.map((category, index) => (
-              <Link key={index} className="navbar-item" to={"/category/" + category.toLowerCase()}>{category}</Link>
-            ))
-        }
-      </div>
+      !this.state.loading &&
+      this.state.categories.map((category, index) => (
+        <Link key={index} className="navbar-item" to={"/category/" + category.toLowerCase()}>{category}</Link>
+      ))
     );
   }
 }

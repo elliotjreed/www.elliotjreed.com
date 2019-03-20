@@ -1,8 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-
-import Loading from "./Loading";
 import "./../assets/scss/App.scss";
+import Spinner from "./Spinner";
 
 interface EmptyProps {
 }
@@ -61,7 +60,7 @@ export default class AllPosts extends React.Component<EmptyProps, PostsState> {
 
   public render(): React.ReactNode {
     return (
-      this.state.loading ? <Loading/>
+      this.state.loading ? <Spinner/>
         : <div>
           {this.listOfPosts(this.state.posts)}
         </div>
