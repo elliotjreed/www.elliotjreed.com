@@ -15,11 +15,11 @@ export default class TopBar extends React.Component<EmptyProps, TopBarState> {
   constructor(props: EmptyProps) {
     super(props);
 
-    this.toggleMobileMenu = this.toggleMobileMenu.bind(this);
-
     this.state = {
       menuActive: false
     };
+
+    this.toggleMobileMenu = this.toggleMobileMenu.bind(this);
   }
 
   private toggleMobileMenu(): void {
@@ -36,7 +36,7 @@ export default class TopBar extends React.Component<EmptyProps, TopBarState> {
               <img src="https://elliotjreed.com/elliotjreed.jpg" width="32" height="32"/>
             </Link>
             <a role="button"
-               className={this.state.menuActive ? "navbar-burger burger is-active" : "navbar-burger burger"}
+               className={"navbar-burger navbar" + (this.state.menuActive ? " is-active" : "")}
                aria-label="menu" aria-expanded="false"
                onClick={this.toggleMobileMenu}>
               <span aria-hidden="true"/>
@@ -44,7 +44,7 @@ export default class TopBar extends React.Component<EmptyProps, TopBarState> {
               <span aria-hidden="true"/>
             </a>
           </div>
-          <div className={this.state.menuActive ? "navbar-menu is-active" : "navbar-menu"}>
+          <div className={"navbar-menu" + (this.state.menuActive ? " is-active" : "")}>
             <Categories/>
             <div className="navbar-end">
               <div className="navbar-item">
