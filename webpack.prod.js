@@ -73,7 +73,7 @@ module.exports = merge(commonConfig, {
       whitelist: ["pre", "code"]
     }),
     new CopyPlugin([
-      { from: "./assets/static", to: "dist" }
+      { from: "./assets/static", to: "./" }
     ]),
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
