@@ -10,13 +10,13 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/icon_192x192.8700e3c22ede61ac14e238c47671bdf2.png"
   },
   {
-    "url": "/main.fc32bfa2289f36ba2089.css"
+    "url": "/main.232ab960476470e576f5.css"
   },
   {
     "url": "/manifest.80e64a46e60f0f16be4b0e070f654515.json"
   },
   {
-    "url": "/js/fc32bfa2289f36ba2089.min.js"
+    "url": "/js/232ab960476470e576f5.min.js"
   },
   {
     "url": "/icon_96x96.6c351db363e89a9e545b647f37228690.png"
@@ -38,7 +38,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/humans.txt"
   },
   {
-    "revision": "bb8b81c7b0e96a1259810c1a32bdc812",
+    "revision": "449d447195640740faefd5eeafe4b49c",
     "url": "/./index.html"
   }
 ]);
