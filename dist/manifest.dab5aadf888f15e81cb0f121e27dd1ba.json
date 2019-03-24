@@ -1,0 +1,41 @@
+{
+  "icons": [
+    {
+      "src": "/icon_512x512.d9da7be793fcd233a73722c95045d15b.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_384x384.34099e37a4779014340f0e6b88cdb202.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_256x256.7ae0a2d911a0afcbe57a095c67a8f5c6.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_192x192.4131e0548ac4af14199ddaf092ee17e9.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_128x128.9981936bab375be9337c454c54106b9b.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_96x96.f849f23c2e2357ce542e7ee01158852f.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ],
+  "name": "Elliot J. Reed",
+  "short_name": "EJR",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "description": "",
+  "background_color": "#898989"
+}

@@ -1,12 +1,12 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as TestUtils from "react-dom/test-utils";
-import App from "../src/components/App";
+import Home from "../src/components/Home";
 
-it("App is rendered", () => {
+it("Renders home component", () => {
   // Render App in the document
-  const appElement: App = TestUtils.renderIntoDocument(
-    <App/>
+  const appElement: Home = TestUtils.renderIntoDocument(
+    <Home/>
   );
 
   const appNode = ReactDOM.findDOMNode(appElement);

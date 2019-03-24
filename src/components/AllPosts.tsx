@@ -2,12 +2,13 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import "./../assets/scss/App.scss";
 import Spinner from "./Spinner";
+import PostCard from "./PostCard";
 
 interface EmptyProps {
 }
 
 interface PostsState {
-  posts: object,
+  posts: Array<string>,
   loading: boolean
 }
 
@@ -19,13 +20,13 @@ export default class AllPosts extends React.Component<EmptyProps, PostsState> {
     this.controller = new AbortController();
 
     this.state = {
-      posts: {},
+      posts: [],
       loading: true
     };
   }
 
   public componentDidMount(): void {
-    fetch("http://127.0.0.1:5000/")
+    fetch("https://api.elliotjreed.com/all")
       .then(response => response.json())
       .then(posts => this.setState({ posts, loading: false }));
   }
@@ -34,36 +35,21 @@ export default class AllPosts extends React.Component<EmptyProps, PostsState> {
     this.controller.abort();
   }
 
-  private listOfPosts(posts): React.ReactFragment {
+  private posts(): React.ReactFragment {
     return <React.Fragment>
-      {Object.keys(posts).map(key => (
-        <div key={key}>
-          <h3><Link to={"category/" + key}>{key}</Link></h3>
-          <ul>
-            {this.listOfPostsInCategory(key)}
-          </ul>
-        </div>
-      ))}
-    </React.Fragment>;
-
-  }
-
-  private listOfPostsInCategory(category): React.ReactFragment {
-    return <React.Fragment>
-      {this.state.posts[category].map(post => (
-        <li key={post}>
-          <Link to={"/post/" + category.toLowerCase() + "/" + post.slice(0, -3).replace(/\s+/g, '_')}>{post}</Link>
-        </li>
+      {this.state.posts.map(post => (
+        <PostCard category={post.split("/")[0].toLowerCase()} post={post.split("/")[1]}/>
       ))}
     </React.Fragment>;
   }
 
   public render(): React.ReactNode {
     return (
-      this.state.loading ? <Spinner/>
-        : <div>
-          {this.listOfPosts(this.state.posts)}
-        </div>
+      <div className="column is-10 is-offset-1">
+        {this.state.loading ?
+          <Spinner/> : this.posts()
+        }
+      </div>
     );
   }
-}
+};

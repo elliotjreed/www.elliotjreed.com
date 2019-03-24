@@ -15,16 +15,11 @@
 @import "~bulma/sass/components/card";
 @import "~bulma/sass/components/media";
 @import "~bulma/sass/components/level";
-
 @import "spinner";
 
 html, body {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  background: #F0F2F4;
-}
-
-.navbar.is-white {
+  font-family: 'Source Sans Pro', 'Open Sans', sans-serif;
+  font-size: 15px;
   background: #F0F2F4;
 }
 
@@ -33,69 +28,41 @@ html, body {
   font-weight: bold;
 }
 
+.profile-picture {
+      border-radius:1%;
+    overflow:hidden;
+}
+
+.green {
+  color: #2aa511;
+}
+
 .hero-body {
-  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Plum_trees_Kitano_Tenmangu.jpg/1200px-Plum_trees_Kitano_Tenmangu.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-color: #2c2c2c;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='30' viewBox='0 0 1000 120'%3E%3Cg fill='none' stroke='%232aa511' stroke-width='8.7' stroke-opacity='0.19'%3E%3Cpath d='M-500 75c0 0 125-30 250-30S0 75 0 75s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 45c0 0 125-30 250-30S0 45 0 45s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 105c0 0 125-30 250-30S0 105 0 105s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 15c0 0 125-30 250-30S0 15 0 15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500-15c0 0 125-30 250-30S0-15 0-15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 135c0 0 125-30 250-30S0 135 0 135s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3C/g%3E%3C/svg%3E");
   height: 300px;
 }
 
+.home .card {
+  background: #fff;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 1em;
+
+  p {
+    margin-bottom: 1em;
+  }
+}
+
 .articles {
-  margin: 5rem 0;
-  margin-top: -200px;
+  margin: -200px 0 5rem;
 }
 
-.articles .content p {
-  line-height: 1.9;
-  margin: 15px 0;
+.title:not(:last-child) {
+  margin-bottom: 0;
 }
 
-.author-image {
-  position: absolute;
-  top: -30px;
-  left: 50%;
-  width: 60px;
-  height: 60px;
-  margin-left: -30px;
-  border: 3px solid #ccc;
-  border-radius: 50%;
-}
-
-.media-center {
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.media-content {
-  margin-top: 3rem;
-}
-
-.article, .promo-block {
-  margin-top: 6rem;
-}
-
-div.column.is-8:first-child {
-  padding-top: 0;
-  margin-top: 0;
-}
-
-.article-title {
-  font-size: 2rem;
-  font-weight: lighter;
-  line-height: 2;
-}
-
-.article-subtitle {
-  color: #909AA0;
-  margin-bottom: 3rem;
-}
-
-.article-body {
-  line-height: 1.4;
-  margin: 0 6rem;
-}
-
-.promo-block .container {
-  margin: 1rem 5rem;
+.tags {
+  padding-top: 1em;
+  padding-bottom: 1em;
 }

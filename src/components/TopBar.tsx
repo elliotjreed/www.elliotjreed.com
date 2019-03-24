@@ -33,7 +33,7 @@ export default class TopBar extends React.Component<EmptyProps, TopBarState> {
         <div className="container">
           <div className="navbar-brand">
             <Link to="/" className="navbar-item">
-              <img src="https://elliotjreed.com/elliotjreed.jpg" width="32" height="32"/>
+              <p className="title green">Elliot J. Reed</p>
             </Link>
             <a role="button"
                className={"navbar-burger navbar" + (this.state.menuActive ? " is-active" : "")}
@@ -51,17 +51,17 @@ export default class TopBar extends React.Component<EmptyProps, TopBarState> {
                 <div className="buttons">
                   <a href="https://github.com/elliotjreed" className="button">
                     <span className="icon is-medium">
-                      <FontAwesomeIcon className="fas fa-lg" icon={faGithub} />
+                      <FontAwesomeIcon className="fas fa-lg green" icon={faGithub} />
                     </span>
                   </a>
                   <a href="https://twitter.com/elliotjreed" className="button">
                     <span className="icon is-medium">
-                      <FontAwesomeIcon className="fas fa-lg" icon={faTwitter} />
+                      <FontAwesomeIcon className="fas fa-lg green" icon={faTwitter} />
                     </span>
                   </a>
                   <a href="https://www.linkedin.com/in/elliotjreed/" className="button">
                     <span className="icon is-medium">
-                      <FontAwesomeIcon className="fas fa-lg" icon={faLinkedin} />
+                      <FontAwesomeIcon className="fas fa-lg green" icon={faLinkedin} />
                     </span>
                   </a>
                 </div>

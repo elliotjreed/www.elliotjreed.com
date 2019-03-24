@@ -2,7 +2,9 @@
   "rootDir": "..",
   "coverageDirectory": "<rootDir>/tests/__coverage__/",
   "setupFiles": [
-    "<rootDir>/tests/__mocks__/shim.js"
+    "<rootDir>/tests/__mocks__/shim.js",
+    "<rootDir>/tests/__mocks__/fetch.ts",
+    "<rootDir>/tests/testSetup.js"
   ],
   "roots": [
     "<rootDir>/src/",
@@ -19,7 +21,7 @@
   "transformIgnorePatterns": [
     "/node_modules/"
   ],
-  "testRegex": "/tests/.*\\.(ts|tsx)$",
+  "testRegex": "/tests/.*\\.(tsx)$",
   "moduleDirectories": [
     "node_modules"
   ],

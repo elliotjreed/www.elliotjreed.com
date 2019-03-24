@@ -1,9 +1,6 @@
 const { resolve } = require("path");
 const { CheckerPlugin } = require("awesome-typescript-loader");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
-const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   resolve: {
@@ -19,14 +16,15 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
+        exclude: /\.test.tsx?$/,
         use: ["babel-loader", "awesome-typescript-loader"]
       },
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
-          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'style-loader',
           'css-loader',
-          'sass-loader',
+          'sass-loader'
         ],
       },
       {
@@ -49,12 +47,6 @@ module.exports = {
         "removeScriptTypeAttributes": true,
         "collapseWhitespace": true
       }
-    }),
-    new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
-      filename: devMode ? '[name].css' : '[name].[hash].css',
-      chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
     })
   ],
   performance: {

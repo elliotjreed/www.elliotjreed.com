@@ -23,7 +23,11 @@ export default class Categories extends React.Component<EmptyProps, CategoriesSt
   }
 
   public componentDidMount(): void {
-    fetch("http://127.0.0.1:5000/categories")
+    this.fetchCategories();
+  }
+
+  private fetchCategories(): void {
+    fetch("https://api.elliotjreed.com/categories")
       .then(response => response.json())
       .then(categories => this.setState({ categories, loading: false }));
   }
@@ -34,10 +38,12 @@ export default class Categories extends React.Component<EmptyProps, CategoriesSt
 
   public render(): React.ReactNode {
     return (
-      !this.state.loading &&
-      this.state.categories.map((category, index) => (
-        <Link key={index} className="navbar-item" to={"/category/" + category.toLowerCase()}>{category}</Link>
-      ))
+      <React.Fragment>
+        {!this.state.loading &&
+        this.state.categories.map((category, index) => (
+          <Link key={index} className="navbar-item" to={"/category/" + category.toLowerCase().replace(' ', '-')}>{category}</Link>
+        ))}
+      </React.Fragment>
     );
   }
 }

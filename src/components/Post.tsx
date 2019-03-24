@@ -38,8 +38,9 @@ export default class Post extends React.Component<PostProps, PostState> {
   }
 
   public componentDidMount(): void {
-    fetch("http://127.0.0.1:5000/post/" + this.category + "/" + this.post)
+    fetch("https://api.elliotjreed.com/post/" + this.category + "/" + this.post)
       .then(response => response.text())
+      .then(markdown => markdown.substring(markdown.indexOf("\n") + 1))
       .then(markdown => marked(markdown))
       .then(content => this.setState({ content: content.substring(this.state.content.indexOf("\n") + 1), loading: false }));
   }
@@ -50,23 +51,25 @@ export default class Post extends React.Component<PostProps, PostState> {
 
   public render(): React.ReactNode {
     return (
-      <div className="container">
+      <main>
         <Helmet>
             <title>{this.title}</title>
         </Helmet>
+        <section className="hero is-info is-small is-bold">
+          <div className="hero-body"/>
+        </section>
+        <div className="container home">
         <article className="articles">
-          <div className="column is-8 is-offset-2">
+          <div className="column is-10 is-offset-1">
             <div className="card article">
               <div className="card-content">
-                <div className="media">
-                    <div className="media-content has-text-centered">
-                      <p className="title article-title">{this.title}</p>
+                    <div className="has-text-centered">
+                      <h3 className="title article-title">{this.title}</h3>
                       <div className="tags has-addons level-item">
                         <Link to={"/category/" + this.category} className="tag is-rounded is-info">{this.category}</Link>
-                          <time dateTime={this.date} className="tag is-rounded">{this.date}</time>
+                        <time dateTime={this.date} className="tag is-rounded">{this.date}</time>
                       </div>
                     </div>
-                </div>
                 <div className="content article-body">
                   {this.state.loading ? <Spinner/> :
                     <div dangerouslySetInnerHTML={{ __html: this.state.content }}/>
@@ -76,7 +79,8 @@ export default class Post extends React.Component<PostProps, PostState> {
             </div>
           </div>
         </article>
-      </div>
+        </div>
+      </main>
     );
   }
 }

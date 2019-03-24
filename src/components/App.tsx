@@ -19,13 +19,6 @@ export default class App extends React.Component<EmptyProps, EmptyState> {
       <div>
         <BrowserRouter>
           <TopBar/>
-          <section className="hero is-info is-small is-bold">
-            <div className="hero-body">
-              <div className="container has-text-centered">
-                <h1 className="title">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h1>
-              </div>
-            </div>
-          </section>
           <Switch>
             <Route exact={true} path="/" component={Home}/>
             <Route exact={true} path="/category/:category" component={Posts}/>
