@@ -31,7 +31,7 @@ export default class Home extends React.Component<EmptyProps, EmptyState> {
                 <div className="columns is-vcentered has-text-centered">
                   <div className="column is-4">
                     <figure className="image is-square profile-picture">
-                      <img src="https://res.cloudinary.com/elliotjreed/image/upload/v1553434444/elliotjreed.jpg" alt="Description"/>
+                      <img src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553434444/elliotjreed.jpg" alt="Picture of Elliot"/>
                     </figure>
                   </div>
                   <section className="column is-8 has-text-dark">
