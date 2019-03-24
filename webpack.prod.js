@@ -64,7 +64,8 @@ module.exports = merge(commonConfig, {
       chunkFilename: "[id].[hash].css"
     }),
     new PurgecssPlugin({
-      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true })
+      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
+      whitelist: ['pre', 'code']
     })
   ]
 });
