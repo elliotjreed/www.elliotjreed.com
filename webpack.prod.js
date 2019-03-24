@@ -5,6 +5,7 @@ const glob = require("glob");
 const commonConfig = require("./webpack.common");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const PurgecssPlugin = require("purgecss-webpack-plugin");
+const WorkboxPlugin = require("workbox-webpack-plugin");
 
 const PATHS = {
   src: join(__dirname, "src")
@@ -22,9 +23,9 @@ module.exports = merge(commonConfig, {
     splitChunks: {
       cacheGroups: {
         styles: {
-          name: 'styles',
+          name: "styles",
           test: /\.css$/,
-          chunks: 'all',
+          chunks: "all",
           enforce: true
         }
       }
@@ -65,7 +66,13 @@ module.exports = merge(commonConfig, {
     }),
     new PurgecssPlugin({
       paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
-      whitelist: ['pre', 'code']
+      whitelist: ["pre", "code"]
+    }),
+    new WorkboxPlugin.GenerateSW({
+      // these options encourage the ServiceWorkers to get in there fast
+      // and not allow any straggling "old" SWs to hang around
+      clientsClaim: true,
+      skipWaiting: true
     })
   ]
 });
