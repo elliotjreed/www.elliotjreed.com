@@ -69,6 +69,10 @@ html, body {
 .tags {
   padding-top: 1em;
   padding-bottom: 1em;
+
+  .tag {
+    background-color: #2c2c2c;
+  }
 }
 
 code, pre {

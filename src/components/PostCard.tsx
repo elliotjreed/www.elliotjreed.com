@@ -73,7 +73,7 @@ export default class PostCard extends React.Component<PostCardProps, PostCardSta
             <div className="has-text-centered">
               <h3><Link className="title article-title" to={"/post/" + this.state.category + "/" + this.state.post.slice(0, -3).replace(/\s+/g, "_")}>{this.state.title}</Link></h3>
               <div className="tags has-addons level-item">
-                <Link to={"/category/" + this.state.category} className="tag is-rounded is-info">{this.state.category}</Link>
+                <Link to={"/category/" + this.state.category} className="tag is-rounded">{this.state.category}</Link>
                 <time dateTime={this.state.date} className="tag is-rounded">{this.state.date}</time>
               </div>
           </div>
