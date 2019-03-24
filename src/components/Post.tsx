@@ -66,7 +66,7 @@ export default class Post extends React.Component<PostProps, PostState> {
                     <div className="has-text-centered">
                       <h3 className="title article-title">{this.title}</h3>
                       <div className="tags has-addons level-item">
-                        <Link to={"/category/" + this.category} className="tag is-rounded is-info">{this.category}</Link>
+                        <Link to={"/category/" + this.category} className="tag is-rounded tag-category">{this.category}</Link>
                         <time dateTime={this.date} className="tag is-rounded">{this.date}</time>
                       </div>
                     </div>
