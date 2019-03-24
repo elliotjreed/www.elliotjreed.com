@@ -6,6 +6,7 @@ import Post from "./Post";
 import PageNotFound from "./PageNotFound";
 import "./../assets/scss/App.scss";
 import TopBar from "./TopBar";
+import * as OfflinePluginRuntime from 'offline-plugin/runtime';
 
 interface EmptyProps {
 }
@@ -14,6 +15,11 @@ interface EmptyState {
 }
 
 export default class App extends React.Component<EmptyProps, EmptyState> {
+  constructor(props: EmptyProps) {
+    super(props);
+    OfflinePluginRuntime.install();
+  }
+
   public render(): React.ReactNode {
     return (
       <div>

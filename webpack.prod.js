@@ -53,7 +53,7 @@ module.exports = merge(commonConfig, {
       icons: [
         {
           src: resolve("src/assets/img/icon.png"),
-          sizes: [96, 128, 192, 256, 384, 512]
+          sizes: [96, 128, 150, 192, 256, 384, 512]
         }
       ]
     }),
