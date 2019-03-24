@@ -50,6 +50,9 @@ module.exports = merge(commonConfig, {
       short_name: "EJR",
       description: "",
       background_color: "#898989",
+      inject: true,
+      theme_color: "#363636",
+      ios: true,
       crossorigin: "use-credentials", //can be null, use-credentials or anonymous
       icons: [
         {
