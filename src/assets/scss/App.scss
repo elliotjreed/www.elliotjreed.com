@@ -21,6 +21,10 @@ html, body {
   background: #F0F2F4;
 }
 
+.column {
+  position: relative;
+}
+
 .navbar-brand .brand-text {
   font-size: 1.11rem;
   font-weight: bold;
@@ -52,8 +56,13 @@ html, body {
   }
 }
 
+.home .title {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
 .articles {
-  margin: -200px 0 5rem;
+  margin: -250px 0 5rem;
 }
 
 .title:not(:last-child) {

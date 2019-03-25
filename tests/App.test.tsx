@@ -12,5 +12,5 @@ it("App is rendered", () => {
   const appNode = ReactDOM.findDOMNode(appElement);
 
   // Verify text content
-  expect(appNode.textContent).toEqual("Elliot J. ReedAbout");
+  expect(appNode.textContent).toEqual("");
 });
