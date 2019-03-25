@@ -1,6 +1,7 @@
+import { shallow } from "enzyme";
 import * as React from "react";
 import { Link, MemoryRouter } from "react-router-dom";
-import { shallow } from "enzyme";
+
 import Categories from "../src/components/Categories";
 
 it("fetches data from server when server returns a successful response", done => {
