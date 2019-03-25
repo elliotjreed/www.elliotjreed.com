@@ -1,18 +1,15 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-interface EmptyProps {
-}
-
-interface CategoriesState {
-  categories: Array<string>,
+interface IState {
+  categories: string[],
   loading: boolean
 }
 
-export default class Categories extends React.Component<EmptyProps, CategoriesState> {
+export default class Categories extends React.Component<{}, IState> {
   private controller: AbortController;
 
-  constructor(props: EmptyProps) {
+  constructor(props: null) {
     super(props);
     this.controller = new AbortController();
 
@@ -26,12 +23,6 @@ export default class Categories extends React.Component<EmptyProps, CategoriesSt
     this.fetchCategories();
   }
 
-  private fetchCategories(): void {
-    fetch("https://api.elliotjreed.com/categories")
-      .then(response => response.json())
-      .then(categories => this.setState({ categories, loading: false }));
-  }
-
   public componentWillUnmount(): void {
     this.controller.abort();
   }
@@ -41,9 +32,15 @@ export default class Categories extends React.Component<EmptyProps, CategoriesSt
       <React.Fragment>
         {!this.state.loading &&
         this.state.categories.map((category, index) => (
-          <Link key={index} className="navbar-item" to={"/category/" + category.toLowerCase().replace(' ', '-')}>{category}</Link>
+          <Link key={index} className="navbar-item" to={"/category/" + category.toLowerCase().replace(" ", "-")}>{category}</Link>
         ))}
       </React.Fragment>
     );
+  }
+
+  private fetchCategories(): void {
+    fetch("https://api.elliotjreed.com/categories")
+      .then(response => response.json())
+      .then(categories => this.setState({ categories, loading: false }));
   }
 }

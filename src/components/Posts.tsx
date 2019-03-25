@@ -1,31 +1,37 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import "./../assets/scss/App.scss";
-import Spinner from "./Spinner";
-import PostCard from "./PostCard";
+import { Link } from "react-router-dom";
 
-interface PostsProps {
+import "./../assets/scss/App.scss";
+import PostCard from "./PostCard";
+import Spinner from "./Spinner";
+
+interface IProps {
   match: { params: { category: string } }
 }
 
-interface PostsState {
+interface IState {
   category: string,
-  posts: Array<string>,
   loading: boolean
+  posts: string[],
 }
 
-export default class Posts extends React.Component<PostsProps, PostsState> {
+export default class Posts extends React.Component<IProps, IState> {
+
+  private static capitalise(category: string): string {
+    return category.charAt(0).toUpperCase() + category.slice(1);
+  }
+
   private controller: AbortController;
 
-  constructor(props: PostsProps) {
+  constructor(props: IProps) {
     super(props);
     this.controller = new AbortController();
 
     this.state = {
       category: props.match.params.category.replace("-", " "),
-      posts: [],
-      loading: true
+      loading: true,
+      posts: []
     };
 
     this.postsInCategory = this.postsInCategory.bind(this);
@@ -35,7 +41,7 @@ export default class Posts extends React.Component<PostsProps, PostsState> {
     this.fetchPostsInCategory();
   }
 
-  public componentDidUpdate(prevProps: Readonly<PostsProps>, prevState: Readonly<PostsState>): void {
+  public componentDidUpdate(prevProps: Readonly<IProps>, prevState: Readonly<IState>): void {
     if (this.state.category !== this.props.match.params.category) {
       this.setState({ category: this.props.match.params.category }, this.fetchPostsInCategory);
     }
@@ -43,24 +49,6 @@ export default class Posts extends React.Component<PostsProps, PostsState> {
 
   public componentWillUnmount(): void {
     this.controller.abort();
-  }
-
-  private fetchPostsInCategory(): void {
-    fetch("https://api.elliotjreed.com/posts/" + this.state.category)
-      .then(response => response.json())
-      .then(posts => this.setState({ posts, loading: false }));
-  }
-
-  private postsInCategory(posts: Array<string>): React.ReactNode {
-    return <ul>
-      {posts.map(post => (
-        <PostCard key={post} category={this.state.category.toLowerCase()} post={post}/>
-      ))}
-    </ul>;
-  }
-
-  private static capitalise(category: string): string {
-    return category.charAt(0).toUpperCase() + category.slice(1);
   }
 
   public render(): React.ReactNode {
@@ -86,5 +74,19 @@ export default class Posts extends React.Component<PostsProps, PostsState> {
         </section>
       </main>
     );
+  }
+
+  private fetchPostsInCategory(): void {
+    fetch("https://api.elliotjreed.com/posts/" + this.state.category)
+      .then(response => response.json())
+      .then(posts => this.setState({ posts, loading: false }));
+  }
+
+  private postsInCategory(posts: string[]): React.ReactNode {
+    return <ul>
+      {posts.map(post => (
+        <PostCard key={post} category={this.state.category.toLowerCase()} post={post}/>
+      ))}
+    </ul>;
   }
 }

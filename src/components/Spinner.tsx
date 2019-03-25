@@ -1,12 +1,6 @@
 import * as React from "react";
 
-interface EmptyProps {
-}
-
-interface EmptyState {
-}
-
-export default class Spinner extends React.Component<EmptyProps, EmptyState> {
+export default class Spinner extends React.Component<{}, {}> {
   public render(): React.ReactNode {
     return (
       <svg className="spinner" viewBox="0 0 50 50">

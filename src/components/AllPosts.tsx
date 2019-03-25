@@ -1,27 +1,26 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
+
 import "./../assets/scss/App.scss";
-import Spinner from "./Spinner";
 import PostCard from "./PostCard";
+import Spinner from "./Spinner";
 
-interface EmptyProps {
-}
-
-interface PostsState {
-  posts: Array<string>,
+interface IState {
+  posts: string[],
   loading: boolean
 }
 
-export default class AllPosts extends React.Component<EmptyProps, PostsState> {
+export default class AllPosts extends React.Component<{}, IState> {
   private controller: AbortController;
 
-  constructor(props: EmptyProps) {
+  constructor(props: null) {
     super(props);
+
     this.controller = new AbortController();
 
     this.state = {
-      posts: [],
-      loading: true
+      loading: true,
+      posts: []
     };
   }
 
@@ -35,14 +34,6 @@ export default class AllPosts extends React.Component<EmptyProps, PostsState> {
     this.controller.abort();
   }
 
-  private posts(): React.ReactFragment {
-    return <React.Fragment>
-      {this.state.posts.map(post => (
-        <PostCard category={post.split("/")[0].toLowerCase()} post={post.split("/")[1]}/>
-      ))}
-    </React.Fragment>;
-  }
-
   public render(): React.ReactNode {
     return (
       <div className="column is-10 is-offset-1">
@@ -51,5 +42,13 @@ export default class AllPosts extends React.Component<EmptyProps, PostsState> {
         }
       </div>
     );
+  }
+
+  private posts(): React.ReactFragment {
+    return <React.Fragment>
+      {this.state.posts.map(post => (
+        <PostCard category={post.split("/")[0].toLowerCase()} post={post.split("/")[1]}/>
+      ))}
+    </React.Fragment>;
   }
 };

@@ -1,31 +1,32 @@
-import * as React from "react";
-import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import * as marked from "marked";
+import * as React from "react";
+import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
+
 import Spinner from "./Spinner";
 
-interface PostProps {
+interface IProps {
   match: { params: { category: string, post: string } }
 }
 
-interface PostState {
+interface IState {
   content: string,
   loading: boolean
 }
 
-export default class Post extends React.Component<PostProps, PostState> {
+export default class Post extends React.Component<IProps, IState> {
   private controller: AbortController;
-  private readonly category: string;
+private readonly category: string;
   private readonly post: string;
   private readonly title: string;
   private readonly date: string;
 
-  constructor(props: PostProps) {
+  constructor(props: IProps) {
     super(props);
     this.controller = new AbortController();
 
-    let url = this.props.match.params.post;
-    let postWithSpaces = url.replace(/_/g, " ");
+    const url = this.props.match.params.post;
+    const postWithSpaces = url.replace(/_/g, " ");
     this.post = postWithSpaces + ".md";
     this.title = postWithSpaces.substr(11);
     this.date = url.substr(0, 10);
@@ -42,7 +43,10 @@ export default class Post extends React.Component<PostProps, PostState> {
       .then(response => response.text())
       .then(markdown => markdown.substring(markdown.indexOf("\n") + 1))
       .then(markdown => marked(markdown))
-      .then(content => this.setState({ content: content.substring(this.state.content.indexOf("\n") + 1), loading: false }));
+      .then(content => this.setState({
+        content: content.substring(this.state.content.indexOf("\n") + 1),
+        loading: false
+      }));
   }
 
   public componentWillUnmount(): void {
@@ -53,32 +57,36 @@ export default class Post extends React.Component<PostProps, PostState> {
     return (
       <main>
         <Helmet>
-            <title>{this.title}</title>
+          <title>{this.title}</title>
         </Helmet>
+
         <section className="hero is-info is-small is-bold">
           <div className="hero-body"/>
         </section>
+
         <div className="container home">
-        <article className="articles">
-          <div className="column is-10 is-offset-1">
-            <div className="card article">
-              <div className="card-content">
-                    <div className="has-text-centered">
-                      <h3 className="title article-title">{this.title}</h3>
-                      <div className="tags has-addons level-item">
-                        <Link to={"/category/" + this.category} className="tag is-rounded tag-category">{this.category}</Link>
-                        <time dateTime={this.date} className="tag is-rounded">{this.date}</time>
-                      </div>
+          <article className="articles">
+            <div className="column is-10 is-offset-1">
+              <div className="card article">
+                <div className="card-content">
+
+                  <div className="has-text-centered">
+                    <h3 className="title article-title">{this.title}</h3>
+                    <div className="tags has-addons level-item">
+                      <Link to={"/category/" + this.category}
+                            className="tag is-rounded tag-category">{this.category}</Link>
+                      <time dateTime={this.date} className="tag is-rounded">{this.date}</time>
                     </div>
-                <div className="content article-body">
-                  {this.state.loading ? <Spinner/> :
-                    <div dangerouslySetInnerHTML={{ __html: this.state.content }}/>
-                  }
+                  </div>
+
+                  <div className="content article-body">
+                    {this.state.loading ? <Spinner/> : <div dangerouslySetInnerHTML={{ __html: this.state.content }}/>}
+                  </div>
+
                 </div>
               </div>
             </div>
-          </div>
-        </article>
+          </article>
         </div>
       </main>
     );

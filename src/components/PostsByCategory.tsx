@@ -1,27 +1,26 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
+
 import "./../assets/scss/App.scss";
 import Spinner from "./Spinner";
 
-interface EmptyProps {
-}
-
-interface PostsByState {
-  posts: object,
+interface IState {
   loading: boolean
+  posts: object,
 }
 
-export default class PostsByCategory extends React.Component<EmptyProps, PostsByState> {
+export default class PostsByCategory extends React.Component<{}, IState> {
   private controller: AbortController;
 
-  constructor(props: EmptyProps) {
+  constructor(props: null) {
     super(props);
+
     this.controller = new AbortController();
 
     this.state = {
-      posts: {},
-      loading: true
+      loading: true,
+      posts: {}
     };
   }
 
@@ -33,6 +32,16 @@ export default class PostsByCategory extends React.Component<EmptyProps, PostsBy
 
   public componentWillUnmount(): void {
     this.controller.abort();
+  }
+
+  public render(): React.ReactNode {
+    return (
+      <main>
+        {this.state.loading ?
+          <Spinner/> : this.listOfPosts(this.state.posts)
+        }
+      </main>
+    );
   }
 
   private listOfPosts(posts): React.ReactFragment {
@@ -55,20 +64,9 @@ export default class PostsByCategory extends React.Component<EmptyProps, PostsBy
       </Helmet>
       {this.state.posts[category].map(post => (
         <li key={post}>
-          <Link
-            to={"/post/" + category.toLowerCase() + "/" + post.slice(0, -3).replace(/\s+/g, "_")}>{post.substr(11).slice(0, -3)}</Link>
+          <Link to={"/post/" + category.toLowerCase() + "/" + post.slice(0, -3).replace(/\s+/g, "_")}>{post.substr(11).slice(0, -3)}</Link>
         </li>
       ))}
     </React.Fragment>;
-  }
-
-  public render(): React.ReactNode {
-    return (
-      <main>
-        {this.state.loading ?
-          <Spinner/> : this.listOfPosts(this.state.posts)
-        }
-      </main>
-    );
   }
 };

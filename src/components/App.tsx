@@ -1,19 +1,14 @@
 import * as React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Home from "./Home";
-import Posts from "./Posts";
-import Post from "./Post";
-import PageNotFound from "./PageNotFound";
+
 import "./../assets/scss/App.scss";
+import Home from "./Home";
+import PageNotFound from "./PageNotFound";
+import Post from "./Post";
+import Posts from "./Posts";
 import TopBar from "./TopBar";
 
-interface EmptyProps {
-}
-
-interface EmptyState {
-}
-
-export default class App extends React.Component<EmptyProps, EmptyState> {
+export default class App extends React.Component<{}, {}> {
   public render(): React.ReactNode {
     return (
       <div>

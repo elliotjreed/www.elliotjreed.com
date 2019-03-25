@@ -1,18 +1,16 @@
+import { faGithub, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faTwitter, faGithub, faLinkedin} from '@fortawesome/free-brands-svg-icons'
+
 import Categories from "./Categories";
 
-interface EmptyProps {
-}
-
-interface TopBarState {
+interface IState {
   menuActive: boolean;
 }
 
-export default class TopBar extends React.Component<EmptyProps, TopBarState> {
-  constructor(props: EmptyProps) {
+export default class TopBar extends React.Component<{}, IState> {
+  constructor(props: null) {
     super(props);
 
     this.state = {
@@ -20,11 +18,6 @@ export default class TopBar extends React.Component<EmptyProps, TopBarState> {
     };
 
     this.toggleMobileMenu = this.toggleMobileMenu.bind(this);
-  }
-
-  private toggleMobileMenu(): void {
-    const currentMenuActive = this.state.menuActive;
-    this.setState({ menuActive: !currentMenuActive });
   }
 
   public render(): React.ReactNode {
@@ -35,10 +28,7 @@ export default class TopBar extends React.Component<EmptyProps, TopBarState> {
             <Link to="/" className="navbar-item">
               <p className="title green">Elliot J. Reed</p>
             </Link>
-            <a role="button"
-               className={"navbar-burger navbar" + (this.state.menuActive ? " is-active" : "")}
-               aria-label="menu" aria-expanded="false"
-               onClick={this.toggleMobileMenu}>
+            <a role="button" className={"navbar-burger navbar" + (this.state.menuActive ? " is-active" : "")} aria-label="menu" aria-expanded="false" onClick={this.toggleMobileMenu}>
               <span aria-hidden="true"/>
               <span aria-hidden="true"/>
               <span aria-hidden="true"/>
@@ -51,17 +41,17 @@ export default class TopBar extends React.Component<EmptyProps, TopBarState> {
                 <div className="buttons">
                   <a href="https://github.com/elliotjreed" className="button">
                     <span className="icon is-medium">
-                      <FontAwesomeIcon className="fas fa-lg green" icon={faGithub} />
+                      <FontAwesomeIcon className="fas fa-lg green" icon={faGithub}/>
                     </span>
                   </a>
                   <a href="https://twitter.com/elliotjreed" className="button">
                     <span className="icon is-medium">
-                      <FontAwesomeIcon className="fas fa-lg green" icon={faTwitter} />
+                      <FontAwesomeIcon className="fas fa-lg green" icon={faTwitter}/>
                     </span>
                   </a>
                   <a href="https://www.linkedin.com/in/elliotjreed/" className="button">
                     <span className="icon is-medium">
-                      <FontAwesomeIcon className="fas fa-lg green" icon={faLinkedin} />
+                      <FontAwesomeIcon className="fas fa-lg green" icon={faLinkedin}/>
                     </span>
                   </a>
                 </div>
@@ -71,5 +61,10 @@ export default class TopBar extends React.Component<EmptyProps, TopBarState> {
         </div>
       </nav>
     );
+  }
+
+  private toggleMobileMenu(): void {
+    const currentMenuActive = this.state.menuActive;
+    this.setState({ menuActive: !currentMenuActive });
   }
 }
