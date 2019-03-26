@@ -6,16 +6,15 @@ services:
     container_name: react-elliotjreed
     restart: always
     networks:
-      - elliotjreed
       - web
     labels:
       - "traefik.docker.network=web"
       - "traefik.enable=true"
-      - "traefik.frontend.rule=Host:www.elliotjreed.com"
-      - "traefik.protocol=http"
+      - "traefik.www.frontend.rule=Host:www.elliotjreed.com"
+      - "traefik.nonwww.frontend.rule=Host:elliotjreed.com"
+      - "traefik.protocol=h2c"
       - "traefik.port=81"
 
 networks:
-  elliotjreed:
   web:
     external: true
