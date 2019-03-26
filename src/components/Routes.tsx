@@ -4,13 +4,13 @@ import * as ReactGA from "react-ga";
 import { Route, Router, Switch } from "react-router-dom";
 
 import "./../assets/scss/App.scss";
+import Footer from "./Footer";
 import Home from "./Home";
 import PageNotFound from "./PageNotFound";
 import Post from "./Post";
 import Posts from "./Posts";
-import TopBar from "./TopBar";
-import Footer from "./Footer";
 import Sitemap from "./Sitemap";
+import TopBar from "./TopBar";
 
 const history = createBrowserHistory();
 history.listen(location => {
