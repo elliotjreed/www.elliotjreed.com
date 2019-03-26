@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3afe296f072948fbb1e59e4c6ff2547e)](https://app.codacy.com/app/elliotjreed/www.elliotjreed.com?utm_source=github.com&utm_medium=referral&utm_content=elliotjreed/www.elliotjreed.com&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.org/elliotjreed/www.elliotjreed.com.svg?branch=master)](https://travis-ci.org/elliotjreed/www.elliotjreed.com) ![Dependencies](https://david-dm.org/elliotjreed/www.elliotjreed.com.svg) ![Development Dependencies](https://david-dm.org/elliotjreed/www.elliotjreed.com.svg?type=dev) [![Styled with Prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 # Elliot J. Reed's website
