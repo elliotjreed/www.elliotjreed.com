@@ -36,7 +36,7 @@ yarn test
 
 ## Built With
 
-  - [React JS](https://reactjs.org/)
+ - [React JS](https://reactjs.org/)
 
 ## License
 
