@@ -9,6 +9,8 @@ import PageNotFound from "./PageNotFound";
 import Post from "./Post";
 import Posts from "./Posts";
 import TopBar from "./TopBar";
+import Footer from "./Footer";
+import Sitemap from "./Sitemap";
 
 const history = createBrowserHistory();
 history.listen(location => {
@@ -27,10 +29,12 @@ export default class Routes extends React.Component<{}, {}> {
         <TopBar/>
         <Switch>
           <Route exact={true} path="/" component={Home}/>
+          <Route exact={true} path="/sitemap" component={Sitemap}/>
           <Route exact={true} path="/category/:category" component={Posts}/>
           <Route exact={true} path="/post/:category/:post" component={Post}/>
           <Route component={PageNotFound}/>
         </Switch>
+        <Footer/>
       </Router>
     );
   }

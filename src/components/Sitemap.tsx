@@ -11,7 +11,7 @@ interface IState {
   posts: object,
 }
 
-export default class PostsByCategory extends React.Component<{}, IState> {
+export default class Sitemap extends React.Component<{}, IState> {
   private controller: AbortController;
 
   constructor(props: null) {
@@ -38,9 +38,33 @@ export default class PostsByCategory extends React.Component<{}, IState> {
   public render(): React.ReactNode {
     return (
       <main>
-        {this.state.loading ?
-          <Spinner/> : this.listOfPosts(this.state.posts)
-        }
+        <Helmet>
+          <title>Sitemap</title>
+        </Helmet>
+
+        <section className="hero is-info is-small is-bold">
+          <div className="hero-body"/>
+        </section>
+
+        <div className="container home">
+          <article className="articles">
+            <div className="column is-10 is-offset-1">
+              <div className="card article">
+                <div className="card-content">
+
+                  <div className="has-text-centered">
+                    <h3 className="title article-title">Sitemap</h3>
+                  </div>
+
+                  {this.state.loading ?
+                    <Spinner/> : this.listOfPosts(this.state.posts)
+                  }
+
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
       </main>
     );
   }
@@ -54,7 +78,7 @@ export default class PostsByCategory extends React.Component<{}, IState> {
   private listOfPosts(posts): React.ReactFragment {
     return <React.Fragment>
       {Object.keys(posts).map(category => (
-        <div key={category}>
+        <div className="content article-body" key={category}>
           <h3 className="subtitle"><Link to={"category/" + category}>{category}</Link></h3>
           <ul>
             {this.listOfPostsInCategory(category)}
