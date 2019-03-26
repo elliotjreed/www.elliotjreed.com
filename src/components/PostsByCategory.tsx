@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
@@ -25,9 +26,9 @@ export default class PostsByCategory extends React.Component<{}, IState> {
   }
 
   public componentDidMount(): void {
-    fetch("https://api.elliotjreed.com/")
-      .then(response => response.json())
-      .then(posts => this.setState({ posts, loading: false }));
+    ReactGA.pageview(window.location.pathname + location.search);
+
+    this.fetchPostsInCategories();
   }
 
   public componentWillUnmount(): void {
@@ -42,6 +43,12 @@ export default class PostsByCategory extends React.Component<{}, IState> {
         }
       </main>
     );
+  }
+
+  private fetchPostsInCategories(): void {
+    fetch("https://api.elliotjreed.com/")
+      .then(response => response.json())
+      .then(posts => this.setState({ posts, loading: false }));
   }
 
   private listOfPosts(posts): React.ReactFragment {

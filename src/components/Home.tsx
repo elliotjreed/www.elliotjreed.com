@@ -1,10 +1,15 @@
 import * as React from "react";
+import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 
 import "./../assets/scss/App.scss";
 import AllPosts from "./AllPosts";
 
 export default class Home extends React.Component<{}, {}> {
+  public componentDidMount(): void {
+    ReactGA.pageview(window.location.pathname + location.search);
+  }
+
   public render(): React.ReactNode {
     return (
       <main>

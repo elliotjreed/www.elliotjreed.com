@@ -1,9 +1,14 @@
 import * as React from "react";
+import * as ReactGA from "react-ga";
 import { Link } from "react-router-dom";
 
 import "./../assets/scss/App.scss";
 
 export default class PageNotFound extends React.Component<{}, {}> {
+  public componentDidMount(): void {
+    ReactGA.pageview(window.location.pathname + location.search);
+  }
+
   public render(): React.ReactNode {
     return (
       <section className="hero is-info is-small is-bold">

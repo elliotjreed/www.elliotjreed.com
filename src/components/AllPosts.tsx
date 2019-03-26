@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as ReactGA from "react-ga";
 import { Link } from "react-router-dom";
 
 import "./../assets/scss/App.scss";
@@ -25,9 +26,9 @@ export default class AllPosts extends React.Component<{}, IState> {
   }
 
   public componentDidMount(): void {
-    fetch("https://api.elliotjreed.com/all")
-      .then(response => response.json())
-      .then(posts => this.setState({ posts, loading: false }));
+    ReactGA.pageview(window.location.pathname + location.search);
+
+    this.fetchAllPosts();
   }
 
   public componentWillUnmount(): void {
@@ -44,10 +45,16 @@ export default class AllPosts extends React.Component<{}, IState> {
     );
   }
 
+  private fetchAllPosts(): void {
+    fetch("https://api.elliotjreed.com/all")
+      .then(response => response.json())
+      .then(posts => this.setState({ posts, loading: false }));
+  }
+
   private posts(): React.ReactFragment {
     return <React.Fragment>
       {this.state.posts.map(post => (
-        <PostCard category={post.split("/")[0].toLowerCase()} post={post.split("/")[1]}/>
+        <PostCard key={post} category={post.split("/")[0].toLowerCase()} post={post.split("/")[1]}/>
       ))}
     </React.Fragment>;
   }

@@ -1,5 +1,6 @@
 import * as marked from "marked";
 import * as React from "react";
+import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
@@ -16,13 +17,14 @@ interface IState {
 
 export default class Post extends React.Component<IProps, IState> {
   private controller: AbortController;
-private readonly category: string;
+  private readonly category: string;
   private readonly post: string;
   private readonly title: string;
   private readonly date: string;
 
   constructor(props: IProps) {
     super(props);
+
     this.controller = new AbortController();
 
     const url = this.props.match.params.post;
@@ -39,14 +41,9 @@ private readonly category: string;
   }
 
   public componentDidMount(): void {
-    fetch("https://api.elliotjreed.com/post/" + this.category + "/" + this.post)
-      .then(response => response.text())
-      .then(markdown => markdown.substring(markdown.indexOf("\n") + 1))
-      .then(markdown => marked(markdown))
-      .then(content => this.setState({
-        content: content.substring(this.state.content.indexOf("\n") + 1),
-        loading: false
-      }));
+    ReactGA.pageview(window.location.pathname + location.search);
+
+    this.fetchPost();
   }
 
   public componentWillUnmount(): void {
@@ -90,5 +87,16 @@ private readonly category: string;
         </div>
       </main>
     );
+  }
+
+  private fetchPost(): void {
+    fetch("https://api.elliotjreed.com/post/" + this.category + "/" + this.post)
+      .then(response => response.text())
+      .then(markdown => markdown.substring(markdown.indexOf("\n") + 1))
+      .then(markdown => marked(markdown))
+      .then(content => this.setState({
+        content: content.substring(this.state.content.indexOf("\n") + 1),
+        loading: false
+      }));
   }
 }

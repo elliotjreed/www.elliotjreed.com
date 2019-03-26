@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as ReactGA from "react-ga";
 import { Link } from "react-router-dom";
 
 interface IState {
@@ -20,6 +21,8 @@ export default class Categories extends React.Component<{}, IState> {
   }
 
   public componentDidMount(): void {
+    ReactGA.pageview(window.location.pathname + location.search);
+
     this.fetchCategories();
   }
 

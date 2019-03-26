@@ -21,7 +21,8 @@ interface IState {
 
 export default class PostCard extends React.Component<IProps, IState> {
   private controller: AbortController;
-constructor(props: IProps) {
+
+  constructor(props: IProps) {
     super(props);
 
     this.controller = new AbortController();

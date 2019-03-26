@@ -65,6 +65,7 @@ export default class TopBar extends React.Component<{}, IState> {
 
   private toggleMobileMenu(): void {
     const currentMenuActive = this.state.menuActive;
+
     this.setState({ menuActive: !currentMenuActive });
   }
 }

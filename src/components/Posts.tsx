@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
@@ -38,6 +39,8 @@ export default class Posts extends React.Component<IProps, IState> {
   }
 
   public componentDidMount(): void {
+    ReactGA.pageview(window.location.pathname + location.search);
+
     this.fetchPostsInCategory();
   }
 
