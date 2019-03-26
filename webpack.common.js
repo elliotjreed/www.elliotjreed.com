@@ -22,10 +22,10 @@ module.exports = {
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
-        ],
+          "style-loader",
+          "css-loader",
+          "sass-loader"
+        ]
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,

@@ -17,12 +17,12 @@ module.exports = merge(commonConfig, {
   },
   devtool: "inline-source-map",
   node: {
-    net: 'mock',
-    dns: 'mock',
-    fs: 'empty'
+    net: "mock",
+    dns: "mock",
+    fs: "empty"
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // enable HMR globally
     new webpack.NamedModulesPlugin() // prints more readable module names in the browser console on HMR updates
-  ],
+  ]
 });
