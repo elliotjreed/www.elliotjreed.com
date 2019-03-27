@@ -77,7 +77,7 @@ export default class Sitemap extends React.Component<{}, IState> {
 
   private listOfPosts(posts): React.ReactFragment {
     return <React.Fragment>
-      {Object.keys(posts).map(category => (
+      {Object.keys(posts).reverse().map(category => (
         <div className="content article-body" key={category}>
           <h3 className="subtitle"><Link to={"category/" + category}>{category}</Link></h3>
           <ul>

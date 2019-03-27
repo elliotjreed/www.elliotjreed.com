@@ -53,7 +53,7 @@ export default class AllPosts extends React.Component<{}, IState> {
 
   private posts(): React.ReactFragment {
     return <React.Fragment>
-      {this.state.posts.map(post => (
+      {this.state.posts.reverse().map(post => (
         <PostCard key={post} category={post.split("/")[0].toLowerCase()} post={post.split("/")[1]}/>
       ))}
     </React.Fragment>;

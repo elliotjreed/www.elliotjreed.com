@@ -87,7 +87,7 @@ export default class Posts extends React.Component<IProps, IState> {
 
   private postsInCategory(posts: string[]): React.ReactNode {
     return <ul>
-      {posts.map(post => (
+      {posts.reverse().map(post => (
         <PostCard key={post} category={this.state.category.toLowerCase()} post={post}/>
       ))}
     </ul>;
