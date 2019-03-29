@@ -35,6 +35,10 @@ export default class TopBar extends React.Component<{}, IState> {
             </a>
           </div>
           <div className={"navbar-menu" + (this.state.menuActive ? " is-active" : "")}>
+            <div className="navbar-start">
+              <Link className="navbar-item" to="/cv">CV</Link>
+              <Link className="navbar-item" to="/travel">Travelling</Link>
+            </div>
             <div className="navbar-end">
               <Categories/>
               <div className="navbar-item">
