@@ -2,7 +2,6 @@
   "rootDir": "..",
   "coverageDirectory": "<rootDir>/tests/__coverage__/",
   "setupFiles": [
-    "<rootDir>/tests/__mocks__/shim.js",
     "<rootDir>/tests/__mocks__/fetch.ts",
     "<rootDir>/tests/testSetup.js"
   ],
@@ -11,14 +10,14 @@
     "<rootDir>/tests/"
   ],
   "moduleNameMapper": {
-    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tests/__mocks__/fileMock.js",
-    "\\.(css|scss|less)$": "<rootDir>/tests/__mocks__/styleMock.js"
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tests/__mocks__/fileMock.ts",
+    "\\.(css|scss|less)$": "<rootDir>/tests/__mocks__/styleMock.ts"
   },
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx"],
   "transform": {
     "^.+\\.(ts|tsx)$": "<rootDir>/tests/jest.preprocessor.js"
   },
-  "transformIgnorePatterns": [
+  "transformIgnorePatterns": ["styleMock.ts",
     "/node_modules/"
   ],
   "testRegex": "/tests/.*\\.(tsx)$",
