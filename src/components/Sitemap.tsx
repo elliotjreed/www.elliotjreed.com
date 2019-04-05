@@ -39,7 +39,8 @@ export default class Sitemap extends React.Component<{}, IState> {
     return (
       <main>
         <Helmet>
-          <title>Sitemap</title>
+          <title>Sitemap | Elliot J. Reed</title>
+          <meta name="description" content="A list of all the posts, guides, and how-tos on my website."/>
         </Helmet>
 
         <section className="hero is-info is-small is-bold">

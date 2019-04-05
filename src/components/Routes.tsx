@@ -25,7 +25,7 @@ export default class Routes extends React.Component<{}, {}> {
     ReactGA.pageview(window.location.pathname + location.search);
   }
 
-  public render(): React.ReactNode {
+  public render(): Router {
     return (
       <Router history={history}>
         <TopBar/>

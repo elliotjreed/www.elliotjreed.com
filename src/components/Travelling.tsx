@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactGA from "react-ga";
-import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 import "./../assets/scss/App.scss";
 
@@ -12,6 +12,10 @@ export default class Travelling extends React.Component<{}, {}> {
   public render(): React.ReactNode {
     return (
       <main>
+        <Helmet>
+          <title>Travelling | Elliot J. Reed</title>
+          <meta name="description" content="A couple of photographs from my travels."/>
+        </Helmet>
         <section className="hero is-info is-small is-bold">
           <div className="hero-body">
             <div className="container has-text-centered">

@@ -3,20 +3,17 @@ const { CheckerPlugin } = require("awesome-typescript-loader");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx"]
-  },
   context: resolve(__dirname, "./src"),
   module: {
     rules: [
       {
+        exclude: /node_modules/,
         test: /\.js$/,
-        use: ["babel-loader", "source-map-loader"],
-        exclude: /node_modules/
+        use: ["babel-loader", "source-map-loader"]
       },
       {
-        test: /\.tsx?$/,
         exclude: /\.test.tsx?$/,
+        test: /\.tsx?$/,
         use: ["babel-loader", "awesome-typescript-loader"]
       },
       {
@@ -28,28 +25,31 @@ module.exports = {
         ]
       },
       {
-        test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
           "file-loader?hash=sha512&digest=hex&name=img/[hash].[ext]",
           "image-webpack-loader?bypassOnDebug&optipng.optimizationLevel=7&gifsicle.interlaced=false"
-        ]
+        ],
+        test: /\.(jpe?g|png|gif|svg)$/i
       }
     ]
+  },
+  performance: {
+    hints: false
   },
   plugins: [
     new CheckerPlugin(),
     new HtmlWebpackPlugin({
-      title: "Elliot J. Reed",
-      template: "./index.html",
       filename: "./index.html",
       minify: {
+        "collapseWhitespace": true,
         "removeComments": true,
-        "removeScriptTypeAttributes": true,
-        "collapseWhitespace": true
-      }
+        "removeScriptTypeAttributes": true
+      },
+      template: "./index.html",
+      title: "Elliot J. Reed"
     })
   ],
-  performance: {
-    hints: false
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".jsx"]
   }
 };

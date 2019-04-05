@@ -13,26 +13,9 @@ const PATHS = {
 };
 
 module.exports = merge(commonConfig, {
-  mode: "production",
-  entry: "./index.tsx",
-  output: {
-    filename: "js/[hash].min.js",
-    path: resolve(__dirname, "./dist"),
-    publicPath: "/"
-  },
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        styles: {
-          name: "styles",
-          test: /\.css$/,
-          chunks: "all",
-          enforce: true
-        }
-      }
-    }
-  },
   devtool: "source-map",
+  entry: "./index.tsx",
+  mode: "production",
   module: {
     rules: [
       {
@@ -45,28 +28,43 @@ module.exports = merge(commonConfig, {
       }
     ]
   },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          chunks: "all",
+          enforce: true,
+          name: "styles",
+          test: /\.css$/
+        }
+      }
+    }
+  },
+  output: {
+    filename: "js/[hash].min.js",
+    path: resolve(__dirname, "./dist"),
+    publicPath: "/"
+  },
   plugins: [
     new WebpackPwaManifest({
-      name: "Elliot J. Reed",
-      short_name: "EJR",
-      description: "",
       background_color: "#898989",
-      inject: true,
-      theme_color: "#363636",
-      ios: true,
       crossorigin: "use-credentials", //can be null, use-credentials or anonymous
+      description: "",
       icons: [
         {
-          src: resolve("src/assets/img/icon.png"),
-          sizes: [96, 128, 150, 192, 256, 384, 512]
+          sizes: [96, 128, 150, 192, 256, 384, 512],
+          src: resolve("src/assets/img/icon.png")
         }
-      ]
+      ],
+      inject: true,
+      ios: true,
+      name: "Elliot J. Reed",
+      short_name: "EJR",
+      theme_color: "#363636"
     }),
     new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
-      filename: "[name].[hash].css",
-      chunkFilename: "[id].[hash].css"
+      chunkFilename: "[id].[hash].css",
+      filename: "[name].[hash].css"
     }),
     new PurgecssPlugin({
       paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),

@@ -21,6 +21,7 @@ export default class Post extends React.Component<IProps, IState> {
   private readonly post: string;
   private readonly title: string;
   private readonly date: string;
+  private readonly description: string;
 
   constructor(props: IProps) {
     super(props);
@@ -32,7 +33,14 @@ export default class Post extends React.Component<IProps, IState> {
     this.post = postWithSpaces + ".md";
     this.title = postWithSpaces.substr(11);
     this.date = url.substr(0, 10);
+
     this.category = this.props.match.params.category;
+    this.description = new Date(this.date).toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "long",
+      weekday: "long",
+      year: "numeric"
+    }) + ". " + this.title + ".";
 
     this.state = {
       content: "",
@@ -54,7 +62,8 @@ export default class Post extends React.Component<IProps, IState> {
     return (
       <main>
         <Helmet>
-          <title>{this.title}</title>
+          <title>{this.title + " | Elliot J. Reed"}</title>
+          <meta name="description" content={this.description}/>
         </Helmet>
 
         <section className="hero is-info is-small is-bold">

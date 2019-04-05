@@ -15,7 +15,7 @@ export default class Home extends React.Component<{}, {}> {
       <main>
         <Helmet>
           <title>Elliot J. Reed</title>
-          <meta name="description" content=""/>
+          <meta name="description" content="Hi, I'm Elliot, a software developer from Nottingham. This website has guides on PHP, Symfony, Javascript, React, Python, and Linux / DevOps."/>
         </Helmet>
 
         <section className="hero is-info is-small is-bold">
@@ -37,7 +37,7 @@ export default class Home extends React.Component<{}, {}> {
                   <section className="column is-8 has-text-dark">
                     <h1 className="title is-2">Elliot J. Reed</h1>
                     <p>
-                      Hi! I'm Elliot, a software developer based in Nottingham. My interests are generally in PHP, Javascript, Python, Docker, and general DevOps.
+                      Hi! I'm Elliot, a software developer based in Nottingham. My interests are generally in E-Commerce, PHP, Javascript, Docker, and general DevOps.
                     </p>
                     <p>
                       This website contains little mini-guides and snippets which may prove helpful, and if you're stuck on anything you think I may be able to help with give me a shout-out on <a href="https://twitter.com/elliotjreed">Twitter</a> or <a href="https://www.linkedin.com/in/elliotjreed/">LinkedIn</a>.

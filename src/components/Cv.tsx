@@ -13,8 +13,8 @@ export default class Cv extends React.Component<{}, {}> {
     return (
       <main>
         <Helmet>
-          <title>Elliot J. Reed</title>
-          <meta name="description" content=""/>
+          <title>Curriculum Vitae / Résumé | Elliot J. Reed</title>
+          <meta name="description" content="The curriculum vitae of Elliot J. Reed, software developer based in Nottingham. Specialising in PHP, e-commerce, Javascript, Linux, DevOps, SQL, and other web and application technologies."/>
         </Helmet>
 
         <main className="section">
@@ -26,7 +26,7 @@ export default class Cv extends React.Component<{}, {}> {
                   <section className="summary">
                     <h2 className="title">Summary</h2>
                     <div className="wrapper">
-                      Software Developer with over six years development and management experience in the multi-channel
+                      Software Developer with over seven years development and management experience in the multi-channel
                       ecommerce industry primarily using object-oriented PHP, MySQL, Javascript, HTML, and CSS, with
                       various APIs and frameworks on Linux using Docker, Ansible, and Apache and NginX.
                       Worked using Agile / Scrum methodologies with test-driven development to SOLID design principles.
@@ -35,20 +35,18 @@ export default class Cv extends React.Component<{}, {}> {
 
                   <section>
                     <h2 className="title">Experience</h2>
-
                     <section>
-                      <h3><strong><a href="https://www.bunches.co.uk" target="_blank"
-                                     rel="noopener">Bunches</a></strong> <em>Software Engineer</em></h3>
+                      <h3>
+                        <strong><a href="https://www.bunches.co.uk" target="_blank" rel="noopener">Bunches</a></strong> <em>Software Engineer</em>
+                      </h3>
                       <div>2017 - Present</div>
                       <div className="content">
                         <div className="columns is-desktop">
                           <ul className="column">
-                            <li>Trained junior developers in <abbr title="Test-Driven Development">TDD</abbr>, SOLID
-                              design principles, and Clean Code;
+                            <li>Trained junior developers in <abbr title="Test-Driven Development">TDD</abbr>, SOLID design principles, and Clean Code;
                             </li>
                             <li>Refactored legacy codebases;</li>
-                            <li>Introduced and implemented an Elastic Stack for more advanced logging and analytics;
-                            </li>
+                            <li>Introduced and implemented an Elastic Stack for more advanced logging and analytics;</li>
                             <li>Implemented Braintree and PayPal payment integrations;</li>
                             <li>Migrated development and production environments to Docker and NginX from Apache;</li>
                             <li>Added Royal Mail services via the newer REST API;</li>
@@ -72,9 +70,9 @@ export default class Cv extends React.Component<{}, {}> {
                     <hr/>
 
                     <section>
-                      <h3><strong>Universal Textiles (TA: <a href="https://www.pertembaglobal.com/" target="_blank"
-                                                             rel="noopener">Pertemba Global</a>)</strong> <em>Head of
-                        IT</em></h3>
+                      <h3>
+                        <strong>Universal Textiles (TA: <a href="https://www.pertembaglobal.com/" target="_blank" rel="noopener">Pertemba Global</a>)</strong> <em>Head of IT</em>
+                      </h3>
                       <div>2015 - 2017</div>
                       <div className="content">
                         <div className="columns is-desktop">
@@ -113,8 +111,7 @@ export default class Cv extends React.Component<{}, {}> {
                             <li>Managed warehouse team members, customer support staff, and administrative staff;</li>
                             <li>Managed suppliers and delivery companies;</li>
                             <li>Integrated online and offline payment systems;</li>
-                            <li>Assisted in setting up the <a href="https://www.kittycafe.co.uk/" target="_blank"
-                                                              rel="noopener">Kitty Café</a>.
+                            <li>Assisted in setting up the <a href="https://www.kittycafe.co.uk/" target="_blank" rel="noopener">Kitty Café</a>.
                             </li>
                           </ul>
                         </div>
@@ -209,26 +206,13 @@ export default class Cv extends React.Component<{}, {}> {
                   <h2 className="title">Projects</h2>
                   <div className="content">
                     <ul>
-                      <li><a href="https://www.nexusbusiness.co.uk/" target="_blank" rel="noopener">Nexus Business
-                        Group</a> website
-                      </li>
-                      <li><a href="https://www.charismahair.co.uk/" target="_blank" rel="noopener">Charisma
-                        Hair</a> website
-                      </li>
-                      <li><a href="https://packagist.org/packages/elliotjreed/disposable-emails-filter"
-                             target="_blank" rel="noopener">Disposable Emails Filter</a> Composer package
-                      </li>
-                      <li><a href="https://github.com/elliotjreed/web-server-health-check" target="_blank"
-                             rel="noopener">Web server health checker</a> PHP utility
-                      </li>
-                      <li><a href="https://hub.docker.com/r/elliotjreed/database-anonymiser/" target="_blank"
-                             rel="noopener">Database Anonymiser</a> Docker image
-                      </li>
-                      <li><a href="https://github.com/elliotjreed/php-test-runner" target="_blank" rel="noopener">PHP
-                        Test Suite</a> <a href="https://hub.docker.com/r/elliotjreed/php-test-runner/"
-                                          target="_blank" rel="noopener">Docker image</a></li>
-                      <li>Contributor to <a href="https://vanilla-project.guide/" target="_blank" rel="noopener">the
-                        Vanilla Project</a></li>
+                      <li><a href="https://www.nexusbusiness.co.uk/" target="_blank" rel="noopener">Nexus Business Group</a> website</li>
+                      <li><a href="https://www.charismahair.co.uk/" target="_blank" rel="noopener">Charisma Hair</a> website</li>
+                      <li><a href="https://packagist.org/packages/elliotjreed/disposable-emails-filter" target="_blank" rel="noopener">Disposable Emails Filter</a> Composer package</li>
+                      <li><a href="https://github.com/elliotjreed/web-server-health-check" target="_blank" rel="noopener">Web server health checker</a> PHP utility</li>
+                      <li><a href="https://hub.docker.com/r/elliotjreed/database-anonymiser/" target="_blank" rel="noopener">Database Anonymiser</a> Docker image</li>
+                      <li><a href="https://github.com/elliotjreed/php-test-runner" target="_blank" rel="noopener">PHP Test Suite</a> <a href="https://hub.docker.com/r/elliotjreed/php-test-runner/" target="_blank" rel="noopener">Docker image</a></li>
+                      <li>Contributor to <a href="https://vanilla-project.guide/" target="_blank" rel="noopener">the Vanilla Project</a></li>
                     </ul>
                   </div>
                 </section>

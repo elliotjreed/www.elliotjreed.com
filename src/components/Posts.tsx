@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
 
 import "./../assets/scss/App.scss";
 import PostCard from "./PostCard";
@@ -58,7 +57,8 @@ export default class Posts extends React.Component<IProps, IState> {
     return (
       <main>
         <Helmet>
-          <title>{Posts.capitalise(this.state.category)}</title>
+          <title>{Posts.capitalise(this.state.category) + " | Elliot J. Reed"}</title>
+          <meta name="description" content={"Various posts, guides, and how-tos on " + Posts.capitalise(this.state.category)}/>
         </Helmet>
         <section className="hero is-info is-small is-bold">
           <div className="hero-body main-banner">
