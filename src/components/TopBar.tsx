@@ -43,17 +43,17 @@ export default class TopBar extends React.Component<{}, IState> {
               <Categories/>
               <div className="navbar-item">
                 <div className="buttons">
-                  <a href="https://github.com/elliotjreed" className="button">
+                  <a href="https://github.com/elliotjreed" className="button" title="GitHub Profile">
                     <span className="icon is-medium">
                       <FontAwesomeIcon className="fas fa-lg green" icon={faGithub}/>
                     </span>
                   </a>
-                  <a href="https://twitter.com/elliotjreed" className="button">
+                  <a href="https://twitter.com/elliotjreed" className="button" title="Twitter Profile">
                     <span className="icon is-medium">
                       <FontAwesomeIcon className="fas fa-lg green" icon={faTwitter}/>
                     </span>
                   </a>
-                  <a href="https://www.linkedin.com/in/elliotjreed/" className="button">
+                  <a href="https://www.linkedin.com/in/elliotjreed/" className="button" title="LinkedIn Profile">
                     <span className="icon is-medium">
                       <FontAwesomeIcon className="fas fa-lg green" icon={faLinkedin}/>
                     </span>
