@@ -26,10 +26,16 @@ export default class Cv extends React.Component<{}, {}> {
                   <section className="summary">
                     <h2 className="title">Summary</h2>
                     <div className="wrapper">
-                      Software Developer with over seven years development and management experience in the multi-channel
-                      ecommerce industry primarily using object-oriented PHP, MySQL, Javascript, HTML, and CSS, with
-                      various APIs and frameworks on Linux using Docker, Ansible, and Apache and NginX.
-                      Worked using Agile / Scrum methodologies with test-driven development to SOLID design principles.
+                      <p>
+                        To download or view an up-to-date copy of my <em>curriculum vitae</em>, visit <a href="https://github.com/elliotjreed/curriculum-vitae" target="_blank">github.com/elliotjreed/curriculum-vitae</a>.
+                      </p>
+                      <hr />
+                      <p>
+                        Software Developer with over seven years development and management experience in the multi-channel
+                        ecommerce industry primarily using object-oriented PHP, MySQL, Javascript, HTML, and CSS, with
+                        various APIs and frameworks on Linux using Docker, Ansible, and Apache and NginX.
+                        Worked using Agile / Scrum methodologies with test-driven development to SOLID design principles.
+                      </p>
                     </div>
                   </section>
 
