@@ -54,6 +54,7 @@
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.5",
     "copy-webpack-plugin": "^5.0.2",
+    "critters-webpack-plugin": "^2.3.0",
     "css-loader": "^2.1.1",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",

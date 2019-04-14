@@ -7,6 +7,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const PurgecssPlugin = require("purgecss-webpack-plugin");
 const WorkboxPlugin = require("workbox-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const Critters = require("critters-webpack-plugin");
 
 const PATHS = {
   src: join(__dirname, "src")
@@ -76,6 +77,13 @@ module.exports = merge(commonConfig, {
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
       skipWaiting: true
+    }),
+    new Critters({
+      // Outputs: <link rel="preload" onload="this.rel='stylesheet'">
+      preload: "swap",
+
+      // Don't inline critical font-face rules, but preload the font URLs:
+      preloadFonts: true
     })
   ]
 });
