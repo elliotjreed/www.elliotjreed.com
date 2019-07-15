@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as ReactGA from "react-ga";
-import { Link } from "react-router-dom";
 
 import "./../assets/scss/App.scss";
 import PostCard from "./PostCard";

@@ -63,7 +63,7 @@ export default class Cv extends React.Component<{}, {}> {
                             <li>Migrated database from Rackspace to AWS RDS;</li>
                             <li>Introduced frontend build tools including Webpack;</li>
                             <li>Implemented fraud detection system using RabbitMQ, Python, and PHP;</li>
-                            <li>Upgraded PHP versions from 5.6 to 7.2;</li>
+                            <li>Upgraded PHP versions from 5.6 to 7.3;</li>
                             <li>Implemented Continuous Integration, and automated testing and building;</li>
                             <li>Optimised page speed using CSS optimisation, automated critical CSS generation;</li>
                             <li>Reduced server response times via HTTP/2, Cloudflare, and caching.
