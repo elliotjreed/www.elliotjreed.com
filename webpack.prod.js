@@ -31,17 +31,24 @@ module.exports = merge(commonConfig, {
   optimization: {
     splitChunks: {
       cacheGroups: {
+        default: false,
+        vendors: false,
         styles: {
           chunks: "all",
           enforce: true,
           name: "styles",
           test: /\.css$/
+        },
+        vendor: {
+          name: "vendor",
+          chunks: "all",
+          test: /node_modules/
         }
       }
     }
   },
   output: {
-    filename: "js/[hash].min.js",
+    filename: "js/[name].[hash].min.js",
     path: resolve(__dirname, "./dist"),
     publicPath: "/"
   },
