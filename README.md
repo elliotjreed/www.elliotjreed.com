@@ -41,4 +41,4 @@ yarn test
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENCE](LICENCE) file for details.
+This project is licensed under the MIT License - see the [LICENCE](LICENSE) file for details.
