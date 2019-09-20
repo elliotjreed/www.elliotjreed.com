@@ -49,8 +49,7 @@ export default class Cv extends React.Component<{}, {}> {
                       <div className="content">
                         <div className="columns is-desktop">
                           <ul className="column">
-                            <li>Trained junior developers in <abbr title="Test-Driven Development">TDD</abbr>, SOLID design principles, and Clean Code;
-                            </li>
+                            <li>Trained junior developers in <abbr title="Test-Driven Development">TDD</abbr>, SOLID design principles, and Clean Code;</li>
                             <li>Refactored legacy codebases;</li>
                             <li>Introduced and implemented an Elastic Stack for more advanced logging and analytics;</li>
                             <li>Implemented Braintree and PayPal payment integrations;</li>
@@ -66,8 +65,7 @@ export default class Cv extends React.Component<{}, {}> {
                             <li>Upgraded PHP versions from 5.6 to 7.3;</li>
                             <li>Implemented Continuous Integration, and automated testing and building;</li>
                             <li>Optimised page speed using CSS optimisation, automated critical CSS generation;</li>
-                            <li>Reduced server response times via HTTP/2, Cloudflare, and caching.
-                            </li>
+                            <li>Reduced server response times via HTTP/2, Cloudflare, and caching.</li>
                           </ul>
                         </div>
                       </div>
@@ -117,8 +115,7 @@ export default class Cv extends React.Component<{}, {}> {
                             <li>Managed warehouse team members, customer support staff, and administrative staff;</li>
                             <li>Managed suppliers and delivery companies;</li>
                             <li>Integrated online and offline payment systems;</li>
-                            <li>Assisted in setting up the <a href="https://www.kittycafe.co.uk/" target="_blank" rel="noopener">Kitty Café</a>.
-                            </li>
+                            <li>Assisted in setting up the <a href="https://www.kittycafe.co.uk/" target="_blank" rel="noopener">Kitty Café</a>.</li>
                           </ul>
                         </div>
                       </div>

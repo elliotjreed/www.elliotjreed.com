@@ -91,9 +91,6 @@ export default class Sitemap extends React.Component<{}, IState> {
 
   private listOfPostsInCategory(category): React.ReactFragment {
     return <React.Fragment>
-      <Helmet>
-        <title>All Posts</title>
-      </Helmet>
       {this.state.posts[category].map(post => (
         <li key={post}>
           <Link to={"/post/" + category.toLowerCase() + "/" + post.slice(0, -3).replace(/\s+/g, "_")}>{post.substr(11).slice(0, -3)}</Link>
