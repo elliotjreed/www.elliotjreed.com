@@ -41,9 +41,63 @@ export default class Categories extends React.Component<{}, IState> {
     );
   }
 
-  private fetchCategories(): void {
-    fetch("https://api.elliotjreed.com/categories")
-      .then(response => response.json())
-      .then(categories => this.setState({ categories, loading: false }));
+  private fetchCategories(): Promise<void> {
+    if (!("caches" in self)) {
+      return this.updateFromNetwork();
+    }
+
+    return caches
+      .open("ejr").then(cache => {
+        cache
+          .match("https://api.elliotjreed.com/categories")
+          .then(
+            (response: Response | undefined): Promise<string[]> => {
+              return new Promise((resolve, reject): void => {
+                if (response) {
+                  resolve(response.clone().json());
+                } else {
+                  reject();
+                }
+              });
+            }
+          )
+          .then((categories: string[]): void => {
+            this.setState({
+              categories,
+              loading: false
+            });
+          })
+          .catch(() => this.updateFromNetwork());
+      })
+      .catch(() => this.updateFromNetwork());
+  }
+
+  private updateFromNetwork(): Promise<void> {
+    return fetch("https://api.elliotjreed.com/categories")
+      .then(
+        (response: Response): Promise<string[]> => {
+          return new Promise((resolve, reject): void => {
+            const clonedResponse = response.clone();
+            if (clonedResponse.ok) {
+              if ("caches" in self) {
+                caches
+                  .open("ejr")
+                  .then(cache => cache.put("https://api.elliotjreed.com/categories", clonedResponse.clone()))
+                  .catch();
+              }
+              resolve(clonedResponse.clone().json());
+            } else {
+              reject();
+            }
+          });
+        }
+      )
+      .then((categories: string[]): void => {
+        this.setState({
+          categories,
+          loading: false
+        });
+      })
+      .catch((): void => this.controller.abort());
   }
 }

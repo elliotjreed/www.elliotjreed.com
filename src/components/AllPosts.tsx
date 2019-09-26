@@ -44,10 +44,64 @@ export default class AllPosts extends React.Component<{}, IState> {
     );
   }
 
-  private fetchAllPosts(): void {
-    fetch("https://api.elliotjreed.com/all")
-      .then(response => response.json())
-      .then(posts => this.setState({ posts, loading: false }));
+  private fetchAllPosts(): Promise<void> {
+    if (!("caches" in self)) {
+      return this.updateFromNetwork();
+    }
+
+    return caches
+      .open("ejr").then(cache => {
+        cache
+          .match("https://api.elliotjreed.com/all")
+          .then(
+            (response: Response | undefined): Promise<string[]> => {
+              return new Promise((resolve, reject): void => {
+                if (response) {
+                  resolve(response.clone().json());
+                } else {
+                  reject();
+                }
+              });
+            }
+          )
+          .then((posts: string[]): void => {
+            this.setState({
+              loading: false,
+              posts
+            });
+          })
+          .catch(() => this.updateFromNetwork());
+      })
+      .catch(() => this.updateFromNetwork());
+  }
+
+  private updateFromNetwork(): Promise<void> {
+    return fetch("https://api.elliotjreed.com/all")
+      .then(
+        (response: Response): Promise<string[]> => {
+          return new Promise((resolve, reject): void => {
+            const clonedResponse = response.clone();
+            if (clonedResponse.ok) {
+              if ("caches" in self) {
+                caches
+                  .open("ejr")
+                  .then(cache => cache.put("https://api.elliotjreed.com/all", clonedResponse.clone()))
+                  .catch(() => {});
+              }
+              resolve(clonedResponse.clone().json());
+            } else {
+              reject();
+            }
+          });
+        }
+      )
+      .then((posts: string[]): void => {
+        this.setState({
+          loading: false,
+          posts
+        });
+      })
+      .catch((): void => this.controller.abort());
   }
 
   private posts(): React.ReactFragment {

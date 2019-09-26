@@ -12,7 +12,7 @@ interface IProps {
 
 interface IState {
   content: string,
-  loading: boolean
+  loading: boolean;
 }
 
 export default class Post extends React.Component<IProps, IState> {
@@ -79,8 +79,7 @@ export default class Post extends React.Component<IProps, IState> {
                   <div className="has-text-centered">
                     <h3 className="title article-title">{this.title}</h3>
                     <div className="tags has-addons level-item">
-                      <Link to={"/category/" + this.category}
-                            className="tag is-rounded tag-category">{this.category}</Link>
+                      <Link to={"/category/" + this.category} className="tag is-rounded tag-category">{this.category}</Link>
                       <time dateTime={this.date} className="tag is-rounded">{this.date}</time>
                     </div>
                   </div>
@@ -98,14 +97,67 @@ export default class Post extends React.Component<IProps, IState> {
     );
   }
 
-  private fetchPost(): void {
-    fetch("https://api.elliotjreed.com/post/" + this.category + "/" + this.post)
-      .then(response => response.text())
+  private fetchPost(): Promise<void> {
+    if (!("caches" in self)) {
+      return this.updateFromNetwork();
+    }
+
+    return caches
+      .open("ejr").then(cache => {
+        cache
+          .match("https://api.elliotjreed.com/post/" + this.category + "/" + this.post)
+          .then(
+            (response: Response | undefined): Promise<string> => {
+              return new Promise((resolve, reject): void => {
+                if (response) {
+                  resolve(response.clone().text());
+                } else {
+                  reject();
+                }
+              });
+            }
+          )
+          .then(markdown => markdown.substring(markdown.indexOf("\n") + 1))
+          .then(markdown => marked(markdown))
+          .then((content: string): void => {
+            this.setState({
+              content: content.substring(this.state.content.indexOf("\n") + 1),
+              loading: false
+            });
+          })
+          .catch(() => this.updateFromNetwork());
+      })
+      .catch(() => this.updateFromNetwork());
+  }
+
+  private updateFromNetwork(): Promise<void> {
+    return fetch("https://api.elliotjreed.com/post/" + this.category + "/" + this.post)
+      .then(
+        (response: Response): Promise<string> => {
+          return new Promise((resolve, reject): void => {
+            const clonedResponse = response.clone();
+            if (clonedResponse.ok) {
+              if ("caches" in self) {
+                caches
+                  .open("ejr")
+                  .then(cache => cache.put("https://api.elliotjreed.com/post/" + this.category + "/" + this.post, clonedResponse.clone()))
+                  .catch(() => {});
+              }
+              resolve(clonedResponse.clone().text());
+            } else {
+              reject();
+            }
+          });
+        }
+      )
       .then(markdown => markdown.substring(markdown.indexOf("\n") + 1))
       .then(markdown => marked(markdown))
-      .then(content => this.setState({
-        content: content.substring(this.state.content.indexOf("\n") + 1),
-        loading: false
-      }));
+      .then((content: string): void => {
+        this.setState({
+          content: content.substring(this.state.content.indexOf("\n") + 1),
+          loading: false
+        });
+      })
+      .catch((): void => this.controller.abort());
   }
 }

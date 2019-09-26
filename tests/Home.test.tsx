@@ -1,15 +1,11 @@
+import { shallow } from "enzyme";
 import * as React from "react";
-import * as ReactDOM from "react-dom";
-import * as TestUtils from "react-dom/test-utils";
-
+import AllPosts from "../src/components/AllPosts";
 import Home from "../src/components/Home";
 
-it("Renders home component", () => {
-  const appElement: Home = TestUtils.renderIntoDocument(
-    <Home/>
-  );
-
-  const appNode = ReactDOM.findDOMNode(appElement);
-
-  expect(appNode.textContent).toContain("I'm Elliot, a software developer based in Nottingham.");
+describe("Home", (): void => {
+  it("should render with home CSS class and contain AllPosts component", (): void => {
+    expect(shallow(<Home />).exists(".home")).toBe(true);
+    expect(shallow(<Home />).find(AllPosts)).toHaveLength(1);
+  });
 });

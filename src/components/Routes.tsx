@@ -22,7 +22,6 @@ history.listen(location => {
   ReactGA.pageview(location.pathname + location.search);
 });
 
-
 export default class Routes extends React.Component<{}, {}> {
   public componentDidMount(): void {
     ReactGA.pageview(window.location.pathname + location.search);

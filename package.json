@@ -21,8 +21,8 @@
     "clean-dist": "rm -rf -d dist",
     "start": "webpack-dev-server --config=webpack.dev.js",
     "build": "yarn run clean-dist && webpack -p --config=webpack.prod.js",
-    "test": "jest --coverage --config=tests/jest.json",
-    "test:watch": "jest --watch --coverage --config=tests/jest.json",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch --coverage",
     "lint": "yarn run lint:ts && yarn run lint:css",
     "lint:ts": "tslint './src/**/*.ts*' --format stylish --force",
     "lint:css": "stylelint './src/**/*.scss'"
@@ -47,10 +47,14 @@
     "@babel/core": "^7",
     "@babel/preset-env": "^7",
     "@babel/preset-react": "^7",
+    "@types/enzyme": "^3.10.3",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/jest": "^24.0.18",
     "@types/node": "^12",
     "@types/react": "^16",
     "@types/react-dom": "^16",
     "awesome-typescript-loader": "^5",
+    "babel-jest": "^24.9.0",
     "babel-loader": "^8",
     "copy-webpack-plugin": "^5",
     "css-loader": "^3",
@@ -60,6 +64,7 @@
     "html-webpack-plugin": "^3",
     "image-webpack-loader": "^6",
     "jest": "^24",
+    "jest-enzyme": "^7",
     "jest-fetch-mock": "^2",
     "mini-css-extract-plugin": "^0",
     "node-sass": "^4",
@@ -69,9 +74,10 @@
     "sass-loader": "^8",
     "style-loader": "^1",
     "stylelint": "^11",
-    "stylelint-config-recommended-scss": "^3",
+    "stylelint-config-recommended-scss": "^4",
     "stylelint-config-standard": "^19",
     "stylelint-scss": "^3",
+    "ts-jest": "^24",
     "tslint": "^5",
     "tslint-config-prettier": "^1",
     "tslint-react": "^4",
@@ -82,5 +88,37 @@
     "webpack-dev-middleware": "^3",
     "webpack-dev-server": "^3",
     "webpack-merge": "^4"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest",
+      "^.+\\.js?$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "\\.(css|scss)$": "<rootDir>/tests/stylesMock.js",
+      "\\.(svg)$": "<rootDir>/tests/svgMock.js"
+    },
+    "testMatch": [
+      "<rootDir>/tests/**/*.test.tsx"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/node_modules/jest-enzyme/lib/index.js"
+    ],
+    "setupFiles": [
+      "<rootDir>/tests/setupJest.js"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}",
+      "!tests/**/*.test.{ts,tsx}",
+      "!**/node_modules/**"
+    ],
+    "coverageReporters": [
+      "html",
+      "text"
+    ],
+    "resetModules": true,
+    "restoreMocks": true
   }
 }

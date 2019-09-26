@@ -21,16 +21,12 @@
     ]
   },
   "include": [
-    "./src/**/*",
-    "./tests/**/*"
+    "./src/**/*.tsx",
+    "./tests/**/*.tsx",
+    "./tests/**/*.js"
   ],
   "exclude": [
-    "node_modules",
-    "build",
-    "scripts",
-    "webpack",
-    "jest",
-    "tests/testSetup.js"
+    "node_modules"
   ],
   "types": [
     "typePatches"
