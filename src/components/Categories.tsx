@@ -2,12 +2,12 @@ import * as React from "react";
 import * as ReactGA from "react-ga";
 import { Link } from "react-router-dom";
 
-interface IState {
-  categories: string[],
-  loading: boolean
+interface State {
+  categories: string[];
+  loading: boolean;
 }
 
-export default class Categories extends React.Component<{}, IState> {
+export default class Categories extends React.Component<{}, State> {
   private controller: AbortController;
 
   constructor(props: null) {
@@ -34,9 +34,11 @@ export default class Categories extends React.Component<{}, IState> {
     return (
       <React.Fragment>
         {!this.state.loading &&
-        this.state.categories.map((category, index) => (
-          <Link key={index} className="navbar-item" to={"/category/" + category.toLowerCase().replace(" ", "-")}>{category}</Link>
-        ))}
+          this.state.categories.map((category, index) => (
+            <Link key={index} className="navbar-item" to={"/category/" + category.toLowerCase().replace(" ", "-")}>
+              {category}
+            </Link>
+          ))}
       </React.Fragment>
     );
   }
@@ -47,7 +49,8 @@ export default class Categories extends React.Component<{}, IState> {
     }
 
     return caches
-      .open("ejr").then(cache => {
+      .open("ejr")
+      .then(cache => {
         cache
           .match("https://api.elliotjreed.com/categories")
           .then(

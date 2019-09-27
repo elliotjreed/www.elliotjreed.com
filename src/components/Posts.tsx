@@ -6,25 +6,24 @@ import "./../assets/scss/App.scss";
 import PostCard from "./PostCard";
 import Spinner from "./Spinner";
 
-interface IProps {
-  match: { params: { category: string } }
+interface Props {
+  match: { params: { category: string } };
 }
 
-interface IState {
-  category: string,
-  loading: boolean
-  posts: string[],
+interface State {
+  category: string;
+  loading: boolean;
+  posts: string[];
 }
 
-export default class Posts extends React.Component<IProps, IState> {
-
+export default class Posts extends React.Component<Props, State> {
   private static capitalise(category: string): string {
     return category.charAt(0).toUpperCase() + category.slice(1);
   }
 
   private controller: AbortController;
 
-  constructor(props: IProps) {
+  constructor(props: Props) {
     super(props);
     this.controller = new AbortController();
 
@@ -43,7 +42,7 @@ export default class Posts extends React.Component<IProps, IState> {
     this.fetchPostsInCategory();
   }
 
-  public componentDidUpdate(prevProps: Readonly<IProps>, prevState: Readonly<IState>): void {
+  public componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>): void {
     if (this.state.category !== this.props.match.params.category) {
       this.setState({ category: this.props.match.params.category }, this.fetchPostsInCategory);
     }
@@ -58,7 +57,10 @@ export default class Posts extends React.Component<IProps, IState> {
       <main>
         <Helmet>
           <title>{Posts.capitalise(this.state.category) + " | Elliot J. Reed"}</title>
-          <meta name="description" content={"Various posts, guides, and how-tos on " + Posts.capitalise(this.state.category)}/>
+          <meta
+            name="description"
+            content={"Various posts, guides, and how-tos on " + Posts.capitalise(this.state.category)}
+          />
         </Helmet>
         <section className="hero is-info is-small is-bold">
           <div className="hero-body main-banner">
@@ -70,8 +72,11 @@ export default class Posts extends React.Component<IProps, IState> {
         <section className="container home">
           <div className="articles">
             <div className="column is-10 is-offset-1">
-              {this.state.loading ?
-                <Spinner/> : this.postsInCategory(this.state.posts[Object.keys(this.state.posts)[0]])}
+              {this.state.loading ? (
+                <Spinner />
+              ) : (
+                this.postsInCategory(this.state.posts[Object.keys(this.state.posts)[0]])
+              )}
             </div>
           </div>
         </section>
@@ -86,10 +91,12 @@ export default class Posts extends React.Component<IProps, IState> {
   }
 
   private postsInCategory(posts: string[]): React.ReactNode {
-    return <ul>
-      {posts.reverse().map(post => (
-        <PostCard key={post} category={this.state.category.toLowerCase()} post={post}/>
-      ))}
-    </ul>;
+    return (
+      <ul>
+        {posts.reverse().map(post => (
+          <PostCard key={post} category={this.state.category.toLowerCase()} post={post} />
+        ))}
+      </ul>
+    );
   }
 }
