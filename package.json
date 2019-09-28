@@ -24,7 +24,7 @@
     "test": "jest --coverage",
     "test:watch": "jest --watch --coverage",
     "lint": "yarn run lint:ts && yarn run lint:css",
-    "lint:ts": "tslint './src/**/*.ts*' --format stylish --force",
+    "lint:ts": "eslint './src/**/*.ts*'",
     "lint:css": "stylelint './src/**/*.scss'"
   },
   "dependencies": {

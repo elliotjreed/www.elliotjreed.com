@@ -275,7 +275,11 @@ export default class Cv extends React.Component<{}, {}> {
                         Composer package
                       </li>
                       <li>
-                        <a href="https://github.com/elliotjreed/web-server-health-check" target="_blank" rel="noopener noreferrer">
+                        <a
+                          href="https://github.com/elliotjreed/web-server-health-check"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           Web server health checker
                         </a>{" "}
                         PHP utility
@@ -291,10 +295,18 @@ export default class Cv extends React.Component<{}, {}> {
                         Docker image
                       </li>
                       <li>
-                        <a href="https://github.com/elliotjreed/php-test-runner" target="_blank" rel="noopener noreferrer">
+                        <a
+                          href="https://github.com/elliotjreed/php-test-runner"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           PHP Test Suite
                         </a>{" "}
-                        <a href="https://hub.docker.com/r/elliotjreed/php-test-runner/" target="_blank" rel="noopener noreferrer">
+                        <a
+                          href="https://hub.docker.com/r/elliotjreed/php-test-runner/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           Docker image
                         </a>
                       </li>
