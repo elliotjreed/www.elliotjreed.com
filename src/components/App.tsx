@@ -7,7 +7,7 @@ export default class App extends React.Component<{}, {}> {
   public render(): React.ReactNode {
     return (
       <div>
-        <Routes/>
+        <Routes />
       </div>
     );
   }

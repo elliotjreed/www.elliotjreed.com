@@ -5,12 +5,12 @@ import "./../assets/scss/App.scss";
 import PostCard from "./PostCard";
 import Spinner from "./Spinner";
 
-interface IState {
-  posts: string[],
-  loading: boolean
+interface State {
+  posts: string[];
+  loading: boolean;
 }
 
-export default class AllPosts extends React.Component<{}, IState> {
+export default class AllPosts extends React.Component<{}, State> {
   private controller: AbortController;
 
   constructor(props: null) {
@@ -35,13 +35,7 @@ export default class AllPosts extends React.Component<{}, IState> {
   }
 
   public render(): React.ReactNode {
-    return (
-      <div className="column is-10 is-offset-1">
-        {this.state.loading ?
-          <Spinner/> : this.posts()
-        }
-      </div>
-    );
+    return <div className="column is-10 is-offset-1">{this.state.loading ? <Spinner /> : this.posts()}</div>;
   }
 
   private fetchAllPosts(): Promise<void> {
@@ -50,7 +44,8 @@ export default class AllPosts extends React.Component<{}, IState> {
     }
 
     return caches
-      .open("ejr").then(cache => {
+      .open("ejr")
+      .then(cache => {
         cache
           .match("https://api.elliotjreed.com/all")
           .then(
@@ -105,10 +100,12 @@ export default class AllPosts extends React.Component<{}, IState> {
   }
 
   private posts(): React.ReactFragment {
-    return <React.Fragment>
-      {this.state.posts.reverse().map(post => (
-        <PostCard key={post} category={post.split("/")[0].toLowerCase()} post={post.split("/")[1]}/>
-      ))}
-    </React.Fragment>;
+    return (
+      <React.Fragment>
+        {this.state.posts.reverse().map(post => (
+          <PostCard key={post} category={post.split("/")[0].toLowerCase()} post={post.split("/")[1]} />
+        ))}
+      </React.Fragment>
+    );
   }
-};
+}

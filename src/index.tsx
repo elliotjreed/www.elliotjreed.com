@@ -6,7 +6,6 @@ import { AppContainer } from "react-hot-loader";
 import "./assets/scss/App.scss";
 import App from "./components/App";
 
-
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("/service-worker.js");
@@ -19,19 +18,19 @@ const rootEl: Element = document.getElementById("root");
 
 render(
   <AppContainer>
-    <App/>
+    <App />
   </AppContainer>,
   rootEl
 );
 
 declare let module: { hot: any };
 if (module.hot) {
-  module.hot.accept("./components/App", () => {
+  module.hot.accept("./components/App", (): void => {
     const NewApp = require("./components/App").default;
 
     render(
       <AppContainer>
-        <NewApp/>
+        <NewApp />
       </AppContainer>,
       rootEl
     );

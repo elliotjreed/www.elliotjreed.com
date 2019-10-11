@@ -30,19 +30,19 @@ export default class Routes extends React.Component<{}, {}> {
   public render(): Router {
     return (
       <Router history={history}>
-        <TopBar/>
-        <React.Suspense fallback={<Spinner/>}>
+        <TopBar />
+        <React.Suspense fallback={<Spinner />}>
           <Switch>
-            <Route exact={true} path="/" component={Home}/>
-            <Route exact={true} path="/sitemap" component={Sitemap}/>
-            <Route exact={true} path="/cv" component={Cv}/>
-            <Route exact={true} path="/travel" component={Travelling}/>
-            <Route exact={true} path="/category/:category" component={Posts}/>
-            <Route exact={true} path="/post/:category/:post" component={Post}/>
-            <Route component={PageNotFound}/>
+            <Route exact={true} path="/" component={Home} />
+            <Route exact={true} path="/sitemap" component={Sitemap} />
+            <Route exact={true} path="/cv" component={Cv} />
+            <Route exact={true} path="/travel" component={Travelling} />
+            <Route exact={true} path="/category/:category" component={Posts} />
+            <Route exact={true} path="/post/:category/:post" component={Post} />
+            <Route component={PageNotFound} />
           </Switch>
         </React.Suspense>
-        <Footer/>
+        <Footer />
       </Router>
     );
   }

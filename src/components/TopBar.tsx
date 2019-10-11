@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 
 import Categories from "./Categories";
 
-interface IState {
+interface State {
   menuActive: boolean;
 }
 
-export default class TopBar extends React.Component<{}, IState> {
+export default class TopBar extends React.Component<{}, State> {
   constructor(props: null) {
     super(props);
 
@@ -28,34 +28,44 @@ export default class TopBar extends React.Component<{}, IState> {
             <Link to="/" className="navbar-item">
               <p className="title green">Elliot J. Reed</p>
             </Link>
-            <a role="button" className={"navbar-burger navbar" + (this.state.menuActive ? " is-active" : "")} aria-label="menu" aria-expanded="false" onClick={this.toggleMobileMenu}>
-              <span aria-hidden="true"/>
-              <span aria-hidden="true"/>
-              <span aria-hidden="true"/>
+            <a
+              role="button"
+              className={"navbar-burger navbar" + (this.state.menuActive ? " is-active" : "")}
+              aria-label="menu"
+              aria-expanded="false"
+              onClick={this.toggleMobileMenu}
+            >
+              <span aria-hidden="true" />
+              <span aria-hidden="true" />
+              <span aria-hidden="true" />
             </a>
           </div>
           <div className={"navbar-menu" + (this.state.menuActive ? " is-active" : "")}>
             <div className="navbar-start">
-              <Link className="navbar-item" to="/cv">CV</Link>
-              <Link className="navbar-item" to="/travel">Travelling</Link>
+              <Link className="navbar-item" to="/cv">
+                CV
+              </Link>
+              <Link className="navbar-item" to="/travel">
+                Travelling
+              </Link>
             </div>
             <div className="navbar-end">
-              <Categories/>
+              <Categories />
               <div className="navbar-item">
                 <div className="buttons">
                   <a href="https://github.com/elliotjreed" className="button" title="GitHub Profile">
                     <span className="icon is-medium">
-                      <FontAwesomeIcon className="fas fa-lg green" icon={faGithub}/>
+                      <FontAwesomeIcon className="fas fa-lg green" icon={faGithub} />
                     </span>
                   </a>
                   <a href="https://twitter.com/elliotjreed" className="button" title="Twitter Profile">
                     <span className="icon is-medium">
-                      <FontAwesomeIcon className="fas fa-lg green" icon={faTwitter}/>
+                      <FontAwesomeIcon className="fas fa-lg green" icon={faTwitter} />
                     </span>
                   </a>
                   <a href="https://www.linkedin.com/in/elliotjreed/" className="button" title="LinkedIn Profile">
                     <span className="icon is-medium">
-                      <FontAwesomeIcon className="fas fa-lg green" icon={faLinkedin}/>
+                      <FontAwesomeIcon className="fas fa-lg green" icon={faLinkedin} />
                     </span>
                   </a>
                 </div>

@@ -14,7 +14,7 @@ export default class Travelling extends React.Component<{}, {}> {
       <main>
         <Helmet>
           <title>Travelling | Elliot J. Reed</title>
-          <meta name="description" content="A couple of photographs from my travels."/>
+          <meta name="description" content="A couple of photographs from my travels." />
         </Helmet>
         <section className="hero is-info is-small is-bold">
           <div className="hero-body">
@@ -32,7 +32,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890663/Travelling/Budapest_Hungary.jpg"
-                      alt="Photograph of Budapest"/>
+                      alt="Photograph of Budapest"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -47,7 +48,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890679/Travelling/Lutsk_Ukraine.jpg"
-                      alt="Photograph of Lutsk"/>
+                      alt="Photograph of Lutsk"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -62,7 +64,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890693/Travelling/Strathmore_Canada.jpg"
-                      alt="Photograph of Strathmore"/>
+                      alt="Photograph of Strathmore"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -76,7 +79,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890674/Travelling/Berlin_Germany.jpg"
-                      alt="Photograph of Berlin"/>
+                      alt="Photograph of Berlin"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -93,7 +97,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890684/Travelling/Bragg_Creek_Canada.jpg"
-                      alt="Photograph of Bragg Creek"/>
+                      alt="Photograph of Bragg Creek"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -107,7 +112,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890710/Travelling/Kosice_Slovakia.jpg"
-                      alt="Photograph of Kosice"/>
+                      alt="Photograph of Kosice"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -121,7 +127,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553892154/Travelling/Reutte_Austria.jpg"
-                      alt="Photograph of Reutte"/>
+                      alt="Photograph of Reutte"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -135,7 +142,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890698/Travelling/Zagreb_Croatia.jpg"
-                      alt="Photograph of Zagreb"/>
+                      alt="Photograph of Zagreb"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -152,7 +160,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890666/Travelling/Ljubljana_Slovenia.jpg"
-                      alt="Photograph of Ljubljana"/>
+                      alt="Photograph of Ljubljana"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -166,7 +175,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890671/Travelling/Bratislava_Slovakia.jpg"
-                      alt="Photograph of Bratislava"/>
+                      alt="Photograph of Bratislava"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -180,7 +190,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890691/Travelling/Neuschwanstein_Austria.jpg"
-                      alt="Photograph of Neuschwanstein"/>
+                      alt="Photograph of Neuschwanstein"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -194,7 +205,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890686/Travelling/Rome_Italy.jpg"
-                      alt="Photograph of Rome"/>
+                      alt="Photograph of Rome"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -211,7 +223,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890684/Travelling/Calgary_Canada.jpg"
-                      alt="Photograph of Calgary"/>
+                      alt="Photograph of Calgary"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -225,7 +238,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890681/Travelling/Prague_Czech.jpg"
-                      alt="Photograph of Prague"/>
+                      alt="Photograph of Prague"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -239,7 +253,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890692/Travelling/Vienna_Austria.jpg"
-                      alt="Photograph of Vienna"/>
+                      alt="Photograph of Vienna"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -253,7 +268,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890680/Travelling/Oswiecim_Poland.jpg"
-                      alt="Photograph of Oswiecim"/>
+                      alt="Photograph of Oswiecim"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -270,7 +286,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890692/Travelling/Venice_Italy.jpg"
-                      alt="Photograph of Venice"/>
+                      alt="Photograph of Venice"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -284,7 +301,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890698/Travelling/Zilina_Slovakia.jpg"
-                      alt="Photograph of Zilina"/>
+                      alt="Photograph of Zilina"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -298,7 +316,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890708/Travelling/Krakow_Poland.jpg"
-                      alt="Photograph of Krakow"/>
+                      alt="Photograph of Krakow"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -312,7 +331,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890673/Travelling/Mijas_Spain.jpg"
-                      alt="Photograph of Mijas"/>
+                      alt="Photograph of Mijas"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -323,14 +343,14 @@ export default class Travelling extends React.Component<{}, {}> {
           </div>
 
           <div className="columns">
-
             <div className="column is-one-quarter-desktop is-half-tablet">
               <div className="card">
                 <div className="card-image">
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890671/Travelling/Amsterdam_Netherlands.jpg"
-                      alt="Photograph of Amsterdam"/>
+                      alt="Photograph of Amsterdam"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -345,7 +365,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890686/Travelling/Rotterdamn_Netherlands.jpg"
-                      alt="Photograph of Rotterdam"/>
+                      alt="Photograph of Rotterdam"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -360,7 +381,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890703/Travelling/Salzburg_Austria.jpg"
-                      alt="Photograph of Salzburg"/>
+                      alt="Photograph of Salzburg"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -374,7 +396,8 @@ export default class Travelling extends React.Component<{}, {}> {
                   <figure className="image is-4by3">
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553893508/Travelling/Kyiv_Ukraine.jpg"
-                      alt="Photograph of Kyiv"/>
+                      alt="Photograph of Kyiv"
+                    />
                   </figure>
                 </div>
                 <footer className="card-footer">
@@ -385,20 +408,21 @@ export default class Travelling extends React.Component<{}, {}> {
           </div>
 
           <div className="columns">
-          <div className="column is-one-quarter-desktop is-half-tablet">
-            <div className="card">
-              <div className="card-image">
-                <figure className="image is-4by3">
-                  <img
-                    src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890700/Travelling/Canmore_Canada.jpg"
-                    alt="Photograph of Canmore"/>
-                </figure>
+            <div className="column is-one-quarter-desktop is-half-tablet">
+              <div className="card">
+                <div className="card-image">
+                  <figure className="image is-4by3">
+                    <img
+                      src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890700/Travelling/Canmore_Canada.jpg"
+                      alt="Photograph of Canmore"
+                    />
+                  </figure>
+                </div>
+                <footer className="card-footer">
+                  <p>Canmore, Canada</p>
+                </footer>
               </div>
-              <footer className="card-footer">
-                <p>Canmore, Canada</p>
-              </footer>
             </div>
-          </div>
           </div>
         </section>
       </main>

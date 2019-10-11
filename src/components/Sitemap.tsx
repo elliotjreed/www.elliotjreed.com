@@ -6,13 +6,13 @@ import { Link } from "react-router-dom";
 import "./../assets/scss/App.scss";
 import Spinner from "./Spinner";
 
-interface IState {
-  loading: boolean
-  posts: object,
+interface State {
+  loading: boolean;
+  posts: object;
   updated: boolean;
 }
 
-export default class Sitemap extends React.Component<{}, IState> {
+export default class Sitemap extends React.Component<{}, State> {
   private controller: AbortController;
 
   constructor(props: null) {
@@ -42,11 +42,11 @@ export default class Sitemap extends React.Component<{}, IState> {
       <main>
         <Helmet>
           <title>Sitemap | Elliot J. Reed</title>
-          <meta name="description" content="A list of all the posts, guides, and how-tos on my website."/>
+          <meta name="description" content="A list of all the posts, guides, and how-tos on my website." />
         </Helmet>
 
         <section className="hero is-info is-small is-bold">
-          <div className="hero-body"/>
+          <div className="hero-body" />
         </section>
 
         <div className="container home">
@@ -54,13 +54,11 @@ export default class Sitemap extends React.Component<{}, IState> {
             <div className="column is-10 is-offset-1">
               <div className="card article">
                 <div className="card-content">
-
                   <div className="has-text-centered">
                     <h3 className="title article-title">Sitemap</h3>
                   </div>
 
-                  {this.state.loading ? <Spinner/> : this.listOfPosts(this.state.posts)}
-
+                  {this.state.loading ? <Spinner /> : this.listOfPosts(this.state.posts)}
                 </div>
               </div>
             </div>
@@ -76,7 +74,8 @@ export default class Sitemap extends React.Component<{}, IState> {
     }
 
     return caches
-      .open("ejr").then(cache => {
+      .open("ejr")
+      .then(cache => {
         cache
           .match("https://api.elliotjreed.com/")
           .then(
@@ -134,25 +133,33 @@ export default class Sitemap extends React.Component<{}, IState> {
   }
 
   private listOfPosts(posts): React.ReactFragment {
-    return <React.Fragment>
-      {Object.keys(posts).reverse().map(category => (
-        <div className="content article-body" key={category}>
-          <h3 className="subtitle"><Link to={"category/" + category}>{category}</Link></h3>
-          <ul>
-            {this.listOfPostsInCategory(category)}
-          </ul>
-        </div>
-      ))}
-    </React.Fragment>;
+    return (
+      <React.Fragment>
+        {Object.keys(posts)
+          .reverse()
+          .map(category => (
+            <div className="content article-body" key={category}>
+              <h3 className="subtitle">
+                <Link to={"category/" + category}>{category}</Link>
+              </h3>
+              <ul>{this.listOfPostsInCategory(category)}</ul>
+            </div>
+          ))}
+      </React.Fragment>
+    );
   }
 
   private listOfPostsInCategory(category): React.ReactFragment {
-    return <React.Fragment>
-      {this.state.posts[category].map(post => (
-        <li key={post}>
-          <Link to={"/post/" + category.toLowerCase() + "/" + post.slice(0, -3).replace(/\s+/g, "_")}>{post.substr(11).slice(0, -3)}</Link>
-        </li>
-      ))}
-    </React.Fragment>;
+    return (
+      <React.Fragment>
+        {this.state.posts[category].map(post => (
+          <li key={post}>
+            <Link to={"/post/" + category.toLowerCase() + "/" + post.slice(0, -3).replace(/\s+/g, "_")}>
+              {post.substr(11).slice(0, -3)}
+            </Link>
+          </li>
+        ))}
+      </React.Fragment>
+    );
   }
-};
+}
