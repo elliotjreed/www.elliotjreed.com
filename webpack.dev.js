@@ -21,8 +21,5 @@ module.exports = merge(commonConfig, {
     fs: "empty",
     net: "mock"
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin()
-  ]
+  plugins: [new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin()]
 });

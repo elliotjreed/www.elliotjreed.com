@@ -19,7 +19,7 @@ For instructions on how to install Yarn visit [yarnpkg.com](https://yarnpkg.com/
 
 After cloning this repository, change into the newly created directory and run
 
-```
+```bash
 yarn install
 ```
 
@@ -29,7 +29,7 @@ This will install all dependencies needed for the project.
 
 All tests can be run by executing
 
-```
+```bash
 yarn test
 ```
 
@@ -37,7 +37,7 @@ yarn test
 
 ## Built With
 
- - [React JS](https://reactjs.org/)
+[React JS](https://reactjs.org/)
 
 ## License
 

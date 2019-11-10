@@ -18,11 +18,7 @@ module.exports = {
       },
       {
         test: /\.(sa|sc|c)ss$/,
-        use: [
-          "style-loader",
-          "css-loader",
-          "sass-loader"
-        ]
+        use: ["style-loader", "css-loader", "sass-loader"]
       },
       {
         loaders: [
@@ -41,9 +37,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: "./index.html",
       minify: {
-        "collapseWhitespace": true,
-        "removeComments": true,
-        "removeScriptTypeAttributes": true
+        collapseWhitespace: true,
+        removeComments: true,
+        removeScriptTypeAttributes: true
       },
       template: "./index.html",
       title: "Elliot J. Reed"

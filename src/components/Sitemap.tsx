@@ -132,7 +132,7 @@ export class Sitemap extends React.Component<{}, State> {
       .catch((): void => this.controller.abort());
   }
 
-  private listOfPosts(posts): React.ReactFragment {
+  private listOfPosts(posts: object): React.ReactFragment {
     return (
       <React.Fragment>
         {Object.keys(posts)
@@ -149,7 +149,7 @@ export class Sitemap extends React.Component<{}, State> {
     );
   }
 
-  private listOfPostsInCategory(category): React.ReactFragment {
+  private listOfPostsInCategory(category: string): React.ReactFragment {
     return (
       <React.Fragment>
         {this.state.posts[category].map(post => (

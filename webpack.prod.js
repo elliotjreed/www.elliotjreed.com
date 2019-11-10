@@ -21,11 +21,7 @@ module.exports = merge(commonConfig, {
     rules: [
       {
         test: /\.(sa|sc|c)ss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader",
-          "sass-loader"
-        ]
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
       }
     ]
   },
@@ -80,9 +76,7 @@ module.exports = merge(commonConfig, {
       paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
       whitelist: ["pre", "code"]
     }),
-    new CopyPlugin([
-      { from: "./assets/static", to: "./" }
-    ]),
+    new CopyPlugin([{ from: "./assets/static", to: "./" }]),
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
       skipWaiting: true
