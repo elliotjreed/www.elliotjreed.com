@@ -7,7 +7,7 @@ interface State {
   loading: boolean;
 }
 
-export default class Categories extends React.Component<{}, State> {
+export class Categories extends React.Component<{}, State> {
   private controller: AbortController;
 
   constructor(props: null) {

@@ -2,15 +2,15 @@ import * as React from "react";
 import * as ReactGA from "react-ga";
 
 import "./../assets/scss/App.scss";
-import PostCard from "./PostCard";
-import Spinner from "./Spinner";
+import { PostCard } from "./PostCard";
+import { Spinner } from "./Spinner";
 
 interface State {
   posts: string[];
   loading: boolean;
 }
 
-export default class AllPosts extends React.Component<{}, State> {
+export class AllPosts extends React.Component<{}, State> {
   private controller: AbortController;
 
   constructor(props: null) {

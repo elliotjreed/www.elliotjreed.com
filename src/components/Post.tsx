@@ -4,7 +4,7 @@ import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
-import Spinner from "./Spinner";
+import { Spinner } from "./Spinner";
 
 interface Props {
   match: { params: { category: string; post: string } };
@@ -15,7 +15,7 @@ interface State {
   loading: boolean;
 }
 
-export default class Post extends React.Component<Props, State> {
+export class Post extends React.Component<Props, State> {
   private controller: AbortController;
   private readonly category: string;
   private readonly post: string;

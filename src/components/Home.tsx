@@ -3,9 +3,9 @@ import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 
 import "./../assets/scss/App.scss";
-import AllPosts from "./AllPosts";
+import { AllPosts } from "./AllPosts";
 
-export default class Home extends React.Component<{}, {}> {
+export class Home extends React.Component<{}, {}> {
   private controller: AbortController;
 
   constructor(props: null) {

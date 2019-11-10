@@ -2,7 +2,7 @@ import * as marked from "marked";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import Spinner from "./Spinner";
+import { Spinner } from "./Spinner";
 
 interface Props {
   category: string;
@@ -18,7 +18,7 @@ interface State {
   title: string;
 }
 
-export default class PostCard extends React.Component<Props, State> {
+export class PostCard extends React.Component<Props, State> {
   private controller: AbortController;
 
   constructor(props: Props) {

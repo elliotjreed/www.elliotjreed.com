@@ -4,17 +4,27 @@ import * as ReactGA from "react-ga";
 import { Route, Router, Switch } from "react-router-dom";
 
 import "./../assets/scss/App.scss";
-import Footer from "./Footer";
-import Spinner from "./Spinner";
-import TopBar from "./TopBar";
+import { Footer } from "./Footer";
+import { Spinner } from "./Spinner";
+import { TopBar } from "./TopBar";
 
-const Cv = React.lazy(() => import(/* webpackChunkName: "cv" */ "./Cv"));
-const Home = React.lazy(() => import(/* webpackChunkName: "home" */ "./Home"));
-const PageNotFound = React.lazy(() => import(/* webpackChunkName: "pagenotfound" */ "./PageNotFound"));
-const Post = React.lazy(() => import(/* webpackChunkName: "post" */ "./Post"));
-const Posts = React.lazy(() => import(/* webpackChunkName: "posts" */ "./Posts"));
-const Sitemap = React.lazy(() => import(/* webpackChunkName: "sitemap" */ "./Sitemap"));
-const Travelling = React.lazy(() => import(/* webpackChunkName: "travelling" */ "./Travelling"));
+const Cv = React.lazy(() => import(/* webpackChunkName: "cv" */ "./Cv").then(({ Cv }) => ({ default: Cv })));
+const Home = React.lazy(() => import(/* webpackChunkName: "home" */ "./Home").then(({ Home }) => ({ default: Home })));
+const PageNotFound = React.lazy(() =>
+  import(/* webpackChunkName: "pagenotfound" */ "./PageNotFound").then(({ PageNotFound }) => ({
+    default: PageNotFound
+  }))
+);
+const Post = React.lazy(() => import(/* webpackChunkName: "post" */ "./Post").then(({ Post }) => ({ default: Post })));
+const Posts = React.lazy(() =>
+  import(/* webpackChunkName: "posts" */ "./Posts").then(({ Posts }) => ({ default: Posts }))
+);
+const Sitemap = React.lazy(() =>
+  import(/* webpackChunkName: "sitemap" */ "./Sitemap").then(({ Sitemap }) => ({ default: Sitemap }))
+);
+const Travelling = React.lazy(() =>
+  import(/* webpackChunkName: "travelling" */ "./Travelling").then(({ Travelling }) => ({ default: Travelling }))
+);
 
 const history = createBrowserHistory();
 history.listen(location => {
@@ -22,7 +32,7 @@ history.listen(location => {
   ReactGA.pageview(location.pathname + location.search);
 });
 
-export default class Routes extends React.Component<{}, {}> {
+export class Routes extends React.Component<{}, {}> {
   public componentDidMount(): void {
     ReactGA.pageview(window.location.pathname + location.search);
   }

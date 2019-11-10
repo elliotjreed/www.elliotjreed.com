@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
 import "./../assets/scss/App.scss";
-import Spinner from "./Spinner";
+import { Spinner } from "./Spinner";
 
 interface State {
   loading: boolean;
@@ -12,7 +12,7 @@ interface State {
   updated: boolean;
 }
 
-export default class Sitemap extends React.Component<{}, State> {
+export class Sitemap extends React.Component<{}, State> {
   private controller: AbortController;
 
   constructor(props: null) {

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import "./../assets/scss/App.scss";
 
-export default class PageNotFound extends React.Component<{}, {}> {
+export class PageNotFound extends React.Component<{}, {}> {
   public componentDidMount(): void {
     ReactGA.pageview(window.location.pathname + location.search);
   }

@@ -3,13 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import Categories from "./Categories";
+import { Categories } from "./Categories";
 
 interface State {
   menuActive: boolean;
 }
 
-export default class TopBar extends React.Component<{}, State> {
+export class TopBar extends React.Component<{}, State> {
   constructor(props: null) {
     super(props);
 

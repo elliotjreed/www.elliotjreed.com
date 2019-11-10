@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 
 import "./../assets/scss/App.scss";
 
-export default class Cv extends React.Component<{}, {}> {
+export class Cv extends React.Component<{}, {}> {
   public componentDidMount(): void {
     ReactGA.pageview(window.location.pathname + location.search);
   }

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export default class Spinner extends React.Component<{}, {}> {
+export class Spinner extends React.Component<{}, {}> {
   public render(): React.ReactNode {
     return (
       <svg className="spinner" viewBox="0 0 50 50">

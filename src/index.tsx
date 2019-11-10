@@ -4,7 +4,7 @@ import * as ReactGA from "react-ga";
 import { AppContainer } from "react-hot-loader";
 
 import "./assets/scss/App.scss";
-import App from "./components/App";
+import { App } from "./components/App";
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {

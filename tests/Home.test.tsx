@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
 import * as React from "react";
-import AllPosts from "../src/components/AllPosts";
-import Home from "../src/components/Home";
+import { AllPosts } from "../src/components/AllPosts";
+import { Home } from "../src/components/Home";
 
 describe("Home", (): void => {
   it("should render with home CSS class and contain AllPosts component", (): void => {

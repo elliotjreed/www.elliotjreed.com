@@ -3,8 +3,8 @@ import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 
 import "./../assets/scss/App.scss";
-import PostCard from "./PostCard";
-import Spinner from "./Spinner";
+import { PostCard } from "./PostCard";
+import { Spinner } from "./Spinner";
 
 interface Props {
   match: { params: { category: string } };
@@ -16,7 +16,7 @@ interface State {
   posts: string[];
 }
 
-export default class Posts extends React.Component<Props, State> {
+export class Posts extends React.Component<Props, State> {
   private static capitalise(category: string): string {
     return category.charAt(0).toUpperCase() + category.slice(1);
   }
