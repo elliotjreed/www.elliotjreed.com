@@ -423,6 +423,51 @@ export class Travelling extends React.Component<{}, {}> {
                 </footer>
               </div>
             </div>
+            <div className="column is-one-quarter-desktop is-half-tablet">
+              <div className="card">
+                <div className="card-image">
+                  <figure className="image is-4by3">
+                    <img
+                      src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890700/Travelling/Nuremberg_Germany.jpg"
+                      alt="Photograph of Nürnberg"
+                    />
+                  </figure>
+                </div>
+                <footer className="card-footer">
+                  <p>Nürnberg, Germany</p>
+                </footer>
+              </div>
+            </div>
+            <div className="column is-one-quarter-desktop is-half-tablet">
+              <div className="card">
+                <div className="card-image">
+                  <figure className="image is-4by3">
+                    <img
+                      src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890700/Travelling/Bamberg_Germany.jpg"
+                      alt="Photograph of Bamberg"
+                    />
+                  </figure>
+                </div>
+                <footer className="card-footer">
+                  <p>Bamberg, Germany</p>
+                </footer>
+              </div>
+            </div>
+            <div className="column is-one-quarter-desktop is-half-tablet">
+              <div className="card">
+                <div className="card-image">
+                  <figure className="image is-4by3">
+                    <img
+                      src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890700/Travelling/Rothemberg_Germany.jpg"
+                      alt="Photograph of Rothemberg"
+                    />
+                  </figure>
+                </div>
+                <footer className="card-footer">
+                  <p>Rothemberg, Germany</p>
+                </footer>
+              </div>
+            </div>
           </div>
         </section>
       </main>
