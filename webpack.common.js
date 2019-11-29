@@ -1,5 +1,4 @@
 const { resolve } = require("path");
-const { CheckerPlugin } = require("awesome-typescript-loader");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -9,12 +8,11 @@ module.exports = {
       {
         exclude: /node_modules/,
         test: /\.js$/,
-        use: ["babel-loader", "source-map-loader"]
+        use: ["source-map-loader"]
       },
       {
-        exclude: /\.test.tsx?$/,
         test: /\.tsx?$/,
-        use: ["babel-loader", "awesome-typescript-loader"]
+        use: ["ts-loader"]
       },
       {
         test: /\.(sa|sc|c)ss$/,
@@ -33,7 +31,6 @@ module.exports = {
     hints: false
   },
   plugins: [
-    new CheckerPlugin(),
     new HtmlWebpackPlugin({
       filename: "./index.html",
       minify: {

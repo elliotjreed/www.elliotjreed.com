@@ -43,10 +43,6 @@
     "workbox-webpack-plugin": "^4"
   },
   "devDependencies": {
-    "@babel/cli": "^7",
-    "@babel/core": "^7",
-    "@babel/preset-env": "^7",
-    "@babel/preset-react": "^7",
     "@types/enzyme": "^3.10.3",
     "@types/enzyme-adapter-react-16": "^1",
     "@types/jest": "^24",
@@ -55,9 +51,6 @@
     "@types/react-dom": "^16",
     "@typescript-eslint/eslint-plugin": "^2",
     "@typescript-eslint/parser": "^2",
-    "awesome-typescript-loader": "^5",
-    "babel-jest": "^24",
-    "babel-loader": "^8",
     "copy-webpack-plugin": "^5",
     "css-loader": "^3",
     "enzyme": "^3",
@@ -85,6 +78,7 @@
     "stylelint-scss": "^3",
     "terser-webpack-plugin": "^2",
     "ts-jest": "^24",
+    "ts-loader": "^6.2.1",
     "typescript": "^3",
     "webpack": "^4",
     "webpack-cli": "^3",

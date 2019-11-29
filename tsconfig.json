@@ -6,11 +6,10 @@
         "types/*"
       ]
     },
-    "outDir": "./dist/",
+    "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "noImplicitAny": false,
     "module": "esnext",
-    "moduleResolution": "node",
     "target": "es5",
     "jsx": "react",
     "lib": [
@@ -20,11 +19,6 @@
       "esnext"
     ]
   },
-  "include": [
-    "./src/**/*.tsx",
-    "./tests/**/*.tsx",
-    "./tests/**/*.js"
-  ],
   "exclude": [
     "node_modules"
   ],
