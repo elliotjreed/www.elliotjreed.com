@@ -157,7 +157,7 @@ export class Post extends React.Component<Props, State> {
                       clonedResponse.clone()
                     )
                   )
-                  .catch(() => {});
+                  .catch();
               }
               resolve(clonedResponse.clone().text());
             } else {

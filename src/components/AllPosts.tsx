@@ -81,7 +81,7 @@ export class AllPosts extends React.Component<{}, State> {
                 caches
                   .open("ejr")
                   .then(cache => cache.put("https://api.elliotjreed.com/all", clonedResponse.clone()))
-                  .catch(() => {});
+                  .catch();
               }
               resolve(clonedResponse.clone().json());
             } else {

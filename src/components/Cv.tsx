@@ -6,7 +6,7 @@ import "./../assets/scss/App.scss";
 import { useEffect } from "react";
 
 export const Cv = (): JSX.Element => {
-  useEffect(() => {
+  useEffect((): void => {
     ReactGA.pageview(window.location.pathname + location.search);
   }, []);
 

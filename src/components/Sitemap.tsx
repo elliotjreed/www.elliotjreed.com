@@ -114,7 +114,7 @@ export class Sitemap extends React.Component<{}, State> {
                 caches
                   .open("ejr")
                   .then(cache => cache.put("https://api.elliotjreed.com/", clonedResponse.clone()))
-                  .catch(() => {});
+                  .catch();
               }
               resolve(clonedResponse.clone().json());
             } else {
