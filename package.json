@@ -21,7 +21,7 @@
     "clean-dist": "rm -rf -d dist",
     "start": "webpack-dev-server --config=webpack.dev.js",
     "predeploy": "yarn run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "build": "yarn run clean-dist && webpack -p --config=webpack.prod.js",
     "test": "jest --coverage",
     "test:watch": "jest --watch --coverage",
