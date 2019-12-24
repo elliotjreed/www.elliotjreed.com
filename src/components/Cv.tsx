@@ -76,7 +76,7 @@ export const Cv = (): JSX.Element => {
                           <li>Added Jest / Enzyme Javascript testing;</li>
                         </ul>
                         <ul className="column">
-                          <li>Upgraded primary website from Symfony 2.3 to 5;</li>
+                          <li>Upgraded primary website from Symfony 2.8 to 5;</li>
                           <li>Migrated database from Rackspace to AWS RDS;</li>
                           <li>Introduced frontend build tools including Webpack;</li>
                           <li>Implemented fraud detection system using RabbitMQ, Python, and PHP;</li>
@@ -164,8 +164,8 @@ export const Cv = (): JSX.Element => {
                 <div className="content">
                   <h3>PHP</h3>
                   <ul>
-                    <li>PHP 5.4 - 7.3</li>
-                    <li>Symfony 2.8 - 4.2</li>
+                    <li>PHP 5.4 - 7.4</li>
+                    <li>Symfony 2.8 - 5.0</li>
                     <li>Slim 2 - 4</li>
                     <li>PHPUnit</li>
                     <li>Twig</li>
@@ -177,7 +177,7 @@ export const Cv = (): JSX.Element => {
                 <div className="content">
                   <h3>Javascript</h3>
                   <ul>
-                    <li>Up to ES6</li>
+                    <li>ES5, ES6+</li>
                     <li>React</li>
                     <li>Typescript</li>
                     <li>Jest & Enzyme</li>
