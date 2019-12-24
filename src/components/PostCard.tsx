@@ -64,7 +64,10 @@ export class PostCard extends React.Component<Props, State> {
         <div className="card-content">
           <div className="has-text-centered">
             <h3>
-              <Link className="title article-title" to={"/post/" + this.state.category + "/" + this.state.post.slice(0, -3).replace(/\s+/g, "_")}>
+              <Link
+                className="title article-title"
+                to={"/post/" + this.state.category + "/" + this.state.post.slice(0, -3).replace(/\s+/g, "_")}
+              >
                 {this.state.title}
               </Link>
             </h3>
@@ -77,7 +80,9 @@ export class PostCard extends React.Component<Props, State> {
               </time>
             </div>
           </div>
-          <div className="content article-body">{this.state.loading ? <Loader /> : <div dangerouslySetInnerHTML={{ __html: this.state.content }} />}</div>
+          <div className="content article-body">
+            {this.state.loading ? <Loader /> : <div dangerouslySetInnerHTML={{ __html: this.state.content }} />}
+          </div>
         </div>
       </div>
     );
@@ -127,7 +132,12 @@ export class PostCard extends React.Component<Props, State> {
               if ("caches" in self) {
                 caches
                   .open("ejr")
-                  .then(cache => cache.put("https://api.elliotjreed.com/post/" + this.state.category + "/" + this.state.post, clonedResponse.clone()))
+                  .then(cache =>
+                    cache.put(
+                      "https://api.elliotjreed.com/post/" + this.state.category + "/" + this.state.post,
+                      clonedResponse.clone()
+                    )
+                  )
                   .catch();
               }
               resolve(clonedResponse.clone().text());

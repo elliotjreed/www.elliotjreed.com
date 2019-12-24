@@ -154,7 +154,9 @@ export class Sitemap extends React.Component<{}, State> {
       <React.Fragment>
         {this.state.posts[category].map(post => (
           <li key={post}>
-            <Link to={"/post/" + category.toLowerCase() + "/" + post.slice(0, -3).replace(/\s+/g, "_")}>{post.substr(11).slice(0, -3)}</Link>
+            <Link to={"/post/" + category.toLowerCase() + "/" + post.slice(0, -3).replace(/\s+/g, "_")}>
+              {post.substr(11).slice(0, -3)}
+            </Link>
           </li>
         ))}
       </React.Fragment>

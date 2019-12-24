@@ -147,7 +147,12 @@ export class Post extends React.Component<Props, State> {
               if ("caches" in self) {
                 caches
                   .open("ejr")
-                  .then(cache => cache.put("https://api.elliotjreed.com/post/" + this.category + "/" + this.post, clonedResponse.clone()))
+                  .then(cache =>
+                    cache.put(
+                      "https://api.elliotjreed.com/post/" + this.category + "/" + this.post,
+                      clonedResponse.clone()
+                    )
+                  )
                   .catch();
               }
               resolve(clonedResponse.clone().text());
