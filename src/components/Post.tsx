@@ -3,8 +3,7 @@ import * as React from "react";
 import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-
-import { Spinner } from "./Spinner";
+import { Code } from "react-content-loader";
 
 interface Props {
   match: { params: { category: string; post: string } };
@@ -91,13 +90,7 @@ export class Post extends React.Component<Props, State> {
                     </div>
                   </div>
 
-                  <div className="content article-body">
-                    {this.state.loading ? (
-                      <Spinner />
-                    ) : (
-                      <div dangerouslySetInnerHTML={{ __html: this.state.content }} />
-                    )}
-                  </div>
+                  <div className="content article-body">{this.state.loading ? <Code /> : <div dangerouslySetInnerHTML={{ __html: this.state.content }} />}</div>
                 </div>
               </div>
             </div>
@@ -136,9 +129,9 @@ export class Post extends React.Component<Props, State> {
               loading: false
             });
           })
-          .catch(() => this.updateFromNetwork());
+          .catch((): Promise<void> => this.updateFromNetwork());
       })
-      .catch(() => this.updateFromNetwork());
+      .catch((): Promise<void> => this.updateFromNetwork());
   }
 
   private updateFromNetwork(): Promise<void> {
@@ -151,12 +144,7 @@ export class Post extends React.Component<Props, State> {
               if ("caches" in self) {
                 caches
                   .open("ejr")
-                  .then(cache =>
-                    cache.put(
-                      "https://api.elliotjreed.com/post/" + this.category + "/" + this.post,
-                      clonedResponse.clone()
-                    )
-                  )
+                  .then(cache => cache.put("https://api.elliotjreed.com/post/" + this.category + "/" + this.post, clonedResponse.clone()))
                   .catch();
               }
               resolve(clonedResponse.clone().text());

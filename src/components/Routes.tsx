@@ -3,10 +3,10 @@ import * as React from "react";
 import * as ReactGA from "react-ga";
 import { Route, Router, Switch } from "react-router-dom";
 
-import "./../assets/scss/App.scss";
 import { Footer } from "./Footer";
 import { Spinner } from "./Spinner";
 import { TopBar } from "./TopBar";
+import "./../assets/scss/App.scss";
 
 const Cv = React.lazy(() => import(/* webpackChunkName: "cv" */ "./Cv").then(({ Cv }) => ({ default: Cv })));
 const Home = React.lazy(() => import(/* webpackChunkName: "home" */ "./Home").then(({ Home }) => ({ default: Home })));

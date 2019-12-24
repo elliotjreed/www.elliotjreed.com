@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as ReactGA from "react-ga";
+import { Code } from "react-content-loader";
 
-import "./../assets/scss/App.scss";
 import { PostCard } from "./PostCard";
-import { Spinner } from "./Spinner";
+import "./../assets/scss/App.scss";
 
 interface State {
   posts: string[];
@@ -35,7 +35,7 @@ export class AllPosts extends React.Component<{}, State> {
   }
 
   public render(): React.ReactNode {
-    return <div className="column is-10 is-offset-1">{this.state.loading ? <Spinner /> : this.posts()}</div>;
+    return <div className="column is-10 is-offset-1">{this.state.loading ? <Code /> : this.posts()}</div>;
   }
 
   private fetchAllPosts(): Promise<void> {
@@ -65,9 +65,9 @@ export class AllPosts extends React.Component<{}, State> {
               posts
             });
           })
-          .catch(() => this.updateFromNetwork());
+          .catch((): Promise<void> => this.updateFromNetwork());
       })
-      .catch(() => this.updateFromNetwork());
+      .catch((): Promise<void> => this.updateFromNetwork());
   }
 
   private updateFromNetwork(): Promise<void> {

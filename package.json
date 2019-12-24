@@ -36,6 +36,7 @@
     "history": "^4",
     "marked": "^0",
     "react": "^16",
+    "react-content-loader": "^4",
     "react-dom": "^16",
     "react-ga": "^2",
     "react-helmet": "^5",

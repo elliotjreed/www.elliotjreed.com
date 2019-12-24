@@ -1,8 +1,7 @@
 import * as marked from "marked";
 import * as React from "react";
 import { Link } from "react-router-dom";
-
-import { Spinner } from "./Spinner";
+import { Code } from "react-content-loader";
 
 interface Props {
   category: string;
@@ -64,10 +63,7 @@ export class PostCard extends React.Component<Props, State> {
         <div className="card-content">
           <div className="has-text-centered">
             <h3>
-              <Link
-                className="title article-title"
-                to={"/post/" + this.state.category + "/" + this.state.post.slice(0, -3).replace(/\s+/g, "_")}
-              >
+              <Link className="title article-title" to={"/post/" + this.state.category + "/" + this.state.post.slice(0, -3).replace(/\s+/g, "_")}>
                 {this.state.title}
               </Link>
             </h3>
@@ -80,9 +76,7 @@ export class PostCard extends React.Component<Props, State> {
               </time>
             </div>
           </div>
-          <div className="content article-body">
-            {this.state.loading ? <Spinner /> : <div dangerouslySetInnerHTML={{ __html: this.state.content }} />}
-          </div>
+          <div className="content article-body">{this.state.loading ? <Code /> : <div dangerouslySetInnerHTML={{ __html: this.state.content }} />}</div>
         </div>
       </div>
     );

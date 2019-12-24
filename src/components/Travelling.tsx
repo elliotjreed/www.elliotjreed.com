@@ -203,10 +203,7 @@ export const Travelling = (): JSX.Element => {
             <div className="card">
               <div className="card-image">
                 <figure className="image is-4by3">
-                  <img
-                    src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890686/Travelling/Rome_Italy.jpg"
-                    alt="Photograph of Rome"
-                  />
+                  <img src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890686/Travelling/Rome_Italy.jpg" alt="Photograph of Rome" />
                 </figure>
               </div>
               <footer className="card-footer">

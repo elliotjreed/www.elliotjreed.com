@@ -1,4 +1,4 @@
 module.exports = {
-  printWidth: 120,
+  printWidth: 160,
   quoteProps: "consistent"
 };

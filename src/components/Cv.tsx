@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
+import { useEffect } from "react";
 
 import "./../assets/scss/App.scss";
-import { useEffect } from "react";
 
 export const Cv = (): JSX.Element => {
   useEffect((): void => {
@@ -30,21 +30,16 @@ export const Cv = (): JSX.Element => {
                   <div className="wrapper">
                     <p>
                       To download or view an up-to-date copy of my <em>curriculum vitae</em>, visit{" "}
-                      <a
-                        href="https://github.com/elliotjreed/curriculum-vitae"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                      <a href="https://github.com/elliotjreed/curriculum-vitae" target="_blank" rel="noopener noreferrer">
                         github.com/elliotjreed/curriculum-vitae
                       </a>
                       .
                     </p>
                     <hr />
                     <p>
-                      Software Developer with over seven years development and management experience in the
-                      multi-channel ecommerce industry primarily using object-oriented PHP, MySQL, Javascript, HTML, and
-                      CSS, with various APIs and frameworks on Linux using Docker, Ansible, and Apache and NginX. Worked
-                      using Agile / Scrum methodologies with test-driven development to SOLID design principles.
+                      Software Developer with over seven years development and management experience in the multi-channel ecommerce industry primarily using
+                      object-oriented PHP, MySQL, Javascript, HTML, and CSS, with various APIs and frameworks on Linux using Docker, Ansible, and Apache and
+                      NginX. Worked using Agile / Scrum methodologies with test-driven development to SOLID design principles.
                     </p>
                   </div>
                 </section>
@@ -65,8 +60,7 @@ export const Cv = (): JSX.Element => {
                       <div className="columns is-desktop">
                         <ul className="column">
                           <li>
-                            Trained junior developers in <abbr title="Test-Driven Development">TDD</abbr>, SOLID design
-                            principles, and Clean Code;
+                            Trained junior developers in <abbr title="Test-Driven Development">TDD</abbr>, SOLID design principles, and Clean Code;
                           </li>
                           <li>Refactored legacy codebases;</li>
                           <li>Introduced and implemented an Elastic Stack for more advanced logging and analytics;</li>
@@ -76,15 +70,15 @@ export const Cv = (): JSX.Element => {
                           <li>Added Jest / Enzyme Javascript testing;</li>
                         </ul>
                         <ul className="column">
-                          <li>Upgraded primary website to Symfony 4.3;</li>
+                          <li>Upgraded primary website from Symfony 2.3 to 5;</li>
                           <li>Migrated database from Rackspace to AWS RDS;</li>
                           <li>Introduced frontend build tools including Webpack;</li>
                           <li>Implemented fraud detection system using RabbitMQ, Python, and PHP;</li>
-                          <li>Upgraded PHP versions from 5.6 to 7.3;</li>
+                          <li>Upgraded PHP versions from 5.6 to 7.4;</li>
                           <li>Implemented Continuous Integration, and automated testing and building;</li>
                           <li>Optimised page speed using CSS optimisation, automated critical CSS generation;</li>
                           <li>Reduced server response times via HTTP/2, Cloudflare, and caching;</li>
-                          <li>Implemented AWS SQS message queues for email processing and shipment processing.</li>
+                          <li>Implemented AWS SQS message queues for email and shipment processing.</li>
                         </ul>
                       </div>
                     </div>
@@ -108,9 +102,7 @@ export const Cv = (): JSX.Element => {
                       <div className="columns is-desktop">
                         <ul className="column">
                           <li>Managed a team of developers using Agile / Scrum;</li>
-                          <li>
-                            Developed on multiple ecommerce platforms active in over 30 countries, in 8 languages;
-                          </li>
+                          <li>Developed on multiple ecommerce platforms active in over 30 countries, in 8 languages;</li>
                           <li>Integrated several third-party suppliers via a range of APIs;</li>
                         </ul>
                         <ul className="column">
@@ -132,13 +124,10 @@ export const Cv = (): JSX.Element => {
                     <div className="content">
                       <div className="columns is-desktop">
                         <ul className="column">
-                          <li>
-                            Developed websites and internal systems in PHP, Python, MySQL, and frontend technologies;
-                          </li>
+                          <li>Developed websites and internal systems in PHP, Python, MySQL, and frontend technologies;</li>
                           <li>Designed websites on Magento, Wordpress, and custom platforms;</li>
                           <li>
-                            Managed eBay, Amazon, and Google and Facebook <abbr title="Pay per click">PPC</abbr>{" "}
-                            advertising;
+                            Managed eBay, Amazon, and Google and Facebook <abbr title="Pay per click">PPC</abbr> advertising;
                           </li>
                         </ul>
                         <ul className="column">
@@ -231,17 +220,16 @@ export const Cv = (): JSX.Element => {
                 </h3>
                 <div>2011 - 2012</div>
                 <p className="content">
-                  Submitted a research project on the adequacy of the provisions of the Equality Act 2010 and was
-                  awarded a distinction for that research. Took part in legal mooting, negotiation competitions, and
-                  debates.
+                  Submitted a research project on the adequacy of the provisions of the Equality Act 2010 and was awarded a distinction for that research. Took
+                  part in legal mooting, negotiation competitions, and debates.
                 </p>
                 <h3>
                   <strong>University of Nottingham</strong> <em>Theology, Upper Second-Class B.A (Hons.)</em>
                 </h3>
                 <div>2011 - 2012</div>
                 <p className="content">
-                  Submitted a 12 000 word dissertation on economic philosophy and theology. Attended conferences and
-                  academic committees, as well as being involved in various debates and talks.
+                  Submitted a 12 000 word dissertation on economic philosophy and theology. Attended conferences and academic committees, as well as being
+                  involved in various debates and talks.
                 </p>
               </section>
 
@@ -262,48 +250,28 @@ export const Cv = (): JSX.Element => {
                       website
                     </li>
                     <li>
-                      <a
-                        href="https://packagist.org/packages/elliotjreed/disposable-emails-filter"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                      <a href="https://packagist.org/packages/elliotjreed/disposable-emails-filter" target="_blank" rel="noopener noreferrer">
                         Disposable Emails Filter
                       </a>{" "}
                       Composer package
                     </li>
                     <li>
-                      <a
-                        href="https://github.com/elliotjreed/web-server-health-check"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                      <a href="https://github.com/elliotjreed/web-server-health-check" target="_blank" rel="noopener noreferrer">
                         Web server health checker
                       </a>{" "}
                       PHP utility
                     </li>
                     <li>
-                      <a
-                        href="https://hub.docker.com/r/elliotjreed/database-anonymiser/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                      <a href="https://hub.docker.com/r/elliotjreed/database-anonymiser/" target="_blank" rel="noopener noreferrer">
                         Database Anonymiser
                       </a>{" "}
                       Docker image
                     </li>
                     <li>
-                      <a
-                        href="https://github.com/elliotjreed/php-test-runner"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                      <a href="https://github.com/elliotjreed/php-test-runner" target="_blank" rel="noopener noreferrer">
                         PHP Test Suite
                       </a>{" "}
-                      <a
-                        href="https://hub.docker.com/r/elliotjreed/php-test-runner/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                      <a href="https://hub.docker.com/r/elliotjreed/php-test-runner/" target="_blank" rel="noopener noreferrer">
                         Docker image
                       </a>
                     </li>
