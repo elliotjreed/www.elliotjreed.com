@@ -1,7 +1,8 @@
 import * as marked from "marked";
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { Code } from "react-content-loader";
+
+import { Loader } from "./Loader";
 
 interface Props {
   category: string;
@@ -76,15 +77,66 @@ export class PostCard extends React.Component<Props, State> {
               </time>
             </div>
           </div>
-          <div className="content article-body">{this.state.loading ? <Code /> : <div dangerouslySetInnerHTML={{ __html: this.state.content }} />}</div>
+          <div className="content article-body">{this.state.loading ? <Loader /> : <div dangerouslySetInnerHTML={{ __html: this.state.content }} />}</div>
         </div>
       </div>
     );
   }
 
-  private fetchPostContent(): void {
-    fetch("https://api.elliotjreed.com/post/" + this.state.category + "/" + this.state.post)
-      .then(response => response.text())
+  private fetchPostContent(): Promise<void> {
+    if (!("caches" in self)) {
+      return this.updateFromNetwork();
+    }
+
+    return caches
+      .open("ejr")
+      .then(cache => {
+        cache
+          .match("https://api.elliotjreed.com/post/" + this.state.category + "/" + this.state.post)
+          .then(
+            (response: Response | undefined): Promise<string> => {
+              return new Promise((resolve, reject): void => {
+                if (response) {
+                  resolve(response.clone().text());
+                } else {
+                  reject();
+                }
+              });
+            }
+          )
+          .then(markdown => markdown.substring(markdown.indexOf("\n") + 1))
+          .then(markdown => marked(markdown))
+          .then(content =>
+            this.setState({
+              content: content.substring(this.state.content),
+              loading: false
+            })
+          )
+          .catch((): Promise<void> => this.updateFromNetwork());
+      })
+      .catch((): Promise<void> => this.updateFromNetwork());
+  }
+
+  private updateFromNetwork(): Promise<void> {
+    return fetch("https://api.elliotjreed.com/post/" + this.state.category + "/" + this.state.post)
+      .then(
+        (response: Response): Promise<string> => {
+          return new Promise((resolve, reject): void => {
+            const clonedResponse = response.clone();
+            if (clonedResponse.ok) {
+              if ("caches" in self) {
+                caches
+                  .open("ejr")
+                  .then(cache => cache.put("https://api.elliotjreed.com/post/" + this.state.category + "/" + this.state.post, clonedResponse.clone()))
+                  .catch();
+              }
+              resolve(clonedResponse.clone().text());
+            } else {
+              reject();
+            }
+          });
+        }
+      )
       .then(markdown => markdown.substring(markdown.indexOf("\n") + 1))
       .then(markdown => marked(markdown))
       .then(content =>
@@ -92,6 +144,7 @@ export class PostCard extends React.Component<Props, State> {
           content: content.substring(this.state.content),
           loading: false
         })
-      );
+      )
+      .catch((): void => this.controller.abort());
   }
 }

@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
-import { Code } from "react-content-loader";
 
 import { PostCard } from "./PostCard";
+import { Spinner } from "./Spinner";
 import "./../assets/scss/App.scss";
 
 interface Props {
@@ -69,7 +69,7 @@ export class Posts extends React.Component<Props, State> {
         <section className="container home">
           <div className="articles">
             <div className="column is-10 is-offset-1">
-              {this.state.loading ? <Code /> : this.postsInCategory(this.state.posts[Object.keys(this.state.posts)[0]])}
+              {this.state.loading ? <Spinner /> : this.postsInCategory(this.state.posts[Object.keys(this.state.posts)[0]])}
             </div>
           </div>
         </section>

@@ -3,7 +3,8 @@ import * as React from "react";
 import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import { Code } from "react-content-loader";
+
+import { Loader } from "./Loader";
 
 interface Props {
   match: { params: { category: string; post: string } };
@@ -90,7 +91,9 @@ export class Post extends React.Component<Props, State> {
                     </div>
                   </div>
 
-                  <div className="content article-body">{this.state.loading ? <Code /> : <div dangerouslySetInnerHTML={{ __html: this.state.content }} />}</div>
+                  <div className="content article-body">
+                    {this.state.loading ? <Loader /> : <div dangerouslySetInnerHTML={{ __html: this.state.content }} />}
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
-import { Code } from "react-content-loader";
 import { Link } from "react-router-dom";
 
+import { Loader } from "./Loader";
 import "./../assets/scss/App.scss";
 
 interface State {
@@ -58,7 +58,7 @@ export class Sitemap extends React.Component<{}, State> {
                     <h3 className="title article-title">Sitemap</h3>
                   </div>
 
-                  {this.state.loading ? <Code /> : this.listOfPosts(this.state.posts)}
+                  {this.state.loading ? <Loader /> : this.listOfPosts(this.state.posts)}
                 </div>
               </div>
             </div>
