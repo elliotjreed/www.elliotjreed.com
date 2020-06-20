@@ -7,7 +7,9 @@ interface State {
   loading: boolean;
 }
 
-export class Categories extends React.Component<{}, State> {
+interface Props {}
+
+export class Categories extends React.Component<Props, State> {
   private controller: AbortController;
 
   constructor(props: null) {
@@ -50,7 +52,7 @@ export class Categories extends React.Component<{}, State> {
 
     return caches
       .open("ejr")
-      .then(cache => {
+      .then((cache) => {
         cache
           .match("https://api.elliotjreed.com/categories")
           .then(
@@ -85,7 +87,7 @@ export class Categories extends React.Component<{}, State> {
               if ("caches" in self) {
                 caches
                   .open("ejr")
-                  .then(cache => cache.put("https://api.elliotjreed.com/categories", clonedResponse.clone()))
+                  .then((cache) => cache.put("https://api.elliotjreed.com/categories", clonedResponse.clone()))
                   .catch();
               }
               resolve(clonedResponse.clone().json());

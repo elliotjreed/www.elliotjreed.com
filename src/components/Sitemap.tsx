@@ -8,11 +8,14 @@ import "./../assets/scss/App.scss";
 
 interface State {
   loading: boolean;
+  // eslint-disable-next-line @typescript-eslint/ban-types
   posts: object;
   updated: boolean;
 }
 
-export class Sitemap extends React.Component<{}, State> {
+interface Props {}
+
+export class Sitemap extends React.Component<Props, State> {
   private controller: AbortController;
 
   constructor(props: null) {
@@ -75,7 +78,7 @@ export class Sitemap extends React.Component<{}, State> {
 
     return caches
       .open("ejr")
-      .then(cache => {
+      .then((cache) => {
         cache
           .match("https://api.elliotjreed.com/")
           .then(
@@ -113,7 +116,7 @@ export class Sitemap extends React.Component<{}, State> {
               if ("caches" in self) {
                 caches
                   .open("ejr")
-                  .then(cache => cache.put("https://api.elliotjreed.com/", clonedResponse.clone()))
+                  .then((cache) => cache.put("https://api.elliotjreed.com/", clonedResponse.clone()))
                   .catch();
               }
               resolve(clonedResponse.clone().json());
@@ -132,12 +135,13 @@ export class Sitemap extends React.Component<{}, State> {
       .catch((): void => this.controller.abort());
   }
 
+  // eslint-disable-next-line @typescript-eslint/ban-types
   private listOfPosts(posts: object): React.ReactFragment {
     return (
       <React.Fragment>
         {Object.keys(posts)
           .reverse()
-          .map(category => (
+          .map((category) => (
             <div className="content article-body" key={category}>
               <h3 className="subtitle">
                 <Link to={"category/" + category}>{category}</Link>
@@ -152,7 +156,7 @@ export class Sitemap extends React.Component<{}, State> {
   private listOfPostsInCategory(category: string): React.ReactFragment {
     return (
       <React.Fragment>
-        {this.state.posts[category].map(post => (
+        {this.state.posts[category].map((post) => (
           <li key={post}>
             <Link to={"/post/" + category.toLowerCase() + "/" + post.slice(0, -3).replace(/\s+/g, "_")}>
               {post.substr(11).slice(0, -3)}

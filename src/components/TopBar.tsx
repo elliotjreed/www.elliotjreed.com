@@ -9,7 +9,9 @@ interface State {
   menuActive: boolean;
 }
 
-export class TopBar extends React.Component<{}, State> {
+interface Props {}
+
+export class TopBar extends React.Component<Props, State> {
   constructor(props: null) {
     super(props);
 

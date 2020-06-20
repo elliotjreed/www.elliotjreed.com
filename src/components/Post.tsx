@@ -110,7 +110,7 @@ export class Post extends React.Component<Props, State> {
 
     return caches
       .open("ejr")
-      .then(cache => {
+      .then((cache) => {
         cache
           .match("https://api.elliotjreed.com/post/" + this.category + "/" + this.post)
           .then(
@@ -124,8 +124,8 @@ export class Post extends React.Component<Props, State> {
               });
             }
           )
-          .then(markdown => markdown.substring(markdown.indexOf("\n") + 1))
-          .then(markdown => marked(markdown))
+          .then((markdown) => markdown.substring(markdown.indexOf("\n") + 1))
+          .then((markdown) => marked(markdown))
           .then((content: string): void => {
             this.setState({
               content: content.substring(this.state.content.indexOf("\n") + 1),
@@ -147,7 +147,7 @@ export class Post extends React.Component<Props, State> {
               if ("caches" in self) {
                 caches
                   .open("ejr")
-                  .then(cache =>
+                  .then((cache) =>
                     cache.put(
                       "https://api.elliotjreed.com/post/" + this.category + "/" + this.post,
                       clonedResponse.clone()
@@ -162,8 +162,8 @@ export class Post extends React.Component<Props, State> {
           });
         }
       )
-      .then(markdown => markdown.substring(markdown.indexOf("\n") + 1))
-      .then(markdown => marked(markdown))
+      .then((markdown) => markdown.substring(markdown.indexOf("\n") + 1))
+      .then((markdown) => marked(markdown))
       .then((content: string): void => {
         this.setState({
           content: content.substring(this.state.content.indexOf("\n") + 1),

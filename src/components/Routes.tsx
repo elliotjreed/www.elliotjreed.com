@@ -27,12 +27,15 @@ const Travelling = React.lazy(() =>
 );
 
 const history = createBrowserHistory();
-history.listen(location => {
-  ReactGA.set({ page: location.pathname + location.search });
-  ReactGA.pageview(location.pathname + location.search);
+history.listen((): void => {
+  ReactGA.set({ page: window.location.pathname + window.location.search });
+  ReactGA.pageview(window.location.pathname + window.location.search);
 });
 
-export class Routes extends React.Component<{}, {}> {
+interface Props {}
+interface State {}
+
+export class Routes extends React.Component<Props, State> {
   public componentDidMount(): void {
     ReactGA.pageview(window.location.pathname + location.search);
   }

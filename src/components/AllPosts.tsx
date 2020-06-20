@@ -10,7 +10,9 @@ interface State {
   loading: boolean;
 }
 
-export class AllPosts extends React.Component<{}, State> {
+interface Props {}
+
+export class AllPosts extends React.Component<Props, State> {
   private controller: AbortController;
 
   constructor(props: null) {
@@ -45,7 +47,7 @@ export class AllPosts extends React.Component<{}, State> {
 
     return caches
       .open("ejr")
-      .then(cache => {
+      .then((cache) => {
         cache
           .match("https://api.elliotjreed.com/all")
           .then(
@@ -80,7 +82,7 @@ export class AllPosts extends React.Component<{}, State> {
               if ("caches" in self) {
                 caches
                   .open("ejr")
-                  .then(cache => cache.put("https://api.elliotjreed.com/all", clonedResponse.clone()))
+                  .then((cache) => cache.put("https://api.elliotjreed.com/all", clonedResponse.clone()))
                   .catch();
               }
               resolve(clonedResponse.clone().json());
@@ -102,7 +104,7 @@ export class AllPosts extends React.Component<{}, State> {
   private posts(): React.ReactFragment {
     return (
       <React.Fragment>
-        {this.state.posts.reverse().map(post => (
+        {this.state.posts.reverse().map((post) => (
           <PostCard key={post} category={post.split("/")[0].toLowerCase()} post={post.split("/")[1]} />
         ))}
       </React.Fragment>

@@ -26,6 +26,7 @@ render(
 declare let module: { hot: any };
 if (module.hot) {
   module.hot.accept("./components/App", (): void => {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const NewApp = require("./components/App").default;
 
     render(

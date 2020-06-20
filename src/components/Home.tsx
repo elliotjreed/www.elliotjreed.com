@@ -5,7 +5,10 @@ import { Helmet } from "react-helmet";
 import "./../assets/scss/App.scss";
 import { AllPosts } from "./AllPosts";
 
-export class Home extends React.Component<{}, {}> {
+interface Props {}
+interface State {}
+
+export class Home extends React.Component<Props, State> {
   private controller: AbortController;
 
   constructor(props: null) {
@@ -54,8 +57,8 @@ export class Home extends React.Component<{}, {}> {
                   <section className="column is-8 has-text-dark">
                     <h1 className="title is-2">Elliot J. Reed</h1>
                     <p>
-                      Hi! I’m Elliot, a software developer based in Nottingham. My interests are generally in
-                      E-Commerce, PHP, Javascript, Docker, and general DevOps.
+                      Hi! I’m Elliot, a software developer / technical lead based in Nottingham. My interests are
+                      generally in E-Commerce, PHP, Javascript, Docker, and general DevOps.
                     </p>
                     <p>
                       This website contains little mini-guides and snippets which may prove helpful, and if you’re stuck

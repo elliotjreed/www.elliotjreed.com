@@ -95,7 +95,7 @@ export class PostCard extends React.Component<Props, State> {
 
     return caches
       .open("ejr")
-      .then(cache => {
+      .then((cache) => {
         cache
           .match("https://api.elliotjreed.com/post/" + this.state.category + "/" + this.state.post)
           .then(
@@ -109,9 +109,9 @@ export class PostCard extends React.Component<Props, State> {
               });
             }
           )
-          .then(markdown => markdown.substring(markdown.indexOf("\n") + 1))
-          .then(markdown => marked(markdown))
-          .then(content =>
+          .then((markdown) => markdown.substring(markdown.indexOf("\n") + 1))
+          .then((markdown) => marked(markdown))
+          .then((content) =>
             this.setState({
               content: content.substring(this.state.content),
               loading: false
@@ -132,7 +132,7 @@ export class PostCard extends React.Component<Props, State> {
               if ("caches" in self) {
                 caches
                   .open("ejr")
-                  .then(cache =>
+                  .then((cache) =>
                     cache.put(
                       "https://api.elliotjreed.com/post/" + this.state.category + "/" + this.state.post,
                       clonedResponse.clone()
@@ -147,9 +147,9 @@ export class PostCard extends React.Component<Props, State> {
           });
         }
       )
-      .then(markdown => markdown.substring(markdown.indexOf("\n") + 1))
-      .then(markdown => marked(markdown))
-      .then(content =>
+      .then((markdown) => markdown.substring(markdown.indexOf("\n") + 1))
+      .then((markdown) => marked(markdown))
+      .then((content) =>
         this.setState({
           content: content.substring(this.state.content),
           loading: false

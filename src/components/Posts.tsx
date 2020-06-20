@@ -91,7 +91,7 @@ export class Posts extends React.Component<Props, State> {
 
     return caches
       .open("ejr")
-      .then(cache => {
+      .then((cache) => {
         cache
           .match("https://api.elliotjreed.com/posts/" + this.state.category)
           .then(
@@ -105,7 +105,7 @@ export class Posts extends React.Component<Props, State> {
               });
             }
           )
-          .then(posts => this.setState({ posts, loading: false }))
+          .then((posts) => this.setState({ posts, loading: false }))
           .catch((): Promise<void> => this.updateFromNetwork());
       })
       .catch((): Promise<void> => this.updateFromNetwork());
@@ -121,7 +121,7 @@ export class Posts extends React.Component<Props, State> {
               if ("caches" in self) {
                 caches
                   .open("ejr")
-                  .then(cache =>
+                  .then((cache) =>
                     cache.put("https://api.elliotjreed.com/posts/" + this.state.category, clonedResponse.clone())
                   )
                   .catch();
@@ -133,14 +133,14 @@ export class Posts extends React.Component<Props, State> {
           });
         }
       )
-      .then(posts => this.setState({ posts, loading: false }))
+      .then((posts) => this.setState({ posts, loading: false }))
       .catch((): void => this.controller.abort());
   }
 
   private postsInCategory(posts: string[]): React.ReactNode {
     return (
       <ul>
-        {posts.reverse().map(post => (
+        {posts.reverse().map((post) => (
           <PostCard key={post} category={this.state.category.toLowerCase()} post={post} />
         ))}
       </ul>

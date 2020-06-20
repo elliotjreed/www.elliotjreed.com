@@ -58,7 +58,7 @@ export const Cv = (): JSX.Element => {
                           Bunches
                         </a>
                       </strong>{" "}
-                      <em>Software Engineer</em>
+                      <em>Technical Lead</em>
                     </h3>
                     <div>2017 - Present</div>
                     <div className="content">
