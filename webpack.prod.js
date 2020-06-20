@@ -76,7 +76,7 @@ module.exports = merge(commonConfig, {
       paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
       whitelist: ["pre", "code"]
     }),
-    new CopyPlugin([{ from: "./assets/static", to: "./" }]),
+    new CopyPlugin({ patterns: [{ from: "./assets/static", to: "./" }] }),
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
       skipWaiting: true
