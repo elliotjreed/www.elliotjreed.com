@@ -1,118 +1,77 @@
 import * as React from "react";
+import { useEffect, useState } from "react";
 import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
+import "./../assets/scss/App.scss";
 
 import { PostCard } from "./PostCard";
 import { Spinner } from "./Spinner";
-import "./../assets/scss/App.scss";
 
 interface Props {
   match: { params: { category: string } };
 }
 
-interface State {
-  category: string;
-  loading: boolean;
-  posts: string[];
-}
+export const Posts = (props: Props): JSX.Element => {
+  const [loading, setLoading] = useState(true);
+  const [category, setCategory] = useState(props.match.params.category.replace("-", " "));
+  const [posts, setPosts] = useState([]);
 
-export class Posts extends React.Component<Props, State> {
-  private static capitalise(category: string): string {
-    return category.charAt(0).toUpperCase() + category.slice(1);
-  }
-
-  private controller: AbortController;
-
-  constructor(props: Props) {
-    super(props);
-    this.controller = new AbortController();
-
-    this.state = {
-      category: props.match.params.category.replace("-", " "),
-      loading: true,
-      posts: []
-    };
-
-    this.postsInCategory = this.postsInCategory.bind(this);
-  }
-
-  public componentDidMount(): void {
+  useEffect((): void => {
     ReactGA.pageview(window.location.pathname + location.search);
 
-    this.fetchPostsInCategory();
-  }
+    fetchPostsInCategory();
+  }, []);
 
-  public componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>): void {
-    if (this.state.category !== this.props.match.params.category) {
-      this.setState({ category: this.props.match.params.category }, this.fetchPostsInCategory);
+  useEffect(() => {
+    return (): void => {
+      this.controller.abort();
+    };
+  }, []);
+
+  const capitalise = (category: string): string => {
+    return category.charAt(0).toUpperCase() + category.slice(1);
+  };
+
+  useEffect(() => {
+    if (category !== props.match.params.category) {
+      setCategory(props.match.params.category.replace("-", " "));
     }
-  }
+  }, [props.match.params.category]);
 
-  public componentWillUnmount(): void {
-    this.controller.abort();
-  }
+  useEffect(() => {
+    fetchPostsInCategory();
+  }, [category]);
 
-  public render(): React.ReactNode {
-    return (
-      <main>
-        <Helmet>
-          <title>{Posts.capitalise(this.state.category) + " | Elliot J. Reed"}</title>
-          <meta
-            name="description"
-            content={"Various posts, guides, and how-tos on " + Posts.capitalise(this.state.category)}
-          />
-        </Helmet>
-        <section className="hero is-info is-small is-bold">
-          <div className="hero-body main-banner">
-            <div className="container has-text-centered">
-              <h1 className="title">{Posts.capitalise(this.state.category)}</h1>
-            </div>
-          </div>
-        </section>
-        <section className="container home">
-          <div className="articles">
-            <div className="column is-10 is-offset-1">
-              {this.state.loading ? (
-                <Spinner />
-              ) : (
-                this.postsInCategory(this.state.posts[Object.keys(this.state.posts)[0]])
-              )}
-            </div>
-          </div>
-        </section>
-      </main>
-    );
-  }
-
-  private fetchPostsInCategory(): Promise<void> {
+  const fetchPostsInCategory = (): Promise<void> => {
     if (!("caches" in self)) {
-      return this.updateFromNetwork();
+      return updateFromNetwork();
     }
 
-    return caches
-      .open("ejr")
-      .then(cache => {
-        cache
-          .match("https://api.elliotjreed.com/posts/" + this.state.category)
-          .then(
-            (response: Response | undefined): Promise<string[]> => {
-              return new Promise((resolve, reject): void => {
-                if (response) {
-                  resolve(response.clone().json());
-                } else {
-                  reject();
-                }
-              });
-            }
-          )
-          .then(posts => this.setState({ posts, loading: false }))
-          .catch((): Promise<void> => this.updateFromNetwork());
-      })
-      .catch((): Promise<void> => this.updateFromNetwork());
-  }
+    return caches.open("ejr").then((cache) => {
+      cache
+        .match("https://127.0.0.1:8000/posts/" + category)
+        .then(
+          (response: Response | undefined): Promise<string[]> => {
+            return new Promise((resolve, reject): void => {
+              if (response) {
+                resolve(response.clone().json());
+              } else {
+                reject();
+              }
+            });
+          }
+        )
+        .then((posts): void => {
+          setPosts(posts);
+          setLoading(false);
+        })
+        .catch((): Promise<void> => updateFromNetwork());
+    });
+    // .catch((): Promise<void> => updateFromNetwork());
+  };
 
-  private updateFromNetwork(): Promise<void> {
-    return fetch("https://api.elliotjreed.com/posts/" + this.state.category)
+  const updateFromNetwork = (): Promise<void> => {
+    return fetch("https://127.0.0.1:8000/posts/" + category)
       .then(
         (response: Response): Promise<string[]> => {
           return new Promise((resolve, reject): void => {
@@ -121,9 +80,7 @@ export class Posts extends React.Component<Props, State> {
               if ("caches" in self) {
                 caches
                   .open("ejr")
-                  .then(cache =>
-                    cache.put("https://api.elliotjreed.com/posts/" + this.state.category, clonedResponse.clone())
-                  )
+                  .then((cache) => cache.put("https://127.0.0.1:8000/posts/" + category, clonedResponse.clone()))
                   .catch();
               }
               resolve(clonedResponse.clone().json());
@@ -133,17 +90,43 @@ export class Posts extends React.Component<Props, State> {
           });
         }
       )
-      .then(posts => this.setState({ posts, loading: false }))
-      .catch((): void => this.controller.abort());
-  }
+      .then((posts): void => {
+        setPosts(posts);
+        setLoading(false);
+      });
+    // .catch((): void => this.controller.abort());
+  };
 
-  private postsInCategory(posts: string[]): React.ReactNode {
+  const postsInCategory = (posts: string[]): React.ReactNode => {
     return (
       <ul>
-        {posts.reverse().map(post => (
-          <PostCard key={post} category={this.state.category.toLowerCase()} post={post} />
+        {posts.reverse().map((post) => (
+          <PostCard key={post} category={category.toLowerCase()} post={post} />
         ))}
       </ul>
     );
-  }
-}
+  };
+
+  return (
+    <>
+      <Helmet>
+        <title>{capitalise(category) + " | Elliot J. Reed"}</title>
+        <meta name="description" content={"Various posts, guides, and how-tos on " + capitalise(category)} />
+      </Helmet>
+      <section className="hero is-info is-small is-bold">
+        <div className="hero-body main-banner">
+          <div className="container has-text-centered">
+            <h1 className="title">{capitalise(category)}</h1>
+          </div>
+        </div>
+      </section>
+      <section className="container home">
+        <div className="articles">
+          <div className="column is-10 is-offset-1">
+            {loading ? <Spinner /> : postsInCategory(posts[Object.keys(posts)[0]])}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};

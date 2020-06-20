@@ -1,4 +1,5 @@
 import * as marked from "marked";
+import { useEffect, useState } from "react";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
@@ -9,95 +10,45 @@ interface Props {
   post: string;
 }
 
-interface State {
-  category: string;
-  content: string;
-  date: string;
-  loading: boolean;
-  post: string;
-  title: string;
-}
+export const PostCard = (props: Props): JSX.Element => {
+  const [loading, setLoading] = useState(true);
+  const [category, setCategory] = useState(props.category);
+  const [content, setContent] = useState("");
+  const [date, setDate] = useState(props.post.substr(0, 10));
+  const [post, setPost] = useState(props.post);
+  const [title, setTitle] = useState(props.post.substr(11).slice(0, -3));
 
-export class PostCard extends React.Component<Props, State> {
-  private controller: AbortController;
+  useEffect((): void => {
+    fetchPostContent();
+  }, []);
 
-  constructor(props: Props) {
-    super(props);
+  useEffect(() => {
+    if (post !== props.post) {
+      setCategory(props.category);
+      setDate(props.post.substr(0, 10));
+      setPost(props.post);
+      setTitle(props.post.substr(11).slice(0, -3));
 
-    this.controller = new AbortController();
-
-    this.state = {
-      category: this.props.category,
-      content: "",
-      date: this.props.post.substr(0, 10),
-      loading: true,
-      post: this.props.post,
-      title: this.props.post.substr(11).slice(0, -3)
-    };
-  }
-
-  public componentDidMount(): void {
-    this.fetchPostContent();
-  }
-
-  public componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>): void {
-    if (this.state.post !== this.props.post) {
-      this.setState(
-        {
-          category: this.props.category,
-          date: this.props.post.substr(0, 10),
-          post: this.props.post,
-          title: this.props.post.substr(11).slice(0, -3)
-        },
-        this.fetchPostContent
-      );
+      fetchPostContent();
     }
-  }
+  }, [props.category]);
 
-  public componentWillUnmount(): void {
-    this.controller.abort();
-  }
+  useEffect(() => {
+    return (): void => {
+      this.controller.abort();
+    };
+  }, []);
 
-  public render(): React.ReactNode {
-    return (
-      <div className="card article">
-        <div className="card-content">
-          <div className="has-text-centered">
-            <h3>
-              <Link
-                className="title article-title"
-                to={"/post/" + this.state.category + "/" + this.state.post.slice(0, -3).replace(/\s+/g, "_")}
-              >
-                {this.state.title}
-              </Link>
-            </h3>
-            <div className="tags has-addons level-item">
-              <Link to={"/category/" + this.state.category} className="tag is-rounded tag-category">
-                {this.state.category}
-              </Link>
-              <time dateTime={this.state.date} className="tag is-rounded">
-                {this.state.date}
-              </time>
-            </div>
-          </div>
-          <div className="content article-body">
-            {this.state.loading ? <Loader /> : <div dangerouslySetInnerHTML={{ __html: this.state.content }} />}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  private fetchPostContent(): Promise<void> {
+  const fetchPostContent = (): Promise<void> => {
     if (!("caches" in self)) {
-      return this.updateFromNetwork();
+      return updateFromNetwork();
     }
 
     return caches
       .open("ejr")
-      .then(cache => {
+      .then((cache) => {
         cache
-          .match("https://api.elliotjreed.com/post/" + this.state.category + "/" + this.state.post)
+          .match("https://127.0.0.1:8000/post/" + category + "/" + post)
           .then(
             (response: Response | undefined): Promise<string> => {
               return new Promise((resolve, reject): void => {
@@ -109,21 +60,19 @@ export class PostCard extends React.Component<Props, State> {
               });
             }
           )
-          .then(markdown => markdown.substring(markdown.indexOf("\n") + 1))
-          .then(markdown => marked(markdown))
-          .then(content =>
-            this.setState({
-              content: content.substring(this.state.content),
-              loading: false
-            })
-          )
-          .catch((): Promise<void> => this.updateFromNetwork());
+          .then((markdown) => markdown.substring(markdown.indexOf("\n") + 1))
+          .then((markdown) => marked(markdown))
+          .then((htmlContent) => {
+            setContent(htmlContent);
+            setLoading(false);
+          })
+          .catch((): Promise<void> => updateFromNetwork());
       })
-      .catch((): Promise<void> => this.updateFromNetwork());
-  }
+      .catch((): Promise<void> => updateFromNetwork());
+  };
 
-  private updateFromNetwork(): Promise<void> {
-    return fetch("https://api.elliotjreed.com/post/" + this.state.category + "/" + this.state.post)
+  const updateFromNetwork = (): Promise<void> => {
+    return fetch("https://127.0.0.1:8000/post/" + category + "/" + post)
       .then(
         (response: Response): Promise<string> => {
           return new Promise((resolve, reject): void => {
@@ -132,9 +81,9 @@ export class PostCard extends React.Component<Props, State> {
               if ("caches" in self) {
                 caches
                   .open("ejr")
-                  .then(cache =>
+                  .then((cache) =>
                     cache.put(
-                      "https://api.elliotjreed.com/post/" + this.state.category + "/" + this.state.post,
+                      "https://127.0.0.1:8000/post/" + category + "/" + post,
                       clonedResponse.clone()
                     )
                   )
@@ -147,14 +96,40 @@ export class PostCard extends React.Component<Props, State> {
           });
         }
       )
-      .then(markdown => markdown.substring(markdown.indexOf("\n") + 1))
-      .then(markdown => marked(markdown))
-      .then(content =>
-        this.setState({
-          content: content.substring(this.state.content),
-          loading: false
-        })
-      )
+      .then((markdown) => markdown.substring(markdown.indexOf("\n") + 1))
+      .then((markdown) => marked(markdown))
+      .then((htmlContent) => {
+        setContent(htmlContent);
+        setLoading(false);
+      })
       .catch((): void => this.controller.abort());
-  }
-}
+  };
+
+  return (
+    <div className="card article">
+      <div className="card-content">
+        <div className="has-text-centered">
+          <h3>
+            <Link
+              className="title article-title"
+              to={"/post/" + category + "/" + post.slice(0, -3).replace(/\s+/g, "-")}
+            >
+              {title}
+            </Link>
+          </h3>
+          <div className="tags has-addons level-item">
+            <Link to={"/category/" + category} className="tag is-rounded tag-category">
+              {category}
+            </Link>
+            <time dateTime={date} className="tag is-rounded">
+              {date}
+            </time>
+          </div>
+        </div>
+        <div className="content article-body">
+          {loading ? <Loader /> : <div dangerouslySetInnerHTML={{ __html: content }} />}
+        </div>
+      </div>
+    </div>
+  );
+};

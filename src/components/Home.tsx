@@ -3,7 +3,6 @@ import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 
 import "./../assets/scss/App.scss";
-import { AllPosts } from "./AllPosts";
 
 export class Home extends React.Component<{}, {}> {
   private controller: AbortController;
@@ -71,8 +70,6 @@ export class Home extends React.Component<{}, {}> {
                 </div>
               </div>
             </div>
-
-            <AllPosts />
           </div>
         </section>
       </main>

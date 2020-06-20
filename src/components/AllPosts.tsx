@@ -47,7 +47,7 @@ export class AllPosts extends React.Component<{}, State> {
       .open("ejr")
       .then(cache => {
         cache
-          .match("https://api.elliotjreed.com/all")
+          .match("https://127.0.0.1:8000/all")
           .then(
             (response: Response | undefined): Promise<string[]> => {
               return new Promise((resolve, reject): void => {
@@ -71,7 +71,7 @@ export class AllPosts extends React.Component<{}, State> {
   }
 
   private updateFromNetwork(): Promise<void> {
-    return fetch("https://api.elliotjreed.com/all")
+    return fetch("https://127.0.0.1:8000/posts")
       .then(
         (response: Response): Promise<string[]> => {
           return new Promise((resolve, reject): void => {
@@ -80,7 +80,7 @@ export class AllPosts extends React.Component<{}, State> {
               if ("caches" in self) {
                 caches
                   .open("ejr")
-                  .then(cache => cache.put("https://api.elliotjreed.com/all", clonedResponse.clone()))
+                  .then(cache => cache.put("https://127.0.0.1:8000/posts", clonedResponse.clone()))
                   .catch();
               }
               resolve(clonedResponse.clone().json());

@@ -1,91 +1,40 @@
+import { useEffect, useState } from "react";
 import * as React from "react";
 import * as ReactGA from "react-ga";
 import { Link } from "react-router-dom";
 
-interface State {
-  categories: string[];
-  loading: boolean;
-}
+export const Categories = (): JSX.Element => {
+  const [loading, setLoading] = useState(true);
+  const [categories, setCategories] = useState({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": []
+  });
 
-export class Categories extends React.Component<{}, State> {
-  private controller: AbortController;
-
-  constructor(props: null) {
-    super(props);
-    this.controller = new AbortController();
-
-    this.state = {
-      categories: [],
-      loading: true
-    };
-  }
-
-  public componentDidMount(): void {
+  useEffect((): void => {
     ReactGA.pageview(window.location.pathname + location.search);
+    fetchCategories();
+  }, []);
 
-    this.fetchCategories();
-  }
+  useEffect(() => {
+    return (): void => {
+      this.controller.abort();
+    };
+  }, []);
 
-  public componentWillUnmount(): void {
-    this.controller.abort();
-  }
-
-  public render(): React.ReactNode {
-    return (
-      <React.Fragment>
-        {!this.state.loading &&
-          this.state.categories.map((category, index) => (
-            <Link key={index} className="navbar-item" to={"/category/" + category.toLowerCase().replace(" ", "-")}>
-              {category}
-            </Link>
-          ))}
-      </React.Fragment>
-    );
-  }
-
-  private fetchCategories(): Promise<void> {
-    if (!("caches" in self)) {
-      return this.updateFromNetwork();
-    }
-
-    return caches
-      .open("ejr")
-      .then(cache => {
-        cache
-          .match("https://api.elliotjreed.com/categories")
-          .then(
-            (response: Response | undefined): Promise<string[]> => {
-              return new Promise((resolve, reject): void => {
-                if (response) {
-                  resolve(response.clone().json());
-                } else {
-                  reject();
-                }
-              });
-            }
-          )
-          .then((categories: string[]): void => {
-            this.setState({
-              categories,
-              loading: false
-            });
-          })
-          .catch(() => this.updateFromNetwork());
-      })
-      .catch(() => this.updateFromNetwork());
-  }
-
-  private updateFromNetwork(): Promise<void> {
-    return fetch("https://api.elliotjreed.com/categories")
+  const updateFromNetwork = (): Promise<void> => {
+    return fetch("https://127.0.0.1:8000/categories")
       .then(
-        (response: Response): Promise<string[]> => {
+        (response: Response): Promise<any> => {
           return new Promise((resolve, reject): void => {
             const clonedResponse = response.clone();
             if (clonedResponse.ok) {
               if ("caches" in self) {
                 caches
                   .open("ejr")
-                  .then(cache => cache.put("https://api.elliotjreed.com/categories", clonedResponse.clone()))
+                  .then(
+                    (cache): Promise<void> => cache.put("https://127.0.0.1:8000/categories", clonedResponse.clone())
+                  )
                   .catch();
               }
               resolve(clonedResponse.clone().json());
@@ -95,12 +44,51 @@ export class Categories extends React.Component<{}, State> {
           });
         }
       )
-      .then((categories: string[]): void => {
-        this.setState({
-          categories,
-          loading: false
-        });
+      .then((categories: any): void => {
+        setCategories(categories);
+        setLoading(false);
       })
       .catch((): void => this.controller.abort());
-  }
-}
+  };
+
+  const fetchCategories = (): Promise<void> => {
+    if (!("caches" in self)) {
+      return updateFromNetwork();
+    }
+
+    return caches
+      .open("ejr")
+      .then(cache => {
+        cache
+          .match("https://127.0.0.1:8000/categories")
+          .then(
+            (response: Response | undefined): Promise<any> => {
+              return new Promise((resolve, reject): void => {
+                if (response) {
+                  resolve(response.clone().json());
+                } else {
+                  reject();
+                }
+              });
+            }
+          )
+          .then((categories: any): void => {
+            setCategories(categories);
+            setLoading(false);
+          })
+          .catch(() => updateFromNetwork());
+      })
+      .catch((): Promise<void> => updateFromNetwork());
+  };
+
+  return (
+    <React.Fragment>
+      {!loading &&
+        categories.itemListElement.map((category, index: number) => (
+          <Link key={index} className="navbar-item" to={"/category/" + category.name.toLowerCase().replace(" ", "-")}>
+            {category.name}
+          </Link>
+        ))}
+    </React.Fragment>
+  );
+};
