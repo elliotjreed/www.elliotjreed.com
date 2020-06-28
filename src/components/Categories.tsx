@@ -58,7 +58,7 @@ export const Categories = (): JSX.Element => {
 
     return caches
       .open("ejr")
-      .then(cache => {
+      .then((cache) => {
         cache
           .match("https://127.0.0.1:8000/categories")
           .then(

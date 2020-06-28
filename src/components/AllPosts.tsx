@@ -45,7 +45,7 @@ export class AllPosts extends React.Component<{}, State> {
 
     return caches
       .open("ejr")
-      .then(cache => {
+      .then((cache) => {
         cache
           .match("https://127.0.0.1:8000/all")
           .then(
@@ -80,7 +80,7 @@ export class AllPosts extends React.Component<{}, State> {
               if ("caches" in self) {
                 caches
                   .open("ejr")
-                  .then(cache => cache.put("https://127.0.0.1:8000/posts", clonedResponse.clone()))
+                  .then((cache) => cache.put("https://127.0.0.1:8000/posts", clonedResponse.clone()))
                   .catch();
               }
               resolve(clonedResponse.clone().json());
@@ -102,7 +102,7 @@ export class AllPosts extends React.Component<{}, State> {
   private posts(): React.ReactFragment {
     return (
       <React.Fragment>
-        {this.state.posts.reverse().map(post => (
+        {this.state.posts.reverse().map((post) => (
           <PostCard key={post} category={post.split("/")[0].toLowerCase()} post={post.split("/")[1]} />
         ))}
       </React.Fragment>

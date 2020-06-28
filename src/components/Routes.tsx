@@ -1,7 +1,5 @@
-import { createBrowserHistory } from "history";
 import * as React from "react";
-import * as ReactGA from "react-ga";
-import { Route, Router, Switch } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import { Footer } from "./Footer";
 import { Spinner } from "./Spinner";
@@ -26,20 +24,13 @@ const Travelling = React.lazy(() =>
   import(/* webpackChunkName: "travelling" */ "./Travelling").then(({ Travelling }) => ({ default: Travelling }))
 );
 
-const history = createBrowserHistory();
-history.listen(location => {
-  ReactGA.set({ page: location.pathname + location.search });
-  ReactGA.pageview(location.pathname + location.search);
-});
+interface Props {}
+interface State {}
 
-export class Routes extends React.Component<{}, {}> {
-  public componentDidMount(): void {
-    ReactGA.pageview(window.location.pathname + location.search);
-  }
-
+export class Routes extends React.Component<Props, State> {
   public render(): Router {
     return (
-      <Router history={history}>
+      <Router>
         <TopBar />
         <React.Suspense fallback={<Spinner />}>
           <Switch>

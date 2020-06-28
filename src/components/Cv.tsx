@@ -58,7 +58,7 @@ export const Cv = (): JSX.Element => {
                           Bunches
                         </a>
                       </strong>{" "}
-                      <em>Software Engineer</em>
+                      <em>Technical Lead</em>
                     </h3>
                     <div>2017 - Present</div>
                     <div className="content">
@@ -165,7 +165,7 @@ export const Cv = (): JSX.Element => {
                   <h3>PHP</h3>
                   <ul>
                     <li>PHP 5.4 - 7.4</li>
-                    <li>Symfony 2.8 - 5.0</li>
+                    <li>Symfony 2.8 - 5.1</li>
                     <li>Slim 2 - 4</li>
                     <li>PHPUnit</li>
                     <li>Twig</li>

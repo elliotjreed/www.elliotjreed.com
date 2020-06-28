@@ -7,25 +7,13 @@ module.exports = {
   module: {
     rules: [
       {
-        exclude: /node_modules/,
-        test: /\.js$/,
-        use: ["babel-loader", "source-map-loader"]
-      },
-      {
         exclude: /\.test.tsx?$/,
         test: /\.tsx?$/,
-        use: ["babel-loader", "awesome-typescript-loader"]
+        use: ["awesome-typescript-loader"]
       },
       {
         test: /\.(sa|sc|c)ss$/,
         use: ["style-loader", "css-loader", "sass-loader"]
-      },
-      {
-        loaders: [
-          "file-loader?hash=sha512&digest=hex&name=img/[hash].[ext]",
-          "image-webpack-loader?bypassOnDebug&optipng.optimizationLevel=7&gifsicle.interlaced=false"
-        ],
-        test: /\.(jpe?g|png|gif|svg)$/i
       }
     ]
   },
@@ -42,7 +30,7 @@ module.exports = {
         removeScriptTypeAttributes: true
       },
       template: "./index.html",
-      title: "Elliot J. Reed"
+      title: "TITLE"
     })
   ],
   resolve: {
