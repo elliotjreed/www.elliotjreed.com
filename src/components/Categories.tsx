@@ -3,7 +3,20 @@ import * as React from "react";
 import * as ReactGA from "react-ga";
 import { Link } from "react-router-dom";
 
+interface ListItem {
+  position: number;
+  name: string;
+}
+
+interface Categories {
+  "@context": string;
+  "@type": string;
+  "itemListElement": ListItem[];
+}
+
 export const Categories = (): JSX.Element => {
+  const abortController = new AbortController();
+  const signal = abortController.signal;
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState({
     "@context": "https://schema.org",
@@ -17,15 +30,13 @@ export const Categories = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    return (): void => {
-      this.controller.abort();
-    };
+    return (): void => abortController.abort();
   }, []);
 
   const updateFromNetwork = (): Promise<void> => {
-    return fetch("https://127.0.0.1:8000/categories")
+    return fetch("https://127.0.0.1:8000/categories", { signal: signal })
       .then(
-        (response: Response): Promise<any> => {
+        (response: Response): Promise<Categories> => {
           return new Promise((resolve, reject): void => {
             const clonedResponse = response.clone();
             if (clonedResponse.ok) {
@@ -44,11 +55,11 @@ export const Categories = (): JSX.Element => {
           });
         }
       )
-      .then((categories: any): void => {
+      .then((categories: Categories): void => {
         setCategories(categories);
         setLoading(false);
       })
-      .catch((): void => this.controller.abort());
+      .catch((): void => abortController.abort());
   };
 
   const fetchCategories = (): Promise<void> => {
@@ -62,7 +73,7 @@ export const Categories = (): JSX.Element => {
         cache
           .match("https://127.0.0.1:8000/categories")
           .then(
-            (response: Response | undefined): Promise<any> => {
+            (response: Response | undefined): Promise<Categories> => {
               return new Promise((resolve, reject): void => {
                 if (response) {
                   resolve(response.clone().json());
@@ -72,7 +83,7 @@ export const Categories = (): JSX.Element => {
               });
             }
           )
-          .then((categories: any): void => {
+          .then((categories: Categories): void => {
             setCategories(categories);
             setLoading(false);
           })
@@ -82,13 +93,13 @@ export const Categories = (): JSX.Element => {
   };
 
   return (
-    <React.Fragment>
+    <>
       {!loading &&
         categories.itemListElement.map((category, index: number) => (
           <Link key={index} className="navbar-item" to={"/category/" + category.name.toLowerCase().replace(" ", "-")}>
             {category.name}
           </Link>
         ))}
-    </React.Fragment>
+    </>
   );
 };

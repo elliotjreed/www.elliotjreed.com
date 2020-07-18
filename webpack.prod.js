@@ -1,4 +1,4 @@
-const merge = require("webpack-merge");
+const { merge } = require("webpack-merge");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 const { resolve, join } = require("path");
 const glob = require("glob");

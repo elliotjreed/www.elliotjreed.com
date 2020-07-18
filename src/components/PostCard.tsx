@@ -3,20 +3,29 @@ import { useEffect, useState } from "react";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import { Loader } from "./Loader";
+import { Spinner } from "./Spinner";
+
+interface Post {
+  dateCreated: string;
+  name: string;
+  sameAs: string;
+  articleBody: string;
+}
 
 interface Props {
   category: string;
-  post: string;
+  post: Post;
 }
 
 export const PostCard = (props: Props): JSX.Element => {
+  const abortController = new AbortController();
+  const signal = abortController.signal;
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState(props.category);
   const [content, setContent] = useState("");
-  const [date, setDate] = useState(props.post.substr(0, 10));
+  const [date, setDate] = useState(props.post.dateCreated.substr(0, 10));
   const [post, setPost] = useState(props.post);
-  const [title, setTitle] = useState(props.post.substr(11).slice(0, -3));
+  const [title, setTitle] = useState(props.post.name);
 
   useEffect((): void => {
     fetchPostContent();
@@ -25,18 +34,16 @@ export const PostCard = (props: Props): JSX.Element => {
   useEffect(() => {
     if (post !== props.post) {
       setCategory(props.category);
-      setDate(props.post.substr(0, 10));
+      setDate(props.post.dateCreated);
       setPost(props.post);
-      setTitle(props.post.substr(11).slice(0, -3));
+      setTitle(props.post.name);
 
       fetchPostContent();
     }
   }, [props.category]);
 
   useEffect(() => {
-    return (): void => {
-      this.controller.abort();
-    };
+    return (): void => abortController.abort();
   }, []);
 
   const fetchPostContent = (): Promise<void> => {
@@ -46,23 +53,29 @@ export const PostCard = (props: Props): JSX.Element => {
 
     return caches
       .open("ejr")
-      .then((cache) => {
+      .then((cache): void => {
         cache
-          .match("https://127.0.0.1:8000/post/" + category + "/" + post)
+          .match(
+            "https://127.0.0.1:8000/post/" + post.sameAs.replace("https://github.com/elliotjreed/elliotjreed/", "")
+          )
           .then(
-            (response: Response | undefined): Promise<string> => {
+            (response: Response | undefined): Promise<Post> => {
               return new Promise((resolve, reject): void => {
                 if (response) {
-                  resolve(response.clone().text());
+                  resolve(response.clone().json());
                 } else {
                   reject();
                 }
               });
             }
           )
-          .then((markdown) => markdown.substring(markdown.indexOf("\n") + 1))
-          .then((markdown) => marked(markdown))
-          .then((htmlContent) => {
+          .then(
+            (json: Post): Promise<string> => {
+              const markdown = json.articleBody;
+              return marked(markdown.substring(markdown.indexOf("\n") + 1));
+            }
+          )
+          .then((htmlContent): void => {
             setContent(htmlContent);
             setLoading(false);
           })
@@ -72,9 +85,12 @@ export const PostCard = (props: Props): JSX.Element => {
   };
 
   const updateFromNetwork = (): Promise<void> => {
-    return fetch("https://127.0.0.1:8000/post/" + category + "/" + post)
+    return fetch(
+      "https://127.0.0.1:8000/post/" + post.sameAs.replace("https://github.com/elliotjreed/elliotjreed/", ""),
+      { signal: signal }
+    )
       .then(
-        (response: Response): Promise<string> => {
+        (response: Response): Promise<Post> => {
           return new Promise((resolve, reject): void => {
             const clonedResponse = response.clone();
             if (clonedResponse.ok) {
@@ -83,37 +99,37 @@ export const PostCard = (props: Props): JSX.Element => {
                   .open("ejr")
                   .then((cache) =>
                     cache.put(
-                      "https://127.0.0.1:8000/post/" + category + "/" + post,
+                      "https://127.0.0.1:8000/post/" +
+                        post.sameAs.replace("https://github.com/elliotjreed/elliotjreed/", ""),
                       clonedResponse.clone()
                     )
                   )
                   .catch();
               }
-              resolve(clonedResponse.clone().text());
+              resolve(clonedResponse.clone().json());
             } else {
               reject();
             }
           });
         }
       )
-      .then((markdown) => markdown.substring(markdown.indexOf("\n") + 1))
-      .then((markdown) => marked(markdown))
-      .then((htmlContent) => {
+      .then((json: Post): string => {
+        const markdown = json.articleBody;
+        return marked(markdown.substring(markdown.indexOf("\n") + 1));
+      })
+      .then((htmlContent): void => {
         setContent(htmlContent);
         setLoading(false);
       })
-      .catch((): void => this.controller.abort());
+      .catch((): void => abortController.abort());
   };
 
   return (
-    <div className="card article">
+    <article className="card">
       <div className="card-content">
         <div className="has-text-centered">
           <h3>
-            <Link
-              className="title article-title"
-              to={"/post/" + category + "/" + post.slice(0, -3).replace(/\s+/g, "-")}
-            >
+            <Link className="title article-title" to={"/post/" + category + "/" + post.name.replace(/\s+/g, "-")}>
               {title}
             </Link>
           </h3>
@@ -126,10 +142,8 @@ export const PostCard = (props: Props): JSX.Element => {
             </time>
           </div>
         </div>
-        <div className="content article-body">
-          {loading ? <Loader /> : <div dangerouslySetInnerHTML={{ __html: content }} />}
-        </div>
+        <div className="content">{loading ? <Spinner /> : <div dangerouslySetInnerHTML={{ __html: content }} />}</div>
       </div>
-    </div>
+    </article>
   );
 };

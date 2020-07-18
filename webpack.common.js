@@ -30,7 +30,7 @@ module.exports = {
         removeScriptTypeAttributes: true
       },
       template: "./index.html",
-      title: "TITLE"
+      title: "Elliot J. Reed"
     })
   ],
   resolve: {

@@ -3,15 +3,13 @@ import * as ReactGA from "react-ga";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet";
 
-import "./../assets/scss/App.scss";
-
 export const Travelling = (): JSX.Element => {
   useEffect((): void => {
     ReactGA.pageview(window.location.pathname + location.search);
   }, []);
 
   return (
-    <main>
+    <>
       <Helmet>
         <title>Travelling | Elliot J. Reed</title>
         <meta name="description" content="A couple of photographs from my travels." />
@@ -470,6 +468,6 @@ export const Travelling = (): JSX.Element => {
           </div>
         </div>
       </section>
-    </main>
+    </>
   );
 };

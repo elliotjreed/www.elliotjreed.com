@@ -11,7 +11,7 @@ export const Cv = (): JSX.Element => {
   }, []);
 
   return (
-    <main>
+    <>
       <Helmet>
         <title>Curriculum Vitae / Résumé | Elliot J. Reed</title>
         <meta
@@ -20,33 +20,27 @@ export const Cv = (): JSX.Element => {
         />
       </Helmet>
 
-      <main className="section">
+      <div className="section">
         <div className="home">
           <div className="column is-10 is-offset-1">
             <div className="columns">
               <div className="column is-four-fifths-desktop is-three-fifths-tablet">
-                <section className="summary">
+                <section>
                   <h2 className="title">Summary</h2>
-                  <div className="wrapper">
-                    <p>
-                      To download or view an up-to-date copy of my <em>curriculum vitae</em>, visit{" "}
-                      <a
-                        href="https://github.com/elliotjreed/curriculum-vitae"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        github.com/elliotjreed/curriculum-vitae
-                      </a>
-                      .
-                    </p>
-                    <hr />
-                    <p>
-                      Software Developer with over seven years development and management experience in the
-                      multi-channel ecommerce industry primarily using object-oriented PHP, MySQL, Javascript, HTML, and
-                      CSS, with various APIs and frameworks on Linux using Docker, Ansible, and Apache and NginX. Worked
-                      using Agile / Scrum methodologies with test-driven development to SOLID design principles.
-                    </p>
-                  </div>
+                  <p>
+                    To download or view an up-to-date copy of my <em>curriculum vitae</em>, visit{" "}
+                    <a href="https://github.com/elliotjreed/curriculum-vitae" target="_blank" rel="noopener noreferrer">
+                      github.com/elliotjreed/curriculum-vitae
+                    </a>
+                    .
+                  </p>
+                  <hr />
+                  <p>
+                    Software Developer with over seven years development and management experience in the multi-channel
+                    ecommerce industry primarily using object-oriented PHP, MySQL, Javascript, HTML, and CSS, with
+                    various APIs and frameworks on Linux using Docker, Ansible, and Apache and NginX. Worked using Agile
+                    / Scrum methodologies with test-driven development to SOLID design principles.
+                  </p>
                 </section>
 
                 <section>
@@ -76,7 +70,7 @@ export const Cv = (): JSX.Element => {
                           <li>Added Jest / Enzyme Javascript testing;</li>
                         </ul>
                         <ul className="column">
-                          <li>Upgraded primary website from Symfony 2.8 to 5;</li>
+                          <li>Upgraded primary website from Symfony 2.8 to 5.1;</li>
                           <li>Migrated database from Rackspace to AWS RDS;</li>
                           <li>Introduced frontend build tools including Webpack;</li>
                           <li>Implemented fraud detection system using RabbitMQ, Python, and PHP;</li>
@@ -226,23 +220,18 @@ export const Cv = (): JSX.Element => {
               <section className="column is-one-third">
                 <h2 className="title">Education</h2>
 
-                <h3>
-                  <strong>Nottingham Law School</strong> <em>Graduate Diploma in Law</em>
-                </h3>
-                <div>2011 - 2012</div>
-                <p className="content">
-                  Submitted a research project on the adequacy of the provisions of the Equality Act 2010 and was
-                  awarded a distinction for that research. Took part in legal mooting, negotiation competitions, and
-                  debates.
-                </p>
-                <h3>
-                  <strong>University of Nottingham</strong> <em>Theology, Upper Second-Class B.A (Hons.)</em>
-                </h3>
-                <div>2011 - 2012</div>
-                <p className="content">
-                  Submitted a 12 000 word dissertation on economic philosophy and theology. Attended conferences and
-                  academic committees, as well as being involved in various debates and talks.
-                </p>
+                <section>
+                  <h3>
+                    <strong>Nottingham Law School</strong> <em>Graduate Diploma in Law</em>
+                  </h3>
+                  <div>2011 - 2012</div>
+                </section>
+                <section>
+                  <h3>
+                    <strong>University of Nottingham</strong> <em>Theology, Upper Second-Class B.A (Hons.)</em>
+                  </h3>
+                  <div>2011 - 2012</div>
+                </section>
               </section>
 
               <section className="column">
@@ -357,7 +346,7 @@ export const Cv = (): JSX.Element => {
             </section>
           </div>
         </div>
-      </main>
-    </main>
+      </div>
+    </>
   );
 };

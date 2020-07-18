@@ -21,6 +21,16 @@ body {
   background: #f0f2f4;
 }
 
+.wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
 .column {
   position: relative;
 }

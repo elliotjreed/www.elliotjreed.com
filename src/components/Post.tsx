@@ -5,13 +5,15 @@ import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
-import { Loader } from "./Loader";
+import { Spinner } from "./Spinner";
 
 interface Props {
   match: { params: { category: string; post: string } };
 }
 
 export const Post = (props: Props): JSX.Element => {
+  const abortController = new AbortController();
+  const signal = abortController.signal;
   const url = props.match.params.post;
   const postWithSpaces = url.replace(/-/g, " ");
   const title = postWithSpaces.substr(11);
@@ -21,9 +23,9 @@ export const Post = (props: Props): JSX.Element => {
   const [content, setContent] = useState({
     "@context": "",
     "@type": "BlogPosting",
-    "name": title,
-    "dateCreated": date,
-    "datePublished": date,
+    "name": "",
+    "dateCreated": "",
+    "datePublished": "",
     "articleBody": "",
     "wordCount": 0,
     "author": {},
@@ -52,9 +54,7 @@ export const Post = (props: Props): JSX.Element => {
     ".";
 
   useEffect(() => {
-    return (): void => {
-      this.controller.abort();
-    };
+    return (): void => abortController.abort();
   }, []);
 
   const fetchPost = (): Promise<void> => {
@@ -64,7 +64,7 @@ export const Post = (props: Props): JSX.Element => {
 
     return caches
       .open("ejr")
-      .then(cache => {
+      .then((cache) => {
         cache
           .match("https://127.0.0.1:8000/post/" + category + "/" + url)
           .then(
@@ -88,7 +88,7 @@ export const Post = (props: Props): JSX.Element => {
   };
 
   const updateFromNetwork = (): Promise<any> => {
-    return fetch("https://127.0.0.1:8000/post/" + category + "/" + url)
+    return fetch("https://127.0.0.1:8000/post/" + category + "/" + url, { signal: signal })
       .then(
         (response: Response): Promise<any> => {
           return new Promise((resolve, reject): void => {
@@ -97,7 +97,7 @@ export const Post = (props: Props): JSX.Element => {
               if ("caches" in self) {
                 caches
                   .open("ejr")
-                  .then(cache =>
+                  .then((cache) =>
                     cache.put("https://127.0.0.1:8000/post/" + category + "/" + url, clonedResponse.clone())
                   )
                   .catch();
@@ -112,42 +112,42 @@ export const Post = (props: Props): JSX.Element => {
       .then((post: any): void => {
         setContent(post);
         setLoading(false);
-      });
-    // .catch((): void => this.controller.abort());
+      })
+      .catch((): void => abortController.abort());
   };
 
   return (
-    <main>
+    <>
       <Helmet>
         <title>{title + " | Elliot J. Reed"}</title>
         <meta name="description" content={description} />
         <script type="application/ld+json">{JSON.stringify(content)}</script>
       </Helmet>
 
-      <section className="hero is-info is-small is-bold">
+      <div className="hero is-info is-small is-bold">
         <div className="hero-body" />
-      </section>
+      </div>
 
       <div className="container home">
-        <article className="articles">
+        <section className="articles">
           <div className="column is-10 is-offset-1">
-            <div className="card article">
+            <div className="card">
               <div className="card-content">
                 <div className="has-text-centered">
-                  <h3 className="title article-title">{title}</h3>
+                  <h3 className="title article-title">{content.name}</h3>
                   <div className="tags has-addons level-item">
                     <Link to={"/category/" + category} className="tag is-rounded tag-category">
                       {category}
                     </Link>
-                    <time dateTime={date} className="tag is-rounded">
-                      {date}
+                    <time dateTime={content.dateCreated} className="tag is-rounded">
+                      {content.dateCreated}
                     </time>
                   </div>
                 </div>
 
-                <div className="content article-body">
+                <div className="content">
                   {loading ? (
-                    <Loader />
+                    <Spinner />
                   ) : (
                     <div
                       dangerouslySetInnerHTML={{
@@ -159,8 +159,8 @@ export const Post = (props: Props): JSX.Element => {
               </div>
             </div>
           </div>
-        </article>
+        </section>
       </div>
-    </main>
+    </>
   );
 };

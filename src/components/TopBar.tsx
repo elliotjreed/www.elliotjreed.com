@@ -1,16 +1,16 @@
 import { faGithub, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
 import * as React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Categories } from "./Categories";
 
 export const TopBar = (): JSX.Element => {
-  const [menuActive, setMenuActive] = useState(false);
+  const [menuActive, toggleMenu] = useState(false);
 
   const toggleMobileMenu = (): void => {
-    setMenuActive(!menuActive);
+    toggleMenu(!menuActive);
   };
 
   return (
@@ -34,15 +34,20 @@ export const TopBar = (): JSX.Element => {
         </div>
         <div className={"navbar-menu" + (menuActive ? " is-active" : "")}>
           <div className="navbar-start">
-            <Link className="navbar-item" to="/cv">
+            <Link className="navbar-item" to="/cv" onClick={(): void => toggleMenu(false)}>
               CV
             </Link>
-            <Link className="navbar-item" to="/travel">
+            <Link className="navbar-item" to="/travel" onClick={(): void => toggleMenu(false)}>
               Travelling
             </Link>
+            <div className="navbar-item has-dropdown is-hoverable">
+              <span className="navbar-link">Blog</span>
+              <div className="navbar-dropdown" onClick={(): void => toggleMenu(false)}>
+                <Categories />
+              </div>
+            </div>
           </div>
           <div className="navbar-end">
-            <Categories />
             <div className="navbar-item">
               <div className="buttons">
                 <a href="https://github.com/elliotjreed" className="button" title="GitHub Profile">
