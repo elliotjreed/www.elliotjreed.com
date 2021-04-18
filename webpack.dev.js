@@ -1,19 +1,17 @@
 const { merge } = require("webpack-merge");
-const webpack = require("webpack");
 const commonConfig = require("./webpack.common");
+const path = require("path");
 
 module.exports = merge(commonConfig, {
   devServer: {
+    contentBase: path.join(__dirname, "src"),
     historyApiFallback: true,
-    publicPath: "/"
+    hot: true,
+    open: true,
+    port: 8081,
+    publicPath: "/",
+    watchContentBase: false
   },
-  devtool: "inline-source-map",
-  entry: ["webpack-dev-server/client?http://localhost:8081", "./index.tsx"],
-  mode: "development",
-  node: {
-    dns: "mock",
-    fs: "empty",
-    net: "mock"
-  },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  devtool: "eval-source-map",
+  mode: "development"
 });

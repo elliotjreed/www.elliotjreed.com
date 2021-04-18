@@ -2,58 +2,33 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
+import { animated, useSpring } from "react-spring";
+import { Post } from "../interfaces/Post";
 
 import { PostCard } from "./PostCard";
-import { PostContentSpinner } from "./PostContentSpinner";
+import { Spinner } from "./Spinner";
 
 interface Posts {
   blogPosts: Post[];
 }
 
-interface Post {
-  dateCreated: string;
-  name: string;
-  sameAs: string;
-  articleBody: string;
-}
-
-interface Props {
-  match: { params: { category: string } };
-}
-
-const capitalise = (category: string): string => {
-  return category.charAt(0).toUpperCase() + category.slice(1);
-};
-
-export const Posts = (props: Props): JSX.Element => {
+export const Posts = (): JSX.Element => {
   const abortController = new AbortController();
   const signal = abortController.signal;
   const [loading, setLoading] = useState(true);
-  const [category, setCategory] = useState(props.match.params.category.replace("-", " "));
   const [posts, setPosts] = useState({ blogPosts: [] });
+  const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
   useEffect((): void => {
     ReactGA.pageview(window.location.pathname + location.search);
-    fetchPostsInCategory();
+    fetchPosts();
   }, []);
 
   useEffect(() => {
     return (): void => abortController.abort();
   }, []);
 
-  useEffect((): void => {
-    if (category !== props.match.params.category) {
-      setLoading(true);
-      console.log("setting category from " + category + " to " + props.match.params.category);
-      setCategory(props.match.params.category.replace("-", " "));
-    }
-  }, [props.match.params.category]);
-
-  useEffect((): void => {
-    fetchPostsInCategory();
-  }, [category]);
-
-  const fetchPostsInCategory = (): Promise<void> => {
+  const fetchPosts = (): Promise<void> => {
     if (!("caches" in self)) {
       return updateFromNetwork();
     }
@@ -62,7 +37,7 @@ export const Posts = (props: Props): JSX.Element => {
       .open("ejr")
       .then((cache): void => {
         cache
-          .match("https://127.0.0.1:8000/posts/" + category)
+          .match("https://api.elliotjreed.com/blog/posts")
           .then(
             (response: Response | undefined): Promise<Posts> => {
               return new Promise((resolve, reject): void => {
@@ -84,7 +59,7 @@ export const Posts = (props: Props): JSX.Element => {
   };
 
   const updateFromNetwork = (): Promise<void> => {
-    return fetch("https://127.0.0.1:8000/posts/" + category, { signal: signal })
+    return fetch("https://api.elliotjreed.com/blog/posts", { signal: signal })
       .then(
         (response: Response): Promise<Posts> => {
           return new Promise((resolve, reject): void => {
@@ -95,7 +70,7 @@ export const Posts = (props: Props): JSX.Element => {
                   .open("ejr")
                   .then(
                     (cache): Promise<void> =>
-                      cache.put("https://127.0.0.1:8000/posts/" + category, clonedResponse.clone())
+                      cache.put("https://api.elliotjreed.com/blog/posts", clonedResponse.clone())
                   )
                   .catch();
               }
@@ -120,7 +95,7 @@ export const Posts = (props: Props): JSX.Element => {
     return (
       <ul>
         {posts.blogPosts.map((post, index) => (
-          <PostCard key={index} category={category.toLowerCase()} post={post} />
+          <PostCard key={index} post={post} />
         ))}
       </ul>
     );
@@ -128,13 +103,16 @@ export const Posts = (props: Props): JSX.Element => {
 
   const noPosts = (): JSX.Element => {
     return (
-      <div className="card">
-        <div className="card-content has-text-centered">
-          <h3 className="title article-title">No Posts Found</h3>
-          <div className="content">
-            Sorry, it doesn&apos;t look like I&apos;ve written any posts on the topic of &ldquo;{category}&rdquo; yet.
-          </div>
+      <div className="has-text-centered">
+        <div className="subtitle is-warning">
+          Sorry, it looks like I&apos;m having trouble fetching the posts from the GitHub API right now. You should
+          hopefully still be able to view them directly on GitHub at{" "}
+          <a href="https://github.com/elliotjreed/elliotjreed" rel="noreferrer noopener">
+            github.com/elliotjreed/elliotjreed
+          </a>
+          .
         </div>
+        <hr />
       </div>
     );
   };
@@ -142,20 +120,27 @@ export const Posts = (props: Props): JSX.Element => {
   return (
     <>
       <Helmet>
-        <title>{capitalise(category) + " | Elliot J. Reed"}</title>
-        <meta name="description" content={"Various posts, guides, and how-tos on " + capitalise(category)} />
+        <title>Posts | Elliot J. Reed</title>
+        <meta name="description" content="Various posts, guides, and how-tos" />
         <script type="application/ld+json">{JSON.stringify(posts)}</script>
       </Helmet>
-      <section className="hero is-info is-small is-bold">
-        <div className="hero-body main-banner">
-          <div className="container has-text-centered">
-            <h1 className="title">{capitalise(category)}</h1>
-          </div>
-        </div>
-      </section>
-      <section className="container home">
-        <div className="articles">
-          <div className="column is-10 is-offset-1">{loading ? <PostContentSpinner /> : postsInCategory(posts)}</div>
+
+      <section className="container">
+        <div className="column is-10 is-offset-1">
+          <animated.div className="card" style={springProps}>
+            <div className="column is-12">
+              <h2 className="title has-text-centered">Posts</h2>
+              <p className="has-text-centered">
+                Here are some small blog posts on various PHP, Docker, Linux, Javascript, and other tech-related
+                subjects. They&apos;re essentially fixes and guides I make and occasionally remember to upload to{" "}
+                <a href="https://github.com/elliotjreed/elliotjreed" rel="noreferrer noopener">
+                  GitHub
+                </a>{" "}
+                (which then get automagically pulled in here).
+              </p>
+            </div>
+            {loading ? <Spinner /> : postsInCategory(posts)}
+          </animated.div>
         </div>
       </section>
     </>

@@ -4,8 +4,6 @@ import * as React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { Categories } from "./Categories";
-
 export const TopBar = (): JSX.Element => {
   const [menuActive, toggleMenu] = useState(false);
 
@@ -34,33 +32,50 @@ export const TopBar = (): JSX.Element => {
         </div>
         <div className={"navbar-menu" + (menuActive ? " is-active" : "")}>
           <div className="navbar-start">
-            <Link className="navbar-item" to="/cv" onClick={(): void => toggleMenu(false)}>
-              CV
-            </Link>
-            <Link className="navbar-item" to="/travel" onClick={(): void => toggleMenu(false)}>
-              Travelling
-            </Link>
             <div className="navbar-item has-dropdown is-hoverable">
-              <span className="navbar-link">Blog</span>
-              <div className="navbar-dropdown" onClick={(): void => toggleMenu(false)}>
-                <Categories />
+              <span className="navbar-link">About</span>
+              <div className="navbar-dropdown">
+                <Link className="navbar-item" to="/cv">
+                  CV
+                </Link>
+                <Link className="navbar-item" to="/travel">
+                  Travelling
+                </Link>
               </div>
             </div>
+            <Link className="navbar-item" to="/blog">
+              Blog
+            </Link>
           </div>
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <a href="https://github.com/elliotjreed" className="button" title="GitHub Profile">
+                <a
+                  href="https://github.com/elliotjreed"
+                  className="button"
+                  title="GitHub Profile"
+                  rel="noreferrer noopener"
+                >
                   <span className="icon is-medium">
                     <FontAwesomeIcon className="fas fa-lg green" icon={faGithub} />
                   </span>
                 </a>
-                <a href="https://twitter.com/elliotjreed" className="button" title="Twitter Profile">
+                <a
+                  href="https://twitter.com/elliotjreed"
+                  className="button"
+                  title="Twitter Profile"
+                  rel="noreferrer noopener"
+                >
                   <span className="icon is-medium">
                     <FontAwesomeIcon className="fas fa-lg green" icon={faTwitter} />
                   </span>
                 </a>
-                <a href="https://www.linkedin.com/in/elliotjreed/" className="button" title="LinkedIn Profile">
+                <a
+                  href="https://www.linkedin.com/in/elliotjreed/"
+                  className="button"
+                  title="LinkedIn Profile"
+                  rel="noreferrer noopener"
+                >
                   <span className="icon is-medium">
                     <FontAwesomeIcon className="fas fa-lg green" icon={faLinkedin} />
                   </span>

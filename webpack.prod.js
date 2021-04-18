@@ -1,17 +1,11 @@
 const { merge } = require("webpack-merge");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
-const { resolve, join } = require("path");
-const glob = require("glob");
+const { resolve } = require("path");
 const commonConfig = require("./webpack.common");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const PurgecssPlugin = require("purgecss-webpack-plugin");
 const WorkboxPlugin = require("workbox-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-
-const PATHS = {
-  src: join(__dirname, "src")
-};
 
 module.exports = merge(commonConfig, {
   devtool: "source-map",
@@ -21,7 +15,20 @@ module.exports = merge(commonConfig, {
     rules: [
       {
         test: /\.(sa|sc|c)ss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: "css-loader", options: { sourceMap: true, url: false } },
+          {
+            loader: "postcss-loader",
+            options: {
+              sourceMap: true,
+              postcssOptions: {
+                plugins: ["postcss-preset-env"]
+              }
+            }
+          },
+          { loader: "sass-loader", options: { sourceMap: true } }
+        ]
       }
     ]
   },
@@ -39,15 +46,18 @@ module.exports = merge(commonConfig, {
           test: /\.css$/
         },
         vendor: {
-          name: "vendor",
+          test: /[\\/]node_modules[\\/]/,
           chunks: "all",
-          test: /node_modules/
+          name(module) {
+            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+            return `vendor.${packageName.replace("@", "")}`;
+          }
         }
       }
     }
   },
   output: {
-    filename: "js/[name].[hash].min.js",
+    filename: "js/[name].[contenthash].min.js",
     path: resolve(__dirname, "./dist"),
     publicPath: "/"
   },
@@ -69,12 +79,8 @@ module.exports = merge(commonConfig, {
       theme_color: "#363636"
     }),
     new MiniCssExtractPlugin({
-      chunkFilename: "[id].[hash].css",
-      filename: "[name].[hash].css"
-    }),
-    new PurgecssPlugin({
-      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
-      whitelist: ["pre", "code"]
+      chunkFilename: "[id].[contenthash].css",
+      filename: "[name].[contenthash].css"
     }),
     new CopyPlugin({ patterns: [{ from: "./assets/static", to: "./" }] }),
     new WorkboxPlugin.GenerateSW({

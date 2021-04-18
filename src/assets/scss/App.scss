@@ -1,8 +1,15 @@
 @charset "utf-8";
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+$family-sans-serif: "Inter", blinkmacsystemfont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$family-monospace: "Source Code Pro", monospace;
+
 @import "~bulma/sass/utilities/_all.sass";
 @import "~bulma/sass/base/_all.sass";
 @import "~bulma/sass/helpers/typography";
+@import "~bulma/sass/helpers/spacing";
+@import "~bulma/sass/helpers/flexbox";
 @import "~bulma/sass/elements/container";
 @import "~bulma/sass/elements/button";
 @import "~bulma/sass/grid/columns.sass";
@@ -12,28 +19,32 @@
 @import "~bulma/sass/elements/title";
 @import "~bulma/sass/elements/tag";
 @import "~bulma/sass/elements/content";
+@import "~bulma/sass/elements/image";
 @import "~bulma/sass/components/card";
 @import "~bulma/sass/components/level";
+@import "~bulma/sass/form/all";
 @import "spinner";
+@import "tweet";
+@import "yellow_box";
 
 html,
 body {
   background: #f0f2f4;
 }
 
-.wrapper {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
+//.wrapper {
+//  display: flex;
+//  min-height: 100vh;
+//  flex-direction: column;
+//}
 
-main {
-  flex: 1;
-}
+//main {
+//  flex: 1;
+//}
 
-.column {
-  position: relative;
-}
+//.column {
+//  position: relative;
+//}
 
 .navbar-brand .brand-text {
   font-size: 1.11rem;
@@ -55,7 +66,7 @@ main {
   height: 300px;
 }
 
-.home .card {
+section.container .card {
   background: #fff;
   margin-top: 1em;
   margin-bottom: 1em;
@@ -66,7 +77,7 @@ main {
   }
 }
 
-.home .title {
+section.container .title {
   padding-top: 0.5em;
   padding-bottom: 0.5em;
 }
@@ -79,15 +90,9 @@ main {
   margin-bottom: 0;
 }
 
-.tags {
-  padding-top: 1em;
-  padding-bottom: 1em;
-
-  .tag-category {
-    color: #fff;
-    background-color: #2c2c2c;
-  }
-}
+//.tags {
+//  padding-top: 1em;
+//}
 
 a {
   color: #233870;
