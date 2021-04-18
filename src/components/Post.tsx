@@ -1,175 +1,172 @@
 import * as marked from "marked";
 import * as React from "react";
+import { useEffect, useState } from "react";
 import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
+import { animated, useSpring } from "react-spring";
 
-import { Loader } from "./Loader";
+import { Person } from "../interfaces/Person";
+import { Post as PostInterface } from "../interfaces/Post";
+import { Spinner } from "./Spinner";
 
 interface Props {
-  match: { params: { category: string; post: string } };
+  match: { params: { date: string; post: string } };
 }
 
-interface State {
-  content: string;
-  loading: boolean;
-}
+export const Post = (props: Props): JSX.Element => {
+  const abortController: AbortController = new AbortController();
+  const signal: AbortSignal = abortController.signal;
+  const date: string = props.match.params.date;
+  const url: string = date + "/" + props.match.params.post;
+  const title: string = url.replace(/-/g, " ");
+  const author: Person = {
+    name: "Elliot J. Reed",
+    alternateName: "Elliot Reed",
+    givenName: "Elliot",
+    additionalName: "John",
+    familyName: "Reed"
+  };
+  const [content, setContent] = useState<PostInterface>({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "",
+    "publisher": { name: "", logo: { url: "" } },
+    "sameAs": "",
+    "name": title,
+    "dateModified": date,
+    "dateCreated": date,
+    "datePublished": date,
+    "articleBody": "",
+    "wordCount": 0,
+    "author": author,
+    "url": "https://www.elliotjreed.com/" + url,
+    "inLanguage": "en-GB",
+    "copyrightHolder": author,
+    "headline": title,
+    "license": "",
+    "image": { url: "" }
+  });
+  const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
+  const [loading, setLoading] = useState<boolean>(true);
 
-export class Post extends React.Component<Props, State> {
-  private controller: AbortController;
-  private readonly category: string;
-  private readonly post: string;
-  private readonly title: string;
-  private readonly date: string;
-  private readonly description: string;
-
-  constructor(props: Props) {
-    super(props);
-
-    this.controller = new AbortController();
-
-    const url = this.props.match.params.post;
-    const postWithSpaces = url.replace(/_/g, " ");
-    this.post = postWithSpaces + ".md";
-    this.title = postWithSpaces.substr(11);
-    this.date = url.substr(0, 10);
-
-    this.category = this.props.match.params.category;
-    this.description =
-      new Date(this.date).toLocaleDateString("en-GB", {
-        day: "numeric",
-        month: "long",
-        weekday: "long",
-        year: "numeric"
-      }) +
-      ". " +
-      this.title +
-      ".";
-
-    this.state = {
-      content: "",
-      loading: true
-    };
-  }
-
-  public componentDidMount(): void {
+  useEffect((): void => {
     ReactGA.pageview(window.location.pathname + location.search);
+    fetchPost();
+  }, []);
 
-    this.fetchPost();
-  }
+  useEffect(() => {
+    return (): void => abortController.abort();
+  }, []);
 
-  public componentWillUnmount(): void {
-    this.controller.abort();
-  }
-
-  public render(): React.ReactNode {
-    return (
-      <main>
-        <Helmet>
-          <title>{this.title + " | Elliot J. Reed"}</title>
-          <meta name="description" content={this.description} />
-        </Helmet>
-
-        <section className="hero is-info is-small is-bold">
-          <div className="hero-body" />
-        </section>
-
-        <div className="container home">
-          <article className="articles">
-            <div className="column is-10 is-offset-1">
-              <div className="card article">
-                <div className="card-content">
-                  <div className="has-text-centered">
-                    <h3 className="title article-title">{this.title}</h3>
-                    <div className="tags has-addons level-item">
-                      <Link to={"/category/" + this.category} className="tag is-rounded tag-category">
-                        {this.category}
-                      </Link>
-                      <time dateTime={this.date} className="tag is-rounded">
-                        {this.date}
-                      </time>
-                    </div>
-                  </div>
-
-                  <div className="content article-body">
-                    {this.state.loading ? <Loader /> : <div dangerouslySetInnerHTML={{ __html: this.state.content }} />}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
-      </main>
-    );
-  }
-
-  private fetchPost(): Promise<void> {
+  const fetchPost = (): Promise<void> => {
     if (!("caches" in self)) {
-      return this.updateFromNetwork();
+      return updateFromNetwork();
     }
 
     return caches
       .open("ejr")
       .then((cache) => {
         cache
-          .match("https://api.elliotjreed.com/post/" + this.category + "/" + this.post)
+          .match("https://api.elliotjreed.com/blog/post/" + url)
           .then(
-            (response: Response | undefined): Promise<string> => {
+            (response: Response | undefined): Promise<PostInterface> => {
               return new Promise((resolve, reject): void => {
                 if (response) {
-                  resolve(response.clone().text());
+                  resolve(response.clone().json());
                 } else {
                   reject();
                 }
               });
             }
           )
-          .then((markdown) => markdown.substring(markdown.indexOf("\n") + 1))
-          .then((markdown) => marked(markdown))
-          .then((content: string): void => {
-            this.setState({
-              content: content.substring(this.state.content.indexOf("\n") + 1),
-              loading: false
-            });
+          .then((post: PostInterface): void => {
+            setContent(post);
+            setLoading(false);
           })
-          .catch((): Promise<void> => this.updateFromNetwork());
+          .catch((): Promise<void> => updateFromNetwork());
       })
-      .catch((): Promise<void> => this.updateFromNetwork());
-  }
+      .catch((): Promise<void> => updateFromNetwork());
+  };
 
-  private updateFromNetwork(): Promise<void> {
-    return fetch("https://api.elliotjreed.com/post/" + this.category + "/" + this.post)
+  const updateFromNetwork = (): Promise<any> => {
+    return fetch("https://api.elliotjreed.com/blog/post/" + url, { signal: signal })
       .then(
-        (response: Response): Promise<string> => {
+        (response: Response): Promise<PostInterface> => {
           return new Promise((resolve, reject): void => {
             const clonedResponse = response.clone();
             if (clonedResponse.ok) {
               if ("caches" in self) {
                 caches
                   .open("ejr")
-                  .then((cache) =>
-                    cache.put(
-                      "https://api.elliotjreed.com/post/" + this.category + "/" + this.post,
-                      clonedResponse.clone()
-                    )
-                  )
+                  .then((cache) => cache.put("https://api.elliotjreed.com/blog/post/" + url, clonedResponse.clone()))
                   .catch();
               }
-              resolve(clonedResponse.clone().text());
+              resolve(clonedResponse.clone().json());
             } else {
               reject();
             }
           });
         }
       )
-      .then((markdown) => markdown.substring(markdown.indexOf("\n") + 1))
-      .then((markdown) => marked(markdown))
-      .then((content: string): void => {
-        this.setState({
-          content: content.substring(this.state.content.indexOf("\n") + 1),
-          loading: false
-        });
+      .then((post: PostInterface): void => {
+        setContent(post);
+        setLoading(false);
       })
-      .catch((): void => this.controller.abort());
-  }
-}
+      .catch((): void => abortController.abort());
+  };
+
+  return (
+    <>
+      <Helmet>
+        <title>{title + " | Elliot J. Reed"}</title>
+        <meta name="description" content={content.headline} />
+        <script type="application/ld+json">{JSON.stringify(content)}</script>
+        <meta property="og:url" content={content.url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={content.headline} />
+        <meta property="og:image" content={content.image.url} />
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@elliotjreed" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={content.headline} />
+        <meta name="twitter:image" content={content.url} />
+      </Helmet>
+
+      <section className="container">
+        <div className="column is-10 is-offset-1">
+          <animated.div className="card" style={springProps}>
+            {loading ? (
+              <Spinner />
+            ) : (
+              <div className="card-content">
+                <div className="has-text-centered">
+                  <h3 className="title">{content.headline}</h3>
+                  <div className="tags level-item pd-2 pb-2">
+                    <time dateTime={content.dateCreated} className="tag is-rounded">
+                      {new Date(content.dateCreated).toLocaleDateString("en-GB", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric"
+                      })}
+                    </time>
+                    <span className="tag is-rounded">{content.wordCount} words</span>
+                  </div>
+                </div>
+
+                <div className="content">
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: marked(content.articleBody.substring(content.articleBody.indexOf("\n") + 1))
+                    }}
+                  />
+                </div>
+              </div>
+            )}
+          </animated.div>
+        </div>
+      </section>
+    </>
+  );
+};

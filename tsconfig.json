@@ -8,10 +8,11 @@
     },
     "outDir": "./dist/",
     "sourceMap": true,
+    "esModuleInterop": true,
     "noImplicitAny": false,
     "module": "esnext",
     "moduleResolution": "node",
-    "target": "es5",
+    "target": "es6",
     "jsx": "react",
     "lib": [
       "es5",
@@ -21,9 +22,7 @@
     ]
   },
   "include": [
-    "./src/**/*.tsx",
-    "./tests/**/*.tsx",
-    "./tests/**/*.js"
+    "./src/**/*.tsx"
   ],
   "exclude": [
     "node_modules"

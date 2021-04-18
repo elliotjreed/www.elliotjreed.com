@@ -1,25 +1,17 @@
-const merge = require("webpack-merge");
-const webpack = require("webpack");
+const { merge } = require("webpack-merge");
 const commonConfig = require("./webpack.common");
+const path = require("path");
 
 module.exports = merge(commonConfig, {
   devServer: {
+    contentBase: path.join(__dirname, "src"),
     historyApiFallback: true,
     hot: true,
-    publicPath: "/"
+    open: true,
+    port: 8081,
+    publicPath: "/",
+    watchContentBase: false
   },
-  devtool: "inline-source-map",
-  entry: [
-    "react-hot-loader/patch",
-    "webpack-dev-server/client?http://localhost:8081",
-    "webpack/hot/only-dev-server",
-    "./index.tsx"
-  ],
-  mode: "development",
-  node: {
-    dns: "mock",
-    fs: "empty",
-    net: "mock"
-  },
-  plugins: [new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin()]
+  devtool: "eval-source-map",
+  mode: "development"
 });

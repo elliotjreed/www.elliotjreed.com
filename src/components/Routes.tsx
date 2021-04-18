@@ -1,50 +1,59 @@
 import * as React from "react";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import { Footer } from "./Footer";
-import { Spinner } from "./Spinner";
+// import { Footer } from "./Footer";
+import { RouteLoading } from "./RouteLoading";
 import { TopBar } from "./TopBar";
-import "./../assets/scss/App.scss";
 
 const Cv = React.lazy(() => import(/* webpackChunkName: "cv" */ "./Cv").then(({ Cv }) => ({ default: Cv })));
+
 const Home = React.lazy(() => import(/* webpackChunkName: "home" */ "./Home").then(({ Home }) => ({ default: Home })));
+
 const PageNotFound = React.lazy(() =>
   import(/* webpackChunkName: "pagenotfound" */ "./PageNotFound").then(({ PageNotFound }) => ({
     default: PageNotFound
   }))
 );
+
 const Post = React.lazy(() => import(/* webpackChunkName: "post" */ "./Post").then(({ Post }) => ({ default: Post })));
+
 const Posts = React.lazy(() =>
   import(/* webpackChunkName: "posts" */ "./Posts").then(({ Posts }) => ({ default: Posts }))
 );
-const Sitemap = React.lazy(() =>
-  import(/* webpackChunkName: "sitemap" */ "./Sitemap").then(({ Sitemap }) => ({ default: Sitemap }))
-);
+
 const Travelling = React.lazy(() =>
   import(/* webpackChunkName: "travelling" */ "./Travelling").then(({ Travelling }) => ({ default: Travelling }))
 );
 
-interface Props {}
-interface State {}
+const StayAlert = React.lazy(() =>
+  import(/* webpackChunkName: "stayalert" */ "./StayAlert/StayAlert").then(({ StayAlert }) => ({ default: StayAlert }))
+);
 
-export class Routes extends React.Component<Props, State> {
-  public render(): Router {
-    return (
-      <Router>
-        <TopBar />
-        <React.Suspense fallback={<Spinner />}>
+const GovernmentTwitter = React.lazy(() =>
+  import(
+    /* webpackChunkName: "governmenttwitter" */ "./GovernmentTwitter/GovernmentTwitter"
+  ).then(({ GovernmentTwitter }) => ({ default: GovernmentTwitter }))
+);
+
+export const Routes = (): Router => {
+  return (
+    <Router>
+      <TopBar />
+      <main>
+        <React.Suspense fallback={<RouteLoading />}>
           <Switch>
             <Route exact={true} path="/" component={Home} />
-            <Route exact={true} path="/sitemap" component={Sitemap} />
             <Route exact={true} path="/cv" component={Cv} />
             <Route exact={true} path="/travel" component={Travelling} />
-            <Route exact={true} path="/category/:category" component={Posts} />
-            <Route exact={true} path="/post/:category/:post" component={Post} />
+            <Route exact={true} path="/stay-alert" component={StayAlert} />
+            <Route exact={true} path="/government-tweet" component={GovernmentTwitter} />
+            <Route exact={true} path="/blog" component={Posts} />
+            <Route exact={true} path="/blog/:date/:post" component={Post} />
             <Route component={PageNotFound} />
           </Switch>
         </React.Suspense>
-        <Footer />
-      </Router>
-    );
-  }
-}
+      </main>
+      {/*<Footer />*/}
+    </Router>
+  );
+};

@@ -1,101 +1,45 @@
 import * as React from "react";
+import { useEffect, useState } from "react";
 import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
+import { animated, useSpring } from "react-spring";
+import { Post } from "../interfaces/Post";
 
 import { PostCard } from "./PostCard";
 import { Spinner } from "./Spinner";
-import "./../assets/scss/App.scss";
 
-interface Props {
-  match: { params: { category: string } };
+interface Posts {
+  blogPosts: Post[];
 }
 
-interface State {
-  category: string;
-  loading: boolean;
-  posts: string[];
-}
+export const Posts = (): JSX.Element => {
+  const abortController = new AbortController();
+  const signal = abortController.signal;
+  const [loading, setLoading] = useState(true);
+  const [posts, setPosts] = useState({ blogPosts: [] });
+  const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
-export class Posts extends React.Component<Props, State> {
-  private static capitalise(category: string): string {
-    return category.charAt(0).toUpperCase() + category.slice(1);
-  }
-
-  private controller: AbortController;
-
-  constructor(props: Props) {
-    super(props);
-    this.controller = new AbortController();
-
-    this.state = {
-      category: props.match.params.category.replace("-", " "),
-      loading: true,
-      posts: []
-    };
-
-    this.postsInCategory = this.postsInCategory.bind(this);
-  }
-
-  public componentDidMount(): void {
+  useEffect((): void => {
     ReactGA.pageview(window.location.pathname + location.search);
+    fetchPosts();
+  }, []);
 
-    this.fetchPostsInCategory();
-  }
+  useEffect(() => {
+    return (): void => abortController.abort();
+  }, []);
 
-  public componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>): void {
-    if (this.state.category !== this.props.match.params.category) {
-      this.setState({ category: this.props.match.params.category }, this.fetchPostsInCategory);
-    }
-  }
-
-  public componentWillUnmount(): void {
-    this.controller.abort();
-  }
-
-  public render(): React.ReactNode {
-    return (
-      <main>
-        <Helmet>
-          <title>{Posts.capitalise(this.state.category) + " | Elliot J. Reed"}</title>
-          <meta
-            name="description"
-            content={"Various posts, guides, and how-tos on " + Posts.capitalise(this.state.category)}
-          />
-        </Helmet>
-        <section className="hero is-info is-small is-bold">
-          <div className="hero-body main-banner">
-            <div className="container has-text-centered">
-              <h1 className="title">{Posts.capitalise(this.state.category)}</h1>
-            </div>
-          </div>
-        </section>
-        <section className="container home">
-          <div className="articles">
-            <div className="column is-10 is-offset-1">
-              {this.state.loading ? (
-                <Spinner />
-              ) : (
-                this.postsInCategory(this.state.posts[Object.keys(this.state.posts)[0]])
-              )}
-            </div>
-          </div>
-        </section>
-      </main>
-    );
-  }
-
-  private fetchPostsInCategory(): Promise<void> {
+  const fetchPosts = (): Promise<void> => {
     if (!("caches" in self)) {
-      return this.updateFromNetwork();
+      return updateFromNetwork();
     }
 
     return caches
       .open("ejr")
-      .then((cache) => {
+      .then((cache): void => {
         cache
-          .match("https://api.elliotjreed.com/posts/" + this.state.category)
+          .match("https://api.elliotjreed.com/blog/posts")
           .then(
-            (response: Response | undefined): Promise<string[]> => {
+            (response: Response | undefined): Promise<Posts> => {
               return new Promise((resolve, reject): void => {
                 if (response) {
                   resolve(response.clone().json());
@@ -105,24 +49,28 @@ export class Posts extends React.Component<Props, State> {
               });
             }
           )
-          .then((posts) => this.setState({ posts, loading: false }))
-          .catch((): Promise<void> => this.updateFromNetwork());
+          .then((posts: Posts): void => {
+            setPosts(posts);
+            setLoading(false);
+          })
+          .catch((): Promise<void> => updateFromNetwork());
       })
-      .catch((): Promise<void> => this.updateFromNetwork());
-  }
+      .catch((): Promise<void> => updateFromNetwork());
+  };
 
-  private updateFromNetwork(): Promise<void> {
-    return fetch("https://api.elliotjreed.com/posts/" + this.state.category)
+  const updateFromNetwork = (): Promise<void> => {
+    return fetch("https://api.elliotjreed.com/blog/posts", { signal: signal })
       .then(
-        (response: Response): Promise<string[]> => {
+        (response: Response): Promise<Posts> => {
           return new Promise((resolve, reject): void => {
             const clonedResponse = response.clone();
             if (clonedResponse.ok) {
               if ("caches" in self) {
                 caches
                   .open("ejr")
-                  .then((cache) =>
-                    cache.put("https://api.elliotjreed.com/posts/" + this.state.category, clonedResponse.clone())
+                  .then(
+                    (cache): Promise<void> =>
+                      cache.put("https://api.elliotjreed.com/blog/posts", clonedResponse.clone())
                   )
                   .catch();
               }
@@ -133,17 +81,68 @@ export class Posts extends React.Component<Props, State> {
           });
         }
       )
-      .then((posts) => this.setState({ posts, loading: false }))
-      .catch((): void => this.controller.abort());
-  }
+      .then((posts: Posts): void => {
+        setPosts(posts);
+        setLoading(false);
+      })
+      .catch((): void => abortController.abort());
+  };
 
-  private postsInCategory(posts: string[]): React.ReactNode {
+  const postsInCategory = (posts: Posts): React.ReactNode => {
+    if (posts.blogPosts.length < 1) {
+      return noPosts();
+    }
     return (
       <ul>
-        {posts.reverse().map((post) => (
-          <PostCard key={post} category={this.state.category.toLowerCase()} post={post} />
+        {posts.blogPosts.map((post, index) => (
+          <PostCard key={index} post={post} />
         ))}
       </ul>
     );
-  }
-}
+  };
+
+  const noPosts = (): JSX.Element => {
+    return (
+      <div className="has-text-centered">
+        <div className="subtitle is-warning">
+          Sorry, it looks like I&apos;m having trouble fetching the posts from the GitHub API right now. You should
+          hopefully still be able to view them directly on GitHub at{" "}
+          <a href="https://github.com/elliotjreed/elliotjreed" rel="noreferrer noopener">
+            github.com/elliotjreed/elliotjreed
+          </a>
+          .
+        </div>
+        <hr />
+      </div>
+    );
+  };
+
+  return (
+    <>
+      <Helmet>
+        <title>Posts | Elliot J. Reed</title>
+        <meta name="description" content="Various posts, guides, and how-tos" />
+        <script type="application/ld+json">{JSON.stringify(posts)}</script>
+      </Helmet>
+
+      <section className="container">
+        <div className="column is-10 is-offset-1">
+          <animated.div className="card" style={springProps}>
+            <div className="column is-12">
+              <h2 className="title has-text-centered">Posts</h2>
+              <p className="has-text-centered">
+                Here are some small blog posts on various PHP, Docker, Linux, Javascript, and other tech-related
+                subjects. They&apos;re essentially fixes and guides I make and occasionally remember to upload to{" "}
+                <a href="https://github.com/elliotjreed/elliotjreed" rel="noreferrer noopener">
+                  GitHub
+                </a>{" "}
+                (which then get automagically pulled in here).
+              </p>
+            </div>
+            {loading ? <Spinner /> : postsInCategory(posts)}
+          </animated.div>
+        </div>
+      </section>
+    </>
+  );
+};

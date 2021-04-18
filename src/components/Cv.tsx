@@ -3,7 +3,6 @@ import * as ReactGA from "react-ga";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet";
 
-import "./../assets/scss/App.scss";
 
 export const Cv = (): JSX.Element => {
   useEffect((): void => {
@@ -11,42 +10,51 @@ export const Cv = (): JSX.Element => {
   }, []);
 
   return (
-    <main>
+    <>
       <Helmet>
         <title>Curriculum Vitae / Résumé | Elliot J. Reed</title>
         <meta
           name="description"
           content="The curriculum vitae of Elliot J. Reed, software developer based in Nottingham. Specialising in PHP, e-commerce, Javascript, Linux, DevOps, SQL, and other web and application technologies."
         />
+        <meta property="og:type" content="profile" />
+        <meta property="og:title" content="Elliot J. Reed's Curriculum Vitae / Résumé" />
+        <meta
+          property="og:description"
+          content="A brief overview of my work, projects, experience, education, and skillset."
+        />
+        <meta
+          property="og:image"
+          content="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553434444/elliotjreed.jpg"
+        />
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@elliotjreed" />
+        <meta name="twitter:title" content="Elliot J. Reed's Curriculum Vitae / Résumé" />
+        <meta
+          name="twitter:description"
+          content="A brief overview of my work, projects, experience, education, and skillset."
+        />
+        <meta
+          name="twitter:image"
+          content="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553434444/elliotjreed.jpg"
+        />
       </Helmet>
 
-      <main className="section">
+      <div className="section">
         <div className="home">
           <div className="column is-10 is-offset-1">
             <div className="columns">
               <div className="column is-four-fifths-desktop is-three-fifths-tablet">
-                <section className="summary">
+                <section>
                   <h2 className="title">Summary</h2>
-                  <div className="wrapper">
-                    <p>
-                      To download or view an up-to-date copy of my <em>curriculum vitae</em>, visit{" "}
-                      <a
-                        href="https://github.com/elliotjreed/curriculum-vitae"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        github.com/elliotjreed/curriculum-vitae
-                      </a>
-                      .
-                    </p>
-                    <hr />
-                    <p>
-                      Software Developer with over seven years development and management experience in the
-                      multi-channel ecommerce industry primarily using object-oriented PHP, MySQL, Javascript, HTML, and
-                      CSS, with various APIs and frameworks on Linux using Docker, Ansible, and Apache and NginX. Worked
-                      using Agile / Scrum methodologies with test-driven development to SOLID design principles.
-                    </p>
-                  </div>
+                  <p>
+                    Technical Lead with over eight years software development and management experience in the
+                    multi-channel ecommerce industry primarily PHP, Symfony, MySQL, Postgres, Javascript, Typescript,
+                    React, HTML, and SCSS / CSS, with various APIs and frameworks on Linux using Docker, CI, Ansible,
+                    and Apache and NginX. Working using Agile / Scrum methodologies with test-driven development to
+                    SOLID design principles.
+                  </p>
                 </section>
 
                 <section>
@@ -76,7 +84,7 @@ export const Cv = (): JSX.Element => {
                           <li>Added Jest / Enzyme Javascript testing;</li>
                         </ul>
                         <ul className="column">
-                          <li>Upgraded primary website from Symfony 2.8 to 5;</li>
+                          <li>Upgraded primary website from Symfony 2.8 to 5.1;</li>
                           <li>Migrated database from Rackspace to AWS RDS;</li>
                           <li>Introduced frontend build tools including Webpack;</li>
                           <li>Implemented fraud detection system using RabbitMQ, Python, and PHP;</li>
@@ -182,9 +190,7 @@ export const Cv = (): JSX.Element => {
                     <li>Typescript</li>
                     <li>Jest & Enzyme</li>
                     <li>Jasmine & Karma</li>
-                    <li>jQuery</li>
                     <li>Webpack</li>
-                    <li>Gulp & Bower</li>
                   </ul>
                 </div>
 
@@ -201,6 +207,7 @@ export const Cv = (): JSX.Element => {
                   <h3>Databases</h3>
                   <ul>
                     <li>MySQL & MariaDB</li>
+                    <li>Postgres</li>
                     <li>AWS RDS</li>
                     <li>SQLite</li>
                   </ul>
@@ -226,23 +233,18 @@ export const Cv = (): JSX.Element => {
               <section className="column is-one-third">
                 <h2 className="title">Education</h2>
 
-                <h3>
-                  <strong>Nottingham Law School</strong> <em>Graduate Diploma in Law</em>
-                </h3>
-                <div>2011 - 2012</div>
-                <p className="content">
-                  Submitted a research project on the adequacy of the provisions of the Equality Act 2010 and was
-                  awarded a distinction for that research. Took part in legal mooting, negotiation competitions, and
-                  debates.
-                </p>
-                <h3>
-                  <strong>University of Nottingham</strong> <em>Theology, Upper Second-Class B.A (Hons.)</em>
-                </h3>
-                <div>2011 - 2012</div>
-                <p className="content">
-                  Submitted a 12 000 word dissertation on economic philosophy and theology. Attended conferences and
-                  academic committees, as well as being involved in various debates and talks.
-                </p>
+                <section>
+                  <h3>
+                    <strong>Nottingham Law School</strong> <em>Graduate Diploma in Law</em>
+                  </h3>
+                  <div>2011 - 2012</div>
+                </section>
+                <section>
+                  <h3>
+                    <strong>University of Nottingham</strong> <em>Theology, Upper Second-Class B.A (Hons.)</em>
+                  </h3>
+                  <div>2011 - 2012</div>
+                </section>
               </section>
 
               <section className="column">
@@ -357,7 +359,7 @@ export const Cv = (): JSX.Element => {
             </section>
           </div>
         </div>
-      </main>
-    </main>
+      </div>
+    </>
   );
 };
