@@ -25,7 +25,7 @@
     "lint:js": "eslint --ext .ts --ext .js --ext .tsx './src/'",
     "lint:css": "stylelint './src/**/*.scss' --syntax scss",
     "test": "jest",
-    "docker": "yarn run test && yarn run lint && yarn run clean-dist && webpack -p --config=webpack.prod.js && docker build -t elliotjreed/www.elliotjreed.com . --no-cache && docker push elliotjreed/www.elliotjreed.com"
+    "docker": "yarn run lint && yarn run clean-dist && webpack --config=webpack.prod.js --mode production --env production && docker build -t elliotjreed/www.elliotjreed.com . --no-cache && docker push elliotjreed/www.elliotjreed.com"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free-solid": "^5.1.0-3",

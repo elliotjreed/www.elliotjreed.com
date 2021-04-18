@@ -36,16 +36,14 @@ export const StayAlert = (): JSX.Element => {
         <meta name="description" content="A couple of photographs from my travels." />
       </Helmet>
 
-      <animated.section className="container" style={props}>
+      <section className="container">
         <div className="column is-10 is-offset-1">
-          <div className="card">
+          <animated.div className="card" style={props}>
             <div className="column is-12">
-              <h2 className="title has-text-centered">Stay alert. Control the virus. Save lives.</h2>
-              <h3 className="subtitle has-text-centered">Create your own &ldquo;Stay alert&rdquo; poster</h3>
-              <p className="has-text-centered">
-                Generate your own &ldquo;<em>Stay alert. Control the virus. Save lives.</em>&rdquo; poster by filling in
-                the lines below, and click the <strong>download</strong> button when you&apos;re done.
-              </p>
+              <h2 className="title has-text-centered">&ldquo;Stay alert&rdquo; poster generator</h2>
+              <h3 className="subtitle has-text-centered">
+                Fill in the box below, and click the <strong>download</strong> button when you&apos;re done.
+              </h3>
             </div>
 
             <div className="columns">
@@ -108,9 +106,9 @@ export const StayAlert = (): JSX.Element => {
                 </a>
               </div>
             </div>
-          </div>
+          </animated.div>
         </div>
-      </animated.section>
+      </section>
     </>
   );
 };

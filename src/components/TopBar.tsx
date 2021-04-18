@@ -35,15 +35,26 @@ export const TopBar = (): JSX.Element => {
             <div className="navbar-item has-dropdown is-hoverable">
               <span className="navbar-link">About</span>
               <div className="navbar-dropdown">
-                <Link className="navbar-item" to="/cv">
+                <Link className="navbar-item" to="/cv" onClick={toggleMobileMenu}>
                   CV
                 </Link>
-                <Link className="navbar-item" to="/travel">
+                <Link className="navbar-item" to="/travel" onClick={toggleMobileMenu}>
                   Travelling
                 </Link>
               </div>
             </div>
-            <Link className="navbar-item" to="/blog">
+            <div className="navbar-item has-dropdown is-hoverable">
+              <span className="navbar-link">Fun Experiments</span>
+              <div className="navbar-dropdown">
+                <Link className="navbar-item" to="/stay-alert" onClick={toggleMobileMenu}>
+                  #StayAlert Generator
+                </Link>
+                <Link className="navbar-item" to="/government-tweet" onClick={toggleMobileMenu}>
+                  @10DowningStreet Generator
+                </Link>
+              </div>
+            </div>
+            <Link className="navbar-item" to="/blog" onClick={toggleMobileMenu}>
               Blog
             </Link>
           </div>

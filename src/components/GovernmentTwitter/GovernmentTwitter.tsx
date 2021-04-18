@@ -34,16 +34,14 @@ export const GovernmentTwitter = (): JSX.Element => {
         <meta name="description" content="Generate your own Number 10 Downing Street UK Government Tweet" />
       </Helmet>
 
-      <animated.section className="container" style={props}>
+      <section className="container">
         <div className="column is-10 is-offset-1">
-          <div className="card">
+          <animated.div className="card" style={props}>
             <div className="column is-12">
-              <h2 className="title has-text-centered">
-                Create your own &ldquo;@10DowningStreet&rdquo; tweet
-              </h2>
-              <p className="has-text-centered">
+              <h2 className="title has-text-centered">UK Prime Minister tweet generator</h2>
+              <h3 className="subtitle has-text-centered">
                 Fill in the box below, and click the <strong>download</strong> button when you&apos;re done.
-              </p>
+              </h3>
             </div>
 
             <div className="columns is-multiline">
@@ -81,9 +79,9 @@ export const GovernmentTwitter = (): JSX.Element => {
                 </a>
               </div>
             </div>
-          </div>
+          </animated.div>
         </div>
-      </animated.section>
+      </section>
     </>
   );
 };

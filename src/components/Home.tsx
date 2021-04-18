@@ -149,7 +149,6 @@ export const Home = (): JSX.Element => {
                 </p>
               </section>
             </div>
-            <div className="col-12">hello</div>
           </animated.div>
         </div>
       </section>
