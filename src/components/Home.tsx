@@ -134,6 +134,8 @@ export const Home = (): JSX.Element => {
                     <img
                       src="https://res.cloudinary.com/elliotjreed/image/upload/w_256,h_256,c_scale,f_auto,q_auto/v1553434444/elliotjreed.jpg"
                       alt="Placeholder image"
+                      width={128}
+                      height={128}
                     />
                   </figure>
                 </div>
