@@ -23,7 +23,7 @@ export const Home = (): JSX.Element => {
 
   useEffect((): void => {
     ReactGA.pageview(window.location.pathname + location.search);
-    fetchCategories();
+    fetchAuthor();
   }, []);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export const Home = (): JSX.Element => {
                 caches
                   .open("ejr")
                   .then(
-                    (cache): Promise<void> =>
+                    (cache: Cache): Promise<void> =>
                       cache.put("https://api.elliotjreed.com/blog/author", clonedResponse.clone())
                   )
                   .catch();
@@ -59,7 +59,7 @@ export const Home = (): JSX.Element => {
       .catch((): void => abortController.abort());
   };
 
-  const fetchCategories = (): Promise<void> => {
+  const fetchAuthor = (): Promise<void> => {
     if (!("caches" in self)) {
       return updateFromNetwork();
     }
@@ -80,10 +80,13 @@ export const Home = (): JSX.Element => {
               });
             }
           )
-          .then((author: Person): void => {
-            setAuthor(author);
-          })
-          .catch(() => updateFromNetwork());
+          .then(
+            (author: Person): Promise<void> => {
+              setAuthor(author);
+              return updateFromNetwork();
+            }
+          )
+          .catch((): Promise<void> => updateFromNetwork());
       })
       .catch((): Promise<void> => updateFromNetwork());
   };
