@@ -17,10 +17,15 @@ export const PageNotFound = (): JSX.Element => {
         <animated.div className="card" style={springProps}>
           <div className="column is-12">
             <h2 className="title has-text-centered">Not Found</h2>
-            <p className="has-text-centered">
-              I can&apos;t find anything here, sorry! Try starting from the <Link to="/">homepage</Link> or have a look
-              at some <Link to="/blog">blog posts</Link>.
-            </p>
+          </div>
+          <div className="column is-12">
+            <article className="message is-warning">
+              <p className="message-header">Oh no!</p>
+              <div className="message-body">
+                I can&apos;t find anything here, sorry! Try starting from the <Link to="/">homepage</Link> or have a
+                look at some <Link to="/blog">blog posts</Link>.
+              </div>
+            </article>
           </div>
         </animated.div>
       </div>

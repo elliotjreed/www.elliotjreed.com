@@ -32,14 +32,17 @@ export const StayAlert = (): JSX.Element => {
   return (
     <>
       <Helmet>
-        <title>Stay Alert Generator | Elliot J. Reed</title>
-        <meta name="description" content="A couple of photographs from my travels." />
+        <title>Stay Alert Meme Generator | Elliot J. Reed</title>
+        <meta
+          name="description"
+          content="Create your own 'Stay alert. Control the virus. Save lives.' Coronavirus poster."
+        />
       </Helmet>
 
       <section className="container">
         <div className="column is-10 is-offset-1">
           <animated.div className="card" style={props}>
-            <div className="column is-12">
+            <div className="card-content">
               <h2 className="title has-text-centered">&ldquo;Stay alert&rdquo; poster generator</h2>
               <h3 className="subtitle has-text-centered">
                 Fill in the box below, and click the <strong>download</strong> button when you&apos;re done.

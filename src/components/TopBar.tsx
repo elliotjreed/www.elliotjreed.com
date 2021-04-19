@@ -1,4 +1,6 @@
-import { faGithub, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons/faTwitter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 import { useState } from "react";
@@ -14,7 +16,7 @@ export const TopBar = (): JSX.Element => {
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="container">
-        <div className="navbar-brand">
+        <div className="navbar-brand has-text-weight-semibold">
           <Link to="/" className="navbar-item">
             <p className="title green">Elliot J. Reed</p>
           </Link>

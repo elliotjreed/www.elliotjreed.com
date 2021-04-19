@@ -2,7 +2,7 @@ import { Image } from "./Image";
 import { Organisation } from "./Organisation";
 import { Person } from "./Person";
 
-export interface Post {
+export interface BlogPosting {
   "@context": string;
   "@type": string;
   "name": string;
@@ -20,5 +20,5 @@ export interface Post {
   "license": string;
   "image": Image;
   "sameAs": string;
-  "articleBody": string;
+  "articleBody"?: string;
 }

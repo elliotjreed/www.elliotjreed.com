@@ -2,6 +2,10 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
+import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons/faTwitter";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { animated, useSpring } from "react-spring";
 
 import { Person } from "../interfaces/Person";
@@ -122,19 +126,32 @@ export const Home = (): JSX.Element => {
       <section className="container">
         <div className="column is-10 is-offset-1">
           <animated.div className="card" style={springProps}>
-            <div className="columns is-vcentered has-text-centered">
-              <div className="column is-3">
-                <figure className="image is-square profile-picture">
-                  <img
-                    src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553434444/elliotjreed.jpg"
-                    alt="Picture of Elliot"
-                    loading="lazy"
-                  />
-                </figure>
-              </div>
+            <div className="card-content">
+              <div className="media">
+                <div className="media-left">
+                  <figure className="image is-128x128">
+                    <img
+                      src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553434444/elliotjreed.jpg"
+                      alt="Placeholder image"
+                    />
+                  </figure>
+                </div>
+                <div className="media-content">
+                  <h1 className="is-size-1 has-text-weight-semibold is-size-3-mobile">Elliot J. Reed</h1>
 
-              <section className="column is-9 has-text-dark">
-                <h1 className="title is-2">Elliot J. Reed</h1>
+                  <a
+                    className="icon-text subtitle is-size-5 is-size-6-mobile"
+                    href="https://github.com/elliotjreed"
+                    rel="noreferrer noopener"
+                  >
+                    <span className="icon">
+                      <FontAwesomeIcon className="fas fa-lg" icon={faGithub} />
+                    </span>
+                    <span> @elliotjreed</span>
+                  </a>
+                </div>
+              </div>
+              <div className="content">
                 <p>
                   Hi! I&apos;m Elliot, a software developer / technical lead based in Nottingham. My interests are
                   generally in E-Commerce, PHP, Javascript, Docker, and general DevOps.
@@ -147,7 +164,7 @@ export const Home = (): JSX.Element => {
                   </a>
                   .
                 </p>
-              </section>
+              </div>
             </div>
           </animated.div>
         </div>

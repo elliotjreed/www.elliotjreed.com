@@ -31,13 +31,13 @@ export const GovernmentTwitter = (): JSX.Element => {
     <>
       <Helmet>
         <title>#StayAlert @10DowningStreet Meme Generator | Elliot J. Reed</title>
-        <meta name="description" content="Generate your own Number 10 Downing Street UK Government Tweet" />
+        <meta name="description" content="Generate your own Number 10 Downing Street UK Government Tweet." />
       </Helmet>
 
       <section className="container">
         <div className="column is-10 is-offset-1">
           <animated.div className="card" style={props}>
-            <div className="column is-12">
+            <div className="card-content">
               <h2 className="title has-text-centered">UK Prime Minister tweet generator</h2>
               <h3 className="subtitle has-text-centered">
                 Fill in the box below, and click the <strong>download</strong> button when you&apos;re done.

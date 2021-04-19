@@ -3,20 +3,20 @@ import { useEffect, useState } from "react";
 import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
-import { Post } from "../interfaces/Post";
+import { BlogPosting } from "../interfaces/BlogPosting";
 
 import { PostCard } from "./PostCard";
 import { Spinner } from "./Spinner";
 
-interface Posts {
-  blogPosts: Post[];
+interface Blog {
+  blogPosts: BlogPosting[];
 }
 
 export const Posts = (): JSX.Element => {
   const abortController = new AbortController();
   const signal = abortController.signal;
-  const [loading, setLoading] = useState(true);
-  const [posts, setPosts] = useState({ blogPosts: [] });
+  const [loading, setLoading] = useState<boolean>(true);
+  const [posts, setPosts] = useState<Blog>({ blogPosts: [] });
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
   useEffect((): void => {
@@ -39,7 +39,7 @@ export const Posts = (): JSX.Element => {
         cache
           .match("https://api.elliotjreed.com/blog/posts")
           .then(
-            (response: Response | undefined): Promise<Posts> => {
+            (response: Response | undefined): Promise<Blog> => {
               return new Promise((resolve, reject): void => {
                 if (response) {
                   resolve(response.clone().json());
@@ -49,10 +49,13 @@ export const Posts = (): JSX.Element => {
               });
             }
           )
-          .then((posts: Posts): void => {
-            setPosts(posts);
-            setLoading(false);
-          })
+          .then(
+            (posts: Blog): Promise<void> => {
+              setPosts(posts);
+              setLoading(false);
+              return updateFromNetwork();
+            }
+          )
           .catch((): Promise<void> => updateFromNetwork());
       })
       .catch((): Promise<void> => updateFromNetwork());
@@ -61,15 +64,15 @@ export const Posts = (): JSX.Element => {
   const updateFromNetwork = (): Promise<void> => {
     return fetch("https://api.elliotjreed.com/blog/posts", { signal: signal })
       .then(
-        (response: Response): Promise<Posts> => {
+        (response: Response): Promise<Blog> => {
           return new Promise((resolve, reject): void => {
-            const clonedResponse = response.clone();
+            const clonedResponse: Response = response.clone();
             if (clonedResponse.ok) {
               if ("caches" in self) {
                 caches
                   .open("ejr")
                   .then(
-                    (cache): Promise<void> =>
+                    (cache: Cache): Promise<void> =>
                       cache.put("https://api.elliotjreed.com/blog/posts", clonedResponse.clone())
                   )
                   .catch();
@@ -81,30 +84,32 @@ export const Posts = (): JSX.Element => {
           });
         }
       )
-      .then((posts: Posts): void => {
+      .then((posts: Blog): void => {
         setPosts(posts);
         setLoading(false);
       })
       .catch((): void => abortController.abort());
   };
 
-  const postsInCategory = (posts: Posts): React.ReactNode => {
+  const postsInCategory = (posts: Blog): React.ReactNode => {
     if (posts.blogPosts.length < 1) {
       return noPosts();
     }
+
     return (
-      <ul>
+      <>
         {posts.blogPosts.map((post, index) => (
           <PostCard key={index} post={post} />
         ))}
-      </ul>
+      </>
     );
   };
 
   const noPosts = (): JSX.Element => {
     return (
-      <div className="has-text-centered">
-        <div className="subtitle is-warning">
+      <article className="message is-warning">
+        <p className="message-header">Oh no!</p>
+        <div className="message-body">
           Sorry, it looks like I&apos;m having trouble fetching the posts from the GitHub API right now. You should
           hopefully still be able to view them directly on GitHub at{" "}
           <a href="https://github.com/elliotjreed/elliotjreed" rel="noreferrer noopener">
@@ -112,8 +117,7 @@ export const Posts = (): JSX.Element => {
           </a>
           .
         </div>
-        <hr />
-      </div>
+      </article>
     );
   };
 
@@ -128,18 +132,20 @@ export const Posts = (): JSX.Element => {
       <section className="container">
         <div className="column is-10 is-offset-1">
           <animated.div className="card" style={springProps}>
-            <div className="column is-12">
+            <div className="card-content">
               <h2 className="title has-text-centered">Posts</h2>
-              <p className="has-text-centered">
-                Here are some small blog posts on various PHP, Docker, Linux, Javascript, and other tech-related
-                subjects. They&apos;re essentially fixes and guides I make and occasionally remember to upload to{" "}
-                <a href="https://github.com/elliotjreed/elliotjreed" rel="noreferrer noopener">
-                  GitHub
-                </a>{" "}
-                (which then get automagically pulled in here).
-              </p>
+              <div className="content">
+                <p>
+                  Here are some small blog posts on various PHP, Docker, Linux, Javascript, and other tech-related
+                  subjects. They&apos;re essentially fixes and guides I make and occasionally remember to upload to{" "}
+                  <a href="https://github.com/elliotjreed/elliotjreed" rel="noreferrer noopener">
+                    GitHub
+                  </a>{" "}
+                  (which then get automagically pulled in here).
+                </p>
+              </div>
+              <div className="content">{loading ? <Spinner /> : postsInCategory(posts)}</div>
             </div>
-            {loading ? <Spinner /> : postsInCategory(posts)}
           </animated.div>
         </div>
       </section>

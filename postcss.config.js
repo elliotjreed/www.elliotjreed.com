@@ -5,7 +5,7 @@ module.exports = {
     require("autoprefixer"),
     purgecss({
       content: ["./src/**/*.tsx"],
-      safelist: ["pre", "code"]
+      safelist: ["pre", "code", "html", "body", "section"]
     })
   ]
 };

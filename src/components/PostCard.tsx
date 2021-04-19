@@ -1,33 +1,26 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { animated } from "react-spring";
 
-import { Post } from "../interfaces/Post";
+import { BlogPosting } from "../interfaces/BlogPosting";
 
 interface Props {
-  post: Post;
+  post: BlogPosting;
 }
 
 export const PostCard = (props: Props): JSX.Element => {
+  const locale: string = window.navigator.language || "en-GB";
   return (
-    <animated.div className="has-text-centered">
+    <p>
       <Link
-        className="subtitle"
+        className="has-text-dark"
         to={"/blog/" + props.post.dateCreated.substr(0, 10) + "/" + props.post.name.replace(/\s+/g, "-").toLowerCase()}
       >
+        <strong className="has-text-link-dark">
+          <time dateTime={props.post.dateCreated}>{new Date(props.post.dateCreated).toLocaleDateString(locale)}</time>
+        </strong>{" "}
         {props.post.headline}
-      </Link>
-      <div className="tags level-item pt-2">
-        <time dateTime={props.post.dateCreated} className="tag is-rounded">
-          {new Date(props.post.dateCreated).toLocaleDateString("en-GB", {
-            year: "numeric",
-            month: "long",
-            day: "numeric"
-          })}
-        </time>
-        <span className="tag is-rounded">{props.post.wordCount} words</span>
-      </div>
-      <hr />
-    </animated.div>
+      </Link>{" "}
+      <span className="tag is-rounded">{props.post.wordCount} words</span>
+    </p>
   );
 };

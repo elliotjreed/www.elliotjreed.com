@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
 
 import { Person } from "../interfaces/Person";
-import { Post as PostInterface } from "../interfaces/Post";
+import { BlogPosting as PostInterface } from "../interfaces/BlogPosting";
 import { Spinner } from "./Spinner";
 
 interface Props {
@@ -29,7 +29,7 @@ export const Post = (props: Props): JSX.Element => {
   const [content, setContent] = useState<PostInterface>({
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "",
+    "mainEntityOfPage": "https://www.elliotjreed.com/blog/" + url,
     "publisher": { name: "", logo: { url: "" } },
     "sameAs": "",
     "name": title,
@@ -65,7 +65,7 @@ export const Post = (props: Props): JSX.Element => {
 
     return caches
       .open("ejr")
-      .then((cache) => {
+      .then((cache: Cache): void => {
         cache
           .match("https://api.elliotjreed.com/blog/post/" + url)
           .then(
@@ -79,26 +79,31 @@ export const Post = (props: Props): JSX.Element => {
               });
             }
           )
-          .then((post: PostInterface): void => {
-            setContent(post);
-            setLoading(false);
-          })
+          .then(
+            (post: PostInterface): Promise<void> => {
+              setContent(post);
+              setLoading(false);
+              return updateFromNetwork();
+            }
+          )
           .catch((): Promise<void> => updateFromNetwork());
       })
       .catch((): Promise<void> => updateFromNetwork());
   };
 
-  const updateFromNetwork = (): Promise<any> => {
+  const updateFromNetwork = (): Promise<void> => {
     return fetch("https://api.elliotjreed.com/blog/post/" + url, { signal: signal })
       .then(
         (response: Response): Promise<PostInterface> => {
           return new Promise((resolve, reject): void => {
-            const clonedResponse = response.clone();
+            const clonedResponse: Response = response.clone();
             if (clonedResponse.ok) {
               if ("caches" in self) {
                 caches
                   .open("ejr")
-                  .then((cache) => cache.put("https://api.elliotjreed.com/blog/post/" + url, clonedResponse.clone()))
+                  .then((cache: Cache) =>
+                    cache.put("https://api.elliotjreed.com/blog/post/" + url, clonedResponse.clone())
+                  )
                   .catch();
               }
               resolve(clonedResponse.clone().json());
@@ -141,18 +146,17 @@ export const Post = (props: Props): JSX.Element => {
               <Spinner />
             ) : (
               <div className="card-content">
-                <div className="has-text-centered">
-                  <h3 className="title">{content.headline}</h3>
-                  <div className="tags level-item pd-2 pb-2">
-                    <time dateTime={content.dateCreated} className="tag is-rounded">
-                      {new Date(content.dateCreated).toLocaleDateString("en-GB", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric"
-                      })}
-                    </time>
-                    <span className="tag is-rounded">{content.wordCount} words</span>
-                  </div>
+                <h1 className="title has-text-centered">{content.headline}</h1>
+
+                <div className="tags level-item">
+                  <time dateTime={content.dateCreated} className="tag is-rounded">
+                    {new Date(content.dateCreated).toLocaleDateString("en-GB", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric"
+                    })}
+                  </time>
+                  <span className="tag is-rounded">{content.wordCount} words</span>
                 </div>
 
                 <div className="content">

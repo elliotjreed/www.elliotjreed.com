@@ -65,7 +65,7 @@ module.exports = merge(commonConfig, {
     new WebpackPwaManifest({
       background_color: "#898989",
       crossorigin: "use-credentials", //can be null, use-credentials or anonymous
-      description: "",
+      description: "Elliot J. Reed's website.",
       icons: [
         {
           sizes: [96, 128, 150, 192, 256, 384, 512],

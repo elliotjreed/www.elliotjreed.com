@@ -1,4 +1,7 @@
-import { faArrowUp, faHeart, faReply, faRetweet } from "@fortawesome/fontawesome-free-solid";
+import { faArrowUp } from "@fortawesome/fontawesome-free-solid/faArrowUp";
+import { faHeart } from "@fortawesome/fontawesome-free-solid/faHeart";
+import { faReply } from "@fortawesome/fontawesome-free-solid/faReply";
+import { faRetweet } from "@fortawesome/fontawesome-free-solid/faRetweet";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
