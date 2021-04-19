@@ -1,11 +1,9 @@
+import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 import { useEffect, useState } from "react";
 import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
-import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
-import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons/faTwitter";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { animated, useSpring } from "react-spring";
 
 import { Person } from "../interfaces/Person";
