@@ -63,13 +63,29 @@ module.exports = merge(commonConfig, {
   },
   plugins: [
     new WebpackPwaManifest({
-      background_color: "#898989",
-      crossorigin: "use-credentials", //can be null, use-credentials or anonymous
-      description: "Elliot J. Reed's website.",
+      background_color: "#444444",
+      crossorigin: "use-credentials",
+      description:
+        "Elliot J. Reed is a Technical Lead in the software development industry, based in Nottingham, United Kingdom.",
       icons: [
         {
-          sizes: [96, 128, 150, 192, 256, 384, 512],
+          sizes: [72, 96, 128, 144, 192, 256, 384, 512],
           src: resolve("src/assets/img/icon.png")
+        },
+        {
+          sizes: [120, 180, 167, 152, 1024],
+          src: resolve("src/assets/img/icon.png"),
+          ios: true
+        },
+        {
+          size: 1024,
+          src: resolve("src/assets/img/icon.png"),
+          ios: true
+        },
+        {
+          src: resolve("src/assets/img/icon-maskable.png"),
+          size: "1024x1024",
+          purpose: "maskable"
         }
       ],
       inject: true,
