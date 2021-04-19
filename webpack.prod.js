@@ -84,8 +84,8 @@ module.exports = merge(commonConfig, {
     }),
     new CopyPlugin({ patterns: [{ from: "./assets/static", to: "./" }] }),
     new WorkboxPlugin.GenerateSW({
-      clientsClaim: true,
-      skipWaiting: true
+      skipWaiting: true,
+      mode: "production"
     })
   ]
 });
