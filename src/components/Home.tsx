@@ -132,7 +132,7 @@ export const Home = (): JSX.Element => {
                 <div className="media-left">
                   <figure className="image is-128x128">
                     <img
-                      src="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553434444/elliotjreed.jpg"
+                      src="https://res.cloudinary.com/elliotjreed/image/upload/w_256,h_256,c_scale,f_auto,q_auto/v1553434444/elliotjreed.jpg"
                       alt="Placeholder image"
                     />
                   </figure>
