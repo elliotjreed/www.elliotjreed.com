@@ -1,5 +1,3 @@
-import * as React from "react";
-
 export const Spinner = (): JSX.Element => {
   return (
     <aside className="has-text-centered">

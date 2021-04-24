@@ -1,5 +1,3 @@
-import * as React from "react";
-
 export const Footer = (): JSX.Element => {
   return (
     <footer className="footer">

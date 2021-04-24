@@ -1,5 +1,4 @@
 import * as marked from "marked";
-import * as React from "react";
 import { useEffect, useState } from "react";
 import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";

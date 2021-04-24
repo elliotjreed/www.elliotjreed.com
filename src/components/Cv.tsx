@@ -1,4 +1,3 @@
-import * as React from "react";
 import * as ReactGA from "react-ga";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet";

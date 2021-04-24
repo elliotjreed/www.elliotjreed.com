@@ -1,4 +1,3 @@
-import * as React from "react";
 import * as ReactGA from "react-ga";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet";
@@ -22,8 +21,8 @@ export const Travelling = (): JSX.Element => {
         <div className="column is-10 is-offset-1">
           <animated.div className="card" style={springProps}>
             <div className="card-content">
-              <h2 className="title has-text-centered">Travel</h2>
-              <h3 className="subtitle has-text-centered">A few photographs from some various travels.</h3>
+              <h1 className="title has-text-centered">Travel</h1>
+              <h2 className="subtitle has-text-centered">A few photographs from some various travels.</h2>
             </div>
 
             <div className="card-content">

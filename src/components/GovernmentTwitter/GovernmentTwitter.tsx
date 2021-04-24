@@ -42,41 +42,41 @@ export const GovernmentTwitter = (): JSX.Element => {
               <h3 className="subtitle has-text-centered">
                 Fill in the box below, and click the <strong>download</strong> button when you&apos;re done.
               </h3>
-            </div>
 
-            <div className="columns is-multiline">
-              <div className="column is-12 is-inline-flex-desktop is-7-desktop">
-                <TweetBox content={tweet} contentContainerRef={contentContainerRef} />
-              </div>
-
-              <div className="column is-12 is-inline-flex-desktop is-5-desktop">
-                <div className="field">
-                  <div className="control">
-                    <textarea
-                      className="textarea"
-                      rows={3}
-                      placeholder="Stay alert by making your own government tweet."
-                      onChange={(event: React.ChangeEvent<HTMLTextAreaElement>): void => setTweet(event.target.value)}
-                      title="Stay alert by making your own government tweet."
-                      onKeyUp={handleMemeGeneration}
-                    />
-                  </div>
+              <div className="columns is-multiline">
+                <div className="column is-12 is-inline-flex-desktop is-7-desktop">
+                  <TweetBox content={tweet} contentContainerRef={contentContainerRef} />
                 </div>
-                <a download="tweet.png" className="button is-medium submit-button" href={downloadUrl}>
-                  <animated.div
-                    style={{
-                      opacity: x.to({ range: [0, 1], output: [0.3, 1] }),
-                      transform: x
-                        .to({
-                          range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
-                          output: [1, 0.97, 0.9, 1.1, 0.9, 1.1, 1.03, 1]
-                        })
-                        .to((x) => `scale(${x})`)
-                    }}
-                  >
-                    Download
-                  </animated.div>
-                </a>
+
+                <div className="column is-12 is-inline-flex-desktop is-5-desktop">
+                  <div className="field">
+                    <div className="control">
+                      <textarea
+                        className="textarea"
+                        rows={3}
+                        placeholder="Stay alert by making your own government tweet."
+                        onChange={(event: React.ChangeEvent<HTMLTextAreaElement>): void => setTweet(event.target.value)}
+                        title="Stay alert by making your own government tweet."
+                        onKeyUp={handleMemeGeneration}
+                      />
+                    </div>
+                  </div>
+                  <a download="tweet.png" className="button is-medium submit-button" href={downloadUrl}>
+                    <animated.div
+                      style={{
+                        opacity: x.to({ range: [0, 1], output: [0.3, 1] }),
+                        transform: x
+                          .to({
+                            range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
+                            output: [1, 0.97, 0.9, 1.1, 0.9, 1.1, 1.03, 1]
+                          })
+                          .to((x) => `scale(${x})`)
+                      }}
+                    >
+                      Download
+                    </animated.div>
+                  </a>
+                </div>
               </div>
             </div>
           </animated.div>
