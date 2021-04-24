@@ -2,7 +2,6 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons/faTwitter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import * as React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -45,6 +44,9 @@ export const TopBar = (): JSX.Element => {
                 </Link>
               </div>
             </div>
+            <Link className="navbar-item" to="/contact" onClick={toggleMobileMenu}>
+              Contact
+            </Link>
             <div className="navbar-item has-dropdown is-hoverable">
               <span className="navbar-link">Fun Experiments</span>
               <div className="navbar-dropdown">
