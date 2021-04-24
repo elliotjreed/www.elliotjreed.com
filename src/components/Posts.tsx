@@ -51,6 +51,9 @@ export const Posts = (): JSX.Element => {
           )
           .then(
             (posts: Blog): Promise<void> => {
+              posts.blogPosts.sort((a: BlogPosting, b: BlogPosting): number =>
+                b.dateCreated.localeCompare(a.dateCreated)
+              );
               setPosts(posts);
               setLoading(false);
               return updateFromNetwork();
@@ -85,6 +88,7 @@ export const Posts = (): JSX.Element => {
         }
       )
       .then((posts: Blog): void => {
+        posts.blogPosts.sort((a: BlogPosting, b: BlogPosting): number => b.dateCreated.localeCompare(a.dateCreated));
         setPosts(posts);
         setLoading(false);
       })
@@ -133,7 +137,7 @@ export const Posts = (): JSX.Element => {
         <div className="column is-10 is-offset-1">
           <animated.div className="card" style={springProps}>
             <div className="card-content">
-              <h2 className="title has-text-centered">Posts</h2>
+              <h1 className="title has-text-centered">Posts</h1>
               <div className="content">
                 <p>
                   Here are some small blog posts on various PHP, Docker, Linux, Javascript, and other tech-related
