@@ -1,5 +1,4 @@
 import HCaptcha from "@hcaptcha/react-hcaptcha";
-import * as React from "react";
 import { FormEvent, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import * as ReactGA from "react-ga";

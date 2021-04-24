@@ -1,10 +1,8 @@
-import * as React from "react";
-
 interface ContentInterface {
   lineOne: string;
   lineTwo: string;
   lineThree: string;
-  contentContainerRef: React.RefObject<any>;
+  contentContainerRef: React.RefObject<HTMLDivElement>;
 }
 
 export const YellowBox = (props: ContentInterface): JSX.Element => {

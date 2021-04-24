@@ -1,9 +1,8 @@
-import * as React from "react";
+import domtoimage from "dom-to-image-more";
 import { useEffect, useRef, useState } from "react";
+import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
-import domtoimage from "dom-to-image-more";
-import * as ReactGA from "react-ga";
 
 import { TweetBox } from "./TweetBox";
 
@@ -14,7 +13,7 @@ export const GovernmentTwitter = (): JSX.Element => {
   const [tweet, setTweet] = useState<string>("Stay alert by making your own Government tweet.\n\n#StayAlert.");
   const [downloadUrl, setDownloadUrl] = useState<string>("");
 
-  const contentContainerRef = useRef<HTMLElement | null>(null);
+  const contentContainerRef = useRef<HTMLDivElement | null>(null);
 
   const handleMemeGeneration = (): void => {
     domtoimage.toPng(contentContainerRef.current).then((dataUrl) => {

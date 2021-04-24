@@ -1,9 +1,8 @@
-import * as React from "react";
+import domtoimage from "dom-to-image-more";
 import { useEffect, useRef, useState } from "react";
 import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
-import domtoimage from "dom-to-image-more";
 
 import { YellowBox } from "./YellowBox";
 
@@ -16,7 +15,7 @@ export const StayAlert = (): JSX.Element => {
   const [lineThree, setLineThree] = useState<string>("SAVE LIVES.");
   const [downloadUrl, setDownloadUrl] = useState<string>("");
 
-  const contentContainerRef = useRef<HTMLElement | null>(null);
+  const contentContainerRef = useRef<HTMLDivElement | null>(null);
 
   const handleMemeGeneration = (): void => {
     domtoimage.toPng(contentContainerRef.current).then((dataUrl) => {

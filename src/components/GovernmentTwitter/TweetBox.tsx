@@ -4,11 +4,10 @@ import { faReply } from "@fortawesome/fontawesome-free-solid/faReply";
 import { faRetweet } from "@fortawesome/fontawesome-free-solid/faRetweet";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import * as React from "react";
 
 interface ContentInterface {
   content: string;
-  contentContainerRef: React.RefObject<any>;
+  contentContainerRef: React.RefObject<HTMLDivElement>;
 }
 
 export const TweetBox = (props: ContentInterface): JSX.Element => {
