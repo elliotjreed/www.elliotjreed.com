@@ -85,4 +85,3 @@ export const GovernmentTwitter = (): JSX.Element => {
   );
 };
 
-export default GovernmentTwitter;

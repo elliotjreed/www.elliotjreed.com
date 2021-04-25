@@ -38,6 +38,8 @@ export const Contact = (): JSX.Element => {
     setErrors([]);
     const data: FormData = new FormData(event.target as HTMLFormElement);
     data.append("captcha", captchaToken);
+    data.delete("h-captcha-response");
+    data.delete("g-recaptcha-response");
     fetch("https://api.elliotjreed.com/email/send", {
       body: data,
       method: "POST",
@@ -154,4 +156,3 @@ export const Contact = (): JSX.Element => {
   );
 };
 
-export default Contact;

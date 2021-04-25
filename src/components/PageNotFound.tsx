@@ -14,17 +14,14 @@ export const PageNotFound = (): JSX.Element => {
     <section className="container">
       <div className="column is-10 is-offset-1">
         <animated.div className="card" style={springProps}>
-          <div className="column is-12">
-            <h2 className="title has-text-centered">Not Found</h2>
-          </div>
-          <div className="column is-12">
-            <article className="message is-warning">
-              <p className="message-header">Oh no!</p>
-              <div className="message-body">
-                I can&apos;t find anything here, sorry! Try starting from the <Link to="/">homepage</Link> or have a
-                look at some <Link to="/blog">blog posts</Link>.
-              </div>
-            </article>
+          <div className="card-content">
+            <h1 className="title has-text-centered">TheVape.co.uk</h1>
+            <div className="content">
+              <p>
+                The domain name &ldquo;TheVape.co.uk&rdquo; is available for purchase should you be interested.{" "}
+                <Link to="/contact">Contact me</Link> to make an enquiry.
+              </p>
+            </div>
           </div>
         </animated.div>
       </div>
