@@ -37,6 +37,10 @@ const GovernmentTwitter = lazy(() =>
   ).then(({ GovernmentTwitter }) => ({ default: GovernmentTwitter }))
 );
 
+const TheVapeDomain = lazy(() =>
+  import(/* webpackChunkName: "stayalert" */ "./TheVapeDomain").then(({ TheVapeDomain }) => ({ default: TheVapeDomain }))
+);
+
 export const Routes = (): Router => {
   return (
     <Router>
@@ -49,6 +53,7 @@ export const Routes = (): Router => {
               <Route exact={true} path="/cv" component={Cv} />
               <Route exact={true} path="/contact" component={Contact} />
               <Route exact={true} path="/travel" component={Travelling} />
+              <Route exact={true} path="/the-vape" component={TheVapeDomain} />
               <Route exact={true} path="/stay-alert" component={StayAlert} />
               <Route exact={true} path="/government-tweet" component={GovernmentTwitter} />
               <Route exact={true} path="/blog" component={Posts} />
