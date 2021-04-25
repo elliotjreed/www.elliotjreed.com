@@ -66,7 +66,8 @@ export const PrivacyPolicy = (): JSX.Element => {
                 secure. Where it is necessary to store or transfer some or all of your personal information to third
                 party service providers, I use providers who have been verified as GDPR compliant or take steps to
                 ensure that appropriate safeguards are in place where storage/processing takes place outside of the
-                European Economic Area (EEA) – for example, where the service provider uses a “cloud based” service.
+                European Economic Area (EEA) – for example, where the service provider uses a &ldquo;cloud based&rdquo;
+                service.
               </p>
 
               <h3>How long will your information be held?</h3>

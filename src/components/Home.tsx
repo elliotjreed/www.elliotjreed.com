@@ -124,53 +124,51 @@ export const Home = (): JSX.Element => {
       </Helmet>
 
       <section className="container">
-        <div className="columns mt-2">
-          <div className="column is-10 is-offset-1">
-            <animated.main id="main-content" className="card" style={springProps}>
-              <div className="card-content">
-                <div className="media">
-                  <div className="media-left">
-                    <figure className="image is-128x128">
-                      <img
-                        src="https://res.cloudinary.com/elliotjreed/image/upload/w_256,h_256,c_scale,f_auto,q_auto/v1553434444/elliotjreed.jpg"
-                        alt="Placeholder image"
-                        width={128}
-                        height={128}
-                      />
-                    </figure>
-                  </div>
-                  <div className="media-content">
-                    <h1 className="is-size-1 has-text-weight-semibold is-size-3-mobile">Elliot J. Reed</h1>
-
-                    <a
-                      className="icon-text subtitle is-size-5 is-size-6-mobile"
-                      href="https://github.com/elliotjreed"
-                      rel="noreferrer noopener"
-                    >
-                      <span className="icon">
-                        <FontAwesomeIcon className="fas fa-lg" icon={faGithub} />
-                      </span>
-                      <span> @elliotjreed</span>
-                    </a>
-                  </div>
+        <div className="column is-10 is-offset-1">
+          <animated.main id="main-content" className="card" style={springProps}>
+            <div className="card-content">
+              <div className="media">
+                <div className="media-left">
+                  <figure className="image is-128x128">
+                    <img
+                      src="https://res.cloudinary.com/elliotjreed/image/upload/w_256,h_256,c_scale,f_auto,q_auto/v1553434444/elliotjreed.jpg"
+                      alt="Placeholder image"
+                      width={128}
+                      height={128}
+                    />
+                  </figure>
                 </div>
-                <div className="content">
-                  <p>
-                    Hi! I&apos;m Elliot, a software developer / technical lead based in Nottingham. My interests are
-                    generally in E-Commerce, PHP, Javascript, Docker, and general DevOps.
-                  </p>
-                  <p>
-                    This website contains little mini-guides and snippets which may prove helpful, and if you&apos;re
-                    stuck on anything you think I may be able to help with give me a shout on{" "}
-                    <a href="https://twitter.com/elliotjreed" rel="noreferrer noopener">
-                      Twitter
-                    </a>
-                    .
-                  </p>
+                <div className="media-content">
+                  <h1 className="is-size-1 has-text-weight-semibold is-size-3-mobile">Elliot J. Reed</h1>
+
+                  <a
+                    className="icon-text subtitle is-size-5 is-size-6-mobile"
+                    href="https://github.com/elliotjreed"
+                    rel="noreferrer noopener"
+                  >
+                    <span className="icon">
+                      <FontAwesomeIcon className="fas fa-lg" icon={faGithub} />
+                    </span>
+                    <span> @elliotjreed</span>
+                  </a>
                 </div>
               </div>
-            </animated.main>
-          </div>
+              <div className="content">
+                <p>
+                  Hi! I&apos;m Elliot, a software developer / technical lead based in Nottingham. My interests are
+                  generally in E-Commerce, PHP, Javascript, Docker, and general DevOps.
+                </p>
+                <p>
+                  This website contains little mini-guides and snippets which may prove helpful, and if you&apos;re
+                  stuck on anything you think I may be able to help with give me a shout on{" "}
+                  <a href="https://twitter.com/elliotjreed" rel="noreferrer noopener">
+                    Twitter
+                  </a>
+                  .
+                </p>
+              </div>
+            </div>
+          </animated.main>
         </div>
       </section>
     </>
