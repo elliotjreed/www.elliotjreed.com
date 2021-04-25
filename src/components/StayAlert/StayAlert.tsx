@@ -40,7 +40,7 @@ export const StayAlert = (): JSX.Element => {
 
       <section className="container">
         <div className="column is-10 is-offset-1">
-          <animated.div className="card" style={props}>
+          <animated.div id="main-content" className="card" style={props}>
             <div className="card-content">
               <h2 className="title has-text-centered">&ldquo;Stay alert&rdquo; poster generator</h2>
               <h3 className="subtitle has-text-centered">
@@ -115,4 +115,3 @@ export const StayAlert = (): JSX.Element => {
     </>
   );
 };
-

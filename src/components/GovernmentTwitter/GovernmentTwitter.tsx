@@ -35,7 +35,7 @@ export const GovernmentTwitter = (): JSX.Element => {
 
       <section className="container">
         <div className="column is-10 is-offset-1">
-          <animated.div className="card" style={props}>
+          <animated.div id="main-content" className="card" style={props}>
             <div className="card-content">
               <h2 className="title has-text-centered">UK Prime Minister tweet generator</h2>
               <h3 className="subtitle has-text-centered">
@@ -84,4 +84,3 @@ export const GovernmentTwitter = (): JSX.Element => {
     </>
   );
 };
-
