@@ -134,7 +134,7 @@ export const Posts = (): JSX.Element => {
 
       <section className="container">
         <div className="column is-10 is-offset-1">
-          <animated.div className="card" style={springProps}>
+          <animated.main id="main-content" className="card" style={springProps}>
             <div className="card-content">
               <h1 className="title has-text-centered">Posts</h1>
               <div className="content">
@@ -149,7 +149,7 @@ export const Posts = (): JSX.Element => {
               </div>
               <div className="content">{loading ? <Spinner /> : postsInCategory(posts)}</div>
             </div>
-          </animated.div>
+          </animated.main>
         </div>
       </section>
     </>

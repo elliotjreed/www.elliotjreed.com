@@ -144,12 +144,12 @@ export const Contact = (): JSX.Element => {
 
       <section className="container">
         <div className="column is-10 is-offset-1">
-          <animated.div className="card" style={springProps}>
+          <animated.main id="main-content" className="card" style={springProps}>
             <div className="card-content">
               <h1 className="title has-text-centered">Get in Touch</h1>
               <div className="content">{success ? renderSuccess : renderForm}</div>
             </div>
-          </animated.div>
+          </animated.main>
         </div>
       </section>
     </>

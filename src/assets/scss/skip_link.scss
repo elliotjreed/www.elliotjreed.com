@@ -1,0 +1,17 @@
+.skip-link {
+  height: $navbar-height;
+  padding: $navbar-padding-vertical $navbar-padding-horizontal;
+  position: absolute;
+  transform: translateY(-100%);
+  transition: transform 0.3s;
+  text-decoration: none;
+
+  &:focus {
+    background-color: $white-bis;
+    color: $black-bis;
+    font-weight: $weight-semibold;
+    text-decoration: none;
+    transform: translateY(0%);
+    z-index: $navbar-z + 1;
+  }
+}

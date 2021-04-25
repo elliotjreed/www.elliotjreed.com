@@ -126,7 +126,7 @@ export const Home = (): JSX.Element => {
       <section className="container">
         <div className="columns mt-2">
           <div className="column is-10 is-offset-1">
-            <animated.div className="card" style={springProps}>
+            <animated.main id="main-content" className="card" style={springProps}>
               <div className="card-content">
                 <div className="media">
                   <div className="media-left">
@@ -169,7 +169,7 @@ export const Home = (): JSX.Element => {
                   </p>
                 </div>
               </div>
-            </animated.div>
+            </animated.main>
           </div>
         </div>
       </section>

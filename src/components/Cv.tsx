@@ -40,7 +40,7 @@ export const Cv = (): JSX.Element => {
       </Helmet>
 
       <div className="section">
-        <div className="column is-10 is-offset-1">
+        <main id="main-content" className="column is-10 is-offset-1">
           <div className="columns">
             <div className="column is-four-fifths-desktop is-three-fifths-tablet">
               <section>
@@ -348,7 +348,7 @@ export const Cv = (): JSX.Element => {
               </div>
             </section>
           </section>
-        </div>
+        </main>
       </div>
     </>
   );

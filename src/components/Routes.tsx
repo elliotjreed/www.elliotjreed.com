@@ -1,5 +1,5 @@
 import { lazy, StrictMode, Suspense } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Link, BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // import { Footer } from "./Footer";
 import { RouteLoading } from "./RouteLoading";
@@ -26,6 +26,9 @@ const Posts = lazy(() => import(/* webpackChunkName: "posts" */ "./Posts").then(
 const Travelling = lazy(() =>
   import(/* webpackChunkName: "travelling" */ "./Travelling").then(({ Travelling }) => ({ default: Travelling }))
 );
+const PrivacyPolicy = lazy(() =>
+  import(/* webpackChunkName: "privacy" */ "./PrivacyPolicy").then(({ PrivacyPolicy }) => ({ default: PrivacyPolicy }))
+);
 
 const StayAlert = lazy(() =>
   import(/* webpackChunkName: "stayalert" */ "./StayAlert/StayAlert").then(({ StayAlert }) => ({ default: StayAlert }))
@@ -38,13 +41,18 @@ const GovernmentTwitter = lazy(() =>
 );
 
 const TheVapeDomain = lazy(() =>
-  import(/* webpackChunkName: "stayalert" */ "./TheVapeDomain").then(({ TheVapeDomain }) => ({ default: TheVapeDomain }))
+  import(/* webpackChunkName: "thevape" */ "./TheVapeDomain").then(({ TheVapeDomain }) => ({
+    default: TheVapeDomain
+  }))
 );
 
 export const Routes = (): Router => {
   return (
     <Router>
       <StrictMode>
+        <Link to="#main-content" className="skip-link">
+          Skip to content
+        </Link>
         <TopBar />
         <main>
           <Suspense fallback={<RouteLoading />}>
@@ -53,6 +61,7 @@ export const Routes = (): Router => {
               <Route exact={true} path="/cv" component={Cv} />
               <Route exact={true} path="/contact" component={Contact} />
               <Route exact={true} path="/travel" component={Travelling} />
+              <Route exact={true} path="/privacy" component={PrivacyPolicy} />
               <Route exact={true} path="/the-vape" component={TheVapeDomain} />
               <Route exact={true} path="/stay-alert" component={StayAlert} />
               <Route exact={true} path="/government-tweet" component={GovernmentTwitter} />

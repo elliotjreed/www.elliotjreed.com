@@ -19,7 +19,7 @@ export const Travelling = (): JSX.Element => {
 
       <section className="container">
         <div className="column is-10 is-offset-1">
-          <animated.div className="card" style={springProps}>
+          <animated.main id="main-content" className="card" style={springProps}>
             <div className="card-content">
               <h1 className="title has-text-centered">Travel</h1>
               <h2 className="subtitle has-text-centered">A few photographs from some various travels.</h2>
@@ -487,7 +487,7 @@ export const Travelling = (): JSX.Element => {
                 </div>
               </div>
             </div>
-          </animated.div>
+          </animated.main>
         </div>
       </section>
     </>

@@ -140,7 +140,7 @@ export const Post = (props: Props): JSX.Element => {
 
       <section className="container">
         <div className="column is-10 is-offset-1">
-          <animated.div className="card" style={springProps}>
+          <animated.main id="main-content" className="card" style={springProps}>
             {loading ? (
               <Spinner />
             ) : (
@@ -167,7 +167,7 @@ export const Post = (props: Props): JSX.Element => {
                 </div>
               </div>
             )}
-          </animated.div>
+          </animated.main>
         </div>
       </section>
     </>

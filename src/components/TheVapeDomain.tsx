@@ -13,7 +13,7 @@ export const TheVapeDomain = (): JSX.Element => {
   return (
     <section className="container">
       <div className="column is-10 is-offset-1">
-        <animated.div className="card" style={springProps}>
+        <animated.main id="main-content" className="card" style={springProps}>
           <div className="card-content">
             <h1 className="title has-text-centered">Not Found</h1>
             <div className="content">
@@ -26,7 +26,7 @@ export const TheVapeDomain = (): JSX.Element => {
               </article>
             </div>
           </div>
-        </animated.div>
+        </animated.main>
       </div>
     </section>
   );
