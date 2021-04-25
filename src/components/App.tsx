@@ -3,7 +3,7 @@ import "./../assets/scss/App.scss";
 
 export const App = (): JSX.Element => {
   return (
-    <div className="wrapper">
+    <div className="section">
       <Routes />
     </div>
   );
