@@ -116,4 +116,3 @@ export const StayAlert = (): JSX.Element => {
   );
 };
 
-export default StayAlert;
