@@ -155,4 +155,3 @@ export const Contact = (): JSX.Element => {
     </>
   );
 };
-
