@@ -6,7 +6,6 @@ import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
 
 import { Person } from "../interfaces/Person";
-import "./../assets/scss/App.scss";
 
 export const Home = (): JSX.Element => {
   const abortController = new AbortController();

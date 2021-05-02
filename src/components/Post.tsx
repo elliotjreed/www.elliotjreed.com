@@ -17,7 +17,10 @@ export const Post = (props: Props): JSX.Element => {
   const signal: AbortSignal = abortController.signal;
   const date: string = props.match.params.date;
   const url: string = date + "/" + props.match.params.post;
-  const title: string = url.replace(/-/g, " ");
+  const title: string = url
+    .substr(11)
+    .replace(/-/g, " ")
+    .replace(/(^\w)|(\s\w)/g, (match: string): string => match.toUpperCase());
   const author: Person = {
     name: "Elliot J. Reed",
     alternateName: "Elliot Reed",
@@ -25,6 +28,8 @@ export const Post = (props: Props): JSX.Element => {
     additionalName: "John",
     familyName: "Reed"
   };
+  const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
+  const [loading, setLoading] = useState<boolean>(true);
   const [content, setContent] = useState<PostInterface>({
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -45,8 +50,6 @@ export const Post = (props: Props): JSX.Element => {
     "license": "",
     "image": { url: "" }
   });
-  const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
-  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect((): void => {
     ReactGA.pageview(window.location.pathname + location.search);
@@ -122,18 +125,18 @@ export const Post = (props: Props): JSX.Element => {
   return (
     <>
       <Helmet>
-        <title>{title + " | Elliot J. Reed"}</title>
+        <title>{content.name + " | Elliot J. Reed"}</title>
         <meta name="description" content={content.headline} />
         <script type="application/ld+json">{JSON.stringify(content)}</script>
         <meta property="og:url" content={content.url} />
         <meta property="og:type" content="article" />
-        <meta property="og:title" content={title} />
+        <meta property="og:title" content={content.name} />
         <meta property="og:description" content={content.headline} />
         <meta property="og:image" content={content.image.url} />
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@elliotjreed" />
-        <meta name="twitter:title" content={title} />
+        <meta name="twitter:title" content={content.name} />
         <meta name="twitter:description" content={content.headline} />
         <meta name="twitter:image" content={content.url} />
       </Helmet>

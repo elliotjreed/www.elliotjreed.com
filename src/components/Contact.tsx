@@ -79,6 +79,7 @@ export const Contact = (): JSX.Element => {
           />
         </div>
       </div>
+
       <div className="field">
         <label htmlFor="email" className="label">
           Email
@@ -96,6 +97,7 @@ export const Contact = (): JSX.Element => {
           />
         </div>
       </div>
+
       <div className="field">
         <label htmlFor="message" className="label">
           Message
@@ -111,8 +113,11 @@ export const Contact = (): JSX.Element => {
           />
         </div>
       </div>
+
       <HCaptcha sitekey="764dfe59-3c04-464c-bf4a-093f1781beab" onVerify={(token: string) => setCaptchaToken(token)} />
+
       {errors.length > 0 && <div className="notification is-danger">{errors}</div>}
+
       <div className="field">
         <div className="control ">
           <button className="button submit-button" type="submit" disabled={loading}>
@@ -147,6 +152,7 @@ export const Contact = (): JSX.Element => {
           <animated.main id="main-content" className="card" style={springProps}>
             <div className="card-content">
               <h1 className="title has-text-centered">Get in Touch</h1>
+
               <div className="content">{success ? renderSuccess : renderForm}</div>
             </div>
           </animated.main>
