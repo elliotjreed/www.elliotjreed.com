@@ -15,15 +15,12 @@ export const TheVapeDomain = (): JSX.Element => {
       <div className="column is-10 is-offset-1">
         <animated.main id="main-content" className="card" style={springProps}>
           <div className="card-content">
-            <h1 className="title has-text-centered">Not Found</h1>
+            <h1 className="title has-text-centered">TheVape.co.uk</h1>
             <div className="content">
-              <article className="message is-warning">
-                <p className="message-header">Oh no!</p>
-                <div className="message-body">
-                  I can&apos;t find anything here, sorry! Try starting from the <Link to="/">homepage</Link> or have a
-                  look at some <Link to="/blog">blog posts</Link>.
-                </div>
-              </article>
+              <p>
+                The domain name &ldquo;TheVape.co.uk&rdquo; is available for purchase should you be interested.{" "}
+                <Link to="/contact">Contact me</Link> to make an enquiry.
+              </p>
             </div>
           </div>
         </animated.main>
