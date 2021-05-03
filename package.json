@@ -99,9 +99,11 @@
     "testMatch": [
       "<rootDir>/tests/**/*.test.tsx"
     ],
-    "setupFilesAfterEnv": [],
     "setupFiles": [
       "<rootDir>/tests/setupJest.ts"
+    ],
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-dom/extend-expect"
     ],
     "collectCoverage": false,
     "collectCoverageFrom": [
