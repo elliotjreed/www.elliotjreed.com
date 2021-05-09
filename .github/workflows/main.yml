@@ -10,7 +10,7 @@ jobs:
       - name: Install, build, and test
         uses: actions/setup-node@v2
         with:
-          node-version: '15'
+          node-version: '16'
       - run: yarn install
       - run: yarn test
       - run: yarn lint
@@ -19,7 +19,7 @@ jobs:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
-      - name: Set up Docker Buildx
+      - name: Set up Docker Build
         uses: docker/setup-buildx-action@v1
 
       - name: Login to DockerHub

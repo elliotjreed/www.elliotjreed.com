@@ -29,10 +29,5 @@
   ],
   "types": [
     "typePatches"
-  ],
-  "awesomeTypescriptLoaderOptions": {
-    "reportFiles": [
-      "./src/**/*"
-    ]
-  }
+  ]
 }
