@@ -1,0 +1,39 @@
+
+@media print {
+  html,
+  body {
+    margin: 0;
+    color: #000;
+    background: #fff;
+  }
+
+  .navbar {
+    display: none;
+  }
+
+  .column {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .cv {
+    .title {
+      display: none;
+    }
+
+    .card-content {
+      &::before {
+        content: "Elliot J. Reed";
+        display: block;
+        text-align: center;
+        font-weight: bold;
+        font-size: xx-large;
+      }
+    }
+  }
+
+  .card {
+    box-shadow: none;
+    border-radius: 0;
+  }
+}

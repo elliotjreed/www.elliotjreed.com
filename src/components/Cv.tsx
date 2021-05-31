@@ -31,24 +31,20 @@ export const Cv = (): JSX.Element => {
       .then((cache: Cache): void => {
         cache
           .match("https://api.elliotjreed.com/cv")
-          .then(
-            (response: Response | undefined): Promise<string> => {
-              return new Promise((resolve, reject): void => {
-                if (response) {
-                  resolve(response.clone().text());
-                } else {
-                  reject();
-                }
-              });
-            }
-          )
-          .then(
-            (markdown: string): Promise<void> => {
-              setContent(markdown);
-              setLoading(false);
-              return updateFromNetwork();
-            }
-          )
+          .then((response: Response | undefined): Promise<string> => {
+            return new Promise((resolve, reject): void => {
+              if (response) {
+                resolve(response.clone().text());
+              } else {
+                reject();
+              }
+            });
+          })
+          .then((markdown: string): Promise<void> => {
+            setContent(markdown);
+            setLoading(false);
+            return updateFromNetwork();
+          })
           .catch((): Promise<void> => updateFromNetwork());
       })
       .catch((): Promise<void> => updateFromNetwork());
@@ -56,24 +52,22 @@ export const Cv = (): JSX.Element => {
 
   const updateFromNetwork = (): Promise<void> => {
     return fetch("https://api.elliotjreed.com/cv", { signal: signal })
-      .then(
-        (response: Response): Promise<string> => {
-          return new Promise((resolve, reject): void => {
-            const clonedResponse: Response = response.clone();
-            if (clonedResponse.ok) {
-              if ("caches" in self) {
-                caches
-                  .open("ejr")
-                  .then((cache: Cache) => cache.put("https://api.elliotjreed.com/cv", clonedResponse.clone()))
-                  .catch();
-              }
-              resolve(clonedResponse.clone().text());
-            } else {
-              reject();
+      .then((response: Response): Promise<string> => {
+        return new Promise((resolve, reject): void => {
+          const clonedResponse: Response = response.clone();
+          if (clonedResponse.ok) {
+            if ("caches" in self) {
+              caches
+                .open("ejr")
+                .then((cache: Cache) => cache.put("https://api.elliotjreed.com/cv", clonedResponse.clone()))
+                .catch();
             }
-          });
-        }
-      )
+            resolve(clonedResponse.clone().text());
+          } else {
+            reject();
+          }
+        });
+      })
       .then((markdown: string): void => {
         setContent(markdown);
         setLoading(false);
@@ -113,7 +107,7 @@ export const Cv = (): JSX.Element => {
         />
       </Helmet>
 
-      <section className="container">
+      <section className="container cv">
         <div className="column is-10 is-offset-1">
           <animated.main id="main-content" className="card" style={springProps}>
             <div className="card-content">
