@@ -1,5 +1,5 @@
-import * as ReactGA from "react-ga";
 import { useEffect } from "react";
+import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
 

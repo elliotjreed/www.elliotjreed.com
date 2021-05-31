@@ -1,5 +1,5 @@
 import { lazy, StrictMode, Suspense } from "react";
-import { Link, BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 
 // import { Footer } from "./Footer";
 import { RouteLoading } from "./RouteLoading";
@@ -35,9 +35,9 @@ const StayAlert = lazy(() =>
 );
 
 const GovernmentTwitter = lazy(() =>
-  import(
-    /* webpackChunkName: "governmenttwitter" */ "./GovernmentTwitter/GovernmentTwitter"
-  ).then(({ GovernmentTwitter }) => ({ default: GovernmentTwitter }))
+  import(/* webpackChunkName: "governmenttwitter" */ "./GovernmentTwitter/GovernmentTwitter").then(
+    ({ GovernmentTwitter }) => ({ default: GovernmentTwitter })
+  )
 );
 
 const TheVapeDomain = lazy(() =>

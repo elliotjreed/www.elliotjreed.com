@@ -1,12 +1,12 @@
-import * as ReactGA from "react-ga";
 import { useEffect } from "react";
+import * as ReactGA from "react-ga";
 import { Link } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
 
 export const PageNotFound = (): JSX.Element => {
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
-  useEffect(() => {
+  useEffect((): void => {
     ReactGA.pageview(window.location.pathname + location.search);
   }, []);
 

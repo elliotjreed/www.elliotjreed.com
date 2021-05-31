@@ -4,8 +4,8 @@ import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
 
-import { Person } from "../interfaces/Person";
 import { BlogPosting as PostInterface } from "../interfaces/BlogPosting";
+import { Person } from "../interfaces/Person";
 import { Spinner } from "./Spinner";
 
 interface Props {
@@ -70,24 +70,20 @@ export const Post = (props: Props): JSX.Element => {
       .then((cache: Cache): void => {
         cache
           .match("https://api.elliotjreed.com/blog/post/" + url)
-          .then(
-            (response: Response | undefined): Promise<PostInterface> => {
-              return new Promise((resolve, reject): void => {
-                if (response) {
-                  resolve(response.clone().json());
-                } else {
-                  reject();
-                }
-              });
-            }
-          )
-          .then(
-            (post: PostInterface): Promise<void> => {
-              setContent(post);
-              setLoading(false);
-              return updateFromNetwork();
-            }
-          )
+          .then((response: Response | undefined): Promise<PostInterface> => {
+            return new Promise((resolve, reject): void => {
+              if (response) {
+                resolve(response.clone().json());
+              } else {
+                reject();
+              }
+            });
+          })
+          .then((post: PostInterface): Promise<void> => {
+            setContent(post);
+            setLoading(false);
+            return updateFromNetwork();
+          })
           .catch((): Promise<void> => updateFromNetwork());
       })
       .catch((): Promise<void> => updateFromNetwork());
@@ -95,26 +91,24 @@ export const Post = (props: Props): JSX.Element => {
 
   const updateFromNetwork = (): Promise<void> => {
     return fetch("https://api.elliotjreed.com/blog/post/" + url, { signal: signal })
-      .then(
-        (response: Response): Promise<PostInterface> => {
-          return new Promise((resolve, reject): void => {
-            const clonedResponse: Response = response.clone();
-            if (clonedResponse.ok) {
-              if ("caches" in self) {
-                caches
-                  .open("ejr")
-                  .then((cache: Cache) =>
-                    cache.put("https://api.elliotjreed.com/blog/post/" + url, clonedResponse.clone())
-                  )
-                  .catch();
-              }
-              resolve(clonedResponse.clone().json());
-            } else {
-              reject();
+      .then((response: Response): Promise<PostInterface> => {
+        return new Promise((resolve, reject): void => {
+          const clonedResponse: Response = response.clone();
+          if (clonedResponse.ok) {
+            if ("caches" in self) {
+              caches
+                .open("ejr")
+                .then((cache: Cache) =>
+                  cache.put("https://api.elliotjreed.com/blog/post/" + url, clonedResponse.clone())
+                )
+                .catch();
             }
-          });
-        }
-      )
+            resolve(clonedResponse.clone().json());
+          } else {
+            reject();
+          }
+        });
+      })
       .then((post: PostInterface): void => {
         setContent(post);
         setLoading(false);

@@ -1,5 +1,5 @@
-import * as ReactGA from "react-ga";
 import { useEffect } from "react";
+import * as ReactGA from "react-ga";
 import { Link } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
 

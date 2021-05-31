@@ -37,27 +37,23 @@ export const Posts = (): JSX.Element => {
       .then((cache): void => {
         cache
           .match("https://api.elliotjreed.com/blog/posts")
-          .then(
-            (response: Response | undefined): Promise<Blog> => {
-              return new Promise((resolve, reject): void => {
-                if (response) {
-                  resolve(response.clone().json());
-                } else {
-                  reject();
-                }
-              });
-            }
-          )
-          .then(
-            (posts: Blog): Promise<void> => {
-              posts.blogPosts.sort((a: BlogPosting, b: BlogPosting): number =>
-                b.dateCreated.localeCompare(a.dateCreated)
-              );
-              setPosts(posts);
-              setLoading(false);
-              return updateFromNetwork();
-            }
-          )
+          .then((response: Response | undefined): Promise<Blog> => {
+            return new Promise((resolve, reject): void => {
+              if (response) {
+                resolve(response.clone().json());
+              } else {
+                reject();
+              }
+            });
+          })
+          .then((posts: Blog): Promise<void> => {
+            posts.blogPosts.sort((a: BlogPosting, b: BlogPosting): number =>
+              b.dateCreated.localeCompare(a.dateCreated)
+            );
+            setPosts(posts);
+            setLoading(false);
+            return updateFromNetwork();
+          })
           .catch((): Promise<void> => updateFromNetwork());
       })
       .catch((): Promise<void> => updateFromNetwork());
@@ -65,27 +61,25 @@ export const Posts = (): JSX.Element => {
 
   const updateFromNetwork = (): Promise<void> => {
     return fetch("https://api.elliotjreed.com/blog/posts", { signal: signal })
-      .then(
-        (response: Response): Promise<Blog> => {
-          return new Promise((resolve, reject): void => {
-            const clonedResponse: Response = response.clone();
-            if (clonedResponse.ok) {
-              if ("caches" in self) {
-                caches
-                  .open("ejr")
-                  .then(
-                    (cache: Cache): Promise<void> =>
-                      cache.put("https://api.elliotjreed.com/blog/posts", clonedResponse.clone())
-                  )
-                  .catch();
-              }
-              resolve(clonedResponse.clone().json());
-            } else {
-              reject();
+      .then((response: Response): Promise<Blog> => {
+        return new Promise((resolve, reject): void => {
+          const clonedResponse: Response = response.clone();
+          if (clonedResponse.ok) {
+            if ("caches" in self) {
+              caches
+                .open("ejr")
+                .then(
+                  (cache: Cache): Promise<void> =>
+                    cache.put("https://api.elliotjreed.com/blog/posts", clonedResponse.clone())
+                )
+                .catch();
             }
-          });
-        }
-      )
+            resolve(clonedResponse.clone().json());
+          } else {
+            reject();
+          }
+        });
+      })
       .then((posts: Blog): void => {
         posts.blogPosts.sort((a: BlogPosting, b: BlogPosting): number => b.dateCreated.localeCompare(a.dateCreated));
         setPosts(posts);

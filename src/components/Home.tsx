@@ -30,27 +30,25 @@ export const Home = (): JSX.Element => {
 
   const updateFromNetwork = (): Promise<void> => {
     return fetch("https://api.elliotjreed.com/blog/author", { signal: signal })
-      .then(
-        (response: Response): Promise<Person> => {
-          return new Promise((resolve, reject): void => {
-            const clonedResponse = response.clone();
-            if (clonedResponse.ok) {
-              if ("caches" in self) {
-                caches
-                  .open("ejr")
-                  .then(
-                    (cache: Cache): Promise<void> =>
-                      cache.put("https://api.elliotjreed.com/blog/author", clonedResponse.clone())
-                  )
-                  .catch();
-              }
-              resolve(clonedResponse.clone().json());
-            } else {
-              reject();
+      .then((response: Response): Promise<Person> => {
+        return new Promise((resolve, reject): void => {
+          const clonedResponse = response.clone();
+          if (clonedResponse.ok) {
+            if ("caches" in self) {
+              caches
+                .open("ejr")
+                .then(
+                  (cache: Cache): Promise<void> =>
+                    cache.put("https://api.elliotjreed.com/blog/author", clonedResponse.clone())
+                )
+                .catch();
             }
-          });
-        }
-      )
+            resolve(clonedResponse.clone().json());
+          } else {
+            reject();
+          }
+        });
+      })
       .then((author: Person): void => {
         setAuthor(author);
       })
@@ -67,23 +65,19 @@ export const Home = (): JSX.Element => {
       .then((cache) => {
         cache
           .match("https://api.elliotjreed.com/blog/author")
-          .then(
-            (response: Response | undefined): Promise<Person> => {
-              return new Promise((resolve, reject): void => {
-                if (response) {
-                  resolve(response.clone().json());
-                } else {
-                  reject();
-                }
-              });
-            }
-          )
-          .then(
-            (author: Person): Promise<void> => {
-              setAuthor(author);
-              return updateFromNetwork();
-            }
-          )
+          .then((response: Response | undefined): Promise<Person> => {
+            return new Promise((resolve, reject): void => {
+              if (response) {
+                resolve(response.clone().json());
+              } else {
+                reject();
+              }
+            });
+          })
+          .then((author: Person): Promise<void> => {
+            setAuthor(author);
+            return updateFromNetwork();
+          })
           .catch((): Promise<void> => updateFromNetwork());
       })
       .catch((): Promise<void> => updateFromNetwork());
