@@ -12,11 +12,13 @@
     width: 100%;
     height: 100%;
     max-width: 100%;
-    background: linear-gradient(#fff500, #fff500), repeating-linear-gradient(-55deg, #0ba03a, #0ba03a 40px, #fff500 0, #fff500 80px);
-    padding: 20px 20px;
+    background:
+      linear-gradient(#fff500, #fff500),
+      repeating-linear-gradient(-55deg, #0ba03a, #0ba03a 40px, #fff500 0, #fff500 80px);
+    padding: 20px;
 
     @include from($tablet - 200) {
-      padding: 30px 30px;
+      padding: 30px;
     }
 
     background-origin: content-box, padding-box;
