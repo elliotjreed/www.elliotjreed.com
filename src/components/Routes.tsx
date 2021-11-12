@@ -1,6 +1,5 @@
 import { lazy, StrictMode, Suspense } from "react";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
-
+import { BrowserRouter, Link, Route, Routes as RouterRoutes } from "react-router-dom";
 // import { Footer } from "./Footer";
 import { RouteLoading } from "./RouteLoading";
 import { TopBar } from "./TopBar";
@@ -46,9 +45,9 @@ const TheVapeDomain = lazy(() =>
   }))
 );
 
-export const Routes = (): Router => {
+export const Routes = (): JSX.Element => {
   return (
-    <Router>
+    <BrowserRouter>
       <StrictMode>
         <Link to="#main-content" className="skip-link">
           Skip to content
@@ -56,23 +55,23 @@ export const Routes = (): Router => {
         <TopBar />
         <main>
           <Suspense fallback={<RouteLoading />}>
-            <Switch>
-              <Route exact={true} path="/" component={Home} />
-              <Route exact={true} path="/cv" component={Cv} />
-              <Route exact={true} path="/contact" component={Contact} />
-              <Route exact={true} path="/travel" component={Travelling} />
-              <Route exact={true} path="/privacy" component={PrivacyPolicy} />
-              <Route exact={true} path="/the-vape" component={TheVapeDomain} />
-              <Route exact={true} path="/stay-alert" component={StayAlert} />
-              <Route exact={true} path="/government-tweet" component={GovernmentTwitter} />
-              <Route exact={true} path="/blog" component={Posts} />
-              <Route exact={true} path="/blog/:date/:post" component={Post} />
-              <Route component={PageNotFound} />
-            </Switch>
+            <RouterRoutes>
+              <Route path="/" element={<Home />} />
+              <Route path="/cv" element={<Cv />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/travel" element={<Travelling />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="/the-vape" element={<TheVapeDomain />} />
+              <Route path="/stay-alert" element={<StayAlert />} />
+              <Route path="/government-tweet" element={<GovernmentTwitter />} />
+              <Route path="/blog" element={<Posts />} />
+              <Route path="/blog/:date/:post" element={<Post />} />
+              <Route element={<PageNotFound />} />
+            </RouterRoutes>
           </Suspense>
         </main>
         {/*<Footer />*/}
       </StrictMode>
-    </Router>
+    </BrowserRouter>
   );
 };

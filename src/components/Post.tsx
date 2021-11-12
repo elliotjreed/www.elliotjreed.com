@@ -1,22 +1,22 @@
-import * as marked from "marked";
+import { marked } from "marked";
 import { useEffect, useState } from "react";
 import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
+import { Params, useParams } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
 
 import { BlogPosting as PostInterface } from "../interfaces/BlogPosting";
 import { Person } from "../interfaces/Person";
 import { Spinner } from "./Spinner";
 
-interface Props {
-  match: { params: { date: string; post: string } };
-}
-
-export const Post = (props: Props): JSX.Element => {
+export const Post = (): JSX.Element => {
   const abortController: AbortController = new AbortController();
   const signal: AbortSignal = abortController.signal;
-  const date: string = props.match.params.date;
-  const url: string = date + "/" + props.match.params.post;
+
+  const params: Readonly<Params> = useParams();
+  const date: string = params.date;
+  const url: string = date + "/" + params.post;
+
   const title: string = url
     .substr(11)
     .replace(/-/g, " ")
