@@ -1,7 +1,7 @@
 .yellow-poster-container {
   height: 0;
   overflow: hidden;
-  padding-top: 680px / 661px * 100%;
+  padding-top: calc(680px / 661px * 100%);
   background: white;
   position: relative;
 
