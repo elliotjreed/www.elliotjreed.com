@@ -2,13 +2,13 @@ FROM node:17-alpine
 
 WORKDIR /usr/src/app
 
-COPY --chown=node:node ./dist /usr/src/app/dist
+COPY --chown=node:node ./dist /usr/src/app
 
-RUN mkdir /usr/src/app/dist && \
-    mkdir /usr/src/app/node_modules && \
-    chown -R node:node /usr/src/app && \
-    yarn install --production --frozen-lockfile
+COPY --chown=node:node package.json /usr/src/app/package.json
+COPY --chown=node:node yarn.lock /usr/src/app/yarn.lock
+
+RUN yarn install
 
 EXPOSE 81
 
-CMD ["node", "dist/server.js"]
+CMD ["node", "server.js"]
