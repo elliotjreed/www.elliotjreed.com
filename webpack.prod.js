@@ -1,11 +1,11 @@
 const { merge } = require("webpack-merge");
-const WebpackPwaManifest = require("webpack-pwa-manifest");
 const { resolve } = require("path");
-const commonConfig = require("./webpack.common");
+const WebpackPwaManifest = require("webpack-pwa-manifest");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const WorkboxPlugin = require("workbox-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const commonConfig = require("./webpack.common");
 
 module.exports = merge(commonConfig, {
   devtool: "source-map",

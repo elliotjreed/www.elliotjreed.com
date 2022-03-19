@@ -1,7 +1,6 @@
 const { resolve } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
-const path = require("path");
 
 module.exports = {
   name: "client",

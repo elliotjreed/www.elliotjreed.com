@@ -1,16 +1,16 @@
+const { resolve } = require("path");
 const nodeExternals = require("webpack-node-externals");
-const path = require("path");
 
 module.exports = {
   name: "server",
-  context: path.resolve(__dirname, "./src/server"),
+  context: resolve(__dirname, "./src/server"),
   entry: {
     server: "./server.ts"
   },
   target: "node",
   mode: "production",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: resolve(__dirname, "dist"),
     filename: "[name].js"
   },
   resolve: {
