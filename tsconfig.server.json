@@ -12,6 +12,7 @@
     "allowJs": true,
     "strict": false,
     "strictNullChecks": false,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "moduleResolution": "node"
   }
 }

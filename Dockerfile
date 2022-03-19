@@ -2,8 +2,11 @@ FROM node:17-alpine
 
 WORKDIR /usr/src/app
 
-COPY ./dist /usr/src/app
+RUN mkdir /usr/src/app/dist
+
+COPY ./dist /usr/src/app/dist
+COPY ./node_modules /usr/src/app/node_modules
 
 EXPOSE 81
 
-CMD ["node", "server.js"]
+CMD ["node", "dist/server.js"]

@@ -1,2 +1,2 @@
-require("ignore-styles");
-require("./express");
+import "ignore-styles";
+import "./express";
