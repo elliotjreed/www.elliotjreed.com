@@ -8,9 +8,11 @@ import { App } from "../components/App";
 
 const server = express();
 
-server.use("/", express.static(join(__dirname, "static")));
+const indexHTML = fs.readFileSync(resolve(__dirname, "./static/index.html"), {
+  encoding: "utf8"
+});
 
-const redirectWwwTraffic = (req, res, next) => {
+const redirectNonWwwTraffic = (req, res, next) => {
   if (req.headers.host.slice(0, 4) !== "www.") {
     return res.redirect(301, req.protocol + "://www." + req.headers.host + req.originalUrl);
   }
@@ -18,13 +20,11 @@ const redirectWwwTraffic = (req, res, next) => {
   next();
 };
 
-server.use(redirectWwwTraffic);
+server.use("/", express.static(join(__dirname, "static"), { index: false }));
+
+server.use(redirectNonWwwTraffic);
 
 server.get("*", (req, res) => {
-  const indexHTML = fs.readFileSync(resolve(__dirname, "./static/index.html"), {
-    encoding: "utf8"
-  });
-
   const component = ReactDOMServer.renderToString(
     <StaticRouter location={req.url}>
       <App />
