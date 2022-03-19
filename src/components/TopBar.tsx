@@ -1,9 +1,9 @@
-import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
-import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons/faTwitter";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons/faTwitter";
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
 
 export const TopBar = (): JSX.Element => {
   const [menuActive, toggleMenu] = useState(false);

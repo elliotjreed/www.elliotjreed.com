@@ -9,7 +9,6 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = merge(commonConfig, {
   devtool: "source-map",
-  entry: "./index.tsx",
   mode: "production",
   module: {
     rules: [
@@ -57,9 +56,9 @@ module.exports = merge(commonConfig, {
     }
   },
   output: {
-    filename: "js/[name].[contenthash].min.js",
-    path: resolve(__dirname, "./dist"),
-    publicPath: "/"
+    filename: "[name].[contenthash].min.js",
+    path: resolve(__dirname, "./dist/static"),
+    publicPath: ""
   },
   plugins: [
     new WebpackPwaManifest({

@@ -1,5 +1,6 @@
 import { lazy, StrictMode, Suspense } from "react";
-import { BrowserRouter, Link, Route, Routes as RouterRoutes } from "react-router-dom";
+import { Link, Route, Routes as RouterRoutes } from "react-router-dom";
+
 // import { Footer } from "./Footer";
 import { RouteLoading } from "./RouteLoading";
 import { TopBar } from "./TopBar";
@@ -47,7 +48,7 @@ const TheVapeDomain = lazy(() =>
 
 export const Routes = (): JSX.Element => {
   return (
-    <BrowserRouter>
+    <>
       <StrictMode>
         <Link to="#main-content" className="skip-link">
           Skip to content
@@ -72,6 +73,6 @@ export const Routes = (): JSX.Element => {
         </main>
         {/*<Footer />*/}
       </StrictMode>
-    </BrowserRouter>
+    </>
   );
 };

@@ -1,7 +1,7 @@
-import "./../assets/scss/app.scss";
 import { Routes } from "./Routes";
+import { ReactElement } from "react";
 
-export const App = (): JSX.Element => {
+export const App = (): ReactElement => {
   return (
     <>
       <Routes />

@@ -1,8 +1,12 @@
-FROM nginx:stable-alpine
+FROM node:latest
 
-WORKDIR /var/www/html
+WORKDIR /usr/src/app
 
-COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY ./dist /var/www/html
+COPY ./dist /usr/src/app
+
+RUN yarn install && \
+    yarn build && \
+    yarn build:server
 
 EXPOSE 81
+CMD ["node", "server.js"]

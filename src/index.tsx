@@ -1,7 +1,10 @@
-import { render } from "react-dom";
+import { StrictMode } from "react";
+import { hydrate } from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 import * as ReactGA from "react-ga";
 
-import { App } from "./components/App";
+import "./assets/scss/app.scss";
+import { Routes } from "./components/Routes";
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", (): void => {
@@ -13,4 +16,11 @@ ReactGA.initialize("UA-90440102-1");
 
 const rootEl: Element = document.getElementById("root");
 
-render(<App />, rootEl);
+hydrate(
+  <StrictMode>
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
+  </StrictMode>,
+  rootEl
+);

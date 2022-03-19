@@ -1,9 +1,9 @@
-import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import * as ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 
 import { Person } from "../interfaces/Person";
 
@@ -62,7 +62,7 @@ export const Home = (): JSX.Element => {
 
     return caches
       .open("ejr")
-      .then((cache) => {
+      .then((cache: Cache) => {
         cache
           .match("https://api.elliotjreed.com/blog/author")
           .then((response: Response | undefined): Promise<Person> => {
