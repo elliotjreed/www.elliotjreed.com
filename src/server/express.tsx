@@ -35,7 +35,7 @@ const indexHTML: string = fs.readFileSync(resolve(__dirname, "./static/index.htm
 server.get("*", (req, res) => {
   res.set({
     "Content-Security-Policy":
-      "default-src 'self' https://api.elliotjreed.com; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://static.cloudflareinsights.com https://js.hcaptcha.com; img-src 'self' data: https://res.cloudinary.com https://www.google-analytics.com https://ssl.google-analytics.com https://csi.gstatic.com https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://themes.googleusercontent.com https://fonts.gstatic.com; frame-src https://www.google.com; object-src 'none'"
+      "default-src 'self' https://api.elliotjreed.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://static.cloudflareinsights.com https://js.hcaptcha.com; img-src 'self' data: https://res.cloudinary.com https://www.google-analytics.com https://ssl.google-analytics.com https://csi.gstatic.com https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://themes.googleusercontent.com https://fonts.gstatic.com; frame-src https://www.google.com; object-src 'none'"
   });
 
   const component = ReactDOMServer.renderToString(
