@@ -8,6 +8,6 @@ RUN yarn install && \
     yarn build && \
     yarn build:server
 
-EXPOSE 4242
+EXPOSE 80
 
 CMD ["node", "dist/server.js"]
