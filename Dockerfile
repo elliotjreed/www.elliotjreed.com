@@ -8,7 +8,7 @@ RUN yarn install && \
     yarn build && \
     yarn build:server
 
-EXPOSE 80
+EXPOSE 81
 
 WORKDIR /usr/src/app/dist
 

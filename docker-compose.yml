@@ -8,6 +8,7 @@ services:
     networks:
       - web
     labels:
+      - "traefik.backend=react-elliotjreed"
       - "traefik.docker.network=web"
       - "traefik.enable=true"
       - "traefik.www.frontend.rule=Host:www.elliotjreed.com"

@@ -25,6 +25,7 @@ const indexHTML = fs.readFileSync(resolve(__dirname, "./static/index.html"), {
 server.use("/", express.static(join(__dirname, "static"), { index: false }));
 
 server.get("*", (req, res) => {
+  console.log(req.url);
   const component = ReactDOMServer.renderToString(
     <StaticRouter location={req.url}>
       <App />
@@ -34,4 +35,4 @@ server.get("*", (req, res) => {
   return res.send(indexHTML.replace('<div id="root"></div>', '<div id="root">' + component + "</div>"));
 });
 
-server.listen(80);
+server.listen(81);
