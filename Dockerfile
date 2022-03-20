@@ -12,6 +12,6 @@ COPY --chown=node:node yarn.lock /usr/src/app/yarn.lock
 
 RUN yarn install
 
-EXPOSE 81
+EXPOSE 4242
 
 CMD ["node", "dist/server.js"]

@@ -34,4 +34,4 @@ server.get("*", (req, res) => {
   return res.send(indexHTML.replace('<div id="root"></div>', '<div id="root">' + component + "</div>"));
 });
 
-server.listen(81);
+server.listen(4242);
