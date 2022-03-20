@@ -13,7 +13,6 @@ services:
       - "traefik.enable=true"
       - "traefik.www.frontend.rule=Host:www.elliotjreed.com"
       - "traefik.nonwww.frontend.rule=Host:elliotjreed.com"
-      - "traefik.protocol=h2c"
       - "traefik.port=81"
 
 networks:

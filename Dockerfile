@@ -2,11 +2,8 @@ FROM node:17
 
 WORKDIR /usr/src/app
 
-COPY --chown=node:node . /usr/src/app
-
-RUN yarn install && \
-    yarn build && \
-    yarn build:server
+COPY --chown=node:node ./dist /usr/src/app/dist
+COPY --chown=node:node ./node_modules /usr/src/app/node_modules
 
 EXPOSE 81
 
