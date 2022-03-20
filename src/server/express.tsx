@@ -12,15 +12,15 @@ const indexHTML = fs.readFileSync(resolve(__dirname, "./static/index.html"), {
   encoding: "utf8"
 });
 
-const redirectNonWwwTraffic = (req, res, next) => {
-  if (req.headers.host.slice(0, 4) !== "www.") {
-    return res.redirect(301, req.protocol + "://www." + req.headers.host + req.originalUrl);
-  }
-
-  next();
-};
-
-server.use(redirectNonWwwTraffic);
+// const redirectNonWwwTraffic = (req, res, next) => {
+//   if (req.headers.host.slice(0, 4) !== "www.") {
+//     return res.redirect(301, req.protocol + "://www." + req.headers.host + req.originalUrl);
+//   }
+//
+//   next();
+// };
+//
+// server.use(redirectNonWwwTraffic);
 
 server.use("/", express.static(join(__dirname, "static"), { index: false }));
 
