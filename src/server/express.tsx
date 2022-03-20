@@ -18,7 +18,8 @@ const redirectNonWwwTraffic = (req, res, next) => {
 
 server.use(redirectNonWwwTraffic);
 
-server.use("/", express.static(join(__dirname, "static"), { index: false }));
+const oneYear = 365 * 24 * 60 * 60;
+server.use("/", express.static(join(__dirname, "static"), { index: false, maxAge: oneYear }));
 
 const indexHTML: string = fs.readFileSync(resolve(__dirname, "./static/index.html"), {
   encoding: "utf8"
