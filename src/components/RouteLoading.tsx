@@ -1,8 +1,9 @@
+import { FC, ReactElement } from "react";
 import { animated, useSpring } from "react-spring";
 
 import { Spinner } from "./Spinner";
 
-export const RouteLoading = (): JSX.Element => {
+export const RouteLoading: FC = (): ReactElement => {
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
   return (

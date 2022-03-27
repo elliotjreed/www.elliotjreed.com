@@ -1,26 +1,27 @@
 import { marked } from "marked";
-import { useEffect, useState } from "react";
-import * as ReactGA from "react-ga";
+import { FC, ReactElement, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Params, useParams } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
+import { pageview } from "react-ga";
 
 import { BlogPosting as PostInterface } from "../interfaces/BlogPosting";
 import { Person } from "../interfaces/Person";
 import { Spinner } from "./Spinner";
+import { fetchCache } from "../hooks/fetchCache";
 
-export const Post = (): JSX.Element => {
+export const Post: FC = (): ReactElement => {
   const abortController: AbortController = new AbortController();
-  const signal: AbortSignal = abortController.signal;
 
   const params: Readonly<Params> = useParams();
   const date: string = params.date;
   const url: string = date + "/" + params.post;
 
   const title: string = url
-    .substr(11)
+    .substring(11)
     .replace(/-/g, " ")
     .replace(/(^\w)|(\s\w)/g, (match: string): string => match.toUpperCase());
+
   const author: Person = {
     name: "Elliot J. Reed",
     alternateName: "Elliot Reed",
@@ -28,7 +29,7 @@ export const Post = (): JSX.Element => {
     additionalName: "John",
     familyName: "Reed"
   };
-  const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
+
   const [loading, setLoading] = useState<boolean>(true);
   const [content, setContent] = useState<PostInterface>({
     "@context": "https://schema.org",
@@ -43,7 +44,7 @@ export const Post = (): JSX.Element => {
     "articleBody": "",
     "wordCount": 0,
     "author": author,
-    "url": "https://www.elliotjreed.com/" + url,
+    "url": "https://www.elliotjreed.com/blog/" + url,
     "inLanguage": "en-GB",
     "copyrightHolder": author,
     "headline": title,
@@ -51,70 +52,27 @@ export const Post = (): JSX.Element => {
     "image": { url: "" }
   });
 
+  const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
+
+  const response: PostInterface | null = fetchCache<PostInterface>(
+    "https://api.elliotjreed.com/blog/post/" + url,
+    abortController
+  );
+
   useEffect((): void => {
-    ReactGA.pageview(window.location.pathname + location.search);
-    fetchPost();
+    if (response !== null) {
+      setContent(response);
+      setLoading(false);
+    }
+  }, [response]);
+
+  useEffect((): void => {
+    pageview(window.location.pathname + location.search);
   }, []);
 
   useEffect(() => {
     return (): void => abortController.abort();
   }, []);
-
-  const fetchPost = (): Promise<void> => {
-    if (!("caches" in self)) {
-      return updateFromNetwork();
-    }
-
-    return caches
-      .open("ejr")
-      .then((cache: Cache): void => {
-        cache
-          .match("https://api.elliotjreed.com/blog/post/" + url)
-          .then((response: Response | undefined): Promise<PostInterface> => {
-            return new Promise((resolve, reject): void => {
-              if (response) {
-                resolve(response.clone().json());
-              } else {
-                reject();
-              }
-            });
-          })
-          .then((post: PostInterface): Promise<void> => {
-            setContent(post);
-            setLoading(false);
-            return updateFromNetwork();
-          })
-          .catch((): Promise<void> => updateFromNetwork());
-      })
-      .catch((): Promise<void> => updateFromNetwork());
-  };
-
-  const updateFromNetwork = (): Promise<void> => {
-    return fetch("https://api.elliotjreed.com/blog/post/" + url, { signal: signal })
-      .then((response: Response): Promise<PostInterface> => {
-        return new Promise((resolve, reject): void => {
-          const clonedResponse: Response = response.clone();
-          if (clonedResponse.ok) {
-            if ("caches" in self) {
-              caches
-                .open("ejr")
-                .then((cache: Cache) =>
-                  cache.put("https://api.elliotjreed.com/blog/post/" + url, clonedResponse.clone())
-                )
-                .catch();
-            }
-            resolve(clonedResponse.clone().json());
-          } else {
-            reject();
-          }
-        });
-      })
-      .then((post: PostInterface): void => {
-        setContent(post);
-        setLoading(false);
-      })
-      .catch((): void => abortController.abort());
-  };
 
   return (
     <>

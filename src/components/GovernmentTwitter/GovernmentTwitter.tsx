@@ -1,17 +1,17 @@
 import domtoimage from "dom-to-image-more";
-import { useEffect, useRef, useState } from "react";
-import * as ReactGA from "react-ga";
+import { ChangeEvent, FC, ReactElement, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
+import { pageview } from "react-ga";
 
 import { TweetBox } from "./TweetBox";
 
-export const GovernmentTwitter = (): JSX.Element => {
-  const props = useSpring({ opacity: 1, from: { opacity: 0 } });
-  const { x } = useSpring({ from: { x: 0 }, x: 1, config: { duration: 1000 } });
-
+export const GovernmentTwitter: FC = (): ReactElement => {
   const [tweet, setTweet] = useState<string>("Stay alert by making your own Government tweet.\n\n#StayAlert.");
   const [downloadUrl, setDownloadUrl] = useState<string>("");
+
+  const props = useSpring({ opacity: 1, from: { opacity: 0 } });
+  const { x } = useSpring({ from: { x: 0 }, x: 1, config: { duration: 1000 } });
 
   const contentContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -22,7 +22,7 @@ export const GovernmentTwitter = (): JSX.Element => {
   };
 
   useEffect((): void => {
-    ReactGA.pageview(window.location.pathname + location.search);
+    pageview(window.location.pathname + location.search);
     handleMemeGeneration();
   }, []);
 
@@ -54,7 +54,7 @@ export const GovernmentTwitter = (): JSX.Element => {
                         className="textarea"
                         rows={3}
                         placeholder="Stay alert by making your own government tweet."
-                        onChange={(event: React.ChangeEvent<HTMLTextAreaElement>): void => setTweet(event.target.value)}
+                        onChange={(event: ChangeEvent<HTMLTextAreaElement>): void => setTweet(event.target.value)}
                         title="Stay alert by making your own government tweet."
                         onKeyUp={handleMemeGeneration}
                       />
@@ -69,7 +69,7 @@ export const GovernmentTwitter = (): JSX.Element => {
                             range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
                             output: [1, 0.97, 0.9, 1.1, 0.9, 1.1, 1.03, 1]
                           })
-                          .to((x) => `scale(${x})`)
+                          .to((x: number): string => `scale(${x})`)
                       }}
                     >
                       Download

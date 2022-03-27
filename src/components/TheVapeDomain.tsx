@@ -1,13 +1,13 @@
-import { useEffect } from "react";
-import * as ReactGA from "react-ga";
+import { FC, ReactElement, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
+import { pageview } from "react-ga";
 
-export const TheVapeDomain = (): JSX.Element => {
+export const TheVapeDomain: FC = (): ReactElement => {
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname + location.search);
+    pageview(window.location.pathname + location.search);
   }, []);
 
   return (

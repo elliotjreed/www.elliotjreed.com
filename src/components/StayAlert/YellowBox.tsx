@@ -1,11 +1,13 @@
+import { FC, ReactElement, RefObject } from "react";
+
 interface ContentInterface {
   lineOne: string;
   lineTwo: string;
   lineThree: string;
-  contentContainerRef: React.RefObject<HTMLDivElement>;
+  contentContainerRef: RefObject<HTMLDivElement>;
 }
 
-export const YellowBox = (props: ContentInterface): JSX.Element => {
+export const YellowBox: FC<ContentInterface> = (props: ContentInterface): ReactElement => {
   return (
     <div className="yellow-poster-container" ref={props.contentContainerRef}>
       <div className="yellow-poster">

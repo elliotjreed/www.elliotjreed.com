@@ -1,4 +1,6 @@
-export const Footer = (): JSX.Element => {
+import { FC, ReactElement } from "react";
+
+export const Footer: FC = (): ReactElement => {
   return (
     <footer className="footer">
       <div className="content has-text-centered">

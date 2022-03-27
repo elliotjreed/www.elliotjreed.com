@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { FC, ReactElement, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons/faTwitter";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
 
-export const TopBar = (): JSX.Element => {
+export const TopBar: FC = (): ReactElement => {
   const [menuActive, toggleMenu] = useState(false);
 
   const toggleMobileMenu = (): void => {
@@ -31,6 +31,7 @@ export const TopBar = (): JSX.Element => {
             <span aria-hidden="true" />
           </a>
         </div>
+
         <div className={"navbar-menu" + (menuActive ? " is-active" : "")}>
           <div className="navbar-start">
             <div className="navbar-item has-dropdown is-hoverable">
@@ -62,6 +63,7 @@ export const TopBar = (): JSX.Element => {
               Blog
             </Link>
           </div>
+
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">

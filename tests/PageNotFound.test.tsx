@@ -1,14 +1,14 @@
 import { render, screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 
 import { PageNotFound } from "../src/components/PageNotFound";
 
 describe("Page Not Found", (): void => {
   it("should display Not Found text", (): void => {
     render(
-      <BrowserRouter>
+      <MemoryRouter>
         <PageNotFound />
-      </BrowserRouter>
+      </MemoryRouter>
     );
 
     expect(screen.getByText("Not Found")).toBeInTheDocument();

@@ -1,13 +1,13 @@
-import { useEffect } from "react";
-import * as ReactGA from "react-ga";
+import { FC, ReactElement, useEffect } from "react";
+import { pageview } from "react-ga";
 import { Link } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
 
-export const PrivacyPolicy = (): JSX.Element => {
+export const PrivacyPolicy: FC = (): ReactElement => {
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname + location.search);
+    pageview(window.location.pathname + location.search);
   }, []);
 
   return (

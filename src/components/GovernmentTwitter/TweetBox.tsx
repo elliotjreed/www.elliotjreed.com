@@ -1,3 +1,4 @@
+import { FC, ReactElement, RefObject } from "react";
 import { faArrowUp } from "@fortawesome/fontawesome-free-solid/faArrowUp";
 import { faHeart } from "@fortawesome/fontawesome-free-solid/faHeart";
 import { faReply } from "@fortawesome/fontawesome-free-solid/faReply";
@@ -7,10 +8,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface ContentInterface {
   content: string;
-  contentContainerRef: React.RefObject<HTMLDivElement>;
+  contentContainerRef: RefObject<HTMLDivElement>;
 }
 
-export const TweetBox = (props: ContentInterface): JSX.Element => {
+export const TweetBox: FC<ContentInterface> = (props: ContentInterface): ReactElement => {
   return (
     <div className="tweet" ref={props.contentContainerRef}>
       <div className="tweet-head">

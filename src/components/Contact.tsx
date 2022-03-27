@@ -1,32 +1,34 @@
 import HCaptcha from "@hcaptcha/react-hcaptcha";
-import { FormEvent, useEffect, useState } from "react";
-import * as ReactGA from "react-ga";
+import { FC, FormEvent, ReactElement, ReactNode, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
+import { pageview } from "react-ga";
 
 interface EmailResponse {
   errors?: string[];
 }
 
-export const Contact = (): JSX.Element => {
+export const Contact: FC = (): ReactElement => {
   const abortController = new AbortController();
   const signal = abortController.signal;
-  const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
+
   const [errors, setErrors] = useState<string[]>([]);
   const [captchaToken, setCaptchaToken] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccessful] = useState<boolean>(false);
+
+  const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
   const { x } = useSpring({ from: { x: 0 }, x: loading ? 0 : 1, config: { duration: 1000 } });
 
   useEffect((): void => {
-    ReactGA.pageview(window.location.pathname + location.search);
+    pageview(window.location.pathname + location.search);
   }, []);
 
   useEffect(() => {
     return (): void => abortController.abort();
   }, []);
 
-  const renderSuccess: JSX.Element = (
+  const renderSuccess: ReactNode = (
     <div className="notification is-primary has-text-centered">
       Thank you for your enquiry. I&apos;ll get back to you shortly!
     </div>
@@ -34,12 +36,15 @@ export const Contact = (): JSX.Element => {
 
   const handleSubmit = (event: FormEvent): void => {
     event.preventDefault();
+
     setLoading(true);
     setErrors([]);
+
     const data: FormData = new FormData(event.target as HTMLFormElement);
     data.append("captcha", captchaToken);
     data.delete("h-captcha-response");
     data.delete("g-recaptcha-response");
+
     fetch("https://api.elliotjreed.com/email/send", {
       body: data,
       method: "POST",
@@ -49,6 +54,7 @@ export const Contact = (): JSX.Element => {
       .then((response: EmailResponse): void => {
         if (response.hasOwnProperty("errors")) {
           setErrors(response.errors);
+
           setLoading(false);
         } else {
           setSuccessful(true);
@@ -60,7 +66,7 @@ export const Contact = (): JSX.Element => {
       });
   };
 
-  const renderForm: JSX.Element = (
+  const renderForm: ReactNode = (
     <form onSubmit={handleSubmit}>
       <div className="field">
         <label htmlFor="name" className="label">
@@ -114,7 +120,10 @@ export const Contact = (): JSX.Element => {
         </div>
       </div>
 
-      <HCaptcha sitekey="764dfe59-3c04-464c-bf4a-093f1781beab" onVerify={(token: string) => setCaptchaToken(token)} />
+      <HCaptcha
+        sitekey="764dfe59-3c04-464c-bf4a-093f1781beab"
+        onVerify={(token: string): void => setCaptchaToken(token)}
+      />
 
       {errors.length > 0 && <div className="notification is-danger">{errors}</div>}
 
@@ -129,7 +138,7 @@ export const Contact = (): JSX.Element => {
                     range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
                     output: [1, 0.97, 0.9, 1.1, 0.9, 1.1, 1.03, 1]
                   })
-                  .to((x): string => `scale(${x})`)
+                  .to((x: number): string => `scale(${x})`)
               }}
             >
               Send

@@ -1,30 +1,30 @@
 import domtoimage from "dom-to-image-more";
-import { useEffect, useRef, useState } from "react";
-import * as ReactGA from "react-ga";
+import { ChangeEvent, FC, ReactElement, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
+import { pageview } from "react-ga";
 
 import { YellowBox } from "./YellowBox";
 
-export const StayAlert = (): JSX.Element => {
-  const props = useSpring({ opacity: 1, from: { opacity: 0 } });
-  const { x } = useSpring({ from: { x: 0 }, x: 1, config: { duration: 1000 } });
-
+export const StayAlert: FC = (): ReactElement => {
   const [lineOne, setLineOne] = useState<string>("STAY ALERT.");
   const [lineTwo, setLineTwo] = useState<string>("CONTROL THE VIRUS.");
   const [lineThree, setLineThree] = useState<string>("SAVE LIVES.");
   const [downloadUrl, setDownloadUrl] = useState<string>("");
 
+  const props = useSpring({ opacity: 1, from: { opacity: 0 } });
+  const { x } = useSpring({ from: { x: 0 }, x: 1, config: { duration: 1000 } });
+
   const contentContainerRef = useRef<HTMLDivElement | null>(null);
 
   const handleMemeGeneration = (): void => {
-    domtoimage.toPng(contentContainerRef.current).then((dataUrl) => {
+    domtoimage.toPng(contentContainerRef.current).then((dataUrl: string): void => {
       setDownloadUrl(dataUrl);
     });
   };
 
   useEffect((): void => {
-    ReactGA.pageview(window.location.pathname + location.search);
+    pageview(window.location.pathname + location.search);
     handleMemeGeneration();
   }, []);
 
@@ -61,7 +61,7 @@ export const StayAlert = (): JSX.Element => {
                       <input
                         className="input is-medium"
                         placeholder="Stay alert."
-                        onChange={(event: React.ChangeEvent<HTMLInputElement>): void => setLineOne(event.target.value)}
+                        onChange={(event: ChangeEvent<HTMLInputElement>): void => setLineOne(event.target.value)}
                         onKeyUp={handleMemeGeneration}
                         title="First line"
                       />
@@ -72,7 +72,7 @@ export const StayAlert = (): JSX.Element => {
                       <input
                         className="input is-medium"
                         placeholder="Control the virus."
-                        onChange={(event: React.ChangeEvent<HTMLInputElement>): void => setLineTwo(event.target.value)}
+                        onChange={(event: ChangeEvent<HTMLInputElement>): void => setLineTwo(event.target.value)}
                         onKeyUp={handleMemeGeneration}
                         title="Second line"
                       />
@@ -83,9 +83,7 @@ export const StayAlert = (): JSX.Element => {
                       <input
                         className="input is-medium"
                         placeholder="Save lives."
-                        onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
-                          setLineThree(event.target.value)
-                        }
+                        onChange={(event: ChangeEvent<HTMLInputElement>): void => setLineThree(event.target.value)}
                         onKeyUp={handleMemeGeneration}
                         title="Third line"
                       />
@@ -100,7 +98,7 @@ export const StayAlert = (): JSX.Element => {
                             range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
                             output: [1, 0.97, 0.9, 1.1, 0.9, 1.1, 1.03, 1]
                           })
-                          .to((x) => `scale(${x})`)
+                          .to((x: number): string => `scale(${x})`)
                       }}
                     >
                       Download

@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react";
-import * as ReactGA from "react-ga";
+import { FC, ReactElement, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { pageview } from "react-ga";
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 
+import { fetchCache } from "../hooks/fetchCache";
 import { Person } from "../interfaces/Person";
 
-export const Home = (): JSX.Element => {
+export const Home: FC = (): ReactElement => {
   const abortController = new AbortController();
-  const signal = abortController.signal;
+
   const [author, setAuthor] = useState<Person>({
     additionalName: "John",
     alternateName: "Elliot Reed",
@@ -17,71 +18,24 @@ export const Home = (): JSX.Element => {
     givenName: "Elliot",
     name: "Elliot J. Reed"
   });
+
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
+  const response: Person | null = fetchCache<Person>("https://api.elliotjreed.com/blog/author", abortController);
+
   useEffect((): void => {
-    ReactGA.pageview(window.location.pathname + location.search);
-    fetchAuthor();
+    if (response !== null) {
+      setAuthor(response);
+    }
+  }, [response]);
+
+  useEffect((): void => {
+    pageview(window.location.pathname + location.search);
   }, []);
 
   useEffect(() => {
     return (): void => abortController.abort();
   }, []);
-
-  const updateFromNetwork = (): Promise<void> => {
-    return fetch("https://api.elliotjreed.com/blog/author", { signal: signal })
-      .then((response: Response): Promise<Person> => {
-        return new Promise((resolve, reject): void => {
-          const clonedResponse = response.clone();
-          if (clonedResponse.ok) {
-            if ("caches" in self) {
-              caches
-                .open("ejr")
-                .then(
-                  (cache: Cache): Promise<void> =>
-                    cache.put("https://api.elliotjreed.com/blog/author", clonedResponse.clone())
-                )
-                .catch();
-            }
-            resolve(clonedResponse.clone().json());
-          } else {
-            reject();
-          }
-        });
-      })
-      .then((author: Person): void => {
-        setAuthor(author);
-      })
-      .catch((): void => abortController.abort());
-  };
-
-  const fetchAuthor = (): Promise<void> => {
-    if (!("caches" in self)) {
-      return updateFromNetwork();
-    }
-
-    return caches
-      .open("ejr")
-      .then((cache: Cache) => {
-        cache
-          .match("https://api.elliotjreed.com/blog/author")
-          .then((response: Response | undefined): Promise<Person> => {
-            return new Promise((resolve, reject): void => {
-              if (response) {
-                resolve(response.clone().json());
-              } else {
-                reject();
-              }
-            });
-          })
-          .then((author: Person): Promise<void> => {
-            setAuthor(author);
-            return updateFromNetwork();
-          })
-          .catch((): Promise<void> => updateFromNetwork());
-      })
-      .catch((): Promise<void> => updateFromNetwork());
-  };
 
   return (
     <>
@@ -132,7 +86,7 @@ export const Home = (): JSX.Element => {
                   </figure>
                 </div>
                 <div className="media-content">
-                  <h1 className="is-size-1 has-text-weight-semibold is-size-3-mobile">Elliot J. Reed</h1>
+                  <h1 className="is-size-1 has-text-weight-semibold is-size-3-mobile">{author.name}</h1>
 
                   <a
                     className="icon-text subtitle is-size-5 is-size-6-mobile"

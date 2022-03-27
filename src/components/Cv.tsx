@@ -1,79 +1,36 @@
 import { marked } from "marked";
-import { useEffect, useState } from "react";
-import * as ReactGA from "react-ga";
+import { FC, ReactElement, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
-import { Spinner } from "./Spinner";
+import { pageview } from "react-ga";
 
-export const Cv = (): JSX.Element => {
-  const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
+import { Spinner } from "./Spinner";
+import { fetchCache } from "../hooks/fetchCache";
+
+export const Cv: FC = (): ReactElement => {
   const abortController: AbortController = new AbortController();
-  const signal: AbortSignal = abortController.signal;
+
   const [loading, setLoading] = useState<boolean>(true);
   const [content, setContent] = useState<string>("");
 
+  const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
+
+  const response: string | null = fetchCache<string>("https://api.elliotjreed.com/cv", abortController);
+
   useEffect((): void => {
-    ReactGA.pageview(window.location.pathname + location.search);
-    fetchCv();
+    if (response !== null) {
+      setContent(response);
+      setLoading(false);
+    }
+  }, [response]);
+
+  useEffect((): void => {
+    pageview(window.location.pathname + location.search);
   }, []);
 
   useEffect(() => {
     return (): void => abortController.abort();
   }, []);
-
-  const fetchCv = (): Promise<void> => {
-    if (!("caches" in self)) {
-      return updateFromNetwork();
-    }
-
-    return caches
-      .open("ejr")
-      .then((cache: Cache): void => {
-        cache
-          .match("https://api.elliotjreed.com/cv")
-          .then((response: Response | undefined): Promise<string> => {
-            return new Promise((resolve, reject): void => {
-              if (response) {
-                resolve(response.clone().text());
-              } else {
-                reject();
-              }
-            });
-          })
-          .then((markdown: string): Promise<void> => {
-            setContent(markdown);
-            setLoading(false);
-            return updateFromNetwork();
-          })
-          .catch((): Promise<void> => updateFromNetwork());
-      })
-      .catch((): Promise<void> => updateFromNetwork());
-  };
-
-  const updateFromNetwork = (): Promise<void> => {
-    return fetch("https://api.elliotjreed.com/cv", { signal: signal })
-      .then((response: Response): Promise<string> => {
-        return new Promise((resolve, reject): void => {
-          const clonedResponse: Response = response.clone();
-          if (clonedResponse.ok) {
-            if ("caches" in self) {
-              caches
-                .open("ejr")
-                .then((cache: Cache) => cache.put("https://api.elliotjreed.com/cv", clonedResponse.clone()))
-                .catch();
-            }
-            resolve(clonedResponse.clone().text());
-          } else {
-            reject();
-          }
-        });
-      })
-      .then((markdown: string): void => {
-        setContent(markdown);
-        setLoading(false);
-      })
-      .catch((): void => abortController.abort());
-  };
 
   return (
     <>
@@ -99,7 +56,7 @@ export const Cv = (): JSX.Element => {
         <meta name="twitter:title" content="Elliot J. Reed's Curriculum Vitae / Résumé" />
         <meta
           name="twitter:description"
-          content="A brief overview of my work, projects, experience, education, and skillset."
+          content="A brief overview of my work, projects, experience, education, and skills."
         />
         <meta
           name="twitter:image"

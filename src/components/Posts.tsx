@@ -1,94 +1,44 @@
-import { useEffect, useState } from "react";
-import * as ReactGA from "react-ga";
+import { FC, ReactElement, ReactNode, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
-import { BlogPosting } from "../interfaces/BlogPosting";
+import { pageview } from "react-ga";
 
+import { BlogPosting } from "../interfaces/BlogPosting";
 import { PostCard } from "./PostCard";
 import { Spinner } from "./Spinner";
+import { fetchCache } from "../hooks/fetchCache";
 
 interface Blog {
   blogPosts: BlogPosting[];
 }
 
-export const Posts = (): JSX.Element => {
+export const Posts: FC = (): ReactElement => {
   const abortController = new AbortController();
-  const signal = abortController.signal;
+
   const [loading, setLoading] = useState<boolean>(true);
   const [posts, setPosts] = useState<Blog>({ blogPosts: [] });
+
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
+  const response: Blog | null = fetchCache<Blog>("https://api.elliotjreed.com/blog/posts", abortController);
+
   useEffect((): void => {
-    ReactGA.pageview(window.location.pathname + location.search);
-    fetchPosts();
+    if (response !== null) {
+      response.blogPosts.sort((a: BlogPosting, b: BlogPosting): number => b.dateCreated.localeCompare(a.dateCreated));
+      setPosts(response);
+      setLoading(false);
+    }
+  }, [response]);
+
+  useEffect((): void => {
+    pageview(window.location.pathname + location.search);
   }, []);
 
   useEffect(() => {
     return (): void => abortController.abort();
   }, []);
 
-  const fetchPosts = (): Promise<void> => {
-    if (!("caches" in self)) {
-      return updateFromNetwork();
-    }
-
-    return caches
-      .open("ejr")
-      .then((cache): void => {
-        cache
-          .match("https://api.elliotjreed.com/blog/posts")
-          .then((response: Response | undefined): Promise<Blog> => {
-            return new Promise((resolve, reject): void => {
-              if (response) {
-                resolve(response.clone().json());
-              } else {
-                reject();
-              }
-            });
-          })
-          .then((posts: Blog): Promise<void> => {
-            posts.blogPosts.sort((a: BlogPosting, b: BlogPosting): number =>
-              b.dateCreated.localeCompare(a.dateCreated)
-            );
-            setPosts(posts);
-            setLoading(false);
-            return updateFromNetwork();
-          })
-          .catch((): Promise<void> => updateFromNetwork());
-      })
-      .catch((): Promise<void> => updateFromNetwork());
-  };
-
-  const updateFromNetwork = (): Promise<void> => {
-    return fetch("https://api.elliotjreed.com/blog/posts", { signal: signal })
-      .then((response: Response): Promise<Blog> => {
-        return new Promise((resolve, reject): void => {
-          const clonedResponse: Response = response.clone();
-          if (clonedResponse.ok) {
-            if ("caches" in self) {
-              caches
-                .open("ejr")
-                .then(
-                  (cache: Cache): Promise<void> =>
-                    cache.put("https://api.elliotjreed.com/blog/posts", clonedResponse.clone())
-                )
-                .catch();
-            }
-            resolve(clonedResponse.clone().json());
-          } else {
-            reject();
-          }
-        });
-      })
-      .then((posts: Blog): void => {
-        posts.blogPosts.sort((a: BlogPosting, b: BlogPosting): number => b.dateCreated.localeCompare(a.dateCreated));
-        setPosts(posts);
-        setLoading(false);
-      })
-      .catch((): void => abortController.abort());
-  };
-
-  const postsInCategory = (posts: Blog): React.ReactNode => {
+  const postsInCategory = (posts: Blog): ReactNode => {
     if (posts.blogPosts.length < 1) {
       return noPosts();
     }
@@ -102,7 +52,7 @@ export const Posts = (): JSX.Element => {
     );
   };
 
-  const noPosts = (): JSX.Element => {
+  const noPosts = (): ReactNode => {
     return (
       <article className="message is-warning">
         <p className="message-header">Oh no!</p>

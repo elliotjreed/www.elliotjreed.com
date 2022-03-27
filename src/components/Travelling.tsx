@@ -1,20 +1,20 @@
-import { useEffect } from "react";
-import * as ReactGA from "react-ga";
+import { FC, ReactElement, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
+import { pageview } from "react-ga";
 
-export const Travelling = (): JSX.Element => {
+export const Travelling: FC = (): ReactElement => {
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
   useEffect((): void => {
-    ReactGA.pageview(window.location.pathname + location.search);
+    pageview(window.location.pathname + location.search);
   }, []);
 
   return (
     <>
       <Helmet>
         <title>Travelling | Elliot J. Reed</title>
-        <meta name="description" content="A couple of photographs from my travels." />
+        <meta name="description" content="A few photographs from my travels over the years." />
       </Helmet>
 
       <section className="container">
