@@ -53,7 +53,7 @@ export const fetchCache = <T>(url: string, abortController: AbortController, cac
             caches
               .open(cacheName)
               .then((cache: Cache): Promise<void> => cache.put(url, clonedResponse.clone()))
-              .catch((): void => {});
+              .catch((): void => {}); // eslint-disable-line @typescript-eslint/no-empty-function
           }
 
           const contentType = clonedResponse.headers.get("content-type");
