@@ -53,7 +53,7 @@ export const Home: FC = (): ReactElement => {
         />
         <meta
           property="og:image"
-          content="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553434444/elliotjreed.jpg"
+          content="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1648587259/og.png"
         />
 
         <meta name="twitter:card" content="summary" />
