@@ -45,28 +45,6 @@ export const Home: FC = (): ReactElement => {
           name="description"
           content="Hi, I'm Elliot, a software developer from Nottingham. This website has guides on PHP, Symfony, Javascript, React, Python, and Linux / DevOps."
         />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Elliot J. Reed" />
-        <meta
-          property="og:description"
-          content="Elliot's website - a little bit about me, my work, system administration and programming articles, and projects I'm working on."
-        />
-        <meta
-          property="og:image"
-          content="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1648587259/og.png"
-        />
-
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@elliotjreed" />
-        <meta name="twitter:title" content="Elliot J. Reed" />
-        <meta
-          name="twitter:description"
-          content="Elliot's website - a little bit about me, my work, system administration and programming articles, and projects I'm working on."
-        />
-        <meta
-          name="twitter:image"
-          content="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553434444/elliotjreed.jpg"
-        />
         <script type="application/ld+json">{JSON.stringify(author)}</script>
       </Helmet>
 
