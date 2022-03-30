@@ -19,10 +19,22 @@ describe("Post Card", (): void => {
             "dateCreated": "2022-01-01",
             "datePublished": "2022-01-01",
             "wordCount": 4,
-            "author": "Test Author Name",
+            "author": {
+              name: "Testy Author McTest",
+              familyName: "McTest",
+              givenName: "Testy",
+              alternateName: "Testy McTest",
+              additionalName: "Author"
+            },
             "url": "https://www.elliotjreed.com/blog/post/2022-01-01-test-post",
             "inLanguage": "en-GB",
-            "copyrightHolder": "Test Copyright Holder Name",
+            "copyrightHolder": {
+              name: "Testy Author McTest",
+              familyName: "McTest",
+              givenName: "Testy",
+              alternateName: "Testy McTest",
+              additionalName: "Author"
+            },
             "headline": "Test Headline",
             "license": "",
             "image": { url: "https://example.com/post-image.png" }
