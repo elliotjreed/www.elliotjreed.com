@@ -94,7 +94,7 @@ export const Projects: FC = (): ReactElement => {
                     <h2 className="text-xl font-bold leading-8 tracking-tight">Bunches&apos; website</h2>
                   </a>
                   <p className="prose mb-3 max-w-none text-gray-500 dark:text-gray-400">
-                    The primary B2C website of Bunches, it&apos;s had something of an almighty rewrite of the past few
+                    The primary B2C website of Bunches, it&apos;s had something of an almighty rewrite over the past few
                     years.
                   </p>
                 </div>
