@@ -12,7 +12,7 @@ import { App } from "../components/App";
 
 const server = express();
 
-const redirectNonWwwTraffic = (request: Request, response: Response, next) => {
+const redirectNonWwwTraffic = (request: Request, response: Response, next): void => {
   if (request.headers.host.slice(0, 4) !== "www.") {
     return response.redirect(301, request.protocol + "://www." + request.headers.host + request.originalUrl);
   }
@@ -35,7 +35,7 @@ const indexHTML: string = fs.readFileSync(resolve(__dirname, "./static/index.htm
   encoding: "utf8"
 });
 
-server.get("*", (request: Request, response: Response) => {
+server.get("*", (request: Request, response: Response): void => {
   response.set({
     "Content-Security-Policy":
       "default-src 'self' https://api.elliotjreed.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://static.cloudflareinsights.com https://js.hcaptcha.com; img-src 'self' data: https://res.cloudinary.com https://www.google-analytics.com https://ssl.google-analytics.com https://csi.gstatic.com https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://themes.googleusercontent.com https://fonts.gstatic.com; frame-src https://www.google.com https://newassets.hcaptcha.com; object-src 'none'"
