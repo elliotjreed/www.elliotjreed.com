@@ -53,7 +53,8 @@ server.get("*", (request: Request, response: Response): void => {
         pipe(response, { end: false });
         response.end("</div></body></html>");
       },
-      onShellError() {
+      onShellError(error: Error) {
+        console.error(error);
         response.statusCode = 500;
         response.send(
           indexHTML.replace(
@@ -66,4 +67,4 @@ server.get("*", (request: Request, response: Response): void => {
   );
 });
 
-server.listen(4242);
+server.listen(81);
