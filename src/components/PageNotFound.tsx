@@ -11,23 +11,16 @@ export const PageNotFound: FC = (): ReactElement => {
   }, []);
 
   return (
-    <section className="container">
-      <div className="column is-10 is-offset-1">
-        <animated.main id="main-content" className="card" style={springProps}>
-          <div className="card-content">
-            <h1 className="title has-text-centered">Not Found</h1>
-            <div className="content">
-              <article className="message is-warning">
-                <p className="message-header">Oh no!</p>
-                <div className="message-body">
-                  I can&apos;t find anything here, sorry! Try starting from the <Link to="/">homepage</Link> or have a
-                  look at some <Link to="/blog">blog posts</Link>.
-                </div>
-              </article>
-            </div>
-          </div>
-        </animated.main>
+    <animated.section className="divide-y divide-gray-200 dark:divide-gray-700" style={springProps}>
+      <div className="space-y-2 pt-6 pb-8 md:space-y-5">
+        <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+          Page Not Found
+        </h1>
+        <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+          It looks like the page you&apos;ve just tried to access doesn&apos;t actually exist, sorry! Try starting from
+          the <Link to="/">homepage</Link> or have a look at some <Link to="/blog">blog posts</Link>.
+        </p>
       </div>
-    </section>
+    </animated.section>
   );
 };

@@ -5,7 +5,7 @@ import nock from "nock";
 import { Home } from "../src/components/Home";
 
 describe("Home", (): void => {
-  it("should return name from the API", async (): Promise<void> => {
+  it("should display name and fetch data from API", async (): Promise<void> => {
     const scope: nock.Scope = nock("https://api.elliotjreed.com")
       .defaultReplyHeaders({
         "access-control-allow-origin": "*",
@@ -28,6 +28,6 @@ describe("Home", (): void => {
 
     await waitFor((): void => expect(scope.isDone()).toBe(true));
 
-    expect(await screen.findByText("FirstName Surname")).toBeInTheDocument();
+    expect(await screen.findByText("Elliot Reed")).toBeInTheDocument();
   });
 });

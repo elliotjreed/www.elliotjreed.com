@@ -11,6 +11,6 @@ describe("Page Not Found", (): void => {
       </MemoryRouter>
     );
 
-    expect(screen.getByText("Not Found")).toBeInTheDocument();
+    expect(screen.getByText("Page Not Found")).toBeInTheDocument();
   });
 });

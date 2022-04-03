@@ -6,6 +6,7 @@ const WorkboxPlugin = require("workbox-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const commonConfig = require("./webpack.common");
+const purgecss = require("@fullhuman/postcss-purgecss");
 
 module.exports = merge(commonConfig, {
   devtool: "source-map",
@@ -22,11 +23,19 @@ module.exports = merge(commonConfig, {
             options: {
               sourceMap: true,
               postcssOptions: {
-                plugins: ["postcss-preset-env"]
+                plugins: [
+                  "tailwindcss",
+                  "autoprefixer",
+                  "cssnano",
+                  purgecss({
+                    content: ["./src/**/*.{ts,tsx,js,html,jsx}"],
+                    safelist: ["pre", "code"],
+                    defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || []
+                  })
+                ]
               }
             }
-          },
-          { loader: "sass-loader", options: { sourceMap: true } }
+          }
         ]
       }
     ]

@@ -6,6 +6,7 @@ import { pageview } from "react-ga";
 
 import { Spinner } from "./Spinner";
 import { fetchCache } from "../hooks/fetchCache";
+import "../assets/css/print.css";
 
 export const Cv: FC = (): ReactElement => {
   const abortController: AbortController = new AbortController();
@@ -64,26 +65,35 @@ export const Cv: FC = (): ReactElement => {
         />
       </Helmet>
 
-      <section className="container cv">
-        <div className="column is-10 is-offset-1">
-          <animated.main id="main-content" className="card" style={springProps}>
-            <div className="card-content">
-              <h1 className="title has-text-centered">Curriculum Vitae / Résumé</h1>
-              {loading ? (
-                <Spinner />
-              ) : (
-                <div className="content">
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: marked(content.substring(content.indexOf("\n") + 1))
-                    }}
-                  />
-                </div>
-              )}
+      <animated.article className="cv" style={springProps}>
+        <header>
+          <div className="space-y-1 border-b border-gray-200 pb-10 text-center dark:border-gray-700">
+            <div>
+              <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14">
+                Curriculum Vitae / Résumé
+              </h1>
             </div>
-          </animated.main>
+          </div>
+        </header>
+
+        <div
+          className="divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:divide-y-0"
+          style={{ gridTemplateRows: "auto 1fr" }}
+        >
+          <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
+            {loading ? (
+              <Spinner />
+            ) : (
+              <div
+                className="prose max-w-none pt-10 pb-8 dark:prose-dark"
+                dangerouslySetInnerHTML={{
+                  __html: marked(content.substring(content.indexOf("\n") + 1))
+                }}
+              />
+            )}
+          </div>
         </div>
-      </section>
+      </animated.article>
     </>
   );
 };

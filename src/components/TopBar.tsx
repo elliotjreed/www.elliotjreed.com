@@ -1,107 +1,36 @@
-import { FC, ReactElement, useState } from "react";
+import { FC, ReactElement } from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons/faTwitter";
-import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
+
+import { MobileNavigation } from "./MobileNavigation";
+import { NavigationLink, navigationLinks } from "../data/navigationLinks";
+import { ThemeSwitch } from "./ThemeSwitch";
 
 export const TopBar: FC = (): ReactElement => {
-  const [menuActive, toggleMenu] = useState(false);
-
-  const toggleMobileMenu = (): void => {
-    toggleMenu(!menuActive);
-  };
-
   return (
-    <nav className="navbar" role="navigation" aria-label="main navigation">
-      <div className="container">
-        <div className="navbar-brand has-text-weight-semibold">
-          <Link to="/" className="navbar-item">
-            <p className="title green">Elliot J. Reed</p>
-          </Link>
-          <a
-            role="button"
-            className={"navbar-burger navbar" + (menuActive ? " is-active" : "")}
-            aria-label="menu"
-            aria-expanded="false"
-            onClick={toggleMobileMenu}
-          >
-            <span aria-hidden="true" />
-            <span aria-hidden="true" />
-            <span aria-hidden="true" />
-          </a>
-        </div>
-
-        <div className={"navbar-menu" + (menuActive ? " is-active" : "")}>
-          <div className="navbar-start">
-            <div className="navbar-item has-dropdown is-hoverable">
-              <span className="navbar-link">About</span>
-              <div className="navbar-dropdown">
-                <Link className="navbar-item" to="/cv" onClick={toggleMobileMenu}>
-                  CV
-                </Link>
-                <Link className="navbar-item" to="/travel" onClick={toggleMobileMenu}>
-                  Travelling
-                </Link>
-              </div>
-            </div>
-            <Link className="navbar-item" to="/contact" onClick={toggleMobileMenu}>
-              Contact
-            </Link>
-            <div className="navbar-item has-dropdown is-hoverable">
-              <span className="navbar-link">Fun Experiments</span>
-              <div className="navbar-dropdown">
-                <Link className="navbar-item" to="/stay-alert" onClick={toggleMobileMenu}>
-                  #StayAlert Generator
-                </Link>
-                <Link className="navbar-item" to="/government-tweet" onClick={toggleMobileMenu}>
-                  @10DowningStreet Generator
-                </Link>
-              </div>
-            </div>
-            <Link className="navbar-item" to="/blog" onClick={toggleMobileMenu}>
-              Blog
-            </Link>
+    <header className="flex items-center justify-between py-10">
+      <div>
+        <Link to="/">
+          <div className="flex items-center justify-between">
+            <div className="mr-3 h-6 text-2xl font-semibold sm:block">Elliot J. Reed</div>
           </div>
-
-          <div className="navbar-end">
-            <div className="navbar-item">
-              <div className="buttons">
-                <a
-                  href="https://github.com/elliotjreed"
-                  className="button"
-                  title="GitHub Profile"
-                  rel="noreferrer noopener"
-                >
-                  <span className="icon is-medium">
-                    <FontAwesomeIcon className="fas fa-lg green" icon={faGithub} />
-                  </span>
-                </a>
-                <a
-                  href="https://twitter.com/elliotjreed"
-                  className="button"
-                  title="Twitter Profile"
-                  rel="noreferrer noopener"
-                >
-                  <span className="icon is-medium">
-                    <FontAwesomeIcon className="fas fa-lg green" icon={faTwitter} />
-                  </span>
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/elliotjreed/"
-                  className="button"
-                  title="LinkedIn Profile"
-                  rel="noreferrer noopener"
-                >
-                  <span className="icon is-medium">
-                    <FontAwesomeIcon className="fas fa-lg green" icon={faLinkedin} />
-                  </span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+        </Link>
       </div>
-    </nav>
+
+      <div className="flex items-center text-base leading-5">
+        <div className="hidden sm:block">
+          {navigationLinks.map(
+            (link: NavigationLink, index: number): ReactElement => (
+              <Link key={index} to={link.href} className="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4">
+                {link.title}
+              </Link>
+            )
+          )}
+        </div>
+
+        <ThemeSwitch />
+
+        <MobileNavigation />
+      </div>
+    </header>
   );
 };

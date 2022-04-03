@@ -1,13 +1,12 @@
 import { marked } from "marked";
 import { FC, ReactElement, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { Params, useParams } from "react-router-dom";
+import { Link, Params, useParams } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
 import { pageview } from "react-ga";
 
 import { BlogPosting as PostInterface } from "../interfaces/BlogPosting";
 import { Person } from "../interfaces/Person";
-import { Spinner } from "./Spinner";
 import { fetchCache } from "../hooks/fetchCache";
 
 export const Post: FC = (): ReactElement => {
@@ -30,7 +29,6 @@ export const Post: FC = (): ReactElement => {
     familyName: "Reed"
   };
 
-  const [loading, setLoading] = useState<boolean>(true);
   const [content, setContent] = useState<PostInterface>({
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -62,7 +60,6 @@ export const Post: FC = (): ReactElement => {
   useEffect((): void => {
     if (response !== null) {
       setContent(response);
-      setLoading(false);
     }
   }, [response]);
 
@@ -93,38 +90,54 @@ export const Post: FC = (): ReactElement => {
         <meta name="twitter:image" content={content.url} />
       </Helmet>
 
-      <section className="container">
-        <div className="column is-10 is-offset-1">
-          <animated.main id="main-content" className="card" style={springProps}>
-            {loading ? (
-              <Spinner />
-            ) : (
-              <div className="card-content">
-                <h1 className="title has-text-centered">{content.headline}</h1>
-
-                <div className="tags level-item">
-                  <time dateTime={content.dateCreated} className="tag is-rounded">
+      <animated.article style={springProps}>
+        <header>
+          <div className="space-y-1 border-b border-gray-200 pb-10 text-center dark:border-gray-700">
+            <dl>
+              <div>
+                <dt className="sr-only">Published on</dt>
+                <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                  <time dateTime={content.dateCreated}>
                     {new Date(content.dateCreated).toLocaleDateString("en-GB", {
                       year: "numeric",
                       month: "long",
                       day: "numeric"
                     })}
                   </time>
-                  <span className="tag is-rounded">{content.wordCount} words</span>
-                </div>
-
-                <div className="content">
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: marked(content.articleBody.substring(content.articleBody.indexOf("\n") + 1))
-                    }}
-                  />
-                </div>
+                  &nbsp;<em>{content.wordCount} words</em>
+                </dd>
               </div>
-            )}
-          </animated.main>
+            </dl>
+            <div>
+              <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14">
+                {content.headline}
+              </h1>
+            </div>
+          </div>
+        </header>
+        <div
+          className="divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:divide-y-0"
+          style={{ gridTemplateRows: "auto 1fr" }}
+        >
+          <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
+            <div
+              className="prose max-w-none pt-10 pb-8 dark:prose-dark"
+              dangerouslySetInnerHTML={{
+                __html: marked(content.articleBody.substring(content.articleBody.indexOf("\n") + 1))
+              }}
+            />
+          </div>
+          <footer>
+            <div className="flex flex-col text-sm font-medium sm:flex-row sm:justify-between sm:text-base">
+              <div className="pt-4 xl:pt-8">
+                <Link to="/blog" className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                  &larr; Back to the blog
+                </Link>
+              </div>
+            </div>
+          </footer>
         </div>
-      </section>
+      </animated.article>
     </>
   );
 };

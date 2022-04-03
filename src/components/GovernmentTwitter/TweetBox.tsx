@@ -6,6 +6,8 @@ import { faRetweet } from "@fortawesome/fontawesome-free-solid/faRetweet";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import "../../assets/css/tweet.css";
+
 interface ContentInterface {
   content: string;
   contentContainerRef: RefObject<HTMLDivElement>;

@@ -6,6 +6,8 @@ describe("Travelling", (): void => {
   it("should display subtitle text", (): void => {
     render(<Travelling />);
 
-    expect(screen.getByText("A few photographs from some various travels.")).toBeInTheDocument();
+    expect(
+      screen.getByText("A few photographs from some of the places I've visited (and remembered to take a photo!).")
+    ).toBeInTheDocument();
   });
 });

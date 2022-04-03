@@ -1,6 +1,7 @@
 const { resolve } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
+const purgecss = require("@fullhuman/postcss-purgecss");
 
 module.exports = {
   name: "client",
@@ -21,7 +22,19 @@ module.exports = {
       },
       {
         test: /\.(sa|sc|c)ss$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
+        use: [
+          "style-loader",
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              sourceMap: true,
+              postcssOptions: {
+                plugins: ["tailwindcss", "autoprefixer"]
+              }
+            }
+          }
+        ]
       }
     ]
   },

@@ -1,5 +1,7 @@
 import { FC, ReactElement, RefObject } from "react";
 
+import "../../assets/css/yellow_box.css";
+
 interface ContentInterface {
   lineOne: string;
   lineTwo: string;

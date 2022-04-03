@@ -6,7 +6,7 @@ import { renderToString } from "react-dom/server";
 import { Request, Response } from "express-serve-static-core";
 import { StaticRouter } from "react-router-dom/server";
 
-import { Routes } from "../components/Routes";
+import { App } from "../components/App";
 
 const server = express();
 
@@ -41,7 +41,7 @@ server.get("*", (request: Request, response: Response) => {
 
   const component: string = renderToString(
     <StaticRouter location={request.url}>
-      <Routes />
+      <App />
     </StaticRouter>
   );
 

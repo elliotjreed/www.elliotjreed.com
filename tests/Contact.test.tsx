@@ -21,10 +21,10 @@ describe("Contact", (): void => {
       </MemoryRouter>
     );
 
-    userEvent.type(screen.getByLabelText("Name"), "Test Name");
-    userEvent.type(screen.getByLabelText("Email"), "email@example.com");
-    userEvent.type(screen.getByLabelText("Message"), "A test message");
-    userEvent.click(screen.getByRole("button"));
+    await userEvent.type(screen.getByLabelText("Name"), "Test Name");
+    await userEvent.type(screen.getByLabelText("Email address"), "email@example.com");
+    await userEvent.type(screen.getByLabelText("Message"), "A test message");
+    await userEvent.click(screen.getByRole("button"));
 
     await waitFor((): void => expect(scope.isDone()).toBe(true));
 
@@ -46,10 +46,10 @@ describe("Contact", (): void => {
       </MemoryRouter>
     );
 
-    userEvent.type(screen.getByLabelText("Name"), "Test Name");
-    userEvent.type(screen.getByLabelText("Email"), "email@example.com");
-    userEvent.type(screen.getByLabelText("Message"), "A test message");
-    userEvent.click(screen.getByRole("button"));
+    await userEvent.type(screen.getByLabelText("Name"), "Test Name");
+    await userEvent.type(screen.getByLabelText("Email address"), "email@example.com");
+    await userEvent.type(screen.getByLabelText("Message"), "A test message");
+    await userEvent.click(screen.getByRole("button"));
 
     await waitFor((): void => expect(scope.isDone()).toBe(true));
 
@@ -71,10 +71,10 @@ describe("Contact", (): void => {
       </MemoryRouter>
     );
 
-    userEvent.type(screen.getByLabelText("Name"), "Test Name");
-    userEvent.type(screen.getByLabelText("Email"), "email@example.com");
-    userEvent.type(screen.getByLabelText("Message"), "A test message");
-    userEvent.click(screen.getByRole("button"));
+    await userEvent.type(screen.getByLabelText("Name"), "Test Name");
+    await userEvent.type(screen.getByLabelText("Email address"), "email@example.com");
+    await userEvent.type(screen.getByLabelText("Message"), "A test message");
+    await userEvent.click(screen.getByRole("button"));
 
     await waitFor((): void => expect(scope.isDone()).toBe(true));
 
