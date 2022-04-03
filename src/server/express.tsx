@@ -2,7 +2,9 @@ import cors from "cors";
 import express from "express";
 import fs from "fs";
 import { join, resolve } from "path";
-import { renderToString } from "react-dom/server";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { renderToPipeableStream } from "react-dom/server";
 import { Request, Response } from "express-serve-static-core";
 import { StaticRouter } from "react-router-dom/server";
 
@@ -39,13 +41,29 @@ server.get("*", (request: Request, response: Response) => {
       "default-src 'self' https://api.elliotjreed.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://static.cloudflareinsights.com https://js.hcaptcha.com; img-src 'self' data: https://res.cloudinary.com https://www.google-analytics.com https://ssl.google-analytics.com https://csi.gstatic.com https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://themes.googleusercontent.com https://fonts.gstatic.com; frame-src https://www.google.com https://newassets.hcaptcha.com; object-src 'none'"
   });
 
-  const component: string = renderToString(
+  const { pipe, abort } = renderToPipeableStream(
     <StaticRouter location={request.url}>
       <App />
-    </StaticRouter>
+    </StaticRouter>,
+    {
+      onAllReady() {
+        response.statusCode = 200;
+        response.setHeader("Content-type", "text/html");
+        response.write(indexHTML.split('<div id="root">')[0] + '<div id="root">');
+        pipe(response, { end: false });
+        response.end("</div></body></html>");
+      },
+      onShellError() {
+        response.statusCode = 500;
+        response.send(
+          indexHTML.replace(
+            '<div id="root"></div>',
+            '<div id="root">Oh no! It looks like my server-side rendering has gone quite badly wrong if you&apos;re seeing this!</div>'
+          )
+        );
+      }
+    }
   );
-
-  return response.send(indexHTML.replace('<div id="root"></div>', '<div id="root">' + component + "</div>"));
 });
 
 server.listen(81);
