@@ -1,5 +1,8 @@
 import { FC, ReactElement } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/fontawesome-free-solid/faEye";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 import { MobileNavigation } from "./MobileNavigation";
 import { NavigationLink, navigationLinks } from "../data/navigationLinks";
@@ -28,6 +31,20 @@ export const TopBar: FC = (): ReactElement => {
         </div>
 
         <ThemeSwitch />
+
+        <span
+          className="icon"
+          onClick={(): void => {
+            typeof document !== "undefined" &&
+              (document.body.style.fontFamily === "OpenDyslexic"
+                ? (document.body.style.fontFamily =
+                    "InterVariable,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji")
+                : (document.body.style.fontFamily = "OpenDyslexic"));
+          }}
+          title="Toggle dyslexia-friendly font"
+        >
+          <FontAwesomeIcon className="fas fa-lg" icon={faEye as IconProp} aria-label="Toggle dyslexia-friendly font" />
+        </span>
 
         <MobileNavigation />
       </div>

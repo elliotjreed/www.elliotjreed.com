@@ -2,8 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: OpenDyslexic;
+  font-style: normal;
+  src:
+    url("./fonts/OpenDyslexic-Regular.woff2") format('woff2'),
+    url("./fonts/OpenDyslexic-Regular.woff2") format('woff');
+}
+
+@font-face {
+  font-family: OpenDyslexic;
+  src:
+    url("./fonts/OpenDyslexic-Bold.woff2") format('woff2'),
+    url("./fonts/OpenDyslexic-Bold.woff") format('woff');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: OpenDyslexic;
+  src:
+    url("./fonts/OpenDyslexic-Bold-Italic.woff2") format('woff2'),
+    url("./fonts/OpenDyslexic-Bold-Italic.woff") format('woff');
+  font-style: italic;
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: OpenDyslexic;
+  src:
+    url("./fonts/OpenDyslexic-Italic.woff2") format('woff2'),
+    url("./fonts/OpenDyslexic-Italic.woff") format('woff');
+  font-style: italic;
+}
+
 /* https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied */
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
 }
+
