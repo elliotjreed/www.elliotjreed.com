@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { FC, ReactElement, useEffect, useState } from "react";
 
-export const ThemeSwitch = () => {
+export const ThemeSwitch: FC = (): ReactElement => {
   const [mounted, setMounted] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">(
     (typeof window !== "undefined" && localStorage.theme) || "light"

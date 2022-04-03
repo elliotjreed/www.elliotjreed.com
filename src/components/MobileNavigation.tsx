@@ -1,8 +1,8 @@
-import { ReactElement, useState } from "react";
+import { FC, ReactElement, useState } from "react";
 import { NavigationLink, navigationLinks } from "../data/navigationLinks";
 import { Link } from "react-router-dom";
 
-export const MobileNavigation = () => {
+export const MobileNavigation: FC = (): ReactElement => {
   const [showNavigation, setShowNavigation] = useState<boolean>(false);
 
   const onToggleNav = (): void => {
