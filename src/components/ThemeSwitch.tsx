@@ -3,7 +3,9 @@ import { FC, ReactElement, useEffect, useState } from "react";
 export const ThemeSwitch: FC = (): ReactElement => {
   const [mounted, setMounted] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">(
-    (typeof window !== "undefined" && localStorage.theme) || "light"
+    (typeof window !== "undefined" &&
+      (localStorage.theme || (window.matchMedia("(prefers-color-scheme: dark)").matches && "dark"))) ||
+      "light"
   );
 
   useEffect((): void => setMounted(true), []);
