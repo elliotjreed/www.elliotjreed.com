@@ -11,22 +11,22 @@ export const Footer: FC = (): ReactElement => {
     <footer>
       <div className="mt-16 flex flex-col items-center">
         <div className="mb-3 flex space-x-4">
-          <a href="https://github.com/elliotjreed" target="noreferrer noopener">
+          <a href="https://github.com/elliotjreed" target="noreferrer noopener" title="GitHub">
             <span className="icon">
               <FontAwesomeIcon className="fas fa-lg" icon={faGithub} aria-label="GitHub Profile" />
             </span>
           </a>
-          <a href="https://www.linkedin.com/in/elliotjreed/" target="noreferrer noopener">
+          <a href="https://www.linkedin.com/in/elliotjreed/" target="noreferrer noopener" title="LinkedIn">
             <span className="icon">
               <FontAwesomeIcon className="fas fa-lg" icon={faLinkedin} aria-label="LinkedIn Profile" />
             </span>
           </a>
-          <a href="https://twitter.com/elliotjreed" target="noreferrer noopener">
+          <a href="https://twitter.com/elliotjreed" target="noreferrer noopener" title="Twitter">
             <span className="icon">
               <FontAwesomeIcon className="fas fa-lg" icon={faTwitter} aria-label="Twitter Profile" />
             </span>
           </a>
-          <a href="https://t.me/elliotjreed" target="noreferrer noopener">
+          <a href="https://t.me/elliotjreed" target="noreferrer noopener" title="Telegram">
             <span className="icon">
               <FontAwesomeIcon className="fas fa-lg" icon={faTelegram} aria-label="Telegram" />
             </span>
