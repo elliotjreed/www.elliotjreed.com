@@ -55,7 +55,7 @@ export const Home: FC = (): ReactElement => {
         <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
           <div className="flex flex-col items-center pt-8">
             <img
-              src="https://res.cloudinary.com/elliotjreed/image/upload/w_256,h_256,c_scale,f_auto,q_auto/v1553434444/elliotjreed.jpg"
+              src="https://res.cloudinary.com/elliotjreed/image/upload/w_192,h_192,c_scale,f_auto,q_auto/v1553434444/elliotjreed.jpg"
               alt="Photograph of Elliot"
               width={192}
               height={192}

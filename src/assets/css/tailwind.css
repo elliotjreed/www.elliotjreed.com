@@ -4,15 +4,21 @@
 
 @font-face {
   font-family: OpenDyslexic;
+  font-display: swap;
   font-style: normal;
   src:
+    local("OpenDyslexic-Regular"),
+    local("OpenDyslexicRegular"),
     url("./fonts/OpenDyslexic-Regular.woff2") format('woff2'),
     url("./fonts/OpenDyslexic-Regular.woff2") format('woff');
 }
 
 @font-face {
   font-family: OpenDyslexic;
+  font-display: swap;
   src:
+    local("OpenDyslexic-Bold"),
+    local("OpenDyslexicBold"),
     url("./fonts/OpenDyslexic-Bold.woff2") format('woff2'),
     url("./fonts/OpenDyslexic-Bold.woff") format('woff');
   font-weight: bold;
@@ -20,7 +26,10 @@
 
 @font-face {
   font-family: OpenDyslexic;
+  font-display: swap;
   src:
+    local("OpenDyslexic-BoldItalic"),
+    local("OpenDyslexicBoldItalic"),
     url("./fonts/OpenDyslexic-Bold-Italic.woff2") format('woff2'),
     url("./fonts/OpenDyslexic-Bold-Italic.woff") format('woff');
   font-style: italic;
@@ -29,7 +38,10 @@
 
 @font-face {
   font-family: OpenDyslexic;
+  font-display: swap;
   src:
+    local("OpenDyslexic-Italic"),
+    local("OpenDyslexicItalic"),
     url("./fonts/OpenDyslexic-Italic.woff2") format('woff2'),
     url("./fonts/OpenDyslexic-Italic.woff") format('woff');
   font-style: italic;
