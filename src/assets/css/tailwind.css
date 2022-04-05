@@ -11,7 +11,7 @@
     local("OpenDyslexicRegular"),
     local("OpenDyslexic"),
     url("./fonts/OpenDyslexic-Regular.woff2") format('woff2'),
-    url("./fonts/OpenDyslexic-Regular.woff2") format('woff');
+    url("./fonts/OpenDyslexic-Regular.woff") format('woff');
 }
 
 @font-face {

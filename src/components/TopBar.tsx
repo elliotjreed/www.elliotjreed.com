@@ -28,9 +28,9 @@ export const TopBar: FC = (): ReactElement => {
           )}
         </div>
 
-        <ThemeSwitch />
-
         <FontSwitch />
+
+        <ThemeSwitch />
 
         <MobileNavigation />
       </div>

@@ -67,22 +67,22 @@ export const Home: FC = (): ReactElement => {
             <div className="flex space-x-3 pt-6">
               <a href="https://github.com/elliotjreed" target="noreferrer noopener" title="GitHub">
                 <span className="icon">
-                  <FontAwesomeIcon className="fas fa-lg" icon={faGithub} aria-label="GitHub Profile" />
+                  <FontAwesomeIcon className="fa-lg" icon={faGithub} aria-label="GitHub Profile" />
                 </span>
               </a>
               <a href="https://www.linkedin.com/in/elliotjreed/" target="noreferrer noopener" title="LinkedIn">
                 <span className="icon">
-                  <FontAwesomeIcon className="fas fa-lg" icon={faLinkedin} aria-label="LinkedIn Profile" />
+                  <FontAwesomeIcon className="fa-lg" icon={faLinkedin} aria-label="LinkedIn Profile" />
                 </span>
               </a>
               <a href="https://twitter.com/elliotjreed" target="noreferrer noopener" title="Twitter">
                 <span className="icon">
-                  <FontAwesomeIcon className="fas fa-lg" icon={faTwitter} aria-label="Twitter Profile" />
+                  <FontAwesomeIcon className="fa-lg" icon={faTwitter} aria-label="Twitter Profile" />
                 </span>
               </a>
               <a href="https://t.me/elliotjreed" target="noreferrer noopener" title="Telegram">
                 <span className="icon">
-                  <FontAwesomeIcon className="fas fa-lg" icon={faTelegram} aria-label="Telegram" />
+                  <FontAwesomeIcon className="fa-lg" icon={faTelegram} aria-label="Telegram" />
                 </span>
               </a>
             </div>
