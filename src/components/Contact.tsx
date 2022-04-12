@@ -117,25 +117,22 @@ export const Contact: FC = (): ReactElement => {
           {errors}
         </div>
       )}
-      <button
+      <animated.button
         type="submit"
         disabled={loading}
         className="w-full px-6 py-2.5 bg-gray-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out"
+        style={{
+          opacity: x.to({ range: [0, 1], output: [0.3, 1] }),
+          transform: x
+            .to({
+              range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
+              output: [1, 0.97, 0.9, 1.1, 0.9, 1.1, 1.03, 1]
+            })
+            .to((x: number): string => `scale(${x})`)
+        }}
       >
-        <animated.div
-          style={{
-            opacity: x.to({ range: [0, 1], output: [0.3, 1] }),
-            transform: x
-              .to({
-                range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
-                output: [1, 0.97, 0.9, 1.1, 0.9, 1.1, 1.03, 1]
-              })
-              .to((x: number): string => `scale(${x})`)
-          }}
-        >
-          Send
-        </animated.div>
-      </button>
+        Send
+      </animated.button>
     </form>
   );
 
