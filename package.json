@@ -49,9 +49,9 @@
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.3.0",
     "react-spring": "^9.4.2",
-    "tailwindcss": "^3.0.23",
+    "tailwindcss": "^3.0.24",
     "webpack-pwa-manifest": "^4.3.0",
-    "workbox-webpack-plugin": "^6.5.2"
+    "workbox-webpack-plugin": "^6.5.3"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^4.1.3",
