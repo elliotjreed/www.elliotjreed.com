@@ -21,10 +21,14 @@ describe("Contact", (): void => {
       </MemoryRouter>
     );
 
+    expect(screen.getByRole("button")).not.toBeDisabled();
+
     await userEvent.type(screen.getByLabelText("Name"), "Test Name");
     await userEvent.type(screen.getByLabelText("Email address"), "email@example.com");
     await userEvent.type(screen.getByLabelText("Message"), "A test message");
     await userEvent.click(screen.getByRole("button"));
+
+    expect(await screen.findByRole("button")).toBeDisabled();
 
     await waitFor((): void => expect(scope.isDone()).toBe(true));
 

@@ -3,6 +3,7 @@ import { FC, FormEvent, ReactElement, ReactNode, useEffect, useState } from "rea
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
 import { pageview } from "react-ga";
+
 interface EmailResponse {
   errors?: string[];
 }
@@ -118,6 +119,7 @@ export const Contact: FC = (): ReactElement => {
       )}
       <button
         type="submit"
+        disabled={loading}
         className="w-full px-6 py-2.5 bg-gray-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out"
       >
         <animated.div
@@ -141,7 +143,10 @@ export const Contact: FC = (): ReactElement => {
     <>
       <Helmet>
         <title>Contact | Elliot J. Reed</title>
-        <meta name="description" content="Get in touch with me via the contact form." />
+        <meta
+          name="description"
+          content="Get in touch with me via the contact form; or via LinkedIn, Twitter, or Telegram."
+        />
       </Helmet>
 
       <animated.section className="divide-y divide-gray-200 dark:divide-gray-700" style={springProps}>
