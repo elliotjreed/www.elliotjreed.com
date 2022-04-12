@@ -29,7 +29,7 @@ module.exports = merge(commonConfig, {
                   "cssnano",
                   purgecss({
                     content: ["./src/**/*.{ts,tsx,js,html,jsx}"],
-                    safelist: ["pre", "code", "OpenDyslexic", "button"],
+                    safelist: ["pre", "code", ".py-2.5"],
                     defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || []
                   })
                 ]
