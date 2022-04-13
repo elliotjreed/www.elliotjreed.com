@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const fetchCache = <T>(url: string, abortController: AbortController, cacheName = "ejr"): T | null => {
+export const useFetchCache = <T>(url: string, abortController: AbortController, cacheName = "ejr"): T | null => {
   const [response, setResponse] = useState<T | null>(null);
   const [updatedFromNetwork, setUpdatedFromNetwork] = useState<boolean>(false);
 
@@ -35,7 +35,11 @@ export const fetchCache = <T>(url: string, abortController: AbortController, cac
 
           !updatedFromNetwork && updateFromNetwork();
         })
-        .catch((): Promise<void> => updateFromNetwork());
+        .catch((error: Error): void => {
+          console.error("Error fetching data from cache", url, error);
+
+          updateFromNetwork();
+        });
     } catch (error: unknown) {
       return await updateFromNetwork();
     }
@@ -43,7 +47,7 @@ export const fetchCache = <T>(url: string, abortController: AbortController, cac
 
   const updateFromNetwork = async (): Promise<void> => {
     try {
-      const getResponse = await fetch(url, { signal: abortController.signal });
+      const getResponse: Response = await fetch(url, { credentials: "same-origin", signal: abortController.signal });
 
       const networkResponse: T = await new Promise((resolve, reject): void => {
         const clonedResponse: Response = getResponse.clone();
@@ -53,7 +57,9 @@ export const fetchCache = <T>(url: string, abortController: AbortController, cac
             caches
               .open(cacheName)
               .then((cache: Cache): Promise<void> => cache.put(url, clonedResponse.clone()))
-              .catch((): void => {}); // eslint-disable-line @typescript-eslint/no-empty-function
+              .catch((error: Error): void => {
+                console.warn("Error caching response", url, error);
+              });
           }
 
           const contentType = clonedResponse.headers.get("content-type");
@@ -70,6 +76,8 @@ export const fetchCache = <T>(url: string, abortController: AbortController, cac
       setResponse(networkResponse);
       setUpdatedFromNetwork(true);
     } catch (error: unknown) {
+      console.error("Error fetching from API", url, error);
+
       return abortController.abort();
     }
   };

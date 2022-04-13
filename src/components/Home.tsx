@@ -8,7 +8,7 @@ import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
 import { faTelegram } from "@fortawesome/free-brands-svg-icons/faTelegram";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons/faTwitter";
 
-import { fetchCache } from "../hooks/fetchCache";
+import { useFetchCache } from "../hooks/useFetchCache";
 import { Person } from "../interfaces/Person";
 
 export const Home: FC = (): ReactElement => {
@@ -24,7 +24,7 @@ export const Home: FC = (): ReactElement => {
 
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
-  const response: Person | null = fetchCache<Person>("https://api.elliotjreed.com/blog/author", abortController);
+  const response: Person | null = useFetchCache<Person>("https://api.elliotjreed.com/blog/author", abortController);
 
   useEffect((): void => {
     if (response !== null) {
@@ -32,11 +32,9 @@ export const Home: FC = (): ReactElement => {
     }
   }, [response]);
 
-  useEffect((): void => {
+  useEffect((): (() => void) => {
     pageview(window.location.pathname + location.search);
-  }, []);
 
-  useEffect(() => {
     return (): void => abortController.abort();
   }, []);
 

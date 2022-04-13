@@ -5,7 +5,7 @@ import { pageview } from "react-ga";
 
 import { BlogPosting } from "../interfaces/BlogPosting";
 import { Spinner } from "./Spinner";
-import { fetchCache } from "../hooks/fetchCache";
+import { useFetchCache } from "../hooks/useFetchCache";
 import { Link } from "react-router-dom";
 
 interface Blog {
@@ -21,7 +21,7 @@ export const Posts: FC = (): ReactElement => {
 
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
-  const response: Blog | null = fetchCache<Blog>("https://api.elliotjreed.com/blog/posts", abortController);
+  const response: Blog | null = useFetchCache<Blog>("https://api.elliotjreed.com/blog/posts", abortController);
 
   useEffect((): void => {
     if (response !== null) {
@@ -31,11 +31,9 @@ export const Posts: FC = (): ReactElement => {
     }
   }, [response]);
 
-  useEffect((): void => {
+  useEffect((): (() => void) => {
     pageview(window.location.pathname + location.search);
-  }, []);
 
-  useEffect(() => {
     return (): void => abortController.abort();
   }, []);
 

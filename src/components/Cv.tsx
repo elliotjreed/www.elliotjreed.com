@@ -5,7 +5,7 @@ import { animated, useSpring } from "react-spring";
 import { pageview } from "react-ga";
 
 import { Spinner } from "./Spinner";
-import { fetchCache } from "../hooks/fetchCache";
+import { useFetchCache } from "../hooks/useFetchCache";
 import "../assets/css/print.css";
 
 export const Cv: FC = (): ReactElement => {
@@ -16,7 +16,7 @@ export const Cv: FC = (): ReactElement => {
 
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
-  const response: string | null = fetchCache<string>("https://api.elliotjreed.com/cv", abortController);
+  const response: string | null = useFetchCache<string>("https://api.elliotjreed.com/cv", abortController);
 
   useEffect((): void => {
     if (response !== null) {
@@ -25,11 +25,9 @@ export const Cv: FC = (): ReactElement => {
     }
   }, [response]);
 
-  useEffect((): void => {
+  useEffect((): (() => void) => {
     pageview(window.location.pathname + location.search);
-  }, []);
 
-  useEffect(() => {
     return (): void => abortController.abort();
   }, []);
 

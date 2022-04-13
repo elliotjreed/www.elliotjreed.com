@@ -7,7 +7,7 @@ import { pageview } from "react-ga";
 
 import { BlogPosting as PostInterface } from "../interfaces/BlogPosting";
 import { Person } from "../interfaces/Person";
-import { fetchCache } from "../hooks/fetchCache";
+import { useFetchCache } from "../hooks/useFetchCache";
 
 export const Post: FC = (): ReactElement => {
   const abortController: AbortController = new AbortController();
@@ -52,7 +52,7 @@ export const Post: FC = (): ReactElement => {
 
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
-  const response: PostInterface | null = fetchCache<PostInterface>(
+  const response: PostInterface | null = useFetchCache<PostInterface>(
     "https://api.elliotjreed.com/blog/post/" + url,
     abortController
   );
@@ -63,11 +63,9 @@ export const Post: FC = (): ReactElement => {
     }
   }, [response]);
 
-  useEffect((): void => {
+  useEffect((): (() => void) => {
     pageview(window.location.pathname + location.search);
-  }, []);
 
-  useEffect(() => {
     return (): void => abortController.abort();
   }, []);
 
