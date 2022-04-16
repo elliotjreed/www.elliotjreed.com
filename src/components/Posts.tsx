@@ -1,41 +1,44 @@
 import { ChangeEvent, FC, ReactElement, ReactNode, useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
-import { animated, useSpring } from "react-spring";
 import { pageview } from "react-ga";
+import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
+import { animated, useSpring } from "react-spring";
 
 import { BlogPosting } from "../interfaces/BlogPosting";
 import { Spinner } from "./Spinner";
-import { useFetchCache } from "../hooks/useFetchCache";
-import { Link } from "react-router-dom";
+import { useFetch } from "../hooks/useFetch";
 
 interface Blog {
   blogPosts: BlogPosting[];
 }
 
 export const Posts: FC = (): ReactElement => {
-  const abortController = new AbortController();
-
   const [loading, setLoading] = useState<boolean>(true);
   const [posts, setPosts] = useState<Blog>({ blogPosts: [] });
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
-  const response: Blog | null = useFetchCache<Blog>("https://api.elliotjreed.com/blog/posts", abortController);
+  const [response, responseErrors] = useFetch<Blog>({
+    url: "https://api.elliotjreed.com/blog/posts",
+    cacheResponse: true
+  });
 
   useEffect((): void => {
-    if (response !== null) {
+    if (response !== null && response !== undefined) {
       response.blogPosts.sort((a: BlogPosting, b: BlogPosting): number => b.dateCreated.localeCompare(a.dateCreated));
       setPosts(response);
       setLoading(false);
     }
   }, [response]);
 
-  useEffect((): (() => void) => {
-    pageview(window.location.pathname + location.search);
+  useEffect((): void => {
+    if (responseErrors.length > 0) {
+      console.error(responseErrors);
+    }
+  }, [responseErrors]);
 
-    return (): void => abortController.abort();
-  }, []);
+  useEffect((): void => pageview(window.location.pathname + location.search), []);
 
   const handleSearch = (event: ChangeEvent): void => {
     event.preventDefault();
@@ -114,6 +117,7 @@ export const Posts: FC = (): ReactElement => {
               placeholder="Search"
               className="block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
             />
+
             <svg
               className="absolute right-3 top-3 h-5 w-5 text-gray-400 dark:text-gray-300"
               xmlns="http://www.w3.org/2000/svg"
@@ -130,6 +134,7 @@ export const Posts: FC = (): ReactElement => {
             </svg>
           </div>
         </div>
+
         {loading ? <Spinner /> : postsInCategory(posts)}
       </animated.section>
     </>

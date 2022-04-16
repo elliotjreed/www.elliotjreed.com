@@ -13,24 +13,27 @@ describe("Post", (): void => {
       })
       .get("/blog/post/2022-01-01/test-post")
       .reply(200, {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "mainEntityOfPage": "https://www.elliotjreed.com/blog/post/2022-01-01-test-post",
-        "publisher": { name: "Test Publisher Name", logo: { url: "https://example.com/publisher-image.png" } },
-        "sameAs": "",
-        "name": "Post Title",
-        "dateModified": "2022-01-01",
-        "dateCreated": "2022-01-01",
-        "datePublished": "2022-01-01",
-        "articleBody": "A test article body",
-        "wordCount": 4,
-        "author": "Test Author Name",
-        "url": "https://www.elliotjreed.com/blog/post/2022-01-01-test-post",
-        "inLanguage": "en-GB",
-        "copyrightHolder": "Test Copyright Holder Name",
-        "headline": "Test Headline",
-        "license": "",
-        "image": { url: "https://example.com/post-image.png" }
+        data: {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "mainEntityOfPage": "https://www.elliotjreed.com/blog/post/2022-01-01-test-post",
+          "publisher": { name: "Test Publisher Name", logo: { url: "https://example.com/publisher-image.png" } },
+          "sameAs": "",
+          "name": "Post Title",
+          "dateModified": "2022-01-01",
+          "dateCreated": "2022-01-01",
+          "datePublished": "2022-01-01",
+          "articleBody": "A test article body",
+          "wordCount": 4,
+          "author": "Test Author Name",
+          "url": "https://www.elliotjreed.com/blog/post/2022-01-01-test-post",
+          "inLanguage": "en-GB",
+          "copyrightHolder": "Test Copyright Holder Name",
+          "headline": "Test Headline",
+          "license": "",
+          "image": { url: "https://example.com/post-image.png" }
+        },
+        errors: []
       });
 
     render(

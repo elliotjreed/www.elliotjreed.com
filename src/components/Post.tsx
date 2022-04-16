@@ -7,11 +7,10 @@ import { pageview } from "react-ga";
 
 import { BlogPosting as PostInterface } from "../interfaces/BlogPosting";
 import { Person } from "../interfaces/Person";
-import { useFetchCache } from "../hooks/useFetchCache";
+import { useFetch } from "../hooks/useFetch";
+import { Spinner } from "./Spinner";
 
 export const Post: FC = (): ReactElement => {
-  const abortController: AbortController = new AbortController();
-
   const params: Readonly<Params> = useParams();
   const date: string = params.date;
   const url: string = date + "/" + params.post;
@@ -29,6 +28,7 @@ export const Post: FC = (): ReactElement => {
     familyName: "Reed"
   };
 
+  const [loading, setLoading] = useState<boolean>(true);
   const [content, setContent] = useState<PostInterface>({
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -52,22 +52,25 @@ export const Post: FC = (): ReactElement => {
 
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
-  const response: PostInterface | null = useFetchCache<PostInterface>(
-    "https://api.elliotjreed.com/blog/post/" + url,
-    abortController
-  );
+  const [response, responseErrors] = useFetch<PostInterface>({
+    url: "https://api.elliotjreed.com/blog/post/" + url,
+    cacheResponse: true
+  });
 
   useEffect((): void => {
-    if (response !== null) {
+    if (response !== null && response !== undefined) {
       setContent(response);
+      setLoading(false);
     }
   }, [response]);
 
-  useEffect((): (() => void) => {
-    pageview(window.location.pathname + location.search);
+  useEffect((): void => {
+    if (responseErrors.length > 0) {
+      console.error(responseErrors);
+    }
+  }, [responseErrors]);
 
-    return (): void => abortController.abort();
-  }, []);
+  useEffect((): void => pageview(window.location.pathname + location.search), []);
 
   return (
     <>
@@ -118,12 +121,16 @@ export const Post: FC = (): ReactElement => {
           style={{ gridTemplateRows: "auto 1fr" }}
         >
           <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-            <div
-              className="prose max-w-none pt-10 pb-8 dark:prose-dark"
-              dangerouslySetInnerHTML={{
-                __html: marked(content.articleBody.substring(content.articleBody.indexOf("\n") + 1))
-              }}
-            />
+            {loading ? (
+              <Spinner />
+            ) : (
+              <div
+                className="prose max-w-none pt-10 pb-8 dark:prose-dark"
+                dangerouslySetInnerHTML={{
+                  __html: marked(content.articleBody.substring(content.articleBody.indexOf("\n") + 1))
+                }}
+              />
+            )}
           </div>
           <footer>
             <div className="flex flex-col text-sm font-medium sm:flex-row sm:justify-between sm:text-base">

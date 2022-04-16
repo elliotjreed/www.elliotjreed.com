@@ -13,7 +13,7 @@ describe("Contact", (): void => {
         "access-control-allow-credentials": "true"
       })
       .post("/email/send")
-      .reply(200, JSON.stringify(true));
+      .reply(200, { data: { status: "sent" }, errors: [] });
 
     render(
       <MemoryRouter>
@@ -42,7 +42,7 @@ describe("Contact", (): void => {
         "access-control-allow-credentials": "true"
       })
       .post("/email/send")
-      .reply(200, { errors: "An error occurred" });
+      .reply(200, { errors: ["An error occurred"] });
 
     render(
       <MemoryRouter>
@@ -82,6 +82,10 @@ describe("Contact", (): void => {
 
     await waitFor((): void => expect(scope.isDone()).toBe(true));
 
-    expect(await screen.findByText("There was an error sending your email, please try again.")).toBeInTheDocument();
+    expect(
+      await screen.findByText(
+        "Oh no! Something has gone a bit wrong when trying to talk to my API... please try again!"
+      )
+    ).toBeInTheDocument();
   });
 });

@@ -22,7 +22,7 @@ describe("CV", (): void => {
         "access-control-allow-credentials": "true"
       })
       .get("/cv")
-      .reply(200, "CV content from API.");
+      .reply(200, { data: "CV content from API.", errors: [] });
 
     render(
       <MemoryRouter>

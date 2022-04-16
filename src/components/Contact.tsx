@@ -1,30 +1,42 @@
-import HCaptcha from "@hcaptcha/react-hcaptcha";
 import { FC, FormEvent, ReactElement, ReactNode, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
 import { pageview } from "react-ga";
+import { useFetch } from "../hooks/useFetch";
 
 interface EmailResponse {
   errors?: string[];
 }
 
 export const Contact: FC = (): ReactElement => {
-  const abortController = new AbortController();
-  const signal = abortController.signal;
-
   const [errors, setErrors] = useState<string[]>([]);
-  const [captchaToken, setCaptchaToken] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccessful] = useState<boolean>(false);
+  const [formData, setFormSata] = useState<FormData | null>(null);
 
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
   const { x } = useSpring({ from: { x: 0 }, x: loading ? 0 : 1, config: { duration: 1000 } });
 
-  useEffect((): (() => void) => {
-    pageview(window.location.pathname + location.search);
+  useEffect((): void => pageview(window.location.pathname + location.search), []);
 
-    return (): void => abortController.abort();
-  }, []);
+  const [response, responseErrors] = useFetch<EmailResponse>({
+    url: "https://api.elliotjreed.com/email/send",
+    method: "POST",
+    body: formData
+  });
+
+  useEffect((): void => {
+    if (response !== null && response !== undefined) {
+      setSuccessful(true);
+    }
+  }, [response]);
+
+  useEffect((): void => {
+    if (responseErrors.length > 0) {
+      setLoading(false);
+      setErrors(responseErrors);
+    }
+  }, [responseErrors]);
 
   const renderSuccess: ReactNode = (
     <div className="bg-primary-100 rounded py-5 px-6 mb-6 prose text-primary-800" role="alert">
@@ -39,29 +51,8 @@ export const Contact: FC = (): ReactElement => {
     setErrors([]);
 
     const data: FormData = new FormData(event.target as HTMLFormElement);
-    data.append("captcha", captchaToken);
-    data.delete("h-captcha-response");
-    data.delete("g-recaptcha-response");
 
-    fetch("https://api.elliotjreed.com/email/send", {
-      body: data,
-      method: "POST",
-      signal: signal
-    })
-      .then((response: Response): Promise<EmailResponse> => response.json())
-      .then((response: EmailResponse): void => {
-        if (response.hasOwnProperty("errors")) {
-          setErrors(response.errors);
-
-          setLoading(false);
-        } else {
-          setSuccessful(true);
-        }
-      })
-      .catch((): void => {
-        setErrors(["There was an error sending your email, please try again."]);
-        setLoading(false);
-      });
+    setFormSata(data);
   };
 
   const renderForm: ReactNode = (
@@ -103,18 +94,12 @@ export const Contact: FC = (): ReactElement => {
         />
       </div>
 
-      <div className="mb-4">
-        <HCaptcha
-          sitekey="764dfe59-3c04-464c-bf4a-093f1781beab"
-          onVerify={(token: string): void => setCaptchaToken(token)}
-        />
-      </div>
-
       {errors.length > 0 && (
         <div className="bg-red-50 rounded py-5 px-6 mb-6 prose text-red-700" role="alert">
           {errors}
         </div>
       )}
+
       <animated.button
         type="submit"
         disabled={loading}

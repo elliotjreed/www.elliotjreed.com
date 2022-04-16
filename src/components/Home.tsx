@@ -8,12 +8,10 @@ import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
 import { faTelegram } from "@fortawesome/free-brands-svg-icons/faTelegram";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons/faTwitter";
 
-import { useFetchCache } from "../hooks/useFetchCache";
+import { useFetch } from "../hooks/useFetch";
 import { Person } from "../interfaces/Person";
 
 export const Home: FC = (): ReactElement => {
-  const abortController = new AbortController();
-
   const [author, setAuthor] = useState<Person>({
     additionalName: "John",
     alternateName: "Elliot Reed",
@@ -24,19 +22,24 @@ export const Home: FC = (): ReactElement => {
 
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
-  const response: Person | null = useFetchCache<Person>("https://api.elliotjreed.com/blog/author", abortController);
+  const [response, responseErrors] = useFetch<Person>({
+    url: "https://api.elliotjreed.com/blog/author",
+    cacheResponse: true
+  });
 
   useEffect((): void => {
-    if (response !== null) {
+    if (response !== null && response !== undefined) {
       setAuthor(response);
     }
   }, [response]);
 
-  useEffect((): (() => void) => {
-    pageview(window.location.pathname + location.search);
+  useEffect((): void => {
+    if (responseErrors.length > 0) {
+      console.error(responseErrors);
+    }
+  }, [responseErrors]);
 
-    return (): void => abortController.abort();
-  }, []);
+  useEffect((): void => pageview(window.location.pathname + location.search), []);
 
   return (
     <>

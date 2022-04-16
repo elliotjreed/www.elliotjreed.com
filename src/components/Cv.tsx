@@ -5,31 +5,34 @@ import { animated, useSpring } from "react-spring";
 import { pageview } from "react-ga";
 
 import { Spinner } from "./Spinner";
-import { useFetchCache } from "../hooks/useFetchCache";
+import { useFetch } from "../hooks/useFetch";
 import "../assets/css/print.css";
 
 export const Cv: FC = (): ReactElement => {
-  const abortController: AbortController = new AbortController();
-
   const [loading, setLoading] = useState<boolean>(true);
   const [content, setContent] = useState<string>("");
 
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
-  const response: string | null = useFetchCache<string>("https://api.elliotjreed.com/cv", abortController);
+  const [response, responseErrors] = useFetch<string>({
+    url: "https://api.elliotjreed.com/cv",
+    cacheResponse: true
+  });
 
   useEffect((): void => {
-    if (response !== null) {
+    if (response !== null && response !== undefined) {
       setContent(response);
       setLoading(false);
     }
   }, [response]);
 
-  useEffect((): (() => void) => {
-    pageview(window.location.pathname + location.search);
+  useEffect((): void => {
+    if (responseErrors.length > 0) {
+      console.error(responseErrors);
+    }
+  }, [responseErrors]);
 
-    return (): void => abortController.abort();
-  }, []);
+  useEffect((): void => pageview(window.location.pathname + location.search), []);
 
   return (
     <>

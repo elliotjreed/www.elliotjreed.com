@@ -1,67 +1,121 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-interface ApiResponse<T> {
-  data: T;
-  errors: string[];
-  redirectUrl: string | null;
-}
+import { ApiRequest } from "../interfaces/ApiRequest";
+import { ApiResponse } from "../interfaces/ApiResponse";
 
-export const useFetch = <T>(
-  url: string,
-  method: "GET" | "POST" | "PUT" | "DELETE",
-  contentType: string,
-  body?: Blob | BufferSource | FormData | URLSearchParams | ReadableStream<Uint8Array> | string
-): [T | null, string[]] => {
+export const useFetch = <T>({
+  url,
+  method = "GET",
+  contentType = "application/json",
+  body,
+  cacheResponse = false,
+  cacheName = "ejr"
+}: ApiRequest): [T | null, string[]] => {
   const [response, setResponse] = useState<T | null>(null);
   const [errors, setErrors] = useState<string[]>([]);
+  const [updatedFromNetwork, setUpdatedFromNetwork] = useState<boolean>(false);
+  const [fetchedFromCache, setFetchedFromCache] = useState<boolean>(false);
 
   const controller = new AbortController();
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchApiData();
+  useEffect((): (() => void) => (): void => controller.abort(), []);
 
-    return (): void => controller.abort();
-  }, []);
+  useEffect((): void => {
+    (method === "GET" || method === "DELETE" || body !== null) && fetchData();
+  }, [url, body]);
 
-  const fetchApiData = async (): Promise<void> => {
+  const fetchData = async (): Promise<void> => {
+    if (cacheResponse === false || !("caches" in self)) {
+      return updateFromNetwork();
+    }
+
     try {
-      return fetch(url, {
+      const cache: Cache = await caches.open(cacheName);
+
+      cache
+        .match(url)
+        .then((response: Response | undefined): Promise<ApiResponse<T>> => {
+          return new Promise((resolve, reject): void => {
+            if (response) {
+              resolve(response.clone().json());
+            } else {
+              reject();
+            }
+          });
+        })
+        .then((data: ApiResponse<T>): void => {
+          setFetchedFromCache(true);
+          setErrors(data.errors);
+          setResponse(data.data);
+
+          if (updatedFromNetwork) {
+            if (typeof data?.redirectUrl === "string") {
+              return navigate(data.redirectUrl, { state: data.errors });
+            }
+          } else {
+            updateFromNetwork();
+          }
+        })
+        .catch((error: Error): void => {
+          console.warn("Error fetching data from cache", url, error);
+
+          updateFromNetwork();
+        });
+    } catch (error: unknown) {
+      return await updateFromNetwork();
+    }
+  };
+
+  const updateFromNetwork = async (): Promise<void> => {
+    try {
+      const getResponse: Response = await fetch(url, {
         method: method,
         credentials: "same-origin",
-        cache: "no-cache",
+        cache: cacheResponse ? "default" : "no-cache",
         headers: {
-          "Content-Type": contentType
+          "Content-Type": contentType,
+          "Accept": "application/json, application/ld+json"
         },
         signal: controller.signal,
         body: body
-      })
-        .then((response: Response): Response => {
-          if (response.status !== 200) {
-            throw Error(response.statusText);
+      });
+
+      const networkResponse: ApiResponse<T> = await new Promise((resolve, reject): void => {
+        const clonedResponse: Response = getResponse.clone();
+
+        if (clonedResponse.ok) {
+          if ("caches" in self) {
+            caches
+              .open(cacheName)
+              .then((cache: Cache): Promise<void> => cache.put(url, clonedResponse.clone()))
+              .catch((error: Error): void => {
+                console.warn("Error caching response", url, error);
+              });
           }
 
-          return response;
-        })
-        .then((response: Response) => response.json())
-        .then((json: ApiResponse<T>): void => {
-          if (json.redirectUrl) {
-            return navigate(json.redirectUrl, { state: json.errors });
-          }
+          resolve(clonedResponse.clone().json());
+        } else {
+          reject();
+        }
+      });
 
-          setErrors(json.errors);
+      if (typeof networkResponse?.redirectUrl === "string") {
+        return navigate(networkResponse.redirectUrl, { state: networkResponse.errors });
+      }
 
-          setResponse(json.data);
-        })
-        .catch((error: Error): void => {
-          if (error.name !== "AbortError") {
-            setErrors(["Oops, something went wrong – please try again."]);
-          }
-        });
+      setUpdatedFromNetwork(true);
+
+      setResponse(networkResponse.data);
+      setErrors(networkResponse.errors);
     } catch (error: unknown) {
-      setErrors(["Oops, something went wrong – please try again."]);
+      if (!fetchedFromCache) {
+        setErrors(["Oh no! Something has gone a bit wrong when trying to talk to my API... please try again!"]);
+      }
+
+      console.error("Error fetching from API", url, error);
 
       return controller.abort();
     }
