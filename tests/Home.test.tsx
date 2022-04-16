@@ -13,11 +13,14 @@ describe("Home", (): void => {
       })
       .get("/blog/author")
       .reply(200, {
-        additionalName: "MiddleName",
-        alternateName: "TestName",
-        familyName: "Surname",
-        givenName: "FirstName",
-        name: "FirstName Surname"
+        data: {
+          additionalName: "MiddleName",
+          alternateName: "TestName",
+          familyName: "Surname",
+          givenName: "FirstName",
+          name: "FirstName Surname"
+        },
+        errors: []
       });
 
     render(
