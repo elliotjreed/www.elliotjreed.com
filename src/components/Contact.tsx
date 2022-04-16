@@ -22,6 +22,7 @@ export const Contact: FC = (): ReactElement => {
   const [response, responseErrors] = useFetch<EmailResponse>({
     url: "https://api.elliotjreed.com/email/send",
     method: "POST",
+    contentType: "application/x-www-form-urlencoded",
     body: formData
   });
 

@@ -5,6 +5,7 @@ export interface ApiRequest {
     | "application/json"
     | "application/ld+json"
     | "application/xml"
+    | "application/x-www-form-urlencoded"
     | "multipart/form-data"
     | "text/csv"
     | "text/html"
