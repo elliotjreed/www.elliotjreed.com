@@ -71,14 +71,19 @@ export const useFetch = <T>({
 
   const updateFromNetwork = async (): Promise<void> => {
     try {
+      const headers = {
+        Accept: "application/json, application/ld+json"
+      };
+
+      if (!(body instanceof FormData)) {
+        headers["Content-Type"] = contentType;
+      }
+
       const getResponse: Response = await fetch(url, {
         method: method,
         credentials: "same-origin",
         cache: cacheResponse ? "default" : "no-cache",
-        headers: {
-          "Content-Type": contentType,
-          "Accept": "application/json, application/ld+json"
-        },
+        headers: headers,
         signal: controller.signal,
         body: body
       });
