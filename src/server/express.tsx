@@ -2,8 +2,6 @@ import cors from "cors";
 import express from "express";
 import fs from "fs";
 import { join, resolve } from "path";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import { renderToPipeableStream } from "react-dom/server";
 import { Request, Response } from "express-serve-static-core";
 import { StaticRouter } from "react-router-dom/server";
@@ -50,10 +48,10 @@ server.get("*", (request: Request, response: Response): void => {
         response.statusCode = 200;
         response.setHeader("Content-type", "text/html");
         response.write(indexHTML.split('<div id="root">')[0] + '<div id="root">');
-        pipe(response, { end: false });
+        pipe(response);
         response.end("</div></body></html>");
       },
-      onShellError(error: Error) {
+      onShellError(error: unknown) {
         console.error(error);
         response.statusCode = 500;
         response.send(
