@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { ApiRequest } from "../interfaces/ApiRequest";
 import { ApiResponse } from "../interfaces/ApiResponse";
@@ -18,8 +17,6 @@ export const useFetch = <T>({
   const [fetchedFromCache, setFetchedFromCache] = useState<boolean>(false);
 
   const controller = new AbortController();
-
-  const navigate = useNavigate();
 
   useEffect((): (() => void) => (): void => controller.abort(), []);
 
@@ -48,16 +45,13 @@ export const useFetch = <T>({
         })
         .then((data: ApiResponse<T>): void => {
           setFetchedFromCache(true);
-          setErrors(data.errors);
-          setResponse(data.data);
 
-          if (updatedFromNetwork) {
-            if (typeof data?.redirectUrl === "string") {
-              return navigate(data.redirectUrl, { state: data.errors });
-            }
-          } else {
-            updateFromNetwork();
+          if ("data" in data && "errors" in data) {
+            setErrors(data.errors);
+            setResponse(data.data);
           }
+
+          !updatedFromNetwork && updateFromNetwork();
         })
         .catch((error: Error): void => {
           console.warn("Error fetching data from cache", url, error);
@@ -106,10 +100,6 @@ export const useFetch = <T>({
           reject();
         }
       });
-
-      if (typeof networkResponse?.redirectUrl === "string") {
-        return navigate(networkResponse.redirectUrl, { state: networkResponse.errors });
-      }
 
       setUpdatedFromNetwork(true);
 
