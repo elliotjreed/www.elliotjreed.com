@@ -52,7 +52,7 @@ export const MobileNavigation: FC = (): ReactElement => {
           className="fixed h-full w-full cursor-auto focus:outline-none"
           onClick={onToggleNav}
         />
-        <nav className="fixed mt-8 h-full">
+        <nav className="fixed mt-8 h-full" hidden={!showNavigation}>
           {navigationLinks.map(
             (link: NavigationLink, index: number): ReactElement => (
               <div key={index} className="px-12 py-4">

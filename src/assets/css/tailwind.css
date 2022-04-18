@@ -58,5 +58,5 @@ input:-webkit-autofill:focus {
 }
 
 body {
-  transform: translateZ(0);
+  image-rendering: optimizequality;
 }

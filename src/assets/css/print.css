@@ -7,7 +7,7 @@
   }
 
   @page {
-    margin: 4mm;
+    margin: 6mm 4mm;
   }
 
   li {
@@ -47,7 +47,7 @@
   }
 
   #education {
-    page-break-before: always !important;
+    page-break-before: always;
   }
 
   #technical-integrations ~ ul {
