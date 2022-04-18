@@ -8,7 +8,7 @@ import { FontSwitch } from "./FontSwitch";
 
 export const TopBar: FC = (): ReactElement => {
   return (
-    <header className="flex items-center justify-between py-10">
+    <header className="flex items-center justify-between py-10 print:hidden">
       <div>
         <Link to="/">
           <div className="flex items-center justify-between">

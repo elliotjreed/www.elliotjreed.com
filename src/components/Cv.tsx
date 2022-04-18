@@ -67,7 +67,7 @@ export const Cv: FC = (): ReactElement => {
       </Helmet>
 
       <animated.article className="cv" style={springProps}>
-        <header>
+        <header className="print:hidden">
           <div className="space-y-1 border-b border-gray-200 pb-10 text-center dark:border-gray-700">
             <div>
               <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14">
@@ -85,12 +85,33 @@ export const Cv: FC = (): ReactElement => {
             {loading ? (
               <Spinner />
             ) : (
-              <div
-                className="prose max-w-none pt-10 pb-8 dark:prose-dark"
-                dangerouslySetInnerHTML={{
-                  __html: marked(content.substring(content.indexOf("\n") + 1))
-                }}
-              />
+              <>
+                <div className="hidden print:block text-center mt-2 mb-2">
+                  <p className="text-lg font-bold tracking-tight text-gray-700 leading-none float-left inline mb-2">
+                    www.elliotjreed.com
+                    <br />
+                    <small>+44 (0) 7708 309156</small>
+                  </p>
+                  <h1 className="text-3xl font-extrabold tracking-tight text-gray-800 leading-none inline">
+                    Elliot Reed
+                  </h1>
+                  <p className="text-lg font-bold tracking-tight text-gray-700 leading-none float-right inline mb-2">
+                    github.com/elliotjreed
+                    <br />
+                    <small>
+                      <a href="mail&#116;o&#58;cv%&#52;0ell%69o%&#55;4%&#54;Ar&#101;e&#100;%&#50;E%63&#111;&#37;6&#68;">
+                        cv&#64;elli&#111;tjreed&#46;c&#111;m
+                      </a>
+                    </small>
+                  </p>
+                </div>
+                <div
+                  className="prose max-w-none pt-10 print:pt-2 pb-8 print:pb-0 dark:prose-dark print:leading-5"
+                  dangerouslySetInnerHTML={{
+                    __html: marked(content.substring(content.indexOf("\n") + 1))
+                  }}
+                />
+              </>
             )}
           </div>
         </div>

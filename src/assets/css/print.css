@@ -1,20 +1,63 @@
 @media print {
   html,
   body {
-    margin: 0;
-    color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 1em 0 0;
     background: #fff;
   }
 
-  header {
+  @page {
+    margin: 4mm;
+  }
+
+  li {
+    list-style-position: outside;
+  }
+
+  .prose :where(ul > li):not(:where([class~="not-prose"] *)) {
+    padding-left: 0;
+    margin-right: 0.5em;
+    margin-left: -0.5rem;
+  }
+
+  .prose :where(h2):not(:where([class~="not-prose"] *)) {
+    margin-bottom: 3pt;
+    margin-top: 12pt;
+  }
+
+  .prose :where(strong):not(:where([class~="not-prose"] *)),
+  .prose :where(a):not(:where([class~="not-prose"] *)) {
+    color: #171717;
+    text-decoration: none;
+  }
+
+  .prose :where(h3):not(:where([class~="not-prose"] *)) {
+    font-size: 1.2em;
+    margin-bottom: 4pt;
+    margin-top: 8pt;
+  }
+
+  .prose :where(p):not(:where([class~="not-prose"] *)) {
+    margin-bottom: 1pt;
+    margin-top: 8pt;
+  }
+
+  #summary {
     display: none;
   }
 
-  .cv header::after {
-    content: "Elliot J. Reed";
-    display: block;
-    text-align: center;
-    font-weight: bold;
-    font-size: xx-large;
+  #education {
+    page-break-before: always !important;
+  }
+
+  #technical-integrations ~ ul {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-column-start: auto;
+  }
+
+  li:not(:last-child) {
+    margin-bottom: 1pt;
   }
 }

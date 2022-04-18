@@ -8,7 +8,7 @@ import { faTelegram } from "@fortawesome/free-brands-svg-icons/faTelegram";
 
 export const Footer: FC = (): ReactElement => {
   return (
-    <footer>
+    <footer className="print:hidden">
       <div className="mt-16 flex flex-col items-center">
         <div className="mb-3 flex space-x-4">
           <a href="https://github.com/elliotjreed" target="noreferrer noopener" title="GitHub">
