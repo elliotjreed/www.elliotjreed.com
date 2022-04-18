@@ -42,14 +42,6 @@
     margin-top: 8pt;
   }
 
-  #summary {
-    display: none;
-  }
-
-  #education {
-    page-break-before: always;
-  }
-
   #technical-integrations ~ ul {
     width: 100%;
     display: grid;
@@ -59,5 +51,19 @@
 
   li:not(:last-child) {
     margin-bottom: 1pt;
+  }
+
+  #summary {
+    display: none;
+  }
+
+  #education {
+    margin-top: 1em;
+    page-break-before: always;
+  }
+
+  #portfolio + p {
+    margin-bottom: 0;
+    page-break-after: avoid;
   }
 }
