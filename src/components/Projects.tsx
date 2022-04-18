@@ -170,7 +170,7 @@ export const Projects: FC = (): ReactElement => {
                     <a href="https://getcomposer.org/" rel="noreferrer noopener">
                       Composer
                     </a>{" "}
-                    by running <code>composer install elliotjreed/haveibeenpwned</code>.
+                    by running <code>composer require elliotjreed/haveibeenpwned</code>.
                   </p>
                 </div>
               </div>
@@ -200,7 +200,7 @@ export const Projects: FC = (): ReactElement => {
                     <a href="https://getcomposer.org/" rel="noreferrer noopener">
                       Composer
                     </a>{" "}
-                    by running <code>composer install elliotjreed/disposable-emails-filter</code>.
+                    by running <code>composer require elliotjreed/disposable-emails-filter</code>.
                   </p>
                 </div>
               </div>
@@ -256,7 +256,7 @@ export const Projects: FC = (): ReactElement => {
                     <a href="https://getcomposer.org/" rel="noreferrer noopener">
                       Composer
                     </a>{" "}
-                    by running <code>composer install elliotjreed/cloudflare-cache-purge</code>.
+                    by running <code>composer require elliotjreed/cloudflare-cache-purge</code>.
                   </p>
                 </div>
               </div>
