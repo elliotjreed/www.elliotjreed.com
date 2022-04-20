@@ -10,6 +10,7 @@ import "../assets/css/print.css";
 
 export const Cv: FC = (): ReactElement => {
   const [loading, setLoading] = useState<boolean>(true);
+  const [showContactDetails, setShowContactDetails] = useState<boolean>(true);
   const [content, setContent] = useState<string>("");
 
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
@@ -86,23 +87,28 @@ export const Cv: FC = (): ReactElement => {
               <Spinner />
             ) : (
               <>
-                <div className="hidden print:block text-center mt-2 mb-2">
+                <div className="hidden print:block text-center mt-0 mb-2">
                   <p className="text-lg font-bold tracking-tight text-gray-700 leading-none float-left inline mb-2">
-                    www.elliotjreed.com
-                    <br />
-                    <small>+44 (0) 7708 309156</small>
+                    <a href="https://www.elliotjreed.com?utm_source=cv">www.elliotjreed.com</a>
+                    <div className={showContactDetails ? "" : " print:hidden"}>
+                      <small>+44 (0) 7708 309156</small>
+                    </div>
                   </p>
-                  <h1 className="text-3xl font-extrabold tracking-tight text-gray-800 leading-none inline">
+                  <h1
+                    className="text-3xl font-extrabold tracking-tight text-gray-800 leading-none inline"
+                    onClick={() => setShowContactDetails(!showContactDetails)}
+                  >
                     Elliot Reed
                   </h1>
                   <p className="text-lg font-bold tracking-tight text-gray-700 leading-none float-right inline mb-2">
-                    github.com/elliotjreed
-                    <br />
-                    <small>
-                      <a href="mail&#116;o&#58;cv%&#52;0ell%69o%&#55;4%&#54;Ar&#101;e&#100;%&#50;E%63&#111;&#37;6&#68;">
-                        cv&#64;elli&#111;tjreed&#46;c&#111;m
-                      </a>
-                    </small>
+                    <a href="https://github.com/elliotjreed">github.com/elliotjreed</a>
+                    <div className={showContactDetails ? "" : " print:hidden"}>
+                      <small>
+                        <a href="mail&#116;o&#58;cv%&#52;0ell%69o%&#55;4%&#54;Ar&#101;e&#100;%&#50;E%63&#111;&#37;6&#68;">
+                          cv&#64;elli&#111;tjreed&#46;c&#111;m
+                        </a>
+                      </small>
+                    </div>
                   </p>
                 </div>
                 <div

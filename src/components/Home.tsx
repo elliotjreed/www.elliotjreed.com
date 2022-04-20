@@ -1,4 +1,5 @@
 import { FC, ReactElement, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -91,15 +92,29 @@ export const Home: FC = (): ReactElement => {
           <div className="prose max-w-none pt-8 pb-8 dark:prose-dark xl:col-span-2">
             <p>
               Hi! I&apos;m Elliot, a software developer / technical lead based in Nottingham. My interests are generally
-              in E-Commerce, PHP, Javascript, Docker, and general DevOps.
+              in E-Commerce, Linux, PHP, Javascript, Docker, and general DevOps.
             </p>
             <p>
-              This website contains little mini-guides and snippets which may prove helpful, and if you&apos;re stuck on
-              anything you think I may be able to help with give me a shout on{" "}
-              <a href="https://twitter.com/elliotjreed" rel="noreferrer noopener">
-                Twitter
+              My (current) favourite frameworks of choice are Symfony for PHP and React for Javascript. Professionally I
+              use AWS more than any other cloud provider, but personally I am quite a fan of DigitalOcean.
+            </p>
+            <p>
+              This website and the backend API serve mostly as my little playground for trying out different packages
+              and tools, but also contains little mini-guides and snippets which may prove helpful, and if you&apos;re
+              stuck on anything you think I may be able to help with <Link to="/contact">give me a shout</Link>. The
+              source code for the frontend is available at{" "}
+              <a href="https://github.com/elliotjreed/www.elliotjreed.com/" target="noreferrer noopener">
+                github.com/elliotjreed/www.elliotjreed.com
+              </a>{" "}
+              and the backend API at{" "}
+              <a href="https://github.com/elliotjreed/api.elliotjreed.com/" target="noreferrer noopener">
+                github.com/elliotjreed/api.elliotjreed.com
               </a>
-              .
+              . It&apos;s basically getting the content via the GitHub API from the{" "}
+              <a href="https://github.com/elliotjreed" target="noreferrer noopener">
+                github.com/elliotjreed
+              </a>{" "}
+              profile repository, which is nice.
             </p>
           </div>
         </div>
