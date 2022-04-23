@@ -85,19 +85,19 @@ export const Cv: FC = (): ReactElement => {
             ) : (
               <>
                 <div className="hidden print:block text-center mt-0 mb-2">
-                  <p className="text-lg font-bold tracking-tight text-gray-700 leading-none float-left inline mb-2">
+                  <div className="text-lg font-bold tracking-tight text-gray-700 leading-none float-left inline mb-2">
                     <a href="https://www.elliotjreed.com?utm_source=cv">www.elliotjreed.com</a>
                     <div className={showContactDetails ? "" : " print:hidden"}>
                       <small>+44 (0) 7708 309156</small>
                     </div>
-                  </p>
+                  </div>
                   <h1
                     className="text-3xl font-extrabold tracking-tight text-gray-800 leading-none inline"
                     onClick={() => setShowContactDetails(!showContactDetails)}
                   >
                     Elliot Reed
                   </h1>
-                  <p className="text-lg font-bold tracking-tight text-gray-700 leading-none float-right inline mb-2">
+                  <div className="text-lg font-bold tracking-tight text-gray-700 leading-none float-right inline mb-2">
                     <a href="https://github.com/elliotjreed">github.com/elliotjreed</a>
                     <div className={showContactDetails ? "" : " print:hidden"}>
                       <small>
@@ -106,7 +106,7 @@ export const Cv: FC = (): ReactElement => {
                         </a>
                       </small>
                     </div>
-                  </p>
+                  </div>
                 </div>
                 <div
                   className="prose max-w-none pt-10 print:pt-2 pb-8 print:pb-0 dark:prose-dark print:leading-5"
