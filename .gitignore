@@ -5,3 +5,4 @@
 /yarn-error.log
 /coverage
 www.elliotjreed.com_*.report.html
+/src/**/*.js

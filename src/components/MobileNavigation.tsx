@@ -1,7 +1,8 @@
 import { FC, ReactElement, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { NavigationLink, navigationLinks } from "../data/navigationLinks";
+import { StaticLink } from "../interfaces/StaticLink";
+import { staticLinks } from "../data/staticLinks";
 
 export const MobileNavigation: FC = (): ReactElement => {
   const [showNavigation, setShowNavigation] = useState<boolean>(false);
@@ -54,19 +55,21 @@ export const MobileNavigation: FC = (): ReactElement => {
           onClick={onToggleNav}
         />
         <nav className="fixed mt-8 h-full" hidden={!showNavigation}>
-          {navigationLinks.map(
-            (link: NavigationLink, index: number): ReactElement => (
-              <div key={index} className="px-12 py-4">
-                <Link
-                  to={link.href}
-                  className="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
-                  onClick={onToggleNav}
-                >
-                  {link.title}
-                </Link>
-              </div>
-            )
-          )}
+          {staticLinks
+            .filter((link: StaticLink) => link.showInNavigation === true)
+            .map(
+              (link: StaticLink, index: number): ReactElement => (
+                <div key={index} className="px-12 py-4">
+                  <Link
+                    to={link.href}
+                    className="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
+                    onClick={onToggleNav}
+                  >
+                    {link.title}
+                  </Link>
+                </div>
+              )
+            )}
         </nav>
       </div>
     </div>

@@ -22,9 +22,9 @@
     "start": "webpack serve --mode development --env development --config webpack.dev.js",
     "start:server": "node ./dist/server.js",
     "build:server": "webpack --config webpack.server.js",
-    "build": "yarn run clean-dist && webpack --config webpack.prod.js --mode production --env production",
+    "build": "yarn run clean-dist && webpack --config webpack.prod.js --mode production --env production && tsc --project tsconfig.scripts.json && node src/scripts/sitemap.js",
     "build:development": "yarn run clean-dist && webpack --config webpack.prod.js --mode development --env development",
-    "lint": "eslint --ext .ts --ext .js --ext .tsx './src/'",
+    "lint": "eslint --ext .ts --ext .tsx './src/'",
     "test": "jest",
     "coverage": "jest --coverage",
     "lighthouse": "lighthouse https://www.elliotjreed.com --budget-path=./lighthouse-budget.json",
@@ -78,6 +78,7 @@
     "lighthouse": "^9.5.0",
     "mini-css-extract-plugin": "^2.6.0",
     "nock": "^13.2.4",
+    "node-fetch": "^3.2.3",
     "postcss": "^8.4.12",
     "postcss-loader": "^6.2.1",
     "postcss-preset-env": "^7.4.3",
@@ -100,6 +101,11 @@
   "jest": {
     "testEnvironment": "jsdom",
     "preset": "ts-jest",
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "tsconfig.client.json"
+      }
+    },
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },

@@ -2,9 +2,10 @@ import { FC, ReactElement } from "react";
 import { Link } from "react-router-dom";
 
 import { MobileNavigation } from "./MobileNavigation";
-import { NavigationLink, navigationLinks } from "../data/navigationLinks";
+import { staticLinks } from "../data/staticLinks";
 import { ThemeSwitch } from "./ThemeSwitch";
 import { FontSwitch } from "./FontSwitch";
+import { StaticLink } from "../interfaces/StaticLink";
 
 export const TopBar: FC = (): ReactElement => {
   return (
@@ -19,13 +20,15 @@ export const TopBar: FC = (): ReactElement => {
 
       <div className="flex items-center text-base leading-5">
         <div className="hidden sm:block">
-          {navigationLinks.map(
-            (link: NavigationLink, index: number): ReactElement => (
-              <Link key={index} to={link.href} className="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4">
-                {link.title}
-              </Link>
-            )
-          )}
+          {staticLinks
+            .filter((link: StaticLink) => link.showInNavigation === true)
+            .map(
+              (link: StaticLink, index: number): ReactElement => (
+                <Link key={index} to={link.href} className="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4">
+                  {link.title}
+                </Link>
+              )
+            )}
         </div>
 
         <FontSwitch />

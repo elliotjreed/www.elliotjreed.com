@@ -9,7 +9,7 @@ export const useLocalStorage = <T>(key: string, initialValue: T) => {
     try {
       const item = window.localStorage.getItem(key);
 
-      return item ? JSON.parse(item) : initialValue;
+      return item !== null ? JSON.parse(item) : initialValue;
     } catch (error: unknown) {
       console.warn(error);
 

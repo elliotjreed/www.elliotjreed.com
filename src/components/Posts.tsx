@@ -4,12 +4,9 @@ import { Link } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
 
 import { BlogPosting } from "../interfaces/BlogPosting";
+import { Blog } from "../interfaces/Blog";
 import { Spinner } from "./Spinner";
 import { useFetch } from "../hooks/useFetch";
-
-interface Blog {
-  blogPosts: BlogPosting[];
-}
 
 export const Posts: FC = (): ReactElement => {
   const [loading, setLoading] = useState<boolean>(true);

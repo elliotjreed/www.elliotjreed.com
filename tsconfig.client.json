@@ -15,17 +15,12 @@
     "target": "es6",
     "jsx": "react-jsx",
     "lib": [
-      "es5",
-      "es6",
       "dom",
-      "esnext"
+      "es2022"
     ]
   },
   "include": [
     "./src/components/**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
   ],
   "types": [
     "typePatches"

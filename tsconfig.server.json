@@ -1,12 +1,12 @@
 {
-  "include": ["./src/server"],
+  "include": ["./src/server/**/*"],
   "compilerOptions": {
     "module": "commonjs",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "lib": ["es6", "dom"],
+    "lib": ["es2022", "dom"],
     "target": "es6",
     "jsx": "react-jsx",
     "allowJs": true,
