@@ -1,19 +1,17 @@
-import { FC, ReactElement, useEffect, useState } from "react";
+import { FC, ReactElement, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFont } from "@fortawesome/fontawesome-free-solid/faFont";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
+
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const standardFont =
   "InterVariable,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji";
 
 export const FontSwitch: FC = (): ReactElement => {
-  const initialFont: typeof standardFont | "OpenDyslexic" =
-    (typeof window !== "undefined" && localStorage.font) || standardFont;
-
-  const [font, setFont] = useState<typeof standardFont | "OpenDyslexic">(initialFont);
+  const [font, setFont] = useLocalStorage<typeof standardFont | "OpenDyslexic">("font", standardFont);
 
   useEffect((): void => {
-    typeof window !== "undefined" && localStorage.setItem("font", font);
     typeof document !== "undefined" && (document.body.style.fontFamily = font);
   }, [font]);
 

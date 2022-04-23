@@ -1,5 +1,4 @@
 import { ChangeEvent, FC, ReactElement, ReactNode, useEffect, useState } from "react";
-import { pageview } from "react-ga";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
@@ -37,8 +36,6 @@ export const Posts: FC = (): ReactElement => {
       console.error(responseErrors);
     }
   }, [responseErrors]);
-
-  useEffect((): void => pageview(window.location.pathname + location.search), []);
 
   const handleSearch = (event: ChangeEvent): void => {
     event.preventDefault();

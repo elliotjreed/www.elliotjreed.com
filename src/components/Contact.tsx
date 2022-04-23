@@ -1,7 +1,7 @@
 import { FC, FormEvent, ReactElement, ReactNode, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
-import { pageview } from "react-ga";
+
 import { useFetch } from "../hooks/useFetch";
 
 interface EmailResponse {
@@ -16,8 +16,6 @@ export const Contact: FC = (): ReactElement => {
 
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
   const { x } = useSpring({ from: { x: 0 }, x: loading ? 0 : 1, config: { duration: 1000 } });
-
-  useEffect((): void => pageview(window.location.pathname + location.search), []);
 
   const [response, responseErrors] = useFetch<EmailResponse>({
     url: "https://api.elliotjreed.com/email/send",

@@ -1,15 +1,10 @@
-import { FC, ReactElement, useEffect } from "react";
+import { FC, ReactElement } from "react";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
-import { pageview } from "react-ga";
 import { TitledPhotograph, travellingPhotographs } from "../data/travellingPhotographs";
 
 export const Travelling: FC = (): ReactElement => {
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
-
-  useEffect((): void => {
-    pageview(window.location.pathname + location.search);
-  }, []);
 
   return (
     <>

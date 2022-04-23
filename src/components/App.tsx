@@ -1,12 +1,39 @@
 import { FC, ReactElement } from "react";
+import { Helmet } from "react-helmet";
 
 import { Footer } from "./Footer";
 import { Routes } from "./Routes";
 import { TopBar } from "./TopBar";
+import { usePageView } from "../hooks/usePageView";
 
 export const App: FC = (): ReactElement => {
+  usePageView();
+
   return (
     <>
+      <Helmet>
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Elliot J. Reed" />
+        <meta
+          property="og:description"
+          content="Elliot's website - a little bit about me, my work, system administration and programming articles, and projects I'm working on."
+        />
+        <meta
+          property="og:image"
+          content="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1648587259/og.png"
+        />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@elliotjreed" />
+        <meta name="twitter:title" content="Elliot J. Reed" />
+        <meta
+          name="twitter:description"
+          content="Elliot's website - a little bit about me, my work, system administration and programming articles, and projects I'm working on."
+        />
+        <meta
+          name="twitter:image"
+          content="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1648588302/og-no-number.png"
+        />
+      </Helmet>
       <a href="#main-content" className="sr-only focus:not-sr-only">
         Skip to content
       </a>

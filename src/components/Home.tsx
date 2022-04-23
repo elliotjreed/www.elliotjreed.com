@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { pageview } from "react-ga";
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
 import { faTelegram } from "@fortawesome/free-brands-svg-icons/faTelegram";
@@ -39,8 +38,6 @@ export const Home: FC = (): ReactElement => {
       console.error(responseErrors);
     }
   }, [responseErrors]);
-
-  useEffect((): void => pageview(window.location.pathname + location.search), []);
 
   return (
     <>
@@ -142,9 +139,10 @@ export const Home: FC = (): ReactElement => {
                 <a href="https://github.com/elliotjreed/haveibeenpwned" rel="noreferrer noopener">
                   GitHub repository
                 </a>
-                , but it&apos;s as simple as providing your HIBP API key and a Guzzle client and using as follows:{" "}
-                <pre className="whitespace-pre-wrap">
-                  {`$guzzle = new \\GuzzleHttp\\Client();
+                , but it&apos;s as simple as providing your HIBP API key and a Guzzle client and using as follows:
+              </p>
+              <pre className="whitespace-pre-wrap">
+                {`$guzzle = new \\GuzzleHttp\\Client();
 $apiKey = 'HIBP-API-KEY';
 
 /**
@@ -168,8 +166,7 @@ $breachNames = (new \\ElliotJReed\\HaveIBeenPwned\\BreachedAccount($guzzle, $api
    This API call DOES NOT send the actual password to the Have I Been Pwned API.
 */
 $passwordCount = (new \\ElliotJReed\\HaveIBeenPwned\\Password($guzzle, $apiKey))->count('password123');`}
-                </pre>
-              </p>
+              </pre>
             </section>
 
             <section>
@@ -193,15 +190,15 @@ $passwordCount = (new \\ElliotJReed\\HaveIBeenPwned\\Password($guzzle, $apiKey))
                 </a>
                 , but basically you just provide an email address and it will return <code>true</code> if it is likely
                 to be a temporary one:
-                <pre className="whitespace-pre-wrap">
-                  {`$guzzle = new \\GuzzleHttp\\Client();
+              </p>
+              <pre className="whitespace-pre-wrap">
+                {`$guzzle = new \\GuzzleHttp\\Client();
 use ElliotJReed\\DisposableEmail\\Email;
 
 if ((new Email())->isDisposable('email@temporarymailaddress.com')) {
     echo 'This is a disposable / temporary email address';
 }`}
-                </pre>
-              </p>
+              </pre>
             </section>
 
             <section>
@@ -244,8 +241,9 @@ if ((new Email())->isDisposable('email@temporarymailaddress.com')) {
                 </a>
                 , but essentially you just provide yur Cloudflare API token and a Zone ID (i.e. a domain) and it will
                 purge the cache for the files / URLs provided:
-                <pre className="whitespace-pre-wrap">
-                  {`use ElliotJReed\\Cache;
+              </p>
+              <pre className="whitespace-pre-wrap">
+                {`use ElliotJReed\\Cache;
 use ElliotJReed\\Exception\\Cloudflare;
 use GuzzleHttp\\Client;
 
@@ -265,8 +263,7 @@ try {
     echo $exception->getMessage() . \\PHP_EOL;
     echo $exception->getPrevious()->getMessage() . \\PHP_EOL;
 }`}
-                </pre>
-              </p>
+              </pre>
             </section>
           </div>
         </div>

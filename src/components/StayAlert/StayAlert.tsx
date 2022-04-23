@@ -2,7 +2,6 @@ import domtoimage from "dom-to-image-more";
 import { ChangeEvent, FC, ReactElement, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
-import { pageview } from "react-ga";
 
 import { YellowBox } from "./YellowBox";
 
@@ -18,13 +17,10 @@ export const StayAlert: FC = (): ReactElement => {
   const contentContainerRef = useRef<HTMLDivElement | null>(null);
 
   const handleMemeGeneration = (): void => {
-    domtoimage.toPng(contentContainerRef.current).then((dataUrl: string): void => {
-      setDownloadUrl(dataUrl);
-    });
+    domtoimage.toPng(contentContainerRef.current).then((dataUrl: string): void => setDownloadUrl(dataUrl));
   };
 
   useEffect((): void => {
-    pageview(window.location.pathname + location.search);
     handleMemeGeneration();
   }, []);
 

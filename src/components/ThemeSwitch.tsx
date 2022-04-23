@@ -1,19 +1,18 @@
-import { FC, ReactElement, useEffect, useState } from "react";
+import { FC, ReactElement, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/fontawesome-free-solid/faMoon";
 import { faSun } from "@fortawesome/fontawesome-free-solid/faSun";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
-export const ThemeSwitch: FC = (): ReactElement => {
-  const initialTheme: "light" | "dark" =
-    (typeof window !== "undefined" &&
-      (localStorage.theme || (window.matchMedia("(prefers-color-scheme: dark)").matches && "dark"))) ||
-    "light";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
-  const [theme, setTheme] = useState<"dark" | "light">(initialTheme);
+export const ThemeSwitch: FC = (): ReactElement => {
+  const [theme, setTheme] = useLocalStorage<"dark" | "light">(
+    "theme",
+    (typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches && "dark") || "light"
+  );
 
   useEffect((): void => {
-    typeof window !== "undefined" && localStorage.setItem("theme", theme);
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {

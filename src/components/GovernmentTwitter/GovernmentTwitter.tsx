@@ -2,7 +2,6 @@ import domtoimage from "dom-to-image-more";
 import { ChangeEvent, FC, ReactElement, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
-import { pageview } from "react-ga";
 
 import { TweetBox } from "./TweetBox";
 
@@ -22,7 +21,6 @@ export const GovernmentTwitter: FC = (): ReactElement => {
   };
 
   useEffect((): void => {
-    pageview(window.location.pathname + location.search);
     handleMemeGeneration();
   }, []);
 

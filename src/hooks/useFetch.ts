@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import { ApiRequest } from "../interfaces/ApiRequest";
 import { ApiResponse } from "../interfaces/ApiResponse";
@@ -10,7 +10,7 @@ export const useFetch = <T>({
   body,
   cacheResponse = false,
   cacheName = "ejr"
-}: ApiRequest): [T | null, string[]] => {
+}: ApiRequest): readonly [[T | null, Dispatch<SetStateAction<T | null>>][0], string[]] => {
   const [response, setResponse] = useState<T | null>(null);
   const [errors, setErrors] = useState<string[]>([]);
   const [updatedFromNetwork, setUpdatedFromNetwork] = useState<boolean>(false);
@@ -53,9 +53,7 @@ export const useFetch = <T>({
 
           !updatedFromNetwork && updateFromNetwork();
         })
-        .catch((error: Error): void => {
-          console.warn("Error fetching data from cache", url, error);
-
+        .catch((): void => {
           updateFromNetwork();
         });
     } catch (error: unknown) {
@@ -116,5 +114,5 @@ export const useFetch = <T>({
     }
   };
 
-  return [response, errors];
+  return [response, errors] as const;
 };

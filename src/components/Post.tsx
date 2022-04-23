@@ -3,7 +3,6 @@ import { FC, ReactElement, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link, Params, useParams } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
-import { pageview } from "react-ga";
 
 import { BlogPosting as PostInterface } from "../interfaces/BlogPosting";
 import { Person } from "../interfaces/Person";
@@ -69,8 +68,6 @@ export const Post: FC = (): ReactElement => {
       console.error(responseErrors);
     }
   }, [responseErrors]);
-
-  useEffect((): void => pageview(window.location.pathname + location.search), []);
 
   return (
     <>

@@ -1,14 +1,9 @@
-import { FC, ReactElement, useEffect } from "react";
-import { pageview } from "react-ga";
+import { FC, ReactElement } from "react";
 import { Link } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
 
 export const PrivacyPolicy: FC = (): ReactElement => {
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
-
-  useEffect(() => {
-    pageview(window.location.pathname + location.search);
-  }, []);
 
   return (
     <animated.section className="divide-y divide-gray-200 dark:divide-gray-700" style={springProps}>

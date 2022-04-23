@@ -2,7 +2,6 @@ import { marked } from "marked";
 import { FC, ReactElement, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
-import { pageview } from "react-ga";
 
 import { Spinner } from "./Spinner";
 import { useFetch } from "../hooks/useFetch";
@@ -32,8 +31,6 @@ export const Cv: FC = (): ReactElement => {
       console.error(responseErrors);
     }
   }, [responseErrors]);
-
-  useEffect((): void => pageview(window.location.pathname + location.search), []);
 
   return (
     <>

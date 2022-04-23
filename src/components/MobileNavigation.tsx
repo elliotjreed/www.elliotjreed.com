@@ -1,6 +1,7 @@
 import { FC, ReactElement, useState } from "react";
-import { NavigationLink, navigationLinks } from "../data/navigationLinks";
 import { Link } from "react-router-dom";
+
+import { NavigationLink, navigationLinks } from "../data/navigationLinks";
 
 export const MobileNavigation: FC = (): ReactElement => {
   const [showNavigation, setShowNavigation] = useState<boolean>(false);

@@ -68,21 +68,102 @@ const Projects = lazy(() =>
 
 export const Routes: FC = (): ReactElement => {
   return (
-    <Suspense fallback={<Spinner />}>
-      <RouterRoutes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cv" element={<Cv />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/travel" element={<Travelling />} />
-        <Route path="/privacy" element={<PrivacyPolicy />} />
-        <Route path="/the-vape" element={<TheVapeDomain />} />
-        <Route path="/stay-alert" element={<StayAlert />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/government-tweet" element={<GovernmentTwitter />} />
-        <Route path="/blog" element={<Posts />} />
-        <Route path="/blog/:date/:post" element={<Post />} />
-        <Route element={<PageNotFound />} />
-      </RouterRoutes>
-    </Suspense>
+    <RouterRoutes>
+      <Route
+        path="/"
+        element={
+          <Suspense fallback={<Spinner />}>
+            <Home />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/cv"
+        element={
+          <Suspense fallback={<Spinner />}>
+            <Cv />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/contact"
+        element={
+          <Suspense fallback={<Spinner />}>
+            <Contact />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/travel"
+        element={
+          <Suspense fallback={<Spinner />}>
+            <Travelling />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/privacy"
+        element={
+          <Suspense fallback={<Spinner />}>
+            <PrivacyPolicy />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/the-vape"
+        element={
+          <Suspense fallback={<Spinner />}>
+            <TheVapeDomain />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/stay-alert"
+        element={
+          <Suspense fallback={<Spinner />}>
+            <StayAlert />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/projects"
+        element={
+          <Suspense fallback={<Spinner />}>
+            <Projects />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/government-tweet"
+        element={
+          <Suspense fallback={<Spinner />}>
+            <GovernmentTwitter />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/blog"
+        element={
+          <Suspense fallback={<Spinner />}>
+            <Posts />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/blog/:date/:post"
+        element={
+          <Suspense fallback={<Spinner />}>
+            <Post />
+          </Suspense>
+        }
+      />
+      <Route
+        element={
+          <Suspense fallback={<Spinner />}>
+            <PageNotFound />
+          </Suspense>
+        }
+      />
+    </RouterRoutes>
   );
 };
