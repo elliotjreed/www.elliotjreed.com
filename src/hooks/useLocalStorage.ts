@@ -11,7 +11,7 @@ export const useLocalStorage = <T>(key: string, initialValue: T) => {
 
       return item !== null ? JSON.parse(item) : initialValue;
     } catch (error: unknown) {
-      console.warn(error);
+      console.warn(error, key, initialValue);
 
       return initialValue;
     }
@@ -27,7 +27,7 @@ export const useLocalStorage = <T>(key: string, initialValue: T) => {
         window.localStorage.setItem(key, JSON.stringify(valueToStore));
       }
     } catch (error: unknown) {
-      console.warn(error);
+      console.warn(error, key, value);
     }
   };
 
