@@ -158,6 +158,7 @@ export const Routes: FC = (): ReactElement => {
         }
       />
       <Route
+        path="*"
         element={
           <Suspense fallback={<Spinner />}>
             <PageNotFound />
