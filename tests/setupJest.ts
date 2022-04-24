@@ -1,7 +1,8 @@
 import "whatwg-fetch";
 
 jest.mock("react-ga", () => ({
-  pageview: () => {}
+  pageview: () => jest.fn(),
+  event: () => jest.fn()
 }));
 
 Object.defineProperty(window, "matchMedia", {
