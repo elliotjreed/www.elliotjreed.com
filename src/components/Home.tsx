@@ -59,7 +59,6 @@ export const Home: FC = (): ReactElement => {
               width={192}
               height={192}
               className="h-48 w-48 rounded-full"
-              loading="lazy"
             />
             <h1 className="pt-4 pb-2 text-2xl font-bold leading-8 tracking-tight">Elliot Reed</h1>
             <div className="text-gray-500 dark:text-gray-400">Technical Lead, Software Development</div>
