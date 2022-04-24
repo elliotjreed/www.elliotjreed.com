@@ -1,10 +1,11 @@
 import { FC, ReactElement } from "react";
 import { Helmet } from "react-helmet";
 
-import { Footer } from "./Footer";
-import { Routes } from "./Routes";
-import { TopBar } from "./TopBar";
 import { usePageView } from "../hooks/usePageView";
+import { TopBar } from "./TopBar";
+import ErrorBoundary from "./ErrorBoundary";
+import { Routes } from "./Routes";
+import { Footer } from "./Footer";
 
 export const App: FC = (): ReactElement => {
   usePageView();
@@ -43,7 +44,9 @@ export const App: FC = (): ReactElement => {
           <TopBar />
 
           <main className="mb-auto" id="main-content">
-            <Routes />
+            <ErrorBoundary>
+              <Routes />
+            </ErrorBoundary>
           </main>
 
           <Footer />
