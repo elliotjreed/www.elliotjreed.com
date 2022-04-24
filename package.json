@@ -64,7 +64,7 @@
     "@types/node": "^17.0.25",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
-    "autoprefixer": "^10.4.4",
+    "autoprefixer": "^10.4.5",
     "copy-webpack-plugin": "^10.2.4",
     "css-loader": "^6.7.1",
     "cssnano": "^5.1.7",
@@ -103,7 +103,7 @@
     "preset": "ts-jest",
     "globals": {
       "ts-jest": {
-        "tsConfig": "tsconfig.client.json"
+        "tsconfig": "tsconfig.client.json"
       }
     },
     "transform": {

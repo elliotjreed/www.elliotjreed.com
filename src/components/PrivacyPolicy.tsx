@@ -49,14 +49,6 @@ export const PrivacyPolicy: FC = (): ReactElement => {
           see your web browser options.
         </p>
 
-        <p>
-          I also use spam protection on forms on my websites (such as{" "}
-          <a href="https://www.hcaptcha.com/privacy" rel="noreferrer noopener">
-            hCaptcha
-          </a>
-          ).
-        </p>
-
         <h3>How do I safeguard your personal data?</h3>
         <p>
           I have put physical, electronic and procedural systems in place to keep your personal information secure.

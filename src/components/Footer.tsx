@@ -32,6 +32,9 @@ export const Footer: FC = (): ReactElement => {
             </span>
           </a>
         </div>
+        <div className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+          <Link to="/sitemap">Sitemap</Link>
+        </div>
         <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
           <Link to="/">
             © {new Date().getFullYear()} <strong>Elliot J. Reed</strong>

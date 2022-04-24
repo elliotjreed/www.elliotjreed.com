@@ -16,13 +16,7 @@ fetch("https://api.elliotjreed.com/blog/posts", {
   .then((response: ApiResponse<Blog>): void => {
     let content = `
       <?xml version="1.0" encoding="UTF-8"?>
-      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-        <url>
-          <loc>https://www.elliotjreed.com</loc>
-          <lastmod>${currentDate}</lastmod>
-          <changefreq>monthly</changefreq>
-          <priority>0.8</priority>
-        </url>`;
+      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
 
     staticLinks.map((link: StaticLink): void => {
       content += `<url>
@@ -39,11 +33,11 @@ fetch("https://api.elliotjreed.com/blog/posts", {
 
     posts.map((post: BlogPosting) => {
       content += `<url>
-          <loc>${post.url}</loc>
-          <lastmod>${post.dateModified}</lastmod>
-          <changefreq>monthly</changefreq>
-          <priority>0.6</priority>
-        </url>`;
+        <loc>${post.url}</loc>
+        <lastmod>${post.dateModified}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+      </url>`;
     });
 
     content += "</urlset>";

@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
-export const useLocalStorage = <T>(key: string, initialValue: T) => {
+export const useLocalStorage = <T>(
+  key: string,
+  initialValue: T
+): readonly [[T, Dispatch<SetStateAction<T>>][0], (value: ((val: T) => T) | T) => void] => {
   const [storedValue, setStoredValue] = useState<T>((): T => {
     if (typeof window === "undefined") {
       return initialValue;

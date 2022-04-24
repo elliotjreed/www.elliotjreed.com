@@ -3,6 +3,16 @@ import { Route, Routes as RouterRoutes } from "react-router-dom";
 
 import { Spinner } from "./Spinner";
 
+const Home = lazy(() =>
+  import(/* webpackPrefetch: true, webpackChunkName: "home" */ "./Home").then(({ Home }) => ({ default: Home }))
+);
+
+const Sitemap = lazy(() =>
+  import(/* webpackPrefetch: true, webpackChunkName: "sitemap" */ "./Sitemap").then(({ Sitemap }) => ({
+    default: Sitemap
+  }))
+);
+
 const Cv = lazy(() =>
   import(/* webpackPrefetch: true, webpackChunkName: "cv" */ "./Cv").then(({ Cv }) => ({ default: Cv }))
 );
@@ -11,10 +21,6 @@ const Contact = lazy(() =>
   import(/* webpackPrefetch: true, webpackChunkName: "contact" */ "./Contact").then(({ Contact }) => ({
     default: Contact
   }))
-);
-
-const Home = lazy(() =>
-  import(/* webpackPrefetch: true, webpackChunkName: "home" */ "./Home").then(({ Home }) => ({ default: Home }))
 );
 
 const PageNotFound = lazy(() =>
@@ -61,8 +67,14 @@ const TheVapeDomain = lazy(() =>
 );
 
 const Projects = lazy(() =>
-  import(/* webpackPrefetch: true, webpackChunkName: "thevape" */ "./Projects").then(({ Projects }) => ({
+  import(/* webpackPrefetch: true, webpackChunkName: "projects" */ "./Projects").then(({ Projects }) => ({
     default: Projects
+  }))
+);
+
+const Packages = lazy(() =>
+  import(/* webpackPrefetch: true, webpackChunkName: "packages" */ "./Packages").then(({ Packages }) => ({
+    default: Packages
   }))
 );
 
@@ -78,10 +90,26 @@ export const Routes: FC = (): ReactElement => {
         }
       />
       <Route
-        path="/cv"
+        path="/sitemap"
         element={
           <Suspense fallback={<Spinner />}>
-            <Cv />
+            <Sitemap />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/projects"
+        element={
+          <Suspense fallback={<Spinner />}>
+            <Projects />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/packages"
+        element={
+          <Suspense fallback={<Spinner />}>
+            <Packages />
           </Suspense>
         }
       />
@@ -94,10 +122,34 @@ export const Routes: FC = (): ReactElement => {
         }
       />
       <Route
+        path="/blog"
+        element={
+          <Suspense fallback={<Spinner />}>
+            <Posts />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/blog/:date/:post"
+        element={
+          <Suspense fallback={<Spinner />}>
+            <Post />
+          </Suspense>
+        }
+      />
+      <Route
         path="/travel"
         element={
           <Suspense fallback={<Spinner />}>
             <Travelling />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/cv"
+        element={
+          <Suspense fallback={<Spinner />}>
+            <Cv />
           </Suspense>
         }
       />
@@ -126,34 +178,10 @@ export const Routes: FC = (): ReactElement => {
         }
       />
       <Route
-        path="/projects"
-        element={
-          <Suspense fallback={<Spinner />}>
-            <Projects />
-          </Suspense>
-        }
-      />
-      <Route
         path="/government-tweet"
         element={
           <Suspense fallback={<Spinner />}>
             <GovernmentTwitter />
-          </Suspense>
-        }
-      />
-      <Route
-        path="/blog"
-        element={
-          <Suspense fallback={<Spinner />}>
-            <Posts />
-          </Suspense>
-        }
-      />
-      <Route
-        path="/blog/:date/:post"
-        element={
-          <Suspense fallback={<Spinner />}>
-            <Post />
           </Suspense>
         }
       />
