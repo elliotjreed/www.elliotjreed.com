@@ -6,7 +6,7 @@ export const staticLinks: StaticLink[] = [
   { href: "/contact", title: "Contact", showInNavigation: true },
   { href: "/blog", title: "Blog", showInNavigation: true },
   { href: "/projects", title: "Projects", showInNavigation: true },
-  { href: "/packages", title: "Packages & Libraries", showInNavigation: true },
+  { href: "/packages", title: "Packages", showInNavigation: true },
   { href: "/travel", title: "Travelling", showInNavigation: true },
   { href: "/privacy", title: "Privacy Policy", showInNavigation: false },
   { href: "/stay-alert", title: "Stay Alert Generator", showInNavigation: false },
