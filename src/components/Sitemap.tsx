@@ -13,7 +13,7 @@ import { StaticLink } from "../interfaces/StaticLink";
 export const Sitemap: FC = (): ReactElement => {
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
-  const [posts, responseErrors] = useFetch<Blog>({
+  const { response } = useFetch<Blog>({
     url: "https://api.elliotjreed.com/blog/posts",
     cacheResponse: true
   });
@@ -49,7 +49,7 @@ export const Sitemap: FC = (): ReactElement => {
       <Helmet>
         <title>Posts | Elliot J. Reed</title>
         <meta name="description" content="Various posts, guides, and how-tos" />
-        <script type="application/ld+json">{JSON.stringify(posts)}</script>
+        {response !== undefined && <script type="application/ld+json">{JSON.stringify(response)}</script>}
       </Helmet>
 
       <animated.section className="divide-y" style={springProps}>
@@ -73,7 +73,7 @@ export const Sitemap: FC = (): ReactElement => {
             )}
           </ul>
 
-          {posts === undefined ? <Spinner /> : postsInCategory(posts)}
+          {response === undefined ? <Spinner /> : postsInCategory(response)}
         </div>
       </animated.section>
     </>

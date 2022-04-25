@@ -1,5 +1,5 @@
 {
-  "include": ["./src/server/**/*"],
+  "include": ["./src/server/*"],
   "compilerOptions": {
     "module": "commonjs",
     "esModuleInterop": true,

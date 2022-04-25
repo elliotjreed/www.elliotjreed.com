@@ -1,4 +1,4 @@
-import { FC, ReactElement, useEffect, useState } from "react";
+import { FC, ReactElement } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
@@ -12,32 +12,12 @@ import { useFetch } from "../hooks/useFetch";
 import { Person } from "../interfaces/Person";
 
 export const Home: FC = (): ReactElement => {
-  const [author, setAuthor] = useState<Person>({
-    additionalName: "John",
-    alternateName: "Elliot Reed",
-    familyName: "Reed",
-    givenName: "Elliot",
-    name: "Elliot J. Reed"
-  });
-
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
-  const [response, responseErrors] = useFetch<Person>({
+  const { response } = useFetch<Person>({
     url: "https://api.elliotjreed.com/blog/author",
     cacheResponse: true
   });
-
-  useEffect((): void => {
-    if (response !== null && response !== undefined) {
-      setAuthor(response);
-    }
-  }, [response]);
-
-  useEffect((): void => {
-    if (responseErrors.length > 0) {
-      console.error(responseErrors);
-    }
-  }, [responseErrors]);
 
   return (
     <>
@@ -47,7 +27,7 @@ export const Home: FC = (): ReactElement => {
           name="description"
           content="Hi, I'm Elliot, a software developer from Nottingham. This website has guides on PHP, Symfony, Javascript, React, Python, and Linux / DevOps."
         />
-        <script type="application/ld+json">{JSON.stringify(author)}</script>
+        {response !== undefined && <script type="application/ld+json">{JSON.stringify(response)}</script>}
       </Helmet>
 
       <animated.section style={springProps}>

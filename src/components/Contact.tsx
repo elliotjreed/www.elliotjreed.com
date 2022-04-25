@@ -1,4 +1,4 @@
-import { FC, FormEvent, ReactElement, ReactNode, useEffect, useState } from "react";
+import { FC, FormEvent, ReactElement, ReactNode, useState } from "react";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
 
@@ -6,36 +6,21 @@ import { useFetch } from "../hooks/useFetch";
 
 interface EmailResponse {
   errors?: string[];
+  status?: "sent";
 }
 
 export const Contact: FC = (): ReactElement => {
-  const [errors, setErrors] = useState<string[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [success, setSuccessful] = useState<boolean>(false);
   const [formData, setFormSata] = useState<FormData | null>(null);
 
-  const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
-  const { x } = useSpring({ from: { x: 0 }, x: loading ? 0 : 1, config: { duration: 1000 } });
-
-  const [response, responseErrors] = useFetch<EmailResponse>({
+  const { response, errors, loading } = useFetch<EmailResponse>({
     url: "https://api.elliotjreed.com/email/send",
     method: "POST",
     contentType: "application/x-www-form-urlencoded",
     body: formData
   });
 
-  useEffect((): void => {
-    if (response !== null && response !== undefined) {
-      setSuccessful(true);
-    }
-  }, [response]);
-
-  useEffect((): void => {
-    if (responseErrors.length > 0) {
-      setLoading(false);
-      setErrors(responseErrors);
-    }
-  }, [responseErrors]);
+  const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
+  const { x } = useSpring({ from: { x: 0 }, x: loading ? 0 : 1, config: { duration: 1000 } });
 
   const renderSuccess: ReactNode = (
     <div className="bg-primary-100 rounded py-5 px-6 mb-6 prose text-primary-800" role="alert">
@@ -45,9 +30,6 @@ export const Contact: FC = (): ReactElement => {
 
   const handleSubmit = (event: FormEvent): void => {
     event.preventDefault();
-
-    setLoading(true);
-    setErrors([]);
 
     const data: FormData = new FormData(event.target as HTMLFormElement);
 
@@ -93,10 +75,12 @@ export const Contact: FC = (): ReactElement => {
         />
       </div>
 
-      {errors.length > 0 && (
-        <div className="bg-red-50 rounded py-5 px-6 mb-6 prose text-red-700" role="alert">
-          {errors}
-        </div>
+      {errors.map(
+        (error: string, index: number): ReactNode => (
+          <div key={index} className="bg-red-50 rounded py-5 px-6 mb-6 prose text-red-700" role="alert">
+            {error}
+          </div>
+        )
       )}
 
       <animated.button
@@ -139,7 +123,9 @@ export const Contact: FC = (): ReactElement => {
         </div>
         <div className="container py-12">
           <div className="grid grid-cols-4 gap-4">
-            <div className="md:col-span-2 col-span-4">{success ? renderSuccess : renderForm}</div>
+            <div className="md:col-span-2 col-span-4">
+              {response !== undefined && response.status === "sent" ? renderSuccess : renderForm}
+            </div>
             <div className="md:col-span-2 col-span-4">
               <div className="prose max-w-none dark:prose-dark">
                 You can also reach me on:

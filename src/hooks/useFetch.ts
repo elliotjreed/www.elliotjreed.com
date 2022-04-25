@@ -1,7 +1,8 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { ApiRequest } from "../interfaces/ApiRequest";
 import { ApiResponse } from "../interfaces/ApiResponse";
+import { UseFetchResponse } from "../interfaces/UseFetchResponse";
 
 export const useFetch = <T>({
   url,
@@ -10,9 +11,11 @@ export const useFetch = <T>({
   body,
   cacheResponse = false,
   cacheName = "ejr"
-}: ApiRequest): readonly [[T | undefined, Dispatch<SetStateAction<T | undefined>>][0], string[]] => {
+}: ApiRequest): UseFetchResponse<T> => {
   const [response, setResponse] = useState<T | undefined>(undefined);
   const [errors, setErrors] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
   const [updatedFromNetwork, setUpdatedFromNetwork] = useState<boolean>(false);
   const [fetchedFromCache, setFetchedFromCache] = useState<boolean>(false);
 
@@ -25,6 +28,8 @@ export const useFetch = <T>({
   }, [url, body]);
 
   const fetchData = async (): Promise<void> => {
+    setLoading(true);
+
     if (cacheResponse === false || !("caches" in self)) {
       return updateFromNetwork();
     }
@@ -49,6 +54,7 @@ export const useFetch = <T>({
           if ("data" in data && "errors" in data) {
             setErrors(data.errors);
             setResponse(data.data);
+            setLoading(false);
           }
 
           !updatedFromNetwork && updateFromNetwork();
@@ -80,29 +86,35 @@ export const useFetch = <T>({
         body: body
       });
 
-      const networkResponse: ApiResponse<T> = await new Promise((resolve, reject): void => {
-        const clonedResponse: Response = getResponse.clone();
+      let networkResponse: ApiResponse<T>;
+      if (cacheResponse === true) {
+        networkResponse = await new Promise((resolve, reject): void => {
+          const clonedResponse: Response = getResponse.clone();
 
-        if (clonedResponse.ok) {
-          if ("caches" in self) {
-            caches
-              .open(cacheName)
-              .then((cache: Cache): Promise<void> => cache.put(url, clonedResponse.clone()))
-              .catch((error: Error): void => {
-                console.warn("Error caching response", url, error);
-              });
+          if (clonedResponse.ok) {
+            if ("caches" in self) {
+              caches
+                .open(cacheName)
+                .then((cache: Cache): Promise<void> => cache.put(url, clonedResponse.clone()))
+                .catch((error: Error): void => {
+                  console.warn("Error caching response", url, error);
+                });
+            }
+
+            resolve(clonedResponse.clone().json());
+          } else {
+            reject();
           }
-
-          resolve(clonedResponse.clone().json());
-        } else {
-          reject();
-        }
-      });
+        });
+      } else {
+        networkResponse = await getResponse.json();
+      }
 
       setUpdatedFromNetwork(true);
 
       setResponse(networkResponse.data);
       setErrors(networkResponse.errors);
+      setLoading(false);
     } catch (error: unknown) {
       if (!fetchedFromCache) {
         setErrors(["Oh no! Something has gone a bit wrong when trying to talk to my API... please try again!"]);
@@ -114,5 +126,5 @@ export const useFetch = <T>({
     }
   };
 
-  return [response, errors] as const;
+  return { response: response, errors: errors, loading: loading };
 };

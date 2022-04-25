@@ -1,5 +1,5 @@
 import { marked } from "marked";
-import { FC, ReactElement, useEffect } from "react";
+import { FC, ReactElement } from "react";
 import { Helmet } from "react-helmet";
 import { Link, Params, useParams } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
@@ -15,29 +15,29 @@ export const Post: FC = (): ReactElement => {
 
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
-  const [content, responseErrors] = useFetch<PostInterface>({
+  const { response, loading } = useFetch<PostInterface>({
     url: "https://api.elliotjreed.com/blog/post/" + url,
     cacheResponse: true
   });
 
   return (
     <>
-      {content !== undefined && (
+      {response !== undefined && (
         <Helmet>
-          <title>{content.name + " | Elliot J. Reed"}</title>
-          <meta name="description" content={content.headline} />
-          <script type="application/ld+json">{JSON.stringify(content)}</script>
-          <meta property="og:url" content={content.url} />
+          <title>{response.name + " | Elliot J. Reed"}</title>
+          <meta name="description" content={response.headline} />
+          <script type="application/ld+json">{JSON.stringify(response)}</script>
+          <meta property="og:url" content={response.url} />
           <meta property="og:type" content="article" />
-          <meta property="og:title" content={content.name} />
-          <meta property="og:description" content={content.headline} />
-          <meta property="og:image" content={content.image.url} />
+          <meta property="og:title" content={response.name} />
+          <meta property="og:description" content={response.headline} />
+          <meta property="og:image" content={response.image.url} />
 
           <meta name="twitter:card" content="summary" />
           <meta name="twitter:site" content="@elliotjreed" />
-          <meta name="twitter:title" content={content.name} />
-          <meta name="twitter:description" content={content.headline} />
-          <meta name="twitter:image" content={content.url} />
+          <meta name="twitter:title" content={response.name} />
+          <meta name="twitter:description" content={response.headline} />
+          <meta name="twitter:image" content={response.url} />
         </Helmet>
       )}
 
@@ -47,23 +47,23 @@ export const Post: FC = (): ReactElement => {
             <dl>
               <div>
                 <dt className="sr-only">Published on</dt>
-                {content !== undefined && (
+                {response !== undefined && (
                   <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                    <time dateTime={content.dateCreated}>
-                      {new Date(content.dateCreated).toLocaleDateString("en-GB", {
+                    <time dateTime={response.dateCreated}>
+                      {new Date(response.dateCreated).toLocaleDateString("en-GB", {
                         year: "numeric",
                         month: "long",
                         day: "numeric"
                       })}
                     </time>
-                    &nbsp;<em>{content.wordCount} words</em>
+                    &nbsp;<em>{response.wordCount} words</em>
                   </dd>
                 )}
               </div>
             </dl>
             <div>
               <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14">
-                {content !== undefined && content.headline}
+                {response !== undefined && response.headline}
               </h1>
             </div>
           </div>
@@ -73,13 +73,13 @@ export const Post: FC = (): ReactElement => {
           style={{ gridTemplateRows: "auto 1fr" }}
         >
           <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-            {content === undefined ? (
+            {response == undefined ? (
               <Spinner />
             ) : (
               <div
                 className="prose max-w-none pt-10 pb-8 dark:prose-dark"
                 dangerouslySetInnerHTML={{
-                  __html: marked(content.articleBody.substring(content.articleBody.indexOf("\n") + 1))
+                  __html: marked(response.articleBody.substring(response.articleBody.indexOf("\n") + 1))
                 }}
               />
             )}

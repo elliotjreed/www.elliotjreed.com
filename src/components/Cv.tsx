@@ -1,5 +1,5 @@
 import { marked } from "marked";
-import { FC, ReactElement, useEffect, useState } from "react";
+import { FC, ReactElement, useState } from "react";
 import { Helmet } from "react-helmet";
 import { animated, useSpring } from "react-spring";
 
@@ -12,16 +12,10 @@ export const Cv: FC = (): ReactElement => {
 
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
-  const [response, responseErrors] = useFetch<string>({
+  const { response } = useFetch<string>({
     url: "https://api.elliotjreed.com/cv",
     cacheResponse: true
   });
-
-  useEffect((): void => {
-    if (responseErrors.length > 0) {
-      console.error(responseErrors);
-    }
-  }, [responseErrors]);
 
   return (
     <>
