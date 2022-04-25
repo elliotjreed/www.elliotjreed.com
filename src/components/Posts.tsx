@@ -9,30 +9,14 @@ import { Spinner } from "./Spinner";
 import { useFetch } from "../hooks/useFetch";
 
 export const Posts: FC = (): ReactElement => {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [posts, setPosts] = useState<Blog>({ blogPosts: [] });
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
-  const [response, responseErrors] = useFetch<Blog>({
+  const [posts, responseErrors] = useFetch<Blog>({
     url: "https://api.elliotjreed.com/blog/posts",
     cacheResponse: true
   });
-
-  useEffect((): void => {
-    if (response !== null && response !== undefined) {
-      response.blogPosts.sort((a: BlogPosting, b: BlogPosting): number => b.dateCreated.localeCompare(a.dateCreated));
-      setPosts(response);
-      setLoading(false);
-    }
-  }, [response]);
-
-  useEffect((): void => {
-    if (responseErrors.length > 0) {
-      console.error(responseErrors);
-    }
-  }, [responseErrors]);
 
   const handleSearch = (event: ChangeEvent): void => {
     event.preventDefault();
@@ -47,6 +31,7 @@ export const Posts: FC = (): ReactElement => {
       <ul>
         {posts.blogPosts
           .filter((post: BlogPosting) => post.headline.toLowerCase().includes(searchTerm.toLowerCase()))
+          .sort((a: BlogPosting, b: BlogPosting): number => b.dateCreated.localeCompare(a.dateCreated))
           .map(
             (post: BlogPosting, index: number): ReactNode => (
               <li key={index} className="py-4">
@@ -94,7 +79,7 @@ export const Posts: FC = (): ReactElement => {
       <Helmet>
         <title>Posts | Elliot J. Reed</title>
         <meta name="description" content="Various posts, guides, and how-tos" />
-        <script type="application/ld+json">{JSON.stringify(posts)}</script>
+        {posts !== undefined && <script type="application/ld+json">{JSON.stringify(posts)}</script>}
       </Helmet>
 
       <animated.section className="divide-y" style={springProps}>
@@ -129,7 +114,7 @@ export const Posts: FC = (): ReactElement => {
           </div>
         </div>
 
-        {loading ? <Spinner /> : postsInCategory(posts)}
+        {posts === undefined ? <Spinner /> : postsInCategory(posts)}
       </animated.section>
     </>
   );

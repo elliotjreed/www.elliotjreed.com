@@ -8,9 +8,7 @@ import { useFetch } from "../hooks/useFetch";
 import "../assets/css/print.css";
 
 export const Cv: FC = (): ReactElement => {
-  const [loading, setLoading] = useState<boolean>(true);
   const [showContactDetails, setShowContactDetails] = useState<boolean>(true);
-  const [content, setContent] = useState<string>("");
 
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
@@ -18,13 +16,6 @@ export const Cv: FC = (): ReactElement => {
     url: "https://api.elliotjreed.com/cv",
     cacheResponse: true
   });
-
-  useEffect((): void => {
-    if (response !== null && response !== undefined) {
-      setContent(response);
-      setLoading(false);
-    }
-  }, [response]);
 
   useEffect((): void => {
     if (responseErrors.length > 0) {
@@ -80,7 +71,7 @@ export const Cv: FC = (): ReactElement => {
           style={{ gridTemplateRows: "auto 1fr" }}
         >
           <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-            {loading ? (
+            {response === undefined ? (
               <Spinner />
             ) : (
               <>
@@ -111,7 +102,7 @@ export const Cv: FC = (): ReactElement => {
                 <div
                   className="prose max-w-none pt-10 print:pt-2 pb-8 print:pb-0 dark:prose-dark print:leading-5"
                   dangerouslySetInnerHTML={{
-                    __html: marked(content.substring(content.indexOf("\n") + 1))
+                    __html: marked(response.substring(response.indexOf("\n") + 1))
                   }}
                 />
               </>

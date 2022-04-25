@@ -11,7 +11,7 @@ export interface ApiRequest {
     | "text/html"
     | "text/markdown"
     | "text/plain";
-  body?: Blob | BufferSource | FormData | URLSearchParams | ReadableStream<Uint8Array> | string;
+  body?: Blob | BufferSource | FormData | URLSearchParams | ReadableStream<Uint8Array> | string | undefined;
   cacheResponse?: boolean;
   cacheName?: string;
 }

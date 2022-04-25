@@ -10,8 +10,8 @@ export const useFetch = <T>({
   body,
   cacheResponse = false,
   cacheName = "ejr"
-}: ApiRequest): readonly [[T | null, Dispatch<SetStateAction<T | null>>][0], string[]] => {
-  const [response, setResponse] = useState<T | null>(null);
+}: ApiRequest): readonly [[T | undefined, Dispatch<SetStateAction<T | undefined>>][0], string[]] => {
+  const [response, setResponse] = useState<T | undefined>(undefined);
   const [errors, setErrors] = useState<string[]>([]);
   const [updatedFromNetwork, setUpdatedFromNetwork] = useState<boolean>(false);
   const [fetchedFromCache, setFetchedFromCache] = useState<boolean>(false);

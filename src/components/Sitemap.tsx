@@ -1,4 +1,4 @@
-import { FC, ReactElement, ReactNode, useEffect, useState } from "react";
+import { FC, ReactElement, ReactNode } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
@@ -11,47 +11,34 @@ import { staticLinks } from "../data/staticLinks";
 import { StaticLink } from "../interfaces/StaticLink";
 
 export const Sitemap: FC = (): ReactElement => {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [posts, setPosts] = useState<Blog>({ blogPosts: [] });
-
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
-  const [response, responseErrors] = useFetch<Blog>({
+  const [posts, responseErrors] = useFetch<Blog>({
     url: "https://api.elliotjreed.com/blog/posts",
     cacheResponse: true
   });
-
-  useEffect((): void => {
-    if (response !== null && response !== undefined) {
-      response.blogPosts.sort((a: BlogPosting, b: BlogPosting): number => b.dateCreated.localeCompare(a.dateCreated));
-      setPosts(response);
-      setLoading(false);
-    }
-  }, [response]);
-
-  useEffect((): void => {
-    if (responseErrors.length > 0) {
-      console.error(responseErrors);
-    }
-  }, [responseErrors]);
 
   const postsInCategory = (posts: Blog): ReactNode => {
     return (
       <>
         <h2 className="text-lg font-bold leading-8 tracking-tight">Blog Posts</h2>
         <ul>
-          {posts.blogPosts.map(
-            (post: BlogPosting, index: number): ReactNode => (
-              <li key={index}>
-                <Link
-                  to={"/blog/" + post.dateCreated.substring(0, 10) + "/" + post.name.replace(/\s+/g, "-").toLowerCase()}
-                  className="text-gray-900 dark:text-gray-100"
-                >
-                  {post.headline}
-                </Link>
-              </li>
-            )
-          )}
+          {posts.blogPosts
+            .sort((a: BlogPosting, b: BlogPosting): number => b.dateCreated.localeCompare(a.dateCreated))
+            .map(
+              (post: BlogPosting, index: number): ReactNode => (
+                <li key={index}>
+                  <Link
+                    to={
+                      "/blog/" + post.dateCreated.substring(0, 10) + "/" + post.name.replace(/\s+/g, "-").toLowerCase()
+                    }
+                    className="text-gray-900 dark:text-gray-100"
+                  >
+                    {post.headline}
+                  </Link>
+                </li>
+              )
+            )}
         </ul>
       </>
     );
@@ -86,7 +73,7 @@ export const Sitemap: FC = (): ReactElement => {
             )}
           </ul>
 
-          {loading ? <Spinner /> : postsInCategory(posts)}
+          {posts === undefined ? <Spinner /> : postsInCategory(posts)}
         </div>
       </animated.section>
     </>
