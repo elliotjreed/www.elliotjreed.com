@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "types/*"
+      ]
+    },
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "es5",
+    "jsx": "react-jsx",
+    "lib": [
+      "dom",
+      "es2022"
+    ]
+  },
+  "include": [
+    "./src/components/**/*.tsx"
+  ],
+  "types": [
+    "typePatches"
+  ]
+}

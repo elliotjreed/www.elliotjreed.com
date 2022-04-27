@@ -19,17 +19,17 @@
   "homepage": "https://www.elliotjreed.com",
   "scripts": {
     "clean-dist": "rm -rf -d dist",
-    "start": "webpack serve --mode development --env development --config webpack.dev.js",
+    "start": "webpack serve --mode development --env development --config webpack.config.js",
     "start:server": "node ./dist/server.js",
     "build:server": "webpack --config webpack.server.js",
-    "build": "yarn run clean-dist && webpack --config webpack.prod.js --mode production --env production && tsc --project tsconfig.scripts.json && node src/scripts/sitemap.js",
-    "build:development": "yarn run clean-dist && webpack --config webpack.prod.js --mode development --env development",
+    "build": "yarn run clean-dist && webpack --config webpack.config.js --mode production --env production && tsc --project tsconfig.scripts.json && node src/scripts/sitemap.js",
+    "build:development": "yarn run clean-dist && webpack --config webpack.config.js --mode development --env development",
     "lint": "eslint --ext .ts --ext .tsx './src/'",
     "test": "jest",
     "test:ci": "jest --reporters='github-actions'",
     "coverage": "jest --coverage",
     "lighthouse": "lighthouse https://www.elliotjreed.com --budget-path=./lighthouse-budget.json",
-    "docker": "yarn run lint && yarn run clean-dist && webpack --config webpack.prod.js --mode production --env production && docker build -t elliotjreed/www.elliotjreed.com . --no-cache && docker push elliotjreed/www.elliotjreed.com"
+    "docker": "yarn run lint && yarn run clean-dist && webpack --config webpack.config.js --mode production --env production && docker build -t elliotjreed/www.elliotjreed.com . --no-cache && docker push elliotjreed/www.elliotjreed.com"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free-solid": "^5.1.0-3",
@@ -44,8 +44,8 @@
     "history": "^5.3.0",
     "ignore-styles": "^5.0.1",
     "marked": "^4.0.14",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
     "react-ga": "^3.3.0",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.3.0",
@@ -55,6 +55,8 @@
     "workbox-webpack-plugin": "^6.5.3"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
     "@fullhuman/postcss-purgecss": "^4.1.3",
     "@testing-library/dom": "^8.13.0",
     "@testing-library/jest-dom": "^5.16.4",
@@ -62,10 +64,11 @@
     "@testing-library/user-event": "^14.1.1",
     "@types/express": "^4.17.13",
     "@types/marked": "^4.0.3",
-    "@types/node": "^17.0.27",
+    "@types/node": "^17.0.29",
     "@typescript-eslint/eslint-plugin": "^5.21.0",
     "@typescript-eslint/parser": "^5.21.0",
     "autoprefixer": "^10.4.5",
+    "babel-loader": "^8.2.5",
     "copy-webpack-plugin": "^10.2.4",
     "css-loader": "^6.7.1",
     "cssnano": "^5.1.7",
@@ -83,20 +86,21 @@
     "node-fetch": "^3.2.3",
     "postcss": "^8.4.12",
     "postcss-loader": "^6.2.1",
-    "postcss-preset-env": "^7.4.3",
+    "postcss-preset-env": "^7.4.4",
     "prettier": "^2.6.2",
     "style-loader": "^3.3.1",
-    "stylelint": "^14.7.1",
+    "stylelint": "^14.8.0",
     "stylelint-config-standard": "^25.0.0",
     "terser-webpack-plugin": "^5.3.1",
     "ts-jest": "^27.1.4",
-    "ts-loader": "^9.2.8",
+    "ts-loader": "^9.2.9",
     "typescript": "^4.6.3",
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.8.1",
     "webpack-manifest-plugin": "^5.0.0",
     "webpack-merge": "^5.8.0",
+    "webpack-module-nomodule-plugin": "^1.1.1",
     "webpack-node-externals": "^3.0.0",
     "whatwg-fetch": "^3.6.2"
   },
@@ -105,7 +109,7 @@
     "preset": "ts-jest",
     "globals": {
       "ts-jest": {
-        "tsconfig": "tsconfig.client.json"
+        "tsconfig": "tsconfig.modern_browser.json"
       }
     },
     "transform": {
