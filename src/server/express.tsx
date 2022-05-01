@@ -36,10 +36,10 @@ const indexHTML: string = fs.readFileSync(resolve(__dirname, "./static/index.htm
 });
 
 server.get("*", (request: Request, response: Response): void => {
-  response.set({
-    "Content-Security-Policy":
-      "default-src 'self' https://api.elliotjreed.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://static.cloudflareinsights.com; img-src 'self' data: https://res.cloudinary.com https://www.google-analytics.com https://ssl.google-analytics.com https://csi.gstatic.com https://www.google.com; style-src 'self' 'unsafe-inline'; font-src 'self'; frame-src https://www.google.com; object-src 'none'"
-  });
+  // response.set({
+  //   "Content-Security-Policy":
+  //     "default-src 'self' 'unsafe-inline' 'unsafe-eval' https://api.elliotjreed.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://static.cloudflareinsights.com; img-src 'self' data: https://res.cloudinary.com https://www.google-analytics.com https://ssl.google-analytics.com https://csi.gstatic.com https://www.google.com; style-src 'self' 'unsafe-inline'; font-src 'self'; frame-src https://www.google.com; object-src 'none'"
+  // });
 
   const { pipe, abort } = renderToPipeableStream(
     <StaticRouter location={request.url}>
@@ -67,4 +67,4 @@ server.get("*", (request: Request, response: Response): void => {
   );
 });
 
-server.listen(81);
+server.listen(18);

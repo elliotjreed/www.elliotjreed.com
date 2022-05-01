@@ -7,7 +7,7 @@ const plugins = [
   new HtmlWebpackPlugin({
     filename: "./index.html",
     minify: {
-      collapseWhitespace: true,
+      collapseWhitespace: false,
       removeComments: true,
       removeScriptTypeAttributes: false
     },
@@ -50,34 +50,41 @@ const modernBrowserModule = {
 const legacyBrowserModule = {
   rules: [
     {
-      test: /\.jsx?$/,
-      exclude: /node_modules/,
+      test: /\.js|jsx|ts|tsx$/,
+      include: [
+        resolve("./src"),
+        resolve("./node_modules")
+        // resolve("./node_modules/react"),
+        // resolve("./node_modules/react-dom"),
+        // resolve("./node_modules/react-router"),
+        // resolve("./node_modules/react-router-dom")
+      ],
+      exclude: resolve("./src/index.html"),
       use: {
         loader: "babel-loader",
         options: {
+          sourceType: "unambiguous",
           presets: [
             [
               "@babel/preset-env",
               {
-                targets: "default",
+                targets: ["ie >= 11"],
                 useBuiltIns: "usage",
                 modules: false,
                 corejs: 3
               }
-            ]
+            ],
+            "@babel/preset-react",
+            "@babel/preset-typescript"
           ]
         }
       }
     },
     {
-      exclude: /node_modules/,
-      test: /\.tsx?$/,
-      loader: "ts-loader",
-      options: {
-        configFile: "tsconfig.legacy_browser.json"
-      }
-    },
-    cssRule
+      test: /\.js$/,
+      use: ["source-map-loader"],
+      enforce: "pre"
+    }
   ]
 };
 
@@ -86,7 +93,7 @@ module.exports = (env) => {
     modern: {
       name: "modern",
       context: resolve(__dirname, "./src"),
-      entry: "./index.tsx",
+      entry: ["./index.tsx"],
       target: ["web", "es6"],
       performance: {
         hints: "warning"
@@ -113,7 +120,7 @@ module.exports = (env) => {
     legacy: {
       name: "legacy",
       context: resolve(__dirname, "./src"),
-      entry: ["./index.tsx"],
+      entry: "./index.tsx",
       target: ["web", "es5"],
       performance: {
         hints: "warning"

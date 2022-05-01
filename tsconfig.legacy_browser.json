@@ -20,7 +20,8 @@
     ]
   },
   "include": [
-    "./src/components/**/*.tsx"
+    "./src/components/**/*.tsx",
+    "./src/polyfills/**/*.ts"
   ],
   "types": [
     "typePatches"

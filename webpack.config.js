@@ -7,5 +7,6 @@ module.exports = (env) => {
   if (env.production || argv.mode === "production") {
     return [merge(commonConfig(env).modern, prodConfig.modern), merge(commonConfig(env).legacy, prodConfig.legacy)];
   }
+
   return merge(commonConfig(env).modern, devconfig);
 };

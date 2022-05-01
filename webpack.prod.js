@@ -1,3 +1,4 @@
+const { NormalModuleReplacementPlugin } = require("webpack");
 const { resolve } = require("path");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -6,8 +7,10 @@ const CopyPlugin = require("copy-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const WebpackModuleNomodulePlugin = require("webpack-module-nomodule-plugin");
 const purgecss = require("@fullhuman/postcss-purgecss");
+const { WebpackNoModulePlugin } = require("webpack-nomodule-plugin");
 
-plugins = [
+const plugins = [
+  new NormalModuleReplacementPlugin(/\bpolyfill\b/, resolve("./src/empty.ts")),
   new WebpackPwaManifest({
     background_color: "#444444",
     crossorigin: "use-credentials",
@@ -63,7 +66,7 @@ module.exports = {
     },
     optimization: {
       minimize: true,
-      minimizer: [new TerserPlugin({ terserOptions: { ecma: 2020, module: true } })],
+      minimizer: [new TerserPlugin({ terserOptions: { ecma: 2015, module: true } })],
       splitChunks: {
         chunks: "async",
         minSize: 20000,
@@ -131,8 +134,30 @@ module.exports = {
     },
     optimization: {
       minimize: true,
-      minimizer: [new TerserPlugin({ terserOptions: { ecma: 2015, safari10: true } })]
+      minimizer: [new TerserPlugin({ terserOptions: { ecma: 5, safari10: true } })],
+      splitChunks: {
+        chunks: "async",
+        minSize: 20000,
+        maxAsyncRequests: 30,
+        maxInitialRequests: 30,
+        cacheGroups: {
+          default: false,
+          vendors: false,
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            chunks: "all",
+            reuseExistingChunk: true,
+            name(module) {
+              const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+              return `vendor.${packageName.replace("@", "")}`;
+            }
+          }
+        }
+      }
     },
-    plugins: [new WebpackModuleNomodulePlugin("legacy")]
+    plugins: [
+      new WebpackModuleNomodulePlugin("legacy"),
+      new NormalModuleReplacementPlugin(/\.(sa|sc|c)ss$/, resolve("./src/empty.ts"))
+    ]
   }
 };
