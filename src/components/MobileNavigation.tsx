@@ -21,7 +21,7 @@ export const MobileNavigation: FC = (): ReactElement => {
 
   return (
     <div className="sm:hidden">
-      <button type="button" className="ml-1 mr-1 h-8 w-8 rounded py-1" aria-label="Toggle Menu" onClick={onToggleNav}>
+      <button type="button" className="ml-1 mr-1 h-8 w-8 rounded py-1" aria-label="Toggle menu" onClick={onToggleNav}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
@@ -50,8 +50,8 @@ export const MobileNavigation: FC = (): ReactElement => {
       >
         <button
           type="button"
-          aria-label="toggle modal"
-          className="fixed h-full w-full cursor-auto focus:outline-none"
+          aria-label="Toggle menu"
+          className="fixed h-full w-full cursor-auto focus:outline-none text-x"
           onClick={onToggleNav}
         />
         <nav className="fixed mt-8 h-full" hidden={!showNavigation}>

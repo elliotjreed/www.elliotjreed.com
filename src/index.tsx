@@ -2,6 +2,7 @@ import { hydrateRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { initialize } from "react-ga";
 
+import "./polyfills";
 import { App } from "./components/App";
 import "./assets/css/tailwind.css";
 

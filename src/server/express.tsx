@@ -2,8 +2,6 @@ import cors from "cors";
 import express from "express";
 import fs from "fs";
 import { join, resolve } from "path";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import { renderToPipeableStream } from "react-dom/server";
 import { Request, Response } from "express-serve-static-core";
 import { StaticRouter } from "react-router-dom/server";

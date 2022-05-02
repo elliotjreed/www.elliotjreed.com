@@ -11,22 +11,22 @@ export const Footer: FC = (): ReactElement => {
     <footer className="print:hidden">
       <div className="mt-16 flex flex-col items-center">
         <div className="mb-3 flex space-x-4">
-          <a href="https://github.com/elliotjreed" target="noreferrer noopener" title="GitHub">
+          <a href="https://github.com/elliotjreed" rel="noreferrer noopener" title="GitHub">
             <span className="icon">
               <FontAwesomeIcon className="fa-lg" icon={faGithub} aria-label="GitHub Profile" />
             </span>
           </a>
-          <a href="https://www.linkedin.com/in/elliotjreed/" target="noreferrer noopener" title="LinkedIn">
+          <a href="https://www.linkedin.com/in/elliotjreed/" rel="noreferrer noopener" title="LinkedIn">
             <span className="icon">
               <FontAwesomeIcon className="fa-lg" icon={faLinkedin} aria-label="LinkedIn Profile" />
             </span>
           </a>
-          <a href="https://twitter.com/elliotjreed" target="noreferrer noopener" title="Twitter">
+          <a href="https://twitter.com/elliotjreed" rel="noreferrer noopener" title="Twitter">
             <span className="icon">
               <FontAwesomeIcon className="fa-lg" icon={faTwitter} aria-label="Twitter Profile" />
             </span>
           </a>
-          <a href="https://t.me/elliotjreed" target="noreferrer noopener" title="Telegram">
+          <a href="https://t.me/elliotjreed" rel="noreferrer noopener" title="Telegram">
             <span className="icon">
               <FontAwesomeIcon className="fa-lg" icon={faTelegram} aria-label="Telegram" />
             </span>

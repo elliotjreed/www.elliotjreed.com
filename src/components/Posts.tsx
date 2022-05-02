@@ -79,6 +79,7 @@ export const Posts: FC = (): ReactElement => {
       <Helmet>
         <title>Posts | Elliot J. Reed</title>
         <meta name="description" content="Various posts, guides, and how-tos" />
+        <link rel="amphtml" href="https://amp.elliotjreed.com/posts" />
         {response !== undefined && <script type="application/ld+json">{JSON.stringify(response)}</script>}
       </Helmet>
 

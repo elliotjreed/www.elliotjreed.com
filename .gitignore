@@ -6,3 +6,4 @@
 /coverage
 www.elliotjreed.com_*.report.html
 /src/**/*.js
+bundle-stats.json

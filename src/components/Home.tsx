@@ -27,6 +27,7 @@ export const Home: FC = (): ReactElement => {
           name="description"
           content="Hi, I'm Elliot, a software developer from Nottingham. This website has guides on PHP, Symfony, Javascript, React, Python, and Linux / DevOps."
         />
+        <link rel="amphtml" href="https://amp.elliotjreed.com" />
         {response !== undefined && <script type="application/ld+json">{JSON.stringify(response)}</script>}
       </Helmet>
 
@@ -44,22 +45,22 @@ export const Home: FC = (): ReactElement => {
             <div className="text-gray-500 dark:text-gray-400">Technical Lead, Software Development</div>
             <div className="text-gray-500 dark:text-gray-400">Nottingham, United Kingdom</div>
             <div className="flex space-x-3 pt-6">
-              <a href="https://github.com/elliotjreed" target="noreferrer noopener" title="GitHub">
+              <a href="https://github.com/elliotjreed" rel="noreferrer noopener" title="GitHub">
                 <span className="icon">
                   <FontAwesomeIcon className="fa-lg" icon={faGithub} aria-label="GitHub Profile" />
                 </span>
               </a>
-              <a href="https://www.linkedin.com/in/elliotjreed/" target="noreferrer noopener" title="LinkedIn">
+              <a href="https://www.linkedin.com/in/elliotjreed/" rel="noreferrer noopener" title="LinkedIn">
                 <span className="icon">
                   <FontAwesomeIcon className="fa-lg" icon={faLinkedin} aria-label="LinkedIn Profile" />
                 </span>
               </a>
-              <a href="https://twitter.com/elliotjreed" target="noreferrer noopener" title="Twitter">
+              <a href="https://twitter.com/elliotjreed" rel="noreferrer noopener" title="Twitter">
                 <span className="icon">
                   <FontAwesomeIcon className="fa-lg" icon={faTwitter} aria-label="Twitter Profile" />
                 </span>
               </a>
-              <a href="https://t.me/elliotjreed" target="noreferrer noopener" title="Telegram">
+              <a href="https://t.me/elliotjreed" rel="noreferrer noopener" title="Telegram">
                 <span className="icon">
                   <FontAwesomeIcon className="fa-lg" icon={faTelegram} aria-label="Telegram" />
                 </span>
@@ -80,15 +81,15 @@ export const Home: FC = (): ReactElement => {
               and tools, but also contains little mini-guides and snippets which may prove helpful, and if you&apos;re
               stuck on anything you think I may be able to help with <Link to="/contact">give me a shout</Link>. The
               source code for the frontend is available at{" "}
-              <a href="https://github.com/elliotjreed/www.elliotjreed.com/" target="noreferrer noopener">
+              <a href="https://github.com/elliotjreed/www.elliotjreed.com/" rel="noreferrer noopener">
                 github.com/elliotjreed/www.elliotjreed.com
               </a>{" "}
               and the backend API at{" "}
-              <a href="https://github.com/elliotjreed/api.elliotjreed.com/" target="noreferrer noopener">
+              <a href="https://github.com/elliotjreed/api.elliotjreed.com/" rel="noreferrer noopener">
                 github.com/elliotjreed/api.elliotjreed.com
               </a>
               . It&apos;s basically getting the content via the GitHub API from the{" "}
-              <a href="https://github.com/elliotjreed" target="noreferrer noopener">
+              <a href="https://github.com/elliotjreed" rel="noreferrer noopener">
                 github.com/elliotjreed
               </a>{" "}
               profile repository, which is nice.

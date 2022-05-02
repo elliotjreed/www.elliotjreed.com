@@ -26,6 +26,7 @@ export const Post: FC = (): ReactElement => {
         <Helmet>
           <title>{response.name + " | Elliot J. Reed"}</title>
           <meta name="description" content={response.headline} />
+          <link rel="amphtml" href={"https://amp.elliotjreed.com/blog/" + url} />
           <script type="application/ld+json">{JSON.stringify(response)}</script>
           <meta property="og:url" content={response.url} />
           <meta property="og:type" content="article" />
