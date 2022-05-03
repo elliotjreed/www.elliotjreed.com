@@ -12,7 +12,7 @@ describe("Posts", (): void => {
         "access-control-allow-origin": "*",
         "access-control-allow-credentials": "true"
       })
-      .get("/blog/posts")
+      .get("/api/v1/blog/posts")
       .reply(200, {
         data: {
           blogPosts: [
@@ -61,7 +61,7 @@ describe("Posts", (): void => {
         "access-control-allow-origin": "*",
         "access-control-allow-credentials": "true"
       })
-      .get("/blog/posts")
+      .get("/api/v1/blog/posts")
       .reply(200, {
         data: {
           blogPosts: [

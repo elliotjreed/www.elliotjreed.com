@@ -38,7 +38,7 @@ export const useFetch = <T>({
       const cache: Cache = await caches.open(cacheName);
 
       cache
-        .match(url)
+        .match("https://api.elliotjreed.com" + url)
         .then((response: Response | undefined): Promise<ApiResponse<T>> => {
           return new Promise((resolve, reject): void => {
             if (response) {
@@ -77,7 +77,7 @@ export const useFetch = <T>({
         headers["Content-Type"] = contentType;
       }
 
-      const getResponse: Response = await fetch(url, {
+      const getResponse: Response = await fetch("https://api.elliotjreed.com" + url, {
         method: method,
         credentials: "same-origin",
         cache: cacheResponse ? "default" : "no-cache",
@@ -95,9 +95,12 @@ export const useFetch = <T>({
             if ("caches" in self) {
               caches
                 .open(cacheName)
-                .then((cache: Cache): Promise<void> => cache.put(url, clonedResponse.clone()))
+                .then(
+                  (cache: Cache): Promise<void> =>
+                    cache.put("https://api.elliotjreed.com" + url, clonedResponse.clone())
+                )
                 .catch((error: Error): void => {
-                  console.warn("Error caching response", url, error);
+                  console.warn("Error caching response", "https://api.elliotjreed.com" + url, error);
                 });
             }
 
@@ -120,7 +123,7 @@ export const useFetch = <T>({
         setErrors(["Oh no! Something has gone a bit wrong when trying to talk to my API... please try again!"]);
       }
 
-      console.error("Error fetching from API", url, error);
+      console.error("Error fetching from API", "https://api.elliotjreed.com" + url, error);
 
       return controller.abort();
     }

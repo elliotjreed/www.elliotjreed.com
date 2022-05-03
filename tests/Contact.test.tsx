@@ -1,9 +1,9 @@
 import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import nock from "nock";
 
 import { Contact } from "../src/components/Contact";
-import userEvent from "@testing-library/user-event";
 
 describe("Contact", (): void => {
   it("should send message and show success text", async (): Promise<void> => {
@@ -12,7 +12,7 @@ describe("Contact", (): void => {
         "access-control-allow-origin": "*",
         "access-control-allow-credentials": "true"
       })
-      .post("/email/send")
+      .post("/api/v1/email/send")
       .reply(200, { data: { status: "sent" }, errors: [] });
 
     render(
@@ -41,7 +41,7 @@ describe("Contact", (): void => {
         "access-control-allow-origin": "*",
         "access-control-allow-credentials": "true"
       })
-      .post("/email/send")
+      .post("/api/v1/email/send")
       .reply(200, { errors: ["An error occurred"] });
 
     render(
@@ -66,7 +66,7 @@ describe("Contact", (): void => {
         "access-control-allow-origin": "*",
         "access-control-allow-credentials": "true"
       })
-      .post("/email/send")
+      .post("/api/v1/email/send")
       .reply(500);
 
     render(

@@ -13,7 +13,7 @@ export const Cv: FC = (): ReactElement => {
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
   const { response } = useFetch<string>({
-    url: "https://api.elliotjreed.com/cv",
+    url: "/cv",
     cacheResponse: true
   });
 

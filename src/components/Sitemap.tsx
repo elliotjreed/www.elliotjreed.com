@@ -14,7 +14,7 @@ export const Sitemap: FC = (): ReactElement => {
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
   const { response } = useFetch<Blog>({
-    url: "https://api.elliotjreed.com/blog/posts",
+    url: "/api/v1/blog/posts",
     cacheResponse: true
   });
 

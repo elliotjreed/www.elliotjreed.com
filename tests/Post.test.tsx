@@ -11,7 +11,7 @@ describe("Post", (): void => {
         "access-control-allow-origin": "*",
         "access-control-allow-credentials": "true"
       })
-      .get("/blog/post/2022-01-01/test-post")
+      .get("/api/v1/blog/post/2022-01-01/test-post")
       .reply(200, {
         data: {
           "@context": "https://schema.org",

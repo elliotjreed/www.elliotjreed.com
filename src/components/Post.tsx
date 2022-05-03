@@ -16,7 +16,7 @@ export const Post: FC = (): ReactElement => {
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
   const { response } = useFetch<PostInterface>({
-    url: "https://api.elliotjreed.com/blog/post/" + url,
+    url: "/api/v1/blog/post/" + url,
     cacheResponse: true
   });
 

@@ -13,7 +13,7 @@ export const Contact: FC = (): ReactElement => {
   const [formData, setFormSata] = useState<FormData | null>(null);
 
   const { response, errors, loading } = useFetch<EmailResponse>({
-    url: "https://api.elliotjreed.com/email/send",
+    url: "/api/v1/email/send",
     method: "POST",
     contentType: "application/x-www-form-urlencoded",
     body: formData

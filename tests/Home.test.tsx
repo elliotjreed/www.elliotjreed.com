@@ -11,7 +11,7 @@ describe("Home", (): void => {
         "access-control-allow-origin": "*",
         "access-control-allow-credentials": "true"
       })
-      .get("/blog/author")
+      .get("/api/v1/blog/author")
       .reply(200, {
         data: {
           additionalName: "MiddleName",

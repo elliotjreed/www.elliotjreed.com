@@ -8,7 +8,7 @@ import { Blog } from "../interfaces/Blog";
 
 const currentDate = new Date().toISOString();
 
-fetch("https://api.elliotjreed.com/blog/posts", {
+fetch("https://api.elliotjreed.com/api/v1/blog/posts", {
   method: "GET",
   headers: { Accept: "application/json" }
 })
