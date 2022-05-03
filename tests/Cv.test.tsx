@@ -21,7 +21,7 @@ describe("CV", (): void => {
         "access-control-allow-origin": "*",
         "access-control-allow-credentials": "true"
       })
-      .get("/cv")
+      .get("/api/v1/cv")
       .reply(200, { data: "CV content from API.", errors: [] });
 
     render(

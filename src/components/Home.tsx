@@ -15,7 +15,7 @@ export const Home: FC = (): ReactElement => {
   const springProps = useSpring({ opacity: 1, from: { opacity: 0 } });
 
   const { response } = useFetch<Person>({
-    url: "/api/v1/blog/author",
+    url: "/api/v1/website",
     cacheResponse: true
   });
 
