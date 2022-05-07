@@ -91,6 +91,7 @@ module.exports = merge(commonConfig, {
           src: resolve("src/assets/img/icon-maskable.png"),
           sizes: [72, 96, 128, 144, 192, 196, 256, 384, 512, 1024],
           purpose: "maskable",
+          ios: false,
           type: "image/png"
         }
       ],
