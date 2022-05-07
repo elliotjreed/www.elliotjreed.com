@@ -1,6 +1,6 @@
 import cors from "cors";
 import express from "express";
-import fs from "fs";
+import { readFileSync } from "fs";
 import { join, resolve } from "path";
 import { renderToPipeableStream } from "react-dom/server";
 import { Request, Response } from "express-serve-static-core";
@@ -29,14 +29,14 @@ server.use(
 const oneYear: number = 365 * 24 * 60 * 60;
 server.use("/", express.static(join(__dirname, "static"), { index: false, maxAge: oneYear }));
 
-const indexHTML: string = fs.readFileSync(resolve(__dirname, "./static/index.html"), {
+const indexHTML: string = readFileSync(resolve(__dirname, "./static/index.html"), {
   encoding: "utf8"
 });
 
 server.get("*", (request: Request, response: Response): void => {
   response.set({
     "Content-Security-Policy":
-      "default-src 'self' https://api.elliotjreed.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://static.cloudflareinsights.com; img-src 'self' data: https://res.cloudinary.com https://www.google-analytics.com https://ssl.google-analytics.com https://csi.gstatic.com https://www.google.com; style-src 'self' 'unsafe-inline'; font-src 'self' https://rsms.me; frame-src https://www.google.com; object-src 'none'"
+      "default-src 'self' https://api.elliotjreed.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://static.cloudflareinsights.com; img-src 'self' data: https://res.cloudinary.com https://www.google-analytics.com https://ssl.google-analytics.com https://csi.gstatic.com https://www.google.com; style-src 'self' 'unsafe-inline' https://rsms.me; font-src 'self' https://rsms.me; frame-src https://www.google.com; object-src 'none'"
   });
 
   const { pipe, abort } = renderToPipeableStream(

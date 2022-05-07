@@ -14,8 +14,8 @@ export const TopBar: FC = (): ReactElement => {
         <Link to="/">
           <div className="flex items-center justify-between">
             <div className="mr-3 h-6 text-2xl font-bold sm:block">
-              <u className="text-green-900 font-extrabold">&gt;</u>{" "}
-              <span className="text-purple-900">Elliot J. Reed</span>
+              <u className="text-green-800 font-extrabold">&gt;</u>{" "}
+              <span className="text-purple-800">Elliot J. Reed</span>
             </div>
           </div>
         </Link>
