@@ -32,7 +32,7 @@ export const App: FC = (): ReactElement => {
         />
         <meta
           name="twitter:image"
-          content="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1648588302/og-no-number.png"
+          content="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1648588302/og.png"
         />
       </Helmet>
       <a href="#main-content" className="sr-only focus:not-sr-only">

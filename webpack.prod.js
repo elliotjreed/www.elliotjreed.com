@@ -82,21 +82,17 @@ module.exports = merge(commonConfig, {
       icons: [
         {
           sizes: [72, 96, 128, 144, 192, 256, 384, 512],
-          src: resolve("src/assets/img/icon.png")
+          src: resolve("src/assets/img/icon-transparent.png"),
+          purpose: "any"
         },
         {
-          sizes: [120, 180, 167, 152, 1024],
-          src: resolve("src/assets/img/icon.png"),
-          ios: true
-        },
-        {
-          size: 1024,
+          sizes: [120, 152, 167, 180, 1024],
           src: resolve("src/assets/img/icon.png"),
           ios: true
         },
         {
           src: resolve("src/assets/img/icon-maskable.png"),
-          size: "1024x1024",
+          sizes: [72, 96, 128, 144, 192, 196, 256, 384, 512, 1024],
           purpose: "maskable"
         }
       ],

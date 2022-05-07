@@ -33,7 +33,7 @@ export const Cv: FC = (): ReactElement => {
         />
         <meta
           property="og:image"
-          content="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1648588302/og-no-number.png"
+          content="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1648588302/og.png"
         />
 
         <meta name="twitter:card" content="summary" />
@@ -45,7 +45,7 @@ export const Cv: FC = (): ReactElement => {
         />
         <meta
           name="twitter:image"
-          content="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1648588302/og-no-number.png"
+          content="https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1648588302/og.png"
         />
       </Helmet>
 
