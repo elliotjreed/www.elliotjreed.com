@@ -44,7 +44,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: "./index.html",
       minify: {
-        collapseWhitespace: true,
+        collapseWhitespace: false,
         removeComments: true,
         removeScriptTypeAttributes: true
       },

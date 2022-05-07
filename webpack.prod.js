@@ -81,23 +81,26 @@ module.exports = merge(commonConfig, {
         "Elliot J. Reed is a Technical Lead in the software development industry, based in Nottingham, United Kingdom.",
       icons: [
         {
-          sizes: [72, 96, 128, 144, 192, 256, 384, 512],
-          src: resolve("src/assets/img/icon-transparent.png"),
-          purpose: "any"
-        },
-        {
-          sizes: [120, 152, 167, 180, 1024],
+          sizes: [72, 96, 120, 128, 152, 144, 180, 192, 256, 384, 512, 1024],
           src: resolve("src/assets/img/icon.png"),
-          ios: true
+          purpose: "any",
+          ios: true,
+          type: "image/png"
         },
         {
           src: resolve("src/assets/img/icon-maskable.png"),
           sizes: [72, 96, 128, 144, 192, 196, 256, 384, 512, 1024],
-          purpose: "maskable"
+          purpose: "maskable",
+          type: "image/png"
         }
       ],
       inject: true,
-      ios: true,
+      dir: "ltr",
+      ios: {
+        "apple-mobile-web-app-title": "EJR",
+        "apple-mobile-web-app-status-bar-style": "black-translucent",
+        "apple-mobile-web-app-capable": "yes"
+      },
       name: "Elliot J. Reed",
       short_name: "EJR",
       theme_color: "#363636"
