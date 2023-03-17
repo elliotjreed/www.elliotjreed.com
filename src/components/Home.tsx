@@ -69,12 +69,8 @@ export const Home: FC = (): ReactElement => {
           </div>
           <div className="prose max-w-none pt-8 pb-8 dark:prose-dark xl:col-span-2">
             <p>
-              Hi! I&apos;m Elliot, a software developer / technical lead based in Nottingham. My interests are generally
-              in E-Commerce, Linux, PHP, Javascript, Docker, and general DevOps.
-            </p>
-            <p>
-              My (current) favourite frameworks of choice are Symfony for PHP and React for Javascript. Professionally I
-              use AWS more than any other cloud provider, but personally I am quite a fan of DigitalOcean.
+              Hi! I&apos;m Elliot, an Engineering Manager / software developer based in Nottingham. My interests are
+              generally in E-Commerce, Linux, PHP, Javascript, Docker, and general DevOps.
             </p>
             <p>
               This website and the backend API serve mostly as my little playground for trying out different packages

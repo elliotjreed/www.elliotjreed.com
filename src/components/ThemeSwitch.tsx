@@ -9,7 +9,7 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 export const ThemeSwitch: FC = (): ReactElement => {
   const [theme, setTheme] = useLocalStorage<"dark" | "light">(
     "theme",
-    (typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches && "dark") || "light"
+    (typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)")?.matches && "dark") || "light"
   );
 
   useEffect((): void => {
