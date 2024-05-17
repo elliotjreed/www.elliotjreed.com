@@ -1,5 +1,4 @@
 import { Component, ErrorInfo, ReactNode } from "react";
-import { event } from "react-ga";
 
 interface Props {
   children: ReactNode;
@@ -20,11 +19,6 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-    event({
-      category: "Error",
-      action: error.name + ": " + error.message
-    });
-
     console.error("Uncaught error", error, errorInfo);
   }
 

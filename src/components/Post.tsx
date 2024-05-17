@@ -80,7 +80,9 @@ export const Post: FC = (): ReactElement => {
               <div
                 className="prose max-w-none pt-10 pb-8 dark:prose-dark"
                 dangerouslySetInnerHTML={{
-                  __html: marked(response.articleBody.substring(response.articleBody.indexOf("\n") + 1))
+                  __html: marked(response.articleBody.substring(response.articleBody.indexOf("\n") + 1), {
+                    async: false
+                  }).toString()
                 }}
               />
             )}

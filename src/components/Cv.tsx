@@ -96,7 +96,7 @@ export const Cv: FC = (): ReactElement => {
                 <div
                   className="prose max-w-none pt-10 print:pt-2 pb-8 print:pb-0 dark:prose-dark print:leading-5"
                   dangerouslySetInnerHTML={{
-                    __html: marked(response.substring(response.indexOf("\n") + 1))
+                    __html: marked(response.substring(response.indexOf("\n") + 1), { async: false }).toString()
                   }}
                 />
               </>

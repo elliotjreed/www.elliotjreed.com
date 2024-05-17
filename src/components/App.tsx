@@ -1,15 +1,12 @@
 import { FC, ReactElement } from "react";
 import { Helmet } from "react-helmet";
 
-import { usePageView } from "../hooks/usePageView";
 import { TopBar } from "./TopBar";
 import ErrorBoundary from "./ErrorBoundary";
 import { Routes } from "./Routes";
 import { Footer } from "./Footer";
 
 export const App: FC = (): ReactElement => {
-  usePageView();
-
   return (
     <>
       <Helmet>

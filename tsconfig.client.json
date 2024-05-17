@@ -15,17 +15,14 @@
     "target": "es6",
     "jsx": "react-jsx",
     "lib": [
-      "dom",
-      "es2015",
-      "es2016",
-      "es2020",
-      "es2022"
+      "DOM",
+      "ES5",
+      "ES6",
+      "ES7"
     ]
   },
   "include": [
     "./src/components/**/*.tsx"
   ],
-  "types": [
-    "typePatches"
-  ]
+  "types": ["node", "jest", "@testing-library/jest-dom"]
 }
