@@ -12,7 +12,7 @@ fetch("https://api.elliotjreed.com/api/v1/blog/posts", {
   method: "GET",
   headers: { Accept: "application/json" }
 })
-  .then((response: Response): Promise<any> => response.json())
+  .then((response: Response): Promise<unknown> => response.json())
   .then((response: ApiResponse<Blog>): void => {
     let content = `
       <?xml version="1.0" encoding="UTF-8"?>

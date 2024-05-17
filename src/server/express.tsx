@@ -39,7 +39,7 @@ server.get("*", (request: Request, response: Response): void => {
       "default-src 'self' https://api.elliotjreed.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://static.cloudflareinsights.com; img-src 'self' data: https://res.cloudinary.com https://www.google-analytics.com https://ssl.google-analytics.com https://csi.gstatic.com https://www.google.com; style-src 'self' 'unsafe-inline' https://rsms.me; font-src 'self' https://rsms.me; frame-src https://www.google.com; object-src 'none'"
   });
 
-  const { pipe, abort } = renderToPipeableStream(
+  const { pipe } = renderToPipeableStream(
     <StaticRouter location={request.url}>
       <App />
     </StaticRouter>,
