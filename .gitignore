@@ -1,9 +1,11 @@
-/.idea/
-/dist/
+.DS_Store
 /node_modules/
-/tests/__coverage__/
-/yarn-error.log
-/coverage
-www.elliotjreed.com_*.report.html
-/src/**/*.js
-bundle-stats.json
+*.tsbuildinfo
+
+# React Router
+/.react-router/
+/build/
+
+# Cloudflare
+.mf
+.wrangler

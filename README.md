@@ -1,44 +1,59 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3afe296f072948fbb1e59e4c6ff2547e)](https://app.codacy.com/app/elliotjreed/www.elliotjreed.com?utm_source=github.com&utm_medium=referral&utm_content=elliotjreed/www.elliotjreed.com&utm_campaign=Badge_Grade_Dashboard)
-[![Styled with Prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+# [www.elliotjreed.com](https://www.elliotjreed.com)
 
-# Elliot J. Reed's website
+This website now uses React Router, having previously been React + Webpack. I've removed the blog because I rarely updated it. I'll add some useful thing on here at some point!
 
-This repository contains the source code for Elliot J. Reed's frontend website. It's written in React JS with Typescript.
+Built using [React Router](https://reactrouter.com/).
 
-Feel free to view the source code for the Python API the frontend fetches the data from, it's also available on [GitHub](https://github.com/elliotjreed).
+## Getting Started
 
-## Getting Started with this Repository
+### Installation
 
-Yarn is expected to be installed on our system.
-
-### Installing Yarn
-
-For instructions on how to install Yarn visit [yarnpkg.com](https://yarnpkg.com/lang/en/docs/install).
-
-### Installing for Development
-
-After cloning this repository, change into the newly created directory and run
+Install the dependencies:
 
 ```bash
-yarn install
+npm install
 ```
 
-This will install all dependencies needed for the project.
+### Development
 
-## Running the Tests
-
-All tests can be run by executing
+Start the development server with HMR:
 
 ```bash
-yarn test
+npm run dev
 ```
 
-`jest` will automatically find all tests inside the `test` directory and run them based on the configuration in the `tests/jest.json` file.
+Your application will be available at `http://localhost:5173`.
 
-## Built With
+## Building for Production
 
-[React JS](https://reactjs.org/)
+Create a production build:
 
-## License
+```bash
+npm run build
+```
 
-This project is licensed under the MIT License - see the [LICENCE](LICENSE) file for details.
+## Deployment
+
+Deployment is done using the Wrangler CLI.
+
+To build and deploy directly to production:
+
+```sh
+npm run deploy
+```
+
+To deploy a preview URL:
+
+```sh
+npx wrangler versions upload
+```
+
+You can then promote a version to production after verification or roll it out progressively.
+
+```sh
+npx wrangler versions deploy
+```
+
+## Styling
+
+[Tailwind CSS](https://tailwindcss.com/) is configured.
