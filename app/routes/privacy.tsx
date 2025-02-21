@@ -80,8 +80,8 @@ export default function Index() {
 
         <h3>How to make an enquiry or change your preferences</h3>
         <p>
-          If at any time, you want to verify, update, amend or delete any personal information I hold about you,{" "}
-          <Link to="/contact">please contact me</Link>.
+          If at any time, you want to verify, update, amend or delete any personal information I hold about you, please
+          contact me.
         </p>
       </div>
     </section>

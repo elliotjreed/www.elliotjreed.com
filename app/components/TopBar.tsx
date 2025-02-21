@@ -1,9 +1,8 @@
-import type { FC, ReactElement } from "react";
+import React, { type FC, type ReactElement } from "react";
 import { Link } from "react-router";
-
-import { MobileNavigation } from "./MobileNavigation";
 import { ThemeSwitch } from "./ThemeSwitch";
-import { type StaticLink, staticLinks } from "~/data/staticLinks";
+
+import Icon from "../images/logo.svg";
 
 export const TopBar: FC = (): ReactElement => {
   return (
@@ -11,12 +10,7 @@ export const TopBar: FC = (): ReactElement => {
       <div>
         <Link to="/">
           <div className="flex items-center justify-between">
-            <div className="mr-3 h-6 text-2xl font-bold sm:block">
-              <u className="text-green-800 font-extrabold" aria-hidden={true}>
-                &gt;
-              </u>{" "}
-              <span className="text-purple-800">Elliot J. Reed</span>
-            </div>
+            <img src={Icon} alt="EJR icon" width={48} height={48} className="h-24 w-24" />
           </div>
         </Link>
       </div>

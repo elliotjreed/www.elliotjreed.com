@@ -20,7 +20,9 @@ export default {
         14: "3.5rem"
       },
       fontFamily: {
+        serif: ["fira-code"],
         sans: [
+          "fira-sans",
           "ui-sans-serif",
           "system-ui",
           "sans-serif",

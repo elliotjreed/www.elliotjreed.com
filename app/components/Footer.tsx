@@ -21,9 +21,9 @@ export const Footer: FC = (): ReactElement => {
               <FontAwesomeIcon className="fa-lg" icon={faLinkedin} aria-label="LinkedIn Profile" />
             </span>
           </a>
-          <a href="https://twitter.com/elliotjreed" rel="noreferrer noopener" title="Twitter">
+          <a href="https://x.com/elliotjreed" rel="noreferrer noopener" title="Twitter / X">
             <span className="icon">
-              <FontAwesomeIcon className="fa-lg" icon={faTwitter} aria-label="Twitter Profile" />
+              <FontAwesomeIcon className="fa-lg" icon={faTwitter} aria-label="Twitter / X Profile" />
             </span>
           </a>
           <a href="https://bsky.app/profile/elliotjreed.bsky.social" rel="noreferrer noopener" title="BlueSky">
@@ -37,7 +37,7 @@ export const Footer: FC = (): ReactElement => {
         </div>
         <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
           <Link to="/">
-            © {new Date().getFullYear()} <strong>Elliot J. Reed</strong>
+            © <strong>Elliot J. Reed</strong>
           </Link>
         </div>
       </div>

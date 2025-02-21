@@ -6,10 +6,10 @@ import { faTwitter } from "@fortawesome/free-brands-svg-icons/faTwitter";
 import { faBluesky } from "@fortawesome/free-brands-svg-icons/faBluesky";
 
 import type { Route } from "./+types/home";
-import ProfileImage from "../images/me.jpg"
+import ProfileImage from "../images/me.jpg";
 
 export function meta({}: Route.MetaArgs) {
-  return [{ title: "New React Router App" }, { name: "description", content: "Welcome to React Router!" }];
+  return [{ title: "Elliot J. Reed" }, { name: "description", content: "Personal website of Elliot J. Reed." }];
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
@@ -38,9 +38,9 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 <FontAwesomeIcon className="fa-lg" icon={faLinkedin} aria-label="LinkedIn Profile" />
               </span>
             </a>
-            <a href="https://twitter.com/elliotjreed" rel="noreferrer noopener" title="Twitter">
+            <a href="https://x.com/elliotjreed" rel="noreferrer noopener" title="Twitter / X">
               <span className="icon">
-                <FontAwesomeIcon className="fa-lg" icon={faTwitter} aria-label="Twitter Profile" />
+                <FontAwesomeIcon className="fa-lg" icon={faTwitter} aria-label="Twitter / X Profile" />
               </span>
             </a>
             <a href="https://bsky.app/profile/elliotjreed.bsky.social" rel="noreferrer noopener" title="BlueSky">
@@ -52,8 +52,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
         </div>
         <div className="prose max-w-none pt-8 pb-8 dark:prose-dark xl:col-span-2">
           <p>
-            Hi! I&apos;m Elliot, an Engineering Manager in software development, based in Nottingham. My interests are
-            generally in e-commerce, AI, Linux, PHP, Javascript, Docker, and general DevOps.
+            Hi! I&apos;m Elliot, I work in e-commerce and software development. I'm based in Nottingham in the UK. My
+            interests are generally in e-commerce, AI, Linux, PHP, Javascript, Docker, and general DevOps.
           </p>
         </div>
       </div>
