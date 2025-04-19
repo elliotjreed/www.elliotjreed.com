@@ -1,14 +1,14 @@
-import { type FC, type ReactElement, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { useLocalStorage } from "~/hooks/useLocalStorage";
-import { faSun } from "@fortawesome/free-solid-svg-icons/faSun";
 import { faMoon } from "@fortawesome/free-solid-svg-icons/faMoon";
+import { faSun } from "@fortawesome/free-solid-svg-icons/faSun";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { type FC, type ReactElement, useEffect } from "react";
+import { useLocalStorage } from "~/hooks/useLocalStorage";
 
 export const ThemeSwitch: FC = (): ReactElement => {
   const [theme, setTheme] = useLocalStorage<"dark" | "light">(
     "theme",
-    (typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)")?.matches && "dark") || "light"
+    (typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)")?.matches && "dark") || "light",
   );
 
   useEffect((): void => {
@@ -22,7 +22,7 @@ export const ThemeSwitch: FC = (): ReactElement => {
   return (
     <button
       aria-label="Toggle dark mode"
-      title={"Switch to " + (theme === "dark" ? "light" : "dark") + " theme"}
+      title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
       type="button"
       className="ml-1 mr-1 h-8 w-8 rounded p-1 sm:ml-4"
       onClick={(): void => setTheme(theme === "dark" ? "light" : "dark")}

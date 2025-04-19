@@ -1,4 +1,4 @@
-import type {FC, ReactElement, RefObject} from "react";
+import type { FC, ReactElement, RefObject } from "react";
 
 import "./yellow-box.css";
 

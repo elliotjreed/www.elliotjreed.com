@@ -43,7 +43,7 @@ export const MobileNavigation: FC = (): ReactElement => {
         </svg>
       </button>
       <div
-        className={`fixed top-24 right-0 z-10 h-full w-full transform bg-gray-200 opacity-95 duration-300 ease-in-out dark:bg-gray-800 ${
+        className={`fixed top-28 right-0 z-10 h-full w-full transform bg-gray-200 opacity-95 duration-300 ease-in-out dark:bg-gray-800 ${
           showNavigation ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -57,17 +57,17 @@ export const MobileNavigation: FC = (): ReactElement => {
           {staticLinks
             .filter((link: StaticLink): boolean => link.showInNavigation)
             .map(
-              (link: StaticLink, index: number): ReactElement => (
-                <div key={index} className="px-12 py-4">
+              (link: StaticLink): ReactElement => (
+                <div key={link.href} className="px-6 py-2">
                   <Link
                     to={link.href}
-                    className="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
+                    className="text-xl tracking-widest text-gray-900 dark:text-gray-100"
                     onClick={onToggleNav}
                   >
                     {link.title}
                   </Link>
                 </div>
-              )
+              ),
             )}
         </nav>
       </div>

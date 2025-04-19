@@ -1,10 +1,8 @@
 import { Link } from "react-router";
 
-import type { Route } from "./+types/home";
-
-export const meta = ({}: Route.MetaArgs) => [
+export const meta = () => [
   { title: "TheVape.co.uk - Domain for Sale!" },
-  { name: "description", content: "Contact me to submit an offer for The Vape.co.uk domain." }
+  { name: "description", content: "Contact me to submit an offer for The Vape.co.uk domain." },
 ];
 
 export default function Index() {

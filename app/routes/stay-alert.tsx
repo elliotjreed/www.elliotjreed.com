@@ -1,9 +1,11 @@
-import type { Route } from "./+types/home";
 import { StayAlert } from "~/components/StayAlert/StayAlert";
 
-export const meta = ({}: Route.MetaArgs) => [
+export const meta = () => [
   { title: "Stay alert poster generator!" },
-  { name: "description", content: "Generate your own 'Stay Alert' poster. A bit of a throwback to when I was bored over the COVID times..." }
+  {
+    name: "description",
+    content: "Generate your own 'Stay Alert' poster. A bit of a throwback to when I was bored over the COVID times...",
+  },
 ];
 
 export default function Index() {

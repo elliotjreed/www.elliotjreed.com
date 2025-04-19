@@ -1,10 +1,10 @@
-import type {FC, ReactElement, RefObject} from "react";
-import type {IconProp} from "@fortawesome/fontawesome-svg-core";
+import type { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons/faArrowUp";
+import { faHeart } from "@fortawesome/free-solid-svg-icons/faHeart";
+import { faReply } from "@fortawesome/free-solid-svg-icons/faReply";
+import { faRetweet } from "@fortawesome/free-solid-svg-icons/faRetweet";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faReply} from "@fortawesome/free-solid-svg-icons/faReply";
-import {faRetweet} from "@fortawesome/free-solid-svg-icons/faRetweet";
-import {faHeart} from "@fortawesome/free-solid-svg-icons/faHeart";
-import {faArrowUp} from "@fortawesome/free-solid-svg-icons/faArrowUp";
+import type { FC, ReactElement, RefObject } from "react";
 
 import "./tweet.css";
 

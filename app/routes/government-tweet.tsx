@@ -1,11 +1,12 @@
-import type { Route } from "./+types/home";
-
-export const meta = ({}: Route.MetaArgs) => [
-    { title: "No. 10 Downling Street government tweet generator!" },
-    { name: "description", content: "Generate your own UK government tweet. A bit of a throwback to when I was bored over the COVID times..." }
-];
-
 import { GovernmentTwitter } from "~/components/GovernmentTwitter/GovernmentTwitter";
+
+export const meta = () => [
+  { title: "No. 10 Downling Street government tweet generator!" },
+  {
+    name: "description",
+    content: "Generate your own UK government tweet. A bit of a throwback to when I was bored over the COVID times...",
+  },
+];
 
 const Index = () => (
   <section className="divide-y divide-gray-200 dark:divide-gray-700">

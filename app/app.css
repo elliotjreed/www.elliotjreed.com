@@ -1,3 +1,161 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..500&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');*/
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@tailwind utilities;
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-mono: "Fira Code";
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+
+  /* Primary palette (alias of Tailwind’s teal)  */
+  --color-primary-50: var(--color-teal-50);
+  --color-primary-100: var(--color-teal-100);
+  --color-primary-200: var(--color-teal-200);
+  --color-primary-300: var(--color-teal-300);
+  --color-primary-400: var(--color-teal-400);
+  --color-primary-500: var(--color-teal-500);
+  --color-primary-600: var(--color-teal-600);
+  --color-primary-700: var(--color-teal-700);
+  --color-primary-800: var(--color-teal-800);
+  --color-primary-900: var(--color-teal-900);
+
+  /* Gray palette → neutral */
+  --color-gray-50: var(--color-neutral-50);
+  --color-gray-100: var(--color-neutral-100);
+  --color-gray-200: var(--color-neutral-200);
+  --color-gray-300: var(--color-neutral-300);
+  --color-gray-400: var(--color-neutral-400);
+  --color-gray-500: var(--color-neutral-500);
+  --color-gray-600: var(--color-neutral-600);
+  --color-gray-700: var(--color-neutral-700);
+  --color-gray-800: var(--color-neutral-800);
+  --color-gray-900: var(--color-neutral-900);
+}
+
+@layer prose {
+  :where(.prose) {
+    color: var(--color-gray-700);
+  }
+  :where(.prose) a {
+    color: var(--color-primary-600);
+  }
+  :where(.prose) a:hover {
+    color: var(--color-primary-700);
+  }
+  :where(.prose) a code {
+    color: var(--color-primary-500);
+  }
+  :where(.prose) h1,
+  :where(.prose) h2 {
+    font-weight: 700;
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-gray-900);
+  }
+  :where(.prose) h3 {
+    font-weight: 600;
+    color: var(--color-gray-900);
+  }
+  :where(.prose) h4,
+  :where(.prose) h5,
+  :where(.prose) h6 {
+    color: var(--color-gray-900);
+  }
+  :where(.prose) pre {
+    background-color: var(--color-gray-800);
+  }
+  :where(.prose) code {
+    color: var(--color-pink-500);
+    background-color: var(--color-gray-100);
+    padding: 2px 4px;
+    border-radius: 0.25rem;
+  }
+  :where(.prose) code::before,
+  :where(.prose) code::after {
+    content: none;
+  }
+  :where(.prose) details {
+    background-color: var(--color-gray-100);
+    padding: 2px 4px;
+    border-radius: 0.25rem;
+  }
+  :where(.prose) hr {
+    border-color: var(--color-gray-200);
+  }
+  :where(.prose) ol li::marker {
+    font-weight: 600;
+    color: var(--color-gray-500);
+  }
+  :where(.prose) ul li::marker {
+    color: var(--color-gray-500);
+  }
+  :where(.prose) strong {
+    color: var(--color-gray-600);
+  }
+  :where(.prose) blockquote {
+    color: var(--color-gray-900);
+    border-left-color: var(--color-gray-200);
+  }
+}
+
+@layer prose-dark {
+  .dark :where(.prose) {
+    color: var(--color-gray-300);
+  }
+  .dark :where(.prose) a {
+    color: var(--color-primary-600);
+  }
+  .dark :where(.prose) a:hover {
+    color: var(--color-primary-500);
+  }
+  .dark :where(.prose) a code {
+    color: var(--color-primary-500);
+  }
+  .dark :where(.prose) h1,
+  .dark :where(.prose) h2 {
+    font-weight: 700;
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-gray-100);
+  }
+  .dark :where(.prose) h3,
+  .dark :where(.prose) h4,
+  .dark :where(.prose) h5,
+  .dark :where(.prose) h6 {
+    color: var(--color-gray-100);
+  }
+  .dark :where(.prose) pre {
+    background-color: var(--color-gray-800);
+  }
+  .dark :where(.prose) code,
+  .dark :where(.prose) details {
+    background-color: var(--color-gray-800);
+  }
+  .dark :where(.prose) hr {
+    border-color: var(--color-gray-700);
+  }
+  .dark :where(.prose) ol li::marker {
+    font-weight: 600;
+    color: var(--color-gray-400);
+  }
+  .dark :where(.prose) ul li::marker {
+    color: var(--color-gray-400);
+  }
+  .dark :where(.prose) strong {
+    color: var(--color-gray-100);
+  }
+  .dark :where(.prose) thead th {
+    color: var(--color-gray-100);
+  }
+  .dark :where(.prose) tbody tr {
+    border-bottom-color: var(--color-gray-700);
+  }
+  .dark :where(.prose) blockquote {
+    color: var(--color-gray-100);
+    border-left-color: var(--color-gray-700);
+  }
+}

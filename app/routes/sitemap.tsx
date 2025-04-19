@@ -1,15 +1,14 @@
 import React, { type ReactNode } from "react";
 import { Link } from "react-router";
 
-import type { Route } from "./+types/home";
 import { type StaticLink, staticLinks } from "~/data/staticLinks";
 
-export const meta = ({}: Route.MetaArgs) => [
+export const meta = () => [
   { title: "Sitemap" },
   {
     name: "description",
-    content: "A list of all the links on this website, including ones I don't link directly to in the main navigation."
-  }
+    content: "A list of all the links on this website, including ones I don't link directly to in the main navigation.",
+  },
 ];
 
 export default function Index() {
@@ -20,15 +19,15 @@ export default function Index() {
           Sitemap
         </h1>
         <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-          All the links on this site, including the old stuff I don't keep in the navigation.
+          All the links on this site, including ones I don't keep in the navigation.
         </p>
       </div>
 
       <div className="prose max-w-none dark:prose-dark">
         <ul>
-          {staticLinks.map((link: StaticLink, index: number): ReactNode => {
+          {staticLinks.map((link: StaticLink): ReactNode => {
             return (
-              <li key={index}>
+              <li key={link.href}>
                 <Link to={link.href} className="text-gray-900 dark:text-gray-100">
                   {link.title}
                 </Link>

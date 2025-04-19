@@ -1,15 +1,21 @@
-import React from "react";
+import { faBluesky } from "@fortawesome/free-brands-svg-icons/faBluesky";
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons/faTwitter";
-import { faBluesky } from "@fortawesome/free-brands-svg-icons/faBluesky";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import type { Route } from "./+types/home";
 import ProfileImage from "../images/me.jpg";
+import type { Route } from "./+types/home";
 
-export function meta({}: Route.MetaArgs) {
-  return [{ title: "Elliot J. Reed" }, { name: "description", content: "Personal website of Elliot J. Reed." }];
+export function meta() {
+  return [
+    { title: "Elliot J. Reed" },
+    {
+      name: "description",
+      content:
+        "The personal website of Elliot J. Reed, whose interests include e-commerce and technology management, philosophy, AI, software development, DevOps, and Linux.",
+    },
+  ];
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {

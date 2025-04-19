@@ -1,10 +1,10 @@
-import React, { type FC, type ReactElement } from "react";
-import { Link } from "react-router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBluesky } from "@fortawesome/free-brands-svg-icons/faBluesky";
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons/faTwitter";
-import { faBluesky } from "@fortawesome/free-brands-svg-icons/faBluesky";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { type FC, type ReactElement } from "react";
+import { Link } from "react-router";
 
 export const Footer: FC = (): ReactElement => {
   return (
