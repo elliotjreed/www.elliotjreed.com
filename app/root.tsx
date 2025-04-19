@@ -30,7 +30,7 @@ export const Layout = ({ children }: { children: ReactNode }) => (
         Skip to content
       </a>
 
-      <div className="mx-auto max-w-3xl py-10 px-4 sm:px-6 xl:max-w-5xl xl:px-0">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
         <div className="flex h-screen flex-col justify-between">
           <TopBar />
           <main className="mb-auto" id="main-content">

@@ -8,7 +8,7 @@ import { type StaticLink, staticLinks } from "~/data/staticLinks";
 
 export const TopBar: FC = (): ReactElement => {
   return (
-    <header className="flex items-center justify-between print:hidden">
+    <header className="flex items-center justify-between py-8 print:hidden">
       <div>
         <Link to="/">
           <div className="flex items-center justify-between">
