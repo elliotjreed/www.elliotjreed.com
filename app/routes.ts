@@ -3,6 +3,7 @@ import { type RouteConfig, index, route } from "@react-router/dev/routes";
 export default [
   index("routes/home.tsx"),
   route("sitemap", "routes/sitemap.tsx"),
+  route("ai-prompt-engineering-guide", "routes/ai-prompt-engineering-guide.tsx"),
   route("cafe-ai-prompt-framework", "routes/cafe-ai-prompt-framework.tsx"),
   route("privacy", "routes/privacy.tsx"),
   route("travel", "routes/travel.tsx"),
