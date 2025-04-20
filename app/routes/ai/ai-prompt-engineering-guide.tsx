@@ -12,16 +12,16 @@ export const meta = () => [
 export default (): ReactElement => (
   <section className="divide-y divide-gray-200 dark:divide-gray-700">
     <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-      <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl">
+      <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
         AI Prompting Guide
       </h1>
 
-      <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+      <p className="text-lg leading-7 text-gray-600 dark:text-gray-300">
         This is a brief "getting started" guide on how to get the most out of AI Assistants through effective "prompt
         engineering".
       </p>
 
-      <aside className="leading-7 text-gray-500 dark:text-gray-400">
+      <aside className="leading-7 text-gray-600 dark:text-gray-300">
         <strong>Note:</strong> for this guide I shall use the term "<strong>AI Assistant</strong>" to refer to
         user-facing generative AI Large Language Model (LLM) applications such as <em>ChatGPT</em>, <em>Claude</em>,{" "}
         <em>Gemini</em>, and <em>DeepSeek</em>.

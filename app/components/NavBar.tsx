@@ -105,7 +105,7 @@ export const NavBar: FC = (): ReactElement => {
                       <button
                         type="button"
                         onClick={(): void => toggleDropdown(link.title)}
-                        className="flex items-center justify-between w-full py-2 px-3 rounded-sm text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
+                        className="flex items-center justify-between w-full py-2 px-3 rounded-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                       >
                         {link.title}
                         <svg
@@ -130,7 +130,7 @@ export const NavBar: FC = (): ReactElement => {
                       <ul
                         className={`${
                           openDropdown === link.title ? "block" : "hidden"
-                        } w-full mt-1 bg-white rounded-sm shadow-sm divide-y divide-gray-100 dark:bg-gray-700 dark:divide-gray-600`}
+                        } w-full mt-1 border border-gray-200 bg-gray-100 rounded-sm shadow-sm divide-y divide-gray-200 dark:bg-gray-700 dark:divide-gray-600 dark:border-gray-600`}
                       >
                         {link.children
                           .filter((link: StaticLink): boolean => link.showInNavigation && link.href !== undefined)
@@ -160,8 +160,8 @@ export const NavBar: FC = (): ReactElement => {
                               [
                                 "block py-2 px-3 rounded-sm",
                                 isActive
-                                  ? "font-semibold text-gray-900 dark:text-gray-100"
-                                  : "text-gray-900 dark:text-gray-100",
+                                  ? "font-semibold text-gray-700 dark:text-gray-200"
+                                  : "text-gray-700 dark:text-gray-200",
                                 "hover:bg-gray-100 dark:hover:bg-gray-700",
                               ].join(" ")
                             }

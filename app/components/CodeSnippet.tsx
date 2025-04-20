@@ -23,10 +23,7 @@ export const CodeSnippet: FC<CodeSnippetInterface> = ({ code, title }) => {
 
   return (
     <>
-      <div
-        id={`snippet-${title}`}
-        className="mb-6 rounded-lg bg-gray-100 dark:bg-gray-800 shadow-md overflow-hidden"
-      >
+      <div id={`snippet-${title}`} className="mb-6 rounded-lg bg-gray-100 dark:bg-gray-800 shadow-md overflow-hidden">
         <div className="px-4 py-2 bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200 font-medium flex justify-between items-center">
           <a href={`#snippet-${title}`}>{title}</a>
           <button

@@ -18,7 +18,7 @@ export function meta() {
 export default (): ReactElement => (
   <section>
     <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
-      <div className="flex flex-col items-center pt-8">
+      <div className="flex flex-col items-center pt-8 text-gray-700 dark:text-gray-200">
         <img
           src={ProfileImage}
           alt="Photograph of Elliot"
@@ -27,8 +27,8 @@ export default (): ReactElement => (
           className="h-48 w-48 rounded-full"
         />
         <h1 className="pt-4 pb-2 text-2xl font-bold leading-8 tracking-tight">Elliot Reed</h1>
-        {/*<div className="text-gray-500 dark:text-gray-400">Engineering Manager</div>*/}
-        {/*<div className="text-gray-500 dark:text-gray-400">Nottingham, United Kingdom</div>*/}
+        {/*<div className="text-gray-600 dark:text-gray-300">Engineering Manager</div>*/}
+        {/*<div className="text-gray-600 dark:text-gray-300">Nottingham, United Kingdom</div>*/}
         <div className="flex space-x-3 pt-2">
           <SocialLinks />
         </div>
