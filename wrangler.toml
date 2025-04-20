@@ -3,12 +3,13 @@ send_metrics = false
 name = "elliotjreed"
 compatibility_date = "2024-11-18"
 main = "./build/server/index.js"
+upload_source_maps = true
 
 [build]
 command = "npm run build"
 
 [assets]
-directory = "./build/client"
+directory = "./build/client/assets"
 binding = "ASSETS"
 not_found_handling= "single-page-application"
 
