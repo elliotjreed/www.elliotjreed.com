@@ -1,7 +1,7 @@
-import type { ReactNode } from "react";
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, isRouteErrorResponse } from "react-router";
+import type { ReactElement, ReactNode } from "react";
+import { Link, Links, Meta, Outlet, Scripts, ScrollRestoration, isRouteErrorResponse } from "react-router";
 import { Footer } from "~/components/Footer";
-import { TopBar } from "~/components/TopBar";
+import { NavBar } from "~/components/NavBar";
 
 import type { Route } from "./+types/root";
 import "./app.css";
@@ -32,7 +32,7 @@ export const Layout = ({ children }: { children: ReactNode }) => (
 
       <div className="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
         <div className="flex h-screen flex-col justify-between">
-          <TopBar />
+          <NavBar />
           <main className="mb-auto" id="main-content">
             {children}
           </main>
@@ -45,9 +45,7 @@ export const Layout = ({ children }: { children: ReactNode }) => (
   </html>
 );
 
-export default function App() {
-  return <Outlet />;
-}
+export default (): ReactElement => <Outlet />;
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let message = "Oops!";
@@ -63,14 +61,21 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
+    <section className="divide-y divide-gray-200 dark:divide-gray-700">
+      <div className="space-y-2 pt-6 pb-8 md:space-y-5">
+        <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl">
+          {message}
+        </h1>
+        <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">{details}</p>
+      </div>
+
       {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
-          <code>{stack}</code>
-        </pre>
+        <div className="prose max-w-none dark:prose-dark">
+          <pre className="w-full p-4 overflow-x-auto">
+            <code>{stack}</code>
+          </pre>
+        </div>
       )}
-    </main>
+    </section>
   );
 }
