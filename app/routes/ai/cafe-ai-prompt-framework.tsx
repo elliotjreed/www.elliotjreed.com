@@ -32,7 +32,7 @@ export default (): ReactElement => (
 
         <img
           src={PosterImage}
-          alt="Photograph of Elliot"
+          alt="CAFE prompt engineering poster"
           width={220}
           height={311}
           className="h-auto w-full max-w-sm md:max-w-64"
