@@ -2,7 +2,7 @@ import type { ReactElement } from "react";
 import { GovernmentTwitter } from "~/components/GovernmentTwitter/GovernmentTwitter";
 
 export const meta = () => [
-  { title: "No. 10 Downling Street government tweet generator! | EJR" },
+  { title: "No. 10 Downing Street government tweet generator | EJR" },
   {
     name: "description",
     content: "Generate your own UK government tweet. A bit of a throwback to when I was bored over the COVID times...",

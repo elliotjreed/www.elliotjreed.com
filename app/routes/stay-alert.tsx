@@ -2,7 +2,7 @@ import type { ReactElement } from "react";
 import { StayAlert } from "~/components/StayAlert/StayAlert";
 
 export const meta = () => [
-  { title: "Stay alert poster generator! | EJR" },
+  { title: "Stay alert poster generator | EJR" },
   {
     name: "description",
     content: "Generate your own 'Stay Alert' poster. A bit of a throwback to when I was bored over the COVID times...",
@@ -20,6 +20,7 @@ export default (): ReactElement => (
         Fill in the box below, and click the <strong>download</strong> button when you&apos;re done.
       </p>
     </div>
+
     <StayAlert />
   </section>
 );
