@@ -41,11 +41,13 @@ export default (): ReactElement => (
         <p>
           If you work in the non-profit or charity sector and want to explore ways of using AI or software development
           in general, please do feel free to get in touch - I will be happy to volunteer my time and provide advice. You
-          can react me at <a href={`mailto:${emailAddress}`}>{emailAddress}</a> or via any of my social media links.
+          can reach me at <a href={`mailto:${emailAddress}`}>{emailAddress}</a> or via any of my social media links.
         </p>
         <p>
-          A good place to start if you want to effectively use AI Assistants such as ChatGPR, Claude, and Gemini is my
-          brief guide on <Link to="/ai/ai-prompt-engineering-guide">AI Prompt Engineering Guide</Link>.
+          A good place to start if you want to effectively use AI Assistants such as ChatGPT, Claude, and Gemini is my
+          brief guide on <Link to="/ai/ai-prompt-engineering-guide">AI Prompt Engineering Guide</Link>. For an
+          easy-to-reference guide and downloadable poster, have a look at{" "}
+          <Link to="/ai/cafe-ai-prompt-framework">CAFE Prompt Framework</Link>
         </p>
       </div>
     </div>

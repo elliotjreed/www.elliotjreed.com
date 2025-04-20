@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import { Link } from "react-router";
+import PosterImage from "../../images/cafe_prompt_poster.png";
 
 export const meta = () => [
   { title: "CAFE Framework Prompting Guide" },
@@ -18,12 +19,38 @@ export default (): ReactElement => (
       </h1>
 
       <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-        This is an outline of my <strong>CAFE</strong> prompt framework. For a more in-depth guide, take a look at my{" "}
-        <Link to="/ai/ai-prompt-engineering-guide">AI Prompt Engineering Guide</Link>.
+        This is an outline of my <strong>CAFE</strong> prompt framework.
       </p>
     </div>
 
     <div className="prose max-w-none dark:prose-dark">
+      <section id="introduction">
+        <p>
+          For a more in-depth guide, take a look at my{" "}
+          <Link to="/ai/ai-prompt-engineering-guide">AI Prompt Engineering Guide</Link>.
+        </p>
+
+        <img
+          src={PosterImage}
+          alt="Photograph of Elliot"
+          width={220}
+          height={311}
+          className="h-auto w-full max-w-sm md:max-w-64"
+        />
+
+        <p>
+          Feel free to download the poster as{" "}
+          <a
+            href="https://www.elliotjreed.com/CAFE Prompt Framework Poster - Elliot J. Reed.png"
+            download="CAFE Prompt Framework Poster - Elliot J. Reed.png"
+          >
+            a PNG image
+          </a>
+          , or in <a href="https://www.elliotjreed.com/CAFE Prompt Framework Poster - Elliot J. Reed.pdf">PDF format</a>
+          .
+        </p>
+      </section>
+
       <section id="context">
         <h2>Context</h2>
 
