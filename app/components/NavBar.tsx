@@ -35,14 +35,17 @@ export const NavBar: FC = (): ReactElement => {
 
   const toggleDropdown = (title: string): void => setOpenDropdown((c) => (c === title ? null : title));
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect((): (() => void) => {
     const handleClick = (event: MouseEvent): void => {
       if (navWrapperRef.current && !navWrapperRef.current.contains(event.target as Node)) {
         closeMenu();
       }
     };
+
     document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
+
+    return (): void => document.removeEventListener("mousedown", handleClick);
   }, []);
 
   return (
