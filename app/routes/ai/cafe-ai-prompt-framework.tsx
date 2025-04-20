@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import PosterImage from "../../images/cafe_prompt_poster.png";
 
 export const meta = () => [
-  { title: "CAFE Framework Prompting Guide" },
+  { title: "CAFE Framework Prompting Guide | EJR" },
   {
     name: "description",
     content:

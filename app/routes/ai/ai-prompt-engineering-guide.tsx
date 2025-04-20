@@ -1,11 +1,11 @@
 import type { ReactElement } from "react";
 
 export const meta = () => [
-  { title: "AI Prompting Guide" },
+  { title: "AI Prompting Guide - Getting Started with Prompt Engineering | EJR" },
   {
     name: "description",
     content:
-      "An guide and introduction to prompt engineering techniques for AI LLMs such as ChatGPT, CLaude, Gemini, and DeepSeek.",
+      "A guide and introduction to prompt engineering techniques for AI LLMs such as ChatGPT, CLaude, Gemini, and DeepSeek.",
   },
 ];
 
@@ -17,7 +17,8 @@ export default (): ReactElement => (
       </h1>
 
       <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-        This is a brief guide on how to get the most out of AI Assistants through effective "prompt engineering".
+        This is a brief "getting started" guide on how to get the most out of AI Assistants through effective "prompt
+        engineering".
       </p>
 
       <aside className="leading-7 text-gray-500 dark:text-gray-400">
