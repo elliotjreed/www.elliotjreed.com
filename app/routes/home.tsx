@@ -2,7 +2,6 @@ import type { ReactElement } from "react";
 import { Link } from "react-router";
 import { SocialLinks } from "~/components/SocialLinks";
 import { emailAddress } from "~/data/emailAddress";
-import ProfileImage from "../images/me.jpg";
 
 export function meta() {
   return [
@@ -20,7 +19,7 @@ export default (): ReactElement => (
     <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
       <div className="flex flex-col items-center pt-8 text-gray-700 dark:text-gray-200">
         <img
-          src={ProfileImage}
+          src="https://www.elliotjreed.com/elliot-greyscale.webp"
           alt="Photograph of Elliot"
           width={192}
           height={192}
