@@ -16,9 +16,8 @@ export const GovernmentTwitter: FC = (): ReactElement => {
     });
   };
 
-  useEffect((): void => {
-    handleMemeGeneration();
-  }, []);
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect((): void => handleMemeGeneration(), []);
 
   return (
     <div className="container py-12">
