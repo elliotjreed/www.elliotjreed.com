@@ -24,6 +24,8 @@ export default (): ReactElement => (
           width={192}
           height={192}
           className="h-48 w-48 rounded-full"
+          loading="lazy"
+          decoding="async"
         />
         <h1 className="pt-4 pb-2 text-2xl font-bold leading-8 tracking-tight">Elliot Reed</h1>
         {/*<div className="text-gray-600 dark:text-gray-300">Engineering Manager</div>*/}
@@ -44,9 +46,14 @@ export default (): ReactElement => (
         </p>
         <p>
           A good place to start if you want to effectively use AI Assistants such as ChatGPT, Claude, and Gemini is my
-          brief guide on <Link to="/ai/ai-prompt-engineering-guide">AI Prompt Engineering Guide</Link>. For an
-          easy-to-reference guide and downloadable poster, have a look at{" "}
-          <Link to="/ai/cafe-ai-prompt-framework">CAFE Prompt Framework</Link>
+          brief guide on{" "}
+          <Link to="/ai/ai-prompt-engineering-guide" prefetch="render">
+            AI Prompt Engineering Guide
+          </Link>
+          . For an easy-to-reference guide and downloadable poster, have a look at{" "}
+          <Link to="/ai/cafe-ai-prompt-framework" prefetch="render">
+            CAFE Prompt Framework
+          </Link>
         </p>
       </div>
     </div>

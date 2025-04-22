@@ -141,6 +141,7 @@ export const NavBar: FC = (): ReactElement => {
                                   to={child.href as string}
                                   onClick={closeMenu}
                                   className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                  prefetch="intent"
                                 >
                                   {child.title}
                                 </NavLink>
@@ -165,6 +166,7 @@ export const NavBar: FC = (): ReactElement => {
                                 "hover:bg-gray-100 dark:hover:bg-gray-700",
                               ].join(" ")
                             }
+                            prefetch="intent"
                           >
                             {link.title}
                           </NavLink>
