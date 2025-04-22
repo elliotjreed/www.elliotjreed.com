@@ -24,7 +24,11 @@ export default (): ReactElement => (
 
       <p className="text-lg leading-7 text-gray-600 dark:text-gray-300">
         You can find an easy-to-reference simple guide with a downloadable poster{" "}
-        <Link to="/ai/cafe-ai-prompt-framework" prefetch="render">
+        <Link
+          to="/ai/cafe-ai-prompt-framework"
+          prefetch="render"
+          className="text-primary-700 dark:text-primary-500 underline"
+        >
           here
         </Link>
         .

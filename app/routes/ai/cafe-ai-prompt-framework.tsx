@@ -18,17 +18,16 @@ export default (): ReactElement => (
       </h1>
 
       <p className="text-lg leading-7 text-gray-600 dark:text-gray-300">
-        This is an outline of my <strong>CAFE</strong> prompt framework.
+        This is an outline of my <strong>CAFE</strong> prompt framework. For a more in-depth guide, take a look at my{" "}
+        <Link to="/ai/ai-prompt-engineering-guide" className="text-primary-700 dark:text-primary-500 underline">
+          AI Prompt Engineering Guide
+        </Link>
+        .
       </p>
     </div>
 
     <div className="prose max-w-none dark:prose-dark">
       <section id="introduction">
-        <p>
-          For a more in-depth guide, take a look at my{" "}
-          <Link to="/ai/ai-prompt-engineering-guide">AI Prompt Engineering Guide</Link>.
-        </p>
-
         <a
           href="https://www.elliotjreed.com/CAFE Prompt Framework Poster - Elliot J. Reed.png"
           download="CAFE Prompt Framework Poster.png"
