@@ -16,98 +16,94 @@ export function meta() {
       "script:ld+json": {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "about": "Elliot Reed is the Head of Technology for a respected e-commerce retailer based in the United Kingdom, with over 12 years experience in management and software development. His interests include AI, philosophy and ethics, DevOps, and leadership and strategy.",
-        "alternateName": "Elliot Reed",
-        "alternativeHeadline": "Elliot Reed's Website",
-        "author": {
+        about:
+          "Elliot Reed is the Head of Technology for a respected e-commerce retailer based in the United Kingdom, with over 12 years experience in management and software development. His interests include AI, philosophy and ethics, DevOps, and leadership and strategy.",
+        alternateName: "Elliot Reed",
+        alternativeHeadline: "Elliot Reed's Website",
+        author: {
           "@type": "Person",
-          "additionalName": "John",
-          "address": {
+          additionalName: "John",
+          address: {
             "@type": "PostalAddress",
-            "addressCountry": {
+            addressCountry: {
               "@type": "Country",
-              "name": "United Kingdom"
+              name: "United Kingdom",
             },
-            "addressLocality": "Nottingham",
-            "addressRegion": "Nottinghamshire"
+            addressLocality: "Nottingham",
+            addressRegion: "Nottinghamshire",
           },
-          "alternateName": "Elliot Reed",
-          "alumniOf": [
+          alternateName: "Elliot Reed",
+          alumniOf: [
             {
               "@type": "CollegeOrUniversity",
-              "name": "University of Nottingham",
-              "url": "https://www.nottingham.ac.uk"
+              name: "University of Nottingham",
+              url: "https://www.nottingham.ac.uk",
             },
             {
               "@type": "CollegeOrUniversity",
-              "name": "Nottingham Law School, Nottingham Trent University",
-              "url": "https://www.ntu.ac.uk"
+              name: "Nottingham Law School, Nottingham Trent University",
+              url: "https://www.ntu.ac.uk",
             },
             {
               "@type": "EducationalOrganization",
-              "name": "Stowupland High School",
-              "url": "https://www.stowuplandhighschool.co.uk"
-            }
+              name: "Stowupland High School",
+              url: "https://www.stowuplandhighschool.co.uk",
+            },
           ],
-          "birthDate": "1990-02-25T12:21:00+00:00",
-          "birthPlace": {
+          birthDate: "1990-02-25T12:21:00+00:00",
+          birthPlace: {
             "@type": "Place",
-            "address": {
+            address: {
               "@type": "PostalAddress",
-              "addressCountry": {
+              addressCountry: {
                 "@type": "Country",
-                "name": "United Kingdom"
+                name: "United Kingdom",
               },
-              "addressLocality": "Bury St. Edmunds",
-              "addressRegion": "Suffolk"
-            }
+              addressLocality: "Bury St. Edmunds",
+              addressRegion: "Suffolk",
+            },
           },
-          "description": "Technology leader based in the United Kingdom, focusing on software engineering and development for the e-commerce sector. Interested in AI, philosophy and ethics, DevOps, and leadership and strategy.",
-          "familyName": "Reed",
-          "gender": "https://schema.org/Male",
-          "givenName": "Elliot",
-          "height": {
+          description:
+            "Technology leader based in the United Kingdom, focusing on software engineering and development for the e-commerce sector. Interested in AI, philosophy and ethics, DevOps, and leadership and strategy.",
+          familyName: "Reed",
+          gender: "https://schema.org/Male",
+          givenName: "Elliot",
+          height: {
             "@type": "QuantitativeValue",
-            "unitCode": "cm",
-            "value": 183
+            unitCode: "cm",
+            value: 183,
           },
-          "honorificSuffix": "BA (Hons.)",
-          "image": {
+          honorificSuffix: "BA (Hons.)",
+          image: {
             "@type": "ImageObject",
-            "url": "https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553434444/elliotjreed.jpg"
+            url: "https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553434444/elliotjreed.jpg",
           },
-          "jobTitle": "Head of Technology",
-          "knowsLanguage": "en-GB",
-          "name": "Elliot J. Reed",
-          "nationality": {
+          jobTitle: "Head of Technology",
+          knowsLanguage: "en-GB",
+          name: "Elliot J. Reed",
+          nationality: {
             "@type": "Country",
-            "name": "United Kingdom"
+            name: "United Kingdom",
           },
-          "sameAs": [
+          sameAs: [
             "https://www.elliotjreed.com",
             "https://x.com/elliotjreed",
             "https://www.linkedin.com/in/elliotjreed",
             "https://github.com/elliotjreed",
-            "https://bsky.app/profile/elliotjreed.bsky.social"
+            "https://bsky.app/profile/elliotjreed.bsky.social",
           ],
-          "url": "https://www.elliotjreed.com"
+          url: "https://www.elliotjreed.com",
         },
-        "dateCreated": "2010-05-15T00:00:00+01:00",
-        "description": "The personal website of Elliot Reed, containing current and past projects, and guides on PHP, Symfony, Javascript, React, Python, and Linux / DevOps.",
-        "headline": "Elliot J. Reed's Website",
-        "inLanguage": [
-          "en-GB",
-          "en-US"
-        ],
-        "keywords": [
-          "Elliot Reed",
-          "Elliot J. Reed",
-          "elliotjreed"
-        ],
-        "name": "Elliot J. Reed",
-        "url": "https://www.elliotjreed.com"
-      }
-    }
+        dateCreated: "2010-05-15T00:00:00+01:00",
+        description:
+          "The personal website of Elliot Reed, containing current and past projects, and guides on PHP, Symfony, Javascript, React, Python, and Linux / DevOps.",
+        headline: "Elliot J. Reed's Website",
+        inLanguage: ["en-GB", "en-US"],
+        keywords: ["Elliot Reed", "Elliot J. Reed", "elliotjreed"],
+        name: "Elliot J. Reed",
+        url: "https://www.elliotjreed.com",
+      },
+    },
   ];
 }
 
@@ -142,8 +138,8 @@ export default (): ReactElement => {
           <p className={`opacity-0 ${fontsReady ? "animate-rise" : ""}`} style={{ animationDelay: "240ms" }}>
             If you work in the non-profit or charity sector and want to explore ways of using AI or software development
             in general, please do feel free to get in touch - I will be happy to volunteer my time and provide advice.
-            You
-            can reach me at <a href={`mailto:${emailAddress}`}>{emailAddress}</a> or via any of my social media links.
+            You can reach me at <a href={`mailto:${emailAddress}`}>{emailAddress}</a> or via any of my social media
+            links.
           </p>
           <p className={`opacity-0 ${fontsReady ? "animate-rise" : ""}`} style={{ animationDelay: "360ms" }}>
             A good place to start if you want to effectively use AI Assistants such as ChatGPT, Claude, and Gemini is my
