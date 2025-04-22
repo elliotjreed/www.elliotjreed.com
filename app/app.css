@@ -59,12 +59,13 @@
   }
   :where(.prose) h3 {
     font-weight: 600;
-    color: var(--color-gray-900);
+    color: var(--color-gray-800);
   }
   :where(.prose) h4,
   :where(.prose) h5,
   :where(.prose) h6 {
-    color: var(--color-gray-900);
+    font-weight: 500;
+    color: var(--color-gray-700);
   }
   :where(.prose) pre {
     background-color: var(--color-gray-800);
@@ -122,11 +123,15 @@
     letter-spacing: var(--tracking-tight);
     color: var(--color-gray-100);
   }
-  .dark :where(.prose) h3,
+  .dark :where(.prose) h3 {
+    font-weight: 600;
+    color: var(--color-gray-200);
+  }
   .dark :where(.prose) h4,
   .dark :where(.prose) h5,
   .dark :where(.prose) h6 {
-    color: var(--color-gray-100);
+    font-weight: 500;
+    color: var(--color-gray-300);
   }
   .dark :where(.prose) pre {
     background-color: var(--color-gray-800);

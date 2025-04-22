@@ -65,7 +65,7 @@ export default (): ReactElement => (
             rel="noopener noreferrer"
             target="_blank"
           >
-            YouTube video
+            YouTube video on prompt engineering
           </a>
           . Here's a rough paraphrasing of what she said:
         </p>
@@ -96,8 +96,7 @@ export default (): ReactElement => (
           <a href="#examples">Examples</a>
         </p>
         <p>
-          Remember, once you have a <a href="#complete_example">response</a> you can{" "}
-          <a href="#iterate">iterate and discuss</a> the output with the AI Assistant.
+          Remember, once you have a response you can <a href="#iterate">iterate on the output</a> with the AI Assistant.
         </p>
       </section>
 
@@ -189,14 +188,19 @@ export default (): ReactElement => (
           </ul>
 
           <section>
-            <h4>Provide positive instructions</h4>
+            <h4>Provide positive criteria over negative constraints</h4>
             <p>
-              As a general rule, tell the AI Assistant what to do rather than what not to do. That is to say,{" "}
-              <strong>focus on explicit instructions rather than constraints</strong>.
+              As a general rule, tell the AI Assistant what to do rather than what not to do. That is to say, focus on{" "}
+              <strong>positive criteria rather than negative constraints</strong>.
             </p>
             <p>
-              For example, an explicit instruction could be "<em>use vegan-friendly, plant-based ingredients</em>",
-              whereas a constraint could be "<em>do not use meat, fish, eggs, or dairy</em>".
+              For example, a positive criteria could be "<em>use vegan-friendly, plant-based ingredients</em>", whereas
+              a negative constraint could be "<em>do not use meat, fish, eggs, or dairy</em>".
+            </p>
+            <p>
+              For another example, a positive criteria could be "
+              <em>be concise and use clear section headings and subheadings for easy referencing</em>", as opposed to
+              negative constraints such as "<em>do not use long sentences and large blocks of text</em>".
             </p>
           </section>
 
@@ -212,7 +216,7 @@ export default (): ReactElement => (
             <h4>Better Example</h4>
             <p className="italic">
               Create a dinner party menu using plant-based ingredients suitable for vegans. The ingredients should be
-              easily available from standard British supermarkets.
+              easily available in Britain.
             </p>
           </section>
         </section>
@@ -275,7 +279,7 @@ export default (): ReactElement => (
               advance so I have time to socialise.
               <br />
               Create a dinner party menu using plant-based ingredients suitable for vegans. The ingredients should be
-              easily available from standard British supermarkets.
+              easily available in Britain.
               <br />
               The menu should be concise and easy to reference, making use of clear sections headed by the time the
               different elements need attention.
@@ -306,15 +310,20 @@ export default (): ReactElement => (
         <section id="iterate">
           <h3>Iterate</h3>
           <p>
-            Once you have entered your initial prompt, you can discuss it with the AI Assistant. This might be
-            requesting a change, clarifying what you meant, or asking for further information.
+            Once you have entered your initial prompt and received a response, evaluate it to see if the response meets
+            your requirements. Hopefully your initial prompt will be good enough that you can follow up, if not then
+            some re-writing of the prompt might be required.
           </p>
 
           <section>
-            <h4>Examples</h4>
+            <h4>Following up</h4>
+            <p>
+              If the response is close to meeting your requirements, you can discuss the response with the AI Assistant.
+              This might be requesting a change, clarifying what you meant, or asking for further information.
+            </p>
 
             <section>
-              <h5>The dinner party prompt</h5>
+              <h5>Example</h5>
               <p className="italic">
                 That plan looks good in general, however one of the guests has a severe allergy to tomatoes. Can you
                 update the menu to account for that?
@@ -325,12 +334,81 @@ export default (): ReactElement => (
           </section>
 
           <section>
-            <h5>The book recommendation prompt</h5>
-            <p className="italic">
-              Thanks! I'm almost finished reading The Paper Menagerie and Other Stories by Ken Liu and am really
-              enjoying that. Could you suggest three more books which are collections of short stories drawing upon
-              similar themes and ideas?
+            <h4>Re-writing</h4>
+            <p>
+              If the response is quite far off what you would like, you can try rewriting the prompt using one or more
+              of the following techniques:
             </p>
+
+            <ul>
+              <li>
+                ensure the CAFE framework is followed, in particular by adding better examples or including more
+                positive criteria
+              </li>
+              <li>
+                break the prompt down into smaller tasks, following up with each smaller task after the first response
+                from the AI Assistant
+              </li>
+              <li>changing to an analogous or synonymous task by rephrasing in a different context</li>
+            </ul>
+
+            <section>
+              <h5>Examples</h5>
+
+              <section>
+                <h5>Revisiting the CAFE framework</h5>
+
+                <p className="italic">
+                  That looks good, however some of those ingredients will be difficult to find. Can you update the menu
+                  to include ingredients easily available from standard British supermarkets, such as Tesco and ASDA?
+                </p>
+              </section>
+
+              <section>
+                <h5>Breaking the prompt down into smaller tasks</h5>
+
+                <ol>
+                  <li className="italic">
+                    I am hosting a Saturday evening dinner party for 12 people. I would like to prepare as much as
+                    possible in advance so I have time to socialise.
+                    <br />
+                    Create a <strong>main course recipe</strong> using plant-based ingredients suitable for vegans. The
+                    ingredients should be easily available in Britain.
+                    <br />
+                    The <strong>recipe</strong> should be concise and easy to reference, making use of clear sections
+                    headed by the time the different elements need attention.
+                    <br />
+                    On two previous occasions, the meals I cooked went down really well with guests. The first was a
+                    dish based around crispy sesame tofu with a peanut sauce; and the second was a red wine mushroom
+                    bourguignon.
+                  </li>
+
+                  <li className="italic">Can you now create a vegan starter that would go well before this main.</li>
+
+                  <li className="italic">
+                    Could you now create a vegan dessert that would finish off the meal nicely?
+                  </li>
+                </ol>
+              </section>
+
+              <section>
+                <h5>Changing to an analogous or synonymous task</h5>
+
+                <p className="italic">
+                  I would like you to take on the role of an diligent and respectful dinner party host who is hosting a
+                  Saturday evening dinner party for 12 people. In this role you would want to spend as much time in the
+                  company of the guests, and prepare food suitable for all.
+                  <br />
+                  The food should use ingredients easily available in the United Kingdom, and be suitable for vegans.
+                  <br />
+                  The menu should be concise and easy to reference, making use of clear sections headed by the time the
+                  different elements need attention.
+                  <br />
+                  Past successful dinner parties included on the menu: a dish based around crispy sesame tofu with a
+                  peanut sauce; and a red wine mushroom bourguignon.
+                </p>
+              </section>
+            </section>
           </section>
         </section>
       </section>

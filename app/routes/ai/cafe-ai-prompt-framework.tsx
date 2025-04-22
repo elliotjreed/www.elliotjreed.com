@@ -66,13 +66,22 @@ export default (): ReactElement => (
       <section id="action">
         <h2>Action</h2>
 
-        <p>This should use active verbs to describe the task. For example:</p>
+        <p>
+          <strong>Use active verbs</strong> to describe the task. Eg.
+        </p>
         <ul>
+          <li>act as&hellip;</li>
           <li>analyse&hellip;</li>
           <li>create&hellip;</li>
           <li>organise&hellip;</li>
           <li>summarise&hellip;</li>
         </ul>
+
+        <p>
+          <strong>Use "active criteria"</strong> over "negative constraints". Eg. "
+          <em>include only details about the camera resolution, screen size, processor, and memory</em>" rather than "
+          <em>do not include details about battery life, available apps, or charging capabilities</em>".
+        </p>
       </section>
 
       <section id="format">
@@ -81,16 +90,16 @@ export default (): ReactElement => (
         <p>This can include information such as:</p>
         <ul>
           <li>
-            tone (eg. <em>use a professional tone</em>)
+            <strong>tone</strong> (eg. <em>use a professional tone</em>)
           </li>
           <li>
-            length (eg. <em>keep it short and quick to read</em>)
+            <strong>length</strong> (eg. <em>keep it short and quick to read</em>)
           </li>
           <li>
-            medium (eg. <em>in the medium of a business memo</em>)
+            <strong>medium</strong> (eg. <em>in the medium of a business memo</em>)
           </li>
           <li>
-            layout (eg. <em>use bullet points and clear headings</em>)
+            <strong>layout</strong> (eg. <em>use bullet points and clear headings</em>)
           </li>
         </ul>
       </section>
@@ -99,7 +108,8 @@ export default (): ReactElement => (
         <h2>Examples</h2>
 
         <p>
-          Provide <strong>two to five examples</strong> where possible.
+          Provide <strong>two to five examples</strong> where possible. Eg. if you want to generate a social media post,
+          provide examples of ones you like.
         </p>
       </section>
 
@@ -112,6 +122,10 @@ export default (): ReactElement => (
           <li>clarifying a point</li>
           <li>pointing out an error</li>
           <li>asking for a more concise output</li>
+          <li>
+            re-writing as a similar task (eg. instead of "<em>analyse the report for social media trends in 2025</em>"
+            you could re-write as "<em>identify key trends in social media marketing from the 2025 report</em>")
+          </li>
         </ul>
       </section>
 
