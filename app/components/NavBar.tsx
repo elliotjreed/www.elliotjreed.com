@@ -51,7 +51,7 @@ export const NavBar: FC = (): ReactElement => {
   return (
     <header className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700 print:hidden">
       <div ref={navWrapperRef} className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-4">
-        <NavLink to="/" className="flex items-center space-x-3 rtl:space-x-reverse" onClick={closeMenu}>
+        <NavLink to="/" className="flex items-center space-x-3 rtl:space-x-reverse" prefetch="render">
           <span className="font-mono text-4xl sm:text-4xl text-gray-400">EJR</span>
         </NavLink>
 

@@ -7,6 +7,29 @@ export default [
   route("ai/recommended-ai-learning-resources", "routes/ai/recommended-ai-learning-resources.tsx"),
   route("linux/zsh-bash-aliases", "routes/linux/zsh-bash-aliases.tsx"),
   route("linux/zsh-bash-functions", "routes/linux/zsh-bash-functions.tsx"),
+  route("linux/copy-mysql-table-data-to-new-table", "routes/linux/copy-mysql-table-data-to-new-table.tsx"),
+  route(
+    "linux/get-local-and-public-ip-address-command-line-bash",
+    "routes/linux/get-local-and-public-ip-address-command-line-bash.tsx",
+  ),
+  route(
+    "linux/install-mariadb-on-ubuntu-and-allow-remote-access",
+    "routes/linux/install-mariadb-on-ubuntu-and-allow-remote-access.tsx",
+  ),
+  route(
+    "linux/search-a-directory-for-text-string-via-command-line",
+    "routes/linux/search-a-directory-for-text-string-via-command-line.tsx",
+  ),
+  route("docker/backup-and-restore-docker-database", "routes/docker/backup-and-restore-docker-database.tsx"),
+  route(
+    "docker/get-docker-and-docker-compose-container-ip-addresses",
+    "routes/docker/get-docker-and-docker-compose-container-ip-addresses.tsx",
+  ),
+  route("docker/delete-all-docker-containers-and-images", "routes/docker/delete-all-docker-containers-and-images.tsx"),
+  route(
+    "php/detect-disposable-or-temporary-email-addresses-in-php",
+    "routes/php/detect-disposable-or-temporary-email-addresses-in-php.tsx",
+  ),
   route("sitemap", "routes/sitemap.tsx"),
   route("privacy", "routes/privacy.tsx"),
   route("travel", "routes/travel.tsx"),

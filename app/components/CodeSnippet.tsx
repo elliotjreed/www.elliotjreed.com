@@ -22,14 +22,14 @@ export const CodeSnippet: FC<CodeSnippetInterface> = ({ code, title }) => {
   };
 
   return (
-    <>
-      <div id={`snippet-${title}`} className="mb-6 rounded-lg bg-gray-100 dark:bg-gray-800 shadow-md overflow-hidden">
-        <div className="px-4 py-2 bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200 font-medium flex justify-between items-center">
-          <a href={`#snippet-${title}`}>{title}</a>
+    <div className="snippet">
+      <div className="mb-6 rounded-lg  bg-gray-800 shadow-md overflow-hidden">
+        <div className="px-4 py-2 bg-gray-700 text-gray-200 font-medium flex justify-between items-center">
+          <span>{title}</span>
           <button
             type="button"
             onClick={handleCopy}
-            className="text-xs px-2 py-1 rounded bg-gray-100 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500 transition-colors dark:text-white flex items-center space-x-1"
+            className="text-xs px-2 py-1 rounded bg-gray-600 hover:bg-gray-500 transition-colors text-white flex items-center space-x-1"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -50,10 +50,10 @@ export const CodeSnippet: FC<CodeSnippetInterface> = ({ code, title }) => {
           </button>
         </div>
 
-        <pre className="p-4 dark:text-gray-300 overflow-x-auto font-mono text-sm">
-          <code>{code}</code>
+        <pre className="p-4 mt-0 mb-0 text-gray-300 bg-gray-800 overflow-x-auto font-mono text-sm">
+          <code className="bg-gray-800">{code}</code>
         </pre>
       </div>
-    </>
+    </div>
   );
 };

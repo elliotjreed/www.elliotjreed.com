@@ -81,12 +81,14 @@ export default (): ReactElement => (
       </p>
     </div>
 
-    <div>
-      {snippets.map(
-        (snippet: CodeSnippetInterface): ReactElement => (
-          <CodeSnippet key={snippet.title} code={snippet.code} title={snippet.title} />
-        ),
-      )}
+    <div className="prose max-w-none dark:prose-dark">
+      <section>
+        {snippets.map(
+          (snippet: CodeSnippetInterface): ReactElement => (
+            <CodeSnippet key={snippet.title} code={snippet.code} title={snippet.title} />
+          ),
+        )}
+      </section>
     </div>
   </section>
 );
