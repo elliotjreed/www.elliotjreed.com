@@ -273,6 +273,25 @@ export default (): ReactElement => (
               based around crispy sesame tofu with a peanut sauce; and the second was a red wine mushroom bourguignon.
             </p>
           </section>
+
+          <section>
+            <h4>Formatting examples</h4>
+
+            <p>
+              It is important to make it clear that the examples are examples. Most of the time it should eb quite
+              clear, however you can make it really specific by using XML tags. For example:
+            </p>
+
+            <p className="italic">
+              Here are examples of previous menu items which have been popular:
+              <br />
+              &lt;example&gt;Vegan Scallops with Paprika Sauce&lt;/example&gt;
+              <br />
+              &lt;example&gt;Potato Cream with Caramelised Leek &amp; Saffron&lt;/example&gt;
+              <br />
+              &lt;example&gt;Broccoli with Black Garlic &amp; Olive Dressing&lt;/example&gt;
+            </p>
+          </section>
         </section>
 
         <section id="complete_example">
