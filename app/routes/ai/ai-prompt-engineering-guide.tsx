@@ -1,4 +1,5 @@
 import type { ReactElement } from "react";
+import { Link } from "react-router";
 
 export const meta = () => [
   { title: "AI Prompting Guide - Getting Started with Prompt Engineering | EJR" },
@@ -19,6 +20,14 @@ export default (): ReactElement => (
       <p className="text-lg leading-7 text-gray-600 dark:text-gray-300">
         This is a brief "getting started" guide on how to get the most out of AI Assistants through effective "prompt
         engineering".
+      </p>
+
+      <p className="text-lg leading-7 text-gray-600 dark:text-gray-300">
+        You can find an easy-to-reference simple guide with a downloadable poster{" "}
+        <Link to="/ai/cafe-ai-prompt-framework" prefetch="render">
+          here
+        </Link>
+        .
       </p>
 
       <aside className="leading-7 text-gray-600 dark:text-gray-300">

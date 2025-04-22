@@ -1,6 +1,5 @@
 import type { ReactElement } from "react";
 import { Link } from "react-router";
-import PosterImage from "../../images/cafe_prompt_poster.png";
 
 export const meta = () => [
   { title: "CAFE Framework Prompting Guide | EJR" },
@@ -30,23 +29,36 @@ export default (): ReactElement => (
           <Link to="/ai/ai-prompt-engineering-guide">AI Prompt Engineering Guide</Link>.
         </p>
 
-        <img
-          src={PosterImage}
-          alt="CAFE prompt engineering poster"
-          width={220}
-          height={311}
-          className="h-auto w-full max-w-sm md:max-w-64"
-        />
+        <a
+          href="https://www.elliotjreed.com/CAFE Prompt Framework Poster - Elliot J. Reed.png"
+          download="CAFE Prompt Framework Poster.png"
+        >
+          <img
+            src="https://www.elliotjreed.com/CAFE Prompt Framework Poster - Elliot J. Reed.webp"
+            alt="CAFE prompt engineering poster"
+            width={220}
+            height={311}
+            className="h-auto w-full max-w-sm md:max-w-64"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
 
         <p>
           Feel free to download the poster as{" "}
           <a
             href="https://www.elliotjreed.com/CAFE Prompt Framework Poster - Elliot J. Reed.png"
-            download="CAFE Prompt Framework Poster - Elliot J. Reed.png"
+            download="CAFE Prompt Framework Poster.png"
           >
             a PNG image
           </a>
-          , or in <a href="https://www.elliotjreed.com/CAFE Prompt Framework Poster - Elliot J. Reed.pdf">PDF format</a>
+          , or in{" "}
+          <a
+            href="https://www.elliotjreed.com/CAFE Prompt Framework Poster - Elliot J. Reed.pdf"
+            download="CAFE Prompt Framework Poster.pdf"
+          >
+            PDF format
+          </a>
           .
         </p>
       </section>
@@ -131,7 +143,10 @@ export default (): ReactElement => (
 
       <section id="example_prompts">
         <h2>Example Prompts</h2>
-        <p>Here are three examples using the CAFE framework. The order of the CAFE elements doesn't matter.</p>
+        <p>
+          Here are three examples using the CAFE framework. The order of the CAFE elements doesn't matter (for example,
+          the action could come before the context, or the format after the examples).
+        </p>
 
         <section>
           <h3>Garden Planning for Small Space</h3>
