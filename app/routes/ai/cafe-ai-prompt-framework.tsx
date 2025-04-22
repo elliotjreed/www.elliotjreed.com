@@ -19,7 +19,11 @@ export default (): ReactElement => (
 
       <p className="text-lg leading-7 text-gray-600 dark:text-gray-300">
         This is an outline of my <strong>CAFE</strong> prompt framework. For a more in-depth guide, take a look at my{" "}
-        <Link to="/ai/ai-prompt-engineering-guide" className="text-primary-700 dark:text-primary-500 underline">
+        <Link
+          to="/ai/ai-prompt-engineering-guide"
+          className="text-primary-700 dark:text-primary-500 underline"
+          prefetch="render"
+        >
           AI Prompt Engineering Guide
         </Link>
         .
