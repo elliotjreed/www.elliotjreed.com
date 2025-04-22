@@ -6,6 +6,13 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig(({ isSsrBuild }) => ({
   build: {
+    target: "esnext",
+    cssCodeSplit: true,
+    sourcemap: false,
+    minify: "esbuild",
+    assetsInlineLimit: 4096,
+    esbuild: { drop: ["console", "debugger"] },
+    define: { "process.env.NODE_ENV": '"production"' },
     rollupOptions: isSsrBuild
       ? {
           input: "./workers/app.ts",

@@ -1,4 +1,4 @@
-import React, { type FC, type ReactElement, useEffect, useRef, useState } from "react";
+import { type FC, type ReactElement, useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router";
 import { type StaticLink, staticLinks } from "~/data/staticLinks";
 import { ThemeSwitch } from "./ThemeSwitch";
