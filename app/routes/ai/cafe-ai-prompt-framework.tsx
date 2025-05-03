@@ -35,6 +35,7 @@ export default (): ReactElement => (
         <a
           href="https://www.elliotjreed.com/CAFE Prompt Framework Poster - Elliot J. Reed.png"
           download="CAFE Prompt Framework Poster.png"
+          className="bg-white"
         >
           <img
             src="https://www.elliotjreed.com/CAFE Prompt Framework Poster - Elliot J. Reed.webp"
