@@ -6,7 +6,7 @@ import { NavBar } from "~/components/NavBar";
 import type { Route } from "./+types/root";
 import "./app.css";
 
-export const Layout = ({ children }: { children: ReactNode }) => (
+export const Layout = ({ children }: { children: ReactNode }): ReactElement => (
   <html lang="en">
     <head>
       <meta charSet="utf-8" />
@@ -43,7 +43,7 @@ export const Layout = ({ children }: { children: ReactNode }) => (
 
 export default (): ReactElement => <Outlet />;
 
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+export function ErrorBoundary({ error }: Route.ErrorBoundaryProps): ReactElement {
   let message = "Oops!";
   let details = "An unexpected error occurred.";
   let stack: string | undefined;

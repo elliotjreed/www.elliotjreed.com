@@ -1,11 +1,11 @@
-import { type FC, useState } from "react";
+import { type FC, type ReactElement, useState } from "react";
 
 export interface CodeSnippetInterface {
   code: string;
   title: string;
 }
 
-export const CodeSnippet: FC<CodeSnippetInterface> = ({ code, title }) => {
+export const CodeSnippet: FC<CodeSnippetInterface> = ({ code, title }: CodeSnippetInterface): ReactElement => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async (): Promise<void> => {

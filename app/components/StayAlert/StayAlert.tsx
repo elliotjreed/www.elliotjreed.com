@@ -15,7 +15,7 @@ export const StayAlert: FC = (): ReactElement => {
     domtoimage.toPng(contentContainerRef.current).then((dataUrl: string): void => setDownloadUrl(dataUrl));
   };
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: incorrectly reports handleMemeGeneration as missing dependency
   useEffect((): void => handleMemeGeneration(), []);
 
   return (

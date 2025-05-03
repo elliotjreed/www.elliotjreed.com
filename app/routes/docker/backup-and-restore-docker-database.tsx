@@ -50,31 +50,33 @@ export default (): ReactElement => (
     </div>
 
     <div className="prose max-w-none dark:prose-dark">
-      <p>To backup / make a dump of a MySQL or MariaDB database within a Docker container, just run:</p>
-      <CodeSnippet
-        code="docker exec DATABASECONTAINER mysqldump -u DATABASEUSER --password=DATABASEPASSWORD DATABASE > backup.sql"
-        title="Backup"
-      />
+      <section>
+        <p>To backup / make a dump of a MySQL or MariaDB database within a Docker container, just run:</p>
+        <CodeSnippet
+          code="docker exec DATABASECONTAINER mysqldump -u DATABASEUSER --password=DATABASEPASSWORD DATABASE > backup.sql"
+          title="Backup"
+        />
 
-      <p>
-        To restore a MySQL or MariaDB database from the <code>mysqldump</code>:
-      </p>
-      <CodeSnippet
-        code="cat backup.sql | docker exec -i DATABASECONTAINER mysql -u DATABASEUSER --password=DATABASEPASSWORD DATABASE"
-        title="Restore"
-      />
+        <p>
+          To restore a MySQL or MariaDB database from the <code>mysqldump</code>:
+        </p>
+        <CodeSnippet
+          code="cat backup.sql | docker exec -i DATABASECONTAINER mysql -u DATABASEUSER --password=DATABASEPASSWORD DATABASE"
+          title="Restore"
+        />
 
-      <p>So a real-world example might look like this:</p>
-      <CodeSnippet
-        code="docker exec wordpress-mysql mysqldump -u root --password=correcthorsebatterystaple wordpressdb > backup.sql"
-        title="Backup Example"
-      />
+        <p>So a real-world example might look like this:</p>
+        <CodeSnippet
+          code="docker exec wordpress-mysql mysqldump -u root --password=correcthorsebatterystaple wordpressdb > backup.sql"
+          title="Backup Example"
+        />
 
-      <p>And restoring:</p>
-      <CodeSnippet
-        code="cat backup.sql | docker exec -i wordpress-mysql mysql -u root --password=correcthorsebatterystaple wordpressdb"
-        title="Restore Example"
-      />
+        <p>And restoring:</p>
+        <CodeSnippet
+          code="cat backup.sql | docker exec -i wordpress-mysql mysql -u root --password=correcthorsebatterystaple wordpressdb"
+          title="Restore Example"
+        />
+      </section>
     </div>
   </section>
 );

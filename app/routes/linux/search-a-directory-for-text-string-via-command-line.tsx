@@ -57,7 +57,7 @@ export default (): ReactElement => (
         Search directory for a word / text via the command line
       </h1>
       <p className="text-lg leading-7 text-gray-600 dark:text-gray-300">
-        By using <code>grep</code> we can quickly search through files for a specific string of text/
+        By using <code>grep</code> we can quickly search through files for a specific string of text
       </p>
     </div>
 

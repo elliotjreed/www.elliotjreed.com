@@ -9,27 +9,52 @@ import type { FC, ReactElement } from "react";
 export const SocialLinks: FC = (): ReactElement => {
   return (
     <>
-      <a href="https://github.com/elliotjreed" rel="noreferrer noopener" title="GitHub">
+      <a
+        href="https://github.com/elliotjreed"
+        rel="noreferrer noopener"
+        title="GitHub"
+        className="text-primary-900 dark:text-primary-200"
+      >
         <span className="icon">
           <FontAwesomeIcon className="fa-lg" icon={faGithub} aria-label="GitHub Profile" />
         </span>
       </a>
-      <a href="https://www.linkedin.com/in/elliotjreed/" rel="noreferrer noopener" title="LinkedIn">
+      <a
+        href="https://www.linkedin.com/in/elliotjreed?utm_source=elliotjreed.com"
+        rel="noreferrer noopener"
+        title="LinkedIn"
+        className="text-primary-900 dark:text-primary-200"
+      >
         <span className="icon">
           <FontAwesomeIcon className="fa-lg" icon={faLinkedin} aria-label="LinkedIn Profile" />
         </span>
       </a>
-      <a href="https://t.me/elliotjreed" rel="noreferrer noopener" title="Telegram">
+      <a
+        href="https://t.me/elliotjreed?utm_source=elliotjreed.com"
+        rel="noreferrer noopener"
+        title="Telegram"
+        className="text-primary-900 dark:text-primary-200"
+      >
         <span className="icon">
           <FontAwesomeIcon className="fa-lg" icon={faTelegram} aria-label="Telegram" />
         </span>
       </a>
-      <a href="https://x.com/elliotjreed" rel="noreferrer noopener" title="Twitter / X">
+      <a
+        href="https://x.com/elliotjreed?utm_source=elliotjreed.com"
+        rel="noreferrer noopener"
+        title="Twitter / X"
+        className="text-primary-900 dark:text-primary-200"
+      >
         <span className="icon">
           <FontAwesomeIcon className="fa-lg" icon={faTwitter} aria-label="Twitter / X Profile" />
         </span>
       </a>
-      <a href="https://bsky.app/profile/elliotjreed.bsky.social" rel="noreferrer noopener" title="BlueSky">
+      <a
+        href="https://bsky.app/profile/elliotjreed.bsky.social?utm_source=elliotjreed.com"
+        rel="noreferrer noopener"
+        title="BlueSky"
+        className="text-primary-900 dark:text-primary-200"
+      >
         <span className="icon">
           <FontAwesomeIcon className="fa-lg" icon={faBluesky} aria-label="BlueSky Profile" />
         </span>

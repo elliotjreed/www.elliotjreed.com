@@ -108,7 +108,7 @@ export function meta() {
 }
 
 export default (): ReactElement => {
-  const fontsReady = useFontsReady();
+  const fontsReady: boolean = useFontsReady();
 
   return (
     <section>
@@ -123,33 +123,33 @@ export default (): ReactElement => {
             loading="lazy"
             decoding="async"
           />
-          <h1 className="pt-4 pb-2 text-2xl font-bold leading-8 tracking-tight">Elliot Reed</h1>
-          {/*<div className="text-gray-600 dark:text-gray-300">Engineering Manager</div>*/}
-          {/*<div className="text-gray-600 dark:text-gray-300">Nottingham, United Kingdom</div>*/}
-          <div className="flex space-x-3 pt-2">
+          <h1 className="pt-4 pb-1 text-2xl font-bold leading-8 tracking-tight">Elliot Reed</h1>
+          <div className="text-navy-900 dark:text-gray-300">
+            <a href={`mailto:${emailAddress}`}>{emailAddress}</a>{" "}
+          </div>
+          <div className="text-gray-600 dark:text-gray-300">Nottingham, United Kingdom</div>
+          <div className="flex space-x-3 pt-3">
             <SocialLinks />
           </div>
         </div>
         <div className="prose max-w-none pt-8 pb-8 xl:col-span-2">
           <p className={`opacity-0 ${fontsReady ? "animate-rise" : ""}`} style={{ animationDelay: "120ms" }}>
-            Hi! I&apos;m Elliot, I work in e-commerce and software development. I'm based in Nottingham in the UK. My
-            interests are generally in e-commerce, AI, Linux, PHP, Javascript, Docker, and general DevOps.
+            Hi! I&apos;m Elliot, I work in e-commerce and software development. My technical interests are generally in
+            e-commerce, AI, Linux, PHP, Javascript, and general DevOps.
           </p>
           <p className={`opacity-0 ${fontsReady ? "animate-rise" : ""}`} style={{ animationDelay: "240ms" }}>
-            If you work in the non-profit or charity sector and want to explore ways of using AI or software development
-            in general, please do feel free to get in touch - I will be happy to volunteer my time and provide advice.
-            You can reach me at <a href={`mailto:${emailAddress}`}>{emailAddress}</a> or via any of my social media
-            links.
+            If you work in the non-profit or charity sector and want to explore ways of using AI or have questions
+            around software development in general, please do feel free to get in touch - I will be happy to volunteer
+            my time and provide advice.
           </p>
           <p className={`opacity-0 ${fontsReady ? "animate-rise" : ""}`} style={{ animationDelay: "360ms" }}>
-            A good place to start if you want to effectively use AI Assistants such as ChatGPT, Claude, and Gemini is my
-            brief guide on{" "}
+            A good place to start if you want to effectively use AI Assistants such as ChatGPT, Claude, and Gemini is my{" "}
             <Link to="/ai/ai-prompt-engineering-guide" prefetch="render">
-              AI Prompt Engineering Guide
+              AI prompting introduction and guide
             </Link>
-            . For an easy-to-reference guide and downloadable poster, have a look at{" "}
+            . For an easy-to-reference quick outline, have a look at{" "}
             <Link to="/ai/cafe-ai-prompt-framework" prefetch="render">
-              CAFE Prompt Framework
+              <em>CAFE</em> prompt framework
             </Link>
           </p>
         </div>

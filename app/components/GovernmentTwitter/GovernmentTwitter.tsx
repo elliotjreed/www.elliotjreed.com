@@ -16,7 +16,7 @@ export const GovernmentTwitter: FC = (): ReactElement => {
     });
   };
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: incorrectly reports handleMemeGeneration as missing dependency
   useEffect((): void => handleMemeGeneration(), []);
 
   return (

@@ -51,23 +51,24 @@ export default (): ReactElement => (
     </div>
 
     <div className="prose max-w-none dark:prose-dark">
-      <p>
-        There is an excellent list curated by Martin Cech at{" "}
-        <a
-          href="https://github.com/disposable-email-domains/disposable-email-domains"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          github.com/disposable-email-domains/disposable-email-domains
-        </a>{" "}
-        which I've used in a PHP package for anyone to use.
-      </p>
-      <p>To install the package simply add it via Composer:</p>
-      <CodeSnippet code="composer require elliotjreed/disposable-emails-filter" title="Install" />
+      <section>
+        <p>
+          There is an excellent list curated by Martin Cech at{" "}
+          <a
+            href="https://github.com/disposable-email-domains/disposable-email-domains"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            github.com/disposable-email-domains/disposable-email-domains
+          </a>{" "}
+          which I've used in a PHP package for anyone to use.
+        </p>
+        <p>To install the package simply add it via Composer:</p>
+        <CodeSnippet code="composer require elliotjreed/disposable-emails-filter" title="Install" />
 
-      <p>And use it like the following:</p>
-      <CodeSnippet
-        code={`<?php
+        <p>And use it like the following:</p>
+        <CodeSnippet
+          code={`<?php
 require 'vendor/autoload.php';
 
 use ElliotJReed\\DisposableEmail\\Email;
@@ -75,15 +76,15 @@ use ElliotJReed\\DisposableEmail\\Email;
 if ((new Email())->isDisposable('email@temporarymailaddress.com')) {
     echo 'This is a disposable / temporary email address';
 }`}
-        title="Usage"
-      />
+          title="Usage"
+        />
 
-      <p>
-        If an invalid email address is provided then an InvalidEmailException is thrown, so it is advisable to check
-        that the email address is valid first. For example:
-      </p>
-      <CodeSnippet
-        code={`$email = 'not-a-real-email-address#example.net'
+        <p>
+          If an invalid email address is provided then an InvalidEmailException is thrown, so it is advisable to check
+          that the email address is valid first. For example:
+        </p>
+        <CodeSnippet
+          code={`$email = 'not-a-real-email-address#example.net'
 
 if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
     if ((new Email())->isDisposable($email)) {
@@ -93,16 +94,21 @@ if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 } else {
     echo 'This is not a valid email address';
 }`}
-        title="Handling invalid emails"
-      />
+          title="Handling invalid emails"
+        />
 
-      <p>
-        The source code is available at{" "}
-        <a href="https://github.com/elliotjreed/disposable-emails-filter-php" target="_blank" rel="noreferrer noopener">
-          github.com/elliotjreed/disposable-emails-filter-php
-        </a>
-        .
-      </p>
+        <p>
+          The source code is available at{" "}
+          <a
+            href="https://github.com/elliotjreed/disposable-emails-filter-php"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            github.com/elliotjreed/disposable-emails-filter-php
+          </a>
+          .
+        </p>
+      </section>
     </div>
   </section>
 );
