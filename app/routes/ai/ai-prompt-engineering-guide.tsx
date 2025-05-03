@@ -23,15 +23,26 @@ export default (): ReactElement => (
       </p>
 
       <p className="text-lg leading-7 text-gray-600 dark:text-gray-300">
-        You can find an easy-to-reference simple guide with a downloadable poster{" "}
+        You can find an easy-to-reference{" "}
         <Link
           to="/ai/cafe-ai-prompt-framework"
           prefetch="render"
           className="text-primary-700 dark:text-primary-500 underline"
         >
-          here
+          simple guide here
         </Link>
         .
+      </p>
+
+      <p className="text-lg leading-7 text-gray-600 dark:text-gray-300">
+        You can listen to the audio version of this guide here:
+        {/* biome-ignore lint/a11y/useMediaCaption: this guide is the text version of the audio */}
+        <audio controls>
+          <source
+            src="https://www.elliotjreed.com/2025-05-03_ai-prompt-engineering-audio-guide.mp3"
+            type="audio/mpeg"
+          />
+        </audio>
       </p>
 
       <aside className="leading-7 text-gray-600 dark:text-gray-300">
@@ -48,15 +59,6 @@ export default (): ReactElement => (
           "<strong>Prompt Engineering</strong>" is the practice of crafting instructions (prompts) to guide generative
           AI models towards producing the desired output.
         </p>
-
-        <p>
-          Prompt engineering is like giving directions to a helpful but unfamiliar visitor.
-          <br />
-          Just as clear directions help someone navigate to the right destination, well-crafted prompts guide AI
-          assistants to produce the results you want.
-          <br />
-          The better your directions, the more likely you'll get exactly what you're looking for.
-        </p>
       </section>
 
       <section>
@@ -68,17 +70,9 @@ export default (): ReactElement => (
         </p>
 
         <p>
-          One of my favourite quotes was from{" "}
+          One of my favourite quotes was from Anthropic's{" "}
           <a href="https://askell.io/?utm_source=www.elliotjreed.com" rel="noopener noreferrer" target="_blank">
             Amanda Askell
-          </a>{" "}
-          in a{" "}
-          <a
-            href="https://www.youtube.com/watch?v=T9aRN5JkmL8&utm_source=www.elliotjreed.com"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            YouTube video on prompt engineering
           </a>
           . Here's a rough paraphrasing of what she said:
         </p>
@@ -134,12 +128,12 @@ export default (): ReactElement => (
 
           <section>
             <h4>Bad Example</h4>
-            <p className="italic">Make a dinner party menu.</p>
+            <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">Make a dinner party menu.</p>
           </section>
 
           <section>
             <h4>Better Example</h4>
-            <p className="italic">
+            <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
               I am hosting a Saturday evening dinner party for 12 people. I would like to prepare as much as possible in
               advance so I have time to socialise. Make a dinner party menu.
             </p>
@@ -155,13 +149,13 @@ export default (): ReactElement => (
             <strong>Use action verbs to describe the task</strong> you want completing.
           </p>
           <p>
-            Here are some examples as provided by{" "}
+            Here are some examples as provided by Google's{" "}
             <a
               href="https://www.kaggle.com/whitepaper-prompt-engineering?utm_source=www.elliotjreed.com"
               rel="noopener noreferrer"
               target="_blank"
             >
-              Prompt Engineering by Lee Boonstra
+              Lee Boonstra
             </a>
             :
           </p>
@@ -183,17 +177,13 @@ export default (): ReactElement => (
             <li>List</li>
             <li>Measure</li>
             <li>Organise</li>
-            <li>Parse</li>
             <li>Pick</li>
             <li>Predict</li>
             <li>Provide</li>
             <li>Rank</li>
             <li>Recommend</li>
-            <li>Return</li>
-            <li>Retrieve</li>
             <li>Rewrite</li>
             <li>Select</li>
-            <li>Show</li>
             <li>Sort</li>
             <li>Summarise</li>
             <li>Translate</li>
@@ -219,7 +209,7 @@ export default (): ReactElement => (
 
           <section>
             <h4>Bad Example</h4>
-            <p className="italic">
+            <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
               I need a dinner party menu. Don't include meat, fish, eggs, or dairy. Don't use ingredients which are
               difficult to find.
             </p>
@@ -227,7 +217,7 @@ export default (): ReactElement => (
 
           <section>
             <h4>Better Example</h4>
-            <p className="italic">
+            <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
               Create a dinner party menu using plant-based ingredients suitable for vegans. The ingredients should be
               easily available in Britain.
             </p>
@@ -255,7 +245,7 @@ export default (): ReactElement => (
 
           <section>
             <h4>Example</h4>
-            <p className="italic">
+            <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
               The menu should be concise and easy to reference, making use of clear sections headed by the time the
               different elements need attention.
             </p>
@@ -272,7 +262,7 @@ export default (): ReactElement => (
 
           <section>
             <h4>Example</h4>
-            <p className="italic">
+            <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
               On two previous occasions, the meals I cooked went down really well with guests. The first was a dish
               based around crispy sesame tofu with a peanut sauce; and the second was a red wine mushroom bourguignon.
             </p>
@@ -282,11 +272,11 @@ export default (): ReactElement => (
             <h4>Formatting examples</h4>
 
             <p>
-              It is important to make it clear that the examples are examples. Most of the time it should eb quite
+              It is important to make it clear that the examples are examples. Most of the time it should be quite
               clear, however you can make it really specific by using XML tags. For example:
             </p>
 
-            <p className="italic">
+            <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
               Here are examples of previous menu items which have been popular:
               <br />
               &lt;example&gt;Vegan Scallops with Paprika Sauce&lt;/example&gt;
@@ -299,14 +289,15 @@ export default (): ReactElement => (
         </section>
 
         <section id="complete_example">
-          <h4>Putting it all together</h4>
+          <h3>Putting it all together</h3>
           <section>
-            <h5>Dinner party prompt</h5>
+            <h4>Dinner party prompt</h4>
             <p>
               We started with a basic bad example prompt of "<em>make a dinner party menu</em>". Using the CAFE
               framework we could engineer our prompt to provide a much better output.
             </p>
-            <p className="italic">
+
+            <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
               I am hosting a Saturday evening dinner party for 12 people. I would like to prepare as much as possible in
               advance so I have time to socialise.
               <br />
@@ -322,19 +313,21 @@ export default (): ReactElement => (
           </section>
 
           <section>
-            <h5>Book recommendation prompt</h5>
-            <p>For another example, here's a prompt I used recently to find new books to read at bedtime.</p>
-            <p className="italic">
+            <h4>Book recommendation prompt</h4>
+            <p>For another example, here's a prompt I used recently to find new books to read before sleep.</p>
+
+            <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
               I'm looking for some book recommendations, in particular ones which I can read before going to bed.
               <br />
               For this I would prefer shorter novels, or short stories.
               <br />I particularly enjoy books which make me think a bit about deeper subjects like philosophy,
-              politics, ethics, religion, and culture.
+              politics, ethics, religion, culture, and the societal impacts of future technology.
               <br />
-              Recently I have enjoyed Ishmael by Daniel Quinn as a bedtime read. Other books I have enjoyed, though not
-              for bedtime reading, have been the Dune novels, Project Hail Mary, Philip Pullman's His Dark Materials
-              books, Ken Follett's Kingsbridge novels, and the Three Body Problem trilogy. Provide me with 10 book
-              suggestions, each with a one line description of why you think the suggestion fits.
+              Recently I have enjoyed Ishmael by Daniel Quinn and The Paper Menagerie collection of short stories by Ken
+              Lui as bedtime reads. Other books I have enjoyed, though not for bedtime reading, have been the Dune
+              novels, Project Hail Mary, Children of Time by Adrian Tchaikovsky, The Handmaid's Tale and The Testaments
+              by Margaret Atwood, the Three Body Problem trilogy. Provide me with 10 book suggestions, each with a one
+              line description of why you think the suggestion fits.
             </p>
           </section>
         </section>
@@ -356,7 +349,7 @@ export default (): ReactElement => (
 
             <section>
               <h5>Example</h5>
-              <p className="italic">
+              <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
                 That plan looks good in general, however one of the guests has a severe allergy to tomatoes. Can you
                 update the menu to account for that?
                 <br />
@@ -390,7 +383,7 @@ export default (): ReactElement => (
               <section>
                 <h5>Revisiting the CAFE framework</h5>
 
-                <p className="italic">
+                <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
                   That looks good, however some of those ingredients will be difficult to find. Can you update the menu
                   to include ingredients easily available from standard British supermarkets, such as Tesco and ASDA?
                 </p>
@@ -399,35 +392,35 @@ export default (): ReactElement => (
               <section>
                 <h5>Breaking the prompt down into smaller tasks</h5>
 
-                <ol>
-                  <li className="italic">
-                    I am hosting a Saturday evening dinner party for 12 people. I would like to prepare as much as
-                    possible in advance so I have time to socialise.
-                    <br />
-                    Create a <strong>main course recipe</strong> using plant-based ingredients suitable for vegans. The
-                    ingredients should be easily available in Britain.
-                    <br />
-                    The <strong>recipe</strong> should be concise and easy to reference, making use of clear sections
-                    headed by the time the different elements need attention.
-                    <br />
-                    On two previous occasions, the meals I cooked went down really well with guests. The first was a
-                    dish based around crispy sesame tofu with a peanut sauce; and the second was a red wine mushroom
-                    bourguignon.
-                  </li>
+                <div className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
+                  <ol>
+                    <li className="italic">
+                      I am hosting a Saturday evening dinner party for 12 people. I would like to prepare as much as
+                      possible in advance so I have time to socialise.
+                      <br />
+                      Create a main course recipe using plant-based ingredients suitable for vegans. The ingredients
+                      should be easily available in Britain.
+                      <br />
+                      The recipe should be concise and easy to reference, making use of clear sections headed by the
+                      time the different elements need attention.
+                      <br />
+                      On two previous occasions, the meals I cooked went down really well with guests. The first was a
+                      dish based around crispy sesame tofu with a peanut sauce; and the second was a red wine mushroom
+                      bourguignon.
+                    </li>
 
-                  <li className="italic">Can you now create a vegan starter that would go well before this main.</li>
+                    <li>Can you now create a vegan starter that would go well before this main.</li>
 
-                  <li className="italic">
-                    Could you now create a vegan dessert that would finish off the meal nicely?
-                  </li>
-                </ol>
+                    <li>Could you now create a vegan dessert that would finish off the meal nicely?</li>
+                  </ol>
+                </div>
               </section>
 
               <section>
                 <h5>Changing to an analogous or synonymous task</h5>
 
-                <p className="italic">
-                  I would like you to take on the role of an diligent and respectful dinner party host who is hosting a
+                <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
+                  I would like you to take on the role of a diligent and respectful dinner party host who is hosting a
                   Saturday evening dinner party for 12 people. In this role you would want to spend as much time in the
                   company of the guests, and prepare food suitable for all.
                   <br />
