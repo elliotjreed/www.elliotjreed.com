@@ -9,17 +9,6 @@ interface NavItem {
   children?: NavItem[];
 }
 
-const navItems: NavItem[] = [
-  {
-    title: "AI",
-    children: [
-      { href: "/ai-prompt-engineering-guide", title: "AI Prompt Guide" },
-      { href: "/cafe-ai-prompt-framework", title: "CAFE Prompt Framework" },
-    ],
-    href: "/ai",
-  },
-];
-
 export const NavBar: FC = (): ReactElement => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -35,7 +24,7 @@ export const NavBar: FC = (): ReactElement => {
 
   const toggleDropdown = (title: string): void => setOpenDropdown((c) => (c === title ? null : title));
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: incorrectly reports closeMenu as missing dependency
   useEffect((): (() => void) => {
     const handleClick = (event: MouseEvent): void => {
       if (navWrapperRef.current && !navWrapperRef.current.contains(event.target as Node)) {
@@ -52,7 +41,7 @@ export const NavBar: FC = (): ReactElement => {
     <header className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700 print:hidden">
       <div ref={navWrapperRef} className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-4">
         <NavLink to="/" className="flex items-center space-x-3 rtl:space-x-reverse" prefetch="render">
-          <span className="font-mono text-4xl sm:text-4xl text-gray-500 dark:text-gray-300">EJR</span>
+          <span className="font-mono text-4xl sm:text-4xl text-primary-900 dark:text-gray-300">EJR</span>
         </NavLink>
 
         <div className="flex items-center space-x-2 rtl:space-x-reverse">
