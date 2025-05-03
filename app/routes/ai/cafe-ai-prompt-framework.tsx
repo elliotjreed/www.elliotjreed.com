@@ -70,30 +70,34 @@ export default (): ReactElement => (
         <h2>Context</h2>
 
         <p>This could include:</p>
-        <ul>
-          <li>the intended audience</li>
-          <li>your skills or area of expertise</li>
-          <li>your job role</li>
-          <li>the tools, software, or equipment you have access to</li>
-        </ul>
+        <div className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
+          <ul>
+            <li>the intended audience</li>
+            <li>your skills or area of expertise</li>
+            <li>your job role</li>
+            <li>the tools, software, or equipment you have access to</li>
+          </ul>
+        </div>
       </section>
 
       <section id="action">
         <h2>Action</h2>
 
         <p>
-          <strong>Use active verbs</strong> to describe the task. Eg.
+          <strong>Use active verbs</strong> to describe the task. For example:
         </p>
-        <ul>
-          <li>act as&hellip;</li>
-          <li>analyse&hellip;</li>
-          <li>create&hellip;</li>
-          <li>organise&hellip;</li>
-          <li>summarise&hellip;</li>
-        </ul>
+        <div className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
+          <ul>
+            <li>act as&hellip;</li>
+            <li>analyse&hellip;</li>
+            <li>create&hellip;</li>
+            <li>organise&hellip;</li>
+            <li>summarise&hellip;</li>
+          </ul>
+        </div>
 
         <p>
-          <strong>Use "active criteria"</strong> over "negative constraints". Eg. "
+          <strong>Use "active criteria"</strong> over "negative constraints". For example, "
           <em>include only details about the camera resolution, screen size, processor, and memory</em>" rather than "
           <em>do not include details about battery life, available apps, or charging capabilities</em>".
         </p>
@@ -103,20 +107,22 @@ export default (): ReactElement => (
         <h2>Format</h2>
 
         <p>This can include information such as:</p>
-        <ul>
-          <li>
-            <strong>tone</strong> (eg. <em>use a professional tone</em>)
-          </li>
-          <li>
-            <strong>length</strong> (eg. <em>keep it short and quick to read</em>)
-          </li>
-          <li>
-            <strong>medium</strong> (eg. <em>in the medium of a business memo</em>)
-          </li>
-          <li>
-            <strong>layout</strong> (eg. <em>use bullet points and clear headings</em>)
-          </li>
-        </ul>
+        <div className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
+          <ul>
+            <li>
+              <strong>tone</strong> (eg. <em>use a professional tone</em>)
+            </li>
+            <li>
+              <strong>length</strong> (eg. <em>keep it short and quick to read</em>)
+            </li>
+            <li>
+              <strong>medium</strong> (eg. <em>in the medium of a business memo</em>)
+            </li>
+            <li>
+              <strong>layout</strong> (eg. <em>use bullet points and clear headings</em>)
+            </li>
+          </ul>
+        </div>
       </section>
 
       <section id="examples">
@@ -132,16 +138,18 @@ export default (): ReactElement => (
         <h2>Iterate</h2>
 
         <p>Iterate on the response. This could include:</p>
-        <ul>
-          <li>requesting a change in tone</li>
-          <li>clarifying a point</li>
-          <li>pointing out an error</li>
-          <li>asking for a more concise output</li>
-          <li>
-            re-writing as a similar task (eg. instead of "<em>analyse the report for social media trends in 2025</em>"
-            you could re-write as "<em>identify key trends in social media marketing from the 2025 report</em>")
-          </li>
-        </ul>
+        <div className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
+          <ul>
+            <li>requesting a change in tone</li>
+            <li>clarifying a point</li>
+            <li>pointing out an error</li>
+            <li>asking for a more concise output</li>
+            <li>
+              re-writing as a similar task (eg. instead of "<em>analyse the report for social media trends in 2025</em>"
+              you could re-write as "<em>identify key trends in social media marketing from the 2025 report</em>")
+            </li>
+          </ul>
+        </div>
       </section>
 
       <section id="example_prompts">
@@ -153,7 +161,7 @@ export default (): ReactElement => (
 
         <section>
           <h3>Garden Planning for Small Space</h3>
-          <p className="italic">
+          <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
             <strong>Context:</strong> I live in a terraced house in Manchester with a north-facing garden that's
             approximately 3m x 5m. The space gets limited direct sunlight except in summer mornings. The soil is
             clay-heavy and tends to waterlog during winter months.
@@ -172,7 +180,7 @@ export default (): ReactElement => (
 
         <section>
           <h3>Family History Research Strategy</h3>
-          <p className="italic">
+          <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
             I'm researching my family history and have hit a roadblock with my maternal great-grandfather. I know he was
             born around 1885 in Glasgow and worked as a shipbuilder, but I've found conflicting information about his
             parents and siblings.
@@ -189,8 +197,8 @@ export default (): ReactElement => (
         </section>
 
         <section>
-          <h3>Family History Research Strategy</h3>
-          <p className="italic">
+          <h3>School Climate Change Presentation</h3>
+          <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
             I'm a volunteer at a local primary school and will be giving a 30-minute presentation to Year 4 pupils (ages
             8-9) about climate change. Most children have some awareness of the topic but limited understanding of the
             science.
