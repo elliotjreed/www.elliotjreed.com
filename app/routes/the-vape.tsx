@@ -1,4 +1,3 @@
-import { Link } from "react-router";
 import { emailAddress } from "~/data/emailAddress";
 
 export const meta = () => [

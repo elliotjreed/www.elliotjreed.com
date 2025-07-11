@@ -1,5 +1,4 @@
 import type { ReactElement } from "react";
-import { Link } from "react-router";
 
 export const meta = () => [
   { title: "AI Resources | EJR" },

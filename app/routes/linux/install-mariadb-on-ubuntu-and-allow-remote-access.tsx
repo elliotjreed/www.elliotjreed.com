@@ -1,5 +1,5 @@
 import type { ReactElement } from "react";
-import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet";
+import { CodeSnippet } from "~/components/CodeSnippet";
 
 export const meta = () => [
   { title: "Installing MariaBD on Ubuntu | EJR" },
