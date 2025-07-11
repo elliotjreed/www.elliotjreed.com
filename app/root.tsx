@@ -16,6 +16,12 @@ export const Layout = ({ children }: { children: ReactNode }): ReactElement => (
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@elliotjreed" />
       <meta name="twitter:image" content="https://www.elliotjreed.com/og.png" />
+      <meta name="theme-color" content="#1f2937" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+      <meta name="apple-mobile-web-app-title" content="EJR" />
+      <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      <link rel="mask-icon" href="/icon-maskable-512.png" color="#1f2937" />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" />
       <Meta />
