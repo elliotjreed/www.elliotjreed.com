@@ -31,6 +31,7 @@ export default defineConfig(({ isSsrBuild }) => ({
     tsconfigPaths(),
     VitePWA({
       registerType: "autoUpdate",
+      injectRegister: "auto",
       workbox: {
         globPatterns: ["**/*.{js,css,html,ico,png,svg,woff2}"],
         runtimeCaching: [
