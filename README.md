@@ -1,6 +1,6 @@
 # [www.elliotjreed.com](https://www.elliotjreed.com)
 
-This website now uses React Router, having previously been React + Webpack. I've removed the blog because I rarely updated it. I'll add some useful thing on here at some point!
+This website now uses React Router, having previously been React + Webpack. I've removed the blog because I rarely updated it. I'll add some useful things on here at some point!
 
 Built using [React Router](https://reactrouter.com/).
 
