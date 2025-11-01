@@ -18,22 +18,22 @@
     "@fortawesome/free-brands-svg-icons": "^7.1.0",
     "@fortawesome/free-solid-svg-icons": "^7.1.0",
     "@fortawesome/react-fontawesome": "^3.1.0",
-    "@react-router/node": "^7.9.4",
-    "@react-router/serve": "^7.9.4",
+    "@react-router/node": "^7.9.5",
+    "@react-router/serve": "^7.9.5",
     "@tailwindcss/typography": "^0.5.19",
-    "dom-to-image-more": "^3.7.2",
+    "dom-to-image-more": "3.7.1",
     "isbot": "^5.1.31",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-router": "^7.9.4"
+    "react-router": "^7.9.5"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.3.0",
+    "@biomejs/biome": "^2.3.2",
     "@cloudflare/workers-types": "^4.20251014.0",
-    "@react-router/dev": "^7.9.4",
+    "@react-router/dev": "^7.9.5",
     "@tailwindcss/postcss": "^4.1.16",
     "@tailwindcss/vite": "^4.1.16",
-    "@types/node": "^24.9.1",
+    "@types/node": "^24.9.2",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "autoprefixer": "^10.4.21",
@@ -43,6 +43,6 @@
     "vite": "^7.1.12",
     "vite-plugin-pwa": "^1.1.0",
     "vite-tsconfig-paths": "^5.1.4",
-    "wrangler": "^4.45.0"
+    "wrangler": "^4.45.3"
   }
 }
