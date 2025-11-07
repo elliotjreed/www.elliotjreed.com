@@ -11,7 +11,7 @@ Built using [React Router](https://reactrouter.com/).
 Install the dependencies:
 
 ```bash
-npm install
+bun install
 ```
 
 ### Development
@@ -19,7 +19,7 @@ npm install
 Start the development server with HMR:
 
 ```bash
-npm run dev
+bun run dev
 ```
 
 Your application will be available at `http://localhost:5173`.
@@ -29,7 +29,7 @@ Your application will be available at `http://localhost:5173`.
 Create a production build:
 
 ```bash
-npm run build
+bun run build
 ```
 
 ## Deployment
@@ -39,19 +39,19 @@ Deployment is done using the Wrangler CLI.
 To build and deploy directly to production:
 
 ```sh
-npm run deploy
+bun run deploy
 ```
 
 To deploy a preview URL:
 
 ```sh
-npx wrangler versions upload
+bunx wrangler versions upload
 ```
 
 You can then promote a version to production after verification or roll it out progressively.
 
 ```sh
-npx wrangler versions deploy
+bunx wrangler versions deploy
 ```
 
 ## Styling
