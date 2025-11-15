@@ -60,16 +60,17 @@ export const NavBar: FC = (): ReactElement => {
   const navigationLinks: StaticLink[] = staticLinks.filter((link: StaticLink): boolean => link.showInNavigation);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 print:hidden shadow-sm">
-      <div ref={navWrapperRef} className="max-w-screen-xl flex items-center justify-between mx-auto py-4 px-4">
-        <NavLink to="/" className="flex items-center space-x-3 rtl:space-x-reverse z-50" prefetch="render">
-          <span className="text-4xl font-bold text-primary-900 dark:text-gray-300 hover:text-primary-700 dark:hover:text-white transition-colors">
-            EJR
-          </span>
-        </NavLink>
+    <>
+      <header className="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 print:hidden shadow-sm">
+        <div ref={navWrapperRef} className="max-w-screen-xl flex items-center justify-between mx-auto py-4 px-4">
+          <NavLink to="/" className="flex items-center space-x-3 rtl:space-x-reverse" prefetch="render">
+            <span className="text-4xl font-bold text-primary-900 dark:text-gray-300 hover:text-primary-700 dark:hover:text-white transition-colors">
+              EJR
+            </span>
+          </NavLink>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-1">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-1">
           <ul className="flex items-center space-x-1">
             {navigationLinks.map((link) => {
               if (link.children?.length) {
@@ -125,106 +126,107 @@ export const NavBar: FC = (): ReactElement => {
           </ul>
         </nav>
 
-        {/* Right side controls */}
-        <div className="flex items-center gap-2 z-50">
-          <ThemeSwitch />
+          {/* Right side controls */}
+          <div className="flex items-center gap-2">
+            <ThemeSwitch />
 
-          {/* Mobile Menu Button */}
-          <button
-            type="button"
-            aria-controls="mobile-navigation"
-            aria-expanded={isMenuOpen}
-            aria-label="Toggle navigation menu"
-            onClick={toggleMenu}
-            className="md:hidden inline-flex items-center justify-center w-10 h-10 p-2 rounded-lg text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:text-gray-400 dark:hover:bg-gray-800 dark:focus:ring-primary-600 transition-colors"
-          >
-            <HamburgerIcon isOpen={isMenuOpen} />
-          </button>
-        </div>
-
-        {/* Mobile Menu Backdrop */}
-        <div
-          className={`md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
-            isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
-          onClick={closeMenu}
-          aria-hidden="true"
-        />
-
-        {/* Mobile Menu */}
-        <nav
-          id="mobile-navigation"
-          className={`md:hidden fixed top-0 right-0 h-full w-[280px] bg-white dark:bg-gray-900 shadow-2xl transform transition-transform duration-300 ease-in-out ${
-            isMenuOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-        >
-          <div className="flex flex-col h-full overflow-y-auto">
-            {/* Mobile Menu Header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-              <span className="text-xl font-bold text-gray-900 dark:text-white">Menu</span>
-              <button
-                type="button"
-                onClick={closeMenu}
-                aria-label="Close menu"
-                className="p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors"
-              >
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-
-            {/* Mobile Menu Items */}
-            <ul className="flex-1 p-4 space-y-2">
-              {navigationLinks.map((link) => {
-                if (link.children?.length) {
-                  const validChildren = link.children.filter(
-                    (child) => child.showInNavigation && child.href !== undefined,
-                  );
-
-                  return (
-                    <li key={link.title}>
-                      <button
-                        type="button"
-                        onClick={() => toggleDropdown(link.title)}
-                        className="flex items-center justify-between w-full px-4 py-3 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-medium"
-                      >
-                        {link.title}
-                        <DropdownMenuIcon isOpen={openDropdown === link.title} />
-                      </button>
-
-                      <ul
-                        className={`mt-1 ml-4 space-y-1 overflow-hidden transition-all duration-200 ${
-                          openDropdown === link.title ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-                        }`}
-                      >
-                        {validChildren.map((child) => (
-                          <li key={child.href}>
-                            <NavLink
-                              to={child.href as string}
-                              onClick={closeMenu}
-                              className="block px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-primary-700 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
-                              prefetch="intent"
-                            >
-                              {child.title}
-                            </NavLink>
-                          </li>
-                        ))}
-                      </ul>
-                    </li>
-                  );
-                }
-
-                if (link.href) {
-                  return <NavLinkItem key={link.href} link={link} closeMenu={closeMenu} />;
-                }
-
-                return <li key={link.title}>{link.title}</li>;
-              })}
-            </ul>
+            {/* Mobile Menu Button */}
+            <button
+              type="button"
+              aria-controls="mobile-navigation"
+              aria-expanded={isMenuOpen}
+              aria-label="Toggle navigation menu"
+              onClick={toggleMenu}
+              className="md:hidden inline-flex items-center justify-center w-10 h-10 p-2 rounded-lg text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:text-gray-400 dark:hover:bg-gray-800 dark:focus:ring-primary-600 transition-colors"
+            >
+              <HamburgerIcon isOpen={isMenuOpen} />
+            </button>
           </div>
-        </nav>
-      </div>
-    </header>
+        </div>
+      </header>
+
+      {/* Mobile Menu Backdrop */}
+      <div
+        className={`md:hidden fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
+          isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={closeMenu}
+        aria-hidden="true"
+      />
+
+      {/* Mobile Menu */}
+      <nav
+        id="mobile-navigation"
+        className={`md:hidden fixed top-0 right-0 h-full w-[280px] z-[70] bg-white dark:bg-gray-900 shadow-2xl transform transition-transform duration-300 ease-in-out ${
+          isMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex flex-col h-full overflow-y-auto">
+          {/* Mobile Menu Header */}
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+            <span className="text-xl font-bold text-gray-900 dark:text-white">Menu</span>
+            <button
+              type="button"
+              onClick={closeMenu}
+              aria-label="Close menu"
+              className="p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors"
+            >
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Mobile Menu Items */}
+          <ul className="flex-1 p-4 space-y-2">
+            {navigationLinks.map((link) => {
+              if (link.children?.length) {
+                const validChildren = link.children.filter(
+                  (child) => child.showInNavigation && child.href !== undefined,
+                );
+
+                return (
+                  <li key={link.title}>
+                    <button
+                      type="button"
+                      onClick={() => toggleDropdown(link.title)}
+                      className="flex items-center justify-between w-full px-4 py-3 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-medium"
+                    >
+                      {link.title}
+                      <DropdownMenuIcon isOpen={openDropdown === link.title} />
+                    </button>
+
+                    <ul
+                      className={`mt-1 ml-4 space-y-1 overflow-hidden transition-all duration-200 ${
+                        openDropdown === link.title ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                      }`}
+                    >
+                      {validChildren.map((child) => (
+                        <li key={child.href}>
+                          <NavLink
+                            to={child.href as string}
+                            onClick={closeMenu}
+                            className="block px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-primary-700 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                            prefetch="intent"
+                          >
+                            {child.title}
+                          </NavLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                );
+              }
+
+              if (link.href) {
+                return <NavLinkItem key={link.href} link={link} closeMenu={closeMenu} />;
+              }
+
+              return <li key={link.title}>{link.title}</li>;
+            })}
+          </ul>
+        </div>
+      </nav>
+    </>
   );
 };
