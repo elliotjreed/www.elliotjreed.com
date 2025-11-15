@@ -51,7 +51,8 @@ describe("privacy route", () => {
     it("should mention Cloudflare as hosting provider", () => {
       render(<PrivacyRoute />);
 
-      expect(screen.getByText(/Cloudflare/i)).toBeInTheDocument();
+      const cloudflareReferences = screen.getAllByText(/hosting provider \(Cloudflare\)/i);
+      expect(cloudflareReferences.length).toBeGreaterThan(0);
     });
 
     it("should have prose container", () => {

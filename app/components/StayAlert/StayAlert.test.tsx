@@ -46,12 +46,14 @@ describe("StayAlert", () => {
     expect(screen.getByPlaceholderText("Save lives.")).toBeInTheDocument();
   });
 
-  it("should render download button", () => {
+  it("should render download button", async () => {
     render(<StayAlert />);
 
-    const downloadLink = screen.getByRole("link", { name: "Download" });
-    expect(downloadLink).toBeInTheDocument();
-    expect(downloadLink).toHaveAttribute("download", "stayalert.png");
+    await waitFor(() => {
+      const downloadLink = screen.getByRole("link", { name: "Download" });
+      expect(downloadLink).toBeInTheDocument();
+      expect(downloadLink).toHaveAttribute("download", "stayalert.png");
+    });
   });
 
   it("should update YellowBox when input changes", async () => {
@@ -69,12 +71,11 @@ describe("StayAlert", () => {
   it("should have download URL href", async () => {
     render(<StayAlert />);
 
-    const downloadLink = screen.getByRole("link", { name: "Download" });
-
     await waitFor(() => {
-      expect(downloadLink).toHaveAttribute("href");
+      const downloadLink = screen.getByRole("link", { name: "Download" });
       const href = downloadLink.getAttribute("href");
       expect(href).toBeTruthy();
+      expect(href).toContain("data:image/png");
     });
   });
 

@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import { Layout, ErrorBoundary } from "./root";
+import { isRouteErrorResponse } from "react-router";
 
 vi.mock("react-router", async () => {
   const actual = await vi.importActual("react-router");
@@ -55,24 +56,24 @@ describe("root", () => {
     });
 
     it("should have html lang attribute", () => {
-      const { container } = render(
+      render(
         <Layout>
           <div>Content</div>
         </Layout>,
       );
 
-      const html = container.querySelector("html");
+      const html = document.querySelector("html");
       expect(html).toHaveAttribute("lang", "en");
     });
 
     it("should have viewport meta tag", () => {
-      const { container } = render(
+      render(
         <Layout>
           <div>Content</div>
         </Layout>,
       );
 
-      const viewport = container.querySelector('meta[name="viewport"]');
+      const viewport = document.querySelector('meta[name="viewport"]');
       expect(viewport).toHaveAttribute("content", "width=device-width, shrink-to-fit=no, initial-scale=1");
     });
 
@@ -83,7 +84,8 @@ describe("root", () => {
         </Layout>,
       );
 
-      expect(screen.getByText("Elliot J. Reed | EJR")).toBeInTheDocument();
+      const title = document.querySelector("title");
+      expect(title).toHaveTextContent("Elliot J. Reed | EJR");
     });
 
     it("should have skip to content link", () => {
@@ -110,26 +112,26 @@ describe("root", () => {
     });
 
     it("should have og:image meta tag", () => {
-      const { container } = render(
+      render(
         <Layout>
           <div>Content</div>
         </Layout>,
       );
 
-      const ogImage = container.querySelector('meta[property="og:image"]');
+      const ogImage = document.querySelector('meta[property="og:image"]');
       expect(ogImage).toHaveAttribute("content", "https://www.elliotjreed.com/og.png");
     });
 
     it("should have twitter card meta tags", () => {
-      const { container } = render(
+      render(
         <Layout>
           <div>Content</div>
         </Layout>,
       );
 
-      const twitterCard = container.querySelector('meta[name="twitter:card"]');
-      const twitterSite = container.querySelector('meta[name="twitter:site"]');
-      const twitterImage = container.querySelector('meta[name="twitter:image"]');
+      const twitterCard = document.querySelector('meta[name="twitter:card"]');
+      const twitterSite = document.querySelector('meta[name="twitter:site"]');
+      const twitterImage = document.querySelector('meta[name="twitter:image"]');
 
       expect(twitterCard).toHaveAttribute("content", "summary");
       expect(twitterSite).toHaveAttribute("content", "@elliotjreed");
@@ -137,32 +139,35 @@ describe("root", () => {
     });
 
     it("should have manifest link", () => {
-      const { container } = render(
+      render(
         <Layout>
           <div>Content</div>
         </Layout>,
       );
 
-      const manifest = container.querySelector('link[rel="manifest"]');
+      const manifest = document.querySelector('link[rel="manifest"]');
       expect(manifest).toHaveAttribute("href", "/manifest.webmanifest");
     });
 
     it("should have theme-color meta tag", () => {
-      const { container } = render(
+      render(
         <Layout>
           <div>Content</div>
         </Layout>,
       );
 
-      const themeColor = container.querySelector('meta[name="theme-color"]');
+      const themeColor = document.querySelector('meta[name="theme-color"]');
       expect(themeColor).toHaveAttribute("content", "#1f2937");
     });
   });
 
   describe("ErrorBoundary", () => {
+    beforeEach(() => {
+      vi.clearAllMocks();
+    });
+
     it("should render 404 message for 404 errors", () => {
-      const { isRouteErrorResponse } = require("react-router");
-      isRouteErrorResponse.mockReturnValue(true);
+      vi.mocked(isRouteErrorResponse).mockReturnValue(true);
 
       const error = { status: 404, statusText: "Not Found" };
       render(<ErrorBoundary error={error} />);
@@ -172,8 +177,7 @@ describe("root", () => {
     });
 
     it("should render generic error message for other route errors", () => {
-      const { isRouteErrorResponse } = require("react-router");
-      isRouteErrorResponse.mockReturnValue(true);
+      vi.mocked(isRouteErrorResponse).mockReturnValue(true);
 
       const error = { status: 500, statusText: "Internal Server Error" };
       render(<ErrorBoundary error={error} />);
@@ -183,8 +187,7 @@ describe("root", () => {
     });
 
     it("should render default error message for non-route errors", () => {
-      const { isRouteErrorResponse } = require("react-router");
-      isRouteErrorResponse.mockReturnValue(false);
+      vi.mocked(isRouteErrorResponse).mockReturnValue(false);
 
       const error = null;
       render(<ErrorBoundary error={error} />);
@@ -194,8 +197,7 @@ describe("root", () => {
     });
 
     it("should have section with divide classes", () => {
-      const { isRouteErrorResponse } = require("react-router");
-      isRouteErrorResponse.mockReturnValue(false);
+      vi.mocked(isRouteErrorResponse).mockReturnValue(false);
 
       const { container } = render(<ErrorBoundary error={null} />);
       const section = container.querySelector("section");

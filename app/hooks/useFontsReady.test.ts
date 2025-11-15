@@ -8,9 +8,27 @@ describe("useFontsReady", () => {
   });
 
   it("should return false initially and true when fonts are ready", async () => {
+    let resolveReady: () => void;
+    const readyPromise = new Promise<void>((resolve) => {
+      resolveReady = resolve;
+    });
+
+    const mockFonts = {
+      ready: readyPromise,
+    };
+
+    Object.defineProperty(document, "fonts", {
+      value: mockFonts,
+      writable: true,
+      configurable: true,
+    });
+
     const { result } = renderHook(() => useFontsReady());
 
     expect(result.current).toBe(false);
+
+    // Resolve the promise
+    resolveReady!();
 
     await waitFor(() => {
       expect(result.current).toBe(true);

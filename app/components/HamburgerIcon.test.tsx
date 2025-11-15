@@ -4,17 +4,21 @@ import { HamburgerIcon } from "./HamburgerIcon";
 
 describe("HamburgerIcon", () => {
   it("should render open menu icon when isOpen is false", () => {
-    render(<HamburgerIcon isOpen={false} />);
+    const { container } = render(<HamburgerIcon isOpen={false} />);
 
-    expect(screen.getByText("Open main menu")).toBeInTheDocument();
-    expect(screen.getByTitle("Open main menu")).toBeInTheDocument();
+    const srOnly = container.querySelector(".sr-only");
+    expect(srOnly).toHaveTextContent("Open main menu");
+    const title = container.querySelector("title");
+    expect(title).toHaveTextContent("Open main menu");
   });
 
   it("should render close menu icon when isOpen is true", () => {
-    render(<HamburgerIcon isOpen={true} />);
+    const { container } = render(<HamburgerIcon isOpen={true} />);
 
-    expect(screen.getByText("Close main menu")).toBeInTheDocument();
-    expect(screen.getByTitle("Close main menu")).toBeInTheDocument();
+    const srOnly = container.querySelector(".sr-only");
+    expect(srOnly).toHaveTextContent("Close main menu");
+    const title = container.querySelector("title");
+    expect(title).toHaveTextContent("Close main menu");
   });
 
   it("should render SVG element when isOpen is false", () => {

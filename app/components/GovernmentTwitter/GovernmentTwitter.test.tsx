@@ -33,12 +33,14 @@ describe("GovernmentTwitter", () => {
     expect(screen.getByPlaceholderText("Stay alert by making your own government tweet.")).toBeInTheDocument();
   });
 
-  it("should render download button", () => {
+  it("should render download button", async () => {
     render(<GovernmentTwitter />);
 
-    const downloadLink = screen.getByRole("link", { name: "Download" });
-    expect(downloadLink).toBeInTheDocument();
-    expect(downloadLink).toHaveAttribute("download", "tweet.png");
+    await waitFor(() => {
+      const downloadLink = screen.getByRole("link", { name: "Download" });
+      expect(downloadLink).toBeInTheDocument();
+      expect(downloadLink).toHaveAttribute("download", "tweet.png");
+    });
   });
 
   it("should have initial tweet content", () => {
@@ -63,12 +65,11 @@ describe("GovernmentTwitter", () => {
   it("should have download URL href", async () => {
     render(<GovernmentTwitter />);
 
-    const downloadLink = screen.getByRole("link", { name: "Download" });
-
     await waitFor(() => {
-      expect(downloadLink).toHaveAttribute("href");
+      const downloadLink = screen.getByRole("link", { name: "Download" });
       const href = downloadLink.getAttribute("href");
       expect(href).toBeTruthy();
+      expect(href).toContain("data:image/png");
     });
   });
 
