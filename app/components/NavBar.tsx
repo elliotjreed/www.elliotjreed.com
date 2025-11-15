@@ -13,6 +13,7 @@ export const NavBar: FC = (): ReactElement => {
   const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
 
   const navWrapperRef: RefObject<HTMLDivElement | null> = useRef<HTMLDivElement>(null);
+  const mobileMenuRef: RefObject<HTMLElement | null> = useRef<HTMLElement>(null);
 
   const toggleMenu = (): void => setIsMenuOpen((open: boolean): boolean => !open);
   const closeMenu = (): void => {
@@ -29,7 +30,11 @@ export const NavBar: FC = (): ReactElement => {
   // biome-ignore lint/correctness/useExhaustiveDependencies: incorrectly reports closeMenu as missing dependency
   useEffect(() => {
     const handleClick = (event: MouseEvent): void => {
-      if (navWrapperRef.current && !navWrapperRef.current.contains(event.target as Node)) {
+      const target = event.target as Node;
+      const clickedInsideNav = navWrapperRef.current && navWrapperRef.current.contains(target);
+      const clickedInsideMobileMenu = mobileMenuRef.current && mobileMenuRef.current.contains(target);
+
+      if (!clickedInsideNav && !clickedInsideMobileMenu) {
         closeMenu();
       }
     };
@@ -99,12 +104,12 @@ export const NavBar: FC = (): ReactElement => {
 
                       {/* Desktop Dropdown */}
                       <div
-                        className={`absolute left-0 mt-2 min-w-[280px] max-w-[320px] bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-200 ${
-                          hoveredDropdown === link.title
-                            ? "opacity-100 visible translate-y-0"
-                            : "opacity-0 invisible -translate-y-2 pointer-events-none"
+                        className={`absolute left-0 top-full pt-2 transition-all duration-200 ${
+                          hoveredDropdown === link.title ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
                         }`}
                       >
+                        <div className="min-w-[280px] max-w-[320px] bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+
                         <div className="max-h-[70vh] overflow-y-auto">
                           {validChildren.map((child, childIndex) => (
                             <div key={child.title || child.href}>
@@ -142,6 +147,7 @@ export const NavBar: FC = (): ReactElement => {
                               ) : null}
                             </div>
                           ))}
+                        </div>
                         </div>
                       </div>
                     </li>
@@ -187,6 +193,7 @@ export const NavBar: FC = (): ReactElement => {
 
       {/* Mobile Menu */}
       <nav
+        ref={mobileMenuRef}
         id="mobile-navigation"
         className={`md:hidden fixed top-0 right-0 h-full w-[280px] z-[70] bg-white dark:bg-gray-900 shadow-2xl transform transition-transform duration-300 ease-in-out ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
