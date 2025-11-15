@@ -9,8 +9,10 @@ describe("CodeSnippet", () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    Object.assign(navigator, {
-      clipboard: {
+    Object.defineProperty(navigator, "clipboard", {
+      writable: true,
+      configurable: true,
+      value: {
         writeText: vi.fn(() => Promise.resolve()),
       },
     });
@@ -76,8 +78,10 @@ describe("CodeSnippet", () => {
 
   it("should handle copy error gracefully", async () => {
     const consoleErrorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
-    Object.assign(navigator, {
-      clipboard: {
+    Object.defineProperty(navigator, "clipboard", {
+      writable: true,
+      configurable: true,
+      value: {
         writeText: vi.fn(() => Promise.reject(new Error("Copy failed"))),
       },
     });
