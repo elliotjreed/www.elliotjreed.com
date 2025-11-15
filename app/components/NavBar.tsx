@@ -80,91 +80,91 @@ export const NavBar: FC = (): ReactElement => {
             </span>
           </NavLink>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1">
-            <ul className="flex items-center space-x-1">
-              {navigationLinks.map((link) => {
-                if (link.children?.length) {
-                  const validChildren = link.children.filter((child) => child.showInNavigation);
-
-                  return (
-                    <li
-                      key={link.title}
-                      className="relative group"
-                      onMouseEnter={() => setHoveredDropdown(link.title)}
-                      onMouseLeave={() => setHoveredDropdown(null)}
-                    >
-                      <button
-                        type="button"
-                        className="flex items-center gap-1 px-4 py-2 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-medium"
-                      >
-                        {link.title}
-                        <DropdownMenuIcon isOpen={hoveredDropdown === link.title} />
-                      </button>
-
-                      {/* Desktop Dropdown */}
-                      <div
-                        className={`absolute left-0 top-full pt-2 transition-all duration-200 ${
-                          hoveredDropdown === link.title ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
-                        }`}
-                      >
-                        <div className="min-w-[280px] max-w-[320px] bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-
-                        <div className="max-h-[70vh] overflow-y-auto">
-                          {validChildren.map((child, childIndex) => (
-                            <div key={child.title || child.href}>
-                              {child.children?.length ? (
-                                // Category with subcategories
-                                <div className={childIndex > 0 ? "border-t border-gray-200 dark:border-gray-700" : ""}>
-                                  <div className="px-4 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider bg-gray-50 dark:bg-gray-900">
-                                    {child.title}
-                                  </div>
-                                  <ul>
-                                    {child.children
-                                      .filter((subChild) => subChild.showInNavigation && subChild.href)
-                                      .map((subChild) => (
-                                        <li key={subChild.href}>
-                                          <NavLink
-                                            to={subChild.href as string}
-                                            className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-700 dark:hover:text-primary-400 transition-colors"
-                                            prefetch="intent"
-                                          >
-                                            {subChild.title}
-                                          </NavLink>
-                                        </li>
-                                      ))}
-                                  </ul>
-                                </div>
-                              ) : child.href ? (
-                                // Direct link
-                                <NavLink
-                                  to={child.href}
-                                  className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-700 dark:hover:text-primary-400 transition-colors"
-                                  prefetch="intent"
-                                >
-                                  {child.title}
-                                </NavLink>
-                              ) : null}
-                            </div>
-                          ))}
-                        </div>
-                        </div>
-                      </div>
-                    </li>
-                  );
-                }
-
-                if (link.href) {
-                  return <NavLinkItem key={link.href} link={link} closeMenu={closeMenu} />;
-                }
-
-                return <li key={link.title}>{link.title}</li>;
-              })}
-            </ul>
-          </nav>
-
           {/* Right side controls */}
           <div className="flex items-center gap-2">
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center space-x-1">
+              <ul className="flex items-center space-x-1">
+                {navigationLinks.map((link) => {
+                  if (link.children?.length) {
+                    const validChildren = link.children.filter((child) => child.showInNavigation);
+
+                    return (
+                      <li
+                        key={link.title}
+                        className="relative group"
+                        onMouseEnter={() => setHoveredDropdown(link.title)}
+                        onMouseLeave={() => setHoveredDropdown(null)}
+                      >
+                        <button
+                          type="button"
+                          className="flex items-center gap-1 px-4 py-2 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-medium"
+                        >
+                          {link.title}
+                          <DropdownMenuIcon isOpen={hoveredDropdown === link.title} />
+                        </button>
+
+                        {/* Desktop Dropdown */}
+                        <div
+                          className={`absolute right-0 top-full pt-2 transition-all duration-200 ${
+                            hoveredDropdown === link.title ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
+                          }`}
+                        >
+                          <div className="min-w-[280px] max-w-[320px] bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+
+                          <div className="max-h-[70vh] overflow-y-auto">
+                            {validChildren.map((child, childIndex) => (
+                              <div key={child.title || child.href}>
+                                {child.children?.length ? (
+                                  // Category with subcategories
+                                  <div className={childIndex > 0 ? "border-t border-gray-200 dark:border-gray-700" : ""}>
+                                    <div className="px-4 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider bg-gray-50 dark:bg-gray-900">
+                                      {child.title}
+                                    </div>
+                                    <ul>
+                                      {child.children
+                                        .filter((subChild) => subChild.showInNavigation && subChild.href)
+                                        .map((subChild) => (
+                                          <li key={subChild.href}>
+                                            <NavLink
+                                              to={subChild.href as string}
+                                              className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-700 dark:hover:text-primary-400 transition-colors"
+                                              prefetch="intent"
+                                            >
+                                              {subChild.title}
+                                            </NavLink>
+                                          </li>
+                                        ))}
+                                    </ul>
+                                  </div>
+                                ) : child.href ? (
+                                  // Direct link
+                                  <NavLink
+                                    to={child.href}
+                                    className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-700 dark:hover:text-primary-400 transition-colors"
+                                    prefetch="intent"
+                                  >
+                                    {child.title}
+                                  </NavLink>
+                                ) : null}
+                              </div>
+                            ))}
+                          </div>
+                          </div>
+                        </div>
+                      </li>
+                    );
+                  }
+
+                  if (link.href) {
+                    return <NavLinkItem key={link.href} link={link} closeMenu={closeMenu} />;
+                  }
+
+                  return <li key={link.title}>{link.title}</li>;
+                })}
+              </ul>
+            </nav>
+
             <ThemeSwitch />
 
             {/* Mobile Menu Button */}
