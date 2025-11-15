@@ -9,15 +9,13 @@ vi.mock("dom-to-image-more", () => ({
   },
 }));
 
-vi.mock("./TweetBox", () => ({
-  TweetBox: ({ content }: { content: string }) => <div data-testid="tweet-box">{content}</div>,
-}));
-
 describe("GovernmentTwitter", () => {
   it("should render TweetBox component", () => {
     render(<GovernmentTwitter />);
 
-    expect(screen.getByTestId("tweet-box")).toBeInTheDocument();
+    // Check for elements that exist in the real TweetBox component
+    expect(screen.getByText("UK Prime Minister")).toBeInTheDocument();
+    expect(screen.getByText(/@10DowningStreet/)).toBeInTheDocument();
   });
 
   it("should render textarea", () => {
