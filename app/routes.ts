@@ -30,6 +30,7 @@ export default [
     "php/detect-disposable-or-temporary-email-addresses-in-php",
     "routes/php/detect-disposable-or-temporary-email-addresses-in-php.tsx",
   ),
+  route("utils/percentage-calculator", "routes/utils/percentage-calculator.tsx"),
   route("sitemap", "routes/sitemap.tsx"),
   route("privacy", "routes/privacy.tsx"),
   route("travel", "routes/travel.tsx"),

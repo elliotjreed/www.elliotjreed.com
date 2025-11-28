@@ -74,6 +74,11 @@ export const staticLinks: StaticLink[] = [
       },
     ],
   },
+  {
+    title: "Utils",
+    showInNavigation: true,
+    children: [{ href: "/utils/percentage-calculator", title: "Percentage Calculator", showInNavigation: true }],
+  },
   { href: "/privacy", title: "Privacy Policy", showInNavigation: false },
   { href: "/stay-alert", title: "Stay Alert Generator", showInNavigation: false },
   { href: "/government-tweet", title: "Government Tweet Generator", showInNavigation: false },

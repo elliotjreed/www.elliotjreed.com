@@ -5,9 +5,9 @@
       "Bash(bun run format:*)",
       "Bash(bun run build:*)",
       "Bash(bun run dev:*)",
+      "Bash(bun run typecheck:*)",
       "Bash(mkdir:*)",
-      "Bash(mv:*)",
-      "Bash(bun test:*)"
+      "Bash(mv:*)"
     ],
     "deny": [
       "Bash(bun run deploy:*)"

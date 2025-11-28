@@ -323,11 +323,12 @@ export default (): ReactElement => (
               <br />I particularly enjoy books which make me think a bit about deeper subjects like philosophy,
               politics, ethics, religion, culture, and the societal impacts of future technology.
               <br />
-              Recently I have enjoyed Ishmael by Daniel Quinn and The Paper Menagerie collection of short stories by Ken
-              Lui as bedtime reads. Other books I have enjoyed, though not for bedtime reading, have been the Dune
-              novels, Project Hail Mary, Children of Time by Adrian Tchaikovsky, The Handmaid's Tale and The Testaments
-              by Margaret Atwood, the Three Body Problem trilogy. Provide me with 10 book suggestions, each with a one
-              line description of why you think the suggestion fits.
+              Recently I have enjoyed Ishmael by Daniel Quinn, The Paper Menagerie collection of short stories by Ken
+              Lui, Spin by Robert Charles Wilson, and The First Fifteen Lives of Harry August by Claire North as bedtime
+              reads. Other books I have enjoyed, though not for bedtime reading, have been the Dune novels by Frank
+              Herbert, Project Hail Mary by Andy Weir, Children of Time by Adrian Tchaikovsky, The Handmaid's Tale and
+              The Testaments by Margaret Atwood, and the Three Body Problem trilogy by Liu Cixin. Provide me with 10
+              book suggestions, each with a one line description of why you think the suggestion fits.
             </p>
           </section>
         </section>

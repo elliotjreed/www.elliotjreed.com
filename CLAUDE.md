@@ -9,6 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `bun run start` - Start Wrangler development server
 - `bun run build` - Build for production
 - `bun run typecheck` - Run TypeScript type checking and generate route types
+- `bun run test` - Run Vitest tests
 - `bun run format` - Format code with Biome (includes linting and fixing)
 
 ### Deployment
@@ -77,7 +78,7 @@ This is a personal website built with React Router v7, deployed on Cloudflare Wo
 
 ### Data and Content
 
-**Route Structure**: Content organized by topic (ai/, linux/, docker/, php/)
+**Route Structure**: Guides content organized by topic (ai/, linux/, docker/, php/) under a parent navigation "Guides"
 - Each route exports default component and meta() function
 - SEO metadata and structured data included per route
 - Prefetch hints used for internal navigation
