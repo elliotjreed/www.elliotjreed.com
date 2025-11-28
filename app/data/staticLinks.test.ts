@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
-import { staticLinks, type StaticLink } from "./staticLinks";
+import { describe, expect, it } from "vitest";
+import { type StaticLink, staticLinks } from "./staticLinks";
 
 describe("staticLinks", () => {
   it("should be an array", () => {
@@ -23,7 +23,8 @@ describe("staticLinks", () => {
   });
 
   it("should have AI Guides section with children", () => {
-    const aiGuides = staticLinks.find((link) => link.title === "AI Guides");
+    const guides = staticLinks.find((link) => link.title === "Guides");
+    const aiGuides = guides?.children?.find((child) => child.title === "AI Guides");
     expect(aiGuides).toBeDefined();
     expect(aiGuides?.showInNavigation).toBe(true);
     expect(aiGuides?.children).toBeDefined();
@@ -32,7 +33,8 @@ describe("staticLinks", () => {
   });
 
   it("should have ZSH / Bash Shell Guides section with children", () => {
-    const shellGuides = staticLinks.find((link) => link.title === "ZSH / Bash Shell Guides");
+    const guides = staticLinks.find((link) => link.title === "Guides");
+    const shellGuides = guides?.children?.find((child) => child.title === "ZSH / Bash Shell Guides");
     expect(shellGuides).toBeDefined();
     expect(shellGuides?.showInNavigation).toBe(true);
     expect(shellGuides?.children).toBeDefined();
@@ -41,7 +43,8 @@ describe("staticLinks", () => {
   });
 
   it("should have Docker Guides section with children", () => {
-    const dockerGuides = staticLinks.find((link) => link.title === "Docker Guides");
+    const guides = staticLinks.find((link) => link.title === "Guides");
+    const dockerGuides = guides?.children?.find((child) => child.title === "Docker Guides");
     expect(dockerGuides).toBeDefined();
     expect(dockerGuides?.showInNavigation).toBe(true);
     expect(dockerGuides?.children).toBeDefined();
@@ -50,7 +53,8 @@ describe("staticLinks", () => {
   });
 
   it("should have PHP Guides section with children", () => {
-    const phpGuides = staticLinks.find((link) => link.title === "PHP Guides");
+    const guides = staticLinks.find((link) => link.title === "Guides");
+    const phpGuides = guides?.children?.find((child) => child.title === "PHP Guides");
     expect(phpGuides).toBeDefined();
     expect(phpGuides?.showInNavigation).toBe(true);
     expect(phpGuides?.children).toBeDefined();
@@ -66,15 +70,23 @@ describe("staticLinks", () => {
   });
 
   it("should have valid hrefs for all children", () => {
-    staticLinks.forEach((link) => {
+    const checkChildren = (link: StaticLink): void => {
       if (link.children) {
         link.children.forEach((child) => {
-          expect(child.href).toBeDefined();
-          expect(typeof child.href).toBe("string");
-          expect(child.href?.startsWith("/")).toBe(true);
+          if (child.href) {
+            expect(child.href).toBeDefined();
+            expect(typeof child.href).toBe("string");
+            expect(child.href?.startsWith("/")).toBe(true);
+          }
+          // Recursively check nested children
+          if (child.children) {
+            checkChildren(child);
+          }
         });
       }
-    });
+    };
+
+    staticLinks.forEach(checkChildren);
   });
 
   it("should have showInNavigation property for all children", () => {

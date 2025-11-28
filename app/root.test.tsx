@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi, beforeEach } from "vitest";
-import { Layout, ErrorBoundary } from "./root";
 import { isRouteErrorResponse } from "react-router";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { ErrorBoundary, Layout } from "./root";
 
 vi.mock("react-router", async () => {
   const actual = await vi.importActual("react-router");

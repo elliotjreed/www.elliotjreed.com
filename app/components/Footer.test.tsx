@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
 import { BrowserRouter } from "react-router";
+import { describe, expect, it, vi } from "vitest";
 import { Footer } from "./Footer";
 
 vi.mock("~/components/SocialLinks", () => ({
