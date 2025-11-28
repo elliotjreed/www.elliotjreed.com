@@ -1,5 +1,5 @@
 import type { ReactElement } from "react";
-import { CodeSnippet } from "~/components/CodeSnippet";
+import { CodeSnippet } from "~/components/CodeSnippet/CodeSnippet";
 
 export const meta = () => [
   { title: "Copy MySQL database table to new table | EJR" },

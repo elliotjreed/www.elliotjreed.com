@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router";
 import { describe, expect, it, vi } from "vitest";
 import { Footer } from "./Footer";
 
-vi.mock("~/components/SocialLinks", () => ({
+vi.mock("~/components/SocialLinks/SocialLinks", () => ({
   SocialLinks: () => <div data-testid="social-links">Social Links</div>,
 }));
 

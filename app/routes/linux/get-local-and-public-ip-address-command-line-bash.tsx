@@ -1,5 +1,5 @@
 import type { ReactElement } from "react";
-import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet";
+import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
 
 export const meta = () => [
   { title: "Get Local and Public IP Address | EJR" },

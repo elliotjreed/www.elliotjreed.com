@@ -1,6 +1,6 @@
 import type { FC, ReactElement } from "react";
 import { Link } from "react-router";
-import { SocialLinks } from "~/components/SocialLinks";
+import { SocialLinks } from "~/components/SocialLinks/SocialLinks";
 
 export const Footer: FC = (): ReactElement => {
   return (

@@ -1,7 +1,7 @@
 import type { ReactElement, ReactNode } from "react";
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
-import { Footer } from "~/components/Footer";
-import { NavBar } from "~/components/NavBar";
+import { Footer } from "~/components/Footer/Footer";
+import { NavBar } from "~/components/NavBar/NavBar";
 
 import type { Route } from "./+types/root";
 import "./app.css";

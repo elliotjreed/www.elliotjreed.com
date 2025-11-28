@@ -1,5 +1,5 @@
 import type { ReactElement } from "react";
-import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet";
+import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
 
 export const meta = () => [
   { title: "ZSH & Bash Functions | EJR" },
@@ -47,7 +47,7 @@ function myip() {
     code: `# Search processes containing a string or command (Usage: psg TERM)
 psg() {
   if [[ $# -eq 0 ]] ; then
-    echo -e "\e[0;31mPlease provide a process name.\e[0m"
+    echo -e "\\e[0;31mPlease provide a process name.\\e[0m"
   else
     ps aux | grep -v grep | grep -i -e VSZ -e "$@"
   fi
@@ -59,7 +59,7 @@ psg() {
     code: `# Search current directory for files containing specified string (Usage: searchdir "Search Term")
 search() {
   if [[ $# -eq 0 ]] ; then
-    echo -e "\e[0;31mPlease provide a string / search term\e[0m"
+    echo -e "\\e[0;31mPlease provide a string / search term\\e[0m"
   else
     grep -rni "$@" .
   fi

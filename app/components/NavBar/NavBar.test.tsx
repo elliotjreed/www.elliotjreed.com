@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router";
 import { describe, expect, it, vi } from "vitest";
 import { NavBar } from "./NavBar";
 
-vi.mock("~/components/ThemeSwitch", () => ({
+vi.mock("~/components/ThemeSwitch/ThemeSwitch", () => ({
   ThemeSwitch: () => <div data-testid="theme-switch">Theme Switch</div>,
 }));
 
@@ -120,31 +120,6 @@ describe("NavBar", () => {
     // Check if child links are visible - should find the AI Prompt Guide link
     await waitFor(() => {
       expect(screen.getAllByRole("link", { name: "AI Prompt Guide" }).length).toBeGreaterThan(0);
-    });
-  });
-
-  // Skipping due to timing issues with CSS class transitions
-  it.skip("should close dropdown when clicked again", async () => {
-    const user = userEvent.setup();
-    render(
-      <BrowserRouter>
-        <NavBar />
-      </BrowserRouter>,
-    );
-
-    const menuButton = screen.getByRole("button", { name: /open main menu/i });
-    await user.click(menuButton);
-
-    const aiGuidesButton = screen.getByRole("button", { name: /AI Guides/i });
-    await user.click(aiGuidesButton); // Open dropdown
-
-    expect(screen.getByRole("link", { name: "AI Prompt Guide" })).toBeVisible();
-
-    await user.click(aiGuidesButton); // Close dropdown
-
-    await waitFor(() => {
-      const link = screen.queryByRole("link", { name: "AI Prompt Guide" });
-      expect(link).not.toBeVisible();
     });
   });
 

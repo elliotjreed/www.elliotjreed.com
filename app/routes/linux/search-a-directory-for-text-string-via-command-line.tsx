@@ -1,5 +1,5 @@
 import type { ReactElement } from "react";
-import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet";
+import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
 
 export const meta = () => [
   { title: "Search directory for a word | EJR" },

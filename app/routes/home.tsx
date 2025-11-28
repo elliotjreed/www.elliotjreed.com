@@ -1,6 +1,6 @@
 import type { ReactElement } from "react";
 import { Link } from "react-router";
-import { SocialLinks } from "~/components/SocialLinks";
+import { SocialLinks } from "~/components/SocialLinks/SocialLinks";
 import { emailAddress } from "~/data/emailAddress";
 import { useFontsReady } from "~/hooks/useFontsReady";
 

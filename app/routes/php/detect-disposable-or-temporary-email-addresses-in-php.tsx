@@ -1,5 +1,5 @@
 import type { ReactElement } from "react";
-import { CodeSnippet } from "~/components/CodeSnippet";
+import { CodeSnippet } from "~/components/CodeSnippet/CodeSnippet";
 
 export const meta = () => [
   { title: "Detecting Disposable Email Addresses in PHP | EJR" },

@@ -1,10 +1,10 @@
 import { type FC, type ReactElement, type RefObject, useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router";
-import { DropdownMenuIcon } from "~/components/DropdownMenuIcon";
-import { HamburgerIcon } from "~/components/HamburgerIcon";
-import { NavLinkItem } from "~/components/NavLinkItem";
+import { DropdownMenuIcon } from "~/components/DropdownMenuIcon/DropdownMenuIcon";
+import { HamburgerIcon } from "~/components/HamburgerIcon/HamburgerIcon";
+import { NavLinkItem } from "~/components/NavLinkItem/NavLinkItem";
+import { ThemeSwitch } from "~/components/ThemeSwitch/ThemeSwitch";
 import { type StaticLink, staticLinks } from "~/data/staticLinks";
-import { ThemeSwitch } from "./ThemeSwitch";
 
 export const NavBar: FC = (): ReactElement => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

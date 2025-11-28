@@ -15,11 +15,11 @@ vi.mock("react-router", async () => {
   };
 });
 
-vi.mock("~/components/Footer", () => ({
+vi.mock("~/components/Footer/Footer", () => ({
   Footer: () => <footer data-testid="footer">Footer</footer>,
 }));
 
-vi.mock("~/components/NavBar", () => ({
+vi.mock("~/components/NavBar/NavBar", () => ({
   NavBar: () => <nav data-testid="navbar">NavBar</nav>,
 }));
 
