@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, it, expect, vi } from "vitest";
-import { BrowserRouter } from "react-router";
-import { NavLinkItem } from "./NavLinkItem";
+import { MemoryRouter } from "react-router";
+import { describe, expect, it, vi } from "vitest";
 import type { StaticLink } from "~/data/staticLinks";
+import { NavLinkItem } from "./NavLinkItem";
 
 describe("NavLinkItem", () => {
   const mockLink: StaticLink = {
@@ -15,9 +15,9 @@ describe("NavLinkItem", () => {
   it("should render link with title", () => {
     const closeMenu = vi.fn();
     render(
-      <BrowserRouter>
+      <MemoryRouter>
         <NavLinkItem link={mockLink} closeMenu={closeMenu} />
-      </BrowserRouter>,
+      </MemoryRouter>,
     );
 
     expect(screen.getByText("Test Link")).toBeInTheDocument();
@@ -26,9 +26,9 @@ describe("NavLinkItem", () => {
   it("should render link with correct href", () => {
     const closeMenu = vi.fn();
     render(
-      <BrowserRouter>
+      <MemoryRouter>
         <NavLinkItem link={mockLink} closeMenu={closeMenu} />
-      </BrowserRouter>,
+      </MemoryRouter>,
     );
 
     const link = screen.getByRole("link", { name: "Test Link" });
@@ -39,9 +39,9 @@ describe("NavLinkItem", () => {
     const user = userEvent.setup();
     const closeMenu = vi.fn();
     render(
-      <BrowserRouter>
+      <MemoryRouter>
         <NavLinkItem link={mockLink} closeMenu={closeMenu} />
-      </BrowserRouter>,
+      </MemoryRouter>,
     );
 
     const link = screen.getByRole("link", { name: "Test Link" });
@@ -53,33 +53,33 @@ describe("NavLinkItem", () => {
   it("should have hover classes", () => {
     const closeMenu = vi.fn();
     render(
-      <BrowserRouter>
+      <MemoryRouter>
         <NavLinkItem link={mockLink} closeMenu={closeMenu} />
-      </BrowserRouter>,
+      </MemoryRouter>,
     );
 
     const link = screen.getByRole("link", { name: "Test Link" });
-    expect(link).toHaveClass("hover:bg-gray-100", "dark:hover:bg-gray-700");
+    expect(link).toHaveClass("hover:bg-gray-100", "dark:hover:bg-gray-800");
   });
 
   it("should have base styling classes", () => {
     const closeMenu = vi.fn();
     render(
-      <BrowserRouter>
+      <MemoryRouter>
         <NavLinkItem link={mockLink} closeMenu={closeMenu} />
-      </BrowserRouter>,
+      </MemoryRouter>,
     );
 
     const link = screen.getByRole("link", { name: "Test Link" });
-    expect(link).toHaveClass("block", "py-2", "px-3", "rounded-sm");
+    expect(link).toHaveClass("block", "px-4", "py-3", "md:py-2", "rounded-lg", "font-medium");
   });
 
   it("should have text color classes", () => {
     const closeMenu = vi.fn();
     render(
-      <BrowserRouter>
+      <MemoryRouter initialEntries={["/"]}>
         <NavLinkItem link={mockLink} closeMenu={closeMenu} />
-      </BrowserRouter>,
+      </MemoryRouter>,
     );
 
     const link = screen.getByRole("link", { name: "Test Link" });
@@ -89,33 +89,33 @@ describe("NavLinkItem", () => {
   it("should have prefetch intent attribute", () => {
     const closeMenu = vi.fn();
     render(
-      <BrowserRouter>
+      <MemoryRouter>
         <NavLinkItem link={mockLink} closeMenu={closeMenu} />
-      </BrowserRouter>,
+      </MemoryRouter>,
     );
 
     const link = screen.getByRole("link", { name: "Test Link" });
     expect(link).toHaveAttribute("data-discover", "true");
   });
 
-  it("should apply font-semibold class when isActive is true", () => {
+  it("should apply active styling classes when isActive is true", () => {
     const closeMenu = vi.fn();
     render(
-      <BrowserRouter>
+      <MemoryRouter>
         <NavLinkItem link={mockLink} closeMenu={closeMenu} isActive={true} />
-      </BrowserRouter>,
+      </MemoryRouter>,
     );
 
     const link = screen.getByRole("link", { name: "Test Link" });
-    expect(link).toHaveClass("font-semibold");
+    expect(link).toHaveClass("text-primary-700", "dark:text-primary-400", "bg-primary-50", "dark:bg-gray-800");
   });
 
   it("should render list item", () => {
     const closeMenu = vi.fn();
     const { container } = render(
-      <BrowserRouter>
+      <MemoryRouter>
         <NavLinkItem link={mockLink} closeMenu={closeMenu} />
-      </BrowserRouter>,
+      </MemoryRouter>,
     );
 
     const li = container.querySelector("li");

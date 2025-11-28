@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-expect-error
 import domtoimage from "dom-to-image-more";
 import { type ChangeEvent, type FC, type ReactElement, type RefObject, useEffect, useRef, useState } from "react";
 import { YellowBox } from "~/components/StayAlert/YellowBox";

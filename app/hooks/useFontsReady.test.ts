@@ -1,5 +1,5 @@
 import { renderHook, waitFor } from "@testing-library/react";
-import { describe, it, expect, beforeEach, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { useFontsReady } from "./useFontsReady";
 
 describe("useFontsReady", () => {
@@ -28,7 +28,7 @@ describe("useFontsReady", () => {
     expect(result.current).toBe(false);
 
     // Resolve the promise
-    resolveReady!();
+    resolveReady?.();
 
     await waitFor(() => {
       expect(result.current).toBe(true);

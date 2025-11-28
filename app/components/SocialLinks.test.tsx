@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import { SocialLinks } from "./SocialLinks";
 
 describe("SocialLinks", () => {
@@ -44,7 +44,10 @@ describe("SocialLinks", () => {
 
     const blueskyLink = screen.getByTitle("BlueSky");
     expect(blueskyLink).toBeInTheDocument();
-    expect(blueskyLink).toHaveAttribute("href", "https://bsky.app/profile/elliotjreed.bsky.social?utm_source=elliotjreed.com");
+    expect(blueskyLink).toHaveAttribute(
+      "href",
+      "https://bsky.app/profile/elliotjreed.bsky.social?utm_source=elliotjreed.com",
+    );
     expect(blueskyLink).toHaveAttribute("rel", "noreferrer noopener");
   });
 

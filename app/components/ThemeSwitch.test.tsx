@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, it, expect, beforeEach } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 import { ThemeSwitch } from "./ThemeSwitch";
 
 describe("ThemeSwitch", () => {
@@ -91,7 +91,7 @@ describe("ThemeSwitch", () => {
   });
 
   it("should remove dark class from document when theme is light", async () => {
-    const user = userEvent.setup();
+    const _user = userEvent.setup();
     document.documentElement.classList.add("dark");
 
     render(<ThemeSwitch />);

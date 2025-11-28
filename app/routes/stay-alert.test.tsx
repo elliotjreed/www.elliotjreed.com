@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import StayAlertRoute, { meta } from "./stay-alert";
 
 vi.mock("~/components/StayAlert/StayAlert", () => ({

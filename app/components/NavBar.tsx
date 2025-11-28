@@ -22,7 +22,7 @@ export const NavBar: FC = (): ReactElement => {
     setOpenSubDropdown(null);
   };
   const toggleDropdown = (title: string): void => {
-    setOpenDropdown((c) => (c === title ? null : title));
+    setOpenDropdown((c: string | null): string | null => (c === title ? null : title));
     setOpenSubDropdown(null); // Close sub-dropdowns when toggling main dropdown
   };
   const toggleSubDropdown = (title: string): void => setOpenSubDropdown((c) => (c === title ? null : title));
@@ -31,8 +31,8 @@ export const NavBar: FC = (): ReactElement => {
   useEffect(() => {
     const handleClick = (event: MouseEvent): void => {
       const target = event.target as Node;
-      const clickedInsideNav = navWrapperRef.current && navWrapperRef.current.contains(target);
-      const clickedInsideMobileMenu = mobileMenuRef.current && mobileMenuRef.current.contains(target);
+      const clickedInsideNav: boolean | undefined = navWrapperRef.current?.contains(target);
+      const clickedInsideMobileMenu: boolean | undefined = mobileMenuRef.current?.contains(target);
 
       if (!clickedInsideNav && !clickedInsideMobileMenu) {
         closeMenu();
@@ -41,10 +41,9 @@ export const NavBar: FC = (): ReactElement => {
 
     document.addEventListener("mousedown", handleClick);
 
-    return () => document.removeEventListener("mousedown", handleClick);
+    return (): void => document.removeEventListener("mousedown", handleClick);
   }, []);
 
-  // Close mobile menu on escape key
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent): void => {
       if (event.key === "Escape" && isMenuOpen) {
@@ -53,8 +52,8 @@ export const NavBar: FC = (): ReactElement => {
     };
 
     document.addEventListener("keydown", handleEscape);
-    return () => document.removeEventListener("keydown", handleEscape);
-  }, [isMenuOpen]);
+    return (): void => document.removeEventListener("keydown", handleEscape);
+  }, [isMenuOpen, closeMenu]);
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -63,7 +62,8 @@ export const NavBar: FC = (): ReactElement => {
     } else {
       document.body.style.overflow = "";
     }
-    return () => {
+
+    return (): void => {
       document.body.style.overflow = "";
     };
   }, [isMenuOpen]);
@@ -80,9 +80,7 @@ export const NavBar: FC = (): ReactElement => {
             </span>
           </NavLink>
 
-          {/* Right side controls */}
           <div className="flex items-center gap-2">
-            {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-1">
               <ul className="flex items-center space-x-1">
                 {navigationLinks.map((link) => {
@@ -104,52 +102,55 @@ export const NavBar: FC = (): ReactElement => {
                           <DropdownMenuIcon isOpen={hoveredDropdown === link.title} />
                         </button>
 
-                        {/* Desktop Dropdown */}
                         <div
                           className={`absolute right-0 top-full pt-2 transition-all duration-200 ${
-                            hoveredDropdown === link.title ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
+                            hoveredDropdown === link.title
+                              ? "opacity-100 visible"
+                              : "opacity-0 invisible pointer-events-none"
                           }`}
                         >
                           <div className="min-w-[280px] max-w-[320px] bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-
-                          <div className="max-h-[70vh] overflow-y-auto">
-                            {validChildren.map((child, childIndex) => (
-                              <div key={child.title || child.href}>
-                                {child.children?.length ? (
-                                  // Category with subcategories
-                                  <div className={childIndex > 0 ? "border-t border-gray-200 dark:border-gray-700" : ""}>
-                                    <div className="px-4 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider bg-gray-50 dark:bg-gray-900">
-                                      {child.title}
+                            <div className="max-h-[70vh] overflow-y-auto">
+                              {validChildren.map((child, childIndex) => (
+                                <div key={child.title || child.href}>
+                                  {child.children?.length ? (
+                                    // Category with subcategories
+                                    <div
+                                      className={childIndex > 0 ? "border-t border-gray-200 dark:border-gray-700" : ""}
+                                    >
+                                      <div className="px-4 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider bg-gray-50 dark:bg-gray-900">
+                                        {child.title}
+                                      </div>
+                                      <ul>
+                                        {child.children
+                                          .filter((subChild: StaticLink) => subChild.showInNavigation && subChild.href)
+                                          .map(
+                                            (subChild: StaticLink): ReactElement => (
+                                              <li key={subChild.href}>
+                                                <NavLink
+                                                  to={subChild.href as string}
+                                                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-700 dark:hover:text-primary-400 transition-colors"
+                                                  prefetch="intent"
+                                                >
+                                                  {subChild.title}
+                                                </NavLink>
+                                              </li>
+                                            ),
+                                          )}
+                                      </ul>
                                     </div>
-                                    <ul>
-                                      {child.children
-                                        .filter((subChild) => subChild.showInNavigation && subChild.href)
-                                        .map((subChild) => (
-                                          <li key={subChild.href}>
-                                            <NavLink
-                                              to={subChild.href as string}
-                                              className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-700 dark:hover:text-primary-400 transition-colors"
-                                              prefetch="intent"
-                                            >
-                                              {subChild.title}
-                                            </NavLink>
-                                          </li>
-                                        ))}
-                                    </ul>
-                                  </div>
-                                ) : child.href ? (
-                                  // Direct link
-                                  <NavLink
-                                    to={child.href}
-                                    className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-700 dark:hover:text-primary-400 transition-colors"
-                                    prefetch="intent"
-                                  >
-                                    {child.title}
-                                  </NavLink>
-                                ) : null}
-                              </div>
-                            ))}
-                          </div>
+                                  ) : child.href ? (
+                                    <NavLink
+                                      to={child.href}
+                                      className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-700 dark:hover:text-primary-400 transition-colors"
+                                      prefetch="intent"
+                                    >
+                                      {child.title}
+                                    </NavLink>
+                                  ) : null}
+                                </div>
+                              ))}
+                            </div>
                           </div>
                         </div>
                       </li>
@@ -167,7 +168,6 @@ export const NavBar: FC = (): ReactElement => {
 
             <ThemeSwitch />
 
-            {/* Mobile Menu Button */}
             <button
               type="button"
               aria-controls="mobile-navigation"
@@ -182,7 +182,6 @@ export const NavBar: FC = (): ReactElement => {
         </div>
       </header>
 
-      {/* Mobile Menu Backdrop */}
       <div
         className={`md:hidden fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
           isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
@@ -191,7 +190,6 @@ export const NavBar: FC = (): ReactElement => {
         aria-hidden="true"
       />
 
-      {/* Mobile Menu */}
       <nav
         ref={mobileMenuRef}
         id="mobile-navigation"
@@ -200,7 +198,6 @@ export const NavBar: FC = (): ReactElement => {
         }`}
       >
         <div className="flex flex-col h-full overflow-y-auto">
-          {/* Mobile Menu Header */}
           <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
             <span className="text-xl font-bold text-gray-900 dark:text-white">Menu</span>
             <button
@@ -215,11 +212,12 @@ export const NavBar: FC = (): ReactElement => {
             </button>
           </div>
 
-          {/* Mobile Menu Items */}
           <ul className="flex-1 p-4 space-y-2">
-            {navigationLinks.map((link) => {
+            {navigationLinks.map((link: StaticLink): ReactElement => {
               if (link.children?.length) {
-                const validChildren = link.children.filter((child) => child.showInNavigation);
+                const validChildren: StaticLink[] = link.children.filter(
+                  (child: StaticLink): boolean => child.showInNavigation,
+                );
 
                 return (
                   <li key={link.title}>
@@ -237,53 +235,55 @@ export const NavBar: FC = (): ReactElement => {
                         openDropdown === link.title ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
                       }`}
                     >
-                      {validChildren.map((child) => (
-                        <div key={child.title || child.href}>
-                          {child.children?.length ? (
-                            // Category with subcategories
-                            <div className="mt-1">
-                              <button
-                                type="button"
-                                onClick={() => toggleSubDropdown(child.title)}
-                                className="flex items-center justify-between w-full px-3 py-2 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                      {validChildren.map(
+                        (child: StaticLink): ReactElement => (
+                          <div key={child.title || child.href}>
+                            {child.children?.length ? (
+                              <div className="mt-1">
+                                <button
+                                  type="button"
+                                  onClick={(): void => toggleSubDropdown(child.title)}
+                                  className="flex items-center justify-between w-full px-3 py-2 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                                >
+                                  {child.title}
+                                  <DropdownMenuIcon isOpen={openSubDropdown === child.title} />
+                                </button>
+                                <ul
+                                  className={`mt-1 ml-3 space-y-1 overflow-hidden transition-all duration-200 ${
+                                    openSubDropdown === child.title ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+                                  }`}
+                                >
+                                  {child.children
+                                    .filter((subChild: StaticLink) => subChild.showInNavigation && subChild.href)
+                                    .map(
+                                      (subChild: StaticLink): ReactElement => (
+                                        <li key={subChild.href}>
+                                          <NavLink
+                                            to={subChild.href as string}
+                                            onClick={closeMenu}
+                                            className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-primary-700 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                                            prefetch="intent"
+                                          >
+                                            {subChild.title}
+                                          </NavLink>
+                                        </li>
+                                      ),
+                                    )}
+                                </ul>
+                              </div>
+                            ) : child.href ? (
+                              <NavLink
+                                to={child.href}
+                                onClick={closeMenu}
+                                className="block px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-primary-700 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                                prefetch="intent"
                               >
                                 {child.title}
-                                <DropdownMenuIcon isOpen={openSubDropdown === child.title} />
-                              </button>
-                              <ul
-                                className={`mt-1 ml-3 space-y-1 overflow-hidden transition-all duration-200 ${
-                                  openSubDropdown === child.title ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
-                                }`}
-                              >
-                                {child.children
-                                  .filter((subChild) => subChild.showInNavigation && subChild.href)
-                                  .map((subChild) => (
-                                    <li key={subChild.href}>
-                                      <NavLink
-                                        to={subChild.href as string}
-                                        onClick={closeMenu}
-                                        className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-primary-700 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
-                                        prefetch="intent"
-                                      >
-                                        {subChild.title}
-                                      </NavLink>
-                                    </li>
-                                  ))}
-                              </ul>
-                            </div>
-                          ) : child.href ? (
-                            // Direct link
-                            <NavLink
-                              to={child.href}
-                              onClick={closeMenu}
-                              className="block px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-primary-700 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
-                              prefetch="intent"
-                            >
-                              {child.title}
-                            </NavLink>
-                          ) : null}
-                        </div>
-                      ))}
+                              </NavLink>
+                            ) : null}
+                          </div>
+                        ),
+                      )}
                     </div>
                   </li>
                 );

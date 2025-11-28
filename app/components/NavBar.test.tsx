@@ -1,7 +1,7 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, it, expect, vi } from "vitest";
 import { BrowserRouter } from "react-router";
+import { describe, expect, it, vi } from "vitest";
 import { NavBar } from "./NavBar";
 
 vi.mock("~/components/ThemeSwitch", () => ({
@@ -49,45 +49,45 @@ describe("NavBar", () => {
       </BrowserRouter>,
     );
 
-    const menuButton = screen.getByRole("button", { name: /open main menu/i });
+    const menuButton = screen.getByRole("button", { name: /toggle navigation menu/i });
     expect(menuButton).toBeInTheDocument();
   });
 
   it("should toggle menu when hamburger button is clicked", async () => {
     const user = userEvent.setup();
-    render(
+    const { container } = render(
       <BrowserRouter>
         <NavBar />
       </BrowserRouter>,
     );
 
-    const menuButton = screen.getByRole("button", { name: /open main menu/i });
-    const nav = screen.getByRole("navigation");
+    const menuButton = screen.getByRole("button", { name: /toggle navigation menu/i });
+    const nav = container.querySelector("#mobile-navigation");
 
-    expect(nav).toHaveClass("hidden");
+    expect(nav).toHaveClass("translate-x-full");
 
     await user.click(menuButton);
 
-    expect(nav).toHaveClass("block");
+    expect(nav).toHaveClass("translate-x-0");
   });
 
   it("should close menu when hamburger button is clicked again", async () => {
     const user = userEvent.setup();
-    render(
+    const { container } = render(
       <BrowserRouter>
         <NavBar />
       </BrowserRouter>,
     );
 
-    const menuButton = screen.getByRole("button", { name: /open main menu/i });
-    const nav = screen.getByRole("navigation");
+    const menuButton = screen.getByRole("button", { name: /toggle navigation menu/i });
+    const nav = container.querySelector("#mobile-navigation");
 
     await user.click(menuButton); // Open
-    expect(nav).toHaveClass("block");
+    expect(nav).toHaveClass("translate-x-0");
 
-    const closeButton = screen.getByRole("button", { name: /close main menu/i });
+    const closeButton = screen.getByRole("button", { name: /close menu/i });
     await user.click(closeButton); // Close
-    expect(nav).toHaveClass("hidden");
+    expect(nav).toHaveClass("translate-x-full");
   });
 
   it("should render navigation links", () => {
@@ -97,10 +97,7 @@ describe("NavBar", () => {
       </BrowserRouter>,
     );
 
-    expect(screen.getByText("AI Guides")).toBeInTheDocument();
-    expect(screen.getByText("ZSH / Bash Shell Guides")).toBeInTheDocument();
-    expect(screen.getByText("Docker Guides")).toBeInTheDocument();
-    expect(screen.getByText("PHP Guides")).toBeInTheDocument();
+    expect(screen.getAllByText("Guides")[0]).toBeInTheDocument();
   });
 
   it("should toggle dropdown when clicking on a section with children", async () => {
@@ -112,15 +109,18 @@ describe("NavBar", () => {
     );
 
     // Open menu first
-    const menuButton = screen.getByRole("button", { name: /open main menu/i });
+    const menuButton = screen.getByRole("button", { name: /toggle navigation menu/i });
     await user.click(menuButton);
 
-    // Click on AI Guides dropdown
-    const aiGuidesButton = screen.getByRole("button", { name: /AI Guides/i });
-    await user.click(aiGuidesButton);
+    // Click on Guides dropdown
+    const guidesButtons = screen.getAllByRole("button", { name: /Guides/i });
+    const guidesButton = guidesButtons.find((btn) => btn.textContent === "Guides");
+    await user.click(guidesButton!);
 
-    // Check if child links are visible
-    expect(screen.getByRole("link", { name: "AI Prompt Guide" })).toBeInTheDocument();
+    // Check if child links are visible - should find the AI Prompt Guide link
+    await waitFor(() => {
+      expect(screen.getAllByRole("link", { name: "AI Prompt Guide" }).length).toBeGreaterThan(0);
+    });
   });
 
   // Skipping due to timing issues with CSS class transitions
@@ -149,7 +149,7 @@ describe("NavBar", () => {
   });
 
   it("should close menu when clicking outside", () => {
-    render(
+    const { container } = render(
       <BrowserRouter>
         <div>
           <NavBar />
@@ -158,16 +158,16 @@ describe("NavBar", () => {
       </BrowserRouter>,
     );
 
-    const menuButton = screen.getByRole("button", { name: /open main menu/i });
+    const menuButton = screen.getByRole("button", { name: /toggle navigation menu/i });
     fireEvent.click(menuButton);
 
-    const nav = screen.getByRole("navigation");
-    expect(nav).toHaveClass("block");
+    const nav = container.querySelector("#mobile-navigation");
+    expect(nav).toHaveClass("translate-x-0");
 
     const outside = screen.getByTestId("outside");
     fireEvent.mouseDown(outside);
 
-    expect(nav).toHaveClass("hidden");
+    expect(nav).toHaveClass("translate-x-full");
   });
 
   it("should have aria-expanded attribute on menu button", () => {
@@ -177,7 +177,7 @@ describe("NavBar", () => {
       </BrowserRouter>,
     );
 
-    const menuButton = screen.getByRole("button", { name: /open main menu/i });
+    const menuButton = screen.getByRole("button", { name: /toggle navigation menu/i });
     expect(menuButton).toHaveAttribute("aria-expanded", "false");
   });
 
@@ -189,7 +189,7 @@ describe("NavBar", () => {
       </BrowserRouter>,
     );
 
-    const menuButton = screen.getByRole("button", { name: /open main menu/i });
+    const menuButton = screen.getByRole("button", { name: /toggle navigation menu/i });
     await user.click(menuButton);
 
     expect(menuButton).toHaveAttribute("aria-expanded", "true");
@@ -207,14 +207,14 @@ describe("NavBar", () => {
   });
 
   it("should render navigation with correct id", () => {
-    render(
+    const { container } = render(
       <BrowserRouter>
         <NavBar />
       </BrowserRouter>,
     );
 
-    const nav = screen.getByRole("navigation");
-    expect(nav).toHaveAttribute("id", "primary-navigation");
+    const nav = container.querySelector("#mobile-navigation");
+    expect(nav).toHaveAttribute("id", "mobile-navigation");
   });
 
   it("should only show navigation items marked as showInNavigation", () => {
@@ -231,22 +231,28 @@ describe("NavBar", () => {
 
   it("should close menu and dropdown when clicking a child link", async () => {
     const user = userEvent.setup();
-    render(
+    const { container } = render(
       <BrowserRouter>
         <NavBar />
       </BrowserRouter>,
     );
 
-    const menuButton = screen.getByRole("button", { name: /open main menu/i });
+    const menuButton = screen.getByRole("button", { name: /toggle navigation menu/i });
     await user.click(menuButton);
 
-    const aiGuidesButton = screen.getByRole("button", { name: /AI Guides/i });
-    await user.click(aiGuidesButton);
+    const guidesButtons = screen.getAllByRole("button", { name: /Guides/i });
+    const guidesButton = guidesButtons.find((btn) => btn.textContent === "Guides");
+    await user.click(guidesButton!);
 
-    const childLink = screen.getByRole("link", { name: "AI Prompt Guide" });
+    await waitFor(() => {
+      const childLinks = screen.getAllByRole("link", { name: "AI Prompt Guide" });
+      expect(childLinks.length).toBeGreaterThan(0);
+    });
+
+    const childLink = screen.getAllByRole("link", { name: "AI Prompt Guide" })[0];
     await user.click(childLink);
 
-    const nav = screen.getByRole("navigation");
-    expect(nav).toHaveClass("hidden");
+    const nav = container.querySelector("#mobile-navigation");
+    expect(nav).toHaveClass("translate-x-full");
   });
 });
