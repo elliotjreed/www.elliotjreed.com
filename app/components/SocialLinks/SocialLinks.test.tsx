@@ -46,7 +46,7 @@ describe("SocialLinks", () => {
     expect(blueskyLink).toBeInTheDocument();
     expect(blueskyLink).toHaveAttribute(
       "href",
-      "https://bsky.app/profile/elliotjreed.bsky.social?utm_source=elliotjreed.com",
+      "https://bsky.app/profile/elliotjreed.com?utm_source=elliotjreed.com",
     );
     expect(blueskyLink).toHaveAttribute("rel", "noreferrer noopener");
   });

@@ -50,7 +50,7 @@ export const SocialLinks: FC = (): ReactElement => {
         </span>
       </a>
       <a
-        href="https://bsky.app/profile/elliotjreed.bsky.social?utm_source=elliotjreed.com"
+        href="https://bsky.app/profile/elliotjreed.com?utm_source=elliotjreed.com"
         rel="noreferrer noopener"
         title="BlueSky"
         className="text-primary-900 dark:text-primary-200"
