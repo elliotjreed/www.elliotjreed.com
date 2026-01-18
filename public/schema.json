@@ -1,7 +1,7 @@
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "about": "Elliot Reed is the Head of Engineering for a respected e-commerce retailer based in the United Kingdom, with over 12 years experience in management and software development. Interests include AI, philosophy and ethics, DevOps, and leadership and strategy.",
+  "about": "Elliot Reed is the Head of Engineering for a respected e-commerce retailer based in the United Kingdom, with over 14 years experience in management and software development. Interests include AI, philosophy and ethics, DevOps, and leadership and strategy.",
   "alternateName": "Elliot Reed",
   "alternativeHeadline": "Elliot Reed's Website",
   "author": {
@@ -27,11 +27,6 @@
         "@type": "CollegeOrUniversity",
         "name": "Nottingham Law School, Nottingham Trent University",
         "url": "https://www.ntu.ac.uk"
-      },
-      {
-        "@type": "EducationalOrganization",
-        "name": "Stowupland High School",
-        "url": "https://www.stowuplandhighschool.co.uk"
       }
     ],
     "birthDate": "1990-02-25T12:21:00+00:00",
@@ -43,7 +38,6 @@
           "@type": "Country",
           "name": "United Kingdom"
         },
-        "addressLocality": "Bury St. Edmunds",
         "addressRegion": "Suffolk"
       }
     },
@@ -59,7 +53,7 @@
     "honorificSuffix": "BA (Hons.)",
     "image": {
       "@type": "ImageObject",
-      "url": "https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553434444/elliotjreed.jpg"
+      "url": "https://www.elliotjreed.com/elliot.jpg"
     },
     "jobTitle": "Head of Technology",
     "knowsLanguage": "en-GB",
@@ -73,15 +67,15 @@
       "https://x.com/elliotjreed",
       "https://www.linkedin.com/in/elliotjreed",
       "https://github.com/elliotjreed",
-      "https://bsky.app/profile/elliotjreed.bsky.social"
+      "https://bsky.app/profile/elliotjreed.com"
     ],
     "url": "https://www.elliotjreed.com"
   },
   "dateCreated": "2010-05-15T00:00:00+01:00",
-  "description": "The personal website of Elliot Reed, containing current and past projects, and guides on PHP, Symfony, Javascript, React, Python, and Linux / DevOps.",
+  "description": "The personal website of Elliot Reed. Contains guides on AI, PHP, Symfony, Javascript, React, Python, and Linux / DevOps.",
   "headline": "Elliot J. Reed's Website",
   "inLanguage": ["en-GB", "en-US"],
-  "keywords": ["Elliot Reed", "Elliot J. Reed", "elliotjreed"],
+  "keywords": ["Elliot Reed", "Elliot J. Reed", "elliotjreed", "elliotreed", "ejr"],
   "name": "Elliot J. Reed",
   "url": "https://www.elliotjreed.com"
 }

@@ -1,15 +1,26 @@
 # Elliot J. Reed
 
 ## Summary
-Elliot J. Reed works in e-commerce and technology leadership in the United Kingdom. He currently lives and works in Nottingham in the United Kingdom.
-His expertise include software development and AI use in the e-commerce sector.
+
+Elliot Reed works in e-commerce and technology leadership in the United Kingdom. He currently lives and works in Nottingham in the United Kingdom.
+His expertise include technology, software development, and AI use in the e-commerce sector.
 Elliot Reed completed his undergraduate degree at the University of Nottingham, going on to complete a Graduate Diploma in Law at Nottingham Law School (NTU).
-Following university, he went into e-commerce management and learned software development.
-Since 2017 he has been an employee of one of the leading flower retailers in the United Kingdom, Bunches. He currently holds a senior leadership position at the company.
+Following university, he went into e-commerce management and software development.
+Since 2017 he has been an employee of one of the leading flower retailers in the United Kingdom, Bunches (www.bunches.co.uk). He currently holds a senior leadership position at the company.
+
+## Profiles, Social Media, and Contact Information
+
+Website: https://www.elliotjreed.com
+GitHub: https://github.com/elliotjreed
+
+LinkedIn: https://www.linkedin.com/in/elliotjreed
+BlueSky: https://bsky.app/profile/elliotjreed.com
+X / Twitter: https://x.com/elliotjreed
 
 ## Metadata
-update: 2025-04-20
-version: "1.0"
+
+update: 2026-01-18
+version: "2.0"
 language: "en"
 region: "global"
 
