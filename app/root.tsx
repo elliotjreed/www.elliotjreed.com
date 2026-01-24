@@ -25,10 +25,6 @@ export const Layout = ({ children }: { children: ReactNode }): ReactElement => (
       <link rel="mask-icon" href="/icon-maskable-512.png" color="#1f2937" />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Fira+Sans:wght@700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      />
       <Meta />
       <Links />
     </head>
