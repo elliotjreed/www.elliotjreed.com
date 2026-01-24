@@ -18,9 +18,8 @@ export default (): ReactElement => (
       </h1>
 
       <p className="text-lg leading-7 text-gray-600 dark:text-gray-300">
-        This guide provides a broad overview of how to get the most from Claude Code without going into a lot of heavy
-        technical detail on every aspect. You will learn the key tools and concepts available in the Claude Code
-        terminal application.
+        This guide provides a broad overview of how to get the most from Claude Code. You will learn the key tools and
+        concepts available in the Claude Code terminal application.
       </p>
     </div>
 
