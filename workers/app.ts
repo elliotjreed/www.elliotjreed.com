@@ -24,24 +24,20 @@ export default {
       cloudflare: { env, ctx },
     });
 
-    // Clone the response to add security headers
     const headers = new Headers(response.headers);
 
-    // Prevent clickjacking
     headers.set("X-Frame-Options", "DENY");
 
-    // Prevent MIME sniffing
     headers.set("X-Content-Type-Options", "nosniff");
 
-    // Control referrer information
     headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
 
-    // Content Security Policy
     headers.set(
       "Content-Security-Policy",
       [
         "default-src 'self'",
         "script-src 'self' 'unsafe-inline'",
+        "script-src-elem 'self' 'https://static.cloudflareinsights.com/beacon.min.js'",
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
         "font-src 'self' https://fonts.gstatic.com",
         "img-src 'self' data: https:",
@@ -52,10 +48,8 @@ export default {
       ].join("; "),
     );
 
-    // Permissions Policy
     headers.set("Permissions-Policy", "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), bluetooth=(), browsing-topics=(), camera=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(self), gamepad=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), local-fonts=(self, 'https://fonts.gstatic.com'), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), screen-wake-lock=(), serial=(), speaker-selection=(), usb=(), web-share=(self), xr-spatial-tracking=()");
 
-    // HSTS (Cloudflare serves over HTTPS)
     headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
 
     return new Response(response.body, {
