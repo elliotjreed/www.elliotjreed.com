@@ -37,7 +37,7 @@ export default {
       [
         "default-src 'self'",
         "script-src 'self' 'unsafe-inline'",
-        "script-src-elem 'self' 'https://static.cloudflareinsights.com/beacon.min.js'",
+        "script-src-elem 'self' 'unsafe-inline' 'https://static.cloudflareinsights.com/beacon.min.js'",
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
         "font-src 'self' https://fonts.gstatic.com",
         "img-src 'self' data: https:",
