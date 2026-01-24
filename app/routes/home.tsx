@@ -2,7 +2,6 @@ import type { ReactElement } from "react";
 import { Link } from "react-router";
 import { SocialLinks } from "~/components/SocialLinks/SocialLinks";
 import { emailAddress } from "~/data/emailAddress";
-import { useFontsReady } from "~/hooks/useFontsReady";
 
 export function meta() {
   return [
@@ -108,8 +107,6 @@ export function meta() {
 }
 
 export default (): ReactElement => {
-  const fontsReady: boolean = useFontsReady();
-
   return (
     <section>
       <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
@@ -120,7 +117,7 @@ export default (): ReactElement => {
             width={192}
             height={192}
             className="h-48 w-48 rounded-full"
-            loading="lazy"
+            loading="eager"
             decoding="async"
           />
           <h1 className="pt-4 pb-1 text-2xl font-bold leading-8 tracking-tight">Elliot Reed</h1>
@@ -133,16 +130,16 @@ export default (): ReactElement => {
           </div>
         </div>
         <div className="prose max-w-none pt-8 pb-8 xl:col-span-2">
-          <p className={`opacity-0 ${fontsReady ? "animate-rise" : ""}`} style={{ animationDelay: "120ms" }}>
+          <p>
             Hi! I&apos;m Elliot, I work in e-commerce and software development. My technical interests are generally in
             e-commerce, AI, Linux, PHP, Javascript, and general DevOps.
           </p>
-          <p className={`opacity-0 ${fontsReady ? "animate-rise" : ""}`} style={{ animationDelay: "240ms" }}>
+          <p>
             If you work in the non-profit or charity sector and want to explore ways of using AI or have questions
             around software development in general, please do feel free to get in touch - I will be happy to volunteer
             my time and provide advice.
           </p>
-          <p className={`opacity-0 ${fontsReady ? "animate-rise" : ""}`} style={{ animationDelay: "360ms" }}>
+          <p>
             A good place to start if you want to effectively use AI Assistants such as ChatGPT, Claude, and Gemini is my{" "}
             <Link to="/ai/ai-prompt-engineering-guide" prefetch="render">
               AI prompting introduction and guide
@@ -152,7 +149,7 @@ export default (): ReactElement => {
               <em>CAFE</em> prompt framework
             </Link>
           </p>
-          <p className={`opacity-0 ${fontsReady ? "animate-rise" : ""}`} style={{ animationDelay: "360ms" }}>
+          <p>
             If you are looking for a guide and some handy tips on Claude Code, take a look at my{" "}
             <Link to="/ai/claude-code-guide-and-tips" prefetch="render">
               Claude Code Guide
