@@ -18,7 +18,7 @@ export const Layout = ({ children }: { children: ReactNode }): ReactElement => (
       <meta name="twitter:image" content="https://www.elliotjreed.com/og.png" />
       <link rel="manifest" href="/manifest.webmanifest" />
       <meta name="theme-color" content="#1f2937" />
-      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       <meta name="apple-mobile-web-app-title" content="EJR" />
       <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

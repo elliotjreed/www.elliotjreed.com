@@ -48,17 +48,6 @@ export function meta() {
     { name: "twitter:site", content: "@elliotjreed" },
     { name: "twitter:creator", content: "@elliotjreed" },
 
-    // Additional meta tags
-    { name: "author", content: "Elliot Reed" },
-    { name: "robots", content: "index, follow" },
-    { name: "googlebot", content: "index, follow" },
-    { name: "theme-color", content: "#12233f" },
-    { name: "mobile-web-app-capable", content: "yes" },
-    { name: "apple-mobile-web-app-capable", content: "yes" },
-    { name: "apple-mobile-web-app-status-bar-style", content: "default" },
-    { name: "apple-mobile-web-app-title", content: "Percentage Calculator" },
-    { name: "application-name", content: "Percentage Calculator" },
-
     {
       "script:ld+json": {
         "@context": "https://schema.org",
