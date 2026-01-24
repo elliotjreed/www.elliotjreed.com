@@ -55,7 +55,7 @@ export const Search: FC = (): ReactElement => {
     return (): void => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isExpanded]);
+  }, [isExpanded, handleClose]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent): void => {

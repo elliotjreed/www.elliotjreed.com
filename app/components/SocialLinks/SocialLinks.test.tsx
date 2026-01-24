@@ -44,10 +44,7 @@ describe("SocialLinks", () => {
 
     const blueskyLink = screen.getByTitle("BlueSky");
     expect(blueskyLink).toBeInTheDocument();
-    expect(blueskyLink).toHaveAttribute(
-      "href",
-      "https://bsky.app/profile/elliotjreed.com?utm_source=elliotjreed.com",
-    );
+    expect(blueskyLink).toHaveAttribute("href", "https://bsky.app/profile/elliotjreed.com?utm_source=elliotjreed.com");
     expect(blueskyLink).toHaveAttribute("rel", "noreferrer noopener");
   });
 

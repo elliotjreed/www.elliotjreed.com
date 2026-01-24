@@ -2,8 +2,8 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { type FC, type ReactElement, useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router";
-import { useSearch } from "~/hooks/useSearch";
 import type { SearchableItem } from "~/data/searchIndex";
+import { useSearch } from "~/hooks/useSearch";
 
 interface MobileSearchProps {
   onNavigate?: () => void;

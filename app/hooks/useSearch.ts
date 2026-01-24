@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Fuse from "fuse.js";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { type SearchableItem, searchIndex } from "~/data/searchIndex";
 
 const MAX_QUERY_LENGTH = 100;

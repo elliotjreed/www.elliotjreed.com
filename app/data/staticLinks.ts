@@ -17,6 +17,7 @@ export const staticLinks: StaticLink[] = [
         children: [
           { href: "/ai/ai-prompt-engineering-guide", title: "AI Prompt Guide", showInNavigation: true },
           { href: "/ai/cafe-ai-prompt-framework", title: "CAFE Prompt Framework", showInNavigation: true },
+          { href: "/ai/claude-code-guide-and-tips", title: "Claude Code Guide", showInNavigation: true },
           { href: "/ai/recommended-ai-learning-resources", title: "AI Links & Resources", showInNavigation: true },
         ],
       },

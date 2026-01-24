@@ -11,7 +11,8 @@ export const searchIndex: SearchableItem[] = [
   {
     href: "/ai/ai-prompt-engineering-guide",
     title: "AI Prompt Guide",
-    description: "A guide and introduction to prompt engineering techniques for AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
+    description:
+      "A guide and introduction to prompt engineering techniques for AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
     category: "AI Guides",
     keywords: ["ai", "prompt", "engineering", "chatgpt", "claude", "gemini", "deepseek", "llm"],
   },
@@ -28,6 +29,33 @@ export const searchIndex: SearchableItem[] = [
     description: "Curated collection of learning resources, tools, and links for AI and machine learning.",
     category: "AI Guides",
     keywords: ["ai", "resources", "learning", "tools", "machine learning", "links"],
+  },
+  {
+    href: "/ai/claude-code-guide-and-tips",
+    title: "Claude Code Guide",
+    description:
+      "A comprehensive guide to using Claude Code for software development, covering installation, prompting strategies, planning, git integration, and advanced features like skills, subagents, and MCP servers.",
+    category: "AI Guides",
+    keywords: [
+      "claude",
+      "code",
+      "cli",
+      "terminal",
+      "software development",
+      "prompting",
+      "planning",
+      "skills",
+      "subagents",
+      "mcp",
+      "git",
+      "opus",
+      "sonnet",
+      "haiku",
+      "agents",
+      "programming",
+      "development",
+      "automation",
+    ],
   },
 
   // ZSH / Bash Shell Guides

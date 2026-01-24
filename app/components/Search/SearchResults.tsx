@@ -34,9 +34,7 @@ export const SearchResults: FC<SearchResultsProps> = ({ results, onClose, active
           aria-selected={index === activeIndex}
           id={`search-result-${index}`}
           className={`block px-4 py-3 border-b border-gray-100 dark:border-gray-700 last:border-b-0 transition-colors ${
-            index === activeIndex
-              ? "bg-primary-50 dark:bg-primary-900/20"
-              : "hover:bg-gray-50 dark:hover:bg-gray-700"
+            index === activeIndex ? "bg-primary-50 dark:bg-primary-900/20" : "hover:bg-gray-50 dark:hover:bg-gray-700"
           }`}
           prefetch="intent"
         >

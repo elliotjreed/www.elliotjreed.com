@@ -4,6 +4,7 @@ export default [
   index("routes/home.tsx"),
   route("ai/ai-prompt-engineering-guide", "routes/ai/ai-prompt-engineering-guide.tsx"),
   route("ai/cafe-ai-prompt-framework", "routes/ai/cafe-ai-prompt-framework.tsx"),
+  route("ai/claude-code-guide-and-tips", "routes/ai/claude-code-guide-and-tips.tsx"),
   route("ai/recommended-ai-learning-resources", "routes/ai/recommended-ai-learning-resources.tsx"),
   route("linux/zsh-bash-aliases", "routes/linux/zsh-bash-aliases.tsx"),
   route("linux/zsh-bash-functions", "routes/linux/zsh-bash-functions.tsx"),
