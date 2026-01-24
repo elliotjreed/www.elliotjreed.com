@@ -25,7 +25,7 @@ export const NavBar: FC = (): ReactElement => {
   };
   const toggleDropdown = (title: string): void => {
     setOpenDropdown((c: string | null): string | null => (c === title ? null : title));
-    setOpenSubDropdown(null); // Close sub-dropdowns when toggling main dropdown
+    setOpenSubDropdown(null);
   };
   const toggleSubDropdown = (title: string): void => setOpenSubDropdown((c) => (c === title ? null : title));
 
@@ -77,7 +77,10 @@ export const NavBar: FC = (): ReactElement => {
       <header className="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 print:hidden">
         <div ref={navWrapperRef} className="max-w-screen-xl flex items-center justify-between mx-auto py-4 px-4">
           <NavLink to="/" className="flex items-center space-x-3 rtl:space-x-reverse" prefetch="render">
-            <span className="text-4xl font-bold text-primary-900 dark:text-gray-300 hover:text-primary-700 dark:hover:text-white transition-colors">
+            <span
+              className="text-4xl font-bold text-primary-900 dark:text-gray-300 hover:text-primary-700 dark:hover:text-white transition-colors"
+              style={{ fontFamily: "Fira Sans" }}
+            >
               EJR
             </span>
           </NavLink>

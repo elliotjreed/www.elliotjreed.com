@@ -152,6 +152,13 @@ export default (): ReactElement => {
               <em>CAFE</em> prompt framework
             </Link>
           </p>
+          <p className={`opacity-0 ${fontsReady ? "animate-rise" : ""}`} style={{ animationDelay: "360ms" }}>
+            If you are looking for a guide and some handy tips on Claude Code, take a look at my{" "}
+            <Link to="/ai/claude-code-guide-and-tips" prefetch="render">
+              Claude Code Guide
+            </Link>
+            .
+          </p>
         </div>
       </div>
     </section>

@@ -18,14 +18,9 @@ export default (): ReactElement => (
       </h1>
 
       <p className="text-lg leading-7 text-gray-600 dark:text-gray-300">
-        This article is an introduction to Claude Code. Whilst Claude Code is now available on the web application, as a
-        desktop version for Mac, and as an extension for VSCode (and forks such as Cursor), this guide will focus on
-        running Claude Code via the command-line in a terminal.
-      </p>
-
-      <p className="text-lg leading-7 text-gray-600 dark:text-gray-300">
-        This guide assumes you already know what Claude Code is, and what it is used for. The aim of the guide is to
-        provide a broad overview of how to get the most from Claude Code without going into a lot of heavy detail.
+        This guide provides a broad overview of how to get the most from Claude Code without going into a lot of heavy
+        technical detail on every aspect. You will learn the key tools and concepts available in the Claude Code
+        terminal application.
       </p>
     </div>
 
@@ -41,67 +36,24 @@ export default (): ReactElement => (
           </li>
           <li>
             <a href="#using-claude-code">Using Claude Code</a>
-            <ul>
-              <li>
-                <a href="#essential-commands-and-shortcuts">Essential Commands and Shortcuts</a>
-              </li>
-            </ul>
           </li>
           <li>
             <a href="#models">Models</a>
           </li>
           <li>
             <a href="#claudemd-providing-claude-code-with-context">CLAUDE.md - Providing Claude Code with Context</a>
-            <ul>
-              <li>
-                <a href="#creating-a-claudemd-file">Creating a CLAUDE.md File</a>
-              </li>
-              <li>
-                <a href="#claudemd-example">CLAUDE.md Example</a>
-              </li>
-            </ul>
           </li>
           <li>
             <a href="#prompting-planning-and-execution">Prompting, Planning, and Execution</a>
-            <ul>
-              <li>
-                <a href="#prompting">Prompting</a>
-              </li>
-              <li>
-                <a href="#planning">Planning</a>
-              </li>
-              <li>
-                <a href="#execution">Execution</a>
-              </li>
-              <li>
-                <a href="#parallel-agents-for-brainstorming-solutions">Parallel Agents for Brainstorming Solutions</a>
-              </li>
-            </ul>
           </li>
           <li>
             <a href="#checkpoints-undoing-code-and-context">Checkpoints: Undoing Code and Context</a>
           </li>
           <li>
             <a href="#git-and-version-control">Git and Version Control</a>
-            <ul>
-              <li>
-                <a href="#committing-and-branching">Committing and Branching</a>
-              </li>
-              <li>
-                <a href="#history-and-explanations">History and Explanations</a>
-              </li>
-            </ul>
           </li>
           <li>
             <a href="#usage-limits-and-context-control">Usage Limits and Context Control</a>
-            <ul>
-              <li>
-                <a href="#usage-limits">Usage Limits</a>
-              </li>
-              <li>
-                <a href="#context-control">Context Control</a>
-              </li>
-            </ul>
           </li>
           <li>
             <a href="#settings-and-permissions">Settings and Permissions</a>
@@ -111,27 +63,12 @@ export default (): ReactElement => (
           </li>
           <li>
             <a href="#claude-skills">Claude Skills</a>
-            <ul>
-              <li>
-                <a href="#example-custom-skill-react-component-optimiser">
-                  Example Custom Skill: React Component Optimiser
-                </a>
-              </li>
-            </ul>
           </li>
           <li>
             <a href="#claude-subagents">Claude Subagents</a>
           </li>
           <li>
             <a href="#claude-mcp-servers">Claude MCP Servers</a>
-            <ul>
-              <li>
-                <a href="#playwright-mcp">Playwright MCP</a>
-              </li>
-              <li>
-                <a href="#context7">Context7</a>
-              </li>
-            </ul>
           </li>
         </ol>
       </section>
@@ -139,19 +76,13 @@ export default (): ReactElement => (
       <section id="installation">
         <h2>Installation</h2>
 
-        <h3>Linux and Mac</h3>
-        <CodeSnippet code="curl -fsSL https://claude.ai/install.sh | bash" title="Install Claude Code (Linux/Mac)" />
-
-        <h3>Windows</h3>
-
-        <h4>Powershell</h4>
-        <CodeSnippet code="irm https://claude.ai/install.ps1 | iex" title="Install Claude Code (PowerShell)" />
-
-        <h4>Windows CMD</h4>
-        <CodeSnippet
-          code="curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd"
-          title="Install Claude Code (Windows CMD)"
-        />
+        <p>
+          To install Claude Code, refer to the official instructions at{" "}
+          <a href="https://code.claude.com/docs/en/setup#installation" rel="noreferrer noopener">
+            code.claude.com/docs/en/setup
+          </a>
+          .
+        </p>
       </section>
 
       <section id="starting-claude-code">
@@ -525,16 +456,16 @@ The architecture follows modern React patterns with server-side rendering suppor
       </section>
 
       <section id="usage-limits-and-context-control">
-        <h2>Usage Limits and Context Control</h2>
+        <h2>Usage and Context Control</h2>
 
         <section id="usage-limits">
-          <h3>Usage Limits</h3>
+          <h3>Usage and Limits</h3>
 
           <p>Claude Code can use a lot of "tokens", which heavily count towards the overall Claude limits.</p>
 
           <p>You can view your remaining usage with the following slash command:</p>
 
-          <CodeSnippet code="/usage" title="View Usage Limits" />
+          <CodeSnippet code="/usage" title="View Usage" />
         </section>
 
         <section id="context-control">
@@ -688,8 +619,7 @@ The architecture follows modern React patterns with server-side rendering suppor
     "env": {
       "CLAUDE_CODE_ENABLE_TELEMETRY": "0",
       "ANTHROPIC_MODEL": "opusplan"
-    },
-    "forceLoginMethod": "claudeai"
+    }
   }
 }`}
           title="Example ~/.claude/settings.json"
