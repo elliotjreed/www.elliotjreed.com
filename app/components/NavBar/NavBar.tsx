@@ -3,6 +3,8 @@ import { NavLink } from "react-router";
 import { DropdownMenuIcon } from "~/components/DropdownMenuIcon/DropdownMenuIcon";
 import { HamburgerIcon } from "~/components/HamburgerIcon/HamburgerIcon";
 import { NavLinkItem } from "~/components/NavLinkItem/NavLinkItem";
+import { MobileSearch } from "~/components/Search/MobileSearch";
+import { Search } from "~/components/Search/Search";
 import { ThemeSwitch } from "~/components/ThemeSwitch/ThemeSwitch";
 import { type StaticLink, staticLinks } from "~/data/staticLinks";
 
@@ -166,6 +168,8 @@ export const NavBar: FC = (): ReactElement => {
               </ul>
             </nav>
 
+            <Search />
+
             <ThemeSwitch />
 
             <button
@@ -210,6 +214,10 @@ export const NavBar: FC = (): ReactElement => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
+          </div>
+
+          <div className="p-4 border-b border-gray-200 dark:border-gray-700">
+            <MobileSearch onNavigate={closeMenu} />
           </div>
 
           <ul className="flex-1 p-4 space-y-2">
