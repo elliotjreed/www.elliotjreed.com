@@ -64,10 +64,11 @@ export default (): ReactElement => (
           which I've used in a PHP package for anyone to use.
         </p>
         <p>To install the package simply add it via Composer:</p>
-        <CodeSnippet code="composer require elliotjreed/disposable-emails-filter" title="Install" />
+        <CodeSnippet language="bash" code="composer require elliotjreed/disposable-emails-filter" title="Install" />
 
         <p>And use it like the following:</p>
         <CodeSnippet
+          language="php"
           code={`<?php
 require 'vendor/autoload.php';
 
@@ -84,6 +85,7 @@ if ((new Email())->isDisposable('email@temporarymailaddress.com')) {
           that the email address is valid first. For example:
         </p>
         <CodeSnippet
+          language="php"
           code={`$email = 'not-a-real-email-address#example.net'
 
 if (filter_var($email, FILTER_VALIDATE_EMAIL)) {

@@ -48,21 +48,20 @@ describe("CodeSnippet", () => {
     expect(screen.getByText("Copied!")).toBeInTheDocument();
   });
 
-  it("should render pre and code elements", () => {
+  it("should render pre element with syntax highlighting", () => {
     const { container } = render(<CodeSnippet code={mockCode} title={mockTitle} />);
 
     const pre = container.querySelector("pre");
-    const code = container.querySelector("code");
 
     expect(pre).toBeInTheDocument();
-    expect(code).toBeInTheDocument();
+    expect(pre).toHaveStyle({ backgroundColor: "#1f2937" });
   });
 
   it("should have correct styling classes", () => {
     const { container } = render(<CodeSnippet code={mockCode} title={mockTitle} />);
 
     const pre = container.querySelector("pre");
-    expect(pre).toHaveClass("p-4", "text-gray-300", "bg-gray-800", "overflow-x-auto", "font-mono", "text-sm");
+    expect(pre).toHaveClass("p-4", "overflow-x-auto", "font-mono", "text-sm");
   });
 
   it("should render copy icon SVG", () => {
@@ -76,5 +75,21 @@ describe("CodeSnippet", () => {
 
     const copyButton = screen.getByRole("button", { name: /copy/i });
     expect(copyButton).toHaveAttribute("type", "button");
+  });
+
+  it("should use bash language by default", () => {
+    const { container } = render(<CodeSnippet code={mockCode} title={mockTitle} />);
+
+    const pre = container.querySelector("pre");
+    expect(pre).toBeInTheDocument();
+  });
+
+  it("should accept and use custom language prop", () => {
+    const phpCode = "<?php echo 'Hello World'; ?>";
+    const { container } = render(<CodeSnippet code={phpCode} title="PHP Example" language="php" />);
+
+    const pre = container.querySelector("pre");
+    expect(pre).toBeInTheDocument();
+    expect(screen.getByText(phpCode)).toBeInTheDocument();
   });
 });

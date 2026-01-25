@@ -60,10 +60,11 @@ export default (): ReactElement => (
           Copy to new table without indexes and triggers (note: this will not copy the AUTO_INCREMENT value, will not
           carry over foreign key constraints, and will not copy indexes and triggers.):
         </p>
-        <CodeSnippet code="CREATE TABLE my_table_copy AS SELECT * FROM my_table;" title="Values only" />
+        <CodeSnippet language="sql" code="CREATE TABLE my_table_copy AS SELECT * FROM my_table;" title="Values only" />
 
         <p>Copy to new table with indexes and triggers:</p>
         <CodeSnippet
+          language="sql"
           code="CREATE TABLE my_table_copy LIKE my_table; INSERT INTO my_table_copy SELECT * FROM my_table;"
           title="Values, indexes, triggers, etc."
         />

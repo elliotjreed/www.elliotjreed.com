@@ -177,7 +177,7 @@ export default (): ReactElement => (
       <section>
         {snippets.map(
           (snippet: CodeSnippetInterface): ReactElement => (
-            <CodeSnippet key={snippet.title} code={snippet.code} title={snippet.title} />
+            <CodeSnippet key={snippet.title} language="bash" code={snippet.code} title={snippet.title} />
           ),
         )}
       </section>

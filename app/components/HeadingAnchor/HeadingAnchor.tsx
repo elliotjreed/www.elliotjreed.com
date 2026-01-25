@@ -1,4 +1,4 @@
-import React, { type ReactElement, type ReactNode, useState } from "react";
+import { type KeyboardEvent, type ReactElement, type ReactNode, useState } from "react";
 
 interface HeadingAnchorProps {
   id: string;
@@ -20,7 +20,7 @@ export const HeadingAnchor = ({ id, level = 2, children }: HeadingAnchorProps): 
     <button
       type="button"
       onClick={handleCopyLink}
-      onKeyDown={(event: React.KeyboardEvent<HTMLButtonElement>): void => {
+      onKeyDown={(event: KeyboardEvent<HTMLButtonElement>): void => {
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
           handleCopyLink();

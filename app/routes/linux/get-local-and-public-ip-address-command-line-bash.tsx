@@ -63,7 +63,7 @@ export default (): ReactElement => (
     <div className="prose max-w-none dark:prose-dark">
       <section>
         <p>Here's a useful Bash function to find your local and public IP addresses:</p>
-        <CodeSnippet code={functionSnippet.code} title={functionSnippet.title} />
+        <CodeSnippet language="bash" code={functionSnippet.code} title={functionSnippet.title} />
         <p>
           Then you just need to type <code>myip</code> into your terminal / Bash shell and it'll show you your public IP
           address and your local IP address.

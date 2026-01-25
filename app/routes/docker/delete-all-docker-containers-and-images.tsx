@@ -139,7 +139,7 @@ export default (): ReactElement => (
 
         <p>Here's the Bash function:</p>
 
-        <CodeSnippet code={snippet.code} title={snippet.title} />
+        <CodeSnippet language="bash" code={snippet.code} title={snippet.title} />
       </section>
     </div>
   </section>
