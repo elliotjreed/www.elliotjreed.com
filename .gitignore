@@ -9,3 +9,7 @@
 # Cloudflare
 .mf
 .wrangler
+
+# Claude
+.claude/settings.local.json
+
