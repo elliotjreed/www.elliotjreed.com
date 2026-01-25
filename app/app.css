@@ -9,7 +9,7 @@
 @theme {
   --letter-spacing: 0.2rem;
 
-  --font-mono: "Fira Code";
+  --font-mono: "Fira Code", "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Courier New", "Courier", monospace;
   --font-sans:
     "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
     "Noto Color Emoji";
@@ -173,6 +173,18 @@
     color: var(--color-gray-900);
     border-left-color: var(--color-gray-200);
   }
+  :where(.prose) kbd {
+    background-color: var(--color-gray-100);
+    color: var(--color-gray-800);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--color-gray-300);
+    box-shadow:
+      0 1px 0 0 var(--color-gray-300),
+      0 0 0 2px var(--color-white) inset;
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+  }
 }
 
 @layer prose-dark {
@@ -241,5 +253,13 @@
   .dark :where(.prose) blockquote {
     color: var(--color-gray-100);
     border-left-color: var(--color-gray-700);
+  }
+  .dark :where(.prose) kbd {
+    background-color: var(--color-gray-700);
+    color: var(--color-gray-100);
+    border: 1px solid var(--color-gray-600);
+    box-shadow:
+      0 1px 0 0 var(--color-gray-600),
+      0 0 0 2px var(--color-gray-800) inset;
   }
 }
