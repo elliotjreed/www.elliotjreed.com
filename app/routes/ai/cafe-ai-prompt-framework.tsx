@@ -163,7 +163,7 @@ export default (): ReactElement => (
           <h3>Garden Planning for Small Space</h3>
           <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
             <strong>Context:</strong> I live in a terraced house in Manchester with a north-facing garden that's
-            approximately 3m x 5m. The space gets limited direct sunlight except in summer mornings. The soil is
+            approximately 3m x 5m. The space gets limited direct sunlight except on summer mornings. The soil is
             clay-heavy and tends to waterlog during winter months.
             <br />
             <strong>Action:</strong> Design a low-maintenance garden plan that incorporates edible plants, year-round

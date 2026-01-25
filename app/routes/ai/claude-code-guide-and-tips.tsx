@@ -14,7 +14,7 @@ export default (): ReactElement => (
   <section className="divide-y divide-gray-200 dark:divide-gray-700">
     <div className="space-y-2 pt-6 pb-8 md:space-y-5">
       <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
-        Claude Code for Software Development
+        Claude Code: Guide &amp; Tips
       </h1>
 
       <p className="text-lg leading-7 text-gray-600 dark:text-gray-300">
@@ -353,17 +353,14 @@ The architecture follows modern React patterns with server-side rendering suppor
             Code as follows:
           </p>
 
-          <div className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
-            <p>
-              Plan the implementation of a new search feature. There should be a search icon in the website header which
-              expands to take a search term input. The search functionality should search through the articles, guides,
-              and blog posts on the website.
-            </p>
-          </div>
+          <CodeSnippet
+            code="Plan the implementation of a new search feature. There should be a search icon in the website header which expands to take a search term input. The search functionality should search through the articles, guides, and blog posts on the website."
+            title="Example: Plan Mode Instructions"
+          />
 
           <p>
             If you have the <code>/model opusplan</code> model configuration enabled, Claude Code will switch to use the
-            Opus model, and output something like this:
+            Opus model, and output:
           </p>
 
           <pre>● Entered plan mode</pre>
@@ -371,9 +368,9 @@ The architecture follows modern React patterns with server-side rendering suppor
           <p>Claude Code may ask clarifying questions, and will present a plan for the implementation.</p>
 
           <p>
-            If you are happy with the plan, you can instruct Claude to proceed with the implementation via the options
-            presented. If the plan requires amending, you can provide Claude with further instructions until you are
-            happy with the plan.
+            If you are happy with the plan, you can instruct Claude to proceed with the implementation using the plan.
+            If the plan requires amending, you can provide Claude with further instructions until you are happy with the
+            plan.
           </p>
         </section>
 
