@@ -26,7 +26,7 @@ export const HeadingAnchor = ({ id, level = 2, children }: HeadingAnchorProps): 
           handleCopyLink();
         }
       }}
-      className="ml-2 inline-flex items-center opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity cursor-pointer"
+      className="ml-2 inline-flex items-center opacity-20 group-hover:opacity-100 focus:opacity-100 transition-opacity cursor-pointer"
       aria-label={`Copy link to ${children}`}
       title="Copy link to section"
     >
