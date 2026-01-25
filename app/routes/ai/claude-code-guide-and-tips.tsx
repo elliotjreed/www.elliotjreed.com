@@ -105,7 +105,7 @@ export default (): ReactElement => (
 
         <p>If you are not prompted to log in, you can type the following "slash" command:</p>
 
-        <CodeSnippet code="/login" title="Login to Claude Code" />
+        <CodeSnippet code="/login" title="Log In to Claude Code" />
       </section>
 
       <section id="using-claude-code">
@@ -402,12 +402,10 @@ The architecture follows modern React patterns with server-side rendering suppor
             Code do this, just specify it in your prompt. For example:
           </p>
 
-          <div className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
-            <p>
-              Use parallel subagents to brainstorm 3 potential ways to implement a contact form that send an email to my
-              email address when someone uses the form. The solution should be able to be run on Cloudflare workers.
-            </p>
-          </div>
+          <CodeSnippet
+            code="Use parallel subagents to brainstorm 3 potential ways to implement a contact form that send an email to my email address when someone uses the form. The solution should be able to be run on Cloudflare workers."
+            title="Example: Using Parallel Subagents"
+          />
         </section>
       </section>
 
@@ -449,7 +447,7 @@ The architecture follows modern React patterns with server-side rendering suppor
 
           <CodeSnippet
             code="Look at the Git history for the `Header.tsx` file and explain who implemented the search functionality and what changes were made at the time"
-            title="Claude Git Example"
+            title="Example: Git History"
           />
         </section>
       </section>
@@ -478,7 +476,7 @@ The architecture follows modern React patterns with server-side rendering suppor
 
           <p>You can view the current context use with the following slash command:</p>
 
-          <CodeSnippet code="/context" title="View Context Usage" />
+          <CodeSnippet code="/context" title="Viewing Context Usage" />
 
           <h4>Clearing Context</h4>
 
@@ -505,24 +503,22 @@ The architecture follows modern React patterns with server-side rendering suppor
 
         <p>
           Having Claude Code ask for permissions to run commands each time is not ideal. Fortunately, you can specify
-          command permissions, along with other settings, in a <code>settings.local.json</code> file in the{" "}
-          <code>.claude</code> directory. This will be generated automatically by Claude, and can be edited and added
-          to.
+          command permissions, along with other settings, in a <code>./claude/settings.local.json</code> file. This will
+          be generated automatically by Claude, and can be edited and added to.
         </p>
 
         <p>
-          The <code>settings.local.json</code> should not be committed to a Git repository, for shared settings that can
-          be committed to a Git repository use the file <code>settings.json</code> in the <code>.claude</code>{" "}
-          directory.
+          The <code>.claude/settings.local.json</code> should not be committed to a Git repository, for shared settings
+          that can be committed to a Git repository use the file <code>.claude/settings.json</code>.
         </p>
 
         <p>
           You can also have a "default" <code>settings.json</code> file which will be used by all Claude Code projects.
-          On Linux and Mac this is located in your home directory, under <code>~./claude/settings.json</code>.
+          On Linux and Mac this is located in your home directory, under <code>~/.claude/settings.json</code>.
         </p>
 
         <p>
-          Here is an example <code>~./claude/settings.json</code> file covering common Bash commands and development
+          Here is an example <code>~/.claude/settings.json</code> file covering common Bash commands and development
           tools, with some being explicitly allowed to run, some requiring asking each time, and some denied altogether.
         </p>
 
@@ -550,55 +546,12 @@ The architecture follows modern React patterns with server-side rendering suppor
       "Bash(make:*)",
       "Bash(mkdir:*)",
       "Bash(cd:*)",
-      "Bash(bun run test:*)",
-      "Bash(bun run build:*)",
-      "Bash(bun run dev:*)",
-      "Bash(bun run start:*)",
-      "Bash(bun run lint:*)",
-      "Bash(bun install:*)",
-      "Bash(bun add:*)",
-      "Bash(bun remove:*)",
-      "Bash(yarn run test:*)",
-      "Bash(yarn run build:*)",
-      "Bash(yarn run dev:*)",
-      "Bash(yarn run start:*)",
-      "Bash(yarn run lint:*)",
-      "Bash(yarn install:*)",
-      "Bash(yarn add:*)",
-      "Bash(yarn remove:*)",
       "Bash(npm run test:*)",
       "Bash(npm run build:*)",
       "Bash(npm run dev:*)",
       "Bash(npm run start:*)",
       "Bash(npm run lint:*)",
-      "Bash(npm install:*)",
-      "Bash(composer run-script test:*)",
-      "Bash(composer run-script build:*)",
-      "Bash(composer run-script dev:*)",
-      "Bash(composer install:*)",
-      "Bash(composer update:*)",
-      "Bash(composer require:*)",
-      "Bash(composer remove:*)",
-      "Bash(composer dump-autoload:*)",
-      "Bash(go test:*)",
-      "Bash(go build:*)",
-      "Bash(go run:*)",
-      "Bash(go mod init:*)",
-      "Bash(go mod tidy:*)",
-      "Bash(go mod download:*)",
-      "Bash(go mod verify:*)",
-      "Bash(go get:*)",
-      "Bash(go fmt:*)",
-      "Bash(go vet:*)",
-      "Bash(go list:*)",
-      "Bash(go version:*)",
-      "Bash(python:*)",
-      "Bash(python3:*)",
-      "Bash(pip install:*)",
-      "Bash(pip list:*)",
-      "Bash(pip show:*)",
-      "Bash(pip freeze:*)",
-      "Bash(pip check:*)"
+      "Bash(npm install:*)"
     ],
     "ask": [
       "Bash(rm:*)",
@@ -621,7 +574,7 @@ The architecture follows modern React patterns with server-side rendering suppor
     }
   }
 }`}
-          title="Example ~/.claude/settings.json"
+          title="Example: ~/.claude/settings.json"
         />
 
         <p>
@@ -677,7 +630,7 @@ The architecture follows modern React patterns with server-side rendering suppor
         />
 
         <p>
-          Note, the TypeScript code intelligence needs the TypeScript language server to be installed, this can be done
+          Note: the TypeScript code intelligence needs the TypeScript language server to be installed, this can be done
           in your terminal outside of Claude Code, or by using the Bash mode prefix <code>!</code> in the Claude Code
           input:
         </p>
@@ -747,20 +700,22 @@ When optimising React components:
    - Highlight any behavioural changes
 
 Focus on React and TypeScript performance patterns only. Avoid project-wide configuration changes.`}
-            title="Example SKILL.md"
+            title="Example: SKILL.md"
           />
 
           <p>Save the file, then restart (or start) Claude Code. You can then use the Skill by either asking Claude:</p>
 
-          <div className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
-            <p>
-              Use the React Optimiser skill to analyse the <code>Header.tsx</code> component
-            </p>
-          </div>
+          <CodeSnippet
+            code="Use the React Optimiser skill to analyse the `Header.tsx` component"
+            title="Example: Using the Skill by Prompting Claude"
+          />
 
           <p>Or by using the slash command:</p>
 
-          <CodeSnippet code="/react-optimiser ./components/Header.tsx" title="Use React Optimiser Skill" />
+          <CodeSnippet
+            code="/react-optimiser ./components/Header.tsx"
+            title="Example: Using the React Optimiser Skill with the Slash Command"
+          />
 
           <p>
             More information on Skills can be found at{" "}
@@ -778,12 +733,12 @@ Focus on React and TypeScript performance patterns only. Avoid project-wide conf
         <p>Custom subagents can be created to handle specific tasks.</p>
 
         <p>
-          For example, you might create a "Code Reviewer" subagent to review existing code. You might create a "Security
-          Reviewer" subagent to specifically work on identifying potential security issues in your application.
+          For example, you might create a "Code Reviewer" subagent to review existing code, or a "Security Reviewer"
+          subagent to specifically work on identifying potential security issues in your application.
         </p>
 
         <p>
-          To create a subagent, the simplest way to get started is to have Claude Code create one for you based on our
+          To create a subagent, the simplest way to get started is to have Claude Code create one for you based on your
           instructions.
         </p>
 
@@ -802,12 +757,10 @@ Focus on React and TypeScript performance patterns only. Avoid project-wide conf
           Reviewer subagent:
         </p>
 
-        <div className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
-          <p>
-            A security reviewer agent that explores the code to highlight any potential security risks, vulnerabilties,
-            or oversights. It should explain the risk or vulnerability and provide solutions or mitigations.
-          </p>
-        </div>
+        <CodeSnippet
+          code="A security reviewer agent that explores the code to highlight any potential security risks, vulnerabilties, or oversights. It should explain the risk or vulnerability and provide solutions or mitigations."
+          title="Example: Security Reviewer Agent Description"
+        />
 
         <p>
           You will then be asked to select the tool required. For the Security Reviewer we likely only need{" "}
@@ -825,9 +778,10 @@ Focus on React and TypeScript performance patterns only. Avoid project-wide conf
 
         <p>You can then run the subagent by asking Claude to use it:</p>
 
-        <div className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
-          <p>Use the security-reviewer agent to explore the codebase and highlight any potential vulnerabilites.</p>
-        </div>
+        <CodeSnippet
+          code="Use the security-reviewer agent to explore the codebase and highlight any potential vulnerabilities"
+          title="Example: Security Reviewer Agent Invocation"
+        />
       </section>
 
       <section id="claude-mcp-servers">
@@ -855,9 +809,10 @@ Focus on React and TypeScript performance patterns only. Avoid project-wide conf
 
           <p>Restart Claude Code. Then you can use Playwright by asking Claude something like:</p>
 
-          <div className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
-            <p>Use Playwright to inspect my homepage and suggest layout changes to reduce bounce rates</p>
-          </div>
+          <CodeSnippet
+            code="Use Playwright to inspect my homepage and suggest layout changes to reduce bounce rates"
+            title="Example: Calling Playwright MCP"
+          />
 
           <p>Claude will use a web browser to view the page.</p>
         </section>
