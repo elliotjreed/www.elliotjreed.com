@@ -50,7 +50,7 @@ export const CodeSnippet: FC<CodeSnippetInterface> = ({ code, title }: CodeSnipp
           </button>
         </div>
 
-        <pre className="p-4 mt-0 mb-0 text-gray-300 bg-gray-800 overflow-x-auto font-mono text-sm">
+        <pre className="p-4 mt-0 mb-0 text-gray-300 bg-gray-800 font-mono text-sm whitespace-pre-wrap break-words">
           <code className="bg-gray-800">{code}</code>
         </pre>
       </div>
