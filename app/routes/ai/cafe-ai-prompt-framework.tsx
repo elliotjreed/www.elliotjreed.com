@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import { Link } from "react-router";
+import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
 
 export const meta = () => [
   { title: "CAFE Framework Prompting Guide | EJR" },
@@ -67,7 +68,7 @@ export default (): ReactElement => (
       </section>
 
       <section id="context">
-        <h2>Context</h2>
+        <HeadingAnchor id="context">Context</HeadingAnchor>
 
         <p>This could include:</p>
         <div className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
@@ -81,7 +82,7 @@ export default (): ReactElement => (
       </section>
 
       <section id="action">
-        <h2>Action</h2>
+        <HeadingAnchor id="action">Action</HeadingAnchor>
 
         <p>
           <strong>Use active verbs</strong> to describe the task. For example:
@@ -104,7 +105,7 @@ export default (): ReactElement => (
       </section>
 
       <section id="format">
-        <h2>Format</h2>
+        <HeadingAnchor id="format">Format</HeadingAnchor>
 
         <p>This can include information such as:</p>
         <div className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
@@ -126,7 +127,7 @@ export default (): ReactElement => (
       </section>
 
       <section id="examples">
-        <h2>Examples</h2>
+        <HeadingAnchor id="examples">Examples</HeadingAnchor>
 
         <p>
           Provide <strong>two to five examples</strong> where possible. Eg. if you want to generate a social media post,
@@ -135,7 +136,7 @@ export default (): ReactElement => (
       </section>
 
       <section id="iterate">
-        <h2>Iterate</h2>
+        <HeadingAnchor id="iterate">Iterate</HeadingAnchor>
 
         <p>Iterate on the response. This could include:</p>
         <div className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
@@ -153,7 +154,7 @@ export default (): ReactElement => (
       </section>
 
       <section id="example_prompts">
-        <h2>Example Prompts</h2>
+        <HeadingAnchor id="example_prompts">Example Prompts</HeadingAnchor>
         <p>
           Here are three examples using the CAFE framework. The order of the CAFE elements doesn't matter (for example,
           the action could come before the context, or the format after the examples).

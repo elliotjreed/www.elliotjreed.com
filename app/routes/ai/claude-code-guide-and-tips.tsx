@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import { CodeSnippet } from "~/components/CodeSnippet/CodeSnippet";
+import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
 
 export const meta = () => [
   { title: "Claude Code Guide and Tips | EJR" },
@@ -73,7 +74,7 @@ export default (): ReactElement => (
       </section>
 
       <section id="installation">
-        <h2>Installation</h2>
+        <HeadingAnchor id="installation">Installation</HeadingAnchor>
 
         <p>
           To install Claude Code, refer to the official instructions at{" "}
@@ -85,7 +86,7 @@ export default (): ReactElement => (
       </section>
 
       <section id="starting-claude-code">
-        <h2>Starting Claude Code</h2>
+        <HeadingAnchor id="starting-claude-code">Starting Claude Code</HeadingAnchor>
 
         <p>
           Claude Code runs from the directory (folder) you open it in. This will likely be the directory of the
@@ -109,7 +110,7 @@ export default (): ReactElement => (
       </section>
 
       <section id="using-claude-code">
-        <h2>Using Claude Code</h2>
+        <HeadingAnchor id="using-claude-code">Using Claude Code</HeadingAnchor>
 
         <p>
           Prompts (instructions) for Claude Code are typed in the input bar. You can also paste into the terminal (
@@ -181,7 +182,7 @@ export default (): ReactElement => (
       </section>
 
       <section id="models">
-        <h2>Models</h2>
+        <HeadingAnchor id="models">Models</HeadingAnchor>
 
         <p>Claude Code has access to the three main Claude LLM models:</p>
         <ol>
@@ -233,7 +234,9 @@ export default (): ReactElement => (
       </section>
 
       <section id="claudemd-providing-claude-code-with-context">
-        <h2>CLAUDE.md - Providing Claude Code with Context</h2>
+        <HeadingAnchor id="claudemd-providing-claude-code-with-context">
+          CLAUDE.md - Providing Claude Code with Context
+        </HeadingAnchor>
 
         <p>
           An absolutely essential way to get the most out of Claude Code is to have a <code>CLAUDE.md</code> file.
@@ -311,7 +314,7 @@ The architecture follows modern React patterns with server-side rendering suppor
       </section>
 
       <section id="prompting-planning-and-execution">
-        <h2>Prompting, Planning, and Execution</h2>
+        <HeadingAnchor id="prompting-planning-and-execution">Prompting, Planning, and Execution</HeadingAnchor>
 
         <p>The key to having Claude Code perform well is in effective prompting and planning.</p>
 
@@ -407,7 +410,7 @@ The architecture follows modern React patterns with server-side rendering suppor
       </section>
 
       <section id="checkpoints-undoing-code-and-context">
-        <h2>Checkpoints: Undoing Code and Context</h2>
+        <HeadingAnchor id="checkpoints-undoing-code-and-context">Checkpoints: Undoing Code and Context</HeadingAnchor>
 
         <p>Sometimes Claude can go down a path that is just not what you intended or expected.</p>
 
@@ -421,7 +424,7 @@ The architecture follows modern React patterns with server-side rendering suppor
       </section>
 
       <section id="git-and-version-control">
-        <h2>Git and Version Control</h2>
+        <HeadingAnchor id="git-and-version-control">Git and Version Control</HeadingAnchor>
 
         <section id="committing-and-branching">
           <h3>Committing and Branching</h3>
@@ -450,7 +453,7 @@ The architecture follows modern React patterns with server-side rendering suppor
       </section>
 
       <section id="usage-limits-and-context-control">
-        <h2>Usage and Context Control</h2>
+        <HeadingAnchor id="usage-limits-and-context-control">Usage and Context Control</HeadingAnchor>
 
         <section id="usage-limits">
           <h3>Usage and Limits</h3>
@@ -496,7 +499,7 @@ The architecture follows modern React patterns with server-side rendering suppor
       </section>
 
       <section id="settings-and-permissions">
-        <h2>Settings and Permissions</h2>
+        <HeadingAnchor id="settings-and-permissions">Settings and Permissions</HeadingAnchor>
 
         <p>
           Having Claude Code ask for permissions to run commands each time is not ideal. Fortunately, you can specify
@@ -589,7 +592,9 @@ The architecture follows modern React patterns with server-side rendering suppor
       </section>
 
       <section id="claude-plugins-and-plugin-marketplaces">
-        <h2>Claude Plugins and Plugin Marketplaces</h2>
+        <HeadingAnchor id="claude-plugins-and-plugin-marketplaces">
+          Claude Plugins and Plugin Marketplaces
+        </HeadingAnchor>
 
         <p>
           Plugins and the plugin marketplaces are a way to install Claude Skills and MCP servers from external sources.
@@ -639,7 +644,7 @@ The architecture follows modern React patterns with server-side rendering suppor
       </section>
 
       <section id="claude-skills">
-        <h2>Claude Skills</h2>
+        <HeadingAnchor id="claude-skills">Claude Skills</HeadingAnchor>
 
         <p>
           Claude Skills are a way of loading specialised knowledge into Claude Code. The main benefit is that unlike the{" "}
@@ -725,7 +730,7 @@ Focus on React and TypeScript performance patterns only. Avoid project-wide conf
       </section>
 
       <section id="claude-subagents">
-        <h2>Claude Subagents</h2>
+        <HeadingAnchor id="claude-subagents">Claude Subagents</HeadingAnchor>
 
         <p>Custom subagents can be created to handle specific tasks.</p>
 
@@ -782,7 +787,7 @@ Focus on React and TypeScript performance patterns only. Avoid project-wide conf
       </section>
 
       <section id="claude-mcp-servers">
-        <h2>Claude MCP Servers</h2>
+        <HeadingAnchor id="claude-mcp-servers">Claude MCP Servers</HeadingAnchor>
 
         <p>
           Model Context Protocol (MCP) is a standardised way of allowing Claude (and others) to interact with external

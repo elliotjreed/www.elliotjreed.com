@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import { Link } from "react-router";
+import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
 
 export const meta = () => [
   { title: "AI Prompting Guide - Getting Started with Prompt Engineering | EJR" },
@@ -108,7 +109,7 @@ export default (): ReactElement => (
       </section>
 
       <section>
-        <h2>CAFE Framework</h2>
+        <HeadingAnchor id="cafe-framework">CAFE Framework</HeadingAnchor>
         <p>
           Let's go through each of the elements of the CAFE framework. The order of the elements doesn't matter. The
           important things are <strong>clarity</strong> and <strong>simplicity</strong>: prompts should be clear and
@@ -116,7 +117,9 @@ export default (): ReactElement => (
         </p>
 
         <section id="context">
-          <h3>Context</h3>
+          <HeadingAnchor id="context" level={3}>
+            Context
+          </HeadingAnchor>
           <p>Provide background information relevant to the action you want to AI Assistant to perform.</p>
 
           <p>
@@ -141,7 +144,9 @@ export default (): ReactElement => (
         </section>
 
         <section id="action">
-          <h3>Action</h3>
+          <HeadingAnchor id="action" level={3}>
+            Action
+          </HeadingAnchor>
           <p>Describe in detail the action you want to be completed by the AI Assistant.</p>
 
           <h4>Action Verbs</h4>
@@ -225,7 +230,9 @@ export default (): ReactElement => (
         </section>
 
         <section id="format">
-          <h3>Format</h3>
+          <HeadingAnchor id="format" level={3}>
+            Format
+          </HeadingAnchor>
           <p>The more specific you can be about the output format the better.</p>
           <p>This can include information such as:</p>
           <ul>
@@ -253,7 +260,9 @@ export default (): ReactElement => (
         </section>
 
         <section id="examples">
-          <h3>Examples</h3>
+          <HeadingAnchor id="examples" level={3}>
+            Examples
+          </HeadingAnchor>
           <p>
             Providing examples can be key to getting a good output. The sweet spot is around{" "}
             <strong>two to five examples</strong> in what is called "few shot" prompting. By contrast providing one
@@ -289,7 +298,9 @@ export default (): ReactElement => (
         </section>
 
         <section id="complete_example">
-          <h3>Putting it all together</h3>
+          <HeadingAnchor id="complete_example" level={3}>
+            Putting it all together
+          </HeadingAnchor>
           <section>
             <h4>Dinner party prompt</h4>
             <p>
@@ -334,7 +345,9 @@ export default (): ReactElement => (
         </section>
 
         <section id="iterate">
-          <h3>Iterate</h3>
+          <HeadingAnchor id="iterate" level={3}>
+            Iterate
+          </HeadingAnchor>
           <p>
             Once you have entered your initial prompt and received a response, evaluate it to see if the response meets
             your requirements. Hopefully your initial prompt will be good enough that you can follow up, if not then
@@ -351,10 +364,10 @@ export default (): ReactElement => (
             <section>
               <h5>Example</h5>
               <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
-                That plan looks good in general, however one of the guests has a severe allergy to tomatoes. Can you
-                update the menu to account for that?
+                That plan looks good in general, however one of the guests has a severe allergy to tomatoes. Update the
+                menu to account for that.
                 <br />
-                Could you also suggest some wine and other drinks which would pair well?
+                Additionally, suggest some wine and other drinks which would pair well.
               </p>
             </section>
           </section>
@@ -379,19 +392,17 @@ export default (): ReactElement => (
             </ul>
 
             <section>
-              <h5>Examples</h5>
-
               <section>
-                <h5>Revisiting the CAFE framework</h5>
+                <h5>Example: Revisiting the CAFE framework</h5>
 
                 <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
-                  That looks good, however some of those ingredients will be difficult to find. Can you update the menu
-                  to include ingredients easily available from standard British supermarkets, such as Tesco and ASDA?
+                  That looks good, however some of those ingredients will be difficult to find. Update the menu to
+                  include ingredients easily available from standard British supermarkets, such as Tesco and ASDA.
                 </p>
               </section>
 
               <section>
-                <h5>Breaking the prompt down into smaller tasks</h5>
+                <h5>Example: Breaking the prompt down into smaller tasks</h5>
 
                 <div className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
                   <ol>
@@ -418,7 +429,7 @@ export default (): ReactElement => (
               </section>
 
               <section>
-                <h5>Changing to an analogous or synonymous task</h5>
+                <h5>Example: Changing to an analogous or synonymous task</h5>
 
                 <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
                   I would like you to take on the role of a diligent and respectful dinner party host who is hosting a
