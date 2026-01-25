@@ -18,12 +18,12 @@ export default (): ReactElement => (
         AI Prompting Guide
       </h1>
 
-      <p className="text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         This is a brief "getting started" guide on how to get the most out of AI Assistants through effective "prompt
         engineering".
       </p>
 
-      <p className="text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         You can find an easy-to-reference{" "}
         <Link
           to="/ai/cafe-ai-prompt-framework"
@@ -35,7 +35,7 @@ export default (): ReactElement => (
         .
       </p>
 
-      <p className="text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         You can listen to the audio version of this guide here:
         {/* biome-ignore lint/a11y/useMediaCaption: this guide is the text version of the audio */}
         <audio controls>

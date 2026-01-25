@@ -31,7 +31,6 @@ This is a personal website built with React Router v7, deployed on Cloudflare Wo
 
 **Styling**: Tailwind CSS v4 with custom animations
 - Dark mode support with `dark:` classes
-- Custom animations like `animate-rise` for progressive loading
 - Typography plugin for prose content
 
 **Content Structure**:

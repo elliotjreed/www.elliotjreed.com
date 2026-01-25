@@ -44,7 +44,7 @@ export default (): ReactElement => (
       <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
         Backup and restore MySQL Docker database
       </h1>
-      <p className="text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         How to backup and restore a MySQL or MariaDB database that's running via Docker or Docker Compose.
       </p>
     </div>

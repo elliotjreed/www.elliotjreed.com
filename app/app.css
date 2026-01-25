@@ -74,23 +74,6 @@
   --color-gray-900: var(--color-neutral-900);
 }
 
-@layer utilities {
-  @keyframes rise {
-    0% {
-      opacity: 0;
-      transform: translateY(0.5rem);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .animate-rise {
-    animation: rise 1s ease-out forwards;
-  }
-}
-
 @layer prose {
   :where(.prose) {
     color: var(--color-gray-700);
@@ -98,9 +81,11 @@
   }
   :where(.prose) a {
     color: var(--color-primary-700);
+    text-decoration: none;
   }
   :where(.prose) a:hover {
     color: var(--color-primary-800);
+    text-decoration: underline;
   }
   :where(.prose) h1,
   :where(.prose) h2 {
@@ -195,10 +180,12 @@
     color: var(--color-gray-300);
   }
   .dark :where(.prose) a {
-    color: var(--color-primary-500);
+    color: var(--color-primary-400);
+    text-decoration: none;
   }
   .dark :where(.prose) a:hover {
     color: var(--color-primary-400);
+    text-decoration: underline;
   }
   .dark :where(.prose) a code {
     color: var(--color-primary-400);

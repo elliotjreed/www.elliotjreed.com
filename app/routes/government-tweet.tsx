@@ -16,7 +16,7 @@ export default (): ReactElement => (
         UK Prime Minister tweet generator
       </h1>
 
-      <p className="text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         Fill in the box below, and click the <strong>download</strong> button when you&apos;re done.
       </p>
     </div>

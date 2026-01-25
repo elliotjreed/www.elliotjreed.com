@@ -12,7 +12,7 @@ export default function Index() {
         <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
           TheVape.co.uk
         </h1>
-        <p className="text-lg leading-7 text-gray-600 dark:text-gray-300">
+        <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
           The domain name &ldquo;TheVape.co.uk&rdquo; is available for purchase should you be interested. Email{" "}
           <a href={`mailto:${emailAddress}`}>{emailAddress}</a> to make an enquiry.
         </p>

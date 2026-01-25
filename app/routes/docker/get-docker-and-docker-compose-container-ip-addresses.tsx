@@ -59,7 +59,7 @@ export default (): ReactElement => (
       <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
         Get the IP addresses of Docker containers
       </h1>
-      <p className="text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         How to find the local IP addresses for running Docker containers.
       </p>
     </div>

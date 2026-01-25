@@ -15,7 +15,7 @@ export default (): ReactElement => (
         AI Resources
       </h1>
 
-      <p className="text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         Some articles I have found valuable and interesting, alongside resources for expanding learning of AI.
       </p>
     </div>
