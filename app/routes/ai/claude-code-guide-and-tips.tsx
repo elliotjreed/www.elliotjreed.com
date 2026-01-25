@@ -63,7 +63,7 @@ export default (): ReactElement => (
             <a href="#git-and-version-control">Git and Version Control</a>
           </li>
           <li>
-            <a href="#usage-limits-and-context-control">Usage Limits and Context Control</a>
+            <a href="#usage-limits-and-context-control">Usage and Context Control</a>
           </li>
           <li>
             <a href="#settings-and-permissions">Settings and Permissions</a>
@@ -113,7 +113,7 @@ export default (): ReactElement => (
         <h3>Logging In</h3>
 
         <p>
-          When first running Claude Code you should be prompted to log in. This will open up a web browser. You will
+          When first running Claude Code, you should be prompted to log in. This will open up a web browser. You will
           need to be on a paid plan, either "Pro", "Max", or "Team".
         </p>
 
@@ -347,7 +347,7 @@ The architecture follows modern React patterns with server-side rendering suppor
           </p>
 
           <p>
-            For example, you write a long prompt to a file called <code>prompt.md</code>, you can use this file in
+            For example, if you write a long prompt to a file called <code>prompt.md</code>, you can use this file in
             Claude Code as your prompt by prefixing the file location with the <code>@</code> character:
           </p>
 
@@ -784,7 +784,7 @@ Focus on React and TypeScript performance patterns only. Avoid project-wide conf
         </p>
 
         <CodeSnippet
-          code="A security reviewer agent that explores the code to highlight any potential security risks, vulnerabilties, or oversights. It should explain the risk or vulnerability and provide solutions or mitigations."
+          code="A security reviewer agent that explores the code to highlight any potential security risks, vulnerabilities, or oversights. It should explain the risk or vulnerability and provide solutions or mitigations."
           title="Example: Security Reviewer Agent Description"
         />
 
@@ -817,6 +817,10 @@ Focus on React and TypeScript performance patterns only. Avoid project-wide conf
           Model Context Protocol (MCP) is a standardised way of allowing Claude (and others) to interact with external
           services. These could be email providers (eg. Gmail), project management tools (eg. Asana), communication
           applications (eg. Slack), and design applications (eg. Canva).
+        </p>
+
+        <p>
+          More information can be found at <a href="https://code.claude.com/docs/en/mcp" rel="noreferrer noopener">code.claude.com/docs/en/mcp</a>.
         </p>
 
         <p>
