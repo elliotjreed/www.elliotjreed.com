@@ -35,9 +35,94 @@ export default (): ReactElement => (
     </div>
 
     <div className="prose max-w-none dark:prose-dark">
+      <section id="cheatsheet">
+        <h2>Quick Reference Cheatsheet</h2>
+
+        <h3>Prefixes</h3>
+        <ul>
+          <li>
+            <code>!</code> - Bash mode prefix
+          </li>
+          <li>
+            <code>@</code> - Mention files/folders
+          </li>
+        </ul>
+
+        <h3>Keyboard Shortcuts</h3>
+        <ul>
+          <li>
+            <kbd>Esc</kbd>+<kbd>Esc</kbd> - Open rewind menu (undo changes)
+          </li>
+          <li>
+            <kbd>Shift</kbd>+<kbd>Tab</kbd> - Auto accept edits mode
+          </li>
+          <li>
+            <kbd>Shift</kbd>+<kbd>Tab</kbd>+<kbd>Tab</kbd> - Plan mode
+          </li>
+        </ul>
+
+        <h3>Slash Commands</h3>
+        <ul>
+          <li>
+            <code>/init</code> - Creates a CLAUDE.md file
+          </li>
+          <li>
+            <code>/login</code> - Switch Claude accounts
+          </li>
+          <li>
+            <code>/model [model]</code> - Sets model (optionally taking a model name)
+          </li>
+          <li>
+            <code>/usage</code> - Spent and remaining usage
+          </li>
+          <li>
+            <code>/rewind</code> - Open rewind menu (undo changes)
+          </li>
+          <li>
+            <code>/clear</code> - Clears all context window
+          </li>
+          <li>
+            <code>/compact [instructions]</code> - Compacts/summarises context (with optional compacting instructions)
+          </li>
+          <li>
+            <code>/config</code> - Views current configuration settings
+          </li>
+          <li>
+            <code>/permissions</code> - Views current allowed commands
+          </li>
+          <li>
+            <code>/review</code> - Request code review
+          </li>
+          <li>
+            <code>/status</code> - Shows status, including MCP connections
+          </li>
+          <li>
+            <code>/memory</code> - Allows editing Claude's memory
+          </li>
+          <li>
+            <code>/plugin</code> - Lists available and installed plugins
+          </li>
+          <li>
+            <code>/mcp</code> - Lists connected and unconnected MCP servers
+          </li>
+          <li>
+            <code>/agents</code> - Lists user and built-in agents, option to create new agent
+          </li>
+          <li>
+            <code>/doctor</code> - Shows diagnostics and current Claude Code version
+          </li>
+          <li>
+            <code>/help</code> - Shows help menu
+          </li>
+        </ul>
+      </section>
+
       <section id="table-of-contents">
         <h2>Contents</h2>
         <ol>
+          <li>
+            <a href="#cheatsheet">Quick Reference Cheatsheet</a>
+          </li>
           <li>
             <a href="#installation">Installation</a>
           </li>
@@ -820,7 +905,11 @@ Focus on React and TypeScript performance patterns only. Avoid project-wide conf
         </p>
 
         <p>
-          More information can be found at <a href="https://code.claude.com/docs/en/mcp" rel="noreferrer noopener">code.claude.com/docs/en/mcp</a>.
+          More information can be found at{" "}
+          <a href="https://code.claude.com/docs/en/mcp" rel="noreferrer noopener">
+            code.claude.com/docs/en/mcp
+          </a>
+          .
         </p>
 
         <p>
