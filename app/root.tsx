@@ -11,7 +11,6 @@ export const Layout = ({ children }: { children: ReactNode }): ReactElement => (
     <head>
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1" />
-      <title>Elliot J. Reed | EJR</title>
       <meta property="og:image" content="https://www.elliotjreed.com/og.png" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@elliotjreed" />
