@@ -4,7 +4,7 @@ export const meta = () => [
   { title: "AI Resources | EJR" },
   {
     name: "description",
-    content: "Recommended resources for learning more about AI LLMs such as ChatGPT, CLaude, Gemini, and DeepSeek.",
+    content: "Recommended resources for learning more about AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
   },
 ];
 

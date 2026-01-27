@@ -7,7 +7,7 @@ export const meta = () => [
   {
     name: "description",
     content:
-      "A guide and introduction to prompt engineering techniques for AI LLMs such as ChatGPT, CLaude, Gemini, and DeepSeek.",
+      "A guide and introduction to prompt engineering techniques for AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
   },
 ];
 

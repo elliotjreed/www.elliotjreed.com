@@ -7,7 +7,7 @@ export const meta = () => [
   {
     name: "description",
     content:
-      "A guide on effective prompting using the CAFE prompt engineering framework, for AI LLMs such as ChatGPT, CLaude, Gemini, and DeepSeek.",
+      "A guide on effective prompting using the CAFE prompt engineering framework, for AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
   },
 ];
 
