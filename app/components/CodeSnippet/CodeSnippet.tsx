@@ -1,5 +1,5 @@
-import { Highlight, type Token } from "prism-react-renderer";
-import { type FC, type ReactElement, useState } from "react";
+import { Highlight, Prism, type Token } from "prism-react-renderer";
+import { type FC, type ReactElement, useEffect, useState } from "react";
 import { customDarkTheme } from "./prismTheme";
 
 export type SupportedLanguage = "text" | "php" | "bash" | "json" | "markdown" | "javascript" | "typescript" | "sql";
@@ -10,12 +10,36 @@ export interface CodeSnippetInterface {
   language?: SupportedLanguage;
 }
 
+// Load languages once on the client side
+let languagesLoaded = false;
+
 export const CodeSnippet: FC<CodeSnippetInterface> = ({
   code,
   title,
   language = "text",
 }: CodeSnippetInterface): ReactElement => {
   const [copied, setCopied] = useState(false);
+  const [_languagesReady, setLanguagesReady] = useState(languagesLoaded);
+
+  useEffect(() => {
+    if (!languagesLoaded && typeof window !== "undefined") {
+      (typeof global !== "undefined" ? global : window).Prism = Prism;
+
+      // Load languages in order, respecting dependencies
+      const loadLanguages = async () => {
+        await import("prismjs/components/prism-markup");
+        await import("prismjs/components/prism-clike");
+        await import("prismjs/components/prism-markup-templating");
+        await import("prismjs/components/prism-bash");
+        await import("prismjs/components/prism-php");
+        await import("prismjs/components/prism-markdown");
+        languagesLoaded = true;
+        setLanguagesReady(true);
+      };
+
+      loadLanguages();
+    }
+  }, []);
 
   const handleCopy = async (): Promise<void> => {
     try {
