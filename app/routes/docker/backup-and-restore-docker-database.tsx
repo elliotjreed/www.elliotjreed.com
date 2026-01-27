@@ -7,6 +7,12 @@ export const meta = () => [
     name: "description",
     content: "A guide on how to backup and restore MySQL / MariaDB Docker database.",
   },
+  { property: "og:title", content: "Backup and restore Docker database" },
+  { property: "og:description", content: "A guide on how to backup and restore MySQL / MariaDB Docker database." },
+  { property: "og:type", content: "article" },
+  { property: "og:url", content: "https://www.elliotjreed.com/docker/backup-and-restore-docker-database" },
+  { property: "og:site_name", content: "Elliot J. Reed" },
+  { property: "og:locale", content: "en_GB" },
   {
     "script:ld+json": {
       "@context": "https://schema.org",

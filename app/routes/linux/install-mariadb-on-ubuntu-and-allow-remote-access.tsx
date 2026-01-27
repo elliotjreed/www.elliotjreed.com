@@ -2,17 +2,26 @@ import type { ReactElement } from "react";
 import { CodeSnippet } from "~/components/CodeSnippet/CodeSnippet";
 
 export const meta = () => [
-  { title: "Installing MariaBD on Ubuntu | EJR" },
+  { title: "Installing MariaDB on Ubuntu | EJR" },
   {
     name: "description",
-    content: "How to install MariaBD (MySQL) on Ubuntu 20.04+ and allow remote access",
+    content: "How to install MariaDB (MySQL) on Ubuntu 20.04+ and allow remote access",
   },
+  { property: "og:title", content: "Installing MariaDB on Ubuntu" },
+  { property: "og:description", content: "How to install MariaDB (MySQL) on Ubuntu 20.04+ and allow remote access" },
+  { property: "og:type", content: "article" },
+  {
+    property: "og:url",
+    content: "https://www.elliotjreed.com/linux/install-mariadb-on-ubuntu-and-allow-remote-access",
+  },
+  { property: "og:site_name", content: "Elliot J. Reed" },
+  { property: "og:locale", content: "en_GB" },
   {
     "script:ld+json": {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
-      headline: "Installing MariaBD on Ubuntu",
-      name: "How to install MariaBD (MySQL) on Ubuntu 20.04+ and allow remote access",
+      headline: "Installing MariaDB on Ubuntu",
+      name: "How to install MariaDB (MySQL) on Ubuntu 20.04+ and allow remote access",
       dateCreated: "2022-04-22T19:00:00+01:00",
       datePublished: "2022-04-22T19:00:00+01:00",
       inLanguage: "en-GB",
@@ -42,10 +51,10 @@ export default (): ReactElement => (
   <section className="divide-y divide-gray-200 dark:divide-gray-700">
     <div className="space-y-2 pt-6 pb-8 md:space-y-5">
       <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
-        Installing MariaBD on Ubuntu
+        Installing MariaDB on Ubuntu
       </h1>
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
-        How to install MariaBD (MySQL) on Ubuntu 20.04+ and allow remote access
+        How to install MariaDB (MySQL) on Ubuntu 20.04+ and allow remote access
       </p>
     </div>
 

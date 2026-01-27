@@ -7,6 +7,15 @@ export const meta = () => [
     name: "description",
     content: "A guide on detecting disposable / temporary email addresses in PHP.",
   },
+  { property: "og:title", content: "Detecting Disposable Email Addresses in PHP" },
+  { property: "og:description", content: "A guide on detecting disposable / temporary email addresses in PHP." },
+  { property: "og:type", content: "article" },
+  {
+    property: "og:url",
+    content: "https://www.elliotjreed.com/php/detect-disposable-or-temporary-email-addresses-in-php",
+  },
+  { property: "og:site_name", content: "Elliot J. Reed" },
+  { property: "og:locale", content: "en_GB" },
   {
     "script:ld+json": {
       "@context": "https://schema.org",

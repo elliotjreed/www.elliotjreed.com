@@ -7,6 +7,15 @@ export const meta = () => [
     name: "description",
     content: "Get the IP addresses of Docker containers",
   },
+  { property: "og:title", content: "Docker container IP address" },
+  { property: "og:description", content: "Get the IP addresses of Docker containers" },
+  { property: "og:type", content: "article" },
+  {
+    property: "og:url",
+    content: "https://www.elliotjreed.com/docker/get-docker-and-docker-compose-container-ip-addresses",
+  },
+  { property: "og:site_name", content: "Elliot J. Reed" },
+  { property: "og:locale", content: "en_GB" },
   {
     "script:ld+json": {
       "@context": "https://schema.org",

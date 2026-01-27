@@ -7,6 +7,15 @@ export const meta = () => [
     name: "description",
     content: "How to remove all Docker containers, images, networks and volumes in a handy Bash / ZSH Shell function",
   },
+  { property: "og:title", content: "Clean up Docker" },
+  {
+    property: "og:description",
+    content: "How to remove all Docker containers, images, networks and volumes in a handy Bash / ZSH Shell function",
+  },
+  { property: "og:type", content: "article" },
+  { property: "og:url", content: "https://www.elliotjreed.com/docker/delete-all-docker-containers-and-images" },
+  { property: "og:site_name", content: "Elliot J. Reed" },
+  { property: "og:locale", content: "en_GB" },
   {
     "script:ld+json": {
       "@context": "https://schema.org",

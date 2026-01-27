@@ -7,6 +7,44 @@ export const meta = () => [
     name: "description",
     content: "A collection of useful ZSH, Bash, and Shell aliases for use on Linux (or Mac or Windows).",
   },
+  { property: "og:title", content: "ZSH & Bash Aliases" },
+  {
+    property: "og:description",
+    content: "A collection of useful ZSH, Bash, and Shell aliases for use on Linux (or Mac or Windows).",
+  },
+  { property: "og:type", content: "article" },
+  { property: "og:url", content: "https://www.elliotjreed.com/linux/zsh-bash-aliases" },
+  { property: "og:site_name", content: "Elliot J. Reed" },
+  { property: "og:locale", content: "en_GB" },
+  {
+    "script:ld+json": {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: "ZSH & Bash Aliases",
+      name: "A collection of useful ZSH, Bash, and Shell aliases for use on Linux (or Mac or Windows).",
+      dateCreated: "2025-04-20T16:51:56+01:00",
+      datePublished: "2025-04-20T16:51:56+01:00",
+      inLanguage: "en-GB",
+      author: {
+        "@type": "Person",
+        additionalName: "John",
+        alternateName: "Elliot Reed",
+        familyName: "Reed",
+        givenName: "Elliot",
+        name: "Elliot J. Reed",
+        url: "https://www.elliotjreed.com",
+      },
+      copyrightHolder: {
+        "@type": "Person",
+        additionalName: "John",
+        alternateName: "Elliot Reed",
+        familyName: "Reed",
+        givenName: "Elliot",
+        name: "Elliot J. Reed",
+        url: "https://www.elliotjreed.com",
+      },
+    },
+  },
 ];
 
 const snippets: CodeSnippetInterface[] = [

@@ -11,6 +11,45 @@ export const meta = () => [
     content:
       "A comprehensive guide to using Claude Code for software development, covering installation, prompting strategies, planning, git integration, and advanced features like skills, subagents, and MCP servers.",
   },
+  { property: "og:title", content: "Claude Code Guide and Tips" },
+  {
+    property: "og:description",
+    content:
+      "A comprehensive guide to using Claude Code for software development, covering installation, prompting strategies, planning, git integration, and advanced features like skills, subagents, and MCP servers.",
+  },
+  { property: "og:type", content: "article" },
+  { property: "og:url", content: "https://www.elliotjreed.com/ai/claude-code-guide-and-tips" },
+  { property: "og:site_name", content: "Elliot J. Reed" },
+  { property: "og:locale", content: "en_GB" },
+  {
+    "script:ld+json": {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: "Claude Code Guide and Tips",
+      name: "A comprehensive guide to using Claude Code for software development, covering installation, prompting strategies, planning, git integration, and advanced features like skills, subagents, and MCP servers.",
+      dateCreated: "2026-01-24T20:20:18+00:00",
+      datePublished: "2026-01-24T20:20:18+00:00",
+      inLanguage: "en-GB",
+      author: {
+        "@type": "Person",
+        additionalName: "John",
+        alternateName: "Elliot Reed",
+        familyName: "Reed",
+        givenName: "Elliot",
+        name: "Elliot J. Reed",
+        url: "https://www.elliotjreed.com",
+      },
+      copyrightHolder: {
+        "@type": "Person",
+        additionalName: "John",
+        alternateName: "Elliot Reed",
+        familyName: "Reed",
+        givenName: "Elliot",
+        name: "Elliot J. Reed",
+        url: "https://www.elliotjreed.com",
+      },
+    },
+  },
 ];
 
 export default (): ReactElement => (

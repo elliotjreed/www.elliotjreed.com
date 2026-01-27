@@ -7,6 +7,12 @@ export const meta = () => [
     name: "description",
     content: "How to copy MySQL / MariaDB database table data to a new table.",
   },
+  { property: "og:title", content: "Copy MySQL database table to new table" },
+  { property: "og:description", content: "How to copy MySQL / MariaDB database table data to a new table." },
+  { property: "og:type", content: "article" },
+  { property: "og:url", content: "https://www.elliotjreed.com/linux/copy-mysql-table-data-to-new-table" },
+  { property: "og:site_name", content: "Elliot J. Reed" },
+  { property: "og:locale", content: "en_GB" },
   {
     "script:ld+json": {
       "@context": "https://schema.org",

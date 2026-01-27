@@ -7,14 +7,26 @@ export const meta = () => [
     name: "description",
     content: "How to search directory for a word / text via the command line on Linux or Mac",
   },
+  { property: "og:title", content: "Search directory for a word" },
+  {
+    property: "og:description",
+    content: "How to search directory for a word / text via the command line on Linux or Mac",
+  },
+  { property: "og:type", content: "article" },
+  {
+    property: "og:url",
+    content: "https://www.elliotjreed.com/linux/search-a-directory-for-text-string-via-command-line",
+  },
+  { property: "og:site_name", content: "Elliot J. Reed" },
+  { property: "og:locale", content: "en_GB" },
   {
     "script:ld+json": {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
-      headline: "",
-      name: "",
-      dateCreated: "T19:00:00+01:00",
-      datePublished: "T19:00:00+01:00",
+      headline: "Search directory for a word / text via the command line",
+      name: "How to search directory for a word / text via the command line on Linux or Mac",
+      dateCreated: "2017-01-23T19:00:00+01:00",
+      datePublished: "2017-01-23T19:00:00+01:00",
       inLanguage: "en-GB",
       author: {
         "@type": "Person",
