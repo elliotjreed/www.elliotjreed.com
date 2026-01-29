@@ -1,1 +1,4 @@
 User-Agent: *
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+
+Sitemap: https://www.elliotjreed.com/sitemap.xml
