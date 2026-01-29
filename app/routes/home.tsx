@@ -75,7 +75,7 @@ export function meta() {
           honorificSuffix: "BA (Hons.)",
           image: {
             "@type": "ImageObject",
-            url: "https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553434444/elliotjreed.jpg",
+            url: "https://www.elliotjreed.com/elliot-greyscale.jpg",
           },
           jobTitle: "Head of Technology",
           knowsLanguage: "en-GB",
