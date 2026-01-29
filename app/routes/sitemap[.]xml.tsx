@@ -3,7 +3,7 @@ import { type StaticLink, staticLinks } from "~/data/staticLinks";
 
 const SITE_URL = "https://www.elliotjreed.com";
 
-const extractUrls = (links: StaticLink[], urls: string[] = []): string[] => {
+function extractUrls(links: StaticLink[], urls: string[] = []): string[] {
   for (const link of links) {
     if (link.href) {
       urls.push(link.href);
@@ -13,9 +13,9 @@ const extractUrls = (links: StaticLink[], urls: string[] = []): string[] => {
     }
   }
   return urls;
-};
+}
 
-const generateSitemap = (urls: string[]): string => {
+function generateSitemap(urls: string[]): string {
   const urlEntries = urls
     .map(
       (url: string): string => `  <url>
@@ -30,9 +30,9 @@ const generateSitemap = (urls: string[]): string => {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urlEntries}
 </urlset>`;
-};
+}
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export async function loader({ request }: LoaderFunctionArgs) {
   const urls = extractUrls(staticLinks);
   const sitemap = generateSitemap(urls);
 
@@ -43,4 +43,4 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       "Cache-Control": "public, max-age=86400",
     },
   });
-};
+}
