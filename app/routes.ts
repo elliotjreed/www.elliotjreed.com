@@ -33,7 +33,7 @@ export default [
   ),
   route("utils/percentage-calculator", "routes/utils/percentage-calculator.tsx"),
   route("sitemap", "routes/sitemap.tsx"),
-  route("sitemap.xml", "routes/sitemap.xml.tsx"),
+  route("sitemap.xml", "routes/sitemap.xml$.tsx"),
   route("privacy", "routes/privacy.tsx"),
   route("travel", "routes/travel.tsx"),
   route("stay-alert", "routes/stay-alert.tsx"),
