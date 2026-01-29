@@ -7,6 +7,7 @@ export interface StaticLink {
 
 export const staticLinks: StaticLink[] = [
   { href: "/", title: "Home", showInNavigation: false },
+  { href: "/sitenap.xml", title: "XML Sitemap", showInNavigation: false },
   {
     title: "Guides",
     showInNavigation: true,
