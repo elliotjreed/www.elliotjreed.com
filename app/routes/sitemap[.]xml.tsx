@@ -1,3 +1,4 @@
+import type { LoaderFunctionArgs } from "react-router";
 import { type StaticLink, staticLinks } from "~/data/staticLinks";
 
 const SITE_URL = "https://www.elliotjreed.com";
@@ -31,11 +32,12 @@ ${urlEntries}
 </urlset>`;
 };
 
-export const loader = async () => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   const urls = extractUrls(staticLinks);
   const sitemap = generateSitemap(urls);
 
   return new Response(sitemap, {
+    status: 200,
     headers: {
       "Content-Type": "application/xml; charset=utf-8",
       "Cache-Control": "public, max-age=86400",

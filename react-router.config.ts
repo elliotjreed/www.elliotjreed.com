@@ -1,7 +1,7 @@
 import type { Config } from "@react-router/dev/config";
 import { staticLinks, type StaticLink } from "./app/data/staticLinks";
 
-function extractHrefs(links: StaticLink[]): string[] {
+const extractHrefs = (links: StaticLink[]): string[] => {
   const hrefs: string[] = [];
 
   for (const link of links) {
@@ -14,7 +14,7 @@ function extractHrefs(links: StaticLink[]): string[] {
   }
 
   return hrefs;
-}
+};
 
 export default {
   ssr: true,
