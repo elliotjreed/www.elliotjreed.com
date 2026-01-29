@@ -7,7 +7,46 @@ export const meta = () => [
   {
     name: "description",
     content:
-      "A guide and introduction to prompt engineering techniques for AI LLMs such as ChatGPT, CLaude, Gemini, and DeepSeek.",
+      "A guide and introduction to prompt engineering techniques for AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
+  },
+  { property: "og:title", content: "AI Prompting Guide - Getting Started with Prompt Engineering" },
+  {
+    property: "og:description",
+    content:
+      "A guide and introduction to prompt engineering techniques for AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
+  },
+  { property: "og:type", content: "article" },
+  { property: "og:url", content: "https://www.elliotjreed.com/ai/ai-prompt-engineering-guide" },
+  { property: "og:site_name", content: "Elliot J. Reed" },
+  { property: "og:locale", content: "en_GB" },
+  {
+    "script:ld+json": {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: "AI Prompting Guide - Getting Started with Prompt Engineering",
+      name: "A guide and introduction to prompt engineering techniques for AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
+      dateCreated: "2025-04-20T13:09:43+01:00",
+      datePublished: "2025-04-20T13:09:43+01:00",
+      inLanguage: "en-GB",
+      author: {
+        "@type": "Person",
+        additionalName: "John",
+        alternateName: "Elliot Reed",
+        familyName: "Reed",
+        givenName: "Elliot",
+        name: "Elliot J. Reed",
+        url: "https://www.elliotjreed.com",
+      },
+      copyrightHolder: {
+        "@type": "Person",
+        additionalName: "John",
+        alternateName: "Elliot Reed",
+        familyName: "Reed",
+        givenName: "Elliot",
+        name: "Elliot J. Reed",
+        url: "https://www.elliotjreed.com",
+      },
+    },
   },
 ];
 

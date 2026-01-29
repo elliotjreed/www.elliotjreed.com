@@ -7,14 +7,26 @@ export const meta = () => [
     name: "description",
     content: "How to search directory for a word / text via the command line on Linux or Mac",
   },
+  { property: "og:title", content: "Search directory for a word" },
+  {
+    property: "og:description",
+    content: "How to search directory for a word / text via the command line on Linux or Mac",
+  },
+  { property: "og:type", content: "article" },
+  {
+    property: "og:url",
+    content: "https://www.elliotjreed.com/linux/search-a-directory-for-text-string-via-command-line",
+  },
+  { property: "og:site_name", content: "Elliot J. Reed" },
+  { property: "og:locale", content: "en_GB" },
   {
     "script:ld+json": {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
-      headline: "",
-      name: "",
-      dateCreated: "T19:00:00+01:00",
-      datePublished: "T19:00:00+01:00",
+      headline: "Search directory for a word / text via the command line",
+      name: "How to search directory for a word / text via the command line on Linux or Mac",
+      dateCreated: "2017-01-23T19:00:00+01:00",
+      datePublished: "2017-01-23T19:00:00+01:00",
       inLanguage: "en-GB",
       author: {
         "@type": "Person",
@@ -64,18 +76,18 @@ export default (): ReactElement => (
     <div className="prose max-w-none dark:prose-dark">
       <section>
         <p>To list all occurrences of a particular string / text in your Bash (or ZSH or Shell) command line, run:</p>
-        <CodeSnippet code={snippet.code} title={snippet.title} />
-        <CodeSnippet code='grep -ni "Text to search for" .' title="grep -ni" />
+        <CodeSnippet language="bash" code={snippet.code} title={snippet.title} />
+        <CodeSnippet language="bash" code='grep -ni "Text to search for" .' title="grep -ni" />
 
         <p>You can also search recursively in subdirectories by adding the r flag, for example:</p>
-        <CodeSnippet code={snippet.code} title={snippet.title} />
-        <CodeSnippet code='grep -rni "Text to search for" .' title="grep -rni" />
+        <CodeSnippet language="bash" code={snippet.code} title={snippet.title} />
+        <CodeSnippet language="bash" code='grep -rni "Text to search for" .' title="grep -rni" />
 
         <p>
           If you use this sort of thing a lot, you could always add this to your <code>~/.profile</code>,{" "}
           <code>~/.bashrc</code>, or <code>~/.zshrc</code> in handy aliases like:
         </p>
-        <CodeSnippet code={snippet.code} title={snippet.title} />
+        <CodeSnippet language="bash" code={snippet.code} title={snippet.title} />
       </section>
     </div>
   </section>

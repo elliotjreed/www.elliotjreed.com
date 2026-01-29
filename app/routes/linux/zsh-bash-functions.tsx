@@ -7,6 +7,44 @@ export const meta = () => [
     name: "description",
     content: "A collection of useful ZSH, Bash, and Shell functions for use on Linux (or Mac or Windows).",
   },
+  { property: "og:title", content: "ZSH & Bash Functions" },
+  {
+    property: "og:description",
+    content: "A collection of useful ZSH, Bash, and Shell functions for use on Linux (or Mac or Windows).",
+  },
+  { property: "og:type", content: "article" },
+  { property: "og:url", content: "https://www.elliotjreed.com/linux/zsh-bash-functions" },
+  { property: "og:site_name", content: "Elliot J. Reed" },
+  { property: "og:locale", content: "en_GB" },
+  {
+    "script:ld+json": {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: "ZSH & Bash Functions",
+      name: "A collection of useful ZSH, Bash, and Shell functions for use on Linux (or Mac or Windows).",
+      dateCreated: "2025-04-20T16:51:56+01:00",
+      datePublished: "2025-04-20T16:51:56+01:00",
+      inLanguage: "en-GB",
+      author: {
+        "@type": "Person",
+        additionalName: "John",
+        alternateName: "Elliot Reed",
+        familyName: "Reed",
+        givenName: "Elliot",
+        name: "Elliot J. Reed",
+        url: "https://www.elliotjreed.com",
+      },
+      copyrightHolder: {
+        "@type": "Person",
+        additionalName: "John",
+        alternateName: "Elliot Reed",
+        familyName: "Reed",
+        givenName: "Elliot",
+        name: "Elliot J. Reed",
+        url: "https://www.elliotjreed.com",
+      },
+    },
+  },
 ];
 
 const snippets: CodeSnippetInterface[] = [
@@ -177,7 +215,7 @@ export default (): ReactElement => (
       <section>
         {snippets.map(
           (snippet: CodeSnippetInterface): ReactElement => (
-            <CodeSnippet key={snippet.title} code={snippet.code} title={snippet.title} />
+            <CodeSnippet key={snippet.title} language="bash" code={snippet.code} title={snippet.title} />
           ),
         )}
       </section>

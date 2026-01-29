@@ -8,6 +8,19 @@ export const meta = () => [
     content:
       "Find your public IP address and local IP address on Linux or Mac via the command line using a Bash or ZSH shell function",
   },
+  { property: "og:title", content: "Get Local and Public IP Address" },
+  {
+    property: "og:description",
+    content:
+      "Find your public IP address and local IP address on Linux or Mac via the command line using a Bash or ZSH shell function",
+  },
+  { property: "og:type", content: "article" },
+  {
+    property: "og:url",
+    content: "https://www.elliotjreed.com/linux/get-local-and-public-ip-address-command-line-bash",
+  },
+  { property: "og:site_name", content: "Elliot J. Reed" },
+  { property: "og:locale", content: "en_GB" },
   {
     "script:ld+json": {
       "@context": "https://schema.org",
@@ -63,7 +76,7 @@ export default (): ReactElement => (
     <div className="prose max-w-none dark:prose-dark">
       <section>
         <p>Here's a useful Bash function to find your local and public IP addresses:</p>
-        <CodeSnippet code={functionSnippet.code} title={functionSnippet.title} />
+        <CodeSnippet language="bash" code={functionSnippet.code} title={functionSnippet.title} />
         <p>
           Then you just need to type <code>myip</code> into your terminal / Bash shell and it'll show you your public IP
           address and your local IP address.

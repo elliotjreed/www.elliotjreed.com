@@ -11,6 +11,45 @@ export const meta = () => [
     content:
       "A comprehensive guide to using Claude Code for software development, covering installation, prompting strategies, planning, git integration, and advanced features like skills, subagents, and MCP servers.",
   },
+  { property: "og:title", content: "Claude Code Guide and Tips" },
+  {
+    property: "og:description",
+    content:
+      "A comprehensive guide to using Claude Code for software development, covering installation, prompting strategies, planning, git integration, and advanced features like skills, subagents, and MCP servers.",
+  },
+  { property: "og:type", content: "article" },
+  { property: "og:url", content: "https://www.elliotjreed.com/ai/claude-code-guide-and-tips" },
+  { property: "og:site_name", content: "Elliot J. Reed" },
+  { property: "og:locale", content: "en_GB" },
+  {
+    "script:ld+json": {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: "Claude Code Guide and Tips",
+      name: "A comprehensive guide to using Claude Code for software development, covering installation, prompting strategies, planning, git integration, and advanced features like skills, subagents, and MCP servers.",
+      dateCreated: "2026-01-24T20:20:18+00:00",
+      datePublished: "2026-01-24T20:20:18+00:00",
+      inLanguage: "en-GB",
+      author: {
+        "@type": "Person",
+        additionalName: "John",
+        alternateName: "Elliot Reed",
+        familyName: "Reed",
+        givenName: "Elliot",
+        name: "Elliot J. Reed",
+        url: "https://www.elliotjreed.com",
+      },
+      copyrightHolder: {
+        "@type": "Person",
+        additionalName: "John",
+        alternateName: "Elliot Reed",
+        familyName: "Reed",
+        givenName: "Elliot",
+        name: "Elliot J. Reed",
+        url: "https://www.elliotjreed.com",
+      },
+    },
+  },
 ];
 
 export default (): ReactElement => (
@@ -198,7 +237,7 @@ export default (): ReactElement => (
 
         <p>To start Claude Code in your terminal, run:</p>
 
-        <CodeSnippet code="claude" title="Start Claude Code" />
+        <CodeSnippet language="bash" code="claude" title="Start Claude Code" />
 
         <h3>Logging In</h3>
 
@@ -373,6 +412,7 @@ export default (): ReactElement => (
           </p>
 
           <CodeSnippet
+            language="markdown"
             code={`# CLAUDE.md
 
 ## Development Commands
@@ -549,6 +589,7 @@ The architecture follows modern React patterns with server-side rendering suppor
           <p>You can ask Claude something like:</p>
 
           <CodeSnippet
+            language="markdown"
             code="Look at the Git history for the `Header.tsx` file and explain who implemented the search functionality and what changes were made at the time"
             title="Example: Git History"
           />
@@ -626,6 +667,7 @@ The architecture follows modern React patterns with server-side rendering suppor
         </p>
 
         <CodeSnippet
+          language="json"
           code={`{
   "permissions": {
     "allow": [
@@ -737,6 +779,7 @@ The architecture follows modern React patterns with server-side rendering suppor
         </p>
 
         <CodeSnippet
+          language="bash"
           code="npm install -g typescript-language-server typescript"
           title="Install TypeScript Language Server"
         />
@@ -774,7 +817,11 @@ The architecture follows modern React patterns with server-side rendering suppor
 
           <p>First create the directory for the Skill in your home directory so it can be used across projects:</p>
 
-          <CodeSnippet code="mkdir -p ~/.claude/skills/react-optimiser" title="Create Skill Directory" />
+          <CodeSnippet
+            language="bash"
+            code="mkdir -p ~/.claude/skills/react-optimiser"
+            title="Create Skill Directory"
+          />
 
           <p>
             Then create a <code>SKILL.md</code> file inside the new directory (
@@ -787,6 +834,7 @@ The architecture follows modern React patterns with server-side rendering suppor
           </p>
 
           <CodeSnippet
+            language="markdown"
             code={`---
 name: react-optimiser
 description: Analyses React components for performance issues and implements optimisations. Use when reviewing component performance, addressing re-render issues, or when asked to optimise React code.
@@ -822,6 +870,7 @@ Focus on React and TypeScript performance patterns only. Avoid project-wide conf
           <p>Save the file, then restart (or start) Claude Code. You can then use the Skill by either asking Claude:</p>
 
           <CodeSnippet
+            language="markdown"
             code="Use the React Optimiser skill to analyse the `Header.tsx` component"
             title="Example: Using the Skill by Prompting Claude"
           />
@@ -984,6 +1033,7 @@ Focus on React and TypeScript performance patterns only. Avoid project-wide conf
         </p>
 
         <CodeSnippet
+          language="bash"
           code={`#!/bin/bash
 
 # Read JSON input from stdin
@@ -1126,7 +1176,11 @@ printf "%b" "$output"`}
 
         <p>Save the file, and grant it executable permissions with:</p>
 
-        <CodeSnippet code="chmod +x ~/.claude/statusline.sh" title="Make Statusline Script Executable" />
+        <CodeSnippet
+          language="bash"
+          code="chmod +x ~/.claude/statusline.sh"
+          title="Make Statusline Script Executable"
+        />
 
         <p>
           Then edit the user Claude Code settings JSON file <code>~/.claude/settings.json</code> and include the
@@ -1134,6 +1188,7 @@ printf "%b" "$output"`}
         </p>
 
         <CodeSnippet
+          language="json"
           code={`  "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline-command.sh",
@@ -1147,6 +1202,7 @@ printf "%b" "$output"`}
         </p>
 
         <CodeSnippet
+          language="json"
           code={`{
   "permissions": {
     "allow": [

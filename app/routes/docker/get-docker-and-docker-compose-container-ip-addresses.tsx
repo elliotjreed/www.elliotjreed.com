@@ -7,6 +7,15 @@ export const meta = () => [
     name: "description",
     content: "Get the IP addresses of Docker containers",
   },
+  { property: "og:title", content: "Docker container IP address" },
+  { property: "og:description", content: "Get the IP addresses of Docker containers" },
+  { property: "og:type", content: "article" },
+  {
+    property: "og:url",
+    content: "https://www.elliotjreed.com/docker/get-docker-and-docker-compose-container-ip-addresses",
+  },
+  { property: "og:site_name", content: "Elliot J. Reed" },
+  { property: "og:locale", content: "en_GB" },
   {
     "script:ld+json": {
       "@context": "https://schema.org",
@@ -68,18 +77,21 @@ export default (): ReactElement => (
       <section>
         <p>To list all Docker containers and their corresponding IP addresses, run:</p>
         <CodeSnippet
+          language="bash"
           code='docker inspect -f "{{.Name}}: {{.NetworkSettings.IPAddress }}" $(docker ps -aq)'
           title="List all"
         />
 
         <p>To get the IP address for a specific Docker container, run:</p>
         <CodeSnippet
+          language="bash"
           code='docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" CONTAINER_ID'
           title="List by container"
         />
 
         <p>To list all Docker Compose containers and their corresponding IP addresses, run:</p>
         <CodeSnippet
+          language="bash"
           code='docker inspect -f "{{.Name}}: {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" $(docker ps -aq) | cut -c2-'
           title="List all Docker Compose"
         />
@@ -89,9 +101,9 @@ export default (): ReactElement => (
           aliases like:
         </p>
 
-        <CodeSnippet code={docker.code} title={docker.title} />
+        <CodeSnippet language="bash" code={docker.code} title={docker.title} />
 
-        <CodeSnippet code={dockerCompose.code} title={dockerCompose.title} />
+        <CodeSnippet language="bash" code={dockerCompose.code} title={dockerCompose.title} />
       </section>
     </div>
   </section>

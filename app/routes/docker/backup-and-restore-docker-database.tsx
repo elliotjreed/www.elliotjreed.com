@@ -7,6 +7,12 @@ export const meta = () => [
     name: "description",
     content: "A guide on how to backup and restore MySQL / MariaDB Docker database.",
   },
+  { property: "og:title", content: "Backup and restore Docker database" },
+  { property: "og:description", content: "A guide on how to backup and restore MySQL / MariaDB Docker database." },
+  { property: "og:type", content: "article" },
+  { property: "og:url", content: "https://www.elliotjreed.com/docker/backup-and-restore-docker-database" },
+  { property: "og:site_name", content: "Elliot J. Reed" },
+  { property: "og:locale", content: "en_GB" },
   {
     "script:ld+json": {
       "@context": "https://schema.org",
@@ -53,6 +59,7 @@ export default (): ReactElement => (
       <section>
         <p>To backup / make a dump of a MySQL or MariaDB database within a Docker container, just run:</p>
         <CodeSnippet
+          language="bash"
           code="docker exec DATABASECONTAINER mysqldump -u DATABASEUSER --password=DATABASEPASSWORD DATABASE > backup.sql"
           title="Backup"
         />
@@ -61,18 +68,21 @@ export default (): ReactElement => (
           To restore a MySQL or MariaDB database from the <code>mysqldump</code>:
         </p>
         <CodeSnippet
+          language="bash"
           code="cat backup.sql | docker exec -i DATABASECONTAINER mysql -u DATABASEUSER --password=DATABASEPASSWORD DATABASE"
           title="Restore"
         />
 
         <p>So a real-world example might look like this:</p>
         <CodeSnippet
+          language="bash"
           code="docker exec wordpress-mysql mysqldump -u root --password=correcthorsebatterystaple wordpressdb > backup.sql"
           title="Backup Example"
         />
 
         <p>And restoring:</p>
         <CodeSnippet
+          language="bash"
           code="cat backup.sql | docker exec -i wordpress-mysql mysql -u root --password=correcthorsebatterystaple wordpressdb"
           title="Restore Example"
         />

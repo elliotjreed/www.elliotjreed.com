@@ -2,17 +2,26 @@ import type { ReactElement } from "react";
 import { CodeSnippet } from "~/components/CodeSnippet/CodeSnippet";
 
 export const meta = () => [
-  { title: "Installing MariaBD on Ubuntu | EJR" },
+  { title: "Installing MariaDB on Ubuntu | EJR" },
   {
     name: "description",
-    content: "How to install MariaBD (MySQL) on Ubuntu 20.04+ and allow remote access",
+    content: "How to install MariaDB (MySQL) on Ubuntu 20.04+ and allow remote access",
   },
+  { property: "og:title", content: "Installing MariaDB on Ubuntu" },
+  { property: "og:description", content: "How to install MariaDB (MySQL) on Ubuntu 20.04+ and allow remote access" },
+  { property: "og:type", content: "article" },
+  {
+    property: "og:url",
+    content: "https://www.elliotjreed.com/linux/install-mariadb-on-ubuntu-and-allow-remote-access",
+  },
+  { property: "og:site_name", content: "Elliot J. Reed" },
+  { property: "og:locale", content: "en_GB" },
   {
     "script:ld+json": {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
-      headline: "Installing MariaBD on Ubuntu",
-      name: "How to install MariaBD (MySQL) on Ubuntu 20.04+ and allow remote access",
+      headline: "Installing MariaDB on Ubuntu",
+      name: "How to install MariaDB (MySQL) on Ubuntu 20.04+ and allow remote access",
       dateCreated: "2022-04-22T19:00:00+01:00",
       datePublished: "2022-04-22T19:00:00+01:00",
       inLanguage: "en-GB",
@@ -42,10 +51,10 @@ export default (): ReactElement => (
   <section className="divide-y divide-gray-200 dark:divide-gray-700">
     <div className="space-y-2 pt-6 pb-8 md:space-y-5">
       <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
-        Installing MariaBD on Ubuntu
+        Installing MariaDB on Ubuntu
       </h1>
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
-        How to install MariaBD (MySQL) on Ubuntu 20.04+ and allow remote access
+        How to install MariaDB (MySQL) on Ubuntu 20.04+ and allow remote access
       </p>
     </div>
 
@@ -60,22 +69,22 @@ export default (): ReactElement => (
           shell:
         </p>
 
-        <CodeSnippet code="sudo -i" title="" />
+        <CodeSnippet language="bash" code="sudo -i" title="" />
 
         <p>First we should ensure the system is up-to-date by running:</p>
 
-        <CodeSnippet code="apt-get update && apt-get full-upgrade -y" title="" />
+        <CodeSnippet language="bash" code="apt update && apt full-upgrade -y" title="" />
 
         <p>To install MariaDB run:</p>
 
-        <CodeSnippet code="apt-get install mariadb-server -y" title="" />
+        <CodeSnippet language="bash" code="apt install mariadb-server -y" title="" />
 
         <p>
           The <code>mariadb</code> service should automatically start in the background once the installation has
           completed, but you can check by running:
         </p>
 
-        <CodeSnippet code="systemctl status mariadb" title="" />
+        <CodeSnippet language="bash" code="systemctl status mariadb" title="" />
 
         <p>If all is well you should see the following at the beginning of the output:</p>
 
@@ -98,7 +107,7 @@ export default (): ReactElement => (
 
         <p>Next to run the secure installation script, run:</p>
 
-        <CodeSnippet code="mysql_secure_installation" title="" />
+        <CodeSnippet language="bash" code="mysql_secure_installation" title="" />
 
         <p>It will ask you for the current root password, this will be empty by default so just hit "enter".</p>
 
@@ -140,14 +149,14 @@ Set root password? [Y/n]"
           prompted:
         </p>
 
-        <CodeSnippet code="mysql -uroot -p" title="" />
+        <CodeSnippet language="bash" code="mysql -uroot -p" title="" />
 
         <p>
           Inside the <code>mysql</code> client, create a new user by running the following with a username (instead of
           "elliot", unless that's your name too) and password:
         </p>
 
-        <CodeSnippet code="CREATE USER 'elliot'@'%' IDENTIFIED BY 'averystrongpassword';" title="" />
+        <CodeSnippet language="sql" code="CREATE USER 'elliot'@'%' IDENTIFIED BY 'averystrongpassword';" title="" />
 
         <p>
           Now you can grant some permissions to the new user (replace the "elliot" username with the one you used in the
@@ -155,6 +164,7 @@ Set root password? [Y/n]"
         </p>
 
         <CodeSnippet
+          language="sql"
           code="GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'elliot'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;"
           title=""
@@ -162,14 +172,14 @@ FLUSH PRIVILEGES;"
 
         <p>Now you should be able to access MariaDB using your new username and password:</p>
 
-        <CodeSnippet code="mysql -uelliot -p" title="" />
+        <CodeSnippet language="bash" code="mysql -uelliot -p" title="" />
 
         <p>
           If you want to be able to access the database remotely you will need to comment-out the{" "}
           <code>bind-address</code> line in <code>/etc/mysql/mariadb.conf.d/50-server.cnf</code>:
         </p>
 
-        <CodeSnippet code="nano /etc/mysql/mariadb.conf.d/50-server.cnf" title="" />
+        <CodeSnippet language="bash" code="nano /etc/mysql/mariadb.conf.d/50-server.cnf" title="" />
 
         <p>
           Note: to save the file in the <code>nano</code> text editor it's "ctrl+w", then to exit it's "ctrl+x".
@@ -194,11 +204,11 @@ bind-address            = 127.0.0.1"
           Once you have saved the file, restart the <code>mariadb</code> service by running:
         </p>
 
-        <CodeSnippet code="systemctl restart mariadb" title="" />
+        <CodeSnippet language="bash" code="systemctl restart mariadb" title="" />
 
         <p>Now you should be able to access your database remotely, for example:</p>
 
-        <CodeSnippet code="mysql -u elliot -h 123.45.67.89 -p" title="" />
+        <CodeSnippet language="bash" code="mysql -u elliot -h 123.45.67.89 -p" title="" />
 
         <p>
           Where the <code>-h</code> IP address is the IP address of the server you've created.
@@ -211,18 +221,18 @@ bind-address            = 127.0.0.1"
 
         <p>Once you are in the MariaDB server, you'll probably want to create a database, so log in again:</p>
 
-        <CodeSnippet code="mysql -u elliot -h 123.45.67.89 -p" title="" />
+        <CodeSnippet language="bash" code="mysql -u elliot -h 123.45.67.89 -p" title="" />
 
         <p>and run:</p>
 
-        <CodeSnippet code="CREATE DATABASE mydatabase;" title="" />
+        <CodeSnippet language="sql" code="CREATE DATABASE mydatabase;" title="" />
 
         <p>
           If you are using <code>ufw</code> to manage firewall rules, ensure port 3306 is open by running the following
           in the Linux commend line:
         </p>
 
-        <CodeSnippet code="ufw allow mysql" title="" />
+        <CodeSnippet language="bash" code="ufw allow mysql" title="" />
       </section>
     </div>
   </section>

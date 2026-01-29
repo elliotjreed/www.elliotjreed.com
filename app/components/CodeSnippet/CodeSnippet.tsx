@@ -1,12 +1,45 @@
-import { type FC, type ReactElement, useState } from "react";
+import { Highlight, Prism, type Token } from "prism-react-renderer";
+import { type FC, type ReactElement, useEffect, useState } from "react";
+import { customDarkTheme } from "./prismTheme";
+
+export type SupportedLanguage = "text" | "php" | "bash" | "json" | "markdown" | "javascript" | "typescript" | "sql";
 
 export interface CodeSnippetInterface {
   code: string;
   title: string;
+  language?: SupportedLanguage;
 }
 
-export const CodeSnippet: FC<CodeSnippetInterface> = ({ code, title }: CodeSnippetInterface): ReactElement => {
+// Load languages once on the client side
+let languagesLoaded = false;
+
+export const CodeSnippet: FC<CodeSnippetInterface> = ({
+  code,
+  title,
+  language = "text",
+}: CodeSnippetInterface): ReactElement => {
   const [copied, setCopied] = useState(false);
+  const [_languagesReady, setLanguagesReady] = useState(languagesLoaded);
+
+  useEffect(() => {
+    if (!languagesLoaded && typeof window !== "undefined") {
+      (typeof global !== "undefined" ? global : window).Prism = Prism;
+
+      // Load languages in order, respecting dependencies
+      const loadLanguages = async () => {
+        await import("prismjs/components/prism-markup");
+        await import("prismjs/components/prism-clike");
+        await import("prismjs/components/prism-markup-templating");
+        await import("prismjs/components/prism-bash");
+        await import("prismjs/components/prism-php");
+        await import("prismjs/components/prism-markdown");
+        languagesLoaded = true;
+        setLanguagesReady(true);
+      };
+
+      loadLanguages();
+    }
+  }, []);
 
   const handleCopy = async (): Promise<void> => {
     try {
@@ -50,9 +83,21 @@ export const CodeSnippet: FC<CodeSnippetInterface> = ({ code, title }: CodeSnipp
           </button>
         </div>
 
-        <pre className="p-4 mt-0 mb-0 text-gray-300 bg-gray-800 font-mono text-sm whitespace-pre-wrap break-words">
-          <code className="bg-gray-800">{code}</code>
-        </pre>
+        <Highlight theme={customDarkTheme} code={code} language={language}>
+          {({ style, tokens, getLineProps, getTokenProps }): ReactElement => (
+            <pre className="p-4 mt-0 mb-0 font-mono text-sm overflow-x-auto" style={style}>
+              {tokens.map((line, i) => (
+                <div key={`line-${i}`} {...getLineProps({ line })}>
+                  {line.map(
+                    (token: Token, key: number): ReactElement => (
+                      <span key={`token-${key}`} {...getTokenProps({ token })} />
+                    ),
+                  )}
+                </div>
+              ))}
+            </pre>
+          )}
+        </Highlight>
       </div>
     </div>
   );

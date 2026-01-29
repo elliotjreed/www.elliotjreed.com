@@ -1,7 +1,24 @@
 import type { Config } from "@react-router/dev/config";
+import { staticLinks, type StaticLink } from "./app/data/staticLinks";
+
+function extractHrefs(links: StaticLink[]): string[] {
+  const hrefs: string[] = [];
+
+  for (const link of links) {
+    if (link.href) {
+      hrefs.push(link.href);
+    }
+    if (link.children) {
+      hrefs.push(...extractHrefs(link.children));
+    }
+  }
+
+  return hrefs;
+}
 
 export default {
-  // Config options...
-  // Server-side render by default, to enable SPA mode set this to `false`
   ssr: true,
+  async prerender() {
+    return extractHrefs(staticLinks);
+  },
 } satisfies Config;

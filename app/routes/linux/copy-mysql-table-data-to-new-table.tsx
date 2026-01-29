@@ -7,6 +7,12 @@ export const meta = () => [
     name: "description",
     content: "How to copy MySQL / MariaDB database table data to a new table.",
   },
+  { property: "og:title", content: "Copy MySQL database table to new table" },
+  { property: "og:description", content: "How to copy MySQL / MariaDB database table data to a new table." },
+  { property: "og:type", content: "article" },
+  { property: "og:url", content: "https://www.elliotjreed.com/linux/copy-mysql-table-data-to-new-table" },
+  { property: "og:site_name", content: "Elliot J. Reed" },
+  { property: "og:locale", content: "en_GB" },
   {
     "script:ld+json": {
       "@context": "https://schema.org",
@@ -60,10 +66,11 @@ export default (): ReactElement => (
           Copy to new table without indexes and triggers (note: this will not copy the AUTO_INCREMENT value, will not
           carry over foreign key constraints, and will not copy indexes and triggers.):
         </p>
-        <CodeSnippet code="CREATE TABLE my_table_copy AS SELECT * FROM my_table;" title="Values only" />
+        <CodeSnippet language="sql" code="CREATE TABLE my_table_copy AS SELECT * FROM my_table;" title="Values only" />
 
         <p>Copy to new table with indexes and triggers:</p>
         <CodeSnippet
+          language="sql"
           code="CREATE TABLE my_table_copy LIKE my_table; INSERT INTO my_table_copy SELECT * FROM my_table;"
           title="Values, indexes, triggers, etc."
         />
