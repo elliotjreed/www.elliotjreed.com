@@ -36,7 +36,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const urls = extractUrls(staticLinks);
   const sitemap = generateSitemap(urls);
 
-  return new Response(sitemap, {
+  throw new Response(sitemap, {
     status: 200,
     headers: {
       "Content-Type": "application/xml; charset=utf-8",
