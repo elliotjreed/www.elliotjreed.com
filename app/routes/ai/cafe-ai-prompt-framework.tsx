@@ -1,6 +1,7 @@
 import type { ReactElement } from "react";
 import { Link } from "react-router";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
+import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
 
 export const meta = () => [
   { title: "CAFE Framework Prompting Guide | EJR" },
@@ -20,33 +21,26 @@ export const meta = () => [
   { property: "og:site_name", content: "Elliot J. Reed" },
   { property: "og:locale", content: "en_GB" },
   {
-    "script:ld+json": {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
+    "script:ld+json": createTechArticle({
+      url: "https://www.elliotjreed.com/ai/cafe-ai-prompt-framework",
       headline: "CAFE Framework Prompting Guide",
-      name: "A guide on effective prompting using the CAFE prompt engineering framework, for AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
-      dateCreated: "2025-04-20T13:09:43+01:00",
+      description:
+        "A guide on effective prompting using the CAFE prompt engineering framework, for AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
       datePublished: "2025-04-20T13:09:43+01:00",
-      inLanguage: "en-GB",
-      author: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-      copyrightHolder: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-    },
+      dateModified: "2025-04-20T13:09:43+01:00",
+      articleSection: "AI",
+      keywords: ["AI", "CAFE framework", "prompt engineering", "LLM", "ChatGPT", "Claude"],
+      wordCount: 1092,
+      proficiencyLevel: "Beginner",
+    }),
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Guides", url: "https://www.elliotjreed.com" },
+      { name: "AI", url: "https://www.elliotjreed.com/ai/cafe-ai-prompt-framework" },
+      { name: "CAFE Framework", url: "https://www.elliotjreed.com/ai/cafe-ai-prompt-framework" },
+    ]),
   },
 ];
 

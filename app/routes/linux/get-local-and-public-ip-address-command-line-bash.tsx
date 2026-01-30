@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
+import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
 
 export const meta = () => [
   { title: "Get Local and Public IP Address | EJR" },
@@ -22,33 +23,32 @@ export const meta = () => [
   { property: "og:site_name", content: "Elliot J. Reed" },
   { property: "og:locale", content: "en_GB" },
   {
-    "script:ld+json": {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
+    "script:ld+json": createTechArticle({
+      url: "https://www.elliotjreed.com/linux/get-local-and-public-ip-address-command-line-bash",
       headline: "Get Local and Public IP Address on Linux Command Line",
-      name: "Find your public IP address and local IP address on Linux or Mac via the command line using a Bash or ZSH shell function",
-      dateCreated: "2016-10-07T19:00:00+01:00",
+      description:
+        "Find your public IP address and local IP address on Linux or Mac via the command line using a Bash or ZSH shell function",
       datePublished: "2016-10-07T19:00:00+01:00",
-      inLanguage: "en-GB",
-      author: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
+      dateModified: "2016-10-07T19:00:00+01:00",
+      articleSection: "Linux",
+      keywords: ["Linux", "IP address", "command line", "Bash", "networking"],
+      wordCount: 413,
+      proficiencyLevel: "Beginner",
+    }),
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Guides", url: "https://www.elliotjreed.com" },
+      {
+        name: "Linux",
+        url: "https://www.elliotjreed.com/linux/get-local-and-public-ip-address-command-line-bash",
       },
-      copyrightHolder: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
+      {
+        name: "Get IP Address",
+        url: "https://www.elliotjreed.com/linux/get-local-and-public-ip-address-command-line-bash",
       },
-    },
+    ]),
   },
 ];
 

@@ -1,6 +1,7 @@
 import type { ReactElement } from "react";
 import { Link } from "react-router";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
+import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
 
 export const meta = () => [
   { title: "AI Prompting Guide - Getting Started with Prompt Engineering | EJR" },
@@ -20,33 +21,29 @@ export const meta = () => [
   { property: "og:site_name", content: "Elliot J. Reed" },
   { property: "og:locale", content: "en_GB" },
   {
-    "script:ld+json": {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
+    "script:ld+json": createTechArticle({
+      url: "https://www.elliotjreed.com/ai/ai-prompt-engineering-guide",
       headline: "AI Prompting Guide - Getting Started with Prompt Engineering",
-      name: "A guide and introduction to prompt engineering techniques for AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
-      dateCreated: "2025-04-20T13:09:43+01:00",
+      description:
+        "A guide and introduction to prompt engineering techniques for AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
       datePublished: "2025-04-20T13:09:43+01:00",
-      inLanguage: "en-GB",
-      author: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
+      dateModified: "2025-04-20T13:09:43+01:00",
+      articleSection: "AI",
+      keywords: ["AI", "prompt engineering", "LLM", "ChatGPT", "Claude", "Gemini", "DeepSeek"],
+      wordCount: 2254,
+      proficiencyLevel: "Beginner",
+    }),
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Guides", url: "https://www.elliotjreed.com" },
+      { name: "AI", url: "https://www.elliotjreed.com/ai/ai-prompt-engineering-guide" },
+      {
+        name: "AI Prompting Guide",
+        url: "https://www.elliotjreed.com/ai/ai-prompt-engineering-guide",
       },
-      copyrightHolder: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-    },
+    ]),
   },
 ];
 

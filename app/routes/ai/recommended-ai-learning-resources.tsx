@@ -1,4 +1,5 @@
 import type { ReactElement } from "react";
+import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
 
 export const meta = () => [
   { title: "AI Resources | EJR" },
@@ -16,33 +17,26 @@ export const meta = () => [
   { property: "og:site_name", content: "Elliot J. Reed" },
   { property: "og:locale", content: "en_GB" },
   {
-    "script:ld+json": {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
+    "script:ld+json": createTechArticle({
+      url: "https://www.elliotjreed.com/ai/recommended-ai-learning-resources",
       headline: "AI Resources",
-      name: "Recommended resources for learning more about AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
-      dateCreated: "2025-04-20T16:51:20+01:00",
+      description:
+        "Recommended resources for learning more about AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
       datePublished: "2025-04-20T16:51:20+01:00",
-      inLanguage: "en-GB",
-      author: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-      copyrightHolder: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-    },
+      dateModified: "2025-04-20T16:51:20+01:00",
+      articleSection: "AI",
+      keywords: ["AI", "learning resources", "LLM", "ChatGPT", "Claude", "Gemini"],
+      wordCount: 345,
+      proficiencyLevel: "Beginner",
+    }),
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Guides", url: "https://www.elliotjreed.com" },
+      { name: "AI", url: "https://www.elliotjreed.com/ai/recommended-ai-learning-resources" },
+      { name: "AI Resources", url: "https://www.elliotjreed.com/ai/recommended-ai-learning-resources" },
+    ]),
   },
 ];
 

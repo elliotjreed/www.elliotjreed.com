@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import { CodeSnippet } from "~/components/CodeSnippet/CodeSnippet";
+import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
 
 export const meta = () => [
   { title: "Copy MySQL database table to new table | EJR" },
@@ -14,33 +15,25 @@ export const meta = () => [
   { property: "og:site_name", content: "Elliot J. Reed" },
   { property: "og:locale", content: "en_GB" },
   {
-    "script:ld+json": {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
+    "script:ld+json": createTechArticle({
+      url: "https://www.elliotjreed.com/linux/copy-mysql-table-data-to-new-table",
       headline: "Copy MySQL / MariaDB database table data to a new table",
-      name: "How to copy MySQL / MariaDB database table data to a new table",
-      dateCreated: "2022-04-30T19:00:00+01:00",
+      description: "How to copy MySQL / MariaDB database table data to a new table",
       datePublished: "2022-04-30T19:00:00+01:00",
-      inLanguage: "en-GB",
-      author: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-      copyrightHolder: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-    },
+      dateModified: "2022-04-30T19:00:00+01:00",
+      articleSection: "Linux",
+      keywords: ["MySQL", "MariaDB", "database", "SQL", "Linux"],
+      wordCount: 370,
+      proficiencyLevel: "Beginner",
+    }),
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Guides", url: "https://www.elliotjreed.com" },
+      { name: "Linux", url: "https://www.elliotjreed.com/linux/copy-mysql-table-data-to-new-table" },
+      { name: "Copy MySQL Table", url: "https://www.elliotjreed.com/linux/copy-mysql-table-data-to-new-table" },
+    ]),
   },
 ];
 

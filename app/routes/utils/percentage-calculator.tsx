@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import { PercentageCalculator } from "~/components/PercentageCalculator/PercentageCalculator";
+import { createBreadcrumbs } from "~/data/schemaData";
 
 export function meta() {
   const title = "Percentage Calculator | EJR";
@@ -62,29 +63,9 @@ export function meta() {
           "Free online percentage calculator for calculating percentages, percentage changes, and percentage differences. Features calculation history with localStorage support, dark mode, and mobile-friendly responsive design.",
         browserRequirements: "Requires JavaScript. Requires HTML5.",
         softwareVersion: "1.0",
-        author: {
-          "@type": "Person",
-          name: "Elliot Reed",
-          givenName: "Elliot",
-          familyName: "Reed",
-          url: "https://www.elliotjreed.com",
-          sameAs: [
-            "https://twitter.com/elliotjreed",
-            "https://x.com/elliotjreed",
-            "https://github.com/elliotjreed",
-            "https://www.linkedin.com/in/elliotjreed",
-          ],
-        },
-        creator: {
-          "@type": "Person",
-          name: "Elliot Reed",
-          url: "https://www.elliotjreed.com",
-        },
-        publisher: {
-          "@type": "Person",
-          name: "Elliot Reed",
-          url: "https://www.elliotjreed.com",
-        },
+        author: { "@id": "https://www.elliotjreed.com/#author" },
+        creator: { "@id": "https://www.elliotjreed.com/#author" },
+        publisher: { "@id": "https://www.elliotjreed.com/#author" },
         datePublished: "2025-01-28",
         dateModified: "2025-01-28",
         inLanguage: "en-GB",
@@ -107,30 +88,11 @@ export function meta() {
     },
 
     {
-      "script:ld+json": {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "Home",
-            item: "https://www.elliotjreed.com",
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "Utils",
-            item: "https://www.elliotjreed.com/utils",
-          },
-          {
-            "@type": "ListItem",
-            position: 3,
-            name: "Percentage Calculator",
-            item: url,
-          },
-        ],
-      },
+      "script:ld+json": createBreadcrumbs([
+        { name: "Home", url: "https://www.elliotjreed.com" },
+        { name: "Utils", url: "https://www.elliotjreed.com/utils" },
+        { name: "Percentage Calculator", url: url },
+      ]),
     },
 
     {

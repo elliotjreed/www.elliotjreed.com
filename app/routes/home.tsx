@@ -2,6 +2,7 @@ import type { ReactElement } from "react";
 import { Link } from "react-router";
 import { SocialLinks } from "~/components/SocialLinks/SocialLinks";
 import { emailAddress } from "~/data/emailAddress";
+import { authorSchema, createBreadcrumbs, websiteSchema } from "~/data/schemaData";
 
 export function meta() {
   return [
@@ -14,94 +15,32 @@ export function meta() {
     {
       "script:ld+json": {
         "@context": "https://schema.org",
-        "@type": "WebSite",
-        about:
-          "Elliot Reed is the Head of Technology for a respected e-commerce retailer based in the United Kingdom, with over 12 years experience in management and software development. His interests include AI, philosophy and ethics, DevOps, and leadership and strategy.",
-        alternateName: "Elliot Reed",
-        alternativeHeadline: "Elliot Reed's Website",
-        author: {
-          "@type": "Person",
-          additionalName: "John",
-          address: {
-            "@type": "PostalAddress",
-            addressCountry: {
-              "@type": "Country",
-              name: "United Kingdom",
-            },
-            addressLocality: "Nottingham",
-            addressRegion: "Nottinghamshire",
+        "@graph": [
+          {
+            ...websiteSchema,
+            headline: "Elliot J. Reed's Website",
+            alternativeHeadline: "Elliot Reed's Website",
           },
-          alternateName: "Elliot Reed",
-          alumniOf: [
-            {
-              "@type": "CollegeOrUniversity",
-              name: "University of Nottingham",
-              url: "https://www.nottingham.ac.uk",
-            },
-            {
-              "@type": "CollegeOrUniversity",
-              name: "Nottingham Law School, Nottingham Trent University",
-              url: "https://www.ntu.ac.uk",
-            },
-            {
-              "@type": "EducationalOrganization",
-              name: "Stowupland High School",
-              url: "https://www.stowuplandhighschool.co.uk",
-            },
-          ],
-          birthDate: "1990-02-25T12:21:00+00:00",
-          birthPlace: {
-            "@type": "Place",
-            address: {
-              "@type": "PostalAddress",
-              addressCountry: {
-                "@type": "Country",
-                name: "United Kingdom",
-              },
-              addressLocality: "Bury St. Edmunds",
-              addressRegion: "Suffolk",
+          authorSchema,
+          {
+            "@type": "WebPage",
+            "@id": "https://www.elliotjreed.com/#webpage",
+            url: "https://www.elliotjreed.com",
+            name: "Elliot J. Reed",
+            isPartOf: { "@id": "https://www.elliotjreed.com/#website" },
+            about: { "@id": "https://www.elliotjreed.com/#author" },
+            mainEntity: { "@id": "https://www.elliotjreed.com/#author" },
+            inLanguage: "en-GB",
+            speakable: {
+              "@type": "SpeakableSpecification",
+              cssSelector: ["h1", ".prose p"],
             },
           },
-          description:
-            "Technology leader based in the United Kingdom, focusing on software engineering and development for the e-commerce sector. Interested in AI, philosophy and ethics, DevOps, and leadership and strategy.",
-          familyName: "Reed",
-          gender: "https://schema.org/Male",
-          givenName: "Elliot",
-          height: {
-            "@type": "QuantitativeValue",
-            unitCode: "cm",
-            value: 183,
-          },
-          honorificSuffix: "BA (Hons.)",
-          image: {
-            "@type": "ImageObject",
-            url: "https://www.elliotjreed.com/elliot-greyscale.jpg",
-          },
-          jobTitle: "Head of Technology",
-          knowsLanguage: "en-GB",
-          name: "Elliot J. Reed",
-          nationality: {
-            "@type": "Country",
-            name: "United Kingdom",
-          },
-          sameAs: [
-            "https://www.elliotjreed.com",
-            "https://x.com/elliotjreed",
-            "https://www.linkedin.com/in/elliotjreed",
-            "https://github.com/elliotjreed",
-            "https://bsky.app/profile/elliotjreed.com",
-          ],
-          url: "https://www.elliotjreed.com",
-        },
-        dateCreated: "2010-05-15T00:00:00+01:00",
-        description:
-          "The personal website of Elliot Reed, containing current and past projects, and guides on AI, prompting, Claude Code, PHP, Symfony, Javascript, React, Python, and Linux / DevOps.",
-        headline: "Elliot J. Reed's Website",
-        inLanguage: ["en-GB", "en-US"],
-        keywords: ["Elliot Reed", "Elliot J. Reed", "elliotjreed"],
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
+        ],
       },
+    },
+    {
+      "script:ld+json": createBreadcrumbs([{ name: "Home", url: "https://www.elliotjreed.com" }]),
     },
   ];
 }

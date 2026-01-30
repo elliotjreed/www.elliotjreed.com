@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
+import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
 
 export const meta = () => [
   { title: "ZSH & Bash Functions | EJR" },
@@ -17,33 +18,25 @@ export const meta = () => [
   { property: "og:site_name", content: "Elliot J. Reed" },
   { property: "og:locale", content: "en_GB" },
   {
-    "script:ld+json": {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
+    "script:ld+json": createTechArticle({
+      url: "https://www.elliotjreed.com/linux/zsh-bash-functions",
       headline: "ZSH & Bash Functions",
-      name: "A collection of useful ZSH, Bash, and Shell functions for use on Linux (or Mac or Windows).",
-      dateCreated: "2025-04-20T16:51:56+01:00",
+      description: "A collection of useful ZSH, Bash, and Shell functions for use on Linux (or Mac or Windows).",
       datePublished: "2025-04-20T16:51:56+01:00",
-      inLanguage: "en-GB",
-      author: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-      copyrightHolder: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-    },
+      dateModified: "2025-04-20T16:51:56+01:00",
+      articleSection: "Linux",
+      keywords: ["Linux", "ZSH", "Bash", "shell", "functions", "command line"],
+      wordCount: 786,
+      proficiencyLevel: "Intermediate",
+    }),
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Guides", url: "https://www.elliotjreed.com" },
+      { name: "Linux", url: "https://www.elliotjreed.com/linux/zsh-bash-functions" },
+      { name: "ZSH & Bash Functions", url: "https://www.elliotjreed.com/linux/zsh-bash-functions" },
+    ]),
   },
 ];
 

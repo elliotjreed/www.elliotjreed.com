@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
+import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
 
 export const meta = () => [
   { title: "Docker container IP address | EJR" },
@@ -17,33 +18,31 @@ export const meta = () => [
   { property: "og:site_name", content: "Elliot J. Reed" },
   { property: "og:locale", content: "en_GB" },
   {
-    "script:ld+json": {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
+    "script:ld+json": createTechArticle({
+      url: "https://www.elliotjreed.com/docker/get-docker-and-docker-compose-container-ip-addresses",
       headline: "Get the IP addresses of Docker containers",
-      name: "How to find the local IP addresses for running Docker containers",
-      dateCreated: "2020-09-02T19:00:00+01:00",
+      description: "How to find the local IP addresses for running Docker containers",
       datePublished: "2020-09-02T19:00:00+01:00",
-      inLanguage: "en-GB",
-      author: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
+      dateModified: "2020-09-02T19:00:00+01:00",
+      articleSection: "Docker",
+      keywords: ["Docker", "IP address", "networking", "containers"],
+      wordCount: 414,
+      proficiencyLevel: "Beginner",
+    }),
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Guides", url: "https://www.elliotjreed.com" },
+      {
+        name: "Docker",
+        url: "https://www.elliotjreed.com/docker/get-docker-and-docker-compose-container-ip-addresses",
       },
-      copyrightHolder: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
+      {
+        name: "Docker IP Address",
+        url: "https://www.elliotjreed.com/docker/get-docker-and-docker-compose-container-ip-addresses",
       },
-    },
+    ]),
   },
 ];
 

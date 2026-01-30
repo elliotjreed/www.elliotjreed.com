@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
+import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
 
 export const meta = () => [
   { title: "Clean up Docker | EJR" },
@@ -17,33 +18,26 @@ export const meta = () => [
   { property: "og:site_name", content: "Elliot J. Reed" },
   { property: "og:locale", content: "en_GB" },
   {
-    "script:ld+json": {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
+    "script:ld+json": createTechArticle({
+      url: "https://www.elliotjreed.com/docker/delete-all-docker-containers-and-images",
       headline: "Remove all Docker containers, images, networks and volumes",
-      name: "How to remove all Docker containers, images, networks and volumes in a handy Bash / ZSH Shell function",
-      dateCreated: "2016-12-29T19:00:00+01:00",
+      description:
+        "How to remove all Docker containers, images, networks and volumes in a handy Bash / ZSH Shell function",
       datePublished: "2016-12-29T19:00:00+01:00",
-      inLanguage: "en-GB",
-      author: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-      copyrightHolder: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-    },
+      dateModified: "2016-12-29T19:00:00+01:00",
+      articleSection: "Docker",
+      keywords: ["Docker", "containers", "cleanup", "DevOps"],
+      wordCount: 646,
+      proficiencyLevel: "Intermediate",
+    }),
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Guides", url: "https://www.elliotjreed.com" },
+      { name: "Docker", url: "https://www.elliotjreed.com/docker/delete-all-docker-containers-and-images" },
+      { name: "Clean up Docker", url: "https://www.elliotjreed.com/docker/delete-all-docker-containers-and-images" },
+    ]),
   },
 ];
 

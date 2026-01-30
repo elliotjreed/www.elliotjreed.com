@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
+import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
 
 export const meta = () => [
   { title: "Search directory for a word | EJR" },
@@ -20,33 +21,31 @@ export const meta = () => [
   { property: "og:site_name", content: "Elliot J. Reed" },
   { property: "og:locale", content: "en_GB" },
   {
-    "script:ld+json": {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
+    "script:ld+json": createTechArticle({
+      url: "https://www.elliotjreed.com/linux/search-a-directory-for-text-string-via-command-line",
       headline: "Search directory for a word / text via the command line",
-      name: "How to search directory for a word / text via the command line on Linux or Mac",
-      dateCreated: "2017-01-23T19:00:00+01:00",
+      description: "How to search directory for a word / text via the command line on Linux or Mac",
       datePublished: "2017-01-23T19:00:00+01:00",
-      inLanguage: "en-GB",
-      author: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
+      dateModified: "2017-01-23T19:00:00+01:00",
+      articleSection: "Linux",
+      keywords: ["Linux", "grep", "search", "command line", "text search"],
+      wordCount: 417,
+      proficiencyLevel: "Beginner",
+    }),
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Guides", url: "https://www.elliotjreed.com" },
+      {
+        name: "Linux",
+        url: "https://www.elliotjreed.com/linux/search-a-directory-for-text-string-via-command-line",
       },
-      copyrightHolder: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
+      {
+        name: "Search Directory",
+        url: "https://www.elliotjreed.com/linux/search-a-directory-for-text-string-via-command-line",
       },
-    },
+    ]),
   },
 ];
 

@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import { CodeSnippet } from "~/components/CodeSnippet/CodeSnippet";
+import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
 
 export const meta = () => [
   { title: "Detecting Disposable Email Addresses in PHP | EJR" },
@@ -17,33 +18,31 @@ export const meta = () => [
   { property: "og:site_name", content: "Elliot J. Reed" },
   { property: "og:locale", content: "en_GB" },
   {
-    "script:ld+json": {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
+    "script:ld+json": createTechArticle({
+      url: "https://www.elliotjreed.com/php/detect-disposable-or-temporary-email-addresses-in-php",
       headline: "Detecting disposable / temporary email addresses in PHP",
-      name: "A guide on detecting disposable / temporary email addresses in PHP.",
-      dateCreated: "2019-03-29T19:00:00+01:00",
+      description: "A guide on detecting disposable / temporary email addresses in PHP.",
       datePublished: "2019-03-29T19:00:00+01:00",
-      inLanguage: "en-GB",
-      author: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
+      dateModified: "2019-03-29T19:00:00+01:00",
+      articleSection: "PHP",
+      keywords: ["PHP", "email validation", "disposable email", "security"],
+      wordCount: 426,
+      proficiencyLevel: "Intermediate",
+    }),
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Guides", url: "https://www.elliotjreed.com" },
+      {
+        name: "PHP",
+        url: "https://www.elliotjreed.com/php/detect-disposable-or-temporary-email-addresses-in-php",
       },
-      copyrightHolder: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
+      {
+        name: "Detect Disposable Emails",
+        url: "https://www.elliotjreed.com/php/detect-disposable-or-temporary-email-addresses-in-php",
       },
-    },
+    ]),
   },
 ];
 

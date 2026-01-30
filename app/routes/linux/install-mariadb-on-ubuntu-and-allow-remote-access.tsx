@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import { CodeSnippet } from "~/components/CodeSnippet/CodeSnippet";
+import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
 
 export const meta = () => [
   { title: "Installing MariaDB on Ubuntu | EJR" },
@@ -17,33 +18,31 @@ export const meta = () => [
   { property: "og:site_name", content: "Elliot J. Reed" },
   { property: "og:locale", content: "en_GB" },
   {
-    "script:ld+json": {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
+    "script:ld+json": createTechArticle({
+      url: "https://www.elliotjreed.com/linux/install-mariadb-on-ubuntu-and-allow-remote-access",
       headline: "Installing MariaDB on Ubuntu",
-      name: "How to install MariaDB (MySQL) on Ubuntu 20.04+ and allow remote access",
-      dateCreated: "2022-04-22T19:00:00+01:00",
+      description: "How to install MariaDB (MySQL) on Ubuntu 20.04+ and allow remote access",
       datePublished: "2022-04-22T19:00:00+01:00",
-      inLanguage: "en-GB",
-      author: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
+      dateModified: "2022-04-22T19:00:00+01:00",
+      articleSection: "Linux",
+      keywords: ["MariaDB", "MySQL", "Ubuntu", "Linux", "database", "installation"],
+      wordCount: 978,
+      proficiencyLevel: "Intermediate",
+    }),
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Guides", url: "https://www.elliotjreed.com" },
+      {
+        name: "Linux",
+        url: "https://www.elliotjreed.com/linux/install-mariadb-on-ubuntu-and-allow-remote-access",
       },
-      copyrightHolder: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
+      {
+        name: "Install MariaDB",
+        url: "https://www.elliotjreed.com/linux/install-mariadb-on-ubuntu-and-allow-remote-access",
       },
-    },
+    ]),
   },
 ];
 

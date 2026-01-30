@@ -1,6 +1,7 @@
 import type { ReactElement } from "react";
 import { CodeSnippet } from "~/components/CodeSnippet/CodeSnippet";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
+import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
 import claudeCodeStatuslineImage from "~/images/articles/claude-code-custom-statusline.png";
 import claudeCodeStatuslineImageWebp from "~/images/articles/claude-code-custom-statusline.webp";
 
@@ -22,33 +23,26 @@ export const meta = () => [
   { property: "og:site_name", content: "Elliot J. Reed" },
   { property: "og:locale", content: "en_GB" },
   {
-    "script:ld+json": {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
+    "script:ld+json": createTechArticle({
+      url: "https://www.elliotjreed.com/ai/claude-code-guide-and-tips",
       headline: "Claude Code Guide and Tips",
-      name: "A comprehensive guide to using Claude Code for software development, covering installation, prompting strategies, planning, git integration, and advanced features like skills, subagents, and MCP servers.",
-      dateCreated: "2026-01-24T20:20:18+00:00",
+      description:
+        "A comprehensive guide to using Claude Code for software development, covering installation, prompting strategies, planning, git integration, and advanced features like skills, subagents, and MCP servers.",
       datePublished: "2026-01-24T20:20:18+00:00",
-      inLanguage: "en-GB",
-      author: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-      copyrightHolder: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-    },
+      dateModified: "2026-01-24T20:20:18+00:00",
+      articleSection: "AI",
+      keywords: ["Claude Code", "AI", "software development", "prompt engineering", "MCP servers", "git integration"],
+      wordCount: 4532,
+      proficiencyLevel: "Intermediate",
+    }),
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Guides", url: "https://www.elliotjreed.com" },
+      { name: "AI", url: "https://www.elliotjreed.com/ai/claude-code-guide-and-tips" },
+      { name: "Claude Code Guide", url: "https://www.elliotjreed.com/ai/claude-code-guide-and-tips" },
+    ]),
   },
 ];
 

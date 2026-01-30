@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import { CodeSnippet } from "~/components/CodeSnippet/CodeSnippet";
+import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
 
 export const meta = () => [
   { title: "Backup and restore Docker database | EJR" },
@@ -14,33 +15,25 @@ export const meta = () => [
   { property: "og:site_name", content: "Elliot J. Reed" },
   { property: "og:locale", content: "en_GB" },
   {
-    "script:ld+json": {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
+    "script:ld+json": createTechArticle({
+      url: "https://www.elliotjreed.com/docker/backup-and-restore-docker-database",
       headline: "Backup and restore MySQL Docker database",
-      name: "A guide on how to backup and restore MySQL / MariaDB Docker database.",
-      dateCreated: "2017-01-23T19:00:00+01:00",
+      description: "A guide on how to backup and restore MySQL / MariaDB Docker database.",
       datePublished: "2017-01-23T19:00:00+01:00",
-      inLanguage: "en-GB",
-      author: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-      copyrightHolder: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-    },
+      dateModified: "2017-01-23T19:00:00+01:00",
+      articleSection: "Docker",
+      keywords: ["Docker", "MySQL", "MariaDB", "database", "backup", "restore"],
+      wordCount: 349,
+      proficiencyLevel: "Intermediate",
+    }),
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Guides", url: "https://www.elliotjreed.com" },
+      { name: "Docker", url: "https://www.elliotjreed.com/docker/backup-and-restore-docker-database" },
+      { name: "Backup Database", url: "https://www.elliotjreed.com/docker/backup-and-restore-docker-database" },
+    ]),
   },
 ];
 
