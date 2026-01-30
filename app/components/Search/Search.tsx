@@ -40,6 +40,7 @@ export const Search: FC = (): ReactElement => {
     setActiveIndex(-1);
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: handleClose doesn't need to be a dependency
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent): void => {
       const target = event.target as Node;
@@ -55,8 +56,9 @@ export const Search: FC = (): ReactElement => {
     return (): void => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isExpanded, handleClose]);
+  }, [isExpanded]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: handleClose doesn't need to be a dependency
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent): void => {
       if (!isExpanded) return;
@@ -89,7 +91,7 @@ export const Search: FC = (): ReactElement => {
     return (): void => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isExpanded, results, activeIndex, navigate, handleClose]);
+  }, [isExpanded, results, activeIndex, navigate]);
 
   useEffect(() => {
     if (activeIndex >= 0) {

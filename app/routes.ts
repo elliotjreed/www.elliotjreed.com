@@ -34,6 +34,7 @@ export default [
   route("utils/percentage-calculator", "routes/utils/percentage-calculator.tsx"),
   route("sitemap", "routes/sitemap.tsx"),
   route("privacy", "routes/privacy.tsx"),
+  route("impressum", "routes/impressum.tsx"),
   route("travel", "routes/travel.tsx"),
   route("stay-alert", "routes/stay-alert.tsx"),
   route("government-tweet", "routes/government-tweet.tsx"),

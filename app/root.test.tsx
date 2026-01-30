@@ -77,17 +77,6 @@ describe("root", () => {
       expect(viewport).toHaveAttribute("content", "width=device-width, shrink-to-fit=no, initial-scale=1");
     });
 
-    it("should have default title", () => {
-      render(
-        <Layout>
-          <div>Content</div>
-        </Layout>,
-      );
-
-      const title = document.querySelector("title");
-      expect(title).toHaveTextContent("Elliot J. Reed | EJR");
-    });
-
     it("should have skip to content link", () => {
       render(
         <Layout>

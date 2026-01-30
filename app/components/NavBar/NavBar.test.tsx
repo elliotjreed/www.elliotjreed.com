@@ -115,6 +115,7 @@ describe("NavBar", () => {
     // Click on Guides dropdown
     const guidesButtons = screen.getAllByRole("button", { name: /Guides/i });
     const guidesButton = guidesButtons.find((btn) => btn.textContent === "Guides");
+    // biome-ignore lint/style/noNonNullAssertion: test ensures button exists via screen.getAllByRole
     await user.click(guidesButton!);
 
     // Check if child links are visible - should find the AI Prompt Guide link
@@ -217,6 +218,7 @@ describe("NavBar", () => {
 
     const guidesButtons = screen.getAllByRole("button", { name: /Guides/i });
     const guidesButton = guidesButtons.find((btn) => btn.textContent === "Guides");
+    // biome-ignore lint/style/noNonNullAssertion: test ensures button exists via screen.getAllByRole
     await user.click(guidesButton!);
 
     await waitFor(() => {

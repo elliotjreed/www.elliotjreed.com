@@ -29,7 +29,7 @@ export const NavBar: FC = (): ReactElement => {
   };
   const toggleSubDropdown = (title: string): void => setOpenSubDropdown((c) => (c === title ? null : title));
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: incorrectly reports closeMenu as missing dependency
+  // biome-ignore lint/correctness/useExhaustiveDependencies: closeMenu doesn't need to be a dependency
   useEffect(() => {
     const handleClick = (event: MouseEvent): void => {
       const target = event.target as Node;
@@ -46,6 +46,7 @@ export const NavBar: FC = (): ReactElement => {
     return (): void => document.removeEventListener("mousedown", handleClick);
   }, []);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: closeMenu doesn't need to be a dependency
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent): void => {
       if (event.key === "Escape" && isMenuOpen) {
@@ -55,7 +56,7 @@ export const NavBar: FC = (): ReactElement => {
 
     document.addEventListener("keydown", handleEscape);
     return (): void => document.removeEventListener("keydown", handleEscape);
-  }, [isMenuOpen, closeMenu]);
+  }, [isMenuOpen]);
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -213,7 +214,8 @@ export const NavBar: FC = (): ReactElement => {
               aria-label="Close menu"
               className="p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors"
             >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <title>Close icon</title>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
