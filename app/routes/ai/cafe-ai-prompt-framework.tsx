@@ -51,6 +51,30 @@ export const meta = () => [
       { name: "CAFE Framework", url: "https://www.elliotjreed.com/ai/cafe-ai-prompt-framework" },
     ]),
   },
+  {
+    "script:ld+json": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "Do I need to use all four elements in every prompt?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "No, not every prompt requires all four CAFE elements. The framework is a guideline, not a rigid formula. Simple questions might only need an Action ('Explain quantum computing'), whilst complex tasks benefit from combining multiple elements. Start with what feels natural, then add Context, Format, or Examples if the initial response doesn't meet your needs.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Which element is most important?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "The Action is the most essential element - you must tell the AI what you want it to do. Beyond that, importance varies by task. Context becomes critical for domain-specific or nuanced requests, Format matters when you need structured output (like JSON or markdown), and Examples are vital when you need precise replication of a particular style or format. Prioritise based on your specific needs.",
+          },
+        },
+      ],
+    },
+  },
 ];
 
 export default (): ReactElement => (
