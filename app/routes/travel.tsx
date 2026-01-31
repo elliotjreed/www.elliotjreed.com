@@ -1,10 +1,30 @@
 import type { ReactElement } from "react";
+import { createBreadcrumbs } from "~/data/schemaData";
 
 export const meta = () => [
   { title: "Travelling | EJR" },
   {
     name: "description",
     content: "A few photos from various travels and trips.",
+  },
+  {
+    "script:ld+json": {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "@id": "https://www.elliotjreed.com/travel#webpage",
+      url: "https://www.elliotjreed.com/travel",
+      name: "Travelling",
+      description: "A few photos from various travels and trips.",
+      isPartOf: { "@id": "https://www.elliotjreed.com/#website" },
+      author: { "@id": "https://www.elliotjreed.com/#author" },
+      inLanguage: "en-GB",
+    },
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Travel", url: "https://www.elliotjreed.com/travel" },
+    ]),
   },
 ];
 

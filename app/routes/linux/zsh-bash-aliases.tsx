@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
+import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
 
 export const meta = () => [
   { title: "ZSH & Bash Aliases | EJR" },
@@ -16,34 +17,34 @@ export const meta = () => [
   { property: "og:url", content: "https://www.elliotjreed.com/linux/zsh-bash-aliases" },
   { property: "og:site_name", content: "Elliot J. Reed" },
   { property: "og:locale", content: "en_GB" },
+  { property: "og:image", content: "https://www.elliotjreed.com/og.png" },
+  { name: "twitter:card", content: "summary_large_image" },
+  { name: "twitter:title", content: "ZSH & Bash Aliases" },
   {
-    "script:ld+json": {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
+    name: "twitter:description",
+    content: "A collection of useful ZSH, Bash, and Shell aliases for use on Linux (or Mac or Windows).",
+  },
+  { name: "twitter:image", content: "https://www.elliotjreed.com/twitter-card.png" },
+  {
+    "script:ld+json": createTechArticle({
+      url: "https://www.elliotjreed.com/linux/zsh-bash-aliases",
       headline: "ZSH & Bash Aliases",
-      name: "A collection of useful ZSH, Bash, and Shell aliases for use on Linux (or Mac or Windows).",
-      dateCreated: "2025-04-20T16:51:56+01:00",
+      description: "A collection of useful ZSH, Bash, and Shell aliases for use on Linux (or Mac or Windows).",
       datePublished: "2025-04-20T16:51:56+01:00",
-      inLanguage: "en-GB",
-      author: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-      copyrightHolder: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-    },
+      dateModified: "2026-01-30T00:00:00+00:00",
+      articleSection: "Linux",
+      keywords: ["Linux", "ZSH", "Bash", "shell", "aliases", "command line"],
+      wordCount: 468,
+      proficiencyLevel: "Beginner",
+    }),
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Guides", url: "https://www.elliotjreed.com" },
+      { name: "Linux", url: "https://www.elliotjreed.com/linux/zsh-bash-aliases" },
+      { name: "ZSH & Bash Aliases", url: "https://www.elliotjreed.com/linux/zsh-bash-aliases" },
+    ]),
   },
 ];
 
@@ -64,7 +65,7 @@ alias ls='ls -FA --color'
 alias sl='ls'
 
 # Make ls -l show in human-readable format
-alias ll='ls -lhFA  --color'`,
+alias ll='ls -lhFA --color'`,
   },
   {
     title: "du",
@@ -104,7 +105,7 @@ alias mkdir="mkdir -pv"`,
   {
     title: "flushdns",
     code: `# Flush DNS cache
-alias flushdns='sudo systemd-resolve --flush-caches'`,
+alias flushdns='sudo resolvectl flush-caches'`,
   },
 ];
 
@@ -114,6 +115,19 @@ export default (): ReactElement => (
       <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
         Shell Aliases
       </h1>
+
+      <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <span>By Elliot J. Reed</span>
+        <span>•</span>
+        <time dateTime="2025-04-20">
+          Published: 20<sup>th</sup> April 2025
+        </time>
+        <span>•</span>
+        <time dateTime="2026-01-30">
+          Last updated: 30<sup>th</sup> January 2026
+        </time>
+      </div>
+
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         Here you'll find a few handy aliases to use in ZSH and Bash Shell. Tested on Linux - likely work on Mac!
       </p>
@@ -126,6 +140,21 @@ export default (): ReactElement => (
             <CodeSnippet key={snippet.title} language="bash" code={snippet.code} title={snippet.title} />
           ),
         )}
+
+        <h2>Conclusion</h2>
+        <p>
+          These shell aliases demonstrate how small customizations can significantly improve your command-line
+          productivity. By adding these to your ~/.bashrc or ~/.zshrc file, you'll have convenient shortcuts that make
+          common tasks faster and safer. From easier directory navigation with .. and ... to human-readable output with
+          modified ls, du, and free commands, each alias solves a specific friction point in daily terminal work.
+        </p>
+        <p>
+          Start by adding the aliases that align with your most frequent tasks, then gradually expand your collection as
+          you identify other repetitive commands. Remember to source your configuration file after making changes with
+          source ~/.bashrc or source ~/.zshrc to load the new aliases. These simple productivity enhancements can save
+          you countless keystrokes and help prevent common mistakes, making your command-line experience smoother and
+          more efficient.
+        </p>
       </section>
     </div>
   </section>

@@ -6,21 +6,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Local Development
 - `bun run dev` - Start development server at http://localhost:5173
-- `bun run start` - Start Wrangler development server
 - `bun run build` - Build for production
 - `bun run typecheck` - Run TypeScript type checking and generate route types
 - `bun run test` - Run Vitest tests
 - `bun run format` - Format code with Biome (includes linting and fixing)
 
-### Deployment
-- `bun run deploy` - Build and deploy to production (Cloudflare Workers)
-- `bun run wrangler` - Deploy to Cloudflare Workers (requires existing build)
-- `bunx wrangler versions upload` - Deploy preview URL
-- `bunx wrangler versions deploy` - Promote version to production
-
 ## Project Architecture
 
-This is a personal website built with React Router v7, deployed on Cloudflare Workers. The architecture follows modern React patterns with server-side rendering support.
+This is a personal website built with React Router v7, deployed on Cloudflare Workers.
+
+The architecture follows modern React patterns with server-side rendering and SSG support.
 
 ### Key Architecture Components
 
@@ -90,11 +85,12 @@ This is a personal website built with React Router v7, deployed on Cloudflare Wo
 ### Key Development Patterns
 
 **Custom Hooks**:
-- `useFontsReady` - Font loading detection for animations
+- `useSearch` - Search functionality provided by `fuse.js`
 - `useLocalStorage` - Persistent client-side storage
 
-**Animation**: Progressive reveal using CSS animations with JavaScript-controlled delays
-
 **SEO**: Comprehensive meta tags, Open Graph, Twitter Cards, and JSON-LD structured data
+- The OpenGraph image is https://www.elliotjreed.com/og.png
+- The Twitter image is https://www.elliotjreed.com/twitter-card.png
+- Schema data defaults are in `app/data/schemaData.ts`
 
-**Accessibility**: Skip links, semantic HTML, proper heading hierarchy, and keyboard navigation support
+**Accessibility**: Skip links, semantic HTML, proper heading hierarchy, keyboard navigation support, and appropriate ARIA considerations

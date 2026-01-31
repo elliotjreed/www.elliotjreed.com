@@ -1,8 +1,28 @@
 import { emailAddress } from "~/data/emailAddress";
+import { createBreadcrumbs } from "~/data/schemaData";
 
 export const meta = () => [
   { title: "TheVape.co.uk - Domain for Sale | EJR" },
   { name: "description", content: "Contact me to submit an offer for The Vape.co.uk domain." },
+  {
+    "script:ld+json": {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://www.elliotjreed.com/the-vape#webpage",
+      url: "https://www.elliotjreed.com/the-vape",
+      name: "TheVape.co.uk - Domain for Sale",
+      description: "Contact me to submit an offer for The Vape.co.uk domain.",
+      isPartOf: { "@id": "https://www.elliotjreed.com/#website" },
+      author: { "@id": "https://www.elliotjreed.com/#author" },
+      inLanguage: "en-GB",
+    },
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "TheVape.co.uk", url: "https://www.elliotjreed.com/the-vape" },
+    ]),
+  },
 ];
 
 export default function Index() {

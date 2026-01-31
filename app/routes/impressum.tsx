@@ -1,9 +1,29 @@
 import type { ReactElement } from "react";
 import { emailAddress } from "~/data/emailAddress";
+import { createBreadcrumbs } from "~/data/schemaData";
 
 export const meta = () => [
   { title: "Impressum | EJR" },
   { name: "description", content: "Legal information and imprint for www.elliotjreed.com" },
+  {
+    "script:ld+json": {
+      "@context": "https://schema.org",
+      "@type": ["WebPage", "ContactPage"],
+      "@id": "https://www.elliotjreed.com/impressum#webpage",
+      url: "https://www.elliotjreed.com/impressum",
+      name: "Impressum",
+      description: "Legal information and imprint for www.elliotjreed.com",
+      isPartOf: { "@id": "https://www.elliotjreed.com/#website" },
+      about: { "@id": "https://www.elliotjreed.com/#author" },
+      inLanguage: "en-GB",
+    },
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Impressum", url: "https://www.elliotjreed.com/impressum" },
+    ]),
+  },
 ];
 
 export default (): ReactElement => (
