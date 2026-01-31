@@ -1,54 +1,67 @@
 import type { ReactElement } from "react";
 import { CodeSnippet } from "~/components/CodeSnippet/CodeSnippet";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
+import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
 import claudeCodeStatuslineImage from "~/images/articles/claude-code-custom-statusline.png";
 import claudeCodeStatuslineImageWebp from "~/images/articles/claude-code-custom-statusline.webp";
 
 export const meta = () => [
-  { title: "Claude Code Guide and Tips | EJR" },
+  { title: "Guide to Claude Code: Features and Best Practices | EJR" },
   {
     name: "description",
     content:
-      "A comprehensive guide to using Claude Code for software development, covering installation, prompting strategies, planning, git integration, and advanced features like skills, subagents, and MCP servers.",
+      "Master Claude Code's installation, plan mode, Skills, subagents, and MCP servers. Learn prompting strategies and advanced features for AI-assisted development.",
   },
-  { property: "og:title", content: "Claude Code Guide and Tips" },
+  { property: "og:title", content: "Guide to Claude Code: Features and Best Practices" },
   {
     property: "og:description",
     content:
-      "A comprehensive guide to using Claude Code for software development, covering installation, prompting strategies, planning, git integration, and advanced features like skills, subagents, and MCP servers.",
+      "Master Claude Code's installation, plan mode, Skills, subagents, and MCP servers. Learn prompting strategies and advanced features for AI-assisted development.",
   },
   { property: "og:type", content: "article" },
   { property: "og:url", content: "https://www.elliotjreed.com/ai/claude-code-guide-and-tips" },
+  { property: "og:image", content: "https://www.elliotjreed.com/og.png" },
   { property: "og:site_name", content: "Elliot J. Reed" },
   { property: "og:locale", content: "en_GB" },
+  { name: "twitter:card", content: "summary_large_image" },
+  { name: "twitter:title", content: "Guide to Claude Code: Features and Best Practices" },
   {
-    "script:ld+json": {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      headline: "Claude Code Guide and Tips",
-      name: "A comprehensive guide to using Claude Code for software development, covering installation, prompting strategies, planning, git integration, and advanced features like skills, subagents, and MCP servers.",
-      dateCreated: "2026-01-24T20:20:18+00:00",
+    name: "twitter:description",
+    content:
+      "Master Claude Code's installation, plan mode, Skills, subagents, and MCP servers. Learn prompting strategies and advanced features for AI-assisted development.",
+  },
+  { name: "twitter:image", content: "https://www.elliotjreed.com/twitter-card.png" },
+  {
+    "script:ld+json": createTechArticle({
+      url: "https://www.elliotjreed.com/ai/claude-code-guide-and-tips",
+      headline: "Complete Guide to Claude Code: Setup, Features, and Best Practices",
+      description:
+        "Master Claude Code's installation, plan mode, Skills, subagents, and MCP servers. Learn prompting strategies and advanced features for AI-assisted development.",
       datePublished: "2026-01-24T20:20:18+00:00",
-      inLanguage: "en-GB",
-      author: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-      copyrightHolder: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-    },
+      dateModified: "2026-01-30T00:00:00+00:00",
+      articleSection: "AI",
+      keywords: [
+        "Claude Code",
+        "AI",
+        "software development",
+        "prompt engineering",
+        "MCP servers",
+        "git integration",
+        "plan mode",
+        "Claude Skills",
+        "subagents",
+      ],
+      wordCount: 5200,
+      proficiencyLevel: "Intermediate",
+    }),
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Guides", url: "https://www.elliotjreed.com" },
+      { name: "AI", url: "https://www.elliotjreed.com/ai/claude-code-guide-and-tips" },
+      { name: "Claude Code Guide", url: "https://www.elliotjreed.com/ai/claude-code-guide-and-tips" },
+    ]),
   },
 ];
 
@@ -56,26 +69,100 @@ export default (): ReactElement => (
   <section className="divide-y divide-gray-200 dark:divide-gray-700">
     <div className="space-y-2 pt-6 pb-8 md:space-y-5">
       <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
-        Claude Code: Guide &amp; Tips
+        Claude Code Guide: Features and Best Practices
       </h1>
 
+      <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <span>By Elliot J. Reed</span>
+        <span>•</span>
+        <time dateTime="2026-01-24">
+          Published: 24<sup>th</sup> January 2026
+        </time>
+        <span>•</span>
+        <time dateTime="2026-01-30">
+          Last updated: 30<sup>th</sup> January 2026
+        </time>
+      </div>
+
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
-        This guide provides a broad overview on how to get the most from Claude Code.
+        <strong>
+          Claude Code is Anthropic's official command-line interface (CLI) that brings Claude AI directly into your
+          terminal for AI-assisted software development.
+        </strong>{" "}
+        It enables developers to write, refactor, debug, and deploy code using natural language prompts whilst
+        maintaining full control over file operations and command execution.
       </p>
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
-        If you're already using Claude Code and want to go beyond the basics, this guide covers{" "}
-        <a href="#models">model selection</a>, the{" "}
-        <a href="#claudemd-providing-claude-code-with-context">CLAUDE.md context file</a>,{" "}
-        <a href="#prompting-planning-and-execution">"plan mode"</a>,{" "}
-        <a href="#checkpoints-undoing-code-and-context">undoing / rewinding</a>,{" "}
-        <a href="#settings-and-permissions">settings and permissions</a>,{" "}
-        <a href="#claude-plugins-and-plugin-marketplaces">plugins and marketplaces</a>,{" "}
-        <a href="#claude-skills">Claude Skills</a>, <a href="#claude-subagents">Agents</a>,{" "}
-        <a href="#claude-mcp-servers">MCP Servers</a>, and <a href="#custom-statuslines">custom status lines</a>.
+        This guide covers installation, model selection, the CLAUDE.md context file, plan mode for feature
+        implementation, checkpoints for undoing changes, Git integration, settings configuration, and advanced features
+        including Claude Skills, subagents, and MCP servers for extending functionality.
       </p>
     </div>
 
     <div className="prose max-w-none dark:prose-dark">
+      <section id="table-of-contents">
+        <h2>Contents</h2>
+        <ol>
+          <li>
+            <a href="#cheatsheet">Quick Reference Cheatsheet</a>
+          </li>
+          <li>
+            <a href="#installation">Installation</a>
+          </li>
+          <li>
+            <a href="#starting-claude-code">Starting Claude Code</a>
+          </li>
+          <li>
+            <a href="#using-claude-code">Using Claude Code</a>
+          </li>
+          <li>
+            <a href="#models">Models</a>
+          </li>
+          <li>
+            <a href="#claudemd-providing-claude-code-with-context">CLAUDE.md - Providing Claude Code with Context</a>
+          </li>
+          <li>
+            <a href="#prompting-planning-and-execution">Prompting, Planning, and Execution</a>
+          </li>
+          <li>
+            <a href="#checkpoints-undoing-code-and-context">Checkpoints: Undoing Code and Context</a>
+          </li>
+          <li>
+            <a href="#git-and-version-control">Git and Version Control</a>
+          </li>
+          <li>
+            <a href="#usage-limits-and-context-control">Usage and Context Control</a>
+          </li>
+          <li>
+            <a href="#settings-and-permissions">Settings and Permissions</a>
+          </li>
+          <li>
+            <a href="#claude-plugins-and-plugin-marketplaces">Claude Plugins and Plugin Marketplaces</a>
+          </li>
+          <li>
+            <a href="#claude-commands">Claude Commands</a>
+          </li>
+          <li>
+            <a href="#claude-skills">Claude Skills</a>
+          </li>
+          <li>
+            <a href="#claude-subagents">Claude Subagents</a>
+          </li>
+          <li>
+            <a href="#claude-mcp-servers">Claude MCP Servers</a>
+          </li>
+          <li>
+            <a href="#custom-statuslines">Custom Statuslines</a>
+          </li>
+          <li>
+            <a href="#faq">Frequently Asked Questions</a>
+          </li>
+          <li>
+            <a href="#conclusion">Conclusion</a>
+          </li>
+        </ol>
+      </section>
+
       <section id="cheatsheet">
         <h2>Quick Reference Cheatsheet</h2>
 
@@ -158,63 +245,6 @@ export default (): ReactElement => (
         </ul>
       </section>
 
-      <section id="table-of-contents">
-        <h2>Contents</h2>
-        <ol>
-          <li>
-            <a href="#cheatsheet">Quick Reference Cheatsheet</a>
-          </li>
-          <li>
-            <a href="#installation">Installation</a>
-          </li>
-          <li>
-            <a href="#starting-claude-code">Starting Claude Code</a>
-          </li>
-          <li>
-            <a href="#using-claude-code">Using Claude Code</a>
-          </li>
-          <li>
-            <a href="#models">Models</a>
-          </li>
-          <li>
-            <a href="#claudemd-providing-claude-code-with-context">CLAUDE.md - Providing Claude Code with Context</a>
-          </li>
-          <li>
-            <a href="#prompting-planning-and-execution">Prompting, Planning, and Execution</a>
-          </li>
-          <li>
-            <a href="#checkpoints-undoing-code-and-context">Checkpoints: Undoing Code and Context</a>
-          </li>
-          <li>
-            <a href="#git-and-version-control">Git and Version Control</a>
-          </li>
-          <li>
-            <a href="#usage-limits-and-context-control">Usage and Context Control</a>
-          </li>
-          <li>
-            <a href="#settings-and-permissions">Settings and Permissions</a>
-          </li>
-          <li>
-            <a href="#claude-plugins-and-plugin-marketplaces">Claude Plugins and Plugin Marketplaces</a>
-          </li>
-          <li>
-            <a href="#claude-commands">Claude Commands</a>
-          </li>
-          <li>
-            <a href="#claude-skills">Claude Skills</a>
-          </li>
-          <li>
-            <a href="#claude-subagents">Claude Subagents</a>
-          </li>
-          <li>
-            <a href="#claude-mcp-servers">Claude MCP Servers</a>
-          </li>
-          <li>
-            <a href="#custom-statuslines">Custom Statuslines</a>
-          </li>
-        </ol>
-      </section>
-
       <section>
         <HeadingAnchor id="installation">Installation</HeadingAnchor>
 
@@ -230,10 +260,7 @@ export default (): ReactElement => (
       <section>
         <HeadingAnchor id="starting-claude-code">Starting Claude Code</HeadingAnchor>
 
-        <p>
-          Claude Code runs from the directory (folder) you open it in. This will likely be the directory of the
-          application you are developing.
-        </p>
+        <p>Claude Code operates within the directory where you launch it, typically your project's root folder.</p>
 
         <p>To start Claude Code in your terminal, run:</p>
 
@@ -326,11 +353,11 @@ export default (): ReactElement => (
       <section>
         <HeadingAnchor id="models">Models</HeadingAnchor>
 
-        <p>Claude Code has access to the three main Claude LLM models:</p>
+        <p>Claude Code supports three models:</p>
         <ol>
-          <li>Opus - the biggest, most intelligent, slowest, and most costly model</li>
-          <li>Sonnet - the mid-tier model, quicker and more cost-effective than Opus</li>
-          <li>Haiku - the smallest model, very fast and very cost-effective</li>
+          <li>Opus - highest capability model, slower response times, higher usage costs</li>
+          <li>Sonnet - balanced performance and cost, suitable for most development tasks</li>
+          <li>Haiku - fastest responses, lowest usage costs, ideal for straightforward tasks</li>
         </ol>
 
         <p>You can switch between models in Claude Code by running the slash command:</p>
@@ -341,26 +368,29 @@ export default (): ReactElement => (
 
         <h4>Opus</h4>
 
-        <p>Opus is the most intelligent, but will use up your limits rather quickly.</p>
+        <p>Opus offers the highest capability but consumes usage limits faster than other models.</p>
 
-        <p>Opus is great for planning features, and implementing more challenging features.</p>
+        <p>
+          Use Opus for planning complex features and implementing challenging functionality that requires deep
+          reasoning.
+        </p>
 
         <h4>Sonnet</h4>
 
-        <p>Sonnet is faster than Opus and will not use up your limits as quickly.</p>
+        <p>Sonnet provides faster responses than Opus whilst consuming fewer usage limits.</p>
 
         <p>
-          Sonnet is great for most use-cases. You will likely find that Sonnet is great as the default implementation
-          model - the model writing the code.
+          Sonnet serves as an excellent default for most development tasks. Use it as your primary implementation model
+          for writing and editing code.
         </p>
 
         <h4>Haiku</h4>
 
-        <p>Haiku is the fastest model, and will not use up limits as quickly as either Opus or Sonnet.</p>
+        <p>Haiku delivers the fastest responses and consumes the fewest usage limits of all three models.</p>
 
         <p>
-          Haiku can be good for implementing standard features. For example, creating a website in React JS, or a data
-          analysis project in Python.
+          Haiku excels at implementing standard features such as creating React components, writing Python scripts, or
+          building conventional applications following established patterns.
         </p>
 
         <h4>Hybrid: Recommended Setup</h4>
@@ -381,12 +411,14 @@ export default (): ReactElement => (
         </HeadingAnchor>
 
         <p>
-          An absolutely essential way to get the most out of Claude Code is to have a <code>CLAUDE.md</code> file.
+          The most effective way to optimise Claude Code performance is to provide a <code>CLAUDE.md</code> file in your
+          project root.
         </p>
 
         <p>
-          The <code>CLAUDE.md</code> file is where you outline common development commands, explain the project layout
-          and architecture, and describe essential development practices.
+          The <code>CLAUDE.md</code> file serves as project documentation for Claude, outlining common development
+          commands, project architecture, directory structure, and essential development practices. This context enables
+          Claude to make informed decisions about code changes and follow your project's conventions.
         </p>
 
         <section id="creating-a-claudemd-file">
@@ -459,16 +491,17 @@ The architecture follows modern React patterns with server-side rendering suppor
       <section>
         <HeadingAnchor id="prompting-planning-and-execution">Prompting, Planning, and Execution</HeadingAnchor>
 
-        <p>The key to having Claude Code perform well is in effective prompting and planning.</p>
+        <p>Effective prompting and planning are key to Claude Code's performance.</p>
 
         <section id="prompting">
           <h3>Prompting</h3>
 
-          <p>When providing instructions to Claude Code, clarity and context are key.</p>
+          <p>When providing instructions to Claude Code, clarity and context produce the best results.</p>
 
           <p>
-            Imagine you are a Product Owner, instruct Claude as you would a Software Developer. Be clear about the
-            requirements. Use natural language.
+            Write prompts as you would brief a software developer: clearly state requirements, provide context about the
+            existing codebase, and specify expected outcomes. Use natural language rather than attempting to write
+            code-like commands.
           </p>
 
           <p>
@@ -488,11 +521,14 @@ The architecture follows modern React patterns with server-side rendering suppor
           <h3>Planning</h3>
 
           <p>
-            As previously outlined, Claude Code has a "Plan Mode". You can enter Plan Mode by <kbd>Shift</kbd>+
-            <kbd>Tab</kbd> where you will see <code>plan mode on</code> under the input bar.
+            Claude Code includes a dedicated Plan Mode feature. Enable it manually using <kbd>Shift</kbd>+<kbd>Tab</kbd>{" "}
+            until you see <code>plan mode on</code> displayed below the input bar.
           </p>
 
-          <p>Claude Code can also enter Plan Mode automatically through instructions.</p>
+          <p>
+            Alternatively, Claude Code enters Plan Mode automatically when your prompt explicitly requests planning
+            (e.g., "Plan the implementation of...").
+          </p>
 
           <p>
             For example, you want to add a new search feature to a website built in React. You could instruct Claude
@@ -524,14 +560,14 @@ The architecture follows modern React patterns with server-side rendering suppor
           <h3>Execution</h3>
 
           <p>
-            When Claude Code starts executing the plan, it may ask whether you want to allow certain commands to be
-            allowed to run automatically each time, or have Claude Code ask you each time.
+            During execution, Claude Code may request permission to run certain commands. You can grant one-time
+            permission or configure persistent rules (allow always, ask every time, or deny).
           </p>
 
           <p>
-            Claude will proceed to write the code, and will ask for any further commands it wants to run. This guide
-            will later outline how common commands can be configured to be allowed to run automatically, ask every time,
-            or not be allowed to run at all.
+            Claude proceeds to implement the plan by creating and modifying files. The{" "}
+            <a href="#settings-and-permissions">Settings and Permissions</a> section below explains how to configure
+            command permissions to streamline your workflow whilst maintaining security.
           </p>
         </section>
 
@@ -555,15 +591,22 @@ The architecture follows modern React patterns with server-side rendering suppor
       <section>
         <HeadingAnchor id="checkpoints-undoing-code-and-context">Checkpoints: Undoing Code and Context</HeadingAnchor>
 
-        <p>Sometimes Claude can go down a path that is just not what you intended or expected.</p>
+        <p>
+          When Claude Code takes an unintended direction or implements changes you want to reverse, you can use
+          checkpoints to restore previous states without starting a new session.
+        </p>
 
-        <p>Fortunately you do not need to start a new session, or instruct Claude to undo what it has started.</p>
-
-        <p>Checkpoints allow you to revert either the context, the code, or both, to a previous prompt stage.</p>
+        <p>
+          Checkpoints allow you to revert the conversation context, file changes, or both to any previous point in your
+          session. Each prompt creates an automatic checkpoint.
+        </p>
 
         <CodeSnippet code="/checkpoints" title="View Checkpoints" />
 
-        <p>The checkpoints are not a replacement for version control via Git.</p>
+        <p>
+          Note: Checkpoints are session-specific and temporary. They are not a replacement for Git version control.
+          Always commit important changes to Git for permanent version history.
+        </p>
       </section>
 
       <section>
@@ -573,8 +616,8 @@ The architecture follows modern React patterns with server-side rendering suppor
           <h3>Committing and Branching</h3>
 
           <p>
-            When a new feature or bug fix is implemented and you are reasonably happy with it, you can ask Claude to
-            commit the changes to Git (or create a new Git branch then commit the changes).
+            After Claude implements a feature or fix, you can request it to commit changes to Git. Claude can also
+            create new branches before committing, following Git workflow best practices.
           </p>
         </section>
 
@@ -582,11 +625,11 @@ The architecture follows modern React patterns with server-side rendering suppor
           <h3>History and Explanations</h3>
 
           <p>
-            Claude Code can access Git history. This can be useful for understanding why a feature or fix had previously
-            been implemented.
+            Claude Code can analyse Git history to understand the evolution of your codebase. This helps explain why
+            particular implementations exist or how features developed over time.
           </p>
 
-          <p>You can ask Claude something like:</p>
+          <p>Example prompt:</p>
 
           <CodeSnippet
             language="markdown"
@@ -602,7 +645,10 @@ The architecture follows modern React patterns with server-side rendering suppor
         <section id="usage-limits">
           <h3>Usage and Limits</h3>
 
-          <p>Claude Code can use a lot of "tokens", which heavily count towards the overall Claude limits.</p>
+          <p>
+            Claude Code consumes tokens from your Claude subscription limits. Long sessions, large file reads, and
+            frequent model interactions can consume significant portions of your monthly allocation.
+          </p>
 
           <p>You can view your remaining usage with the following slash command:</p>
 
@@ -613,7 +659,8 @@ The architecture follows modern React patterns with server-side rendering suppor
           <h3>Context Control</h3>
 
           <p>
-            The "context" (very basically) is the amount of "tokens" Claude Code is holding in your current session.
+            Context refers to the conversation history, file contents, and other information Claude Code maintains in
+            the current session. This consumes tokens from your available context window.
           </p>
 
           <h4>Viewing Context Use</h4>
@@ -625,8 +672,8 @@ The architecture follows modern React patterns with server-side rendering suppor
           <h4>Clearing Context</h4>
 
           <p>
-            For long-running sessions the context can fill up quite quickly. Claude Code will manage this itself
-            largely. However, when beginning a new feature you can force a context reset with the slash command:
+            For long-running sessions, context can accumulate rapidly. Whilst Claude Code manages this automatically,
+            you can manually reset context when beginning a new feature or switching tasks using the slash command:
           </p>
 
           <CodeSnippet code="/clear" title="Clear Context" />
@@ -634,8 +681,8 @@ The architecture follows modern React patterns with server-side rendering suppor
           <h4>Compacting Context</h4>
 
           <p>
-            You can "compact" your message history context to free up context. This will basically summarise where you
-            are currently at. This can be done with the slash command:
+            You can compact your message history to free up context space. This summarises previous conversations whilst
+            preserving essential information. Use the slash command:
           </p>
 
           <CodeSnippet code="/compact" title="Compact Context" />
@@ -646,9 +693,9 @@ The architecture follows modern React patterns with server-side rendering suppor
         <HeadingAnchor id="settings-and-permissions">Settings and Permissions</HeadingAnchor>
 
         <p>
-          Having Claude Code ask for permissions to run commands each time is not ideal. Fortunately, you can specify
-          command permissions, along with other settings, in a <code>./claude/settings.local.json</code> file. This will
-          be generated automatically by Claude, and can be edited and added to.
+          To avoid repetitive permission prompts, you can configure command permissions and other settings in a{" "}
+          <code>.claude/settings.local.json</code> file. Claude Code generates this file automatically, which you can
+          then customise to control which commands run automatically, require confirmation, or are blocked entirely.
         </p>
 
         <p>
@@ -742,19 +789,20 @@ The architecture follows modern React patterns with server-side rendering suppor
         </HeadingAnchor>
 
         <p>
-          Plugins and the plugin marketplaces are a way to install Claude Skills and MCP servers from external sources.
+          Plugins provide a distribution mechanism for installing Claude Skills and MCP servers from official and
+          community sources.
         </p>
 
         <p>
-          Plugins which are available by default and where the marketplace for external plugins have been added can be
-          viewed using the slash command:
+          View available plugins from default marketplaces and any external sources you've configured using the slash
+          command:
         </p>
 
         <CodeSnippet code="/plugin" title="View Plugins" />
 
         <p>
-          When installing from external sources, use caution - anyone can create a plugin and host it on GitHub, ensure
-          you trust the source.
+          Exercise caution when installing plugins from external sources. Verify the publisher's identity and review the
+          plugin's code before installation, as plugins have access to your development environment and files.
         </p>
 
         <p>
@@ -798,7 +846,8 @@ The architecture follows modern React patterns with server-side rendering suppor
 
         <p>
           Claude Skills are a way of loading specialised knowledge into Claude Code. The main benefit is that unlike the{" "}
-          <code>CLAUDE.md</code> file, full Skills file contents are not loaded into the context until used.
+          <code>CLAUDE.md</code> file, <code>SKILL.md</code> file contents are not loaded into the context until the
+          Skill is invoked.
         </p>
 
         <p>
@@ -953,9 +1002,9 @@ Focus on React and TypeScript performance patterns only. Avoid project-wide conf
         <HeadingAnchor id="claude-mcp-servers">Claude MCP Servers</HeadingAnchor>
 
         <p>
-          Model Context Protocol (MCP) is a standardised way of allowing Claude (and others) to interact with external
-          services. These could be email providers (eg. Gmail), project management tools (eg. Asana), communication
-          applications (eg. Slack), and design applications (eg. Canva).
+          Model Context Protocol (MCP) is a standardised protocol that enables Claude to interact with external services
+          and tools. MCP servers provide integrations with email providers (Gmail), project management platforms
+          (Asana), communication tools (Slack), design applications (Canva), databases, and web browsers.
         </p>
 
         <p>
@@ -994,9 +1043,9 @@ Focus on React and TypeScript performance patterns only. Avoid project-wide conf
           <h3>Context7</h3>
 
           <p>
-            Context7 is a really useful MCP. It allows Claude to look up up-to-date documentation and examples, rather
-            than relying just on the training data (which quickly becomes outdated in the world of software
-            development).
+            Context7 provides Claude with access to current documentation and code examples for frameworks, libraries,
+            and tools. This supplements Claude's training data with up-to-date information, particularly valuable given
+            how rapidly software development practices and APIs evolve.
           </p>
 
           <p>To install the Context7 MCP:</p>
@@ -1008,11 +1057,14 @@ Focus on React and TypeScript performance patterns only. Avoid project-wide conf
       <section>
         <HeadingAnchor id="custom-statuslines">Custom Statuslines</HeadingAnchor>
 
-        <p>A custom statusline, an area below the main input box in Claude Code, can be added.</p>
+        <p>
+          You can configure a custom statusline that appears below the input box in Claude Code to display session
+          information.
+        </p>
 
         <p>
-          This can be configured to display variables such as the current Git branch, current working directory, context
-          window usage, and the current model Claude Code is using.
+          Statuslines can show the current Git branch, working directory, context window usage, active model, session
+          ID, and other runtime information. This provides at-a-glance visibility into your Claude Code session state.
         </p>
 
         <h3>Example Custom Statusline</h3>
@@ -1191,7 +1243,7 @@ printf "%b" "$output"`}
           language="json"
           code={`  "statusLine": {
     "type": "command",
-    "command": "~/.claude/statusline-command.sh",
+    "command": "~/.claude/statusline.sh",
     "padding": 0
   }`}
           title="Add to ~/.claude/settings.json"
@@ -1220,6 +1272,75 @@ printf "%b" "$output"`}
         />
 
         <p>Exit Claude Code and go back into it, and you should see the new statusline below the input box.</p>
+      </section>
+
+      <section>
+        <HeadingAnchor id="faq">Frequently Asked Questions</HeadingAnchor>
+
+        <h3>What is the difference between Skills and Subagents?</h3>
+        <p>
+          Skills are reusable prompt templates that load specialised instructions when invoked, without consuming
+          context until used. They're ideal for specific workflows like code reviews or optimisation tasks. Subagents
+          are independent Claude instances that can run in parallel or background, with their own context windows and
+          tool access permissions. Use Skills for repeatable workflows and Subagents for complex, multi-step tasks
+          requiring isolation.
+        </p>
+
+        <h3>How much does Claude Code cost?</h3>
+        <p>
+          Claude Code requires a paid Claude subscription: Pro (individual use), Max (higher usage limits), or Team
+          (collaborative features). Usage counts against your plan's monthly limits based on the model used (Haiku
+          consumes fewer tokens than Sonnet, which consumes fewer than Opus). Check your current usage with the{" "}
+          <code>/usage</code> command.
+        </p>
+
+        <h3>Can I use Claude Code offline?</h3>
+        <p>
+          No. Claude Code requires an active internet connection as it communicates with Anthropic's API servers to
+          process requests. All AI inference happens on Anthropic's infrastructure, not locally on your machine.
+        </p>
+
+        <h3>How do I prevent Claude Code from reading sensitive files like environment variable files?</h3>
+        <p>
+          Add deny rules to your <code>~/.claude/settings.json</code> or <code>.claude/settings.json</code> file. For
+          example:
+          <code>"deny": ["Read(./.env)", "Read(./.env.*)", "Read(**/*.key)"]</code>. This prevents Claude from accessing
+          environment files, private keys, or other sensitive data.
+        </p>
+
+        <h3>What are MCP servers and why would I use them?</h3>
+        <p>
+          Model Context Protocol (MCP) servers extend Claude Code's capabilities by connecting it to external services
+          like Gmail, Slack, databases, or design tools like Canva. They enable Claude to interact with tools beyond
+          your local filesystem. For example, the Playwright MCP allows Claude to view and interact with websites,
+          whilst Context7 provides access to up-to-date documentation for frameworks and libraries.
+        </p>
+      </section>
+
+      <section>
+        <HeadingAnchor id="conclusion">Conclusion</HeadingAnchor>
+
+        <p>
+          Claude Code transforms software development by bringing AI assistance directly into your terminal whilst
+          maintaining full control over your codebase. The key to maximising its effectiveness lies in proper
+          configuration: create a comprehensive CLAUDE.md file, use plan mode for complex features, configure
+          appropriate model selection (<code>opusplan</code> for most workflows), and leverage advanced features like
+          Skills and MCP servers where appropriate.
+        </p>
+
+        <p>
+          Start with the basics: installation, CLAUDE.md creation, and model selection. Then progressively adopt
+          advanced features as your workflow matures. Use checkpoints to experiment safely, configure permissions to
+          balance convenience with security, and create custom Skills for repetitive tasks in your domain.
+        </p>
+
+        <p>
+          For the latest documentation and updates, refer to the official Claude Code documentation at{" "}
+          <a href="https://code.claude.com/docs" rel="noreferrer noopener">
+            code.claude.com/docs
+          </a>
+          .
+        </p>
       </section>
     </div>
   </section>

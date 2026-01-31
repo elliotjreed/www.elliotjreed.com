@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
+import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
 
 export const meta = () => [
   { title: "ZSH & Bash Functions | EJR" },
@@ -16,34 +17,34 @@ export const meta = () => [
   { property: "og:url", content: "https://www.elliotjreed.com/linux/zsh-bash-functions" },
   { property: "og:site_name", content: "Elliot J. Reed" },
   { property: "og:locale", content: "en_GB" },
+  { property: "og:image", content: "https://www.elliotjreed.com/og.png" },
+  { name: "twitter:card", content: "summary_large_image" },
+  { name: "twitter:title", content: "ZSH & Bash Functions" },
   {
-    "script:ld+json": {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
+    name: "twitter:description",
+    content: "A collection of useful ZSH, Bash, and Shell functions for use on Linux (or Mac or Windows).",
+  },
+  { name: "twitter:image", content: "https://www.elliotjreed.com/twitter-card.png" },
+  {
+    "script:ld+json": createTechArticle({
+      url: "https://www.elliotjreed.com/linux/zsh-bash-functions",
       headline: "ZSH & Bash Functions",
-      name: "A collection of useful ZSH, Bash, and Shell functions for use on Linux (or Mac or Windows).",
-      dateCreated: "2025-04-20T16:51:56+01:00",
+      description: "A collection of useful ZSH, Bash, and Shell functions for use on Linux (or Mac or Windows).",
       datePublished: "2025-04-20T16:51:56+01:00",
-      inLanguage: "en-GB",
-      author: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-      copyrightHolder: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-    },
+      dateModified: "2026-01-30T00:00:00+00:00",
+      articleSection: "Linux",
+      keywords: ["Linux", "ZSH", "Bash", "shell", "functions", "command line"],
+      wordCount: 786,
+      proficiencyLevel: "Intermediate",
+    }),
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Guides", url: "https://www.elliotjreed.com" },
+      { name: "Linux", url: "https://www.elliotjreed.com/linux/zsh-bash-functions" },
+      { name: "ZSH & Bash Functions", url: "https://www.elliotjreed.com/linux/zsh-bash-functions" },
+    ]),
   },
 ];
 
@@ -94,7 +95,7 @@ psg() {
   },
   {
     title: "search",
-    code: `# Search current directory for files containing specified string (Usage: searchdir "Search Term")
+    code: `# Search current directory for files containing specified string (Usage: search "Search Term")
 search() {
   if [[ $# -eq 0 ]] ; then
     echo -e "\\e[0;31mPlease provide a string / search term\\e[0m"
@@ -206,6 +207,19 @@ export default (): ReactElement => (
       <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
         Shell Functions
       </h1>
+
+      <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <span>By Elliot J. Reed</span>
+        <span>•</span>
+        <time dateTime="2025-04-20">
+          Published: 20<sup>th</sup> April 2025
+        </time>
+        <span>•</span>
+        <time dateTime="2026-01-30">
+          Last updated: 30<sup>th</sup> January 2026
+        </time>
+      </div>
+
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         Here you'll find a few handy functions to use in ZSH and Bash Shell. Tested on Linux - likely work on Mac!
       </p>
@@ -218,6 +232,22 @@ export default (): ReactElement => (
             <CodeSnippet key={snippet.title} language="bash" code={snippet.code} title={snippet.title} />
           ),
         )}
+
+        <h2>Conclusion</h2>
+        <p>
+          These shell functions provide powerful automation for common system administration and development tasks. From
+          fixing file permissions to generating SSL certificates, each function encapsulates complex command sequences
+          into simple, memorable commands. By adding these to your ~/.bashrc or ~/.zshrc configuration, you'll have a
+          robust toolkit available whenever you need it, reducing the cognitive load of remembering exact command syntax
+          for infrequent but important tasks.
+        </p>
+        <p>
+          Start by implementing the functions most relevant to your workflow, whether that's the myip function for
+          network diagnostics, the search function for code exploration, or the certgen function for local development
+          HTTPS. Each function includes error checking and user-friendly prompts where appropriate, making them safe and
+          practical for everyday use. Remember to source your configuration file after adding new functions, and don't
+          hesitate to customize these examples to better suit your specific needs and preferences.
+        </p>
       </section>
     </div>
   </section>

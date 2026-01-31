@@ -1,11 +1,35 @@
 import type { ReactElement } from "react";
 import { GovernmentTwitter } from "~/components/GovernmentTwitter/GovernmentTwitter";
+import { createBreadcrumbs } from "~/data/schemaData";
 
 export const meta = () => [
   { title: "No. 10 Downing Street government tweet generator | EJR" },
   {
     name: "description",
     content: "Generate your own UK government tweet. A bit of a throwback to when I was bored over the COVID times...",
+  },
+  {
+    "script:ld+json": {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "@id": "https://www.elliotjreed.com/government-tweet#webapp",
+      url: "https://www.elliotjreed.com/government-tweet",
+      name: "UK Government Tweet Generator",
+      description:
+        "Generate your own UK government tweet. A bit of a throwback to when I was bored over the COVID times...",
+      applicationCategory: "EntertainmentApplication",
+      isPartOf: { "@id": "https://www.elliotjreed.com/#website" },
+      author: { "@id": "https://www.elliotjreed.com/#author" },
+      inLanguage: "en-GB",
+      isAccessibleForFree: true,
+    },
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Tools", url: "https://www.elliotjreed.com" },
+      { name: "Government Tweet", url: "https://www.elliotjreed.com/government-tweet" },
+    ]),
   },
 ];
 

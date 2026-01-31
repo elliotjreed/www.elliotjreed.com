@@ -1,6 +1,7 @@
 import type { ReactElement } from "react";
 import { Link } from "react-router";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
+import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
 
 export const meta = () => [
   { title: "AI Prompting Guide - Getting Started with Prompt Engineering | EJR" },
@@ -19,34 +20,39 @@ export const meta = () => [
   { property: "og:url", content: "https://www.elliotjreed.com/ai/ai-prompt-engineering-guide" },
   { property: "og:site_name", content: "Elliot J. Reed" },
   { property: "og:locale", content: "en_GB" },
+  { property: "og:image", content: "https://www.elliotjreed.com/og.png" },
+  { name: "twitter:card", content: "summary_large_image" },
+  { name: "twitter:title", content: "AI Prompting Guide - Getting Started with Prompt Engineering" },
   {
-    "script:ld+json": {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
+    name: "twitter:description",
+    content:
+      "A guide and introduction to prompt engineering techniques for AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
+  },
+  { name: "twitter:image", content: "https://www.elliotjreed.com/twitter-card.png" },
+  {
+    "script:ld+json": createTechArticle({
+      url: "https://www.elliotjreed.com/ai/ai-prompt-engineering-guide",
       headline: "AI Prompting Guide - Getting Started with Prompt Engineering",
-      name: "A guide and introduction to prompt engineering techniques for AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
-      dateCreated: "2025-04-20T13:09:43+01:00",
+      description:
+        "A guide and introduction to prompt engineering techniques for AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
       datePublished: "2025-04-20T13:09:43+01:00",
-      inLanguage: "en-GB",
-      author: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
+      dateModified: "2026-01-30T00:00:00+00:00",
+      articleSection: "AI",
+      keywords: ["AI", "prompt engineering", "LLM", "ChatGPT", "Claude", "Gemini", "DeepSeek"],
+      wordCount: 2254,
+      proficiencyLevel: "Beginner",
+    }),
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Guides", url: "https://www.elliotjreed.com" },
+      { name: "AI", url: "https://www.elliotjreed.com/ai/ai-prompt-engineering-guide" },
+      {
+        name: "AI Prompting Guide",
+        url: "https://www.elliotjreed.com/ai/ai-prompt-engineering-guide",
       },
-      copyrightHolder: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-    },
+    ]),
   },
 ];
 
@@ -56,6 +62,18 @@ export default (): ReactElement => (
       <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
         AI Prompting Guide
       </h1>
+
+      <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <span>By Elliot J. Reed</span>
+        <span>•</span>
+        <time dateTime="2025-04-20">
+          Published: 20<sup>th</sup> April 2025
+        </time>
+        <span>•</span>
+        <time dateTime="2026-01-30">
+          Last updated: 30<sup>th</sup> January 2026
+        </time>
+      </div>
 
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         This is a brief "getting started" guide on how to get the most out of AI Assistants through effective "prompt
@@ -94,14 +112,56 @@ export default (): ReactElement => (
 
     <div className="prose max-w-none dark:prose-dark">
       <section>
+        <h2>Table of Contents</h2>
+        <ul>
+          <li>
+            <a href="#what-is-prompt-engineering">What is "Prompt Engineering"?</a>
+          </li>
+          <li>
+            <a href="#what-makes-good-prompt">What makes a good prompt?</a>
+          </li>
+          <li>
+            <a href="#prompt-structure">What is a useful prompt structure?</a>
+          </li>
+          <li>
+            <a href="#cafe-framework">CAFE Framework</a>
+            <ul>
+              <li>
+                <a href="#context">Context</a>
+              </li>
+              <li>
+                <a href="#action">Action</a>
+              </li>
+              <li>
+                <a href="#format">Format</a>
+              </li>
+              <li>
+                <a href="#examples">Examples</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#iterate">Iterate on the Output</a>
+          </li>
+          <li>
+            <a href="#faq">Frequently Asked Questions</a>
+          </li>
+          <li>
+            <a href="#conclusion">Conclusion</a>
+          </li>
+        </ul>
+      </section>
+
+      <section id="what-is-prompt-engineering">
         <h3>What is "Prompt Engineering"?</h3>
         <p>
-          "<strong>Prompt Engineering</strong>" is the practice of crafting instructions (prompts) to guide generative
-          AI models towards producing the desired output.
+          "<strong>Prompt Engineering</strong>" is the practice of crafting clear, structured instructions (prompts) to
+          guide AI models towards producing your desired output. Think of it as learning how to communicate effectively
+          with an AI assistant to get better, more accurate results.
         </p>
       </section>
 
-      <section>
+      <section id="what-makes-good-prompt">
         <h3>What makes a good prompt?</h3>
         <p>
           A good prompt will be clear and concise. It will provide relevant background <strong>context</strong>,
@@ -129,7 +189,7 @@ export default (): ReactElement => (
         </blockquote>
       </section>
 
-      <section>
+      <section id="prompt-structure">
         <h3>What is a useful prompt structure?</h3>
         <p>
           To help remember this we can use the mnemonic "<strong>CAFE</strong>":
@@ -159,7 +219,7 @@ export default (): ReactElement => (
           <HeadingAnchor id="context" level={3}>
             Context
           </HeadingAnchor>
-          <p>Provide background information relevant to the action you want to AI Assistant to perform.</p>
+          <p>Provide background information relevant to the action you want the AI Assistant to perform.</p>
 
           <p>
             This could include context such as the intended audience, your skills, where you are located, or what
@@ -486,6 +546,77 @@ export default (): ReactElement => (
               </section>
             </section>
           </section>
+        </section>
+
+        <section>
+          <HeadingAnchor id="faq" level={2}>
+            Frequently Asked Questions
+          </HeadingAnchor>
+
+          <h3>What is the difference between zero-shot and few-shot prompting?</h3>
+          <p>
+            <strong>Zero-shot prompting</strong> means asking the AI to perform a task without providing any examples.
+            For instance, "Summarise this article" with no example summaries. <strong>Few-shot prompting</strong>{" "}
+            involves providing one or more examples of the desired output format or style before asking the AI to
+            complete a similar task. Few-shot prompting typically produces more consistent and higher-quality results
+            because the AI understands exactly what you're looking for.
+          </p>
+
+          <h3>How long should prompts be?</h3>
+          <p>
+            There's no single ideal length - prompts should be as long as necessary to provide sufficient context and
+            clarity. A simple task might only need one sentence, whilst complex tasks might require several paragraphs
+            of context, detailed instructions, and examples. Focus on being concise whilst including all essential
+            information. If you find your prompts becoming very long, consider breaking the task into smaller,
+            sequential steps.
+          </p>
+
+          <h3>Can I use these techniques with any AI model?</h3>
+          <p>
+            Yes, the CAFE framework and prompt engineering principles work across different AI models including ChatGPT,
+            Claude, Gemini, and DeepSeek. Whilst specific models may have unique strengths or respond better to certain
+            phrasing, the fundamental principles of providing context, clear actions, format specifications, and
+            examples remain effective regardless of which model you're using. Some experimentation may be needed to
+            optimise for particular models.
+          </p>
+        </section>
+
+        <section>
+          <HeadingAnchor id="conclusion" level={2}>
+            Conclusion
+          </HeadingAnchor>
+
+          <p>
+            Effective prompt engineering transforms AI interactions from simple questions to powerful collaborations. By
+            applying the <strong>CAFE framework</strong> (Context, Action, Format, Examples), you can consistently
+            generate more accurate, relevant, and useful responses from AI Assistants.
+          </p>
+
+          <p>Key takeaways:</p>
+          <ul>
+            <li>Provide comprehensive context to ground the AI's understanding</li>
+            <li>Specify clear actions using precise verbs and role-based instructions</li>
+            <li>Define exact output formats to match your needs</li>
+            <li>Use examples to demonstrate expectations and improve quality</li>
+          </ul>
+
+          <p>
+            Start by experimenting with one technique at a time. As you become comfortable, combine multiple strategies
+            to craft increasingly sophisticated prompts. The more specific and thoughtful your prompts, the more
+            valuable the AI's assistance becomes.
+          </p>
+
+          <p>
+            For a quick reference guide, check out the{" "}
+            <Link
+              to="/ai/cafe-ai-prompt-framework"
+              prefetch="render"
+              className="text-primary-700 dark:text-primary-500 underline"
+            >
+              CAFE AI Prompt Framework
+            </Link>
+            .
+          </p>
         </section>
       </section>
     </div>

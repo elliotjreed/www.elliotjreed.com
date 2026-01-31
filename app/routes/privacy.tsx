@@ -1,9 +1,33 @@
 import type { ReactElement } from "react";
 import { emailAddress } from "~/data/emailAddress";
+import { createBreadcrumbs } from "~/data/schemaData";
 
 export const meta = () => [
   { title: "Privacy Policy | EJR" },
   { name: "description", content: "Website privacy policy for www.elliotjreed.com" },
+  {
+    "script:ld+json": {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://www.elliotjreed.com/privacy#webpage",
+      url: "https://www.elliotjreed.com/privacy",
+      name: "Privacy Policy",
+      description: "Website privacy policy for www.elliotjreed.com",
+      isPartOf: { "@id": "https://www.elliotjreed.com/#website" },
+      about: { "@id": "https://www.elliotjreed.com/#author" },
+      inLanguage: "en-GB",
+      speakable: {
+        "@type": "SpeakableSpecification",
+        cssSelector: ["h1", "h2", ".prose p"],
+      },
+    },
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Privacy", url: "https://www.elliotjreed.com/privacy" },
+    ]),
+  },
 ];
 
 export default (): ReactElement => (

@@ -1,6 +1,7 @@
 import type { ReactElement } from "react";
 import { Link } from "react-router";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
+import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
 
 export const meta = () => [
   { title: "CAFE Framework Prompting Guide | EJR" },
@@ -19,34 +20,36 @@ export const meta = () => [
   { property: "og:url", content: "https://www.elliotjreed.com/ai/cafe-ai-prompt-framework" },
   { property: "og:site_name", content: "Elliot J. Reed" },
   { property: "og:locale", content: "en_GB" },
+  { property: "og:image", content: "https://www.elliotjreed.com/og.png" },
+  { name: "twitter:card", content: "summary_large_image" },
+  { name: "twitter:title", content: "CAFE Framework Prompting Guide" },
   {
-    "script:ld+json": {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
+    name: "twitter:description",
+    content:
+      "A guide on effective prompting using the CAFE prompt engineering framework, for AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
+  },
+  { name: "twitter:image", content: "https://www.elliotjreed.com/twitter-card.png" },
+  {
+    "script:ld+json": createTechArticle({
+      url: "https://www.elliotjreed.com/ai/cafe-ai-prompt-framework",
       headline: "CAFE Framework Prompting Guide",
-      name: "A guide on effective prompting using the CAFE prompt engineering framework, for AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
-      dateCreated: "2025-04-20T13:09:43+01:00",
+      description:
+        "A guide on effective prompting using the CAFE prompt engineering framework, for AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
       datePublished: "2025-04-20T13:09:43+01:00",
-      inLanguage: "en-GB",
-      author: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-      copyrightHolder: {
-        "@type": "Person",
-        additionalName: "John",
-        alternateName: "Elliot Reed",
-        familyName: "Reed",
-        givenName: "Elliot",
-        name: "Elliot J. Reed",
-        url: "https://www.elliotjreed.com",
-      },
-    },
+      dateModified: "2026-01-30T00:00:00+00:00",
+      articleSection: "AI",
+      keywords: ["AI", "CAFE framework", "prompt engineering", "LLM", "ChatGPT", "Claude"],
+      wordCount: 1092,
+      proficiencyLevel: "Beginner",
+    }),
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Guides", url: "https://www.elliotjreed.com" },
+      { name: "AI", url: "https://www.elliotjreed.com/ai/cafe-ai-prompt-framework" },
+      { name: "CAFE Framework", url: "https://www.elliotjreed.com/ai/cafe-ai-prompt-framework" },
+    ]),
   },
 ];
 
@@ -56,6 +59,18 @@ export default (): ReactElement => (
       <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
         CAFE Prompt Framework
       </h1>
+
+      <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <span>By Elliot J. Reed</span>
+        <span>•</span>
+        <time dateTime="2025-04-20">
+          Published: 20<sup>th</sup> April 2025
+        </time>
+        <span>•</span>
+        <time dateTime="2026-01-30">
+          Last updated: 30<sup>th</sup> January 2026
+        </time>
+      </div>
 
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         This is an outline of my <strong>CAFE</strong> prompt framework. For a more in-depth guide, take a look at my{" "}
@@ -71,6 +86,30 @@ export default (): ReactElement => (
     </div>
 
     <div className="prose max-w-none dark:prose-dark">
+      <section>
+        <h2>Table of Contents</h2>
+        <ul>
+          <li>
+            <a href="#context">Context</a> - Background information and situation
+          </li>
+          <li>
+            <a href="#action">Action</a> - What you want the AI to do
+          </li>
+          <li>
+            <a href="#format">Format</a> - How you want the response structured
+          </li>
+          <li>
+            <a href="#examples">Examples</a> - Sample outputs or references
+          </li>
+          <li>
+            <a href="#faq">Frequently Asked Questions</a>
+          </li>
+          <li>
+            <a href="#conclusion">Conclusion</a>
+          </li>
+        </ul>
+      </section>
+
       <section id="introduction">
         <a
           href="https://www.elliotjreed.com/CAFE Prompt Framework Poster - Elliot J. Reed.png"
@@ -253,6 +292,57 @@ export default (): ReactElement => (
             Previous successful presentations to this age group have used the "greenhouse as a blanket" analogy and
             incorporated sorting activities where children categorised everyday actions as "helps the planet" or "harms
             the planet."
+          </p>
+        </section>
+
+        <section>
+          <HeadingAnchor id="faq" level={2}>
+            Frequently Asked Questions
+          </HeadingAnchor>
+
+          <h3>Do I need to use all four elements in every prompt?</h3>
+          <p>
+            No, not every prompt requires all four CAFE elements. The framework is a guideline, not a rigid formula.
+            Simple questions might only need an <strong>Action</strong> ("Explain quantum computing"), whilst complex
+            tasks benefit from combining multiple elements. Start with what feels natural, then add Context, Format, or
+            Examples if the initial response doesn't meet your needs.
+          </p>
+
+          <h3>Which element is most important?</h3>
+          <p>
+            The <strong>Action</strong> is the most essential element - you must tell the AI what you want it to do.
+            Beyond that, importance varies by task. Context becomes critical for domain-specific or nuanced requests,
+            Format matters when you need structured output (like JSON or markdown), and Examples are vital when you need
+            precise replication of a particular style or format. Prioritise based on your specific needs.
+          </p>
+        </section>
+
+        <section>
+          <HeadingAnchor id="conclusion" level={2}>
+            Conclusion
+          </HeadingAnchor>
+
+          <p>
+            The <strong>CAFE framework</strong> provides a simple, memorable structure for crafting effective AI
+            prompts. By systematically addressing Context, Action, Format, and Examples, you can significantly improve
+            the quality and relevance of AI responses.
+          </p>
+
+          <p>
+            Remember: not every prompt needs all four elements. Start with Action (what you want), add Context when
+            background matters, specify Format for structured outputs, and include Examples when precision is critical.
+          </p>
+
+          <p>
+            For a comprehensive exploration of prompt engineering techniques and strategies, refer to the{" "}
+            <Link
+              to="/ai/ai-prompt-engineering-guide"
+              className="text-primary-700 dark:text-primary-500 underline"
+              prefetch="render"
+            >
+              AI Prompt Engineering Guide
+            </Link>
+            .
           </p>
         </section>
       </section>

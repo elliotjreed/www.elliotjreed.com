@@ -1,11 +1,35 @@
 import type { ReactElement } from "react";
 import { StayAlert } from "~/components/StayAlert/StayAlert";
+import { createBreadcrumbs } from "~/data/schemaData";
 
 export const meta = () => [
   { title: "Stay alert poster generator | EJR" },
   {
     name: "description",
     content: "Generate your own 'Stay Alert' poster. A bit of a throwback to when I was bored over the COVID times...",
+  },
+  {
+    "script:ld+json": {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "@id": "https://www.elliotjreed.com/stay-alert#webapp",
+      url: "https://www.elliotjreed.com/stay-alert",
+      name: "Stay Alert Poster Generator",
+      description:
+        "Generate your own 'Stay Alert' poster. A bit of a throwback to when I was bored over the COVID times...",
+      applicationCategory: "EntertainmentApplication",
+      isPartOf: { "@id": "https://www.elliotjreed.com/#website" },
+      author: { "@id": "https://www.elliotjreed.com/#author" },
+      inLanguage: "en-GB",
+      isAccessibleForFree: true,
+    },
+  },
+  {
+    "script:ld+json": createBreadcrumbs([
+      { name: "Home", url: "https://www.elliotjreed.com" },
+      { name: "Tools", url: "https://www.elliotjreed.com" },
+      { name: "Stay Alert", url: "https://www.elliotjreed.com/stay-alert" },
+    ]),
   },
 ];
 
