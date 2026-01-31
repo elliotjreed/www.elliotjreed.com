@@ -6,6 +6,10 @@ export default [
   route("ai/cafe-ai-prompt-framework", "routes/ai/cafe-ai-prompt-framework.tsx"),
   route("ai/claude-code-guide-and-tips", "routes/ai/claude-code-guide-and-tips.tsx"),
   route("ai/recommended-ai-learning-resources", "routes/ai/recommended-ai-learning-resources.tsx"),
+  route(
+    "ai/ethical-considerations-for-ai-in-the-workplace",
+    "routes/ai/ethical-considerations-for-ai-in-the-workplace.tsx",
+  ),
   route("linux/zsh-bash-aliases", "routes/linux/zsh-bash-aliases.tsx"),
   route("linux/zsh-bash-functions", "routes/linux/zsh-bash-functions.tsx"),
   route("linux/copy-mysql-table-data-to-new-table", "routes/linux/copy-mysql-table-data-to-new-table.tsx"),

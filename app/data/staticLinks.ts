@@ -19,6 +19,11 @@ export const staticLinks: StaticLink[] = [
           { href: "/ai/cafe-ai-prompt-framework", title: "CAFE Prompt Framework", showInNavigation: true },
           { href: "/ai/claude-code-guide-and-tips", title: "Claude Code Guide", showInNavigation: true },
           { href: "/ai/recommended-ai-learning-resources", title: "AI Links & Resources", showInNavigation: true },
+          {
+            href: "/ai/ethical-considerations-for-ai-in-the-workplace",
+            title: "Ethical AI in the Workplace",
+            showInNavigation: true,
+          },
         ],
       },
       {
