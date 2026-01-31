@@ -6,13 +6,13 @@ import claudeCodeStatuslineImage from "~/images/articles/claude-code-custom-stat
 import claudeCodeStatuslineImageWebp from "~/images/articles/claude-code-custom-statusline.webp";
 
 export const meta = () => [
-  { title: "Complete Guide to Claude Code: Setup, Features, and Best Practices | EJR" },
+  { title: "Guide to Claude Code: Features and Best Practices | EJR" },
   {
     name: "description",
     content:
       "Master Claude Code's installation, plan mode, Skills, subagents, and MCP servers. Learn prompting strategies and advanced features for AI-assisted development.",
   },
-  { property: "og:title", content: "Complete Guide to Claude Code: Setup, Features, and Best Practices" },
+  { property: "og:title", content: "Guide to Claude Code: Features and Best Practices" },
   {
     property: "og:description",
     content:
@@ -24,7 +24,7 @@ export const meta = () => [
   { property: "og:site_name", content: "Elliot J. Reed" },
   { property: "og:locale", content: "en_GB" },
   { name: "twitter:card", content: "summary_large_image" },
-  { name: "twitter:title", content: "Complete Guide to Claude Code: Setup, Features, and Best Practices" },
+  { name: "twitter:title", content: "Guide to Claude Code: Features and Best Practices" },
   {
     name: "twitter:description",
     content:
@@ -69,15 +69,19 @@ export default (): ReactElement => (
   <section className="divide-y divide-gray-200 dark:divide-gray-700">
     <div className="space-y-2 pt-6 pb-8 md:space-y-5">
       <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
-        Complete Guide to Claude Code: Setup, Features, and Best Practices
+        Claude Code Guide: Features and Best Practices
       </h1>
 
       <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
         <span>By Elliot J. Reed</span>
         <span>•</span>
-        <span>Software Engineer</span>
+        <time dateTime="2026-01-24">
+          Published: 24<sup>th</sup> January 2026
+        </time>
         <span>•</span>
-        <time dateTime="2026-01-30">Last updated: 30 January 2026</time>
+        <time dateTime="2026-01-30">
+          Last updated: 30<sup>th</sup> January 2026
+        </time>
       </div>
 
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
@@ -1296,7 +1300,7 @@ printf "%b" "$output"`}
           process requests. All AI inference happens on Anthropic's infrastructure, not locally on your machine.
         </p>
 
-        <h3>How do I prevent Claude Code from reading sensitive files like .env?</h3>
+        <h3>How do I prevent Claude Code from reading sensitive files like environment variable files?</h3>
         <p>
           Add deny rules to your <code>~/.claude/settings.json</code> or <code>.claude/settings.json</code> file. For
           example:
@@ -1320,14 +1324,14 @@ printf "%b" "$output"`}
           Claude Code transforms software development by bringing AI assistance directly into your terminal whilst
           maintaining full control over your codebase. The key to maximising its effectiveness lies in proper
           configuration: create a comprehensive CLAUDE.md file, use plan mode for complex features, configure
-          appropriate model selection (opusplan for most workflows), and leverage advanced features like Skills and MCP
-          servers where appropriate.
+          appropriate model selection (<code>opusplan</code> for most workflows), and leverage advanced features like
+          Skills and MCP servers where appropriate.
         </p>
 
         <p>
-          Start with the basics—installation, CLAUDE.md creation, and model selection—then progressively adopt advanced
-          features as your workflow matures. Use checkpoints to experiment safely, configure permissions to balance
-          convenience with security, and create custom Skills for repetitive tasks in your domain.
+          Start with the basics: installation, CLAUDE.md creation, and model selection. Then progressively adopt
+          advanced features as your workflow matures. Use checkpoints to experiment safely, configure permissions to
+          balance convenience with security, and create custom Skills for repetitive tasks in your domain.
         </p>
 
         <p>
