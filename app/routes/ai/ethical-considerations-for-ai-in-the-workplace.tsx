@@ -131,8 +131,8 @@ export default (): ReactElement => (
 
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         A guide to using AI responsibly in the workplace, covering the benefits of AI adoption, ethical and societal
-        concerns, environmental impact, and practical strategies for responsible implementation. This article formed
-        part of discussions with colleagues in my workplace who had some concerns about the rise and use of AI.
+        concerns, environmental impact, and practical strategies for responsible implementation. This article is based
+        on discussions with colleagues in my workplace who had some concerns about the rise and use of AI.
       </p>
     </div>
 
