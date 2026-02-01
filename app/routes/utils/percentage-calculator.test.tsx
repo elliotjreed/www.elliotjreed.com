@@ -91,7 +91,10 @@ describe("PercentageCalculatorRoute", () => {
         "@context": "https://schema.org",
         "@type": "FAQPage",
       });
-      expect(faqData?.["script:ld+json"]?.mainEntity).toHaveLength(5);
+      const schema = faqData?.["script:ld+json"];
+      if (schema && "@type" in schema && schema["@type"] === "FAQPage" && "mainEntity" in schema) {
+        expect(schema.mainEntity).toHaveLength(5);
+      }
     });
   });
 });

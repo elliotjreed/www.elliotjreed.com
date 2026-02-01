@@ -23,7 +23,7 @@ export const CodeSnippet: FC<CodeSnippetInterface> = ({
 
   useEffect(() => {
     if (!languagesLoaded && typeof window !== "undefined") {
-      (typeof global !== "undefined" ? global : window).Prism = Prism;
+      globalThis.Prism = Prism;
 
       // Load languages in order, respecting dependencies
       const loadLanguages = async () => {

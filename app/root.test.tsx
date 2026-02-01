@@ -159,7 +159,7 @@ describe("root", () => {
       vi.mocked(isRouteErrorResponse).mockReturnValue(true);
 
       const error = { status: 404, statusText: "Not Found" };
-      render(<ErrorBoundary error={error} />);
+      render(<ErrorBoundary params={{}} error={error} />);
 
       expect(screen.getByRole("heading", { name: "404" })).toBeInTheDocument();
       expect(screen.getByText("The requested page could not be found.")).toBeInTheDocument();
@@ -169,7 +169,7 @@ describe("root", () => {
       vi.mocked(isRouteErrorResponse).mockReturnValue(true);
 
       const error = { status: 500, statusText: "Internal Server Error" };
-      render(<ErrorBoundary error={error} />);
+      render(<ErrorBoundary params={{}} error={error} />);
 
       expect(screen.getByRole("heading", { name: "Error" })).toBeInTheDocument();
       expect(screen.getByText("Internal Server Error")).toBeInTheDocument();
@@ -179,7 +179,7 @@ describe("root", () => {
       vi.mocked(isRouteErrorResponse).mockReturnValue(false);
 
       const error = null;
-      render(<ErrorBoundary error={error} />);
+      render(<ErrorBoundary params={{}} error={error} />);
 
       expect(screen.getByRole("heading", { name: "Oops!" })).toBeInTheDocument();
       expect(screen.getByText("An unexpected error occurred.")).toBeInTheDocument();
@@ -188,7 +188,7 @@ describe("root", () => {
     it("should have section with divide classes", () => {
       vi.mocked(isRouteErrorResponse).mockReturnValue(false);
 
-      const { container } = render(<ErrorBoundary error={null} />);
+      const { container } = render(<ErrorBoundary params={{}} error={null} />);
       const section = container.querySelector("section");
 
       expect(section).toHaveClass("divide-y", "divide-gray-200", "dark:divide-gray-700");
