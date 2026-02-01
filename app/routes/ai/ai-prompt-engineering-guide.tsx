@@ -54,6 +54,38 @@ export const meta = () => [
       },
     ]),
   },
+  {
+    "script:ld+json": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What is the difference between zero-shot and few-shot prompting?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Zero-shot prompting means asking the AI to perform a task without providing any examples. For instance, 'Summarise this article' with no example summaries. Few-shot prompting involves providing one or more examples of the desired output format or style before asking the AI to complete a similar task. Few-shot prompting typically produces more consistent and higher-quality results because the AI understands exactly what you're looking for.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "How long should prompts be?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "There's no single ideal length - prompts should be as long as necessary to provide sufficient context and clarity. A simple task might only need one sentence, whilst complex tasks might require several paragraphs of context, detailed instructions, and examples. Focus on being concise whilst including all essential information. If you find your prompts becoming very long, consider breaking the task into smaller, sequential steps.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Can I use these techniques with any AI model?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes, the CAFE framework and prompt engineering principles work across different AI models including ChatGPT, Claude, Gemini, and DeepSeek. Whilst specific models may have unique strengths or respond better to certain phrasing, the fundamental principles of providing context, clear actions, format specifications, and examples remain effective regardless of which model you're using. Some experimentation may be needed to optimise for particular models.",
+          },
+        },
+      ],
+    },
+  },
 ];
 
 export default (): ReactElement => (

@@ -63,6 +63,54 @@ export const meta = () => [
       { name: "Claude Code Guide", url: "https://www.elliotjreed.com/ai/claude-code-guide-and-tips" },
     ]),
   },
+  {
+    "script:ld+json": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What is the difference between Skills and Subagents?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Skills are reusable prompt templates that load specialised instructions when invoked, without consuming context until used. They're ideal for specific workflows like code reviews or optimisation tasks. Subagents are independent Claude instances that can run in parallel or background, with their own context windows and tool access permissions. Use Skills for repeatable workflows and Subagents for complex, multi-step tasks requiring isolation.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "How much does Claude Code cost?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Claude Code requires a paid Claude subscription: Pro (individual use), Max (higher usage limits), or Team (collaborative features). Usage counts against your plan's monthly limits based on the model used (Haiku consumes fewer tokens than Sonnet, which consumes fewer than Opus). Check your current usage with the /usage command.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Can I use Claude Code offline?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "No. Claude Code requires an active internet connection as it communicates with Anthropic's API servers to process requests. All AI inference happens on Anthropic's infrastructure, not locally on your machine.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "How do I prevent Claude Code from reading sensitive files like environment variable files?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Add deny rules to your ~/.claude/settings.json or .claude/settings.json file. For example: 'deny': ['Read(./.env)', 'Read(./.env.*)', 'Read(**/*.key)']. This prevents Claude from accessing environment files, private keys, or other sensitive data.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What are MCP servers and why would I use them?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Model Context Protocol (MCP) servers extend Claude Code's capabilities by connecting it to external services like Gmail, Slack, databases, or design tools like Canva. They enable Claude to interact with tools beyond your local filesystem. For example, the Playwright MCP allows Claude to view and interact with websites, whilst Context7 provides access to up-to-date documentation for frameworks and libraries.",
+          },
+        },
+      ],
+    },
+  },
 ];
 
 export default (): ReactElement => (
