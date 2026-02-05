@@ -1,10 +1,17 @@
 import type { ReactElement } from "react";
+import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { emailAddress } from "~/data/emailAddress";
 import { createBreadcrumbs } from "~/data/schemaData";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
-  { title: "Privacy Policy | EJR" },
-  { name: "description", content: "Website privacy policy for www.elliotjreed.com" },
+  ...createMeta({
+    title: "Privacy Policy | EJR",
+    description: "Website privacy policy for www.elliotjreed.com",
+    url: "https://www.elliotjreed.com/privacy",
+    type: "website",
+    image: "https://www.elliotjreed.com/og.png",
+  }),
   {
     "script:ld+json": {
       "@context": "https://schema.org",
@@ -32,17 +39,14 @@ export const meta = () => [
 
 export default (): ReactElement => (
   <section className="divide-y divide-gray-200 dark:divide-gray-700">
-    <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-      <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
-        Privacy Policy
-      </h1>
+    <PageHeader title="Privacy Policy">
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         Welcome to my personal website. I am committed to protecting your privacy and handling any personal data I
         collect from you in a responsible, secure manner in accordance with the UK General Data Protection Regulation
         (UK GDPR), the Data Protection Act 2018, and other relevant privacy legislation. This Privacy Policy explains
         how I collect, use, share and protect your information when you visit my website.
       </p>
-    </div>
+    </PageHeader>
 
     <div className="prose max-w-none dark:prose-dark">
       <section>

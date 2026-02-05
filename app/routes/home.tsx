@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { SocialLinks } from "~/components/SocialLinks/SocialLinks";
 import { emailAddress } from "~/data/emailAddress";
 import { authorSchema, createBreadcrumbs, websiteSchema } from "~/data/schemaData";
+import { createMeta } from "~/utils/seo";
 
 const HERO_IMAGE_URL = "https://www.elliotjreed.com/elliot-greyscale.webp";
 
@@ -16,13 +17,18 @@ export const links = () => [
 ];
 
 export function meta() {
+  const title = "Elliot J. Reed | EJR";
+  const description =
+    "The personal website of Elliot J. Reed, whose interests include e-commerce and technology management, philosophy, AI, software development, DevOps, and Linux.";
+
   return [
-    { title: "Elliot J. Reed | EJR" },
-    {
-      name: "description",
-      content:
-        "The personal website of Elliot J. Reed, whose interests include e-commerce and technology management, philosophy, AI, software development, DevOps, and Linux.",
-    },
+    ...createMeta({
+      title,
+      description,
+      url: "https://www.elliotjreed.com",
+      type: "website",
+      image: "https://www.elliotjreed.com/og.png",
+    }),
     {
       "script:ld+json": {
         "@context": "https://schema.org",

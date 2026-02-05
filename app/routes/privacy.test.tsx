@@ -7,9 +7,8 @@ describe("privacy route", () => {
     it("should return correct meta data", () => {
       const metaData = meta();
 
-      expect(metaData).toHaveLength(2);
-      expect(metaData[0]).toEqual({ title: "Privacy Policy | EJR" });
-      expect(metaData[1]).toEqual({
+      expect(metaData).toContainEqual({ title: "Privacy Policy | EJR" });
+      expect(metaData).toContainEqual({
         name: "description",
         content: "Website privacy policy for www.elliotjreed.com",
       });

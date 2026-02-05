@@ -1,10 +1,17 @@
 import type { ReactElement } from "react";
+import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { emailAddress } from "~/data/emailAddress";
 import { createBreadcrumbs } from "~/data/schemaData";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
-  { title: "Impressum | EJR" },
-  { name: "description", content: "Legal information and imprint for www.elliotjreed.com" },
+  ...createMeta({
+    title: "Impressum | EJR",
+    description: "Legal information and imprint for www.elliotjreed.com",
+    url: "https://www.elliotjreed.com/impressum",
+    type: "website",
+    image: "https://www.elliotjreed.com/og.png",
+  }),
   {
     "script:ld+json": {
       "@context": "https://schema.org",
@@ -28,14 +35,11 @@ export const meta = () => [
 
 export default (): ReactElement => (
   <section className="divide-y divide-gray-200 dark:divide-gray-700">
-    <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-      <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
-        Impressum
-      </h1>
+    <PageHeader title="Impressum">
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         Legal information and imprint in accordance with applicable regulations.
       </p>
-    </div>
+    </PageHeader>
 
     <div className="prose max-w-none dark:prose-dark">
       <section>

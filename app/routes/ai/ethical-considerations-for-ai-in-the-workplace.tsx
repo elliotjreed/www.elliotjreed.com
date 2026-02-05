@@ -1,36 +1,21 @@
 import type { ReactElement } from "react";
 import { Link } from "react-router";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
+import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
-  { title: "Ethical Considerations for AI in the Workplace | EJR" },
-  {
-    name: "description",
-    content:
+  ...createMeta({
+    title: "Ethical Considerations for AI in the Workplace | EJR",
+    description:
       "A comprehensive guide to using AI responsibly in the workplace, covering ethical concerns, environmental impact, and practical implementation strategies.",
-  },
-  { property: "og:title", content: "Ethical Considerations for AI in the Workplace" },
-  {
-    property: "og:description",
-    content:
-      "A comprehensive guide to using AI responsibly in the workplace, covering ethical concerns, environmental impact, and practical implementation strategies.",
-  },
-  { property: "og:type", content: "article" },
-  { property: "og:url", content: "https://www.elliotjreed.com/ai/ethical-considerations-for-ai-in-the-workplace" },
-  { property: "og:site_name", content: "Elliot J. Reed" },
-  { property: "og:locale", content: "en_GB" },
-  { property: "og:image", content: "https://www.elliotjreed.com/og.png" },
-  { name: "twitter:card", content: "summary_large_image" },
-  { name: "twitter:title", content: "Ethical Considerations for AI in the Workplace" },
-  {
-    name: "twitter:description",
-    content:
-      "A comprehensive guide to using AI responsibly in the workplace, covering ethical concerns, environmental impact, and practical implementation strategies.",
-  },
-  { name: "twitter:image", content: "https://www.elliotjreed.com/twitter-card.png" },
-  { name: "twitter:site", content: "@elliotjreed" },
-  { name: "twitter:creator", content: "@elliotjreed" },
+    url: "https://www.elliotjreed.com/ai/ethical-considerations-for-ai-in-the-workplace",
+    type: "article",
+    ogImage: "https://www.elliotjreed.com/og.png",
+    twitterImage: "https://www.elliotjreed.com/twitter-card.png",
+    twitterCreator: "@elliotjreed",
+  }),
   {
     "script:ld+json": createTechArticle({
       url: "https://www.elliotjreed.com/ai/ethical-considerations-for-ai-in-the-workplace",
@@ -116,25 +101,24 @@ export const meta = () => [
 
 export default (): ReactElement => (
   <section className="divide-y divide-gray-200 dark:divide-gray-700">
-    <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-      <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
-        Ethical Considerations for AI in the Workplace
-      </h1>
-
-      <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
-        <span>By Elliot J. Reed</span>
-        <span>•</span>
-        <time dateTime="2026-01-31">
-          Published: 31<sup>st</sup> January 2026
-        </time>
-      </div>
-
+    <PageHeader
+      title="Ethical Considerations for AI in the Workplace"
+      meta={
+        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+          <span>By Elliot J. Reed</span>
+          <span>•</span>
+          <time dateTime="2026-01-31">
+            Published: 31<sup>st</sup> January 2026
+          </time>
+        </div>
+      }
+    >
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         A guide to using AI responsibly in the workplace, covering the benefits of AI adoption, ethical and societal
         concerns, environmental impact, and practical strategies for responsible implementation. This article is based
         on discussions with colleagues in my workplace who had some concerns about the rise and use of AI.
       </p>
-    </div>
+    </PageHeader>
 
     <div className="prose max-w-none dark:prose-dark">
       <section id="table-of-contents">

@@ -1,24 +1,18 @@
 import type { ReactElement } from "react";
 import { CodeSnippet } from "~/components/CodeSnippet/CodeSnippet";
+import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
-  { title: "Backup and restore Docker database | EJR" },
-  {
-    name: "description",
-    content: "A guide on how to backup and restore MySQL / MariaDB Docker database.",
-  },
-  { property: "og:title", content: "Backup and restore Docker database" },
-  { property: "og:description", content: "A guide on how to backup and restore MySQL / MariaDB Docker database." },
-  { property: "og:type", content: "article" },
-  { property: "og:url", content: "https://www.elliotjreed.com/docker/backup-and-restore-docker-database" },
-  { property: "og:site_name", content: "Elliot J. Reed" },
-  { property: "og:locale", content: "en_GB" },
-  { property: "og:image", content: "https://www.elliotjreed.com/og.png" },
-  { name: "twitter:card", content: "summary_large_image" },
-  { name: "twitter:title", content: "Backup and restore Docker database" },
-  { name: "twitter:description", content: "A guide on how to backup and restore MySQL / MariaDB Docker database." },
-  { name: "twitter:image", content: "https://www.elliotjreed.com/twitter-card.png" },
+  ...createMeta({
+    title: "Backup and restore Docker database | EJR",
+    description: "A guide on how to backup and restore MySQL / MariaDB Docker database.",
+    url: "https://www.elliotjreed.com/docker/backup-and-restore-docker-database",
+    type: "article",
+    ogImage: "https://www.elliotjreed.com/og.png",
+    twitterImage: "https://www.elliotjreed.com/twitter-card.png",
+  }),
   {
     "script:ld+json": createTechArticle({
       url: "https://www.elliotjreed.com/docker/backup-and-restore-docker-database",
@@ -44,27 +38,26 @@ export const meta = () => [
 
 export default (): ReactElement => (
   <section className="divide-y divide-gray-200 dark:divide-gray-700">
-    <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-      <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
-        Backup and restore MySQL Docker database
-      </h1>
-
-      <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
-        <span>By Elliot J. Reed</span>
-        <span>•</span>
-        <time dateTime="2017-01-23">
-          Published: 23<sup>rd</sup> January 2017
-        </time>
-        <span>•</span>
-        <time dateTime="2026-01-30">
-          Last updated: 30<sup>th</sup> January 2026
-        </time>
-      </div>
-
+    <PageHeader
+      title="Backup and restore MySQL Docker database"
+      meta={
+        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+          <span>By Elliot J. Reed</span>
+          <span>•</span>
+          <time dateTime="2017-01-23">
+            Published: 23<sup>rd</sup> January 2017
+          </time>
+          <span>•</span>
+          <time dateTime="2026-01-30">
+            Last updated: 30<sup>th</sup> January 2026
+          </time>
+        </div>
+      }
+    >
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         How to backup and restore a MySQL or MariaDB database that's running via Docker or Docker Compose.
       </p>
-    </div>
+    </PageHeader>
 
     <div className="prose max-w-none dark:prose-dark">
       <section>

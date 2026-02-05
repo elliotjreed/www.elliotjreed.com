@@ -1,6 +1,7 @@
 import type { ReactElement } from "react";
 import { PercentageCalculator } from "~/components/PercentageCalculator/PercentageCalculator";
 import { createBreadcrumbs } from "~/data/schemaData";
+import { createMeta } from "~/utils/seo";
 
 export function meta() {
   const title = "Percentage Calculator | EJR";
@@ -21,33 +22,23 @@ export function meta() {
     "free calculator",
     "percentage tool",
     "math calculator",
-  ].join(", ");
+  ];
 
   return [
-    { title },
-    { name: "description", content: description },
-    { name: "keywords", content: keywords },
+    ...createMeta({
+      title,
+      description,
+      url,
+      type: "website",
+      image,
+      imageAlt: "Percentage Calculator Icon",
+      keywords,
+      twitterCreator: "@elliotjreed",
+    }),
 
     // Open Graph tags
-    { property: "og:title", content: title },
-    { property: "og:description", content: description },
-    { property: "og:url", content: url },
-    { property: "og:type", content: "website" },
-    { property: "og:image", content: image },
     { property: "og:image:width", content: "512" },
     { property: "og:image:height", content: "512" },
-    { property: "og:image:alt", content: "Percentage Calculator Icon" },
-    { property: "og:site_name", content: "Elliot J. Reed" },
-    { property: "og:locale", content: "en_GB" },
-
-    // Twitter Card tags
-    { name: "twitter:card", content: "summary" },
-    { name: "twitter:title", content: title },
-    { name: "twitter:description", content: description },
-    { name: "twitter:image", content: image },
-    { name: "twitter:image:alt", content: "Percentage Calculator Icon" },
-    { name: "twitter:site", content: "@elliotjreed" },
-    { name: "twitter:creator", content: "@elliotjreed" },
 
     {
       "script:ld+json": {

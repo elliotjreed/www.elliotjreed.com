@@ -106,8 +106,8 @@ describe("useLocalStorage", () => {
     const { result } = renderHook(() => useLocalStorage("test-key", "initial"));
 
     // Mock localStorage.setItem to throw an error
-    const originalSetItem = Storage.prototype.setItem;
-    Storage.prototype.setItem = vi.fn(() => {
+    const originalSetItem = localStorage.setItem;
+    localStorage.setItem = vi.fn(() => {
       throw new Error("Storage full");
     });
 
@@ -118,7 +118,7 @@ describe("useLocalStorage", () => {
     expect(consoleWarnSpy).toHaveBeenCalled();
 
     // Restore
-    Storage.prototype.setItem = originalSetItem;
+    localStorage.setItem = originalSetItem;
     consoleWarnSpy.mockRestore();
   });
 });

@@ -1,12 +1,16 @@
 import type { ReactElement } from "react";
+import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs } from "~/data/schemaData";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
-  { title: "Travelling | EJR" },
-  {
-    name: "description",
-    content: "A few photos from various travels and trips.",
-  },
+  ...createMeta({
+    title: "Travelling | EJR",
+    description: "A few photos from various travels and trips.",
+    url: "https://www.elliotjreed.com/travel",
+    type: "website",
+    image: "https://www.elliotjreed.com/og.png",
+  }),
   {
     "script:ld+json": {
       "@context": "https://schema.org",
@@ -173,14 +177,11 @@ const travellingPhotographs: TitledPhotograph[] = [
 
 export default (): ReactElement => (
   <section className="divide-y divide-gray-200 dark:divide-gray-700">
-    <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-      <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
-        Travelling
-      </h1>
+    <PageHeader title="Travelling">
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         A few photographs from some of the places I&apos;ve visited (and remembered to take a photo!).
       </p>
-    </div>
+    </PageHeader>
     <div className="container py-12">
       <div className="-m-4 flex flex-wrap">
         {travellingPhotographs.map(

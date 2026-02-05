@@ -1,36 +1,22 @@
 import type { ReactElement } from "react";
 import { CodeSnippet } from "~/components/CodeSnippet/CodeSnippet";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
+import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
 import claudeCodeStatuslineImage from "~/images/articles/claude-code-custom-statusline.png";
 import claudeCodeStatuslineImageWebp from "~/images/articles/claude-code-custom-statusline.webp";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
-  { title: "Guide to Claude Code: Features and Best Practices | EJR" },
-  {
-    name: "description",
-    content:
+  ...createMeta({
+    title: "Guide to Claude Code: Features and Best Practices | EJR",
+    description:
       "Master Claude Code's installation, plan mode, Skills, subagents, and MCP servers. Learn prompting strategies and advanced features for AI-assisted development.",
-  },
-  { property: "og:title", content: "Guide to Claude Code: Features and Best Practices" },
-  {
-    property: "og:description",
-    content:
-      "Master Claude Code's installation, plan mode, Skills, subagents, and MCP servers. Learn prompting strategies and advanced features for AI-assisted development.",
-  },
-  { property: "og:type", content: "article" },
-  { property: "og:url", content: "https://www.elliotjreed.com/ai/claude-code-guide-and-tips" },
-  { property: "og:image", content: "https://www.elliotjreed.com/og.png" },
-  { property: "og:site_name", content: "Elliot J. Reed" },
-  { property: "og:locale", content: "en_GB" },
-  { name: "twitter:card", content: "summary_large_image" },
-  { name: "twitter:title", content: "Guide to Claude Code: Features and Best Practices" },
-  {
-    name: "twitter:description",
-    content:
-      "Master Claude Code's installation, plan mode, Skills, subagents, and MCP servers. Learn prompting strategies and advanced features for AI-assisted development.",
-  },
-  { name: "twitter:image", content: "https://www.elliotjreed.com/twitter-card.png" },
+    url: "https://www.elliotjreed.com/ai/claude-code-guide-and-tips",
+    type: "article",
+    ogImage: "https://www.elliotjreed.com/og.png",
+    twitterImage: "https://www.elliotjreed.com/twitter-card.png",
+  }),
   {
     "script:ld+json": createTechArticle({
       url: "https://www.elliotjreed.com/ai/claude-code-guide-and-tips",
@@ -115,23 +101,22 @@ export const meta = () => [
 
 export default (): ReactElement => (
   <section className="divide-y divide-gray-200 dark:divide-gray-700">
-    <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-      <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
-        Claude Code Guide: Features and Best Practices
-      </h1>
-
-      <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
-        <span>By Elliot J. Reed</span>
-        <span>•</span>
-        <time dateTime="2026-01-24">
-          Published: 24<sup>th</sup> January 2026
-        </time>
-        <span>•</span>
-        <time dateTime="2026-01-30">
-          Last updated: 30<sup>th</sup> January 2026
-        </time>
-      </div>
-
+    <PageHeader
+      title="Claude Code Guide: Features and Best Practices"
+      meta={
+        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+          <span>By Elliot J. Reed</span>
+          <span>•</span>
+          <time dateTime="2026-01-24">
+            Published: 24<sup>th</sup> January 2026
+          </time>
+          <span>•</span>
+          <time dateTime="2026-01-30">
+            Last updated: 30<sup>th</sup> January 2026
+          </time>
+        </div>
+      }
+    >
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         <strong>
           Claude Code is Anthropic's official command-line interface (CLI) that brings Claude AI directly into your
@@ -145,7 +130,7 @@ export default (): ReactElement => (
         implementation, checkpoints for undoing changes, Git integration, settings configuration, and advanced features
         including Claude Skills, subagents, and MCP servers for extending functionality.
       </p>
-    </div>
+    </PageHeader>
 
     <div className="prose max-w-none dark:prose-dark">
       <section id="table-of-contents">

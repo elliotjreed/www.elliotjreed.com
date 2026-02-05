@@ -1,37 +1,20 @@
 import type { ReactElement } from "react";
 import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
+import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
-  { title: "Docker container IP address | EJR" },
-  {
-    name: "description",
-    content:
+  ...createMeta({
+    title: "Docker container IP address | EJR",
+    description:
       "Learn how to find Docker container IP addresses using docker inspect commands with Go template syntax. Includes aliases for quick access and troubleshooting networking issues.",
-  },
-  { property: "og:title", content: "Docker container IP address" },
-  {
-    property: "og:description",
-    content:
-      "Learn how to find Docker container IP addresses using docker inspect commands with Go template syntax. Includes aliases for quick access and troubleshooting networking issues.",
-  },
-  { property: "og:type", content: "article" },
-  {
-    property: "og:url",
-    content: "https://www.elliotjreed.com/docker/get-docker-and-docker-compose-container-ip-addresses",
-  },
-  { property: "og:site_name", content: "Elliot J. Reed" },
-  { property: "og:locale", content: "en_GB" },
-  { property: "og:image", content: "https://www.elliotjreed.com/og.png" },
-  { name: "twitter:card", content: "summary_large_image" },
-  { name: "twitter:title", content: "Docker container IP address" },
-  {
-    name: "twitter:description",
-    content:
-      "Learn how to find Docker container IP addresses using docker inspect commands with Go template syntax. Includes aliases for quick access and troubleshooting networking issues.",
-  },
-  { name: "twitter:image", content: "https://www.elliotjreed.com/twitter-card.png" },
+    url: "https://www.elliotjreed.com/docker/get-docker-and-docker-compose-container-ip-addresses",
+    type: "article",
+    ogImage: "https://www.elliotjreed.com/og.png",
+    twitterImage: "https://www.elliotjreed.com/twitter-card.png",
+  }),
   {
     "script:ld+json": createTechArticle({
       url: "https://www.elliotjreed.com/docker/get-docker-and-docker-compose-container-ip-addresses",
@@ -78,29 +61,28 @@ alias dcips='docker inspect -f "{{.Name}}: {{range .NetworkSettings.Networks}}{{
 
 export default (): ReactElement => (
   <section className="divide-y divide-gray-200 dark:divide-gray-700">
-    <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-      <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
-        Get the IP addresses of Docker containers
-      </h1>
-
-      <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
-        <span>By Elliot J. Reed</span>
-        <span>•</span>
-        <time dateTime="2020-09-02">
-          Published: 2<sup>nd</sup> September 2020
-        </time>
-        <span>•</span>
-        <time dateTime="2026-01-30">
-          Last updated: 30<sup>th</sup> January 2026
-        </time>
-      </div>
-
+    <PageHeader
+      title="Get the IP addresses of Docker containers"
+      meta={
+        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+          <span>By Elliot J. Reed</span>
+          <span>•</span>
+          <time dateTime="2020-09-02">
+            Published: 2<sup>nd</sup> September 2020
+          </time>
+          <span>•</span>
+          <time dateTime="2026-01-30">
+            Last updated: 30<sup>th</sup> January 2026
+          </time>
+        </div>
+      }
+    >
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         Finding Docker container IP addresses is essential for debugging network connectivity, connecting services, and
         understanding how containers communicate. This guide shows you how to quickly retrieve IP addresses using
         Docker's inspect command with Go template formatting.
       </p>
-    </div>
+    </PageHeader>
 
     <div className="prose max-w-none dark:prose-dark">
       <section>

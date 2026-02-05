@@ -1,5 +1,5 @@
 import { createRequestHandler } from "react-router";
-import { lastModifiedByPath } from "../app/data/sitemapMeta";
+import { lastModifiedByPath } from "../app/data/contentRegistry";
 import { type StaticLink, staticLinks } from "../app/data/staticLinks";
 
 // biome-ignore lint/suspicious/noEmptyInterface: Env interface may be extended with environment variables in the future

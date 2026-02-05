@@ -1,29 +1,17 @@
 import type { ReactElement } from "react";
+import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
-  { title: "AI Resources | EJR" },
-  {
-    name: "description",
-    content: "Recommended resources for learning more about AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
-  },
-  { property: "og:title", content: "AI Resources" },
-  {
-    property: "og:description",
-    content: "Recommended resources for learning more about AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
-  },
-  { property: "og:type", content: "article" },
-  { property: "og:url", content: "https://www.elliotjreed.com/ai/recommended-ai-learning-resources" },
-  { property: "og:site_name", content: "Elliot J. Reed" },
-  { property: "og:locale", content: "en_GB" },
-  { property: "og:image", content: "https://www.elliotjreed.com/og.png" },
-  { name: "twitter:card", content: "summary_large_image" },
-  { name: "twitter:title", content: "AI Resources" },
-  {
-    name: "twitter:description",
-    content: "Recommended resources for learning more about AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
-  },
-  { name: "twitter:image", content: "https://www.elliotjreed.com/twitter-card.png" },
+  ...createMeta({
+    title: "AI Resources | EJR",
+    description: "Recommended resources for learning more about AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
+    url: "https://www.elliotjreed.com/ai/recommended-ai-learning-resources",
+    type: "article",
+    ogImage: "https://www.elliotjreed.com/og.png",
+    twitterImage: "https://www.elliotjreed.com/twitter-card.png",
+  }),
   {
     "script:ld+json": createTechArticle({
       url: "https://www.elliotjreed.com/ai/recommended-ai-learning-resources",
@@ -50,30 +38,29 @@ export const meta = () => [
 
 export default (): ReactElement => (
   <section className="divide-y divide-gray-200 dark:divide-gray-700">
-    <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-      <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
-        AI Resources
-      </h1>
-
-      <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
-        <span>By Elliot J. Reed</span>
-        <span>•</span>
-        <time dateTime="2025-04-20">
-          Published: 20<sup>th</sup> April 2025
-        </time>
-        <span>•</span>
-        <time dateTime="2026-01-30">
-          Last updated: 30<sup>th</sup> January 2026
-        </time>
-      </div>
-
+    <PageHeader
+      title="AI Resources"
+      meta={
+        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+          <span>By Elliot J. Reed</span>
+          <span>•</span>
+          <time dateTime="2025-04-20">
+            Published: 20<sup>th</sup> April 2025
+          </time>
+          <span>•</span>
+          <time dateTime="2026-01-30">
+            Last updated: 30<sup>th</sup> January 2026
+          </time>
+        </div>
+      }
+    >
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         A curated collection of AI learning resources covering practical prompt engineering techniques, forward-thinking
         essays on AI's potential impact on society, responsible AI development policies, and useful tools for working
         with AI APIs. These resources span from hands-on technical guides to thoughtful explorations of AI safety and
         ethics.
       </p>
-    </div>
+    </PageHeader>
 
     <div className="prose max-w-none dark:prose-dark">
       <section>
