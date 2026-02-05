@@ -1,6 +1,6 @@
-# CLAUDE.md
+# Ai Coding Assistant helper file
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to AI applications such as Claude Code, Gemini CLI, and Codex when working with code in this repository.
 
 ## Development Commands
 
