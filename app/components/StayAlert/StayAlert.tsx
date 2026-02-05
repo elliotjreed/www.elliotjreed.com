@@ -33,7 +33,11 @@ export const StayAlert: FC = (): ReactElement => {
         <div className="md:col-span-2 col-span-4">
           <form>
             <div className="mb-4">
+              <label htmlFor="stay-alert-line-one" className="sr-only">
+                First line of the poster text
+              </label>
               <input
+                id="stay-alert-line-one"
                 type="text"
                 className="w-full rounded-md px-4 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-600 dark:bg-black"
                 placeholder="Stay alert."
@@ -45,7 +49,11 @@ export const StayAlert: FC = (): ReactElement => {
             </div>
 
             <div className="mb-4">
+              <label htmlFor="stay-alert-line-two" className="sr-only">
+                Second line of the poster text
+              </label>
               <input
+                id="stay-alert-line-two"
                 type="text"
                 className="w-full rounded-md px-4 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-600 dark:bg-black"
                 placeholder="Control the virus."
@@ -57,7 +65,11 @@ export const StayAlert: FC = (): ReactElement => {
             </div>
 
             <div className="mb-4">
+              <label htmlFor="stay-alert-line-three" className="sr-only">
+                Third line of the poster text
+              </label>
               <input
+                id="stay-alert-line-three"
                 type="text"
                 className="w-full rounded-md px-4 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-600 dark:bg-black"
                 placeholder="Save lives."
