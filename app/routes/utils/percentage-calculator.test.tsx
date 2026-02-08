@@ -60,7 +60,12 @@ describe("PercentageCalculatorRoute", () => {
 
     it("includes WebApplication structured data", () => {
       const metaTags = meta() as Array<Record<string, unknown>>;
-      const webAppData = metaTags.find((tag) => tag["script:ld+json"] && typeof tag["script:ld+json"] === "object");
+      const webAppData = metaTags.find(
+        (tag) =>
+          tag["script:ld+json"] &&
+          typeof tag["script:ld+json"] === "object" &&
+          (tag["script:ld+json"] as Record<string, unknown>)["@type"] === "WebApplication",
+      );
 
       expect(webAppData).toBeDefined();
       expect(webAppData?.["script:ld+json"]).toMatchObject({
@@ -73,7 +78,12 @@ describe("PercentageCalculatorRoute", () => {
 
     it("includes BreadcrumbList structured data", () => {
       const metaTags = meta() as Array<Record<string, unknown>>;
-      const breadcrumbData = metaTags.find((tag) => tag["script:ld+json"] && typeof tag["script:ld+json"] === "object");
+      const breadcrumbData = metaTags.find(
+        (tag) =>
+          tag["script:ld+json"] &&
+          typeof tag["script:ld+json"] === "object" &&
+          (tag["script:ld+json"] as Record<string, unknown>)["@type"] === "BreadcrumbList",
+      );
 
       expect(breadcrumbData).toBeDefined();
       expect(breadcrumbData?.["script:ld+json"]).toMatchObject({
@@ -84,7 +94,12 @@ describe("PercentageCalculatorRoute", () => {
 
     it("includes FAQPage structured data", () => {
       const metaTags = meta() as Array<Record<string, unknown>>;
-      const faqData = metaTags.find((tag) => tag["script:ld+json"] && typeof tag["script:ld+json"] === "object");
+      const faqData = metaTags.find(
+        (tag) =>
+          tag["script:ld+json"] &&
+          typeof tag["script:ld+json"] === "object" &&
+          (tag["script:ld+json"] as Record<string, unknown>)["@type"] === "FAQPage",
+      );
 
       expect(faqData).toBeDefined();
       expect(faqData?.["script:ld+json"]).toMatchObject({

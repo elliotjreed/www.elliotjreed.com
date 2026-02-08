@@ -10,7 +10,7 @@
     "wrangler": "wrangler deploy",
     "dev": "react-router dev",
     "start": "wrangler dev",
-    "typecheck": "react-router typegen && tsc -b",
+    "typecheck": "react-router typegen && tsc --noEmit",
     "format": "biome check --fix --unsafe ./app",
     "test": "vitest",
     "test:ui": "vitest --ui",
