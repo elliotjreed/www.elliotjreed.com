@@ -21,7 +21,7 @@ const GOOGLE_FONTS_URL =
 
 export const meta: Route.MetaFunction = ({ location, matches }) => {
   const safeMatches = matches ?? [];
-  const metaFromMatches = safeMatches.flatMap((match) => match.meta ?? []);
+  const metaFromMatches = safeMatches.flatMap((match) => match?.meta ?? []);
 
   const hasProperty = (property: string): boolean =>
     metaFromMatches.some((meta) => "property" in meta && meta.property === property);
