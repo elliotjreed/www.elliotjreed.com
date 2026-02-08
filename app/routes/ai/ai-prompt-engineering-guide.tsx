@@ -32,8 +32,7 @@ export const meta = () => [
   {
     "script:ld+json": createBreadcrumbs([
       { name: "Home", url: "https://www.elliotjreed.com" },
-      { name: "Guides", url: "https://www.elliotjreed.com" },
-      { name: "AI", url: "https://www.elliotjreed.com/ai/ai-prompt-engineering-guide" },
+      { name: "AI Guides", url: "https://www.elliotjreed.com/ai" },
       {
         name: "AI Prompting Guide",
         url: "https://www.elliotjreed.com/ai/ai-prompt-engineering-guide",

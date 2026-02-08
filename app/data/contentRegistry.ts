@@ -34,6 +34,13 @@ export const sitePages: SitePage[] = [
     index: true,
   },
   {
+    id: "ai-category",
+    path: "/ai",
+    routeFile: "routes/ai.tsx",
+    title: "AI Guides",
+    sitemap: { lastModified: "2026-02-05T00:00:00+00:00" },
+  },
+  {
     id: "ai-prompt-guide",
     path: "/ai/ai-prompt-engineering-guide",
     routeFile: "routes/ai/ai-prompt-engineering-guide.tsx",
@@ -110,6 +117,13 @@ export const sitePages: SitePage[] = [
     sitemap: { lastModified: "2026-01-31T00:00:00+00:00" },
   },
   {
+    id: "linux-category",
+    path: "/linux",
+    routeFile: "routes/linux.tsx",
+    title: "ZSH / Bash Shell Guides",
+    sitemap: { lastModified: "2026-02-05T00:00:00+00:00" },
+  },
+  {
     id: "linux-zsh-aliases",
     path: "/linux/zsh-bash-aliases",
     routeFile: "routes/linux/zsh-bash-aliases.tsx",
@@ -182,6 +196,13 @@ export const sitePages: SitePage[] = [
     sitemap: { lastModified: "2026-01-30T00:00:00+00:00" },
   },
   {
+    id: "docker-category",
+    path: "/docker",
+    routeFile: "routes/docker.tsx",
+    title: "Docker Guides",
+    sitemap: { lastModified: "2026-02-05T00:00:00+00:00" },
+  },
+  {
     id: "docker-get-ip",
     path: "/docker/get-docker-and-docker-compose-container-ip-addresses",
     routeFile: "routes/docker/get-docker-and-docker-compose-container-ip-addresses.tsx",
@@ -216,6 +237,13 @@ export const sitePages: SitePage[] = [
       keywords: ["docker", "backup", "restore", "database", "mysql", "postgres", "dump"],
     },
     sitemap: { lastModified: "2026-01-30T00:00:00+00:00" },
+  },
+  {
+    id: "php-category",
+    path: "/php",
+    routeFile: "routes/php.tsx",
+    title: "PHP Guides",
+    sitemap: { lastModified: "2026-02-05T00:00:00+00:00" },
   },
   {
     id: "php-disposable-email",
@@ -281,6 +309,7 @@ export const navigationTree: NavigationNode[] = [
     children: [
       {
         title: "AI Guides",
+        pageId: "ai-category",
         showInNavigation: true,
         children: [
           { title: "AI Prompt Guide", pageId: "ai-prompt-guide", showInNavigation: true },
@@ -292,6 +321,7 @@ export const navigationTree: NavigationNode[] = [
       },
       {
         title: "ZSH / Bash Shell Guides",
+        pageId: "linux-category",
         showInNavigation: true,
         children: [
           { title: "Useful Shell Aliases", pageId: "linux-zsh-aliases", showInNavigation: true },
@@ -304,6 +334,7 @@ export const navigationTree: NavigationNode[] = [
       },
       {
         title: "Docker Guides",
+        pageId: "docker-category",
         showInNavigation: true,
         children: [
           { title: "Find Docker IP address", pageId: "docker-get-ip", showInNavigation: true },
@@ -313,6 +344,7 @@ export const navigationTree: NavigationNode[] = [
       },
       {
         title: "PHP Guides",
+        pageId: "php-category",
         showInNavigation: true,
         children: [
           { title: "Detect disposable email addresses", pageId: "php-disposable-email", showInNavigation: true },

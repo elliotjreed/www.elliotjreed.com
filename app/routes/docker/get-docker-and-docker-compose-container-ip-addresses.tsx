@@ -31,11 +31,7 @@ export const meta = () => [
   {
     "script:ld+json": createBreadcrumbs([
       { name: "Home", url: "https://www.elliotjreed.com" },
-      { name: "Guides", url: "https://www.elliotjreed.com" },
-      {
-        name: "Docker",
-        url: "https://www.elliotjreed.com/docker/get-docker-and-docker-compose-container-ip-addresses",
-      },
+      { name: "Docker Guides", url: "https://www.elliotjreed.com/docker" },
       {
         name: "Docker IP Address",
         url: "https://www.elliotjreed.com/docker/get-docker-and-docker-compose-container-ip-addresses",

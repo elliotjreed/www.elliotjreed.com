@@ -29,11 +29,7 @@ export const meta = () => [
   {
     "script:ld+json": createBreadcrumbs([
       { name: "Home", url: "https://www.elliotjreed.com" },
-      { name: "Guides", url: "https://www.elliotjreed.com" },
-      {
-        name: "PHP",
-        url: "https://www.elliotjreed.com/php/detect-disposable-or-temporary-email-addresses-in-php",
-      },
+      { name: "PHP Guides", url: "https://www.elliotjreed.com/php" },
       {
         name: "Detect Disposable Emails",
         url: "https://www.elliotjreed.com/php/detect-disposable-or-temporary-email-addresses-in-php",

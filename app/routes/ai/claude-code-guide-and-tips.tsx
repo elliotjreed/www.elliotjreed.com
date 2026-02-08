@@ -44,8 +44,7 @@ export const meta = () => [
   {
     "script:ld+json": createBreadcrumbs([
       { name: "Home", url: "https://www.elliotjreed.com" },
-      { name: "Guides", url: "https://www.elliotjreed.com" },
-      { name: "AI", url: "https://www.elliotjreed.com/ai/claude-code-guide-and-tips" },
+      { name: "AI Guides", url: "https://www.elliotjreed.com/ai" },
       { name: "Claude Code Guide", url: "https://www.elliotjreed.com/ai/claude-code-guide-and-tips" },
     ]),
   },

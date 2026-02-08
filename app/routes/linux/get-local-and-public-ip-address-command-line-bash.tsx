@@ -32,11 +32,7 @@ export const meta = () => [
   {
     "script:ld+json": createBreadcrumbs([
       { name: "Home", url: "https://www.elliotjreed.com" },
-      { name: "Guides", url: "https://www.elliotjreed.com" },
-      {
-        name: "Linux",
-        url: "https://www.elliotjreed.com/linux/get-local-and-public-ip-address-command-line-bash",
-      },
+      { name: "ZSH / Bash Shell Guides", url: "https://www.elliotjreed.com/linux" },
       {
         name: "Get IP Address",
         url: "https://www.elliotjreed.com/linux/get-local-and-public-ip-address-command-line-bash",

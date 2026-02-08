@@ -32,8 +32,7 @@ export const meta = () => [
   {
     "script:ld+json": createBreadcrumbs([
       { name: "Home", url: "https://www.elliotjreed.com" },
-      { name: "Guides", url: "https://www.elliotjreed.com" },
-      { name: "Docker", url: "https://www.elliotjreed.com/docker/delete-all-docker-containers-and-images" },
+      { name: "Docker Guides", url: "https://www.elliotjreed.com/docker" },
       { name: "Clean up Docker", url: "https://www.elliotjreed.com/docker/delete-all-docker-containers-and-images" },
     ]),
   },

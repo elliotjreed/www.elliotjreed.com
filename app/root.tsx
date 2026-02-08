@@ -20,7 +20,8 @@ const GOOGLE_FONTS_URL =
   "https://fonts.googleapis.com/css2?family=Fira+Code&family=Fira+Sans:wght@700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap";
 
 export const meta: Route.MetaFunction = ({ location, matches }) => {
-  const metaFromMatches = matches.flatMap((match) => match.meta ?? []);
+  const safeMatches = matches ?? [];
+  const metaFromMatches = safeMatches.flatMap((match) => match.meta ?? []);
 
   const hasProperty = (property: string): boolean =>
     metaFromMatches.some((meta) => "property" in meta && meta.property === property);
@@ -28,13 +29,17 @@ export const meta: Route.MetaFunction = ({ location, matches }) => {
   const hasLinkRel = (rel: string): boolean =>
     metaFromMatches.some((meta) => "tagName" in meta && meta.tagName === "link" && meta.rel === rel);
 
-  const title = [...metaFromMatches].reverse().find((meta) => "title" in meta && typeof meta.title === "string")
-    ?.title as string | undefined;
+  const title = [...metaFromMatches]
+    .reverse()
+    .find(
+      (meta): meta is MetaDescriptor & { title: string } => "title" in meta && typeof meta.title === "string",
+    )?.title;
   const description = [...metaFromMatches]
     .reverse()
-    .find((meta) => "name" in meta && meta.name === "description" && typeof meta.content === "string")?.content as
-    | string
-    | undefined;
+    .find(
+      (meta): meta is MetaDescriptor & { name: string; content?: string } =>
+        "name" in meta && meta.name === "description" && typeof meta.content === "string",
+    )?.content;
 
   const canonicalUrl = new URL(location.pathname, SITE_URL).toString();
   const derivedMeta: MetaDescriptor[] = [];

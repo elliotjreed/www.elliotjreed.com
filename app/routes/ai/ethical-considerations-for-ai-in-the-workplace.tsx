@@ -41,8 +41,7 @@ export const meta = () => [
   {
     "script:ld+json": createBreadcrumbs([
       { name: "Home", url: "https://www.elliotjreed.com" },
-      { name: "Guides", url: "https://www.elliotjreed.com" },
-      { name: "AI", url: "https://www.elliotjreed.com/ai/ethical-considerations-for-ai-in-the-workplace" },
+      { name: "AI Guides", url: "https://www.elliotjreed.com/ai" },
       {
         name: "Ethical Considerations for AI in the Workplace",
         url: "https://www.elliotjreed.com/ai/ethical-considerations-for-ai-in-the-workplace",

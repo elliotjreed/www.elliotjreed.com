@@ -30,8 +30,7 @@ export const meta = () => [
   {
     "script:ld+json": createBreadcrumbs([
       { name: "Home", url: "https://www.elliotjreed.com" },
-      { name: "Guides", url: "https://www.elliotjreed.com" },
-      { name: "Linux", url: "https://www.elliotjreed.com/linux/copy-mysql-table-data-to-new-table" },
+      { name: "ZSH / Bash Shell Guides", url: "https://www.elliotjreed.com/linux" },
       { name: "Copy MySQL Table", url: "https://www.elliotjreed.com/linux/copy-mysql-table-data-to-new-table" },
     ]),
   },

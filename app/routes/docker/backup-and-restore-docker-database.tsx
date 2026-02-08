@@ -29,8 +29,7 @@ export const meta = () => [
   {
     "script:ld+json": createBreadcrumbs([
       { name: "Home", url: "https://www.elliotjreed.com" },
-      { name: "Guides", url: "https://www.elliotjreed.com" },
-      { name: "Docker", url: "https://www.elliotjreed.com/docker/backup-and-restore-docker-database" },
+      { name: "Docker Guides", url: "https://www.elliotjreed.com/docker" },
       { name: "Backup Database", url: "https://www.elliotjreed.com/docker/backup-and-restore-docker-database" },
     ]),
   },

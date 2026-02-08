@@ -29,11 +29,7 @@ export const meta = () => [
   {
     "script:ld+json": createBreadcrumbs([
       { name: "Home", url: "https://www.elliotjreed.com" },
-      { name: "Guides", url: "https://www.elliotjreed.com" },
-      {
-        name: "Linux",
-        url: "https://www.elliotjreed.com/linux/search-a-directory-for-text-string-via-command-line",
-      },
+      { name: "ZSH / Bash Shell Guides", url: "https://www.elliotjreed.com/linux" },
       {
         name: "Search Directory",
         url: "https://www.elliotjreed.com/linux/search-a-directory-for-text-string-via-command-line",

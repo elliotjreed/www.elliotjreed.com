@@ -30,11 +30,7 @@ export const meta = () => [
   {
     "script:ld+json": createBreadcrumbs([
       { name: "Home", url: "https://www.elliotjreed.com" },
-      { name: "Guides", url: "https://www.elliotjreed.com" },
-      {
-        name: "Linux",
-        url: "https://www.elliotjreed.com/linux/install-mariadb-on-ubuntu-and-allow-remote-access",
-      },
+      { name: "ZSH / Bash Shell Guides", url: "https://www.elliotjreed.com/linux" },
       {
         name: "Install MariaDB",
         url: "https://www.elliotjreed.com/linux/install-mariadb-on-ubuntu-and-allow-remote-access",
