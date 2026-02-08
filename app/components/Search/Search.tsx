@@ -1,4 +1,5 @@
-import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons/faMagnifyingGlass";
+import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { type FC, type ReactElement, type RefObject, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
@@ -119,7 +120,7 @@ export const Search: FC = (): ReactElement => {
           value={query}
           onChange={(e) => handleInputChange(e.target.value)}
           onKeyDown={handleKeyDown}
-          className={`rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-2 text-gray-900 dark:text-gray-100 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300 ${
+          className={`rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-2 text-gray-900 dark:text-gray-100 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-[width,opacity] duration-300 ${
             isExpanded ? "w-64 opacity-100" : "w-0 opacity-0 pointer-events-none"
           }`}
         />

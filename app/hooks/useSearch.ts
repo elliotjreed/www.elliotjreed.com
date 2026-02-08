@@ -1,5 +1,5 @@
-import Fuse from "fuse.js";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type Fuse from "fuse.js";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { type SearchableItem, searchIndex } from "~/data/searchIndex";
 
 const MAX_QUERY_LENGTH = 100;
@@ -14,10 +14,19 @@ interface UseSearchReturn {
 export const useSearch = (): UseSearchReturn => {
   const [results, setResults] = useState<SearchableItem[]>([]);
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const fuseRef = useRef<Fuse<SearchableItem> | null>(null);
+  const fuseLoadingRef = useRef<Promise<void> | null>(null);
 
-  const fuse = useMemo(
-    () =>
-      new Fuse(searchIndex, {
+  const loadFuse = useCallback(async (): Promise<void> => {
+    if (fuseRef.current) return;
+    if (fuseLoadingRef.current) {
+      await fuseLoadingRef.current;
+      return;
+    }
+
+    fuseLoadingRef.current = (async () => {
+      const { default: FuseClass } = await import("fuse.js");
+      fuseRef.current = new FuseClass(searchIndex, {
         keys: [
           { name: "title", weight: 0.4 },
           { name: "description", weight: 0.3 },
@@ -27,9 +36,11 @@ export const useSearch = (): UseSearchReturn => {
         threshold: 0.4,
         includeScore: true,
         minMatchCharLength: 2,
-      }),
-    [],
-  );
+      });
+    })();
+
+    await fuseLoadingRef.current;
+  }, []);
 
   const search = useCallback(
     (query: string): void => {
@@ -44,12 +55,15 @@ export const useSearch = (): UseSearchReturn => {
         return;
       }
 
-      debounceTimerRef.current = setTimeout(() => {
-        const searchResults = fuse.search(sanitisedQuery);
-        setResults(searchResults.map((result) => result.item));
+      debounceTimerRef.current = setTimeout(async () => {
+        await loadFuse();
+        if (fuseRef.current) {
+          const searchResults = fuseRef.current.search(sanitisedQuery);
+          setResults(searchResults.map((result) => result.item));
+        }
       }, DEBOUNCE_DELAY);
     },
-    [fuse],
+    [loadFuse],
   );
 
   const clearResults = useCallback((): void => {

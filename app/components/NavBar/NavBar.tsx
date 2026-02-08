@@ -194,7 +194,7 @@ export const NavBar: FC = (): ReactElement => {
 
                         <div
                           id={desktopMenuId}
-                          className={`absolute right-0 top-full pt-2 transition-all duration-200 ${
+                          className={`absolute right-0 top-full pt-2 transition-[opacity,visibility] duration-200 ${
                             hoveredDropdown === link.title
                               ? "opacity-100 visible"
                               : "opacity-0 invisible pointer-events-none"
@@ -336,7 +336,7 @@ export const NavBar: FC = (): ReactElement => {
                     </button>
 
                     <div
-                      className={`mt-1 ml-2 space-y-1 overflow-hidden transition-all duration-200 ${
+                      className={`mt-1 ml-2 space-y-1 overflow-hidden transition-[max-height,opacity] duration-200 ${
                         openDropdown === link.title ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
                       }`}
                     >
@@ -354,7 +354,7 @@ export const NavBar: FC = (): ReactElement => {
                                   <DropdownMenuIcon isOpen={openSubDropdown === child.title} />
                                 </button>
                                 <ul
-                                  className={`mt-1 ml-3 space-y-1 overflow-hidden transition-all duration-200 ${
+                                  className={`mt-1 ml-3 space-y-1 overflow-hidden transition-[max-height,opacity] duration-200 ${
                                     openSubDropdown === child.title ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
                                   }`}
                                 >
