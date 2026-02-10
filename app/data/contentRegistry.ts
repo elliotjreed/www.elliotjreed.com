@@ -146,7 +146,7 @@ export const sitePages: SitePage[] = [
     path: "/linux",
     routeFile: "routes/linux.tsx",
     title: "ZSH / Bash Shell Guides",
-    sitemap: { lastModified: "2026-02-05T00:00:00+00:00" },
+    sitemap: { lastModified: "2026-02-10T00:00:00+00:00" },
   },
   {
     id: "linux-zsh-aliases",
@@ -195,6 +195,19 @@ export const sitePages: SitePage[] = [
       keywords: ["ip", "address", "local", "public", "bash", "command", "line", "network"],
     },
     sitemap: { lastModified: "2026-01-30T00:00:00+00:00" },
+  },
+  {
+    id: "linux-fix-ssh-permissions",
+    path: "/linux/fix-ssh-permissions-after-moving-directory",
+    routeFile: "routes/linux/fix-ssh-permissions-after-moving-directory.tsx",
+    title: "Fix SSH directory permissions",
+    search: {
+      description:
+        "Learn how to correctly set SSH file permissions after moving your .ssh directory to a new computer.",
+      category: "ZSH / Bash Shell Guides",
+      keywords: ["ssh", "permissions", "security", "linux", "mac", "command", "line", "bash", "chmod", "file"],
+    },
+    sitemap: { lastModified: "2026-02-10T00:00:00+00:00" },
   },
   {
     id: "linux-install-mariadb",
@@ -359,6 +372,11 @@ export const navigationTree: NavigationNode[] = [
           { title: "Install MariaDB on Ubuntu", pageId: "linux-install-mariadb", showInNavigation: true },
           { title: "Duplicate MySQL table", pageId: "linux-copy-mysql-table", showInNavigation: true },
           { title: "Find local and public IP address", pageId: "linux-get-ip-address", showInNavigation: true },
+          {
+            title: "Fix SSH directory permissions",
+            pageId: "linux-fix-ssh-permissions",
+            showInNavigation: true,
+          },
           { title: "Search directory for a string", pageId: "linux-search-directory", showInNavigation: true },
         ],
       },
