@@ -1,4 +1,4 @@
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons/faMagnifyingGlass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { type FC, type ReactElement, useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router";
@@ -28,54 +28,58 @@ export const MobileSearch: FC<MobileSearchProps> = ({ onNavigate }): ReactElemen
     onNavigate?.();
   };
 
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent): void => {
-      if (!query) return;
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (!query) return;
 
-      switch (event.key) {
-        case "Escape":
-          event.preventDefault();
+    switch (event.key) {
+      case "Escape":
+        event.preventDefault();
+        setQuery("");
+        clearResults();
+        setActiveIndex(-1);
+        break;
+      case "ArrowDown":
+        event.preventDefault();
+        setActiveIndex((prev) => (prev < results.length - 1 ? prev + 1 : prev));
+        break;
+      case "ArrowUp":
+        event.preventDefault();
+        setActiveIndex((prev) => (prev > 0 ? prev - 1 : -1));
+        break;
+      case "Enter":
+        event.preventDefault();
+        if (activeIndex >= 0 && activeIndex < results.length) {
+          const result = results[activeIndex];
+          navigate(result.href);
           setQuery("");
           clearResults();
           setActiveIndex(-1);
-          break;
-        case "ArrowDown":
-          event.preventDefault();
-          setActiveIndex((prev) => (prev < results.length - 1 ? prev + 1 : prev));
-          break;
-        case "ArrowUp":
-          event.preventDefault();
-          setActiveIndex((prev) => (prev > 0 ? prev - 1 : -1));
-          break;
-        case "Enter":
-          event.preventDefault();
-          if (activeIndex >= 0 && activeIndex < results.length) {
-            const result = results[activeIndex];
-            navigate(result.href);
-            setQuery("");
-            clearResults();
-            setActiveIndex(-1);
-            onNavigate?.();
-          }
-          break;
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return (): void => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [query, results, activeIndex, navigate, clearResults, onNavigate]);
+          onNavigate?.();
+        }
+        break;
+    }
+  };
 
   useEffect(() => {
     if (activeIndex >= 0) {
       const element = document.getElementById(`mobile-search-result-${activeIndex}`);
-      element?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      element?.scrollIntoView({ block: "nearest", behavior: prefersReducedMotion ? "auto" : "smooth" });
     }
   }, [activeIndex]);
 
+  const statusMessage =
+    query.length > 0 && results.length > 0
+      ? `${results.length} result${results.length === 1 ? "" : "s"} available.`
+      : query.length > 0
+        ? "No results found."
+        : "";
+
   return (
     <div className="relative">
+      <output className="sr-only" aria-live="polite" aria-atomic="true">
+        {statusMessage}
+      </output>
       <div className="relative">
         <input
           type="text"
@@ -87,6 +91,7 @@ export const MobileSearch: FC<MobileSearchProps> = ({ onNavigate }): ReactElemen
           placeholder="Search&hellip;"
           value={query}
           onChange={(e) => handleInputChange(e.target.value)}
+          onKeyDown={handleKeyDown}
           className="w-full rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 pl-10 pr-3 py-2 text-gray-900 dark:text-gray-100 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500"
         />
         <FontAwesomeIcon

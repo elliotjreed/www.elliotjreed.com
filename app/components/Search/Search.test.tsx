@@ -93,6 +93,8 @@ describe("Search", () => {
     const button = screen.getByRole("button", { name: "Open search" });
     await user.click(button);
 
+    const input = screen.getByRole("combobox", { name: "Search guides and articles" });
+    input.focus();
     await user.keyboard("{Escape}");
 
     const newButton = screen.getByRole("button", { name: "Open search" });
@@ -113,5 +115,6 @@ describe("Search", () => {
     const input = screen.getByRole("combobox");
     expect(input).toHaveAttribute("aria-label", "Search guides and articles");
     expect(input).toHaveAttribute("aria-expanded");
+    expect(input).toHaveAttribute("aria-controls", "search-results");
   });
 });

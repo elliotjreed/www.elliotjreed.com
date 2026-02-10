@@ -1,34 +1,20 @@
 import type { ReactElement } from "react";
 import { Link } from "react-router";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
+import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
-  { title: "CAFE Framework Prompting Guide | EJR" },
-  {
-    name: "description",
-    content:
+  ...createMeta({
+    title: "CAFE Framework Prompting Guide | EJR",
+    description:
       "A guide on effective prompting using the CAFE prompt engineering framework, for AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
-  },
-  { property: "og:title", content: "CAFE Framework Prompting Guide" },
-  {
-    property: "og:description",
-    content:
-      "A guide on effective prompting using the CAFE prompt engineering framework, for AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
-  },
-  { property: "og:type", content: "article" },
-  { property: "og:url", content: "https://www.elliotjreed.com/ai/cafe-ai-prompt-framework" },
-  { property: "og:site_name", content: "Elliot J. Reed" },
-  { property: "og:locale", content: "en_GB" },
-  { property: "og:image", content: "https://www.elliotjreed.com/og.png" },
-  { name: "twitter:card", content: "summary_large_image" },
-  { name: "twitter:title", content: "CAFE Framework Prompting Guide" },
-  {
-    name: "twitter:description",
-    content:
-      "A guide on effective prompting using the CAFE prompt engineering framework, for AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
-  },
-  { name: "twitter:image", content: "https://www.elliotjreed.com/twitter-card.png" },
+    url: "https://www.elliotjreed.com/ai/cafe-ai-prompt-framework",
+    type: "article",
+    ogImage: "https://www.elliotjreed.com/og.png",
+    twitterImage: "https://www.elliotjreed.com/twitter-card.png",
+  }),
   {
     "script:ld+json": createTechArticle({
       url: "https://www.elliotjreed.com/ai/cafe-ai-prompt-framework",
@@ -46,8 +32,7 @@ export const meta = () => [
   {
     "script:ld+json": createBreadcrumbs([
       { name: "Home", url: "https://www.elliotjreed.com" },
-      { name: "Guides", url: "https://www.elliotjreed.com" },
-      { name: "AI", url: "https://www.elliotjreed.com/ai/cafe-ai-prompt-framework" },
+      { name: "AI Guides", url: "https://www.elliotjreed.com/ai" },
       { name: "CAFE Framework", url: "https://www.elliotjreed.com/ai/cafe-ai-prompt-framework" },
     ]),
   },
@@ -79,23 +64,22 @@ export const meta = () => [
 
 export default (): ReactElement => (
   <section className="divide-y divide-gray-200 dark:divide-gray-700">
-    <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-      <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
-        CAFE Prompt Framework
-      </h1>
-
-      <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
-        <span>By Elliot J. Reed</span>
-        <span>•</span>
-        <time dateTime="2025-04-20">
-          Published: 20<sup>th</sup> April 2025
-        </time>
-        <span>•</span>
-        <time dateTime="2026-01-30">
-          Last updated: 30<sup>th</sup> January 2026
-        </time>
-      </div>
-
+    <PageHeader
+      title="CAFE Prompt Framework"
+      meta={
+        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+          <span>By Elliot J. Reed</span>
+          <span>•</span>
+          <time dateTime="2025-04-20">
+            Published: 20<sup>th</sup> April 2025
+          </time>
+          <span>•</span>
+          <time dateTime="2026-01-30">
+            Last updated: 30<sup>th</sup> January 2026
+          </time>
+        </div>
+      }
+    >
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         This is an outline of my <strong>CAFE</strong> prompt framework. For a more in-depth guide, take a look at my{" "}
         <Link
@@ -107,7 +91,7 @@ export default (): ReactElement => (
         </Link>
         .
       </p>
-    </div>
+    </PageHeader>
 
     <div className="prose max-w-none dark:prose-dark">
       <section>

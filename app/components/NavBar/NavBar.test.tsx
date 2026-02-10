@@ -193,6 +193,33 @@ describe("NavBar", () => {
     expect(nav).toHaveAttribute("id", "mobile-navigation");
   });
 
+  it("should render mobile navigation as a dialog", () => {
+    const { container } = render(
+      <BrowserRouter>
+        <NavBar />
+      </BrowserRouter>,
+    );
+
+    const nav = container.querySelector("#mobile-navigation");
+    expect(nav).toHaveAttribute("role", "dialog");
+    expect(nav).toHaveAttribute("aria-modal", "true");
+    expect(nav).toHaveAttribute("aria-labelledby", "mobile-navigation-title");
+  });
+
+  it("should mark desktop dropdown buttons as menus", () => {
+    render(
+      <BrowserRouter>
+        <NavBar />
+      </BrowserRouter>,
+    );
+
+    const guidesButtons = screen.getAllByRole("button", { name: /Guides/i });
+    const menuButton = guidesButtons.find((button) => button.getAttribute("aria-haspopup") === "menu");
+
+    expect(menuButton).toBeDefined();
+    expect(menuButton).toHaveAttribute("aria-haspopup", "menu");
+  });
+
   it("should only show navigation items marked as showInNavigation", () => {
     render(
       <BrowserRouter>
@@ -216,8 +243,9 @@ describe("NavBar", () => {
     const menuButton = screen.getByRole("button", { name: /toggle navigation menu/i });
     await user.click(menuButton);
 
+    const mobileNav = container.querySelector("#mobile-navigation");
     const guidesButtons = screen.getAllByRole("button", { name: /Guides/i });
-    const guidesButton = guidesButtons.find((btn) => btn.textContent === "Guides");
+    const guidesButton = guidesButtons.find((btn) => mobileNav?.contains(btn));
     // biome-ignore lint/style/noNonNullAssertion: test ensures button exists via screen.getAllByRole
     await user.click(guidesButton!);
 
@@ -226,10 +254,15 @@ describe("NavBar", () => {
       expect(childLinks.length).toBeGreaterThan(0);
     });
 
-    const childLink = screen.getAllByRole("link", { name: "AI Prompt Guide" })[0];
-    await user.click(childLink);
+    const childLinks = screen.getAllByRole("link", { name: "AI Prompt Guide" });
+    const childLink = childLinks.find((link) => mobileNav?.contains(link));
+    expect(childLink).toBeDefined();
+    // biome-ignore lint/style/noNonNullAssertion: test ensures child link exists
+    await user.click(childLink!);
 
     const nav = container.querySelector("#mobile-navigation");
-    expect(nav).toHaveClass("translate-x-full");
+    await waitFor(() => {
+      expect(nav).toHaveClass("translate-x-full");
+    });
   });
 });

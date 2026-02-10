@@ -16,6 +16,9 @@ export const NavBar: FC = (): ReactElement => {
 
   const navWrapperRef: RefObject<HTMLDivElement | null> = useRef<HTMLDivElement>(null);
   const mobileMenuRef: RefObject<HTMLElement | null> = useRef<HTMLElement>(null);
+  const menuButtonRef: RefObject<HTMLButtonElement | null> = useRef<HTMLButtonElement>(null);
+  const closeButtonRef: RefObject<HTMLButtonElement | null> = useRef<HTMLButtonElement>(null);
+  const previousFocusRef: RefObject<HTMLElement | null> = useRef<HTMLElement | null>(null);
 
   const toggleMenu = (): void => setIsMenuOpen((open: boolean): boolean => !open);
   const closeMenu = (): void => {
@@ -71,6 +74,69 @@ export const NavBar: FC = (): ReactElement => {
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    const pageContent = document.getElementById("page-content");
+    if (!pageContent) return;
+
+    if (isMenuOpen) {
+      pageContent.setAttribute("inert", "");
+      pageContent.setAttribute("aria-hidden", "true");
+    } else {
+      pageContent.removeAttribute("inert");
+      pageContent.removeAttribute("aria-hidden");
+    }
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      if (previousFocusRef.current) {
+        previousFocusRef.current.focus();
+        previousFocusRef.current = null;
+      }
+      return;
+    }
+
+    previousFocusRef.current = document.activeElement as HTMLElement | null;
+
+    const menu = mobileMenuRef.current;
+    const getFocusableElements = (): HTMLElement[] => {
+      if (!menu) return [];
+      return Array.from(
+        menu.querySelectorAll<HTMLElement>(
+          "a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex='-1'])",
+        ),
+      );
+    };
+
+    const focusable = getFocusableElements();
+    const firstFocusable = closeButtonRef.current ?? focusable[0];
+    firstFocusable?.focus();
+
+    const handleTab = (event: KeyboardEvent): void => {
+      if (event.key !== "Tab") return;
+
+      const items = getFocusableElements();
+      if (items.length === 0) return;
+
+      const first = items[0];
+      const last = items[items.length - 1];
+      const activeElement = document.activeElement as HTMLElement | null;
+
+      if (event.shiftKey && activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleTab);
+    return (): void => {
+      document.removeEventListener("keydown", handleTab);
+    };
+  }, [isMenuOpen]);
+
   const navigationLinks: StaticLink[] = staticLinks.filter((link: StaticLink): boolean => link.showInNavigation);
 
   return (
@@ -92,16 +158,34 @@ export const NavBar: FC = (): ReactElement => {
                 {navigationLinks.map((link) => {
                   if (link.children?.length) {
                     const validChildren = link.children.filter((child) => child.showInNavigation);
+                    const desktopMenuId = `desktop-menu-${link.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 
                     return (
                       <li
                         key={link.title}
                         className="relative group"
                         onMouseEnter={() => setHoveredDropdown(link.title)}
-                        onMouseLeave={() => setHoveredDropdown(null)}
+                        onMouseLeave={(event) => {
+                          const activeElement = document.activeElement as Node | null;
+                          if (activeElement && event.currentTarget.contains(activeElement)) {
+                            return;
+                          }
+                          setHoveredDropdown(null);
+                        }}
+                        onFocus={() => setHoveredDropdown(link.title)}
+                        onBlur={(event) => {
+                          const nextTarget = event.relatedTarget as Node | null;
+                          if (!nextTarget || !event.currentTarget.contains(nextTarget)) {
+                            setHoveredDropdown(null);
+                          }
+                        }}
                       >
                         <button
                           type="button"
+                          aria-haspopup="menu"
+                          aria-expanded={hoveredDropdown === link.title}
+                          aria-controls={desktopMenuId}
+                          onClick={() => setHoveredDropdown((current) => (current === link.title ? null : link.title))}
                           className="flex items-center gap-1 px-4 py-2 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-medium"
                         >
                           {link.title}
@@ -109,7 +193,8 @@ export const NavBar: FC = (): ReactElement => {
                         </button>
 
                         <div
-                          className={`absolute right-0 top-full pt-2 transition-all duration-200 ${
+                          id={desktopMenuId}
+                          className={`absolute right-0 top-full pt-2 transition-[opacity,visibility] duration-200 ${
                             hoveredDropdown === link.title
                               ? "opacity-100 visible"
                               : "opacity-0 invisible pointer-events-none"
@@ -182,6 +267,7 @@ export const NavBar: FC = (): ReactElement => {
               aria-expanded={isMenuOpen}
               aria-label="Toggle navigation menu"
               onClick={toggleMenu}
+              ref={menuButtonRef}
               className="md:hidden inline-flex items-center justify-center w-10 h-10 p-2 rounded-lg text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:text-gray-400 dark:hover:bg-gray-800 dark:focus:ring-primary-600 transition-colors"
             >
               <HamburgerIcon isOpen={isMenuOpen} />
@@ -201,17 +287,23 @@ export const NavBar: FC = (): ReactElement => {
       <nav
         ref={mobileMenuRef}
         id="mobile-navigation"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="mobile-navigation-title"
         className={`md:hidden fixed top-0 right-0 h-full w-[280px] z-[70] bg-white dark:bg-gray-900 shadow-2xl transform transition-transform duration-300 ease-in-out ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex flex-col h-full overflow-y-auto">
           <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-            <span className="text-xl font-bold text-gray-900 dark:text-white">Menu</span>
+            <span id="mobile-navigation-title" className="text-xl font-bold text-gray-900 dark:text-white">
+              Menu
+            </span>
             <button
               type="button"
               onClick={closeMenu}
               aria-label="Close menu"
+              ref={closeButtonRef}
               className="p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors"
             >
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -244,7 +336,7 @@ export const NavBar: FC = (): ReactElement => {
                     </button>
 
                     <div
-                      className={`mt-1 ml-2 space-y-1 overflow-hidden transition-all duration-200 ${
+                      className={`mt-1 ml-2 space-y-1 overflow-hidden transition-[max-height,opacity] duration-200 ${
                         openDropdown === link.title ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
                       }`}
                     >
@@ -262,7 +354,7 @@ export const NavBar: FC = (): ReactElement => {
                                   <DropdownMenuIcon isOpen={openSubDropdown === child.title} />
                                 </button>
                                 <ul
-                                  className={`mt-1 ml-3 space-y-1 overflow-hidden transition-all duration-200 ${
+                                  className={`mt-1 ml-3 space-y-1 overflow-hidden transition-[max-height,opacity] duration-200 ${
                                     openSubDropdown === child.title ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
                                   }`}
                                 >

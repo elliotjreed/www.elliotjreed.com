@@ -1,4 +1,5 @@
-import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons/faMagnifyingGlass";
+import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { type FC, type ReactElement, type RefObject, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
@@ -40,6 +41,33 @@ export const Search: FC = (): ReactElement => {
     setActiveIndex(-1);
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (!isExpanded) return;
+
+    switch (event.key) {
+      case "Escape":
+        event.preventDefault();
+        handleClose();
+        break;
+      case "ArrowDown":
+        event.preventDefault();
+        setActiveIndex((prev) => (prev < results.length - 1 ? prev + 1 : prev));
+        break;
+      case "ArrowUp":
+        event.preventDefault();
+        setActiveIndex((prev) => (prev > 0 ? prev - 1 : -1));
+        break;
+      case "Enter":
+        event.preventDefault();
+        if (activeIndex >= 0 && activeIndex < results.length) {
+          const result = results[activeIndex];
+          navigate(result.href);
+          handleClose();
+        }
+        break;
+    }
+  };
+
   // biome-ignore lint/correctness/useExhaustiveDependencies: handleClose doesn't need to be a dependency
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent): void => {
@@ -58,63 +86,41 @@ export const Search: FC = (): ReactElement => {
     };
   }, [isExpanded]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: handleClose doesn't need to be a dependency
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent): void => {
-      if (!isExpanded) return;
-
-      switch (event.key) {
-        case "Escape":
-          event.preventDefault();
-          handleClose();
-          break;
-        case "ArrowDown":
-          event.preventDefault();
-          setActiveIndex((prev) => (prev < results.length - 1 ? prev + 1 : prev));
-          break;
-        case "ArrowUp":
-          event.preventDefault();
-          setActiveIndex((prev) => (prev > 0 ? prev - 1 : -1));
-          break;
-        case "Enter":
-          event.preventDefault();
-          if (activeIndex >= 0 && activeIndex < results.length) {
-            const result = results[activeIndex];
-            navigate(result.href);
-            handleClose();
-          }
-          break;
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return (): void => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [isExpanded, results, activeIndex, navigate]);
-
   useEffect(() => {
     if (activeIndex >= 0) {
       const element = document.getElementById(`search-result-${activeIndex}`);
-      element?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      element?.scrollIntoView({ block: "nearest", behavior: prefersReducedMotion ? "auto" : "smooth" });
     }
   }, [activeIndex]);
 
+  const isResultsVisible = isExpanded && query.length > 0;
+  const statusMessage =
+    isResultsVisible && results.length > 0
+      ? `${results.length} result${results.length === 1 ? "" : "s"} available.`
+      : isResultsVisible
+        ? "No results found."
+        : "";
+
   return (
     <div ref={searchRef} className="relative flex items-center">
+      <output className="sr-only" aria-live="polite" aria-atomic="true">
+        {statusMessage}
+      </output>
       <div className="flex items-center gap-1">
         <input
           ref={inputRef}
           type="text"
           role="combobox"
-          aria-expanded={isExpanded && results.length > 0}
+          aria-expanded={isResultsVisible}
           aria-controls="search-results"
           aria-activedescendant={activeIndex >= 0 ? `search-result-${activeIndex}` : undefined}
           aria-label="Search guides and articles"
           placeholder="Search&hellip;"
           value={query}
           onChange={(e) => handleInputChange(e.target.value)}
-          className={`rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-2 text-gray-900 dark:text-gray-100 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300 ${
+          onKeyDown={handleKeyDown}
+          className={`rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-2 text-gray-900 dark:text-gray-100 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-[width,opacity] duration-300 ${
             isExpanded ? "w-64 opacity-100" : "w-0 opacity-0 pointer-events-none"
           }`}
         />

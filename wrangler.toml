@@ -7,7 +7,7 @@ main = "./build/server/index.js"
 upload_source_maps = false
 
 [build]
-command = "npm run build"
+command = "bun run build"
 
 [assets]
 directory = "./build/client/"

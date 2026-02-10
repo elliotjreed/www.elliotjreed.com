@@ -1,28 +1,19 @@
 import type { ReactElement } from "react";
 import { CodeSnippet } from "~/components/CodeSnippet/CodeSnippet";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
+import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
-  { title: "Installing MariaDB on Ubuntu | EJR" },
-  {
-    name: "description",
-    content: "How to install MariaDB (MySQL) on Ubuntu 20.04+ and allow remote access",
-  },
-  { property: "og:title", content: "Installing MariaDB on Ubuntu" },
-  { property: "og:description", content: "How to install MariaDB (MySQL) on Ubuntu 20.04+ and allow remote access" },
-  { property: "og:type", content: "article" },
-  {
-    property: "og:url",
-    content: "https://www.elliotjreed.com/linux/install-mariadb-on-ubuntu-and-allow-remote-access",
-  },
-  { property: "og:site_name", content: "Elliot J. Reed" },
-  { property: "og:locale", content: "en_GB" },
-  { property: "og:image", content: "https://www.elliotjreed.com/og.png" },
-  { name: "twitter:card", content: "summary_large_image" },
-  { name: "twitter:title", content: "Installing MariaDB on Ubuntu" },
-  { name: "twitter:description", content: "How to install MariaDB (MySQL) on Ubuntu 20.04+ and allow remote access" },
-  { name: "twitter:image", content: "https://www.elliotjreed.com/twitter-card.png" },
+  ...createMeta({
+    title: "Installing MariaDB on Ubuntu | EJR",
+    description: "How to install MariaDB (MySQL) on Ubuntu 20.04+ and allow remote access",
+    url: "https://www.elliotjreed.com/linux/install-mariadb-on-ubuntu-and-allow-remote-access",
+    type: "article",
+    ogImage: "https://www.elliotjreed.com/og.png",
+    twitterImage: "https://www.elliotjreed.com/twitter-card.png",
+  }),
   {
     "script:ld+json": createTechArticle({
       url: "https://www.elliotjreed.com/linux/install-mariadb-on-ubuntu-and-allow-remote-access",
@@ -39,11 +30,7 @@ export const meta = () => [
   {
     "script:ld+json": createBreadcrumbs([
       { name: "Home", url: "https://www.elliotjreed.com" },
-      { name: "Guides", url: "https://www.elliotjreed.com" },
-      {
-        name: "Linux",
-        url: "https://www.elliotjreed.com/linux/install-mariadb-on-ubuntu-and-allow-remote-access",
-      },
+      { name: "ZSH / Bash Shell Guides", url: "https://www.elliotjreed.com/linux" },
       {
         name: "Install MariaDB",
         url: "https://www.elliotjreed.com/linux/install-mariadb-on-ubuntu-and-allow-remote-access",
@@ -54,27 +41,26 @@ export const meta = () => [
 
 export default (): ReactElement => (
   <section className="divide-y divide-gray-200 dark:divide-gray-700">
-    <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-      <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
-        Installing MariaDB on Ubuntu
-      </h1>
-
-      <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
-        <span>By Elliot J. Reed</span>
-        <span>•</span>
-        <time dateTime="2022-04-22">
-          Published: 22<sup>nd</sup> April 2022
-        </time>
-        <span>•</span>
-        <time dateTime="2026-01-30">
-          Last updated: 30<sup>th</sup> January 2026
-        </time>
-      </div>
-
+    <PageHeader
+      title="Installing MariaDB on Ubuntu"
+      meta={
+        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+          <span>By Elliot J. Reed</span>
+          <span>•</span>
+          <time dateTime="2022-04-22">
+            Published: 22<sup>nd</sup> April 2022
+          </time>
+          <span>•</span>
+          <time dateTime="2026-01-30">
+            Last updated: 30<sup>th</sup> January 2026
+          </time>
+        </div>
+      }
+    >
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         How to install MariaDB (MySQL) on Ubuntu 20.04+ and allow remote access
       </p>
-    </div>
+    </PageHeader>
 
     <div className="prose max-w-none dark:prose-dark">
       <section>

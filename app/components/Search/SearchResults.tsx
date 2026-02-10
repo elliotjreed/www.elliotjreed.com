@@ -12,17 +12,25 @@ export const SearchResults: FC<SearchResultsProps> = ({ results, onClose, active
   if (results.length === 0) {
     return (
       <div
+        id="search-results"
         role="listbox"
+        aria-label="Search results"
         className="absolute top-full right-0 mt-2 w-80 max-h-96 overflow-y-auto rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-xl z-50"
       >
-        <div className="px-4 py-8 text-center text-gray-500 dark:text-gray-400">No results found</div>
+        <output
+          className="block px-4 py-3 border-b border-gray-100 dark:border-gray-700 last:border-b-0 transition-colors "
+          aria-live="polite"
+        >
+          No results found
+        </output>
       </div>
     );
   }
 
   return (
-    <div
-      role="listbox"
+    <output
+      id="search-results"
+      aria-label="Search results"
       className="absolute top-full right-0 mt-2 w-80 max-h-96 overflow-y-auto rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-xl z-50"
     >
       {results.map((result, index) => (
@@ -42,6 +50,6 @@ export const SearchResults: FC<SearchResultsProps> = ({ results, onClose, active
           <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">{result.category}</div>
         </NavLink>
       ))}
-    </div>
+    </output>
   );
 };

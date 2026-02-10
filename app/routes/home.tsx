@@ -3,15 +3,32 @@ import { Link } from "react-router";
 import { SocialLinks } from "~/components/SocialLinks/SocialLinks";
 import { emailAddress } from "~/data/emailAddress";
 import { authorSchema, createBreadcrumbs, websiteSchema } from "~/data/schemaData";
+import { createMeta } from "~/utils/seo";
+
+const HERO_IMAGE_URL = "https://www.elliotjreed.com/elliot-greyscale.webp";
+
+export const links = () => [
+  {
+    rel: "preload",
+    as: "image",
+    href: HERO_IMAGE_URL,
+    type: "image/webp",
+  },
+];
 
 export function meta() {
+  const title = "Elliot J. Reed | EJR";
+  const description =
+    "The personal website of Elliot J. Reed, whose interests include e-commerce and technology management, philosophy, AI, software development, DevOps, and Linux.";
+
   return [
-    { title: "Elliot J. Reed | EJR" },
-    {
-      name: "description",
-      content:
-        "The personal website of Elliot J. Reed, whose interests include e-commerce and technology management, philosophy, AI, software development, DevOps, and Linux.",
-    },
+    ...createMeta({
+      title,
+      description,
+      url: "https://www.elliotjreed.com",
+      type: "website",
+      image: "https://www.elliotjreed.com/og.png",
+    }),
     {
       "script:ld+json": {
         "@context": "https://schema.org",
@@ -51,13 +68,14 @@ export default (): ReactElement => {
       <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
         <div className="flex flex-col items-center pt-8 text-gray-700 dark:text-gray-200">
           <img
-            src="https://www.elliotjreed.com/elliot-greyscale.webp"
+            src={HERO_IMAGE_URL}
             alt="Photograph of Elliot"
             width={192}
             height={192}
             className="h-48 w-48 rounded-full"
             loading="eager"
             decoding="async"
+            fetchPriority="high"
           />
           <h1 className="pt-4 pb-1 text-2xl font-bold leading-8 tracking-tight">Elliot Reed</h1>
           <div className="text-navy-900 dark:text-gray-300">

@@ -1,31 +1,20 @@
 import type { ReactElement } from "react";
 import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
+import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
-  { title: "Clean up Docker | EJR" },
-  {
-    name: "description",
-    content: "How to remove all Docker containers, images, networks and volumes in a handy Bash / ZSH Shell function",
-  },
-  { property: "og:title", content: "Clean up Docker" },
-  {
-    property: "og:description",
-    content: "How to remove all Docker containers, images, networks and volumes in a handy Bash / ZSH Shell function",
-  },
-  { property: "og:type", content: "article" },
-  { property: "og:url", content: "https://www.elliotjreed.com/docker/delete-all-docker-containers-and-images" },
-  { property: "og:site_name", content: "Elliot J. Reed" },
-  { property: "og:locale", content: "en_GB" },
-  { property: "og:image", content: "https://www.elliotjreed.com/og.png" },
-  { name: "twitter:card", content: "summary_large_image" },
-  { name: "twitter:title", content: "Clean up Docker" },
-  {
-    name: "twitter:description",
-    content: "How to remove all Docker containers, images, networks and volumes in a handy Bash / ZSH Shell function",
-  },
-  { name: "twitter:image", content: "https://www.elliotjreed.com/twitter-card.png" },
+  ...createMeta({
+    title: "Clean up Docker | EJR",
+    description:
+      "How to remove all Docker containers, images, networks and volumes in a handy Bash / ZSH Shell function",
+    url: "https://www.elliotjreed.com/docker/delete-all-docker-containers-and-images",
+    type: "article",
+    ogImage: "https://www.elliotjreed.com/og.png",
+    twitterImage: "https://www.elliotjreed.com/twitter-card.png",
+  }),
   {
     "script:ld+json": createTechArticle({
       url: "https://www.elliotjreed.com/docker/delete-all-docker-containers-and-images",
@@ -43,8 +32,7 @@ export const meta = () => [
   {
     "script:ld+json": createBreadcrumbs([
       { name: "Home", url: "https://www.elliotjreed.com" },
-      { name: "Guides", url: "https://www.elliotjreed.com" },
-      { name: "Docker", url: "https://www.elliotjreed.com/docker/delete-all-docker-containers-and-images" },
+      { name: "Docker Guides", url: "https://www.elliotjreed.com/docker" },
       { name: "Clean up Docker", url: "https://www.elliotjreed.com/docker/delete-all-docker-containers-and-images" },
     ]),
   },
@@ -82,28 +70,27 @@ const snippet: CodeSnippetInterface = {
 
 export default (): ReactElement => (
   <section className="divide-y divide-gray-200 dark:divide-gray-700">
-    <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-      <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
-        Remove all Docker containers, images, networks and volumes
-      </h1>
-
-      <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
-        <span>By Elliot J. Reed</span>
-        <span>•</span>
-        <time dateTime="2016-12-29">
-          Published: 29<sup>th</sup> December 2016
-        </time>
-        <span>•</span>
-        <time dateTime="2026-01-30">
-          Last updated: 30<sup>th</sup> January 2026
-        </time>
-      </div>
-
+    <PageHeader
+      title="Remove all Docker containers, images, networks and volumes"
+      meta={
+        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+          <span>By Elliot J. Reed</span>
+          <span>•</span>
+          <time dateTime="2016-12-29">
+            Published: 29<sup>th</sup> December 2016
+          </time>
+          <span>•</span>
+          <time dateTime="2026-01-30">
+            Last updated: 30<sup>th</sup> January 2026
+          </time>
+        </div>
+      }
+    >
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         The modern way to clean up Docker resources is the <code>docker system prune</code> command. However, this guide
         also covers manual cleanup methods and provides a convenient Bash function for comprehensive Docker maintenance.
       </p>
-    </div>
+    </PageHeader>
 
     <div className="prose max-w-none dark:prose-dark">
       <section>

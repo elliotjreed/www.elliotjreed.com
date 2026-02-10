@@ -1,37 +1,20 @@
 import type { ReactElement } from "react";
 import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
+import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
-  { title: "Get Local and Public IP Address | EJR" },
-  {
-    name: "description",
-    content:
+  ...createMeta({
+    title: "Get Local and Public IP Address | EJR",
+    description:
       "Find your public IP address and local IP address on Linux or Mac via the command line using a Bash or ZSH shell function",
-  },
-  { property: "og:title", content: "Get Local and Public IP Address" },
-  {
-    property: "og:description",
-    content:
-      "Find your public IP address and local IP address on Linux or Mac via the command line using a Bash or ZSH shell function",
-  },
-  { property: "og:type", content: "article" },
-  {
-    property: "og:url",
-    content: "https://www.elliotjreed.com/linux/get-local-and-public-ip-address-command-line-bash",
-  },
-  { property: "og:site_name", content: "Elliot J. Reed" },
-  { property: "og:locale", content: "en_GB" },
-  { property: "og:image", content: "https://www.elliotjreed.com/og.png" },
-  { name: "twitter:card", content: "summary_large_image" },
-  { name: "twitter:title", content: "Get Local and Public IP Address" },
-  {
-    name: "twitter:description",
-    content:
-      "Find your public IP address and local IP address on Linux or Mac via the command line using a Bash or ZSH shell function",
-  },
-  { name: "twitter:image", content: "https://www.elliotjreed.com/twitter-card.png" },
+    url: "https://www.elliotjreed.com/linux/get-local-and-public-ip-address-command-line-bash",
+    type: "article",
+    ogImage: "https://www.elliotjreed.com/og.png",
+    twitterImage: "https://www.elliotjreed.com/twitter-card.png",
+  }),
   {
     "script:ld+json": createTechArticle({
       url: "https://www.elliotjreed.com/linux/get-local-and-public-ip-address-command-line-bash",
@@ -49,11 +32,7 @@ export const meta = () => [
   {
     "script:ld+json": createBreadcrumbs([
       { name: "Home", url: "https://www.elliotjreed.com" },
-      { name: "Guides", url: "https://www.elliotjreed.com" },
-      {
-        name: "Linux",
-        url: "https://www.elliotjreed.com/linux/get-local-and-public-ip-address-command-line-bash",
-      },
+      { name: "ZSH / Bash Shell Guides", url: "https://www.elliotjreed.com/linux" },
       {
         name: "Get IP Address",
         url: "https://www.elliotjreed.com/linux/get-local-and-public-ip-address-command-line-bash",
@@ -74,28 +53,27 @@ const functionSnippet: CodeSnippetInterface = {
 
 export default (): ReactElement => (
   <section className="divide-y divide-gray-200 dark:divide-gray-700">
-    <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-      <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
-        Get Local and Public IP Address
-      </h1>
-
-      <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
-        <span>By Elliot J. Reed</span>
-        <span>•</span>
-        <time dateTime="2016-10-07">
-          Published: 7<sup>th</sup> October 2016
-        </time>
-        <span>•</span>
-        <time dateTime="2026-01-30">
-          Last updated: 30<sup>th</sup> January 2026
-        </time>
-      </div>
-
+    <PageHeader
+      title="Get Local and Public IP Address"
+      meta={
+        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+          <span>By Elliot J. Reed</span>
+          <span>•</span>
+          <time dateTime="2016-10-07">
+            Published: 7<sup>th</sup> October 2016
+          </time>
+          <span>•</span>
+          <time dateTime="2026-01-30">
+            Last updated: 30<sup>th</sup> January 2026
+          </time>
+        </div>
+      }
+    >
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         Quickly display both your public and local IP addresses on Linux using a simple Bash function. Perfect for
         network troubleshooting, server configuration, and SSH connections.
       </p>
-    </div>
+    </PageHeader>
 
     <div className="prose max-w-none dark:prose-dark">
       <section>

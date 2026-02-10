@@ -1,14 +1,18 @@
 import type { ReactElement } from "react";
 import { Link } from "react-router";
-
+import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { type StaticLink, staticLinks } from "~/data/staticLinks";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
-  { title: "Sitemap | EJR" },
-  {
-    name: "description",
-    content: "A list of all the links on this website, including ones I don't link directly to in the main navigation.",
-  },
+  ...createMeta({
+    title: "Sitemap | EJR",
+    description:
+      "A list of all the links on this website, including ones I don't link directly to in the main navigation.",
+    url: "https://www.elliotjreed.com/sitemap",
+    type: "website",
+    image: "https://www.elliotjreed.com/og.png",
+  }),
 ];
 
 const renderLinks = (links: StaticLink[]): ReactElement => (
@@ -34,14 +38,11 @@ const renderLinks = (links: StaticLink[]): ReactElement => (
 
 export default (): ReactElement => (
   <section className="divide-y divide-gray-200 dark:divide-gray-700">
-    <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-      <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-700 dark:text-gray-200 sm:text-4xl sm:leading-10 md:text-6xl">
-        Sitemap
-      </h1>
+    <PageHeader title="Sitemap">
       <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
         All the links on this site, including ones I don't keep in the navigation.
       </p>
-    </div>
+    </PageHeader>
 
     <div className="prose max-w-none dark:prose-dark">{renderLinks(staticLinks)}</div>
   </section>
