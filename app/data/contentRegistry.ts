@@ -38,7 +38,7 @@ export const sitePages: SitePage[] = [
     path: "/ai",
     routeFile: "routes/ai.tsx",
     title: "AI Guides",
-    sitemap: { lastModified: "2026-02-05T00:00:00+00:00" },
+    sitemap: { lastModified: "2026-02-10T00:00:00+00:00" },
   },
   {
     id: "ai-prompt-guide",
@@ -115,6 +115,31 @@ export const sitePages: SitePage[] = [
     routeFile: "routes/ai/ethical-considerations-for-ai-in-the-workplace.tsx",
     title: "Ethical AI in the Workplace",
     sitemap: { lastModified: "2026-01-31T00:00:00+00:00" },
+  },
+  {
+    id: "ai-multiple-claude-instances",
+    path: "/ai/running-multiple-claude-code-instances",
+    routeFile: "routes/ai/running-multiple-claude-code-instances.tsx",
+    title: "Run Multiple Claude Code Instances",
+    search: {
+      description:
+        "Learn how to run multiple Claude Code instances simultaneously for different accounts using environment variables, custom configuration directories, and shell aliases.",
+      category: "AI Guides",
+      keywords: [
+        "claude",
+        "code",
+        "cli",
+        "multiple instances",
+        "configuration",
+        "environment variables",
+        "shell aliases",
+        "symlinks",
+        "productivity",
+        "linux",
+        "mac",
+      ],
+    },
+    sitemap: { lastModified: "2026-02-10T00:00:00+00:00" },
   },
   {
     id: "linux-category",
@@ -315,6 +340,11 @@ export const navigationTree: NavigationNode[] = [
           { title: "AI Prompt Guide", pageId: "ai-prompt-guide", showInNavigation: true },
           { title: "CAFE Prompt Framework", pageId: "ai-cafe-framework", showInNavigation: true },
           { title: "Claude Code Guide", pageId: "ai-claude-code-guide", showInNavigation: true },
+          {
+            title: "Run Multiple Claude Code Instances",
+            pageId: "ai-multiple-claude-instances",
+            showInNavigation: true,
+          },
           { title: "AI Links & Resources", pageId: "ai-learning-resources", showInNavigation: true },
           { title: "Ethical AI in the Workplace", pageId: "ai-ethical-workplace", showInNavigation: true },
         ],
