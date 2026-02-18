@@ -23,7 +23,7 @@ jobs:
         run: bun run typecheck
 
       - name: Run tests
-        run: bun run test
+        run: bun run test:ci
 
       - name: Build project
         run: bun run build

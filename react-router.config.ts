@@ -1,5 +1,5 @@
 import type { Config } from "@react-router/dev/config";
-import { staticLinks, type StaticLink } from "./app/data/staticLinks";
+import { type StaticLink, staticLinks } from "./app/data/staticLinks";
 
 const extractHrefs = (links: StaticLink[]): string[] => {
   const hrefs: string[] = [];

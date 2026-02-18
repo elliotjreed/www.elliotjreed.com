@@ -8,7 +8,8 @@ This file provides guidance to AI applications such as Claude Code, Gemini CLI, 
 - `bun run dev` - Start development server at http://localhost:5173
 - `bun run build` - Build for production
 - `bun run typecheck` - Run TypeScript type checking and generate route types
-- `bun run test` - Run Vitest tests
+- `bun run test` - Run Vitest tests with simplified output (customer minimal reporter)
+- `bun run test:full` - Run Vitest tests with full output ("dot" reporter)
 - `bun run format` - Format code with Biome (includes linting and fixing)
 
 ## Project Architecture
@@ -68,7 +69,7 @@ The architecture follows modern React patterns with server-side rendering and SS
 1. `bun run build` compiles React Router app
 2. Server bundle includes Cloudflare Workers handler
 3. Static assets optimized and fingerprinted
-4. Deploy via Wrangler CLI
+4. Deployed automatically on Cloudflare following Git push to master branch
 
 ### Data and Content
 

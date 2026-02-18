@@ -7,10 +7,10 @@ vi.mock("react-router", async () => {
   const actual = await vi.importActual("react-router");
   return {
     ...actual,
-    Links: () => <div data-testid="links">Links</div>,
-    Meta: () => <div data-testid="meta">Meta</div>,
-    ScrollRestoration: () => <div data-testid="scroll-restoration">ScrollRestoration</div>,
-    Scripts: () => <div data-testid="scripts">Scripts</div>,
+    Links: () => <span data-testid="links">Links</span>,
+    Meta: () => <span data-testid="meta">Meta</span>,
+    ScrollRestoration: () => <span data-testid="scroll-restoration">ScrollRestoration</span>,
+    Scripts: () => <span data-testid="scripts">Scripts</span>,
     useLoaderData: () => ({ nonce: "test-nonce" }),
     isRouteErrorResponse: vi.fn(),
   };

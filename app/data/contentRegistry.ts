@@ -146,7 +146,7 @@ export const sitePages: SitePage[] = [
     path: "/linux",
     routeFile: "routes/linux.tsx",
     title: "ZSH / Bash Shell Guides",
-    sitemap: { lastModified: "2026-02-10T00:00:00+00:00" },
+    sitemap: { lastModified: "2026-02-18T00:00:00+00:00" },
   },
   {
     id: "linux-zsh-aliases",
@@ -208,6 +208,18 @@ export const sitePages: SitePage[] = [
       keywords: ["ssh", "permissions", "security", "linux", "mac", "command", "line", "bash", "chmod", "file"],
     },
     sitemap: { lastModified: "2026-02-10T00:00:00+00:00" },
+  },
+  {
+    id: "linux-update-bun-global-packages",
+    path: "/linux/update-bun-global-packages",
+    routeFile: "routes/linux/update-bun-global-packages.tsx",
+    title: "Update global Bun packages",
+    search: {
+      description: "How to update globally-installed packages with Bun using a one-line command or a shell alias.",
+      category: "ZSH / Bash Shell Guides",
+      keywords: ["bun", "npm", "global", "packages", "update", "shell", "alias", "linux", "mac", "terminal"],
+    },
+    sitemap: { lastModified: "2026-02-18T00:00:00+00:00" },
   },
   {
     id: "linux-install-mariadb",
@@ -378,6 +390,7 @@ export const navigationTree: NavigationNode[] = [
             showInNavigation: true,
           },
           { title: "Search directory for a string", pageId: "linux-search-directory", showInNavigation: true },
+          { title: "Update global Bun packages", pageId: "linux-update-bun-global-packages", showInNavigation: true },
         ],
       },
       {

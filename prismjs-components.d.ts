@@ -1,29 +1,29 @@
 declare module "prismjs/components/prism-markup" {
-  const content: void;
+  const content: undefined;
   export default content;
 }
 
 declare module "prismjs/components/prism-clike" {
-  const content: void;
+  const content: undefined;
   export default content;
 }
 
 declare module "prismjs/components/prism-markup-templating" {
-  const content: void;
+  const content: undefined;
   export default content;
 }
 
 declare module "prismjs/components/prism-bash" {
-  const content: void;
+  const content: undefined;
   export default content;
 }
 
 declare module "prismjs/components/prism-php" {
-  const content: void;
+  const content: undefined;
   export default content;
 }
 
 declare module "prismjs/components/prism-markdown" {
-  const content: void;
+  const content: undefined;
   export default content;
 }

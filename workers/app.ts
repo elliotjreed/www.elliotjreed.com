@@ -45,18 +45,16 @@ function extractUrls(links: StaticLink[], urls: string[] = []): string[] {
 
 function generateSitemap(urls: string[]): string {
   const urlEntries = urls
-    .map(
-      (url: string): string => {
-        const lastmod = lastModifiedByPath[url];
-        const lastmodEntry = lastmod ? `    <lastmod>${lastmod}</lastmod>\n` : "";
+    .map((url: string): string => {
+      const lastmod = lastModifiedByPath[url];
+      const lastmodEntry = lastmod ? `    <lastmod>${lastmod}</lastmod>\n` : "";
 
-        return `  <url>
+      return `  <url>
     <loc>${SITE_URL}${url}</loc>
 ${lastmodEntry}    <changefreq>monthly</changefreq>
     <priority>${url === "/" ? "1.0" : "0.8"}</priority>
   </url>`;
-      },
-    )
+    })
     .join("\n");
 
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -126,7 +124,10 @@ export default {
       ].join("; "),
     );
 
-    headers.set("Permissions-Policy", "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), bluetooth=(), browsing-topics=(), camera=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(self), gamepad=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), local-fonts=(self), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), screen-wake-lock=(), serial=(), speaker-selection=(), usb=(), web-share=(self), xr-spatial-tracking=()");
+    headers.set(
+      "Permissions-Policy",
+      "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), bluetooth=(), browsing-topics=(), camera=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(self), gamepad=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), local-fonts=(self), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), screen-wake-lock=(), serial=(), speaker-selection=(), usb=(), web-share=(self), xr-spatial-tracking=()",
+    );
 
     headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
     headers.set("Cross-Origin-Opener-Policy", "same-origin");
