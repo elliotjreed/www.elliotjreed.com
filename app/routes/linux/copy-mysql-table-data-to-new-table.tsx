@@ -61,7 +61,7 @@ export default (): ReactElement => (
       </p>
     </PageHeader>
 
-    <div className="prose max-w-none dark:prose-dark">
+    <div className="prose dark:prose-dark max-w-none">
       <section>
         <h2>Table of Contents</h2>
         <ul>
@@ -84,7 +84,7 @@ export default (): ReactElement => (
       </section>
 
       <section>
-        <aside className="p-4 border-l-4 border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20 mb-6">
+        <aside className="mb-6 border-l-4 border-yellow-500 bg-yellow-50 p-4 dark:bg-yellow-900/20">
           <p className="font-bold">Warning:</p>
           <p>
             Always back up your data before performing any copy operations, especially if you plan to modify the copied

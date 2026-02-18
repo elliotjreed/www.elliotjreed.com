@@ -511,7 +511,7 @@ export const PercentageCalculator: FC = (): ReactElement => {
           <button
             type="button"
             onClick={handleClearHistory}
-            className="rounded bg-red-600 px-6 py-2 font-semibold text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:bg-red-700 dark:hover:bg-red-800"
+            className="rounded bg-red-600 px-6 py-2 font-semibold text-white hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:outline-none dark:bg-red-700 dark:hover:bg-red-800"
           >
             <FontAwesomeIcon icon={faTrash as IconProp} className="mr-2" />
             Clear All History

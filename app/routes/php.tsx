@@ -49,7 +49,7 @@ export default (): ReactElement => (
       </p>
     </PageHeader>
 
-    <div className="prose max-w-none dark:prose-dark">
+    <div className="prose dark:prose-dark max-w-none">
       <ul>
         {categoryPages.map((page) => (
           <li key={page.path} className="mb-1">

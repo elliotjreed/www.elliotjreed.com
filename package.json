@@ -11,7 +11,7 @@
     "dev": "react-router dev",
     "start": "wrangler dev",
     "typecheck": "react-router typegen && tsc --noEmit",
-    "format": "biome check --fix --unsafe ./",
+    "format": "prettier --write .",
     "test": "vitest run --reporter=./vitest-minimal-reporter.ts",
     "test:full": "vitest run --reporter=dot",
     "test:ci": "vitest run --reporter=github-actions",
@@ -36,7 +36,8 @@
     "react-router": "^7.13.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.2",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.13",
     "@cloudflare/workers-types": "^4.20260218.0",
     "@react-router/dev": "^7.13.0",
     "@tailwindcss/postcss": "^4.2.0",

@@ -120,8 +120,8 @@ export const Search: FC = (): ReactElement => {
           value={query}
           onChange={(e) => handleInputChange(e.target.value)}
           onKeyDown={handleKeyDown}
-          className={`rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-2 text-gray-900 dark:text-gray-100 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-[width,opacity] duration-300 ${
-            isExpanded ? "w-64 opacity-100" : "w-0 opacity-0 pointer-events-none"
+          className={`focus:border-primary-500 focus:ring-primary-500 rounded border border-gray-300 bg-white px-3 py-2 text-gray-900 transition-[width,opacity] duration-300 focus:ring-2 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 ${
+            isExpanded ? "w-64 opacity-100" : "pointer-events-none w-0 opacity-0"
           }`}
         />
 
@@ -129,9 +129,9 @@ export const Search: FC = (): ReactElement => {
           type="button"
           onClick={handleToggle}
           aria-label={isExpanded ? "Close search" : "Open search"}
-          className="inline-flex items-center justify-center w-10 h-10 p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-gray-500 transition-colors hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
         >
-          <FontAwesomeIcon icon={isExpanded ? faXmark : faMagnifyingGlass} className="w-5 h-5" />
+          <FontAwesomeIcon icon={isExpanded ? faXmark : faMagnifyingGlass} className="h-5 w-5" />
         </button>
       </div>
 

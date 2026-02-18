@@ -62,10 +62,10 @@ export default (): ReactElement => (
       </p>
     </PageHeader>
 
-    <div className="prose max-w-none dark:prose-dark">
+    <div className="prose dark:prose-dark max-w-none">
       <section>
         <h2>Table of Contents</h2>
-        <ul className="space-y-2 list-none pl-0">
+        <ul className="list-none space-y-2 pl-0">
           <li>
             <a href="#installation" className="text-primary-700 dark:text-primary-500 hover:underline">
               Installation and Setup
@@ -209,7 +209,7 @@ FLUSH PRIVILEGES;"
 
         <HeadingAnchor id="remote-access">Enabling Remote Access</HeadingAnchor>
 
-        <aside className="p-4 border-l-4 border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20 my-4">
+        <aside className="my-4 border-l-4 border-yellow-500 bg-yellow-50 p-4 dark:bg-yellow-900/20">
           <p className="font-bold">Security Warning:</p>
           <p>
             Allowing remote database access exposes your database to potential security risks. Only enable remote access

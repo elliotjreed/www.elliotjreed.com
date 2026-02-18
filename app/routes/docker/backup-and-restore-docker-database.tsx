@@ -58,7 +58,7 @@ export default (): ReactElement => (
       </p>
     </PageHeader>
 
-    <div className="prose max-w-none dark:prose-dark">
+    <div className="prose dark:prose-dark max-w-none">
       <section>
         <p>
           Backing up Docker databases is straightforward using <code>docker exec</code> combined with{" "}

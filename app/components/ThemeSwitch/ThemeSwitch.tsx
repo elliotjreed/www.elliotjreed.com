@@ -24,7 +24,7 @@ export const ThemeSwitch: FC = (): ReactElement => {
       aria-label="Toggle dark mode"
       title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
       type="button"
-      className="ml-1 mr-1 h-8 w-8 rounded p-1 sm:ml-4"
+      className="mr-1 ml-1 h-8 w-8 rounded p-1 sm:ml-4"
       onClick={(): void => setTheme(theme === "dark" ? "light" : "dark")}
     >
       <span className="icon">

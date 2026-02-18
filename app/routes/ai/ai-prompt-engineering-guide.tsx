@@ -126,7 +126,7 @@ export default (): ReactElement => (
       </aside>
     </PageHeader>
 
-    <div className="prose max-w-none dark:prose-dark">
+    <div className="prose dark:prose-dark max-w-none">
       <section>
         <h2>Table of Contents</h2>
         <ul>
@@ -246,12 +246,12 @@ export default (): ReactElement => (
 
           <section>
             <h4>Bad Example</h4>
-            <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">Make a dinner party menu.</p>
+            <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">Make a dinner party menu.</p>
           </section>
 
           <section>
             <h4>Better Example</h4>
-            <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
+            <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
               I am hosting a Saturday evening dinner party for 12 people. I would like to prepare as much as possible in
               advance so I have time to socialise. Make a dinner party menu.
             </p>
@@ -279,7 +279,7 @@ export default (): ReactElement => (
             </a>
             :
           </p>
-          <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-1">
+          <ul className="grid grid-cols-2 gap-x-4 gap-y-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             <li>Act</li>
             <li>Analyse</li>
             <li>Categorise</li>
@@ -329,7 +329,7 @@ export default (): ReactElement => (
 
           <section>
             <h4>Bad Example</h4>
-            <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
+            <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
               I need a dinner party menu. Don't include meat, fish, eggs, or dairy. Don't use ingredients which are
               difficult to find.
             </p>
@@ -337,7 +337,7 @@ export default (): ReactElement => (
 
           <section>
             <h4>Better Example</h4>
-            <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
+            <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
               Create a dinner party menu using plant-based ingredients suitable for vegans. The ingredients should be
               easily available in Britain.
             </p>
@@ -367,7 +367,7 @@ export default (): ReactElement => (
 
           <section>
             <h4>Example</h4>
-            <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
+            <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
               The menu should be concise and easy to reference, making use of clear sections headed by the time the
               different elements need attention.
             </p>
@@ -386,7 +386,7 @@ export default (): ReactElement => (
 
           <section>
             <h4>Example</h4>
-            <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
+            <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
               On two previous occasions, the meals I cooked went down really well with guests. The first was a dish
               based around crispy sesame tofu with a peanut sauce; and the second was a red wine mushroom bourguignon.
             </p>
@@ -400,7 +400,7 @@ export default (): ReactElement => (
               clear, however you can make it really specific by using XML tags. For example:
             </p>
 
-            <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
+            <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
               Here are examples of previous menu items which have been popular:
               <br />
               &lt;example&gt;Vegan Scallops with Paprika Sauce&lt;/example&gt;
@@ -423,7 +423,7 @@ export default (): ReactElement => (
               framework we could engineer our prompt to provide a much better output.
             </p>
 
-            <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
+            <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
               I am hosting a Saturday evening dinner party for 12 people. I would like to prepare as much as possible in
               advance so I have time to socialise.
               <br />
@@ -442,7 +442,7 @@ export default (): ReactElement => (
             <h4>Book recommendation prompt</h4>
             <p>For another example, here's a prompt I used recently to find new books to read before sleep.</p>
 
-            <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
+            <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
               I'm looking for some book recommendations, in particular ones which I can read before going to bed.
               <br />
               For this I would prefer shorter novels, or short stories.
@@ -478,7 +478,7 @@ export default (): ReactElement => (
 
             <section>
               <h5>Example</h5>
-              <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
+              <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
                 That plan looks good in general, however one of the guests has a severe allergy to tomatoes. Update the
                 menu to account for that.
                 <br />
@@ -510,7 +510,7 @@ export default (): ReactElement => (
               <section>
                 <h5>Example: Revisiting the CAFE framework</h5>
 
-                <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
+                <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
                   That looks good, however some of those ingredients will be difficult to find. Update the menu to
                   include ingredients easily available from standard British supermarkets, such as Tesco and ASDA.
                 </p>
@@ -519,7 +519,7 @@ export default (): ReactElement => (
               <section>
                 <h5>Example: Breaking the prompt down into smaller tasks</h5>
 
-                <div className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
+                <div className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
                   <ol>
                     <li className="italic">
                       I am hosting a Saturday evening dinner party for 12 people. I would like to prepare as much as
@@ -546,7 +546,7 @@ export default (): ReactElement => (
               <section>
                 <h5>Example: Changing to an analogous or synonymous task</h5>
 
-                <p className="px-4 border-s-4 border-gray-200  dark:border-gray-700 italic">
+                <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
                   I would like you to take on the role of a diligent and respectful dinner party host who is hosting a
                   Saturday evening dinner party for 12 people. In this role you would want to spend as much time in the
                   company of the guests, and prepare food suitable for all.

@@ -65,7 +65,7 @@ export function meta() {
 export default (): ReactElement => {
   return (
     <section>
-      <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
+      <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:space-y-0 xl:gap-x-8">
         <div className="flex flex-col items-center pt-8 text-gray-700 dark:text-gray-200">
           <img
             src={HERO_IMAGE_URL}
@@ -77,7 +77,7 @@ export default (): ReactElement => {
             decoding="async"
             fetchPriority="high"
           />
-          <h1 className="pt-4 pb-1 text-2xl font-bold leading-8 tracking-tight">Elliot Reed</h1>
+          <h1 className="pt-4 pb-1 text-2xl leading-8 font-bold tracking-tight">Elliot Reed</h1>
           <div className="text-navy-900 dark:text-gray-300">
             <a href={`mailto:${emailAddress}`}>{emailAddress}</a>{" "}
           </div>

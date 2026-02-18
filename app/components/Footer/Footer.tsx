@@ -14,7 +14,7 @@ export const Footer: FC = (): ReactElement => {
           <Link to="/privacy">Privacy Policy</Link>&nbsp;|&nbsp;<Link to="/sitemap">Sitemap</Link>
         </div>
 
-        <div className="mb-8 text-sm ">
+        <div className="mb-8 text-sm">
           <Link to="/">
             © <strong>Elliot J. Reed</strong>
           </Link>

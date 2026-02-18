@@ -75,7 +75,7 @@ export default (): ReactElement => (
       </p>
     </PageHeader>
 
-    <div className="prose max-w-none dark:prose-dark">
+    <div className="prose dark:prose-dark max-w-none">
       <section>
         <p>
           This Bash function retrieves both your public (external) IP address and your local (internal) IP address on

@@ -73,7 +73,7 @@ export default (): ReactElement => (
       </p>
     </PageHeader>
 
-    <div className="prose max-w-none dark:prose-dark">
+    <div className="prose dark:prose-dark max-w-none">
       <section>
         <p>To list all occurrences of a particular string / text in your Bash (or ZSH or Shell) command line, run:</p>
         <CodeSnippet language="bash" code='grep -ni "Text to search for" .' title="grep -ni" />

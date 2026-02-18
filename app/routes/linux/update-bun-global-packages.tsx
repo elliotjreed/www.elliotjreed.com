@@ -73,7 +73,7 @@ export default (): ReactElement => (
       </p>
     </PageHeader>
 
-    <div className="prose max-w-none dark:prose-dark">
+    <div className="prose dark:prose-dark max-w-none">
       <section>
         <h2>The Problem: No -g Flag in Bun</h2>
         <p>

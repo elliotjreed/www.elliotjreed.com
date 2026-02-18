@@ -56,13 +56,13 @@ export const CodeSnippet: FC<CodeSnippetInterface> = ({
 
   return (
     <div className="snippet">
-      <div className="mb-6 rounded-lg  bg-gray-800 shadow-md overflow-hidden">
-        <div className="px-4 py-2 bg-gray-700 text-gray-200 font-medium flex justify-between items-center">
+      <div className="mb-6 overflow-hidden rounded-lg bg-gray-800 shadow-md">
+        <div className="flex items-center justify-between bg-gray-700 px-4 py-2 font-medium text-gray-200">
           <span>{title}</span>
           <button
             type="button"
             onClick={handleCopy}
-            className="text-xs px-2 py-1 rounded bg-gray-600 hover:bg-gray-500 transition-colors text-white flex items-center space-x-1"
+            className="flex items-center space-x-1 rounded bg-gray-600 px-2 py-1 text-xs text-white transition-colors hover:bg-gray-500"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +85,7 @@ export const CodeSnippet: FC<CodeSnippetInterface> = ({
 
         <Highlight theme={customDarkTheme} code={code} language={language}>
           {({ style, tokens, getLineProps, getTokenProps }): ReactElement => (
-            <pre className="p-4 mt-0 mb-0 font-mono text-sm overflow-x-auto" style={style}>
+            <pre className="mt-0 mb-0 overflow-x-auto p-4 font-mono text-sm" style={style}>
               {tokens.map((line, i) => (
                 <div key={`line-${i}`} {...getLineProps({ line })}>
                   {line.map(

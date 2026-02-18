@@ -96,7 +96,7 @@ export default (): ReactElement => (
       </p>
     </PageHeader>
 
-    <div className="prose max-w-none dark:prose-dark">
+    <div className="prose dark:prose-dark max-w-none">
       <section>
         <p>
           SSH is strict about file permissions for security reasons. If your SSH keys or config files have permissions

@@ -44,6 +44,6 @@ export default (): ReactElement => (
       </p>
     </PageHeader>
 
-    <div className="prose max-w-none dark:prose-dark">{renderLinks(staticLinks)}</div>
+    <div className="prose dark:prose-dark max-w-none">{renderLinks(staticLinks)}</div>
   </section>
 );

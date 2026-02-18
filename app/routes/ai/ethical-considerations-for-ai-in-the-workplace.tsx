@@ -119,7 +119,7 @@ export default (): ReactElement => (
       </p>
     </PageHeader>
 
-    <div className="prose max-w-none dark:prose-dark">
+    <div className="prose dark:prose-dark max-w-none">
       <section id="table-of-contents">
         <h2>Contents</h2>
         <ol className="space-y-2 text-gray-700 dark:text-gray-300">
@@ -127,7 +127,7 @@ export default (): ReactElement => (
             <a href="#why-use-ai" className="text-primary-700 dark:text-primary-500 hover:underline">
               Why should we use AI in the workplace?
             </a>
-            <ol className="ml-4 mt-1 space-y-1">
+            <ol className="mt-1 ml-4 space-y-1">
               <li>
                 <a
                   href="#delivering-great-customer-service"
@@ -160,7 +160,7 @@ export default (): ReactElement => (
             <a href="#ethical-concerns" className="text-primary-700 dark:text-primary-500 hover:underline">
               Ethical and social concerns
             </a>
-            <ol className="ml-4 mt-1 space-y-1">
+            <ol className="mt-1 ml-4 space-y-1">
               <li>
                 <a href="#impact-on-employees" className="text-primary-700 dark:text-primary-500 hover:underline">
                   The impact on employees

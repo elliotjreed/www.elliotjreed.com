@@ -6,7 +6,7 @@ export const HamburgerIcon: FC<{ isOpen: boolean }> = ({ isOpen }) => (
     {isOpen ? (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="w-5 h-5"
+        className="h-5 w-5"
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth="2"
@@ -18,7 +18,7 @@ export const HamburgerIcon: FC<{ isOpen: boolean }> = ({ isOpen }) => (
     ) : (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="w-5 h-5"
+        className="h-5 w-5"
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth="2"

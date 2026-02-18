@@ -92,7 +92,7 @@ export default (): ReactElement => (
       </p>
     </PageHeader>
 
-    <div className="prose max-w-none dark:prose-dark">
+    <div className="prose dark:prose-dark max-w-none">
       <section>
         <h2>Table of Contents</h2>
         <ul>
@@ -190,7 +190,7 @@ export default (): ReactElement => (
           again for the images (as you may want to keep these for development and not have to re-download them).
         </p>
 
-        <aside className="p-4 border-l-4 border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20 my-2">
+        <aside className="my-2 border-l-4 border-yellow-500 bg-yellow-50 p-4 dark:bg-yellow-900/20">
           <p className="font-bold">Warning:</p>
           <p>
             This function will permanently delete Docker containers, networks, volumes, and images. Make sure you have

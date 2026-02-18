@@ -92,11 +92,11 @@ export const MobileSearch: FC<MobileSearchProps> = ({ onNavigate }): ReactElemen
           value={query}
           onChange={(e) => handleInputChange(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="w-full rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 pl-10 pr-3 py-2 text-gray-900 dark:text-gray-100 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500"
+          className="focus:border-primary-500 focus:ring-primary-500 w-full rounded border border-gray-300 bg-white py-2 pr-3 pl-10 text-gray-900 focus:ring-2 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
         />
         <FontAwesomeIcon
           icon={faMagnifyingGlass}
-          className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"
+          className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-gray-400"
         />
       </div>
 
@@ -104,7 +104,7 @@ export const MobileSearch: FC<MobileSearchProps> = ({ onNavigate }): ReactElemen
         <div
           id="mobile-search-results"
           role="listbox"
-          className="mt-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg max-h-80 overflow-y-auto"
+          className="mt-2 max-h-80 overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800"
         >
           {results.map((result: SearchableItem, index: number) => (
             <NavLink
@@ -114,7 +114,7 @@ export const MobileSearch: FC<MobileSearchProps> = ({ onNavigate }): ReactElemen
               role="option"
               aria-selected={index === activeIndex}
               id={`mobile-search-result-${index}`}
-              className={`block px-4 py-3 border-b border-gray-100 dark:border-gray-700 last:border-b-0 transition-colors ${
+              className={`block border-b border-gray-100 px-4 py-3 transition-colors last:border-b-0 dark:border-gray-700 ${
                 index === activeIndex
                   ? "bg-primary-50 dark:bg-primary-900/20"
                   : "hover:bg-gray-50 dark:hover:bg-gray-700"
@@ -122,14 +122,14 @@ export const MobileSearch: FC<MobileSearchProps> = ({ onNavigate }): ReactElemen
               prefetch="intent"
             >
               <div className="font-medium text-gray-900 dark:text-gray-100">{result.title}</div>
-              <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">{result.category}</div>
+              <div className="mt-1 text-xs text-gray-500 dark:text-gray-400">{result.category}</div>
             </NavLink>
           ))}
         </div>
       )}
 
       {query && results.length === 0 && (
-        <div className="mt-2 px-4 py-8 text-center text-gray-500 dark:text-gray-400 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+        <div className="mt-2 rounded-lg border border-gray-200 bg-white px-4 py-8 text-center text-gray-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400">
           No results found
         </div>
       )}

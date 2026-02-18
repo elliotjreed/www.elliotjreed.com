@@ -187,7 +187,7 @@ export default (): ReactElement => (
         {travellingPhotographs.map(
           (photo: TitledPhotograph): ReactElement => (
             <div key={photo.source} className="md p-4 md:w-1/2" style={{ maxWidth: "544px" }}>
-              <div className="h-full overflow-hidden rounded-md border-2 border-gray-200 border-opacity-60 dark:border-gray-700">
+              <div className="border-opacity-60 h-full overflow-hidden rounded-md border-2 border-gray-200 dark:border-gray-700">
                 <img
                   alt={`Photograph from my visit to ${photo.title}`}
                   src={photo.source}
@@ -197,7 +197,7 @@ export default (): ReactElement => (
                   loading="lazy"
                 />
                 <div className="p-6">
-                  <h2 className="text-xl font-bold leading-8 tracking-tight">{photo.title}</h2>
+                  <h2 className="text-xl leading-8 font-bold tracking-tight">{photo.title}</h2>
                 </div>
               </div>
             </div>

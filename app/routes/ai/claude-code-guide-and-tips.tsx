@@ -131,7 +131,7 @@ export default (): ReactElement => (
       </p>
     </PageHeader>
 
-    <div className="prose max-w-none dark:prose-dark">
+    <div className="prose dark:prose-dark max-w-none">
       <section id="table-of-contents">
         <h2>Contents</h2>
         <ol>
@@ -1102,12 +1102,12 @@ Focus on React and TypeScript performance patterns only. Avoid project-wide conf
         <h3>Example Custom Statusline</h3>
 
         <p>Here is how to add a custom statusline that looks like the following:</p>
-        <picture className="block w-full max-w-4xl mx-auto">
+        <picture className="mx-auto block w-full max-w-4xl">
           <source srcSet={claudeCodeStatuslineImageWebp} type="image/webp" />
           <img
             src={claudeCodeStatuslineImage}
             alt="Claude Code custom statusline showing session ID, directory, git branch, model, and context window"
-            className="w-full border border-gray-300 dark:border-gray-700 rounded"
+            className="w-full rounded border border-gray-300 dark:border-gray-700"
           />
         </picture>
 

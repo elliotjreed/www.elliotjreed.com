@@ -116,7 +116,7 @@ export default (): ReactElement => (
       </p>
     </PageHeader>
 
-    <div className="prose max-w-none dark:prose-dark">
+    <div className="prose dark:prose-dark max-w-none">
       <section>
         <p>
           If you use two or more Claude accounts for Claude Code, for example a personal one and a work one, it is

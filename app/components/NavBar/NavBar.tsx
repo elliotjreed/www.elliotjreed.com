@@ -141,11 +141,11 @@ export const NavBar: FC = (): ReactElement => {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 print:hidden">
-        <div ref={navWrapperRef} className="max-w-screen-xl flex items-center justify-between mx-auto py-4 px-4">
+      <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur-sm dark:border-gray-700 dark:bg-gray-900/95 print:hidden">
+        <div ref={navWrapperRef} className="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-4">
           <NavLink to="/" className="flex items-center space-x-3 rtl:space-x-reverse" prefetch="render">
             <span
-              className="text-4xl font-bold text-primary-900 dark:text-gray-300 hover:text-primary-700 dark:hover:text-white transition-colors"
+              className="text-primary-900 hover:text-primary-700 text-4xl font-bold transition-colors dark:text-gray-300 dark:hover:text-white"
               style={{ fontFamily: "Fira Sans" }}
             >
               EJR
@@ -153,7 +153,7 @@ export const NavBar: FC = (): ReactElement => {
           </NavLink>
 
           <div className="flex items-center gap-2">
-            <nav className="hidden md:flex items-center space-x-1">
+            <nav className="hidden items-center space-x-1 md:flex">
               <ul className="flex items-center space-x-1">
                 {navigationLinks.map((link) => {
                   if (link.children?.length) {
@@ -163,7 +163,7 @@ export const NavBar: FC = (): ReactElement => {
                     return (
                       <li
                         key={link.title}
-                        className="relative group"
+                        className="group relative"
                         onMouseEnter={() => setHoveredDropdown(link.title)}
                         onMouseLeave={(event) => {
                           const activeElement = document.activeElement as Node | null;
@@ -186,7 +186,7 @@ export const NavBar: FC = (): ReactElement => {
                           aria-expanded={hoveredDropdown === link.title}
                           aria-controls={desktopMenuId}
                           onClick={() => setHoveredDropdown((current) => (current === link.title ? null : link.title))}
-                          className="flex items-center gap-1 px-4 py-2 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-medium"
+                          className="flex items-center gap-1 rounded-lg px-4 py-2 font-medium text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
                         >
                           {link.title}
                           <DropdownMenuIcon isOpen={hoveredDropdown === link.title} />
@@ -194,13 +194,13 @@ export const NavBar: FC = (): ReactElement => {
 
                         <div
                           id={desktopMenuId}
-                          className={`absolute right-0 top-full pt-2 transition-[opacity,visibility] duration-200 ${
+                          className={`absolute top-full right-0 pt-2 transition-[opacity,visibility] duration-200 ${
                             hoveredDropdown === link.title
-                              ? "opacity-100 visible"
-                              : "opacity-0 invisible pointer-events-none"
+                              ? "visible opacity-100"
+                              : "pointer-events-none invisible opacity-0"
                           }`}
                         >
-                          <div className="min-w-[280px] max-w-[320px] bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+                          <div className="max-w-[320px] min-w-[280px] overflow-hidden rounded-lg border border-gray-200 bg-white shadow-xl dark:border-gray-700 dark:bg-gray-800">
                             <div className="max-h-[70vh] overflow-y-auto">
                               {validChildren.map((child, childIndex) => (
                                 <div key={child.title || child.href}>
@@ -209,7 +209,7 @@ export const NavBar: FC = (): ReactElement => {
                                     <div
                                       className={childIndex > 0 ? "border-t border-gray-200 dark:border-gray-700" : ""}
                                     >
-                                      <div className="px-4 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider bg-gray-50 dark:bg-gray-900">
+                                      <div className="bg-gray-50 px-4 py-2 text-xs font-semibold tracking-wider text-gray-500 uppercase dark:bg-gray-900 dark:text-gray-400">
                                         {child.title}
                                       </div>
                                       <ul>
@@ -220,7 +220,7 @@ export const NavBar: FC = (): ReactElement => {
                                               <li key={subChild.href}>
                                                 <NavLink
                                                   to={subChild.href as string}
-                                                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-700 dark:hover:text-primary-400 transition-colors"
+                                                  className="hover:text-primary-700 dark:hover:text-primary-400 block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700"
                                                   prefetch="intent"
                                                 >
                                                   {subChild.title}
@@ -233,7 +233,7 @@ export const NavBar: FC = (): ReactElement => {
                                   ) : child.href ? (
                                     <NavLink
                                       to={child.href}
-                                      className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-primary-700 dark:hover:text-primary-400 transition-colors"
+                                      className="hover:text-primary-700 dark:hover:text-primary-400 block px-4 py-3 text-sm text-gray-700 transition-colors hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700"
                                       prefetch="intent"
                                     >
                                       {child.title}
@@ -268,7 +268,7 @@ export const NavBar: FC = (): ReactElement => {
               aria-label="Toggle navigation menu"
               onClick={toggleMenu}
               ref={menuButtonRef}
-              className="md:hidden inline-flex items-center justify-center w-10 h-10 p-2 rounded-lg text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:text-gray-400 dark:hover:bg-gray-800 dark:focus:ring-primary-600 transition-colors"
+              className="focus:ring-primary-500 dark:focus:ring-primary-600 inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-gray-500 transition-colors hover:bg-gray-100 focus:ring-2 focus:outline-none md:hidden dark:text-gray-400 dark:hover:bg-gray-800"
             >
               <HamburgerIcon isOpen={isMenuOpen} />
             </button>
@@ -277,8 +277,8 @@ export const NavBar: FC = (): ReactElement => {
       </header>
 
       <div
-        className={`md:hidden fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
-          isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        className={`fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+          isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         onClick={closeMenu}
         aria-hidden="true"
@@ -290,12 +290,12 @@ export const NavBar: FC = (): ReactElement => {
         role="dialog"
         aria-modal="true"
         aria-labelledby="mobile-navigation-title"
-        className={`md:hidden fixed top-0 right-0 h-full w-[280px] z-[70] bg-white dark:bg-gray-900 shadow-2xl transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 z-[70] h-full w-[280px] transform bg-white shadow-2xl transition-transform duration-300 ease-in-out md:hidden dark:bg-gray-900 ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex flex-col h-full overflow-y-auto">
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex h-full flex-col overflow-y-auto">
+          <div className="flex items-center justify-between border-b border-gray-200 p-4 dark:border-gray-700">
             <span id="mobile-navigation-title" className="text-xl font-bold text-gray-900 dark:text-white">
               Menu
             </span>
@@ -304,20 +304,20 @@ export const NavBar: FC = (): ReactElement => {
               onClick={closeMenu}
               aria-label="Close menu"
               ref={closeButtonRef}
-              className="p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors"
+              className="rounded-lg p-2 text-gray-500 transition-colors hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
             >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <title>Close icon</title>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
 
-          <div className="p-4 border-b border-gray-200 dark:border-gray-700">
+          <div className="border-b border-gray-200 p-4 dark:border-gray-700">
             <MobileSearch onNavigate={closeMenu} />
           </div>
 
-          <ul className="flex-1 p-4 space-y-2">
+          <ul className="flex-1 space-y-2 p-4">
             {navigationLinks.map((link: StaticLink): ReactElement => {
               if (link.children?.length) {
                 const validChildren: StaticLink[] = link.children.filter(
@@ -329,7 +329,7 @@ export const NavBar: FC = (): ReactElement => {
                     <button
                       type="button"
                       onClick={() => toggleDropdown(link.title)}
-                      className="flex items-center justify-between w-full px-4 py-3 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-medium"
+                      className="flex w-full items-center justify-between rounded-lg px-4 py-3 font-medium text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
                     >
                       {link.title}
                       <DropdownMenuIcon isOpen={openDropdown === link.title} />
@@ -348,7 +348,7 @@ export const NavBar: FC = (): ReactElement => {
                                 <button
                                   type="button"
                                   onClick={(): void => toggleSubDropdown(child.title)}
-                                  className="flex items-center justify-between w-full px-3 py-2 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                                  className="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
                                 >
                                   {child.title}
                                   <DropdownMenuIcon isOpen={openSubDropdown === child.title} />
@@ -366,7 +366,7 @@ export const NavBar: FC = (): ReactElement => {
                                           <NavLink
                                             to={subChild.href as string}
                                             onClick={closeMenu}
-                                            className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-primary-700 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                                            className="hover:text-primary-700 dark:hover:text-primary-400 block rounded-lg px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-800"
                                             prefetch="intent"
                                           >
                                             {subChild.title}
@@ -380,7 +380,7 @@ export const NavBar: FC = (): ReactElement => {
                               <NavLink
                                 to={child.href}
                                 onClick={closeMenu}
-                                className="block px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-primary-700 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                                className="hover:text-primary-700 dark:hover:text-primary-400 block rounded-lg px-4 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-800"
                                 prefetch="intent"
                               >
                                 {child.title}

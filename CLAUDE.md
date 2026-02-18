@@ -5,12 +5,13 @@ This file provides guidance to AI applications such as Claude Code, Gemini CLI, 
 ## Development Commands
 
 ### Local Development
+
 - `bun run dev` - Start development server at http://localhost:5173
 - `bun run build` - Build for production
 - `bun run typecheck` - Run TypeScript type checking and generate route types
 - `bun run test` - Run Vitest tests with simplified output (customer minimal reporter)
 - `bun run test:full` - Run Vitest tests with full output ("dot" reporter)
-- `bun run format` - Format code with Biome (includes linting and fixing)
+- `bun run format` - Format code with Prettier
 
 ## Project Architecture
 
@@ -21,20 +22,24 @@ The architecture follows modern React patterns with server-side rendering and SS
 ### Key Architecture Components
 
 **Framework**: React Router v7 with SSR enabled
+
 - Routes are file-based and defined in `app/routes.ts`
 - Server-side rendering configured in `react-router.config.ts`
 - Cloudflare Workers integration via `workers/app.ts`
 
 **Styling**: Tailwind CSS v4 with custom animations
+
 - Dark mode support with `dark:` classes
 - Typography plugin for prose content
 
 **Content Structure**:
+
 - Main routes include AI guides, Linux tutorials, Docker guides, and PHP snippets
 - Each route is a self-contained TSX file with meta() exports for SEO
 - Structured data (JSON-LD) implemented for rich snippets
 
 **Components**:
+
 - `NavBar` - Main navigation with hamburger menu
 - `Footer` - Site footer with links
 - `SocialLinks` - Social media icon links
@@ -44,28 +49,32 @@ The architecture follows modern React patterns with server-side rendering and SS
 ### Build Configuration
 
 **Vite**: Production builds use esbuild with aggressive optimization
+
 - Console/debugger statements dropped in production
 - Source maps disabled for production builds
 - Assets inlined up to 4KB
 
 **TypeScript**: Strict mode enabled with separate configs
+
 - Main config references `tsconfig.node.json` and `tsconfig.cloudflare.json`
 - Type generation handled by React Router CLI
 
-**Biome**: Code formatting and linting
+**Prettier**: Code formatting
+
 - Double quotes, 120 character line width
-- Import organization enabled
-- CSS modules support
+- Tailwind CSS class sorting via `prettier-plugin-tailwindcss`
 
 ### Deployment Infrastructure
 
 **Cloudflare Workers**:
+
 - Main deployment target configured in `wrangler.toml`
 - Static assets served from `build/client/`
 - Server bundle at `build/server/index.js`
 - Observability logging enabled
 
 **Build Process**:
+
 1. `bun run build` compiles React Router app
 2. Server bundle includes Cloudflare Workers handler
 3. Static assets optimized and fingerprinted
@@ -74,11 +83,13 @@ The architecture follows modern React patterns with server-side rendering and SS
 ### Data and Content
 
 **Route Structure**: Guides content organized by topic (ai/, linux/, docker/, php/) under a parent navigation "Guides"
+
 - Each route exports default component and meta() function
 - SEO metadata and structured data included per route
 - Prefetch hints used for internal navigation
 
 **Static Data**:
+
 - Email address and social links centralized in `app/data/`
 - Images stored in `public/` and `app/images/`
 - Travel photos organized by location
@@ -86,10 +97,12 @@ The architecture follows modern React patterns with server-side rendering and SS
 ### Key Development Patterns
 
 **Custom Hooks**:
+
 - `useSearch` - Search functionality provided by `fuse.js`
 - `useLocalStorage` - Persistent client-side storage
 
 **SEO**: Comprehensive meta tags, Open Graph, Twitter Cards, and JSON-LD structured data
+
 - The OpenGraph image is https://www.elliotjreed.com/og.png
 - The Twitter image is https://www.elliotjreed.com/twitter-card.png
 - Schema data defaults are in `app/data/schemaData.ts`
