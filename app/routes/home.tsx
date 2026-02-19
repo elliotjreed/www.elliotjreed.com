@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { SocialLinks } from "~/components/SocialLinks/SocialLinks";
 import { emailAddress } from "~/data/emailAddress";
 import { authorSchema, createBreadcrumbs, websiteSchema } from "~/data/schemaData";
-import { createMeta } from "~/utils/seo";
+import { createAmpLink, createMeta } from "~/utils/seo";
 
 const HERO_IMAGE_URL = "https://www.elliotjreed.com/elliot-greyscale.webp";
 
@@ -59,6 +59,7 @@ export function meta() {
     {
       "script:ld+json": createBreadcrumbs([{ name: "Home", url: "https://www.elliotjreed.com" }]),
     },
+    createAmpLink("/"),
   ];
 }
 

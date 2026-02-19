@@ -2,7 +2,7 @@ import type { ReactElement } from "react";
 import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createMeta } from "~/utils/seo";
+import { createAmpLink, createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -36,6 +36,7 @@ export const meta = () => [
       },
     ]),
   },
+  createAmpLink("/linux/search-a-directory-for-text-string-via-command-line"),
 ];
 
 const snippet: CodeSnippetInterface = {

@@ -2,7 +2,7 @@ import type { ReactElement } from "react";
 import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createMeta } from "~/utils/seo";
+import { createAmpLink, createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -94,6 +94,7 @@ alias mkdir="mkdir -pv"`,
     code: `# Flush DNS cache
 alias flushdns='sudo resolvectl flush-caches'`,
   },
+  createAmpLink("/linux/zsh-bash-aliases"),
 ];
 
 export default (): ReactElement => (

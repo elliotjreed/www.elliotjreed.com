@@ -4,7 +4,7 @@ import { Link } from "react-router";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs } from "~/data/schemaData";
 import { getCategoryPages } from "~/utils/categoryListings";
-import { createMeta } from "~/utils/seo";
+import { createAmpLink, createMeta } from "~/utils/seo";
 
 const CATEGORY_TITLE = "ZSH / Bash Shell Guides";
 const CATEGORY_SLUG = "linux";
@@ -39,6 +39,7 @@ export const meta = () => [
       { name: CATEGORY_TITLE, url: PAGE_URL },
     ]),
   },
+  createAmpLink("/linux"),
 ];
 
 export default (): ReactElement => (

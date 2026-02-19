@@ -3,7 +3,7 @@ import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createMeta } from "~/utils/seo";
+import { createAmpLink, createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -39,6 +39,7 @@ export const meta = () => [
       },
     ]),
   },
+  createAmpLink("/linux/get-local-and-public-ip-address-command-line-bash"),
 ];
 
 const functionSnippet: CodeSnippetInterface = {

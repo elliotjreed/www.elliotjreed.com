@@ -2,7 +2,7 @@ import type { ReactElement } from "react";
 import { CodeSnippet } from "~/components/CodeSnippet/CodeSnippet";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createMeta } from "~/utils/seo";
+import { createAmpLink, createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -36,6 +36,7 @@ export const meta = () => [
       },
     ]),
   },
+  createAmpLink("/php/detect-disposable-or-temporary-email-addresses-in-php"),
 ];
 
 export default (): ReactElement => (

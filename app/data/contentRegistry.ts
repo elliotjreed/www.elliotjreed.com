@@ -16,6 +16,7 @@ export interface SitePage {
   index?: boolean;
   search?: SearchMeta;
   sitemap?: SitemapMeta;
+  ampEligible?: boolean;
 }
 
 export interface NavigationNode {
@@ -318,12 +319,14 @@ export const sitePages: SitePage[] = [
       keywords: ["percentage", "calculator", "math", "calculate", "tool", "utility"],
     },
     sitemap: { lastModified: "2025-01-28" },
+    ampEligible: false,
   },
   {
     id: "sitemap-page",
     path: "/sitemap",
     routeFile: "routes/sitemap.tsx",
     title: "Sitemap",
+    ampEligible: false,
   },
   {
     id: "privacy",

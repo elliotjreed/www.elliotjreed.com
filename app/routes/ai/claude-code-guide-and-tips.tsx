@@ -5,7 +5,7 @@ import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
 import claudeCodeStatuslineImage from "~/images/articles/claude-code-custom-statusline.png";
 import claudeCodeStatuslineImageWebp from "~/images/articles/claude-code-custom-statusline.webp";
-import { createMeta } from "~/utils/seo";
+import { createAmpLink, createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -96,6 +96,7 @@ export const meta = () => [
       ],
     },
   },
+  createAmpLink("/ai/claude-code-guide-and-tips"),
 ];
 
 export default (): ReactElement => (

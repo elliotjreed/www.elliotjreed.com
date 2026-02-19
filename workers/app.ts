@@ -1,5 +1,5 @@
 import { createRequestHandler } from "react-router";
-import { lastModifiedByPath } from "../app/data/contentRegistry";
+import { lastModifiedByPath, sitePages } from "../app/data/contentRegistry";
 import { type StaticLink, staticLinks } from "../app/data/staticLinks";
 
 // biome-ignore lint/suspicious/noEmptyInterface: Env interface may be extended with environment variables in the future
@@ -72,8 +72,11 @@ export default {
 
     // Handle sitemap.xml directly
     if (url.pathname === "/sitemap.xml") {
-      const urls = extractUrls(staticLinks);
-      const sitemap = generateSitemap(urls);
+      const canonicalUrls = extractUrls(staticLinks);
+      const ampUrls = sitePages
+        .filter((page) => page.ampEligible !== false)
+        .map((page) => `/amp${page.path === "/" ? "" : page.path}`);
+      const sitemap = generateSitemap([...canonicalUrls, ...ampUrls]);
 
       return new Response(sitemap, {
         status: 200,
