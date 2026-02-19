@@ -6,8 +6,7 @@ const PAGE_URL = "https://www.elliotjreed.com/ai/recommended-ai-learning-resourc
 export function renderPage(): AmpPageData {
   return {
     title: "AI Resources | EJR",
-    description:
-      "Recommended resources for learning more about AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
+    description: "Recommended resources for learning more about AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
     canonicalPath: "/ai/recommended-ai-learning-resources",
     type: "article",
     schemas: [

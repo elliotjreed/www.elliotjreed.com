@@ -68,11 +68,7 @@ export function renderPage(): AmpPageData {
     <h2>Getting Container IP Addresses</h2>
 
     <p>To list all Docker containers and their corresponding IP addresses, run:</p>
-    ${codeBlock(
-      'docker inspect -f "{{.Name}}: {{.NetworkSettings.IPAddress }}" $(docker ps -aq)',
-      "List all",
-      "bash",
-    )}
+    ${codeBlock('docker inspect -f "{{.Name}}: {{.NetworkSettings.IPAddress }}" $(docker ps -aq)', "List all", "bash")}
 
     <p>To get the IP address for a specific Docker container, run:</p>
     ${codeBlock(
