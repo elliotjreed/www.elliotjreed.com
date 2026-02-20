@@ -59,6 +59,7 @@ export const createMeta = (options: CreateMetaOptions): AppMetaDescriptor[] => {
   const resolvedTwitterImageAlt = twitterImageAlt ?? imageAlt ?? "Elliot J. Reed";
 
   const meta: MetaDescriptor[] = [
+    { tagName: "link", rel: "canonical", href: url },
     { title },
     { name: "description", content: description },
     { property: "og:title", content: title },
