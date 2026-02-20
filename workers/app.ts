@@ -63,12 +63,25 @@ ${urlEntries}
 </urlset>`;
 }
 
+const PERMANENT_REDIRECTS: Record<string, string> = {
+  "/blog/2019-03-29/detect-disposable-or-temporary-email-addresses-in-php":
+    "/php/detect-disposable-or-temporary-email-addresses-in-php",
+  "/blog/2020-09-02/get-docker-and-docker-compose-container-ip-addresses":
+    "/docker/get-docker-and-docker-compose-container-ip-addresses",
+  "/post/docker/2016-12-29_Clean_up_Docker": "/docker/delete-all-docker-containers-and-images",
+};
+
 const requestHandler = createRequestHandler(() => import("virtual:react-router/server-build"), import.meta.env.MODE);
 
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const nonce = generateNonce();
+
+    const redirectTarget = PERMANENT_REDIRECTS[url.pathname];
+    if (redirectTarget) {
+      return Response.redirect(`${SITE_URL}${redirectTarget}`, 301);
+    }
 
     // Handle sitemap.xml directly
     if (url.pathname === "/sitemap.xml") {
