@@ -33,6 +33,7 @@ export const meta = () => [
       { name: "ZSH & Bash Functions", url: "https://www.elliotjreed.com/linux/zsh-bash-functions" },
     ]),
   },
+  createAmpLink("/linux/zsh-bash-functions"),
 ];
 
 const snippets: CodeSnippetInterface[] = [
@@ -186,7 +187,6 @@ read -p "Do you want to add the CA certificate to your operating system trusted 
 }
 `,
   },
-  createAmpLink("/linux/zsh-bash-functions"),
 ];
 
 export default (): ReactElement => (

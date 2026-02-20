@@ -33,6 +33,7 @@ export const meta = () => [
       { name: "ZSH & Bash Aliases", url: "https://www.elliotjreed.com/linux/zsh-bash-aliases" },
     ]),
   },
+  createAmpLink("/linux/zsh-bash-aliases"),
 ];
 
 const snippets: CodeSnippetInterface[] = [
@@ -94,7 +95,6 @@ alias mkdir="mkdir -pv"`,
     code: `# Flush DNS cache
 alias flushdns='sudo resolvectl flush-caches'`,
   },
-  createAmpLink("/linux/zsh-bash-aliases"),
 ];
 
 export default (): ReactElement => (

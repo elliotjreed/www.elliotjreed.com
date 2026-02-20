@@ -13,7 +13,7 @@ const DEFAULT_OG_IMAGE = `${SITE_URL}/og.png`;
 const DEFAULT_TWITTER_IMAGE = `${SITE_URL}/twitter-card.png`;
 
 // Required AMP boilerplate - must not be modified
-const AMP_BOILERPLATE = `<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>`;
+const AMP_BOILERPLATE = `<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>`;
 
 export interface AmpPageData {
   title: string;
@@ -51,10 +51,9 @@ export function generateAmpHtml(page: AmpPageData): string {
   <title>${escapeAttr(page.title)}</title>
   <link rel="canonical" href="${escapeAttr(canonicalUrl)}"/>
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"/>
-  ${AMP_BOILERPLATE}
   <script async src="https://cdn.ampproject.org/v0.js"></script>
   <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
-  <script async custom-element="amp-img" src="https://cdn.ampproject.org/v0/amp-img-0.1.js"></script>
+  ${AMP_BOILERPLATE}
   <style amp-custom>${ampCss}</style>
   <meta name="description" content="${escapeAttr(page.description)}"/>${keywordsMeta}
   <meta property="og:title" content="${escapeAttr(page.title)}"/>
