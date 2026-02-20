@@ -175,7 +175,22 @@ describe("root", () => {
       render(<ErrorBoundary params={{}} error={error} />);
 
       expect(screen.getByRole("heading", { name: "404" })).toBeInTheDocument();
-      expect(screen.getByText("The requested page could not be found.")).toBeInTheDocument();
+      expect(screen.getByText(/Sorry, that page doesn't exist/)).toBeInTheDocument();
+    });
+
+    it("should render category links on 404", () => {
+      vi.mocked(isRouteErrorResponse).mockReturnValue(true);
+
+      const error = { status: 404, statusText: "Not Found" };
+      render(<ErrorBoundary params={{}} error={error} />);
+
+      const nav = screen.getByRole("navigation", { name: "Suggested sections" });
+      expect(nav).toBeInTheDocument();
+
+      expect(screen.getByRole("link", { name: "AI Guides" })).toHaveAttribute("href", "/ai");
+      expect(screen.getByRole("link", { name: "ZSH / Bash Shell Guides" })).toHaveAttribute("href", "/linux");
+      expect(screen.getByRole("link", { name: "Docker Guides" })).toHaveAttribute("href", "/docker");
+      expect(screen.getByRole("link", { name: "PHP Guides" })).toHaveAttribute("href", "/php");
     });
 
     it("should render generic error message for other route errors", () => {
