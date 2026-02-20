@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { isRouteErrorResponse } from "react-router";
+import { isRouteErrorResponse, useLoaderData } from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { ErrorBoundary, Layout } from "./root";
 
@@ -11,7 +11,7 @@ vi.mock("react-router", async () => {
     Meta: () => <span data-testid="meta">Meta</span>,
     ScrollRestoration: () => <span data-testid="scroll-restoration">ScrollRestoration</span>,
     Scripts: () => <span data-testid="scripts">Scripts</span>,
-    useLoaderData: () => ({ nonce: "test-nonce" }),
+    useLoaderData: vi.fn().mockReturnValue({ nonce: "test-nonce" }),
     isRouteErrorResponse: vi.fn(),
   };
 });
@@ -148,6 +148,18 @@ describe("root", () => {
 
       const themeColor = document.querySelector('meta[name="theme-color"]');
       expect(themeColor).toHaveAttribute("content", "#1f2937");
+    });
+
+    it("should render without throwing when loader data is undefined (error boundary path)", () => {
+      vi.mocked(useLoaderData).mockReturnValueOnce(undefined as never);
+
+      expect(() =>
+        render(
+          <Layout>
+            <div>Error content</div>
+          </Layout>,
+        ),
+      ).not.toThrow();
     });
   });
 

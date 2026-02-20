@@ -77,7 +77,8 @@ export const loader = ({ context }: Route.LoaderArgs) => {
 };
 
 export const Layout = ({ children }: { children: ReactNode }): ReactElement => {
-  const { nonce } = useLoaderData<typeof loader>();
+  const loaderData = useLoaderData<typeof loader>() as { nonce: string } | undefined;
+  const nonce = loaderData?.nonce ?? "";
 
   return (
     <html lang="en">
