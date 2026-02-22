@@ -3,7 +3,7 @@ import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createMeta } from "~/utils/seo";
+import { createAmpLink, createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -36,6 +36,7 @@ export const meta = () => [
       { name: "Clean up Docker", url: "https://www.elliotjreed.com/docker/delete-all-docker-containers-and-images" },
     ]),
   },
+  createAmpLink("/docker/delete-all-docker-containers-and-images"),
 ];
 
 const snippet: CodeSnippetInterface = {

@@ -2,7 +2,7 @@ import type { ReactElement } from "react";
 import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createMeta } from "~/utils/seo";
+import { createAmpLink, createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -33,6 +33,7 @@ export const meta = () => [
       { name: "ZSH & Bash Aliases", url: "https://www.elliotjreed.com/linux/zsh-bash-aliases" },
     ]),
   },
+  createAmpLink("/linux/zsh-bash-aliases"),
 ];
 
 const snippets: CodeSnippetInterface[] = [

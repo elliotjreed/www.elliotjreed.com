@@ -3,6 +3,14 @@ import type { MetaDescriptor } from "react-router";
 // Extended meta descriptor to allow JSON-LD entries alongside standard React Router descriptors.
 export type AppMetaDescriptor = MetaDescriptor & { "script:ld+json"?: Record<string, unknown> };
 
+const SITE_URL = "https://www.elliotjreed.com";
+
+export const createAmpLink = (path: string): MetaDescriptor => ({
+  tagName: "link",
+  rel: "amphtml",
+  href: `${SITE_URL}/amp${path}`,
+});
+
 interface CreateMetaOptions {
   title: string;
   description: string;
@@ -51,6 +59,7 @@ export const createMeta = (options: CreateMetaOptions): AppMetaDescriptor[] => {
   const resolvedTwitterImageAlt = twitterImageAlt ?? imageAlt ?? "Elliot J. Reed";
 
   const meta: MetaDescriptor[] = [
+    { tagName: "link", rel: "canonical", href: url },
     { title },
     { name: "description", content: description },
     { property: "og:title", content: title },

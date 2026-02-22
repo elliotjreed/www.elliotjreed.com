@@ -2,7 +2,7 @@ import type { ReactElement } from "react";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { emailAddress } from "~/data/emailAddress";
 import { createBreadcrumbs } from "~/data/schemaData";
-import { createMeta } from "~/utils/seo";
+import { createAmpLink, createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -35,6 +35,7 @@ export const meta = () => [
       { name: "Privacy", url: "https://www.elliotjreed.com/privacy" },
     ]),
   },
+  createAmpLink("/privacy"),
 ];
 
 export default (): ReactElement => (

@@ -1,7 +1,7 @@
 import type { ReactElement } from "react";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createMeta } from "~/utils/seo";
+import { createAmpLink, createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -33,6 +33,7 @@ export const meta = () => [
       { name: "AI Resources", url: "https://www.elliotjreed.com/ai/recommended-ai-learning-resources" },
     ]),
   },
+  createAmpLink("/ai/recommended-ai-learning-resources"),
 ];
 
 export default (): ReactElement => (

@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createMeta } from "~/utils/seo";
+import { createAmpLink, createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -60,6 +60,7 @@ export const meta = () => [
       ],
     },
   },
+  createAmpLink("/ai/cafe-ai-prompt-framework"),
 ];
 
 export default (): ReactElement => (

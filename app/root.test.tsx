@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { isRouteErrorResponse } from "react-router";
+import { isRouteErrorResponse, useLoaderData } from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { ErrorBoundary, Layout } from "./root";
 
@@ -11,7 +11,7 @@ vi.mock("react-router", async () => {
     Meta: () => <span data-testid="meta">Meta</span>,
     ScrollRestoration: () => <span data-testid="scroll-restoration">ScrollRestoration</span>,
     Scripts: () => <span data-testid="scripts">Scripts</span>,
-    useLoaderData: () => ({ nonce: "test-nonce" }),
+    useLoaderData: vi.fn().mockReturnValue({ nonce: "test-nonce" }),
     isRouteErrorResponse: vi.fn(),
   };
 });
@@ -149,6 +149,18 @@ describe("root", () => {
       const themeColor = document.querySelector('meta[name="theme-color"]');
       expect(themeColor).toHaveAttribute("content", "#1f2937");
     });
+
+    it("should render without throwing when loader data is undefined (error boundary path)", () => {
+      vi.mocked(useLoaderData).mockReturnValueOnce(undefined as never);
+
+      expect(() =>
+        render(
+          <Layout>
+            <div>Error content</div>
+          </Layout>,
+        ),
+      ).not.toThrow();
+    });
   });
 
   describe("ErrorBoundary", () => {
@@ -163,7 +175,22 @@ describe("root", () => {
       render(<ErrorBoundary params={{}} error={error} />);
 
       expect(screen.getByRole("heading", { name: "404" })).toBeInTheDocument();
-      expect(screen.getByText("The requested page could not be found.")).toBeInTheDocument();
+      expect(screen.getByText(/Sorry, that page doesn't exist/)).toBeInTheDocument();
+    });
+
+    it("should render category links on 404", () => {
+      vi.mocked(isRouteErrorResponse).mockReturnValue(true);
+
+      const error = { status: 404, statusText: "Not Found" };
+      render(<ErrorBoundary params={{}} error={error} />);
+
+      const nav = screen.getByRole("navigation", { name: "Suggested sections" });
+      expect(nav).toBeInTheDocument();
+
+      expect(screen.getByRole("link", { name: "AI Guides" })).toHaveAttribute("href", "/ai");
+      expect(screen.getByRole("link", { name: "ZSH / Bash Shell Guides" })).toHaveAttribute("href", "/linux");
+      expect(screen.getByRole("link", { name: "Docker Guides" })).toHaveAttribute("href", "/docker");
+      expect(screen.getByRole("link", { name: "PHP Guides" })).toHaveAttribute("href", "/php");
     });
 
     it("should render generic error message for other route errors", () => {

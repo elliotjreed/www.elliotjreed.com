@@ -1,7 +1,7 @@
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { emailAddress } from "~/data/emailAddress";
 import { createBreadcrumbs } from "~/data/schemaData";
-import { createMeta } from "~/utils/seo";
+import { createAmpLink, createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -30,6 +30,7 @@ export const meta = () => [
       { name: "TheVape.co.uk", url: "https://www.elliotjreed.com/the-vape" },
     ]),
   },
+  createAmpLink("/the-vape"),
 ];
 
 export default function Index() {

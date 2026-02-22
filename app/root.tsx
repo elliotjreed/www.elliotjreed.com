@@ -77,7 +77,8 @@ export const loader = ({ context }: Route.LoaderArgs) => {
 };
 
 export const Layout = ({ children }: { children: ReactNode }): ReactElement => {
-  const { nonce } = useLoaderData<typeof loader>();
+  const loaderData = useLoaderData<typeof loader>() as { nonce: string } | undefined;
+  const nonce = loaderData?.nonce ?? "";
 
   return (
     <html lang="en">
@@ -124,14 +125,52 @@ export const Layout = ({ children }: { children: ReactNode }): ReactElement => {
 
 export default (): ReactElement => <Outlet />;
 
+const CATEGORY_LINKS = [
+  { href: "/ai", label: "AI Guides" },
+  { href: "/linux", label: "ZSH / Bash Shell Guides" },
+  { href: "/docker", label: "Docker Guides" },
+  { href: "/php", label: "PHP Guides" },
+];
+
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps): ReactElement {
+  const isRouteError = isRouteErrorResponse(error);
+
+  if (isRouteError && error.status === 404) {
+    return (
+      <section className="divide-y divide-gray-200 dark:divide-gray-700">
+        <div className="space-y-2 pt-6 pb-8 md:space-y-5">
+          <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-700 sm:text-4xl sm:leading-10 md:text-6xl dark:text-gray-200">
+            404
+          </h1>
+          <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+            Sorry, that page doesn't exist. You might find what you're looking for in one of these sections:
+          </p>
+          <nav aria-label="Suggested sections">
+            <ul className="mt-4 space-y-2 text-lg">
+              {CATEGORY_LINKS.map(({ href, label }) => (
+                <li key={href}>
+                  <a
+                    href={href}
+                    className="text-gray-700 underline hover:text-gray-900 dark:text-gray-200 dark:hover:text-white"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+      </section>
+    );
+  }
+
   let message = "Oops!";
   let details = "An unexpected error occurred.";
   let stack: string | undefined;
 
-  if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Error";
-    details = error.status === 404 ? "The requested page could not be found." : error.statusText || details;
+  if (isRouteError) {
+    message = "Error";
+    details = error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;
     stack = error.stack;

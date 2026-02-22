@@ -1,7 +1,7 @@
 import type { ReactElement } from "react";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs } from "~/data/schemaData";
-import { createMeta } from "~/utils/seo";
+import { createAmpLink, createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -173,6 +173,7 @@ const travellingPhotographs: TitledPhotograph[] = [
     source:
       "https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890700/Travelling/Rothemberg_Germany.jpg",
   },
+  createAmpLink("/travel"),
 ];
 
 export default (): ReactElement => (
