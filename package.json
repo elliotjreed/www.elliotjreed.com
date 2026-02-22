@@ -38,7 +38,7 @@
     "react-router": "^7.13.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260227.0",
+    "@cloudflare/workers-types": "^4.20260228.0",
     "@react-router/dev": "^7.13.0",
     "@tailwindcss/postcss": "^4.2.0",
     "@tailwindcss/vite": "^4.2.0",
@@ -54,7 +54,7 @@
     "@vitest/ui": "^4.0.18",
     "amphtml-validator": "^1.0.38",
     "autoprefixer": "^10.4.24",
-    "happy-dom": "^20.6.3",
+    "happy-dom": "^20.7.0",
     "jsdom": "^28.1.0",
     "postcss": "^8.5.6",
     "prettier": "^3.8.1",
