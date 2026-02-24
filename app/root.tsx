@@ -97,6 +97,13 @@ export const Layout = ({ children }: { children: ReactNode }): ReactElement => {
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="mask-icon" href="/icon-maskable-512.png" color="#1f2937" />
         <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link
+          rel="preload"
+          href="/fonts/fira-sans-latin-700.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
         <Meta />
         <Links />
       </head>
@@ -139,7 +146,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps): ReactElement
     return (
       <section className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-700 sm:text-4xl sm:leading-10 md:text-6xl dark:text-gray-200">
+          <h1 className="font-heading text-3xl leading-9 font-extrabold tracking-tight text-gray-700 sm:text-4xl sm:leading-10 md:text-6xl dark:text-gray-200">
             404
           </h1>
           <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
