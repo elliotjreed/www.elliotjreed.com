@@ -7,7 +7,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
+  useRouteLoaderData,
 } from "react-router";
 import { Footer } from "~/components/Footer/Footer";
 import { NavBar } from "~/components/NavBar/NavBar";
@@ -77,7 +77,7 @@ export const loader = ({ context }: Route.LoaderArgs) => {
 };
 
 export const Layout = ({ children }: { children: ReactNode }): ReactElement => {
-  const loaderData = useLoaderData<typeof loader>() as { nonce: string } | undefined;
+  const loaderData = useRouteLoaderData<typeof loader>("root");
   const nonce = loaderData?.nonce ?? "";
 
   return (

@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { isRouteErrorResponse, useLoaderData } from "react-router";
+import { isRouteErrorResponse, useRouteLoaderData } from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { ErrorBoundary, Layout } from "./root";
 
@@ -11,7 +11,7 @@ vi.mock("react-router", async () => {
     Meta: () => <span data-testid="meta">Meta</span>,
     ScrollRestoration: () => <span data-testid="scroll-restoration">ScrollRestoration</span>,
     Scripts: () => <span data-testid="scripts">Scripts</span>,
-    useLoaderData: vi.fn().mockReturnValue({ nonce: "test-nonce" }),
+    useRouteLoaderData: vi.fn().mockReturnValue({ nonce: "test-nonce" }),
     isRouteErrorResponse: vi.fn(),
   };
 });
@@ -151,7 +151,7 @@ describe("root", () => {
     });
 
     it("should render without throwing when loader data is undefined (error boundary path)", () => {
-      vi.mocked(useLoaderData).mockReturnValueOnce(undefined as never);
+      vi.mocked(useRouteLoaderData).mockReturnValueOnce(undefined);
 
       expect(() =>
         render(
