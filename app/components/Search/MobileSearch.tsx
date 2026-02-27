@@ -82,13 +82,14 @@ export const MobileSearch: FC<MobileSearchProps> = ({ onNavigate }): ReactElemen
       </output>
       <div className="relative">
         <input
-          type="text"
+          type="search"
           role="combobox"
           aria-expanded={results.length > 0}
           aria-controls="mobile-search-results"
           aria-activedescendant={activeIndex >= 0 ? `mobile-search-result-${activeIndex}` : undefined}
           aria-label="Search guides and articles"
           placeholder="Search&hellip;"
+          name="Search"
           value={query}
           onChange={(e) => handleInputChange(e.target.value)}
           onKeyDown={handleKeyDown}

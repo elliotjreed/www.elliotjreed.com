@@ -110,13 +110,14 @@ export const Search: FC = (): ReactElement => {
       <div className="flex items-center gap-1">
         <input
           ref={inputRef}
-          type="text"
+          type="search"
           role="combobox"
           aria-expanded={isResultsVisible}
           aria-controls="search-results"
           aria-activedescendant={activeIndex >= 0 ? `search-result-${activeIndex}` : undefined}
           aria-label="Search guides and articles"
           placeholder="Search&hellip;"
+          name="Search"
           value={query}
           onChange={(e) => handleInputChange(e.target.value)}
           onKeyDown={handleKeyDown}
