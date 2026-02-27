@@ -11,6 +11,7 @@ command = "bun run build"
 
 [assets]
 directory = "./build/client/"
+html_handling = "drop-trailing-slash"
 
 [observability.logs]
 enabled = true
