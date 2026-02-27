@@ -7,10 +7,10 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useRouteLoaderData,
 } from "react-router";
 import { Footer } from "~/components/Footer/Footer";
 import { NavBar } from "~/components/NavBar/NavBar";
+import { useNonce } from "~/context/nonce";
 
 import type { Route } from "./+types/root";
 import "./fonts.css";
@@ -72,13 +72,8 @@ export const meta: Route.MetaFunction = ({ location, matches }) => {
   return derivedMeta;
 };
 
-export const loader = ({ context }: Route.LoaderArgs) => {
-  return { nonce: context?.nonce ?? "" };
-};
-
 export const Layout = ({ children }: { children: ReactNode }): ReactElement => {
-  const loaderData = useRouteLoaderData<typeof loader>("root");
-  const nonce = loaderData?.nonce ?? "";
+  const nonce = useNonce();
 
   return (
     <html lang="en">
@@ -104,6 +99,7 @@ export const Layout = ({ children }: { children: ReactNode }): ReactElement => {
           type="font/woff2"
           crossOrigin="anonymous"
         />
+        {nonce && <meta name="csp-nonce" content={nonce} />}
         <Meta />
         <Links />
       </head>
