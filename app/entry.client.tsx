@@ -1,7 +1,15 @@
 import { hydrateRoot } from "react-dom/client";
 import { HydratedRouter } from "react-router/dom";
+import { NonceContext } from "~/context/nonce";
 
-hydrateRoot(document, <HydratedRouter />);
+const nonce = (document.querySelector("meta[name='csp-nonce']") as HTMLMetaElement | null)?.content ?? "";
+
+hydrateRoot(
+  document,
+  <NonceContext.Provider value={nonce}>
+    <HydratedRouter />
+  </NonceContext.Provider>,
+);
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", (): void => {
