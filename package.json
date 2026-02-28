@@ -13,7 +13,7 @@
     "dev": "react-router dev",
     "start": "wrangler dev",
     "typecheck": "react-router typegen && tsc --noEmit",
-    "format": "prettier --write .",
+    "format": "prettier --log-level=warn --write .",
     "test": "vitest run --reporter=./vitest-minimal-reporter.ts",
     "test:full": "vitest run --reporter=dot",
     "test:ci": "vitest run --reporter=github-actions",
