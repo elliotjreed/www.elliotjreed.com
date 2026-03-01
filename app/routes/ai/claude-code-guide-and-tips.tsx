@@ -173,9 +173,6 @@ export default (): ReactElement => (
             <a href="#claude-plugins-and-plugin-marketplaces">Claude Plugins and Plugin Marketplaces</a>
           </li>
           <li>
-            <a href="#claude-commands">Claude Commands</a>
-          </li>
-          <li>
             <a href="#claude-skills">Claude Skills</a>
           </li>
           <li>
