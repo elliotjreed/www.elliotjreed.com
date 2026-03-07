@@ -38,7 +38,7 @@
     "react-router": "^7.13.1"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260305.0",
+    "@cloudflare/workers-types": "^4.20260307.1",
     "@react-router/dev": "^7.13.1",
     "@tailwindcss/postcss": "^4.2.1",
     "@tailwindcss/vite": "^4.2.1",
@@ -46,7 +46,7 @@
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "@types/amphtml-validator": "^1.0.4",
-    "@types/node": "^25.3.3",
+    "@types/node": "^25.3.5",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.4",
@@ -54,9 +54,9 @@
     "@vitest/ui": "^4.0.18",
     "amphtml-validator": "^1.0.38",
     "autoprefixer": "^10.4.27",
-    "happy-dom": "^20.7.0",
+    "happy-dom": "^20.8.3",
     "jsdom": "^28.1.0",
-    "postcss": "^8.5.6",
+    "postcss": "^8.5.8",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.6.14",
     "tailwindcss": "^4.2.1",
@@ -65,6 +65,6 @@
     "vite-plugin-pwa": "^1.2.0",
     "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^4.0.18",
-    "wrangler": "^4.69.0"
+    "wrangler": "^4.71.0"
   }
 }
