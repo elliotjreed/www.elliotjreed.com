@@ -14,7 +14,7 @@
     "start": "wrangler dev",
     "typecheck": "react-router typegen && tsc --noEmit",
     "format": "prettier --log-level=warn --write .",
-    "test": "vitest run --reporter=./vitest-minimal-reporter.ts",
+    "test": "vitest run",
     "test:full": "vitest run --reporter=dot",
     "test:ci": "vitest run --reporter=github-actions",
     "test:watch:ui": "vitest watch --ui",
@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20260317.1",
+    "@elliotjreed/vitest-minimal-reporter": "^1.0.0",
     "@react-router/dev": "^7.13.2",
     "@tailwindcss/postcss": "^4.2.2",
     "@tailwindcss/vite": "^4.2.2",

@@ -1,6 +1,7 @@
 import path from "node:path";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vitest/config";
+import MinimalReporter from "@elliotjreed/vitest-minimal-reporter";
 
 export default defineConfig({
   plugins: [react()],
@@ -8,6 +9,7 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     setupFiles: ["./vitest.setup.ts"],
+    reporters: [new MinimalReporter()],
     coverage: {
       provider: "v8",
       reporter: ["text", "json", "html"],
