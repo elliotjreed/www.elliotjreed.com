@@ -3,16 +3,15 @@ import { cloudflareDevProxy } from "@react-router/dev/vite/cloudflare";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
-import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig(({ isSsrBuild }) => ({
+  resolve: { tsconfigPaths: true },
   build: {
     target: "esnext",
     cssCodeSplit: true,
     sourcemap: false,
-    minify: "esbuild",
+    minify: "oxc",
     assetsInlineLimit: 4096,
-    esbuild: { drop: ["console", "debugger"] },
     define: { "process.env.NODE_ENV": '"production"' },
     rollupOptions: isSsrBuild
       ? {
@@ -28,7 +27,6 @@ export default defineConfig(({ isSsrBuild }) => ({
     }),
     tailwindcss(),
     reactRouter(),
-    tsconfigPaths(),
     VitePWA({
       registerType: "autoUpdate",
       injectRegister: "auto",

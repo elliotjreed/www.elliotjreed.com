@@ -48,9 +48,8 @@ The architecture follows modern React patterns with server-side rendering and SS
 
 ### Build Configuration
 
-**Vite**: Production builds use esbuild with aggressive optimization
+**Vite**: Production builds use oxc with optimization
 
-- Console/debugger statements dropped in production
 - Source maps disabled for production builds
 - Assets inlined up to 4KB
 
