@@ -1,10 +1,10 @@
+import { cloudflare } from "@cloudflare/vite-plugin";
 import { reactRouter } from "@react-router/dev/vite";
-import { cloudflareDevProxy } from "@react-router/dev/vite/cloudflare";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 
-export default defineConfig(({ isSsrBuild }) => ({
+export default defineConfig({
   resolve: { tsconfigPaths: true },
   build: {
     target: "esnext",
@@ -12,22 +12,13 @@ export default defineConfig(({ isSsrBuild }) => ({
     sourcemap: false,
     minify: "oxc",
     assetsInlineLimit: 4096,
-    define: { "process.env.NODE_ENV": '"production"' },
-    rollupOptions: isSsrBuild
-      ? {
-          input: "./workers/app.ts",
-        }
-      : undefined,
   },
   plugins: [
-    cloudflareDevProxy({
-      getLoadContext({ context }) {
-        return { cloudflare: context.cloudflare };
-      },
-    }),
+    cloudflare({ viteEnvironment: { name: "ssr" } }),
     tailwindcss(),
     reactRouter(),
     VitePWA({
+      outDir: "build/client",
       registerType: "autoUpdate",
       injectRegister: "auto",
       workbox: {
@@ -92,4 +83,4 @@ export default defineConfig(({ isSsrBuild }) => ({
       },
     }),
   ],
-}));
+});

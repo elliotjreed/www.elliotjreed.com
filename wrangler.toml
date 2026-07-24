@@ -3,7 +3,7 @@ preview_urls = false
 send_metrics = false
 name = "elliotjreed"
 compatibility_date = "2025-04-20"
-main = "./build/server/index.js"
+main = "./workers/app.ts"
 upload_source_maps = false
 
 [build]

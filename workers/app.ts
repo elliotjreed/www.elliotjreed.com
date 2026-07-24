@@ -1,4 +1,5 @@
-import { createRequestHandler } from "react-router";
+import { createRequestHandler, RouterContextProvider } from "react-router";
+import { cloudflareContext, nonceContext } from "../app/context/loadContext";
 import { lastModifiedByPath } from "../app/data/contentRegistry";
 import { type StaticLink, staticLinks } from "../app/data/staticLinks";
 
@@ -7,16 +8,6 @@ interface Env {}
 
 declare global {
   interface CloudflareEnvironment extends Env {}
-}
-
-declare module "react-router" {
-  export interface AppLoadContext {
-    cloudflare: {
-      env: CloudflareEnvironment;
-      ctx: ExecutionContext;
-    };
-    nonce: string;
-  }
 }
 
 const SITE_URL = "https://www.elliotjreed.com";
@@ -103,10 +94,11 @@ export default {
       });
     }
 
-    const response = await requestHandler(request, {
-      cloudflare: { env, ctx },
-      nonce,
-    });
+    const loadContext = new RouterContextProvider();
+    loadContext.set(cloudflareContext, { env, ctx });
+    loadContext.set(nonceContext, nonce);
+
+    const response = await requestHandler(request, loadContext);
 
     const headers = new Headers(response.headers);
     const contentType = headers.get("Content-Type") ?? "";

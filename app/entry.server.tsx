@@ -1,7 +1,8 @@
 import { isbot } from "isbot";
 import { renderToReadableStream } from "react-dom/server";
-import type { AppLoadContext, EntryContext } from "react-router";
+import type { EntryContext, RouterContextProvider } from "react-router";
 import { ServerRouter } from "react-router";
+import { nonceContext } from "~/context/loadContext";
 import { NonceContext } from "~/context/nonce";
 
 export default async (
@@ -9,11 +10,11 @@ export default async (
   responseStatusCode: number,
   responseHeaders: Headers,
   routerContext: EntryContext,
-  loadContext: AppLoadContext,
+  loadContext: RouterContextProvider,
 ): Promise<Response> => {
   let shellRendered = false;
   const userAgent = request.headers.get("user-agent");
-  const nonce = (loadContext as { nonce?: string })?.nonce ?? "";
+  const nonce = loadContext.get(nonceContext);
 
   const body = await renderToReadableStream(
     <NonceContext.Provider value={nonce}>
