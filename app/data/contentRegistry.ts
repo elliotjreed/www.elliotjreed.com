@@ -352,6 +352,12 @@ export const sitePages: SitePage[] = [
     routeFile: "routes/the-vape.tsx",
     title: "TheVape.co.uk",
   },
+  {
+    id: "charisma-hair",
+    path: "/charisma-hair",
+    routeFile: "routes/charisma-hair.tsx",
+    title: "Charisma Hair",
+  },
 ];
 
 export const navigationTree: NavigationNode[] = [
@@ -425,6 +431,7 @@ export const navigationTree: NavigationNode[] = [
   { title: "Impressum", pageId: "impressum", showInNavigation: false },
   { title: "Trips and Travels", pageId: "travel", showInNavigation: false },
   { title: "TheVape.co.uk", pageId: "the-vape", showInNavigation: false },
+  { title: "Charisma Hair", pageId: "charisma-hair", showInNavigation: false },
 ];
 
 export const pageById = Object.fromEntries(sitePages.map((page) => [page.id, page])) as Record<string, SitePage>;

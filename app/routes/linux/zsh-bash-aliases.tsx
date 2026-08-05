@@ -122,11 +122,9 @@ export default (): ReactElement => (
 
     <div className="prose dark:prose-dark max-w-none">
       <section>
-        {snippets.map(
-          (snippet: CodeSnippetInterface): ReactElement => (
-            <CodeSnippet key={snippet.title} language="bash" code={snippet.code} title={snippet.title} />
-          ),
-        )}
+        {snippets.map((snippet: CodeSnippetInterface): ReactElement => (
+          <CodeSnippet key={snippet.title} language="bash" code={snippet.code} title={snippet.title} />
+        ))}
 
         <h2>Conclusion</h2>
         <p>

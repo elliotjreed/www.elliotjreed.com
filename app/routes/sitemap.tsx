@@ -19,20 +19,18 @@ const renderLinks = (links: StaticLink[]): ReactElement => (
   <ul>
     {links
       .filter((link: StaticLink) => link.href || link.children?.length)
-      .map(
-        (link: StaticLink): ReactElement => (
-          <li key={link.href ?? link.title} className="mb-1">
-            {link.href ? (
-              <Link to={link.href} className="text-gray-700 dark:text-gray-200">
-                {link.title}
-              </Link>
-            ) : (
-              <span className="font-semibold text-gray-700 dark:text-gray-200">{link.title}</span>
-            )}
-            {link.children && renderLinks(link.children)}
-          </li>
-        ),
-      )}
+      .map((link: StaticLink): ReactElement => (
+        <li key={link.href ?? link.title} className="mb-1">
+          {link.href ? (
+            <Link to={link.href} className="text-gray-700 dark:text-gray-200">
+              {link.title}
+            </Link>
+          ) : (
+            <span className="font-semibold text-gray-700 dark:text-gray-200">{link.title}</span>
+          )}
+          {link.children && renderLinks(link.children)}
+        </li>
+      ))}
   </ul>
 );
 

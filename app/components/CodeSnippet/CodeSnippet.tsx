@@ -88,11 +88,9 @@ export const CodeSnippet: FC<CodeSnippetInterface> = ({
             <pre className="mt-0 mb-0 overflow-x-auto p-4 font-mono text-sm" style={style}>
               {tokens.map((line, i) => (
                 <div key={`line-${i}`} {...getLineProps({ line })}>
-                  {line.map(
-                    (token: Token, key: number): ReactElement => (
-                      <span key={`token-${key}`} {...getTokenProps({ token })} />
-                    ),
-                  )}
+                  {line.map((token: Token, key: number): ReactElement => (
+                    <span key={`token-${key}`} {...getTokenProps({ token })} />
+                  ))}
                 </div>
               ))}
             </pre>

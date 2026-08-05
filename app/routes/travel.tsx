@@ -185,25 +185,23 @@ export default (): ReactElement => (
     </PageHeader>
     <div className="container py-12">
       <div className="-m-4 flex flex-wrap">
-        {travellingPhotographs.map(
-          (photo: TitledPhotograph): ReactElement => (
-            <div key={photo.source} className="md p-4 md:w-1/2" style={{ maxWidth: "544px" }}>
-              <div className="border-opacity-60 h-full overflow-hidden rounded-md border-2 border-gray-200 dark:border-gray-700">
-                <img
-                  alt={`Photograph from my visit to ${photo.title}`}
-                  src={photo.source}
-                  className="object-cover object-center md:h-36 lg:h-48"
-                  width={544}
-                  height={306}
-                  loading="lazy"
-                />
-                <div className="p-6">
-                  <h2 className="text-xl leading-8 font-bold tracking-tight">{photo.title}</h2>
-                </div>
+        {travellingPhotographs.map((photo: TitledPhotograph): ReactElement => (
+          <div key={photo.source} className="md p-4 md:w-1/2" style={{ maxWidth: "544px" }}>
+            <div className="border-opacity-60 h-full overflow-hidden rounded-md border-2 border-gray-200 dark:border-gray-700">
+              <img
+                alt={`Photograph from my visit to ${photo.title}`}
+                src={photo.source}
+                className="object-cover object-center md:h-36 lg:h-48"
+                width={544}
+                height={306}
+                loading="lazy"
+              />
+              <div className="p-6">
+                <h2 className="text-xl leading-8 font-bold tracking-tight">{photo.title}</h2>
               </div>
             </div>
-          ),
-        )}
+          </div>
+        ))}
       </div>
     </div>
   </section>
