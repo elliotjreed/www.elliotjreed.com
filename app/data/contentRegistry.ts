@@ -345,6 +345,33 @@ export const sitePages: SitePage[] = [
     ampEligible: false,
   },
   {
+    id: "finance-personal-finance",
+    path: "/finance/personal-finance",
+    routeFile: "routes/finance/personal-finance.tsx",
+    title: "Where Should I Put My Money?",
+    search: {
+      description:
+        "Interactive UK Personal Finance flowchart: answer a few questions to find whether to clear debt, build an emergency fund, claim your pension match, save or invest next.",
+      category: "Finance Tools",
+      keywords: [
+        "personal finance",
+        "flowchart",
+        "money",
+        "debt",
+        "emergency fund",
+        "savings",
+        "investing",
+        "isa",
+        "lisa",
+        "pension match",
+        "budgeting",
+        "uk",
+      ],
+    },
+    sitemap: { lastModified: "2026-08-31T00:00:00+00:00" },
+    ampEligible: false,
+  },
+  {
     id: "utils-percentage-calculator",
     path: "/utils/percentage-calculator",
     routeFile: "routes/utils/percentage-calculator.tsx",
@@ -462,7 +489,10 @@ export const navigationTree: NavigationNode[] = [
     title: "Finance",
     pageId: "finance-category",
     showInNavigation: true,
-    children: [{ title: "Pension Planner Calculator", pageId: "finance-pension-planner", showInNavigation: true }],
+    children: [
+      { title: "Where Should I Put My Money?", pageId: "finance-personal-finance", showInNavigation: true },
+      { title: "Pension Planner Calculator", pageId: "finance-pension-planner", showInNavigation: true },
+    ],
   },
   {
     title: "Utils",
