@@ -2,10 +2,22 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import PercentageCalculatorRoute, { meta } from "./percentage-calculator";
 
+const structuredDataOfType = (type: string): Record<string, unknown> | undefined => {
+  const metaTags = meta() as Array<Record<string, unknown>>;
+  const match = metaTags.find(
+    (tag) =>
+      tag["script:ld+json"] &&
+      typeof tag["script:ld+json"] === "object" &&
+      (tag["script:ld+json"] as Record<string, unknown>)["@type"] === type,
+  );
+
+  return match?.["script:ld+json"] as Record<string, unknown> | undefined;
+};
+
 describe("PercentageCalculatorRoute", () => {
   it("renders the percentage calculator component", () => {
     render(<PercentageCalculatorRoute />);
-    expect(screen.getByRole("heading", { name: /percentage calculator/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: /percentage calculator/i })).toBeInTheDocument();
   });
 
   it("renders all three calculator sections", () => {
@@ -107,5 +119,30 @@ describe("PercentageCalculatorRoute", () => {
         "@type": "FAQPage",
       });
     });
+  });
+
+  describe("structured data matches the page", () => {
+    it("shows every FAQ question from the structured data on the page", () => {
+      render(<PercentageCalculatorRoute />);
+      const faq = structuredDataOfType("FAQPage") as { mainEntity: { name: string }[] };
+
+      expect(faq.mainEntity.length).toBeGreaterThan(0);
+      for (const { name } of faq.mainEntity) {
+        expect(screen.getByRole("heading", { level: 3, name })).toBeInTheDocument();
+      }
+    });
+
+    it("describes the tool as a free web application with its own identifier and a named author", () => {
+      expect(structuredDataOfType("WebApplication")).toMatchObject({
+        "@id": "https://www.elliotjreed.com/utils/percentage-calculator#webapp",
+        mainEntityOfPage: { "@id": "https://www.elliotjreed.com/utils/percentage-calculator" },
+        offers: { "@type": "Offer", price: "0", priceCurrency: "GBP" },
+        author: { "@type": "Person", name: "Elliot J. Reed" },
+      });
+    });
+  });
+
+  it("does not link a breadcrumb to the missing utils page", () => {
+    expect(JSON.stringify(structuredDataOfType("BreadcrumbList"))).not.toContain('https://www.elliotjreed.com/utils"');
   });
 });

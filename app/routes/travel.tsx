@@ -1,6 +1,6 @@
 import type { ReactElement } from "react";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
-import { createBreadcrumbs } from "~/data/schemaData";
+import { authorReference, createBreadcrumbs } from "~/data/schemaData";
 import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
@@ -20,7 +20,7 @@ export const meta = () => [
       name: "Travelling",
       description: "A few photos from various travels and trips.",
       isPartOf: { "@id": "https://www.elliotjreed.com/#website" },
-      author: { "@id": "https://www.elliotjreed.com/#author" },
+      author: authorReference,
       inLanguage: "en-GB",
     },
   },

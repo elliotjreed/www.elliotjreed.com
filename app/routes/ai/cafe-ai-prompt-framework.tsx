@@ -22,10 +22,9 @@ export const meta = () => [
       description:
         "A guide on effective prompting using the CAFE prompt engineering framework, for AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
       datePublished: "2025-04-20T13:09:43+01:00",
-      dateModified: "2026-01-30T00:00:00+00:00",
+      dateModified: "2026-11-15T00:00:00+00:00",
       articleSection: "AI",
       keywords: ["AI", "CAFE framework", "prompt engineering", "LLM", "ChatGPT", "Claude"],
-      wordCount: 1092,
       proficiencyLevel: "Beginner",
     }),
   },
@@ -73,14 +72,17 @@ export default (): ReactElement => (
           <time dateTime="2025-04-20">
             Published: 20<sup>th</sup> April 2025
           </time>
-          <time dateTime="2026-01-30">
-            Last updated: 30<sup>th</sup> January 2026
+          <time dateTime="2026-11-15">
+            Last updated: 15<sup>th</sup> November 2026
           </time>
         </div>
       }
     >
       <p className="prose ejr-lead">
-        This is an outline of my <strong>CAFE</strong> prompt framework. For a more in-depth guide, take a look at my{" "}
+        The <strong>CAFE</strong> prompt framework is a four-part method I created for writing prompts for AI assistants
+        such as ChatGPT, Claude and Gemini: give the <strong>Context</strong>, state the <strong>Action</strong>,
+        specify the <strong>Format</strong>, and provide <strong>Examples</strong>. Each part is outlined below. For a
+        more in-depth guide, take a look at my{" "}
         <Link to="/ai/ai-prompt-engineering-guide" className="text-custard-ink underline" prefetch="render">
           AI Prompt Engineering Guide
         </Link>
@@ -151,7 +153,10 @@ export default (): ReactElement => (
       <section id="context">
         <HeadingAnchor id="context">Context</HeadingAnchor>
 
-        <p>This could include:</p>
+        <p>
+          Context is the background the AI needs to understand your situation, so it can tailor its answer rather than
+          give a generic one. This could include:
+        </p>
         <div className="border-line border-s-4 px-4 italic">
           <ul>
             <li>the intended audience</li>
@@ -164,6 +169,8 @@ export default (): ReactElement => (
 
       <section id="action">
         <HeadingAnchor id="action">Action</HeadingAnchor>
+
+        <p>Action is the task you want the AI to carry out, and it is the one element every prompt needs.</p>
 
         <p>
           <strong>Use active verbs</strong> to describe the task. For example:
@@ -188,7 +195,10 @@ export default (): ReactElement => (
       <section id="format">
         <HeadingAnchor id="format">Format</HeadingAnchor>
 
-        <p>This can include information such as:</p>
+        <p>
+          Format describes how you want the response to look, from its length and structure to its tone. This can
+          include information such as:
+        </p>
         <div className="border-line border-s-4 px-4 italic">
           <ul>
             <li>
@@ -209,6 +219,11 @@ export default (): ReactElement => (
 
       <section id="examples">
         <HeadingAnchor id="examples">Examples</HeadingAnchor>
+
+        <p>
+          Examples show the AI what a good answer looks like, which is the quickest way to get a particular style or
+          structure.
+        </p>
 
         <p>
           Provide <strong>two to five examples</strong> where possible. Eg. if you want to generate a social media post,

@@ -1,4 +1,5 @@
 import type { ReactElement } from "react";
+import { Link } from "react-router";
 import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
@@ -6,8 +7,9 @@ import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
-    title: "Search directory for a word | EJR",
-    description: "How to search directory for a word / text via the command line on Linux or Mac",
+    title: "Search a Directory for Text from the Command Line | EJR",
+    description:
+      "How to search every file in a directory for a word or text string from the Linux or macOS command line with grep, plus a reusable shell function.",
     url: "https://www.elliotjreed.com/linux/search-a-directory-for-text-string-via-command-line",
     type: "article",
     ogImage: "https://www.elliotjreed.com/og.png",
@@ -17,12 +19,12 @@ export const meta = () => [
     "script:ld+json": createTechArticle({
       url: "https://www.elliotjreed.com/linux/search-a-directory-for-text-string-via-command-line",
       headline: "Search directory for a word / text via the command line",
-      description: "How to search directory for a word / text via the command line on Linux or Mac",
+      description:
+        "How to search every file in a directory for a word or text string from the Linux or macOS command line with grep, plus a reusable shell function.",
       datePublished: "2017-01-23T19:00:00+01:00",
       dateModified: "2026-01-30T00:00:00+00:00",
       articleSection: "Linux",
       keywords: ["Linux", "grep", "search", "command line", "text search"],
-      wordCount: 417,
       proficiencyLevel: "Beginner",
     }),
   },
@@ -85,6 +87,18 @@ export default (): ReactElement => (
           <code>~/.bashrc</code>, or <code>~/.zshrc</code> in handy aliases like:
         </p>
         <CodeSnippet language="bash" code={snippet.code} title={snippet.title} />
+
+        <p>
+          For more shortcuts like this, see my{" "}
+          <Link to="/linux/zsh-bash-aliases" prefetch="render" className="text-custard-ink underline">
+            useful ZSH and Bash aliases
+          </Link>{" "}
+          and{" "}
+          <Link to="/linux/zsh-bash-functions" prefetch="render" className="text-custard-ink underline">
+            useful ZSH and Bash functions
+          </Link>
+          .
+        </p>
       </section>
     </div>
   </section>

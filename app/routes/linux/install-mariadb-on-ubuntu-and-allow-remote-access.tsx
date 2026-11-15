@@ -9,7 +9,8 @@ import { createMeta } from "~/utils/seo";
 export const meta = () => [
   ...createMeta({
     title: "Installing MariaDB on Ubuntu | EJR",
-    description: "How to install MariaDB (MySQL) on Ubuntu 20.04+ and allow remote access",
+    description:
+      "How to install MariaDB on Ubuntu 20.04 or later, secure it with mysql_secure_installation, and allow remote connections with bind-address and user grants.",
     url: "https://www.elliotjreed.com/linux/install-mariadb-on-ubuntu-and-allow-remote-access",
     type: "article",
     ogImage: "https://www.elliotjreed.com/og.png",
@@ -19,12 +20,12 @@ export const meta = () => [
     "script:ld+json": createTechArticle({
       url: "https://www.elliotjreed.com/linux/install-mariadb-on-ubuntu-and-allow-remote-access",
       headline: "Installing MariaDB on Ubuntu",
-      description: "How to install MariaDB (MySQL) on Ubuntu 20.04+ and allow remote access",
+      description:
+        "How to install MariaDB on Ubuntu 20.04 or later, secure it with mysql_secure_installation, and allow remote connections with bind-address and user grants.",
       datePublished: "2022-04-22T19:00:00+01:00",
       dateModified: "2026-01-30T00:00:00+00:00",
       articleSection: "Linux",
       keywords: ["MariaDB", "MySQL", "Ubuntu", "Linux", "database", "installation"],
-      wordCount: 978,
       proficiencyLevel: "Intermediate",
     }),
   },

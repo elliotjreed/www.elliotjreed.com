@@ -8,7 +8,7 @@ import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
-    title: "Clean up Docker | EJR",
+    title: "Remove All Docker Containers, Images and Volumes | EJR",
     description:
       "How to remove all Docker containers, images, networks and volumes in a handy Bash / ZSH Shell function",
     url: "https://www.elliotjreed.com/docker/delete-all-docker-containers-and-images",
@@ -26,7 +26,6 @@ export const meta = () => [
       dateModified: "2026-01-30T00:00:00+00:00",
       articleSection: "Docker",
       keywords: ["Docker", "containers", "cleanup", "DevOps"],
-      wordCount: 646,
       proficiencyLevel: "Intermediate",
     }),
   },

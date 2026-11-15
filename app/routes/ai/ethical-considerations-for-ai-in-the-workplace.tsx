@@ -34,7 +34,6 @@ export const meta = () => [
         "AI in business",
         "employee AI training",
       ],
-      wordCount: 4800,
       proficiencyLevel: "Beginner",
     }),
   },

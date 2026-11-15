@@ -45,19 +45,10 @@ const repositories: Repository[] = [
   },
 ];
 
-export const links = () => [
-  {
-    rel: "preload",
-    as: "image",
-    href: HERO_IMAGE_URL,
-    type: "image/webp",
-  },
-];
-
 export function meta() {
-  const title = "Elliot J. Reed | @elliotjreed";
+  const title = "Elliot J. Reed | Head of Engineering – Software and AI Guides";
   const description =
-    "Elliot J. Reed (@elliotjreed). Professional interests include software development, AI implementation, e-commerce strategy, and leadership in technology.";
+    "Elliot J. Reed, Head of Engineering in the UK. Practical guides on AI, Claude Code, prompt engineering, Linux, Docker and PHP, plus free UK finance tools.";
 
   return [
     ...createMeta({
@@ -144,7 +135,7 @@ export default (): ReactElement => {
           <a href="https://www.bunches.co.uk/?aff=ejr" rel="noopener">
             Bunches
           </a>
-          .<br />I like discussing all things e-commerce, software development, AI, and technology in general - so feel
+          .<br />I like discussing all things e-commerce, software development, AI, and technology in general – so feel
           free to get in touch and have a chat!
         </p>
       </section>
@@ -159,7 +150,7 @@ export default (): ReactElement => {
         <div className="flex max-w-(--measure) flex-col items-start gap-6">
           <p className="text-body-long text-ink text-pretty">
             If you work in the non-profit or charity sector and want to explore ways of using AI or have questions
-            around software development in general, please do feel free to get in touch. I will be happy to volunteer my
+            around software development in general, please do give me a shout. I will be happy to volunteer my
             time and provide advice.
           </p>
         </div>

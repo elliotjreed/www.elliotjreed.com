@@ -2,13 +2,14 @@ import type { ReactElement } from "react";
 
 import { CategoryListing } from "~/components/CategoryListing/CategoryListing";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
-import { createBreadcrumbs } from "~/data/schemaData";
+import { authorReference, createBreadcrumbs } from "~/data/schemaData";
 import { getCategoryPages } from "~/utils/categoryListings";
 import { createMeta } from "~/utils/seo";
 
 const CATEGORY_TITLE = "PHP guides";
 const CATEGORY_SLUG = "php";
-const DESCRIPTION = "PHP tips, snippets, and practical how-tos.";
+const DESCRIPTION =
+  "Practical PHP guides and snippets, including how to detect disposable and temporary email addresses in your PHP applications.";
 const PAGE_URL = `https://www.elliotjreed.com/${CATEGORY_SLUG}`;
 
 const categoryPages = getCategoryPages(CATEGORY_SLUG);
@@ -29,7 +30,7 @@ export const meta = () => [
       name: CATEGORY_TITLE,
       description: DESCRIPTION,
       isPartOf: { "@id": "https://www.elliotjreed.com/#website" },
-      author: { "@id": "https://www.elliotjreed.com/#author" },
+      author: authorReference,
       inLanguage: "en-GB",
     },
   },

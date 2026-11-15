@@ -1,6 +1,6 @@
 import type { ReactElement } from "react";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
-import { createBreadcrumbs } from "~/data/schemaData";
+import { authorReference, createBreadcrumbs } from "~/data/schemaData";
 import { createMeta } from "~/utils/seo";
 
 const DESCRIPTION = "Charisma Hair has closed. A thank you and farewell message from Charis, Jo, and Lily.";
@@ -13,6 +13,7 @@ export const meta = () => [
     type: "website",
     image: "https://www.elliotjreed.com/2026-03-28_charis_jo_lily.jpg",
   }),
+  { name: "robots", content: "noindex" },
   {
     "script:ld+json": {
       "@context": "https://schema.org",
@@ -22,7 +23,7 @@ export const meta = () => [
       name: "Charisma Hair",
       description: DESCRIPTION,
       isPartOf: { "@id": "https://www.elliotjreed.com/#website" },
-      author: { "@id": "https://www.elliotjreed.com/#author" },
+      author: authorReference,
       inLanguage: "en-GB",
     },
   },

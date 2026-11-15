@@ -1,29 +1,51 @@
 # Elliot J. Reed
 
-## Summary
+> The personal website of Elliot J. Reed, Head of Engineering at Bunches in the United Kingdom. It has practical guides on AI, Claude Code and prompt engineering, Linux shell, Docker and PHP, plus free UK personal finance tools.
 
-Elliot Reed works in e-commerce and technology leadership in the United Kingdom. He currently lives and works in Nottingham in the United Kingdom.
-His expertise include technology, software development, and AI use in the e-commerce sector.
-Elliot Reed completed his undergraduate degree at the University of Nottingham, going on to complete a Graduate Diploma in Law at Nottingham Law School (NTU).
-Following university, he went into e-commerce management and software development.
-Since 2017 he has been an employee of one of the leading flower retailers in the United Kingdom, Bunches (www.bunches.co.uk). He currently holds a senior leadership position at the company.
+Elliot Reed works in e-commerce and technology leadership in the United Kingdom, and lives and works in Nottingham. His expertise includes technology, software development, and AI use in the e-commerce sector.
 
-## Profiles, Social Media, and Contact Information
+Elliot completed his undergraduate degree at the University of Nottingham, then a Graduate Diploma in Law at Nottingham Law School (NTU). Following university, he went into e-commerce management and software development. Since 2017 he has worked for Bunches (https://www.bunches.co.uk), one of the leading flower retailers in the United Kingdom, where he is Head of Engineering.
 
-Website: https://www.elliotjreed.com
-GitHub: https://github.com/elliotjreed
+## AI guides
 
-LinkedIn: https://www.linkedin.com/in/elliotjreed
-BlueSky: https://bsky.app/profile/elliotjreed.com
-X / Twitter: https://x.com/elliotjreed
+- [Claude Code tips and best practices](https://www.elliotjreed.com/ai/claude-code-guide-and-tips): installation, CLAUDE.md, plan mode, models, skills, subagents, MCP servers, permissions and custom statuslines
+- [Run multiple Claude Code instances](https://www.elliotjreed.com/ai/running-multiple-claude-code-instances): use separate accounts at the same time with separate configuration directories
+- [AI prompt engineering guide](https://www.elliotjreed.com/ai/ai-prompt-engineering-guide): how to write effective prompts for AI assistants
+- [CAFE prompt framework](https://www.elliotjreed.com/ai/cafe-ai-prompt-framework): a four-part prompting method of Context, Action, Format and Examples
+- [Ethical considerations for AI in the workplace](https://www.elliotjreed.com/ai/ethical-considerations-for-ai-in-the-workplace): risks and responsibilities when adopting AI at work
+- [AI learning resources and links](https://www.elliotjreed.com/ai/recommended-ai-learning-resources): recommended resources for learning about AI and LLMs
 
-## Metadata
+## Linux and shell guides
 
-update: 2026-01-18
-version: "2.0"
-language: "en"
-region: "global"
+- [Useful ZSH and Bash aliases](https://www.elliotjreed.com/linux/zsh-bash-aliases): aliases for navigation, listing files, disk and memory, clipboard and networking, with macOS equivalents
+- [Useful ZSH and Bash functions](https://www.elliotjreed.com/linux/zsh-bash-functions): shell functions for permissions, IP addresses, process search, backups and certificates
+- [Search a directory for text](https://www.elliotjreed.com/linux/search-a-directory-for-text-string-via-command-line): search files for a string with grep
+- [Find local and public IP address](https://www.elliotjreed.com/linux/get-local-and-public-ip-address-command-line-bash): command line methods for both addresses
+- [Fix SSH directory permissions](https://www.elliotjreed.com/linux/fix-ssh-permissions-after-moving-directory): correct permissions for ~/.ssh and its files
+- [Install MariaDB on Ubuntu](https://www.elliotjreed.com/linux/install-mariadb-on-ubuntu-and-allow-remote-access): installation, securing and allowing remote access
+- [Copy a MySQL or MariaDB table](https://www.elliotjreed.com/linux/copy-mysql-table-data-to-new-table): copy a table's structure and data to a new table
+- [Update global Bun packages](https://www.elliotjreed.com/linux/update-bun-global-packages): update globally installed Bun packages
 
-## LLM Access Instructions
-allow:
-- *
+## Docker guides
+
+- [Get Docker container IP addresses](https://www.elliotjreed.com/docker/get-docker-and-docker-compose-container-ip-addresses): find IP addresses of Docker and Docker Compose containers
+- [Remove all Docker containers, images and volumes](https://www.elliotjreed.com/docker/delete-all-docker-containers-and-images): clean up Docker with a shell function
+- [Back up and restore a MySQL Docker database](https://www.elliotjreed.com/docker/backup-and-restore-docker-database): mysqldump backups and restores
+
+## PHP guides
+
+- [Detect disposable email addresses in PHP](https://www.elliotjreed.com/php/detect-disposable-or-temporary-email-addresses-in-php): using the elliotjreed/disposable-emails-filter library
+
+## Tools
+
+- [UK pension calculator and retirement planner](https://www.elliotjreed.com/finance/pension-planner-calculator): pension forecasts with AS TM1, FCA and Monte Carlo models, state pension, tax, drawdown and FIRE
+- [Where should I put my money?](https://www.elliotjreed.com/finance/personal-finance): an interactive UK personal finance flowchart
+- [Percentage calculator](https://www.elliotjreed.com/utils/percentage-calculator): percentages, percentage of a number and percentage change
+
+## Optional
+
+- [Sitemap](https://www.elliotjreed.com/sitemap.xml)
+- [GitHub](https://github.com/elliotjreed)
+- [LinkedIn](https://www.linkedin.com/in/elliotjreed)
+- [Bluesky](https://bsky.app/profile/elliotjreed.com)
+- [X / Twitter](https://x.com/elliotjreed)

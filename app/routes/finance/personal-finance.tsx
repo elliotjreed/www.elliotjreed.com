@@ -1,13 +1,48 @@
 import type { ReactElement } from "react";
+import { Link } from "react-router";
+import { FrequentlyAskedQuestions } from "~/components/FrequentlyAskedQuestions/FrequentlyAskedQuestions";
 import { PersonalFinanceFlowchart } from "~/components/PersonalFinanceFlowchart/PersonalFinanceFlowchart";
-import { createBreadcrumbs } from "~/data/schemaData";
+import { authorReference, createBreadcrumbs, createFaqPage, type FaqItem } from "~/data/schemaData";
 import { FLOWCHART_STEPS } from "~/utils/personalFinance/flowchart";
 import { createMeta } from "~/utils/seo";
+
+const questions: FaqItem[] = [
+  {
+    question: "Should I pay off debt or save first?",
+    answer:
+      "Clear debt charging more than about 10% APR before saving beyond a small buffer, because clearing a debt at 25% APR is a guaranteed 25% return that no savings account matches. Below that rate, a starter emergency fund and your employer pension match come first, then the remaining debt.",
+  },
+  {
+    question: "How big should my emergency fund be?",
+    answer:
+      "Start with one to three months of essential outgoings, then build towards three to twelve months once your expensive debt is gone and you are claiming your pension match. Two stable incomes need less, around three months; self-employed or irregular income needs more, around nine to twelve months.",
+  },
+  {
+    question: "Why does the employer pension match come before paying off debt?",
+    answer:
+      "An employer match is often a 100% return on your contribution, immediately and with no risk. That beats the interest saved on almost any debt, so it is claimed before the cheaper debts are cleared. Expensive debt above roughly 10% APR is the exception and is dealt with earlier.",
+  },
+  {
+    question: "Should I save in cash or invest?",
+    answer:
+      "It depends on when you need the money. Under five years, keep it in cash: investments can fall for years and may not recover in time. Five years or more, investing through a pension, stocks and shares ISA or Lifetime ISA has historically beaten cash comfortably.",
+  },
+  {
+    question: "Is a Lifetime ISA worth it for a first home?",
+    answer:
+      "For most first-time buyers, yes. The government adds a 25% bonus on up to £4,000 a year, turning £4,000 into £5,000. You must be 18 to 39 to open one, the property must cost £450,000 or less, and the account must be open at least 12 months before you buy. Withdrawing for anything else before age 60 costs a 25% charge, which takes back more than the bonus.",
+  },
+  {
+    question: "Where can I get free help with debt?",
+    answer:
+      "StepChange, National Debtline and Citizens Advice all give free debt advice, and MoneyHelper offers free impartial money guidance. Never pay a company for debt advice, as the free charities offer the same help and more.",
+  },
+];
 
 export function meta() {
   const title = "Where Should I Put My Money? UK Personal Finance Flowchart | EJR";
   const description =
-    "An interactive version of the UK Personal Finance flowchart. Answer a few questions to find out whether to clear debt, build an emergency fund, claim your pension match, save or invest next.";
+    "An interactive UK personal finance flowchart. Answer a few questions to see whether to clear debt, build an emergency fund, claim a pension match or invest.";
   const url = "https://www.elliotjreed.com/finance/personal-finance";
   const image = "https://www.elliotjreed.com/icon-512.png";
   const keywords = [
@@ -45,7 +80,8 @@ export function meta() {
       "script:ld+json": {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "@id": url,
+        "@id": `${url}#webapp`,
+        mainEntityOfPage: { "@id": url },
         name: "Where Should I Put My Money?",
         alternateName: "Interactive UK Personal Finance Flowchart",
         url: url,
@@ -55,9 +91,8 @@ export function meta() {
           "An interactive adaptation of the UK Personal Finance flowchart. It asks a question at each step of the order of operations and tells you which step to act on now, from covering essentials and clearing expensive debt through to investing for the long term.",
         browserRequirements: "Requires JavaScript. Requires HTML5.",
         softwareVersion: "1.0",
-        author: { "@id": "https://www.elliotjreed.com/#author" },
-        creator: { "@id": "https://www.elliotjreed.com/#author" },
-        publisher: { "@id": "https://www.elliotjreed.com/#author" },
+        author: authorReference,
+        offers: { "@type": "Offer", price: "0", priceCurrency: "GBP" },
         datePublished: "2026-08-31",
         dateModified: "2026-08-31",
         inLanguage: "en-GB",
@@ -101,65 +136,22 @@ export function meta() {
       },
     },
 
-    {
-      "script:ld+json": {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "Should I pay off debt or save first?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Clear debt charging more than about 10% APR before saving beyond a small buffer, because clearing a debt at 25% APR is a guaranteed 25% return that no savings account matches. Below that rate, a starter emergency fund and your employer pension match come first, then the remaining debt.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "How big should my emergency fund be?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Start with one to three months of essential outgoings, then build towards three to twelve months once your expensive debt is gone and you are claiming your pension match. Two stable incomes need less, around three months; self-employed or irregular income needs more, around nine to twelve months.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Why does the employer pension match come before paying off debt?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "An employer match is often a 100% return on your contribution, immediately and with no risk. That beats the interest saved on almost any debt, so it is claimed before the cheaper debts are cleared. Expensive debt above roughly 10% APR is the exception and is dealt with earlier.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Should I save in cash or invest?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "It depends on when you need the money. Under five years, keep it in cash: investments can fall for years and may not recover in time. Five years or more, investing through a pension, stocks and shares ISA or Lifetime ISA has historically beaten cash comfortably.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Is a Lifetime ISA worth it for a first home?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "For most first-time buyers, yes. The government adds a 25% bonus on up to £4,000 a year, turning £4,000 into £5,000. You must be 18 to 39 to open one, the property must cost £450,000 or less, and the account must be open at least 12 months before you buy. Withdrawing for anything else before age 60 costs a 25% charge, which takes back more than the bonus.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Where can I get free help with debt?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "StepChange, National Debtline and Citizens Advice all give free debt advice, and MoneyHelper offers free impartial money guidance. Never pay a company for debt advice, as the free charities offer the same help and more.",
-            },
-          },
-        ],
-      },
-    },
+    { "script:ld+json": createFaqPage(questions) },
   ];
 }
 
 export default function PersonalFinanceRoute(): ReactElement {
-  return <PersonalFinanceFlowchart />;
+  return (
+    <>
+      <PersonalFinanceFlowchart />
+      <p className="prose ejr-prose mx-auto max-w-6xl p-4">
+        Once you are claiming your employer pension match, the{" "}
+        <Link to="/finance/pension-planner-calculator" prefetch="render" className="text-custard-ink underline">
+          UK pension calculator
+        </Link>{" "}
+        shows how your pension could grow and what income it might give you in retirement.
+      </p>
+      <FrequentlyAskedQuestions questions={questions} />
+    </>
+  );
 }

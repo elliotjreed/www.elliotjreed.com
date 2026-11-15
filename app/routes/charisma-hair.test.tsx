@@ -4,6 +4,10 @@ import CharismaHairRoute, { meta } from "./charisma-hair";
 
 describe("charisma-hair route", () => {
   describe("meta", () => {
+    it("asks search engines not to index the page", () => {
+      expect(meta()).toContainEqual({ name: "robots", content: "noindex" });
+    });
+
     it("should return correct meta data", () => {
       const metaData = meta();
 

@@ -7,9 +7,9 @@ import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
-    title: "Docker container IP address | EJR",
+    title: "Get Docker Container IP Addresses | EJR",
     description:
-      "Learn how to find Docker container IP addresses using docker inspect commands with Go template syntax. Includes aliases for quick access and troubleshooting networking issues.",
+      "Find the IP addresses of running Docker and Docker Compose containers with docker inspect and Go templates, plus handy shell aliases for quick access.",
     url: "https://www.elliotjreed.com/docker/get-docker-and-docker-compose-container-ip-addresses",
     type: "article",
     ogImage: "https://www.elliotjreed.com/og.png",
@@ -24,7 +24,6 @@ export const meta = () => [
       dateModified: "2026-01-30T00:00:00+00:00",
       articleSection: "Docker",
       keywords: ["Docker", "IP address", "networking", "containers"],
-      wordCount: 414,
       proficiencyLevel: "Beginner",
     }),
   },

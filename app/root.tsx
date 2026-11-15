@@ -23,7 +23,13 @@ config.autoAddCss = false;
 
 const SITE_URL = "https://www.elliotjreed.com";
 
-export const meta: Route.MetaFunction = ({ location, matches }) => {
+const DEFAULT_SOCIAL_IMAGE = "https://www.elliotjreed.com/og.png";
+
+export const meta: Route.MetaFunction = ({ location, matches, error }) => {
+  if (isRouteErrorResponse(error) && error.status === 404) {
+    return [{ title: "Page not found | Elliot J. Reed" }, { name: "robots", content: "noindex" }];
+  }
+
   const safeMatches = matches ?? [];
   const metaFromMatches = safeMatches.flatMap((match) => match?.meta ?? []);
 
@@ -67,6 +73,11 @@ export const meta: Route.MetaFunction = ({ location, matches }) => {
   if (!hasProperty("og:site_name")) derivedMeta.push({ property: "og:site_name", content: "Elliot J. Reed" });
   if (!hasProperty("og:locale")) derivedMeta.push({ property: "og:locale", content: "en_GB" });
 
+  if (!hasProperty("og:image")) derivedMeta.push({ property: "og:image", content: DEFAULT_SOCIAL_IMAGE });
+  if (!hasName("twitter:card")) derivedMeta.push({ name: "twitter:card", content: "summary" });
+  if (!hasName("twitter:site")) derivedMeta.push({ name: "twitter:site", content: "@elliotjreed" });
+  if (!hasName("twitter:image")) derivedMeta.push({ name: "twitter:image", content: DEFAULT_SOCIAL_IMAGE });
+
   if (!hasProperty("og:image:alt")) {
     derivedMeta.push({ property: "og:image:alt", content: "Elliot J. Reed" });
   }
@@ -84,12 +95,8 @@ export const Layout = ({ children }: { children: ReactNode }): ReactElement => {
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        <meta property="og:image" content="https://www.elliotjreed.com/og.png" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@elliotjreed" />
-        <meta name="twitter:image" content="https://www.elliotjreed.com/og.png" />
         <link rel="manifest" href="/manifest.webmanifest" />
         <meta name="theme-color" content="#fbf5f4" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#170f0e" media="(prefers-color-scheme: dark)" />

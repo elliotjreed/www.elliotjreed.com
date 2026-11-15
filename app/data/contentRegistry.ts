@@ -6,6 +6,7 @@ export interface SearchMeta {
 
 export interface SitemapMeta {
   lastModified?: string;
+  exclude?: boolean;
 }
 
 export interface SitePage {
@@ -63,7 +64,7 @@ export const sitePages: SitePage[] = [
       category: "AI guides",
       keywords: ["ai", "prompt", "framework", "cafe", "context", "action", "format", "examples"],
     },
-    sitemap: { lastModified: "2026-01-30T00:00:00+00:00" },
+    sitemap: { lastModified: "2026-11-15T00:00:00+00:00" },
   },
   {
     id: "ai-claude-code-guide",
@@ -158,7 +159,7 @@ export const sitePages: SitePage[] = [
       category: "ZSH / Bash shell guides",
       keywords: ["zsh", "bash", "shell", "aliases", "linux", "terminal", "productivity"],
     },
-    sitemap: { lastModified: "2026-01-30T00:00:00+00:00" },
+    sitemap: { lastModified: "2026-11-15T00:00:00+00:00" },
   },
   {
     id: "linux-zsh-functions",
@@ -408,12 +409,14 @@ export const sitePages: SitePage[] = [
     path: "/the-vape",
     routeFile: "routes/the-vape.tsx",
     title: "TheVape.co.uk",
+    sitemap: { exclude: true },
   },
   {
     id: "charisma-hair",
     path: "/charisma-hair",
     routeFile: "routes/charisma-hair.tsx",
     title: "Charisma Hair",
+    sitemap: { exclude: true },
   },
 ];
 
@@ -508,3 +511,5 @@ export const lastModifiedByPath = sitePages.reduce<Record<string, string>>((acc,
   }
   return acc;
 }, {});
+
+export const unlistedPaths = sitePages.filter((page) => page.sitemap?.exclude).map((page) => page.path);

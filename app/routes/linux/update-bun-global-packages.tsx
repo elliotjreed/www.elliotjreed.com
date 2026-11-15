@@ -25,7 +25,6 @@ export const meta = () => [
       dateModified: "2026-02-18T00:00:00+00:00",
       articleSection: "Linux",
       keywords: ["bun", "npm", "global packages", "update", "shell", "alias", "Linux", "Mac", "terminal"],
-      wordCount: 260,
       proficiencyLevel: "Beginner",
     }),
   },

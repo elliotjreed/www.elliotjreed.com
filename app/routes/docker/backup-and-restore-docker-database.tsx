@@ -6,8 +6,9 @@ import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
-    title: "Backup and restore Docker database | EJR",
-    description: "A guide on how to backup and restore MySQL / MariaDB Docker database.",
+    title: "Back Up and Restore a MySQL Docker Database | EJR",
+    description:
+      "How to back up a MySQL or MariaDB database running in a Docker container with mysqldump, and restore it from the dump file, with example commands.",
     url: "https://www.elliotjreed.com/docker/backup-and-restore-docker-database",
     type: "article",
     ogImage: "https://www.elliotjreed.com/og.png",
@@ -17,12 +18,12 @@ export const meta = () => [
     "script:ld+json": createTechArticle({
       url: "https://www.elliotjreed.com/docker/backup-and-restore-docker-database",
       headline: "Backup and restore MySQL Docker database",
-      description: "A guide on how to backup and restore MySQL / MariaDB Docker database.",
+      description:
+        "How to back up a MySQL or MariaDB database running in a Docker container with mysqldump, and restore it from the dump file, with example commands.",
       datePublished: "2017-01-23T19:00:00+01:00",
       dateModified: "2026-01-30T00:00:00+00:00",
       articleSection: "Docker",
       keywords: ["Docker", "MySQL", "MariaDB", "database", "backup", "restore"],
-      wordCount: 349,
       proficiencyLevel: "Intermediate",
     }),
   },

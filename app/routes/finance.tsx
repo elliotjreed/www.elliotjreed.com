@@ -2,7 +2,7 @@ import type { ReactElement } from "react";
 
 import { CategoryListing } from "~/components/CategoryListing/CategoryListing";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
-import { createBreadcrumbs } from "~/data/schemaData";
+import { authorReference, createBreadcrumbs } from "~/data/schemaData";
 import { getCategoryPages } from "~/utils/categoryListings";
 import { createMeta } from "~/utils/seo";
 
@@ -29,7 +29,7 @@ export const meta = () => [
       name: CATEGORY_TITLE,
       description: DESCRIPTION,
       isPartOf: { "@id": "https://www.elliotjreed.com/#website" },
-      author: { "@id": "https://www.elliotjreed.com/#author" },
+      author: authorReference,
       inLanguage: "en-GB",
     },
   },

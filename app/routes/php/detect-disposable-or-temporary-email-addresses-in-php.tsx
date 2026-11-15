@@ -7,7 +7,8 @@ import { createMeta } from "~/utils/seo";
 export const meta = () => [
   ...createMeta({
     title: "Detecting Disposable Email Addresses in PHP | EJR",
-    description: "A guide on detecting disposable / temporary email addresses in PHP.",
+    description:
+      "Detect disposable and temporary email addresses in PHP with the elliotjreed/disposable-emails-filter library, including usage and handling invalid emails.",
     url: "https://www.elliotjreed.com/php/detect-disposable-or-temporary-email-addresses-in-php",
     type: "article",
     ogImage: "https://www.elliotjreed.com/og.png",
@@ -17,12 +18,12 @@ export const meta = () => [
     "script:ld+json": createTechArticle({
       url: "https://www.elliotjreed.com/php/detect-disposable-or-temporary-email-addresses-in-php",
       headline: "Detecting disposable / temporary email addresses in PHP",
-      description: "A guide on detecting disposable / temporary email addresses in PHP.",
+      description:
+        "Detect disposable and temporary email addresses in PHP with the elliotjreed/disposable-emails-filter library, including usage and handling invalid emails.",
       datePublished: "2019-03-29T19:00:00+01:00",
       dateModified: "2026-01-30T00:00:00+00:00",
       articleSection: "PHP",
       keywords: ["PHP", "email validation", "disposable email", "security"],
-      wordCount: 426,
       proficiencyLevel: "Intermediate",
     }),
   },

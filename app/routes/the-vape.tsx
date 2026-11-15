@@ -1,6 +1,6 @@
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { emailAddress } from "~/data/emailAddress";
-import { createBreadcrumbs } from "~/data/schemaData";
+import { authorReference, createBreadcrumbs } from "~/data/schemaData";
 import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
@@ -11,6 +11,7 @@ export const meta = () => [
     type: "website",
     image: "https://www.elliotjreed.com/og.png",
   }),
+  { name: "robots", content: "noindex" },
   {
     "script:ld+json": {
       "@context": "https://schema.org",
@@ -20,7 +21,7 @@ export const meta = () => [
       name: "TheVape.co.uk - Domain for Sale",
       description: "Contact me to submit an offer for The Vape.co.uk domain.",
       isPartOf: { "@id": "https://www.elliotjreed.com/#website" },
-      author: { "@id": "https://www.elliotjreed.com/#author" },
+      author: authorReference,
       inLanguage: "en-GB",
     },
   },

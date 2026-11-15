@@ -5,7 +5,7 @@ import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
-    title: "AI Resources | EJR",
+    title: "AI Learning Resources and Links | EJR",
     description: "Recommended resources for learning more about AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
     url: "https://www.elliotjreed.com/ai/recommended-ai-learning-resources",
     type: "article",
@@ -15,14 +15,13 @@ export const meta = () => [
   {
     "script:ld+json": createTechArticle({
       url: "https://www.elliotjreed.com/ai/recommended-ai-learning-resources",
-      headline: "AI Resources",
+      headline: "AI Learning Resources and Links",
       description:
         "Recommended resources for learning more about AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
       datePublished: "2025-04-20T16:51:20+01:00",
       dateModified: "2026-01-30T00:00:00+00:00",
       articleSection: "AI",
       keywords: ["AI", "learning resources", "LLM", "ChatGPT", "Claude", "Gemini"],
-      wordCount: 345,
       proficiencyLevel: "Beginner",
     }),
   },

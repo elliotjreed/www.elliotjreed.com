@@ -1,4 +1,5 @@
 import type { ReactElement } from "react";
+import { Link } from "react-router";
 import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
@@ -24,7 +25,6 @@ export const meta = () => [
       dateModified: "2026-02-10T00:00:00+00:00",
       articleSection: "Linux",
       keywords: ["SSH", "permissions", "security", "Linux", "Mac", "command line", "Bash", "file permissions"],
-      wordCount: 782,
       proficiencyLevel: "Beginner",
     }),
   },
@@ -174,7 +174,12 @@ export default (): ReactElement => (
 
         <p>
           Instead of running each command individually, you can create a shell function that fixes all SSH permissions
-          at once. Add this function to your <code>.bashrc</code> or <code>.zshrc</code> file:
+          at once. Add this function to your <code>.bashrc</code> or <code>.zshrc</code> file. It is also part of my
+          collection of{" "}
+          <Link to="/linux/zsh-bash-functions" prefetch="render" className="text-custard-ink underline">
+            useful ZSH and Bash functions
+          </Link>
+          :
         </p>
 
         <CodeSnippet language="bash" code={functionSnippet.code} title={functionSnippet.title} />

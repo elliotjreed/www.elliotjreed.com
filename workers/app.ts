@@ -1,9 +1,11 @@
 import { createRequestHandler, RouterContextProvider } from "react-router";
 import { cloudflareContext, nonceContext } from "../app/context/loadContext";
-import { lastModifiedByPath } from "../app/data/contentRegistry";
+import { lastModifiedByPath, unlistedPaths } from "../app/data/contentRegistry";
 import { type StaticLink, staticLinks } from "../app/data/staticLinks";
 import { themeScriptHash } from "../app/utils/themeScript";
 import { ampRedirectPath } from "./redirects";
+import { contentSecurityPolicy, securityHeaders } from "./securityHeaders";
+import { generateSitemap } from "./sitemap";
 
 let themeHashPromise: Promise<string> | undefined;
 
@@ -38,26 +40,6 @@ function extractUrls(links: StaticLink[], urls: string[] = []): string[] {
   return urls;
 }
 
-function generateSitemap(urls: string[]): string {
-  const urlEntries = urls
-    .map((url: string): string => {
-      const lastmod = lastModifiedByPath[url];
-      const lastmodEntry = lastmod ? `    <lastmod>${lastmod}</lastmod>\n` : "";
-
-      return `  <url>
-    <loc>${SITE_URL}${url}</loc>
-${lastmodEntry}    <changefreq>monthly</changefreq>
-    <priority>${url === "/" ? "1.0" : "0.8"}</priority>
-  </url>`;
-    })
-    .join("\n");
-
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urlEntries}
-</urlset>`;
-}
-
 const PERMANENT_REDIRECTS: Record<string, string> = {
   "/blog/2019-03-29/detect-disposable-or-temporary-email-addresses-in-php":
     "/php/detect-disposable-or-temporary-email-addresses-in-php",
@@ -80,20 +62,15 @@ export default {
 
     // Handle sitemap.xml directly
     if (url.pathname === "/sitemap.xml") {
-      const canonicalUrls = extractUrls(staticLinks);
-      const sitemap = generateSitemap(canonicalUrls);
+      const canonicalUrls = extractUrls(staticLinks).filter((path) => !unlistedPaths.includes(path));
+      const sitemap = generateSitemap(canonicalUrls, lastModifiedByPath);
 
       return new Response(sitemap, {
         status: 200,
         headers: {
           "Content-Type": "application/xml; charset=utf-8",
           "Cache-Control": "public, max-age=86400",
-          "X-Frame-Options": "DENY",
-          "X-Content-Type-Options": "nosniff",
-          "Referrer-Policy": "strict-origin-when-cross-origin",
-          "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
-          "Cross-Origin-Opener-Policy": "same-origin",
-          "Cross-Origin-Resource-Policy": "same-site",
+          ...securityHeaders,
         },
       });
     }
@@ -111,39 +88,13 @@ export default {
       headers.set("Cache-Control", "public, max-age=0, s-maxage=600, stale-while-revalidate=86400");
     }
 
-    headers.set("X-Frame-Options", "DENY");
-
-    headers.set("X-Content-Type-Options", "nosniff");
-
     themeHashPromise ??= themeScriptHash();
     const themeHash = await themeHashPromise;
 
-    headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
-
-    headers.set(
-      "Content-Security-Policy",
-      [
-        "default-src 'self'",
-        `script-src 'self' 'nonce-${nonce}' ${themeHash} https://static.cloudflareinsights.com`,
-        `script-src-elem 'self' 'nonce-${nonce}' ${themeHash} https://static.cloudflareinsights.com`,
-        "style-src 'self' 'unsafe-inline'",
-        "font-src 'self'",
-        "img-src 'self' data: https:",
-        "connect-src 'self' https://static.cloudflareinsights.com",
-        "frame-ancestors 'none'",
-        "base-uri 'self'",
-        "form-action 'self'",
-      ].join("; "),
-    );
-
-    headers.set(
-      "Permissions-Policy",
-      "accelerometer=(), autoplay=(), browsing-topics=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), gamepad=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), local-fonts=(self), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), screen-wake-lock=(), serial=(), speaker-selection=(), usb=(), xr-spatial-tracking=()",
-    );
-
-    headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
-    headers.set("Cross-Origin-Opener-Policy", "same-origin");
-    headers.set("Cross-Origin-Resource-Policy", "same-site");
+    for (const [name, value] of Object.entries(securityHeaders)) {
+      headers.set(name, value);
+    }
+    headers.set("Content-Security-Policy", contentSecurityPolicy([`'nonce-${nonce}'`, themeHash]));
 
     return new Response(response.body, {
       status: response.status,

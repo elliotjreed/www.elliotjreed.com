@@ -15,7 +15,7 @@ export const authorSchema = {
   additionalName: "John",
   alternateName: "Elliot Reed",
   honorificSuffix: "BA (Hons.)",
-  jobTitle: "Head of Technology",
+  jobTitle: "Head of Engineering",
   description:
     "Technology leader based in the United Kingdom, focusing on software engineering and development for the e-commerce sector. Interested in AI, philosophy and ethics, DevOps, and leadership and strategy.",
   url: "https://www.elliotjreed.com",
@@ -24,7 +24,6 @@ export const authorSchema = {
     url: "https://www.elliotjreed.com/elliot-greyscale.jpg",
   },
   sameAs: [
-    "https://www.elliotjreed.com",
     "https://x.com/elliotjreed",
     "https://www.linkedin.com/in/elliotjreed",
     "https://github.com/elliotjreed",
@@ -83,6 +82,18 @@ export const authorSchema = {
 };
 
 /**
+ * Minimal author entity for embedding in individual pages, so the author resolves without the homepage
+ */
+export const authorReference = {
+  "@type": "Person",
+  "@id": authorSchema["@id"],
+  name: authorSchema.name,
+  url: authorSchema.url,
+  jobTitle: authorSchema.jobTitle,
+  sameAs: authorSchema.sameAs,
+};
+
+/**
  * Website schema with publisher reference
  * Used to establish site-wide context and link to author
  */
@@ -95,11 +106,21 @@ export const websiteSchema = {
   description:
     "The personal website of Elliot Reed, containing current and past projects, and guides on AI, prompting, Claude Code, PHP, Symfony, Javascript, React, Python, and Linux / DevOps.",
   about:
-    "Elliot Reed is the Head of Technology for a respected e-commerce retailer based in the United Kingdom, with over 12 years experience in management and software development. His interests include AI, philosophy and ethics, DevOps, and leadership and strategy.",
+    "Elliot Reed is the Head of Engineering for a respected e-commerce retailer based in the United Kingdom, with over 12 years experience in management and software development. His interests include AI, philosophy and ethics, DevOps, and leadership and strategy.",
   inLanguage: ["en-GB", "en-US"],
   dateCreated: "2010-05-15T00:00:00+01:00",
   publisher: { "@id": "https://www.elliotjreed.com/#author" },
   keywords: ["Elliot Reed", "Elliot J. Reed", "elliotjreed"],
+};
+
+/**
+ * Minimal website entity for embedding in individual pages
+ */
+export const websiteReference = {
+  "@type": "WebSite",
+  "@id": websiteSchema["@id"],
+  name: websiteSchema.name,
+  url: websiteSchema.url,
 };
 
 /**
@@ -139,7 +160,6 @@ export interface TechArticleConfig {
   dateModified?: string;
   articleSection: string;
   keywords?: string[];
-  wordCount?: number;
   proficiencyLevel?: "Beginner" | "Intermediate" | "Advanced";
 }
 
@@ -153,17 +173,32 @@ export const createTechArticle = (config: TechArticleConfig) => ({
   dateCreated: config.datePublished,
   datePublished: config.datePublished,
   dateModified: config.dateModified || config.datePublished,
-  author: { "@id": "https://www.elliotjreed.com/#author" },
+  image: "https://www.elliotjreed.com/og.png",
+  author: authorReference,
   copyrightHolder: { "@id": "https://www.elliotjreed.com/#author" },
   publisher: { "@id": "https://www.elliotjreed.com/#author" },
   mainEntityOfPage: {
     "@type": "WebPage",
     "@id": config.url,
   },
-  isPartOf: { "@id": "https://www.elliotjreed.com/#website" },
+  isPartOf: websiteReference,
   inLanguage: "en-GB",
   articleSection: config.articleSection,
   ...(config.keywords && { keywords: config.keywords }),
-  ...(config.wordCount && { wordCount: config.wordCount }),
   ...(config.proficiencyLevel && { proficiencyLevel: config.proficiencyLevel }),
+});
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export const createFaqPage = (items: FaqItem[]) => ({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: items.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
 });

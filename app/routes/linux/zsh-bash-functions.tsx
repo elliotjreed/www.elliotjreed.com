@@ -6,8 +6,9 @@ import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
-    title: "ZSH & Bash Functions | EJR",
-    description: "A collection of useful ZSH, Bash, and Shell functions for use on Linux (or Mac or Windows).",
+    title: "Useful ZSH and Bash Functions | EJR",
+    description:
+      "Useful ZSH and Bash functions for fixing file and SSH permissions, finding your IP address, searching processes, backing up files and generating certificates.",
     url: "https://www.elliotjreed.com/linux/zsh-bash-functions",
     type: "article",
     ogImage: "https://www.elliotjreed.com/og.png",
@@ -16,13 +17,13 @@ export const meta = () => [
   {
     "script:ld+json": createTechArticle({
       url: "https://www.elliotjreed.com/linux/zsh-bash-functions",
-      headline: "ZSH & Bash Functions",
-      description: "A collection of useful ZSH, Bash, and Shell functions for use on Linux (or Mac or Windows).",
+      headline: "Useful ZSH and Bash Functions",
+      description:
+        "Useful ZSH and Bash functions for fixing file and SSH permissions, finding your IP address, searching processes, backing up files and generating certificates.",
       datePublished: "2025-04-20T16:51:56+01:00",
       dateModified: "2026-01-30T00:00:00+00:00",
       articleSection: "Linux",
       keywords: ["Linux", "ZSH", "Bash", "shell", "functions", "command line"],
-      wordCount: 786,
       proficiencyLevel: "Intermediate",
     }),
   },

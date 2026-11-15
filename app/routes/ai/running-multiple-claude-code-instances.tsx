@@ -1,4 +1,5 @@
 import type { ReactElement } from "react";
+import { Link } from "react-router";
 import { CodeSnippet } from "~/components/CodeSnippet/CodeSnippet";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
@@ -9,7 +10,7 @@ export const meta = () => [
   ...createMeta({
     title: "How to Run Multiple Claude Code Instances | EJR",
     description:
-      "Learn how to run multiple Claude Code instances simultaneously for different accounts using environment variables, custom configuration directories, and shell aliases.",
+      "Run several Claude Code instances at once, each with its own account, using separate configuration directories, environment variables and shell aliases.",
     url: "https://www.elliotjreed.com/ai/running-multiple-claude-code-instances",
     type: "article",
     ogImage: "https://www.elliotjreed.com/og.png",
@@ -20,7 +21,7 @@ export const meta = () => [
       url: "https://www.elliotjreed.com/ai/running-multiple-claude-code-instances",
       headline: "How to Run Multiple Claude Code Instances Simultaneously",
       description:
-        "Learn how to run multiple Claude Code instances simultaneously for different accounts using environment variables, custom configuration directories, and shell aliases.",
+        "Run several Claude Code instances at once, each with its own account, using separate configuration directories, environment variables and shell aliases.",
       datePublished: "2026-02-10T00:00:00+00:00",
       dateModified: "2026-02-10T00:00:00+00:00",
       articleSection: "AI",
@@ -36,7 +37,6 @@ export const meta = () => [
         "symbolic links",
         "productivity",
       ],
-      wordCount: 850,
       proficiencyLevel: "Beginner",
     }),
   },
@@ -111,7 +111,12 @@ export default (): ReactElement => (
     >
       <p className="prose ejr-lead">
         Run multiple Claude Code instances simultaneously for different accounts using custom configuration directories.
-        Perfect for separating personal and work projects or managing multiple Claude subscriptions.
+        Perfect for separating personal and work projects or managing multiple Claude subscriptions. New to Claude Code?
+        Start with the{" "}
+        <Link to="/ai/claude-code-guide-and-tips" prefetch="render" className="text-custard-ink underline">
+          Claude Code tips and best practices guide
+        </Link>
+        .
       </p>
     </PageHeader>
 

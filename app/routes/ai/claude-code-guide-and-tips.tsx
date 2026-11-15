@@ -1,4 +1,5 @@
 import type { ReactElement } from "react";
+import { Link } from "react-router";
 import { CodeSnippet } from "~/components/CodeSnippet/CodeSnippet";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
@@ -9,7 +10,7 @@ import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
-    title: "Guide to Claude Code: Features and Best Practices | EJR",
+    title: "Claude Code Tips and Best Practices: A Complete Guide | EJR",
     description:
       "Master Claude Code's installation, plan mode, Skills, subagents, and MCP servers. Learn prompting strategies and advanced features for AI-assisted development.",
     url: "https://www.elliotjreed.com/ai/claude-code-guide-and-tips",
@@ -20,7 +21,7 @@ export const meta = () => [
   {
     "script:ld+json": createTechArticle({
       url: "https://www.elliotjreed.com/ai/claude-code-guide-and-tips",
-      headline: "Complete Guide to Claude Code: Setup, Features, and Best Practices",
+      headline: "Claude Code Tips and Best Practices: A Complete Guide",
       description:
         "Master Claude Code's installation, plan mode, Skills, subagents, and MCP servers. Learn prompting strategies and advanced features for AI-assisted development.",
       datePublished: "2026-01-24T20:20:18+00:00",
@@ -37,7 +38,6 @@ export const meta = () => [
         "Claude Skills",
         "subagents",
       ],
-      wordCount: 5200,
       proficiencyLevel: "Intermediate",
     }),
   },
@@ -66,7 +66,7 @@ export const meta = () => [
           name: "How much does Claude Code cost?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Claude Code requires a paid Claude subscription: Pro (individual use), Max (higher usage limits), or Team (collaborative features). Usage counts against your plan's monthly limits based on the model used (Haiku consumes fewer tokens than Sonnet, which consumes fewer than Opus). Check your current usage with the /usage command.",
+            text: "Claude Code is included with paid Claude plans: Pro, Max, Team and Enterprise. Usage counts against your plan's limits, and larger models such as Opus use those limits faster than Sonnet or Haiku. You can instead pay per use with an API key from the Claude Console, or run it through Amazon Bedrock or Google Cloud Vertex AI. Check your current usage with the /usage command.",
           },
         },
         {
@@ -102,7 +102,7 @@ export default (): ReactElement => (
   <section className="ejr-article divide-line divide-y">
     <PageHeader
       tone="tint"
-      title="Claude Code guide: Features and best practices"
+      title="Claude Code tips and best practices: A complete guide"
       meta={
         <div className="text-caption text-ink-subtle flex flex-wrap items-center gap-x-6 gap-y-1">
           <span>By Elliot J. Reed</span>
@@ -223,7 +223,15 @@ export default (): ReactElement => (
             <code>/init</code> - Creates a CLAUDE.md file
           </li>
           <li>
-            <code>/login</code> - Switch Claude accounts
+            <code>/login</code> - Switch Claude accounts (to use two accounts at the same time, see{" "}
+            <Link
+              to="/ai/running-multiple-claude-code-instances"
+              prefetch="render"
+              className="text-custard-ink underline"
+            >
+              how to run multiple Claude Code instances
+            </Link>
+            )
           </li>
           <li>
             <code>/model [model]</code> - Sets model (optionally taking a model name)
@@ -524,7 +532,14 @@ The architecture follows modern React patterns with server-side rendering suppor
         <section id="prompting">
           <h3>Prompting</h3>
 
-          <p>When providing instructions to Claude Code, clarity and context produce the best results.</p>
+          <p>
+            When providing instructions to Claude Code, clarity and context produce the best results. The same
+            principles apply as for any AI assistant, covered in more depth in the{" "}
+            <Link to="/ai/ai-prompt-engineering-guide" prefetch="render" className="text-custard-ink underline">
+              AI prompt engineering guide
+            </Link>
+            .
+          </p>
 
           <p>
             Write prompts as you would brief a software developer: clearly state requirements, provide context about the
@@ -1103,7 +1118,11 @@ Focus on React and TypeScript performance patterns only. Avoid project-wide conf
           <img
             src={claudeCodeStatuslineImage}
             alt="Claude Code custom statusline showing session ID, directory, git branch, model, and context window"
-            className="border-line-strong w-full rounded-md border"
+            width={1965}
+            height={111}
+            loading="lazy"
+            decoding="async"
+            className="border-line-strong h-auto w-full rounded-md border"
           />
         </picture>
 
@@ -1316,10 +1335,10 @@ printf "%b" "$output"`}
 
         <h3>How much does Claude Code cost?</h3>
         <p>
-          Claude Code requires a paid Claude subscription: Pro (individual use), Max (higher usage limits), or Team
-          (collaborative features). Usage counts against your plan's monthly limits based on the model used (Haiku
-          consumes fewer tokens than Sonnet, which consumes fewer than Opus). Check your current usage with the{" "}
-          <code>/usage</code> command.
+          Claude Code is included with paid Claude plans: Pro, Max, Team and Enterprise. Usage counts against your
+          plan's limits, and larger models such as Opus use those limits faster than Sonnet or Haiku. You can instead
+          pay per use with an API key from the Claude Console, or run it through Amazon Bedrock or Google Cloud Vertex
+          AI. Check your current usage with the <code>/usage</code> command.
         </p>
 
         <h3>Can I use Claude Code offline?</h3>

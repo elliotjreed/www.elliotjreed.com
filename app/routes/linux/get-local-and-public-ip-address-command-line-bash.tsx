@@ -1,4 +1,5 @@
 import type { ReactElement } from "react";
+import { Link } from "react-router";
 import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
@@ -25,7 +26,6 @@ export const meta = () => [
       dateModified: "2026-01-30T00:00:00+00:00",
       articleSection: "Linux",
       keywords: ["Linux", "IP address", "command line", "Bash", "networking"],
-      wordCount: 413,
       proficiencyLevel: "Beginner",
     }),
   },
@@ -92,7 +92,12 @@ export default (): ReactElement => (
         <p>
           You could add this to your <code>.bashrc</code> file (eg. <code>nano ~/.bashrc</code>) so you always have it
           to use. Remember after adding it to the .bashrc file to source it to load in your changes:{" "}
-          <code>. ~/.bashrc</code> or <code>source ~/.bashrc</code>.
+          <code>. ~/.bashrc</code> or <code>source ~/.bashrc</code>. You can find it, along with other handy functions,
+          in my collection of{" "}
+          <Link to="/linux/zsh-bash-functions" prefetch="render" className="text-custard-ink underline">
+            useful ZSH and Bash functions
+          </Link>
+          .
         </p>
 
         <h2>Alternative methods</h2>

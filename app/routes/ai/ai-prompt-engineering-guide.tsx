@@ -25,7 +25,6 @@ export const meta = () => [
       dateModified: "2026-01-30T00:00:00+00:00",
       articleSection: "AI",
       keywords: ["AI", "prompt engineering", "LLM", "ChatGPT", "Claude", "Gemini", "DeepSeek"],
-      wordCount: 2254,
       proficiencyLevel: "Beginner",
     }),
   },
@@ -621,6 +620,14 @@ export default (): ReactElement => (
             For a quick reference guide, check out the{" "}
             <Link to="/ai/cafe-ai-prompt-framework" prefetch="render" className="text-custard-ink underline">
               CAFE AI Prompt Framework
+            </Link>
+            . To apply these techniques to AI-assisted software development, see the{" "}
+            <Link
+              to="/ai/claude-code-guide-and-tips#prompting"
+              prefetch="render"
+              className="text-custard-ink underline"
+            >
+              Claude Code tips and best practices guide
             </Link>
             .
           </p>

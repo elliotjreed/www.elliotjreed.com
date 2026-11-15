@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { NonceContext } from "~/context/nonce";
 import { themeScript } from "~/utils/themeScript";
-import { ErrorBoundary, Layout } from "./root";
+import { ErrorBoundary, Layout, meta } from "./root";
 
 vi.mock("react-router", async () => {
   const actual = await vi.importActual("react-router");
@@ -81,7 +81,7 @@ describe("root", () => {
       );
 
       const viewport = document.querySelector('meta[name="viewport"]');
-      expect(viewport).toHaveAttribute("content", "width=device-width, shrink-to-fit=no, initial-scale=1");
+      expect(viewport).toHaveAttribute("content", "width=device-width, initial-scale=1");
     });
 
     it("should have skip to content link", () => {
@@ -105,33 +105,6 @@ describe("root", () => {
 
       const main = container.querySelector("main#website");
       expect(main).toBeInTheDocument();
-    });
-
-    it("should have og:image meta tag", () => {
-      render(
-        <Layout>
-          <div>Content</div>
-        </Layout>,
-      );
-
-      const ogImage = document.querySelector('meta[property="og:image"]');
-      expect(ogImage).toHaveAttribute("content", "https://www.elliotjreed.com/og.png");
-    });
-
-    it("should have twitter card meta tags", () => {
-      render(
-        <Layout>
-          <div>Content</div>
-        </Layout>,
-      );
-
-      const twitterCard = document.querySelector('meta[name="twitter:card"]');
-      const twitterSite = document.querySelector('meta[name="twitter:site"]');
-      const twitterImage = document.querySelector('meta[name="twitter:image"]');
-
-      expect(twitterCard).toHaveAttribute("content", "summary");
-      expect(twitterSite).toHaveAttribute("content", "@elliotjreed");
-      expect(twitterImage).toHaveAttribute("content", "https://www.elliotjreed.com/og.png");
     });
 
     it("should have manifest link", () => {
@@ -203,6 +176,56 @@ describe("root", () => {
           </Layout>,
         ),
       ).not.toThrow();
+    });
+  });
+
+  describe("meta", () => {
+    const location = { pathname: "/linux/zsh-bash-aliases" } as Parameters<typeof meta>[0]["location"];
+    const run = (overrides: Partial<Parameters<typeof meta>[0]> = {}) =>
+      meta({ location, matches: [], error: undefined, ...overrides } as Parameters<typeof meta>[0]) as Record<
+        string,
+        string
+      >[];
+    const content = (tags: Record<string, string>[], key: "property" | "name", value: string): string[] =>
+      tags.filter((tag) => tag[key] === value).map((tag) => tag.content);
+
+    beforeEach(() => {
+      vi.clearAllMocks();
+    });
+
+    it("adds the default social image and Twitter card when the route sets none", () => {
+      const tags = run();
+
+      expect(content(tags, "property", "og:image")).toEqual(["https://www.elliotjreed.com/og.png"]);
+      expect(content(tags, "name", "twitter:card")).toEqual(["summary"]);
+      expect(content(tags, "name", "twitter:site")).toEqual(["@elliotjreed"]);
+      expect(content(tags, "name", "twitter:image")).toEqual(["https://www.elliotjreed.com/og.png"]);
+    });
+
+    it("does not duplicate social tags the route already sets", () => {
+      const routeMeta = [
+        { property: "og:image", content: "https://www.elliotjreed.com/custom.png" },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:site", content: "@elliotjreed" },
+        { name: "twitter:image", content: "https://www.elliotjreed.com/custom.png" },
+      ];
+      const tags = run({ matches: [{ meta: routeMeta }] } as unknown as Partial<Parameters<typeof meta>[0]>);
+
+      expect(content(tags, "property", "og:image")).toEqual([]);
+      expect(content(tags, "name", "twitter:card")).toEqual([]);
+      expect(content(tags, "name", "twitter:site")).toEqual([]);
+      expect(content(tags, "name", "twitter:image")).toEqual([]);
+    });
+
+    it("marks a missing page as noindex without a canonical URL", () => {
+      vi.mocked(isRouteErrorResponse).mockReturnValue(true);
+
+      const tags = run({ error: { status: 404, statusText: "Not Found" } });
+
+      expect(tags).toContainEqual({ name: "robots", content: "noindex" });
+      expect(tags).toContainEqual({ title: "Page not found | Elliot J. Reed" });
+      expect(tags.some((tag) => tag.rel === "canonical")).toBe(false);
+      expect(content(tags, "property", "og:url")).toEqual([]);
     });
   });
 

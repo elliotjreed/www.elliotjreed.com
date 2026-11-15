@@ -8,8 +8,9 @@ import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
-    title: "Copy MySQL database table to new table | EJR",
-    description: "How to copy MySQL / MariaDB database table data to a new table.",
+    title: "Copy a MySQL or MariaDB Table to a New Table | EJR",
+    description:
+      "How to copy a MySQL or MariaDB table, with its structure, indexes and data, into a new table using CREATE TABLE LIKE, INSERT SELECT or CREATE TABLE AS SELECT.",
     url: "https://www.elliotjreed.com/linux/copy-mysql-table-data-to-new-table",
     type: "article",
     ogImage: "https://www.elliotjreed.com/og.png",
@@ -24,7 +25,6 @@ export const meta = () => [
       dateModified: "2026-01-30T00:00:00+00:00",
       articleSection: "Linux",
       keywords: ["MySQL", "MariaDB", "database", "SQL", "Linux"],
-      wordCount: 370,
       proficiencyLevel: "Beginner",
     }),
   },
