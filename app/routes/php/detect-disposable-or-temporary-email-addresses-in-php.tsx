@@ -2,7 +2,7 @@ import type { ReactElement } from "react";
 import { CodeSnippet } from "~/components/CodeSnippet/CodeSnippet";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createAmpLink, createMeta } from "~/utils/seo";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -36,34 +36,32 @@ export const meta = () => [
       },
     ]),
   },
-  createAmpLink("/php/detect-disposable-or-temporary-email-addresses-in-php"),
 ];
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
+  <section className="ejr-article divide-line divide-y">
     <PageHeader
+      tone="tint"
       title="Detecting disposable / temporary email addresses in PHP"
       meta={
-        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div className="text-caption text-ink-subtle flex flex-wrap items-center gap-x-6 gap-y-1">
           <span>By Elliot J. Reed</span>
-          <span>•</span>
           <time dateTime="2019-03-29">
             Published: 29<sup>th</sup> March 2019
           </time>
-          <span>•</span>
           <time dateTime="2026-01-30">
             Last updated: 30<sup>th</sup> January 2026
           </time>
         </div>
       }
     >
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose ejr-lead">
         Use the <code>elliotjreed/disposable-emails-filter</code> PHP package to detect temporary and disposable email
         addresses in your applications, preventing abuse in competitions, voucher systems, and newsletter signups.
       </p>
     </PageHeader>
 
-    <div className="prose dark:prose-dark max-w-none">
+    <div className="prose ejr-prose">
       <section>
         <h2>Installation</h2>
         <p>
@@ -81,7 +79,7 @@ export default (): ReactElement => (
         <p>Install the package via Composer:</p>
         <CodeSnippet language="bash" code="composer require elliotjreed/disposable-emails-filter" title="Install" />
 
-        <h2>Basic Usage</h2>
+        <h2>Basic usage</h2>
         <p>Use the package to check if an email address is disposable:</p>
         <CodeSnippet
           language="php"
@@ -96,7 +94,7 @@ if ((new Email())->isDisposable('email@temporarymailaddress.com')) {
           title="Usage"
         />
 
-        <h2>Handling Invalid Emails</h2>
+        <h2>Handling invalid emails</h2>
         <p>
           If an invalid email address is provided, an <code>InvalidEmailException</code> is thrown. Always validate the
           email format first using PHP's built-in <code>filter_var()</code> function:
@@ -115,9 +113,9 @@ if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
           title="Handling invalid emails"
         />
 
-        <h2>Exception Handling with Try-Catch</h2>
+        <h2>Exception handling with try-catch</h2>
         <p>
-          For more robust error handling, especially in production applications, use a try-catch block to handle the{" "}
+          For more thorough error handling, especially in production applications, use a try-catch block to handle the{" "}
           <code>InvalidEmailException</code>:
         </p>
         <CodeSnippet
@@ -141,7 +139,7 @@ try {
           title="Try-Catch Example"
         />
 
-        <h2>Package Information</h2>
+        <h2>Package information</h2>
         <p>
           The <code>disposable-emails-filter</code> package is actively maintained and compatible with PHP 7.4 and
           above, including PHP 8.x. The underlying disposable email domain list is regularly updated to include new
@@ -160,7 +158,7 @@ try {
           .
         </p>
 
-        <h2>Frequently Asked Questions</h2>
+        <h2>Frequently asked questions</h2>
 
         <h3>How often is the disposable email list updated?</h3>
         <p>

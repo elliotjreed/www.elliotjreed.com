@@ -2,7 +2,7 @@ import type { ReactElement } from "react";
 import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createAmpLink, createMeta } from "~/utils/seo";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -36,7 +36,6 @@ export const meta = () => [
       },
     ]),
   },
-  createAmpLink("/linux/search-a-directory-for-text-string-via-command-line"),
 ];
 
 const snippet: CodeSnippetInterface = {
@@ -52,29 +51,28 @@ searchdir() {
 };
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
+  <section className="ejr-article divide-line divide-y">
     <PageHeader
+      tone="tint"
       title="Search directory for a word / text via the command line"
       meta={
-        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div className="text-caption text-ink-subtle flex flex-wrap items-center gap-x-6 gap-y-1">
           <span>By Elliot J. Reed</span>
-          <span>•</span>
           <time dateTime="2017-01-23">
             Published: 23<sup>rd</sup> January 2017
           </time>
-          <span>•</span>
           <time dateTime="2026-01-30">
             Last updated: 30<sup>th</sup> January 2026
           </time>
         </div>
       }
     >
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose ejr-lead">
         By using <code>grep</code> we can quickly search through files for a specific string of text
       </p>
     </PageHeader>
 
-    <div className="prose dark:prose-dark max-w-none">
+    <div className="prose ejr-prose">
       <section>
         <p>To list all occurrences of a particular string / text in your Bash (or ZSH or Shell) command line, run:</p>
         <CodeSnippet language="bash" code='grep -ni "Text to search for" .' title="grep -ni" />

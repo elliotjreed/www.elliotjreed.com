@@ -121,8 +121,8 @@ export const Search: FC = (): ReactElement => {
           value={query}
           onChange={(e) => handleInputChange(e.target.value)}
           onKeyDown={handleKeyDown}
-          className={`focus:border-primary-500 focus:ring-primary-500 rounded border border-gray-300 bg-white px-3 py-2 text-gray-900 transition-[width,opacity] duration-300 focus:ring-2 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 ${
-            isExpanded ? "w-64 opacity-100" : "pointer-events-none w-0 opacity-0"
+          className={`ejr-input transition-opacity duration-300 motion-reduce:transition-none ${
+            isExpanded ? "w-64 opacity-100" : "pointer-events-none w-0 border-0 px-0 opacity-0"
           }`}
         />
 
@@ -130,7 +130,7 @@ export const Search: FC = (): ReactElement => {
           type="button"
           onClick={handleToggle}
           aria-label={isExpanded ? "Close search" : "Open search"}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-gray-500 transition-colors hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
+          className="text-ink-muted hover:bg-surface-300 hover:text-ink inline-flex h-11 w-11 items-center justify-center rounded-md transition-colors"
         >
           <FontAwesomeIcon icon={isExpanded ? faXmark : faMagnifyingGlass} className="h-5 w-5" />
         </button>

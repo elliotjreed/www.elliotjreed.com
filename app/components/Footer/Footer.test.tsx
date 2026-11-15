@@ -36,7 +36,7 @@ describe("Footer", () => {
       </BrowserRouter>,
     );
 
-    const privacyLink = screen.getByRole("link", { name: "Privacy Policy" });
+    const privacyLink = screen.getByRole("link", { name: "Privacy policy" });
     expect(privacyLink).toBeInTheDocument();
     expect(privacyLink).toHaveAttribute("href", "/privacy");
   });
@@ -94,6 +94,6 @@ describe("Footer", () => {
     );
     const footer = container.querySelector("footer");
 
-    expect(footer).toHaveClass("text-gray-700", "dark:text-gray-200");
+    expect(footer).toHaveClass("text-ink-muted");
   });
 });

@@ -2,7 +2,7 @@ import type { ReactElement } from "react";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { emailAddress } from "~/data/emailAddress";
 import { createBreadcrumbs } from "~/data/schemaData";
-import { createAmpLink, createMeta } from "~/utils/seo";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -35,13 +35,12 @@ export const meta = () => [
       { name: "Privacy", url: "https://www.elliotjreed.com/privacy" },
     ]),
   },
-  createAmpLink("/privacy"),
 ];
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
-    <PageHeader title="Privacy Policy">
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+  <section className="ejr-article divide-line divide-y">
+    <PageHeader title="Privacy policy">
+      <p className="prose ejr-lead">
         Welcome to my personal website. I am committed to protecting your privacy and handling any personal data I
         collect from you in a responsible, secure manner in accordance with the UK General Data Protection Regulation
         (UK GDPR), the Data Protection Act 2018, and other relevant privacy legislation. This Privacy Policy explains
@@ -49,19 +48,19 @@ export default (): ReactElement => (
       </p>
     </PageHeader>
 
-    <div className="prose dark:prose-dark max-w-none">
+    <div className="prose ejr-prose">
       <section>
-        <h2>Information I Collect</h2>
+        <h2>Information I collect</h2>
 
-        <h3>Information You Directly Provide</h3>
+        <h3>Information you directly provide</h3>
         <p>
           This blog does not collect any information directly from you. There are no forms, comment sections,
           registration options, or other means for you to input personal information.
         </p>
 
-        <h3>Information Collected Automatically</h3>
+        <h3>Information collected automatically</h3>
 
-        <h4>Server Logs</h4>
+        <h4>Server logs</h4>
         <p>
           When you visit my website, my hosting provider (Cloudflare) may automatically collect and store certain
           information in server logs. This information may include:
@@ -88,7 +87,7 @@ export default (): ReactElement => (
       </section>
 
       <section>
-        <h2>How I Use This Information</h2>
+        <h2>How I use this information</h2>
         <p>The limited information collected is used solely for:</p>
         <ul>
           <li>Ensuring the security and proper technical functioning of the website</li>
@@ -105,7 +104,7 @@ export default (): ReactElement => (
       </section>
 
       <section>
-        <h2>Information Sharing</h2>
+        <h2>Information sharing</h2>
         <p>I do not share your personal information with third parties except in the following circumstances:</p>
         <ul>
           <li>With my hosting provider (Cloudflare) as necessary for the operation and security of the website</li>
@@ -115,7 +114,7 @@ export default (): ReactElement => (
       </section>
 
       <section>
-        <h2>Data Security</h2>
+        <h2>Data security</h2>
         <p>
           I take reasonable measures to protect your information from unauthorised access, use, or disclosure. However,
           please be aware that no method of transmission over the internet or electronic storage is 100% secure.
@@ -123,7 +122,7 @@ export default (): ReactElement => (
       </section>
 
       <section>
-        <h2>Data Retention</h2>
+        <h2>Data retention</h2>
         <p>
           Server logs and any other automatically collected information are retained for 90 days, after which they are
           deleted.
@@ -131,7 +130,7 @@ export default (): ReactElement => (
       </section>
 
       <section>
-        <h2>Your Rights Under GDPR</h2>
+        <h2>Your rights under GDPR</h2>
         <p>
           Under the UK GDPR and the Data Protection Act 2018, you have various rights regarding your personal data,
           including the right to:
@@ -150,7 +149,7 @@ export default (): ReactElement => (
       </section>
 
       <section>
-        <h2>International Data Transfers</h2>
+        <h2>International data transfers</h2>
         <p>
           This website is hosted on Cloudflare, which operates globally. By using my website, your information may be
           transferred to and maintained on computers located outside of your state, province, country, or other

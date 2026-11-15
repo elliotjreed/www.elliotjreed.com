@@ -19,7 +19,7 @@ describe("privacy route", () => {
     it("should render main heading", () => {
       render(<PrivacyRoute />);
 
-      expect(screen.getByRole("heading", { name: "Privacy Policy", level: 1 })).toBeInTheDocument();
+      expect(screen.getByRole("heading", { name: "Privacy policy", level: 1 })).toBeInTheDocument();
     });
 
     it("should render introduction text", () => {
@@ -31,14 +31,14 @@ describe("privacy route", () => {
     it("should render Information I Collect section", () => {
       render(<PrivacyRoute />);
 
-      expect(screen.getByRole("heading", { name: "Information I Collect" })).toBeInTheDocument();
+      expect(screen.getByRole("heading", { name: "Information I collect" })).toBeInTheDocument();
     });
 
     it("should have section with divide classes", () => {
       const { container } = render(<PrivacyRoute />);
       const section = container.querySelector("section");
 
-      expect(section).toHaveClass("divide-y", "divide-gray-200", "dark:divide-gray-700");
+      expect(section).toHaveClass("divide-y", "divide-line");
     });
 
     it("should mention GDPR compliance", () => {
@@ -56,10 +56,10 @@ describe("privacy route", () => {
 
     it("should have prose container", () => {
       const { container } = render(<PrivacyRoute />);
-      const prose = container.querySelector(".prose");
+      const prose = container.querySelector(".prose.ejr-prose");
 
       expect(prose).toBeInTheDocument();
-      expect(prose).toHaveClass("max-w-none", "dark:prose-dark");
+      expect(prose).toHaveClass("ejr-prose");
     });
   });
 });

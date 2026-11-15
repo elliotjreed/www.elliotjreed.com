@@ -1,9 +1,10 @@
 import type { ReactElement } from "react";
+import { Callout } from "~/components/Callout/Callout";
 import { CodeSnippet } from "~/components/CodeSnippet/CodeSnippet";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createAmpLink, createMeta } from "~/utils/seo";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -34,65 +35,62 @@ export const meta = () => [
       { name: "Copy MySQL Table", url: "https://www.elliotjreed.com/linux/copy-mysql-table-data-to-new-table" },
     ]),
   },
-  createAmpLink("/linux/copy-mysql-table-data-to-new-table"),
 ];
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
+  <section className="ejr-article divide-line divide-y">
     <PageHeader
+      tone="tint"
       title="Copy MySQL / MariaDB database table data to a new table"
       meta={
-        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div className="text-caption text-ink-subtle flex flex-wrap items-center gap-x-6 gap-y-1">
           <span>By Elliot J. Reed</span>
-          <span>•</span>
           <time dateTime="2022-04-30">
             Published: 30<sup>th</sup> April 2022
           </time>
-          <span>•</span>
           <time dateTime="2026-01-30">
             Last updated: 30<sup>th</sup> January 2026
           </time>
         </div>
       }
     >
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose ejr-lead">
         Need to back up a MySQL or MariaDB table? Use <code>CREATE TABLE ... LIKE</code> followed by{" "}
         <code>INSERT INTO ... SELECT</code> for a complete copy with structure, or{" "}
         <code>CREATE TABLE ... AS SELECT</code> for a quick data-only snapshot.
       </p>
     </PageHeader>
 
-    <div className="prose dark:prose-dark max-w-none">
+    <div className="prose ejr-prose">
       <section>
-        <h2>Table of Contents</h2>
+        <h2>Table of contents</h2>
         <ul>
           <li>
-            <a href="#simple-copy" className="text-primary-700 dark:text-primary-500 hover:underline">
+            <a href="#simple-copy" className="text-custard-ink hover:underline">
               Method 1: Simple data copy (fast, data only)
             </a>
           </li>
           <li>
-            <a href="#full-copy" className="text-primary-700 dark:text-primary-500 hover:underline">
+            <a href="#full-copy" className="text-custard-ink hover:underline">
               Method 2: Full copy with structure (complete backup)
             </a>
           </li>
           <li>
-            <a href="#faq" className="text-primary-700 dark:text-primary-500 hover:underline">
-              Frequently Asked Questions
+            <a href="#faq" className="text-custard-ink hover:underline">
+              Frequently asked questions
             </a>
           </li>
         </ul>
       </section>
 
       <section>
-        <aside className="mb-6 border-l-4 border-yellow-500 bg-yellow-50 p-4 dark:bg-yellow-900/20">
-          <p className="font-bold">Warning:</p>
+        <Callout variant="warning" label="Warning">
           <p>
             Always back up your data before performing any copy operations, especially if you plan to modify the copied
             table. While copying data is generally safe, having a backup protects against accidental data loss or
             corruption during the process.
           </p>
-        </aside>
+        </Callout>
 
         <p>
           There are two methods for copying a database table in MySQL or MariaDB. The first method creates a quick
@@ -129,7 +127,7 @@ export default (): ReactElement => (
           mirror production, or when preserving table structure is important.
         </p>
 
-        <HeadingAnchor id="faq">Frequently Asked Questions</HeadingAnchor>
+        <HeadingAnchor id="faq">Frequently asked questions</HeadingAnchor>
 
         <h3>Which method should I use?</h3>
         <p>

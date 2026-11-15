@@ -6,33 +6,29 @@ interface ResultsSummaryProps {
   results: PlannerResults;
 }
 
-const cardClassName = "rounded-lg border border-gray-200 bg-white p-6 shadow-md dark:border-gray-700 dark:bg-gray-800";
-
 const SummaryCard: FC<{ label: string; value: ReactNode; detail?: string }> = ({
   label,
   value,
   detail,
 }): ReactElement => (
-  <div className={cardClassName}>
-    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">{label}</p>
-    <p className="text-secondary-800 dark:text-secondary-100 mt-2 text-3xl font-bold">{value}</p>
-    {detail !== undefined && <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">{detail}</p>}
+  <div className="ejr-stat">
+    <p className="ejr-stat-label">{label}</p>
+    <p className="ejr-stat-value">{value}</p>
+    {detail !== undefined && <p className="ejr-stat-delta">{detail}</p>}
   </div>
 );
 
 export const ResultsSummary: FC<ResultsSummaryProps> = ({ results }): ReactElement => (
   <section aria-labelledby="results-heading" className="space-y-4">
-    <h2 id="results-heading" className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+    <h2 id="results-heading" className="text-heading-2 text-ink font-semibold">
       Your projection
     </h2>
 
     {results.annualAllowanceWarning !== null && (
-      <p className="rounded border border-amber-300 bg-amber-100 p-3 text-sm text-amber-900 dark:border-amber-600 dark:bg-amber-900 dark:text-amber-100">
-        {results.annualAllowanceWarning}
-      </p>
+      <p className="bg-warning-soft text-caption text-ink rounded-md p-3">{results.annualAllowanceWarning}</p>
     )}
 
-    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="ejr-stats">
       <SummaryCard
         label={`Projected pot at age ${results.retirementAge}`}
         value={formatGBP(results.potAtRetirement)}

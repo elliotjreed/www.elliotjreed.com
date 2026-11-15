@@ -16,7 +16,6 @@ export interface SitePage {
   index?: boolean;
   search?: SearchMeta;
   sitemap?: SitemapMeta;
-  ampEligible?: boolean;
 }
 
 export interface NavigationNode {
@@ -38,18 +37,18 @@ export const sitePages: SitePage[] = [
     id: "ai-category",
     path: "/ai",
     routeFile: "routes/ai.tsx",
-    title: "AI Guides",
+    title: "AI guides",
     sitemap: { lastModified: "2026-02-10T00:00:00+00:00" },
   },
   {
     id: "ai-prompt-guide",
     path: "/ai/ai-prompt-engineering-guide",
     routeFile: "routes/ai/ai-prompt-engineering-guide.tsx",
-    title: "AI Prompt Guide",
+    title: "AI prompt guide",
     search: {
       description:
         "A guide and introduction to prompt engineering techniques for AI LLMs such as ChatGPT, Claude, Gemini, and DeepSeek.",
-      category: "AI Guides",
+      category: "AI guides",
       keywords: ["ai", "prompt", "engineering", "chatgpt", "claude", "gemini", "deepseek", "llm"],
     },
     sitemap: { lastModified: "2026-01-30T00:00:00+00:00" },
@@ -58,10 +57,10 @@ export const sitePages: SitePage[] = [
     id: "ai-cafe-framework",
     path: "/ai/cafe-ai-prompt-framework",
     routeFile: "routes/ai/cafe-ai-prompt-framework.tsx",
-    title: "CAFE Prompt Framework",
+    title: "CAFE prompt framework",
     search: {
       description: "A simple framework for creating effective AI prompts using Context, Action, Format, and Examples.",
-      category: "AI Guides",
+      category: "AI guides",
       keywords: ["ai", "prompt", "framework", "cafe", "context", "action", "format", "examples"],
     },
     sitemap: { lastModified: "2026-01-30T00:00:00+00:00" },
@@ -70,11 +69,11 @@ export const sitePages: SitePage[] = [
     id: "ai-claude-code-guide",
     path: "/ai/claude-code-guide-and-tips",
     routeFile: "routes/ai/claude-code-guide-and-tips.tsx",
-    title: "Claude Code Guide",
+    title: "Claude Code guide",
     search: {
       description:
         "A comprehensive guide to using Claude Code for software development, covering installation, prompting strategies, planning, git integration, and advanced features like skills, subagents, and MCP servers.",
-      category: "AI Guides",
+      category: "AI guides",
       keywords: [
         "claude",
         "code",
@@ -102,10 +101,10 @@ export const sitePages: SitePage[] = [
     id: "ai-learning-resources",
     path: "/ai/recommended-ai-learning-resources",
     routeFile: "routes/ai/recommended-ai-learning-resources.tsx",
-    title: "AI Links & Resources",
+    title: "AI links & resources",
     search: {
       description: "Curated collection of learning resources, tools, and links for AI and machine learning.",
-      category: "AI Guides",
+      category: "AI guides",
       keywords: ["ai", "resources", "learning", "tools", "machine learning", "links"],
     },
     sitemap: { lastModified: "2026-01-30T00:00:00+00:00" },
@@ -114,18 +113,18 @@ export const sitePages: SitePage[] = [
     id: "ai-ethical-workplace",
     path: "/ai/ethical-considerations-for-ai-in-the-workplace",
     routeFile: "routes/ai/ethical-considerations-for-ai-in-the-workplace.tsx",
-    title: "Ethical AI in the Workplace",
+    title: "Ethical AI in the workplace",
     sitemap: { lastModified: "2026-01-31T00:00:00+00:00" },
   },
   {
     id: "ai-multiple-claude-instances",
     path: "/ai/running-multiple-claude-code-instances",
     routeFile: "routes/ai/running-multiple-claude-code-instances.tsx",
-    title: "Run Multiple Claude Code Instances",
+    title: "Run multiple Claude Code instances",
     search: {
       description:
         "Learn how to run multiple Claude Code instances simultaneously for different accounts using environment variables, custom configuration directories, and shell aliases.",
-      category: "AI Guides",
+      category: "AI guides",
       keywords: [
         "claude",
         "code",
@@ -146,17 +145,17 @@ export const sitePages: SitePage[] = [
     id: "linux-category",
     path: "/linux",
     routeFile: "routes/linux.tsx",
-    title: "ZSH / Bash Shell Guides",
+    title: "ZSH / Bash shell guides",
     sitemap: { lastModified: "2026-02-18T00:00:00+00:00" },
   },
   {
     id: "linux-zsh-aliases",
     path: "/linux/zsh-bash-aliases",
     routeFile: "routes/linux/zsh-bash-aliases.tsx",
-    title: "Useful Shell Aliases",
+    title: "Useful shell aliases",
     search: {
       description: "Collection of useful shell aliases for ZSH and Bash to improve productivity.",
-      category: "ZSH / Bash Shell Guides",
+      category: "ZSH / Bash shell guides",
       keywords: ["zsh", "bash", "shell", "aliases", "linux", "terminal", "productivity"],
     },
     sitemap: { lastModified: "2026-01-30T00:00:00+00:00" },
@@ -165,10 +164,10 @@ export const sitePages: SitePage[] = [
     id: "linux-zsh-functions",
     path: "/linux/zsh-bash-functions",
     routeFile: "routes/linux/zsh-bash-functions.tsx",
-    title: "Useful Shell Functions",
+    title: "Useful shell functions",
     search: {
       description: "Helpful shell functions for ZSH and Bash to automate common tasks.",
-      category: "ZSH / Bash Shell Guides",
+      category: "ZSH / Bash shell guides",
       keywords: ["zsh", "bash", "shell", "functions", "linux", "terminal", "automation"],
     },
     sitemap: { lastModified: "2026-01-30T00:00:00+00:00" },
@@ -180,7 +179,7 @@ export const sitePages: SitePage[] = [
     title: "Duplicate MySQL table",
     search: {
       description: "How to copy MySQL or MariaDB table data and structure to a new table.",
-      category: "ZSH / Bash Shell Guides",
+      category: "ZSH / Bash shell guides",
       keywords: ["mysql", "mariadb", "table", "copy", "duplicate", "database", "sql"],
     },
     sitemap: { lastModified: "2026-01-30T00:00:00+00:00" },
@@ -192,7 +191,7 @@ export const sitePages: SitePage[] = [
     title: "Find local and public IP address",
     search: {
       description: "Command line methods to find your local and public IP addresses using Bash.",
-      category: "ZSH / Bash Shell Guides",
+      category: "ZSH / Bash shell guides",
       keywords: ["ip", "address", "local", "public", "bash", "command", "line", "network"],
     },
     sitemap: { lastModified: "2026-01-30T00:00:00+00:00" },
@@ -205,7 +204,7 @@ export const sitePages: SitePage[] = [
     search: {
       description:
         "Learn how to correctly set SSH file permissions after moving your .ssh directory to a new computer.",
-      category: "ZSH / Bash Shell Guides",
+      category: "ZSH / Bash shell guides",
       keywords: ["ssh", "permissions", "security", "linux", "mac", "command", "line", "bash", "chmod", "file"],
     },
     sitemap: { lastModified: "2026-02-10T00:00:00+00:00" },
@@ -217,7 +216,7 @@ export const sitePages: SitePage[] = [
     title: "Update global Bun packages",
     search: {
       description: "How to update globally-installed packages with Bun using a one-line command or a shell alias.",
-      category: "ZSH / Bash Shell Guides",
+      category: "ZSH / Bash shell guides",
       keywords: ["bun", "npm", "global", "packages", "update", "shell", "alias", "linux", "mac", "terminal"],
     },
     sitemap: { lastModified: "2026-02-18T00:00:00+00:00" },
@@ -229,7 +228,7 @@ export const sitePages: SitePage[] = [
     title: "Install MariaDB on Ubuntu",
     search: {
       description: "Step-by-step guide to installing MariaDB on Ubuntu and configuring remote access.",
-      category: "ZSH / Bash Shell Guides",
+      category: "ZSH / Bash shell guides",
       keywords: ["mariadb", "mysql", "ubuntu", "linux", "database", "install", "remote", "access"],
     },
     sitemap: { lastModified: "2026-01-30T00:00:00+00:00" },
@@ -241,7 +240,7 @@ export const sitePages: SitePage[] = [
     title: "Search directory for a string",
     search: {
       description: "How to search files in a directory for specific text strings using command line tools.",
-      category: "ZSH / Bash Shell Guides",
+      category: "ZSH / Bash shell guides",
       keywords: ["search", "grep", "find", "text", "string", "directory", "command", "line"],
     },
     sitemap: { lastModified: "2026-01-30T00:00:00+00:00" },
@@ -250,7 +249,7 @@ export const sitePages: SitePage[] = [
     id: "docker-category",
     path: "/docker",
     routeFile: "routes/docker.tsx",
-    title: "Docker Guides",
+    title: "Docker guides",
     sitemap: { lastModified: "2026-02-05T00:00:00+00:00" },
   },
   {
@@ -260,7 +259,7 @@ export const sitePages: SitePage[] = [
     title: "Find Docker IP address",
     search: {
       description: "Methods to find IP addresses of Docker containers and Docker Compose services.",
-      category: "Docker Guides",
+      category: "Docker guides",
       keywords: ["docker", "compose", "ip", "address", "container", "network"],
     },
     sitemap: { lastModified: "2026-01-30T00:00:00+00:00" },
@@ -272,7 +271,7 @@ export const sitePages: SitePage[] = [
     title: "Clean up Docker",
     search: {
       description: "Commands to delete all Docker containers, images, volumes, and networks for cleanup.",
-      category: "Docker Guides",
+      category: "Docker guides",
       keywords: ["docker", "delete", "clean", "remove", "container", "image", "volume", "prune"],
     },
     sitemap: { lastModified: "2026-01-30T00:00:00+00:00" },
@@ -284,7 +283,7 @@ export const sitePages: SitePage[] = [
     title: "Backup / restore Docker database",
     search: {
       description: "How to backup and restore databases running in Docker containers.",
-      category: "Docker Guides",
+      category: "Docker guides",
       keywords: ["docker", "backup", "restore", "database", "mysql", "postgres", "dump"],
     },
     sitemap: { lastModified: "2026-01-30T00:00:00+00:00" },
@@ -293,7 +292,7 @@ export const sitePages: SitePage[] = [
     id: "php-category",
     path: "/php",
     routeFile: "routes/php.tsx",
-    title: "PHP Guides",
+    title: "PHP guides",
     sitemap: { lastModified: "2026-02-05T00:00:00+00:00" },
   },
   {
@@ -303,7 +302,7 @@ export const sitePages: SitePage[] = [
     title: "Detect disposable email addresses",
     search: {
       description: "PHP methods to detect and block disposable or temporary email addresses.",
-      category: "PHP Guides",
+      category: "PHP guides",
       keywords: ["php", "email", "disposable", "temporary", "validation", "detect", "block"],
     },
     sitemap: { lastModified: "2026-01-30T00:00:00+00:00" },
@@ -312,19 +311,18 @@ export const sitePages: SitePage[] = [
     id: "finance-category",
     path: "/finance",
     routeFile: "routes/finance.tsx",
-    title: "Finance Tools",
+    title: "Finance tools",
     sitemap: { lastModified: "2026-08-31T00:00:00+00:00" },
-    ampEligible: false,
   },
   {
     id: "finance-pension-planner",
     path: "/finance/pension-planner-calculator",
     routeFile: "routes/finance/pension-planner-calculator.tsx",
-    title: "Pension Planner Calculator",
+    title: "Pension planner calculator",
     search: {
       description:
         "UK pension forecaster with AS TM1 and FCA growth models, Monte Carlo simulation, state pension, income tax, drawdown or annuity, and FIRE early retirement planning.",
-      category: "Finance Tools",
+      category: "Finance tools",
       keywords: [
         "pension",
         "calculator",
@@ -342,17 +340,16 @@ export const sitePages: SitePage[] = [
       ],
     },
     sitemap: { lastModified: "2026-08-31T00:00:00+00:00" },
-    ampEligible: false,
   },
   {
     id: "finance-personal-finance",
     path: "/finance/personal-finance",
     routeFile: "routes/finance/personal-finance.tsx",
-    title: "Where Should I Put My Money?",
+    title: "Where should I put my money?",
     search: {
       description:
         "Interactive UK Personal Finance flowchart: answer a few questions to find whether to clear debt, build an emergency fund, claim your pension match, save or invest next.",
-      category: "Finance Tools",
+      category: "Finance tools",
       keywords: [
         "personal finance",
         "flowchart",
@@ -369,33 +366,30 @@ export const sitePages: SitePage[] = [
       ],
     },
     sitemap: { lastModified: "2026-08-31T00:00:00+00:00" },
-    ampEligible: false,
   },
   {
     id: "utils-percentage-calculator",
     path: "/utils/percentage-calculator",
     routeFile: "routes/utils/percentage-calculator.tsx",
-    title: "Percentage Calculator",
+    title: "Percentage calculator",
     search: {
       description: "Online tool to calculate percentages, percentage increase, and percentage decrease.",
       category: "Utils",
       keywords: ["percentage", "calculator", "math", "calculate", "tool", "utility"],
     },
     sitemap: { lastModified: "2025-01-28" },
-    ampEligible: false,
   },
   {
     id: "sitemap-page",
     path: "/sitemap",
     routeFile: "routes/sitemap.tsx",
     title: "Sitemap",
-    ampEligible: false,
   },
   {
     id: "privacy",
     path: "/privacy",
     routeFile: "routes/privacy.tsx",
-    title: "Privacy Policy",
+    title: "Privacy policy",
   },
   {
     id: "impressum",
@@ -430,7 +424,7 @@ export const navigationTree: NavigationNode[] = [
     showInNavigation: true,
     children: [
       {
-        title: "AI Guides",
+        title: "AI guides",
         pageId: "ai-category",
         showInNavigation: true,
         children: [
@@ -438,7 +432,7 @@ export const navigationTree: NavigationNode[] = [
           { title: "CAFE Prompt Framework", pageId: "ai-cafe-framework", showInNavigation: true },
           { title: "Claude Code Guide", pageId: "ai-claude-code-guide", showInNavigation: true },
           {
-            title: "Run Multiple Claude Code Instances",
+            title: "Run multiple Claude Code instances",
             pageId: "ai-multiple-claude-instances",
             showInNavigation: true,
           },
@@ -447,7 +441,7 @@ export const navigationTree: NavigationNode[] = [
         ],
       },
       {
-        title: "ZSH / Bash Shell Guides",
+        title: "ZSH / Bash shell guides",
         pageId: "linux-category",
         showInNavigation: true,
         children: [
@@ -466,7 +460,7 @@ export const navigationTree: NavigationNode[] = [
         ],
       },
       {
-        title: "Docker Guides",
+        title: "Docker guides",
         pageId: "docker-category",
         showInNavigation: true,
         children: [
@@ -476,7 +470,7 @@ export const navigationTree: NavigationNode[] = [
         ],
       },
       {
-        title: "PHP Guides",
+        title: "PHP guides",
         pageId: "php-category",
         showInNavigation: true,
         children: [

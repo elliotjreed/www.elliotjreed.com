@@ -1,7 +1,7 @@
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { emailAddress } from "~/data/emailAddress";
 import { createBreadcrumbs } from "~/data/schemaData";
-import { createAmpLink, createMeta } from "~/utils/seo";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -30,14 +30,13 @@ export const meta = () => [
       { name: "TheVape.co.uk", url: "https://www.elliotjreed.com/the-vape" },
     ]),
   },
-  createAmpLink("/the-vape"),
 ];
 
 export default function Index() {
   return (
-    <section className="divide-y divide-gray-200 dark:divide-gray-700">
+    <section className="ejr-article divide-line divide-y">
       <PageHeader title="TheVape.co.uk">
-        <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+        <p className="prose ejr-lead">
           The domain name &ldquo;TheVape.co.uk&rdquo; is available for purchase should you be interested. Email{" "}
           <a href={`mailto:${emailAddress}`}>{emailAddress}</a> to make an enquiry.
         </p>

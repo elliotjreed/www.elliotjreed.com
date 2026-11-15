@@ -5,12 +5,6 @@ export type AppMetaDescriptor = MetaDescriptor & { "script:ld+json"?: Record<str
 
 const SITE_URL = "https://www.elliotjreed.com";
 
-export const createAmpLink = (path: string): MetaDescriptor => ({
-  tagName: "link",
-  rel: "amphtml",
-  href: `${SITE_URL}/amp${path}`,
-});
-
 interface CreateMetaOptions {
   title: string;
   description: string;

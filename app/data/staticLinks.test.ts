@@ -24,7 +24,7 @@ describe("staticLinks", () => {
 
   it("should have AI Guides section with children", () => {
     const guides = staticLinks.find((link) => link.title === "Guides");
-    const aiGuides = guides?.children?.find((child) => child.title === "AI Guides");
+    const aiGuides = guides?.children?.find((child) => child.title === "AI guides");
     expect(aiGuides).toBeDefined();
     expect(aiGuides?.showInNavigation).toBe(true);
     expect(aiGuides?.children).toBeDefined();
@@ -34,7 +34,7 @@ describe("staticLinks", () => {
 
   it("should have ZSH / Bash Shell Guides section with children", () => {
     const guides = staticLinks.find((link) => link.title === "Guides");
-    const shellGuides = guides?.children?.find((child) => child.title === "ZSH / Bash Shell Guides");
+    const shellGuides = guides?.children?.find((child) => child.title === "ZSH / Bash shell guides");
     expect(shellGuides).toBeDefined();
     expect(shellGuides?.showInNavigation).toBe(true);
     expect(shellGuides?.children).toBeDefined();
@@ -44,7 +44,7 @@ describe("staticLinks", () => {
 
   it("should have Docker Guides section with children", () => {
     const guides = staticLinks.find((link) => link.title === "Guides");
-    const dockerGuides = guides?.children?.find((child) => child.title === "Docker Guides");
+    const dockerGuides = guides?.children?.find((child) => child.title === "Docker guides");
     expect(dockerGuides).toBeDefined();
     expect(dockerGuides?.showInNavigation).toBe(true);
     expect(dockerGuides?.children).toBeDefined();
@@ -54,7 +54,7 @@ describe("staticLinks", () => {
 
   it("should have PHP Guides section with children", () => {
     const guides = staticLinks.find((link) => link.title === "Guides");
-    const phpGuides = guides?.children?.find((child) => child.title === "PHP Guides");
+    const phpGuides = guides?.children?.find((child) => child.title === "PHP guides");
     expect(phpGuides).toBeDefined();
     expect(phpGuides?.showInNavigation).toBe(true);
     expect(phpGuides?.children).toBeDefined();

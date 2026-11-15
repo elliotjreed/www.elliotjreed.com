@@ -65,11 +65,5 @@ describe("PersonalFinanceRoute", () => {
       expect(JSON.stringify(faq)).toMatch(/pay off debt or save/i);
       expect(JSON.stringify(faq)).toMatch(/Lifetime ISA/);
     });
-
-    it("does not offer an AMP version", () => {
-      const metaTags = meta() as Array<Record<string, unknown>>;
-
-      expect(metaTags.some((tag) => tag.rel === "amphtml")).toBe(false);
-    });
   });
 });

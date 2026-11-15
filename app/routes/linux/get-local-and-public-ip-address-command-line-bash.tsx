@@ -3,7 +3,7 @@ import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createAmpLink, createMeta } from "~/utils/seo";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -39,7 +39,6 @@ export const meta = () => [
       },
     ]),
   },
-  createAmpLink("/linux/get-local-and-public-ip-address-command-line-bash"),
 ];
 
 const functionSnippet: CodeSnippetInterface = {
@@ -53,30 +52,29 @@ const functionSnippet: CodeSnippetInterface = {
 };
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
+  <section className="ejr-article divide-line divide-y">
     <PageHeader
-      title="Get Local and Public IP Address"
+      tone="tint"
+      title="Get local and public IP address"
       meta={
-        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div className="text-caption text-ink-subtle flex flex-wrap items-center gap-x-6 gap-y-1">
           <span>By Elliot J. Reed</span>
-          <span>•</span>
           <time dateTime="2016-10-07">
             Published: 7<sup>th</sup> October 2016
           </time>
-          <span>•</span>
           <time dateTime="2026-01-30">
             Last updated: 30<sup>th</sup> January 2026
           </time>
         </div>
       }
     >
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose ejr-lead">
         Quickly display both your public and local IP addresses on Linux using a simple Bash function. Perfect for
         network troubleshooting, server configuration, and SSH connections.
       </p>
     </PageHeader>
 
-    <div className="prose dark:prose-dark max-w-none">
+    <div className="prose ejr-prose">
       <section>
         <p>
           This Bash function retrieves both your public (external) IP address and your local (internal) IP address on
@@ -97,7 +95,7 @@ export default (): ReactElement => (
           <code>. ~/.bashrc</code> or <code>source ~/.bashrc</code>.
         </p>
 
-        <h2>Alternative Methods</h2>
+        <h2>Alternative methods</h2>
 
         <p>There are several other ways to find your IP addresses on Linux. Here are some common alternatives:</p>
 
@@ -125,7 +123,7 @@ export default (): ReactElement => (
           title="Alternative public IP services"
         />
 
-        <HeadingAnchor id="faq">Frequently Asked Questions</HeadingAnchor>
+        <HeadingAnchor id="faq">Frequently asked questions</HeadingAnchor>
 
         <h3>Why does my public IP address change?</h3>
         <p>

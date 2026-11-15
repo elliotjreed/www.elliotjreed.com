@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createAmpLink, createMeta } from "~/utils/seo";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -74,7 +74,7 @@ export const meta = () => [
           name: "Should I trust AI-generated statistics and citations?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "No. AI models do not have access to underlying data—they learn patterns from data. Always verify any specific numerical claims, dates, statistics, or academic citations independently. AI excels at explaining well-established concepts but should not be trusted for specific factual claims without verification.",
+            text: "No. AI models do not have access to underlying data; they learn patterns from data. Always verify any specific numerical claims, dates, statistics, or academic citations independently. AI excels at explaining well-established concepts but should not be trusted for specific factual claims without verification.",
           },
         },
         {
@@ -96,111 +96,104 @@ export const meta = () => [
       ],
     },
   },
-  createAmpLink("/ai/ethical-considerations-for-ai-in-the-workplace"),
 ];
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
+  <section className="ejr-article divide-line divide-y">
     <PageHeader
-      title="Ethical Considerations for AI in the Workplace"
+      tone="tint"
+      title="Ethical considerations for AI in the workplace"
       meta={
-        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div className="text-caption text-ink-subtle flex flex-wrap items-center gap-x-6 gap-y-1">
           <span>By Elliot J. Reed</span>
-          <span>•</span>
           <time dateTime="2026-01-31">
             Published: 31<sup>st</sup> January 2026
           </time>
         </div>
       }
     >
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose ejr-lead">
         A guide to using AI responsibly in the workplace, covering the benefits of AI adoption, ethical and societal
         concerns, environmental impact, and practical strategies for responsible implementation. This article is based
         on discussions with colleagues in my workplace who had some concerns about the rise and use of AI.
       </p>
     </PageHeader>
 
-    <div className="prose dark:prose-dark max-w-none">
+    <div className="prose ejr-prose">
       <section id="table-of-contents">
         <h2>Contents</h2>
-        <ol className="space-y-2 text-gray-700 dark:text-gray-300">
+        <ol className="text-ink space-y-2">
           <li>
-            <a href="#why-use-ai" className="text-primary-700 dark:text-primary-500 hover:underline">
+            <a href="#why-use-ai" className="text-custard-ink hover:underline">
               Why should we use AI in the workplace?
             </a>
             <ol className="mt-1 ml-4 space-y-1">
               <li>
-                <a
-                  href="#delivering-great-customer-service"
-                  className="text-primary-700 dark:text-primary-500 hover:underline"
-                >
+                <a href="#delivering-great-customer-service" className="text-custard-ink hover:underline">
                   Delivering great customer service
                 </a>
               </li>
               <li>
-                <a href="#freeing-people-to-focus" className="text-primary-700 dark:text-primary-500 hover:underline">
+                <a href="#freeing-people-to-focus" className="text-custard-ink hover:underline">
                   Freeing people to focus on what matters most
                 </a>
               </li>
               <li>
-                <a
-                  href="#maintaining-quality-and-innovation"
-                  className="text-primary-700 dark:text-primary-500 hover:underline"
-                >
+                <a href="#maintaining-quality-and-innovation" className="text-custard-ink hover:underline">
                   Maintaining quality and innovation
                 </a>
               </li>
               <li>
-                <a href="#supporting-growth" className="text-primary-700 dark:text-primary-500 hover:underline">
+                <a href="#supporting-growth" className="text-custard-ink hover:underline">
                   Supporting people's growth and filling knowledge gaps
                 </a>
               </li>
             </ol>
           </li>
           <li>
-            <a href="#ethical-concerns" className="text-primary-700 dark:text-primary-500 hover:underline">
+            <a href="#ethical-concerns" className="text-custard-ink hover:underline">
               Ethical and social concerns
             </a>
             <ol className="mt-1 ml-4 space-y-1">
               <li>
-                <a href="#impact-on-employees" className="text-primary-700 dark:text-primary-500 hover:underline">
+                <a href="#impact-on-employees" className="text-custard-ink hover:underline">
                   The impact on employees
                 </a>
               </li>
               <li>
-                <a href="#impact-on-customers" className="text-primary-700 dark:text-primary-500 hover:underline">
+                <a href="#impact-on-customers" className="text-custard-ink hover:underline">
                   The impact on customers
                 </a>
               </li>
               <li>
-                <a href="#accuracy" className="text-primary-700 dark:text-primary-500 hover:underline">
+                <a href="#accuracy" className="text-custard-ink hover:underline">
                   Accuracy
                 </a>
               </li>
               <li>
-                <a href="#copyright" className="text-primary-700 dark:text-primary-500 hover:underline">
+                <a href="#copyright" className="text-custard-ink hover:underline">
                   Copyright and intellectual property
                 </a>
               </li>
               <li>
-                <a href="#environmental-impact" className="text-primary-700 dark:text-primary-500 hover:underline">
+                <a href="#environmental-impact" className="text-custard-ink hover:underline">
                   Environmental impact
                 </a>
               </li>
             </ol>
           </li>
           <li>
-            <a href="#how-to-use-ai" className="text-primary-700 dark:text-primary-500 hover:underline">
+            <a href="#how-to-use-ai" className="text-custard-ink hover:underline">
               How should we use AI in the workplace?
             </a>
           </li>
           <li>
-            <a href="#faqs" className="text-primary-700 dark:text-primary-500 hover:underline">
-              Frequently Asked Questions
+            <a href="#faqs" className="text-custard-ink hover:underline">
+              Frequently asked questions
             </a>
           </li>
           <li>
-            <a href="#conclusion" className="text-primary-700 dark:text-primary-500 hover:underline">
+            <a href="#conclusion" className="text-custard-ink hover:underline">
               Conclusion
             </a>
           </li>
@@ -226,9 +219,9 @@ export default (): ReactElement => (
           utilise services in a manner that aligns with our goals and values.
         </p>
 
-        <div className="not-prose my-6 rounded-lg border border-gray-300 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-800">
-          <p className="text-sm text-gray-700 dark:text-gray-300">
-            <strong>Note:</strong> Where I refer to "AI" I am referring to "generative Artificial Intelligence" — the
+        <div className="not-prose border-line-strong bg-surface-200 my-6 rounded-lg border p-4">
+          <p className="text-caption text-ink">
+            <strong>Note:</strong> Where I refer to "AI" I am referring to "generative Artificial Intelligence": the
             systems used to generate text, images, videos, and audio. Where I refer to "AI models", I am referring to
             Large Language Model (LLM) AIs such as Claude, ChatGPT, and Google Gemini. When referring to "AI Assistants"
             I am referencing the interfaces we use to communicate with the AI models (e.g. the Claude app or website).
@@ -251,7 +244,7 @@ export default (): ReactElement => (
           AI can help us respond to customers more quickly and more accurately, particularly outside of office hours and
           during peak periods. One example of this is AI integration into messaging platforms where customers can ask
           for assistance and have a personalised response provided to them using existing knowledge bases. This has been
-          particularly helpful for customers who make contact outside of normal support hours — customers have been able
+          particularly helpful for customers who make contact outside of normal support hours: customers have been able
           to get the help and advice they've needed 24/7.
         </p>
 
@@ -288,9 +281,9 @@ export default (): ReactElement => (
         </p>
 
         <p>
-          The real benefit with AI here is to enhance and elevate our work by allowing us to focus on what we're all
-          good at, and likely what we all take more enjoyment from. It allows us to create genuine value for customers,
-          colleagues, and the business by making greater use of our human capabilities.
+          The real benefit with AI here is to improve our work by allowing us to focus on what we're all good at, and
+          likely what we all take more enjoyment from. It allows us to create genuine value for customers, colleagues,
+          and the business by making greater use of our human capabilities.
         </p>
 
         <HeadingAnchor id="maintaining-quality-and-innovation" level={3}>
@@ -306,7 +299,7 @@ export default (): ReactElement => (
         <p>
           AI allows smaller businesses to compete against the big corporate competitors who often have far greater
           resources available to them. We can use AI to analyse market trends, trial different campaigns, develop new
-          software ideas, improve logistics, and personalise customer experiences at scale — traditionally these areas
+          software ideas, improve logistics, and personalise customer experiences at scale; traditionally these areas
           have required dedicated teams or costly third-party agencies.
         </p>
 
@@ -368,8 +361,8 @@ export default (): ReactElement => (
 
         <p>
           It remains to be seen what the medium- to long-term impact of AI will be. We are far from having anything
-          close to Artificial General Intelligence (AGI) — the hypothetical AI which would be better at most things than
-          most humans — but the current iteration of Large Language Models (LLMs), such as Claude, Gemini, and ChatGPT,
+          close to Artificial General Intelligence (AGI) (the hypothetical AI which would be better at most things than
+          most humans), but the current iteration of Large Language Models (LLMs), such as Claude, Gemini, and ChatGPT,
           are already impacting people worldwide.
         </p>
 
@@ -396,7 +389,7 @@ export default (): ReactElement => (
 
         <p>
           Not helped by somewhat dramatic headlines claiming AI is coming for all our jobs (the big news that keeps
-          being put out by Big Tech firms claim that software development is dead — despite still hiring software
+          being put out by Big Tech firms claim that software development is dead, despite still hiring software
           engineers).
         </p>
 
@@ -424,18 +417,18 @@ export default (): ReactElement => (
             </a>
           </sup>
           : the idea that there is a fixed unit of work to be completed by either human or machine. The trend throughout
-          history has been that when new technologies emerge, new jobs are created when others are changed or lost — the
+          history has been that when new technologies emerge, new jobs are created when others are changed or lost; the
           overall employment rate has remained consistent.
         </p>
 
         <p>
           There is no doubt that some roles will change, and are changing. Let's take software development as an
-          example. AI can now write software code that can be very good — this was not the case only a year ago. Yet
-          only a part of the role of a software developer is writing lines of code, much of the role is in system design
-          and architecture, planning, testing, considering dependencies, translating business requirements into
-          rules-based processes, and determining medium- to long-term effects on implementation decisions. In the near
-          future, the actual number of lines of code written entirely by an individual software developer will certainly
-          reduce — this means the skills of developers will have a shift in focus to the other areas.
+          example. AI can now write software code that can be very good; this was not the case only a year ago. Yet only
+          a part of the role of a software developer is writing lines of code, much of the role is in system design and
+          architecture, planning, testing, considering dependencies, translating business requirements into rules-based
+          processes, and determining medium- to long-term effects on implementation decisions. In the near future, the
+          actual number of lines of code written entirely by an individual software developer will certainly reduce;
+          this means the skills of developers will have a shift in focus to the other areas.
         </p>
 
         <p>
@@ -445,7 +438,7 @@ export default (): ReactElement => (
         </p>
 
         <HeadingAnchor id="skills-and-training" level={4}>
-          Skills and Training
+          Skills and training
         </HeadingAnchor>
 
         <p>
@@ -471,7 +464,7 @@ export default (): ReactElement => (
         </p>
 
         <p>
-          Similarly the rise of search engines has had the effect — people are less likely to remember information they
+          Similarly the rise of search engines has had the effect: people are less likely to remember information they
           know they can readily find on the Internet.
           <sup>
             <a href="#ref5" id="cite5">
@@ -493,8 +486,8 @@ export default (): ReactElement => (
         <p>
           Again, here I'll use software development as an example. Whilst knowing off the top of your head how to write
           particular solutions in code may become less useful, actually being able to write code will still be essential
-          to the role — edge-cases will require human intervention, and understanding code in order to explain changes
-          to an AI will still be required.
+          to the role: edge-cases will require human intervention, and understanding code in order to explain changes to
+          an AI will still be required.
         </p>
 
         <p>
@@ -505,7 +498,7 @@ export default (): ReactElement => (
         </p>
 
         <HeadingAnchor id="impact-on-customers" level={3}>
-          The Impact on Customers
+          The impact on customers
         </HeadingAnchor>
 
         <p>
@@ -527,7 +520,7 @@ export default (): ReactElement => (
 
         <p>
           Whilst those are quite obvious examples of biases, the problem runs deeper when AI is used for automated
-          decision-making without human oversight. For example, AI could be used in a hiring process — certain names or
+          decision-making without human oversight. For example, AI could be used in a hiring process: certain names or
           address locations could be prioritised over others, as the underlying data is biased towards or against
           certain demographics.
         </p>
@@ -543,7 +536,7 @@ export default (): ReactElement => (
         </HeadingAnchor>
 
         <p>
-          Responses given by AI Assistants will never be completely accurate all of the time - AI models are trained{" "}
+          Responses given by AI Assistants will never be completely accurate all of the time: AI models are trained{" "}
           <em>on</em> data, they don't <em>have access to</em> those data. If this is not understood or considered, it
           can lead to quite negative perceptions of AI, and responses from AI.
         </p>
@@ -556,7 +549,7 @@ export default (): ReactElement => (
         </p>
 
         <p>
-          AI excels at explaining well-established topics — scientific principles, historical events, widely understood
+          AI excels at explaining well-established topics: scientific principles, historical events, widely understood
           concepts, programming fundamentals, grammatical rules, and similar knowledge that's stable and
           well-documented.
         </p>
@@ -577,7 +570,7 @@ export default (): ReactElement => (
           date for an historical event, verify it. If it gives financial figures, check them. Never trust AI-provided
           academic citations, article references, or source attributions without verification. A recent example of this
           was a court case where lawyers used AI to help form arguments for a case, and the AI provided supporting case
-          law that did not actually exist — the judge was less than impressed to say the least.
+          law that did not actually exist; the judge was less than impressed to say the least.
           <sup>
             <a href="#ref8" id="cite8">
               [8]
@@ -586,12 +579,12 @@ export default (): ReactElement => (
         </p>
 
         <HeadingAnchor id="copyright" level={3}>
-          Copyright and Intellectual Property
+          Copyright and intellectual property
         </HeadingAnchor>
 
         <p>
           One of the most prominent concerns around AI relates to how AI models are trained. These systems learn from
-          vast datasets containing text, images, and code scraped from across the internet — including copyrighted
+          vast datasets containing text, images, and code scraped from across the internet, including copyrighted
           material, creative works, and content created by millions of individuals who did not explicitly consent to
           this use.
         </p>
@@ -602,8 +595,8 @@ export default (): ReactElement => (
         </p>
 
         <p>
-          AI models don't store or retrieve copies of training data — they don't "look up" information like a search
-          engine. They learn patterns, structures, and relationships from vast numbers of examples — fundamentally
+          AI models don't store or retrieve copies of training data; they don't "look up" information like a search
+          engine. They learn patterns, structures, and relationships from vast numbers of examples, fundamentally
           similar to how humans learn by reading books, viewing art, or studying others' code.
         </p>
 
@@ -623,11 +616,11 @@ export default (): ReactElement => (
           material that has not been intended to be in the public domain by authors and producers has been used in
           training data by all the major AI companies. Lawmakers and courts have yet to come to an agreed answer to
           this. Commercially, AI companies are partnering with specific content providers, such as Reddit, to allow
-          consensual access to their data — this will likely continue to be a hot topic over the next few years.
+          consensual access to their data; this will likely continue to be a hot topic over the next few years.
         </p>
 
         <HeadingAnchor id="environmental-impact" level={3}>
-          Environmental Impact
+          Environmental impact
         </HeadingAnchor>
 
         <p>
@@ -677,11 +670,11 @@ export default (): ReactElement => (
           <table>
             <thead>
               <tr>
-                <th>Item / Activity</th>
+                <th>Item / activity</th>
                 <th>Unit</th>
                 <th>Energy (Wh)</th>
                 <th>CO₂e (grams)</th>
-                <th>Water (Litres)</th>
+                <th>Water (litres)</th>
               </tr>
             </thead>
             <tbody>
@@ -709,10 +702,10 @@ export default (): ReactElement => (
                   <strong>0.2 - 2.9</strong>
                 </td>
                 <td>
-                  <strong>0.03–4</strong>
+                  <strong>0.03 to 4</strong>
                 </td>
                 <td>
-                  <strong>0.0003–0.05</strong> (Blue)
+                  <strong>0.0003 to 0.05</strong> (Blue)
                 </td>
               </tr>
               <tr>
@@ -802,7 +795,7 @@ export default (): ReactElement => (
                   <strong>36</strong>
                 </td>
                 <td>
-                  <strong>2 – 12</strong> (Blue)
+                  <strong>2 to 12</strong> (Blue)
                   <sup>
                     <a href="#ref21" id="cite21">
                       [21]
@@ -814,8 +807,8 @@ export default (): ReactElement => (
           </table>
         </div>
 
-        <div className="not-prose my-6 rounded-lg border border-gray-300 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-800">
-          <p className="text-sm text-gray-700 dark:text-gray-300">
+        <div className="not-prose border-line-strong bg-surface-200 my-6 rounded-lg border p-4">
+          <p className="text-caption text-ink">
             <strong>Note:</strong> "Blue" water is treated water, such as that used for human consumption, as opposed to
             water directly from rainfall or streams.
           </p>
@@ -832,7 +825,7 @@ export default (): ReactElement => (
 
         <p>
           The longer the prompt, the more energy it will consume. To help minimise the environmental impact of prompting
-          you can try to ensure that you do not keep long conversations with AI Assistants running — if you are starting
+          you can try to ensure that you do not keep long conversations with AI Assistants running; if you are starting
           a new or changed topic, start a new chat instead of continuing the same one.
         </p>
 
@@ -881,15 +874,11 @@ export default (): ReactElement => (
           We should use AI effectively to help ensure the responses are useful and meaningful, and not wasteful of
           resources. For this, we can broadly use the CAFE framework for remembering how to effectively prompt an AI.
           Read my guide on the CAFE framework at{" "}
-          <Link to="/ai/cafe-ai-prompt-framework" prefetch="render" className="text-primary-700 dark:text-primary-500">
+          <Link to="/ai/cafe-ai-prompt-framework" prefetch="render" className="text-custard-ink">
             www.elliotjreed.com/ai/cafe-ai-prompt-framework
           </Link>
           , or for a more in-depth prompting guide see{" "}
-          <Link
-            to="/ai/ai-prompt-engineering-guide"
-            prefetch="render"
-            className="text-primary-700 dark:text-primary-500"
-          >
+          <Link to="/ai/ai-prompt-engineering-guide" prefetch="render" className="text-custard-ink">
             www.elliotjreed.com/ai/ai-prompt-engineering-guide
           </Link>
           .
@@ -905,7 +894,7 @@ export default (): ReactElement => (
 
       <section>
         <HeadingAnchor id="faqs" level={2}>
-          Frequently Asked Questions
+          Frequently asked questions
         </HeadingAnchor>
 
         <HeadingAnchor id="faq-jobs" level={3}>
@@ -986,15 +975,15 @@ export default (): ReactElement => (
           References
         </HeadingAnchor>
 
-        <ol className="text-sm">
+        <ol className="text-caption">
           <li id="ref1">
             <a
               href="https://www.mckinsey.com/uk/our-insights/the-mckinsey-uk-blog/ai-uneven-effects-on-uk-jobs-and-talent"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-700 dark:text-primary-500"
+              className="text-custard-ink"
             >
-              McKinsey - AI's uneven effects on UK jobs and talent
+              McKinsey: AI's uneven effects on UK jobs and talent
             </a>{" "}
             <a href="#cite1" aria-label="Return to reference 1">
               ↩
@@ -1005,9 +994,9 @@ export default (): ReactElement => (
               href="https://www.investopedia.com/terms/l/lump-of-labour-fallacy.asp"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-700 dark:text-primary-500"
+              className="text-custard-ink"
             >
-              Investopedia - Lump of Labour Fallacy
+              Investopedia: Lump of Labour Fallacy
             </a>{" "}
             <a href="#cite2" aria-label="Return to reference 2">
               ↩
@@ -1018,9 +1007,9 @@ export default (): ReactElement => (
               href="https://journals.sagepub.com/doi/10.1177/0956797613504438"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-700 dark:text-primary-500"
+              className="text-custard-ink"
             >
-              Sage Journals - Photo-Taking Impairs Memory
+              Sage Journals: Photo-Taking Impairs Memory
             </a>{" "}
             <a href="#cite3" aria-label="Return to reference 3">
               ↩
@@ -1031,9 +1020,9 @@ export default (): ReactElement => (
               href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12466594/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-700 dark:text-primary-500"
+              className="text-custard-ink"
             >
-              PMC - Camera Effects on Memory
+              PMC: Camera Effects on Memory
             </a>{" "}
             <a href="#cite4" aria-label="Return to reference 4">
               ↩
@@ -1044,9 +1033,9 @@ export default (): ReactElement => (
               href="https://pubmed.ncbi.nlm.nih.gov/21764755/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-700 dark:text-primary-500"
+              className="text-custard-ink"
             >
-              PubMed - Google Effects on Memory
+              PubMed: Google Effects on Memory
             </a>{" "}
             <a href="#cite5" aria-label="Return to reference 5">
               ↩
@@ -1057,9 +1046,9 @@ export default (): ReactElement => (
               href="https://arxiv.org/abs/2601.20245"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-700 dark:text-primary-500"
+              className="text-custard-ink"
             >
-              arXiv - AI Cognitive Offloading Study
+              arXiv: AI Cognitive Offloading Study
             </a>{" "}
             <a href="#cite6" aria-label="Return to reference 6">
               ↩
@@ -1070,9 +1059,9 @@ export default (): ReactElement => (
               href="https://www.sciencedirect.com/science/article/pii/S2949761224000208"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-700 dark:text-primary-500"
+              className="text-custard-ink"
             >
-              ScienceDirect - AI Bias Study
+              ScienceDirect: AI Bias Study
             </a>{" "}
             <a href="#cite7" aria-label="Return to reference 7">
               ↩
@@ -1083,9 +1072,9 @@ export default (): ReactElement => (
               href="https://www.theguardian.com/technology/2025/jun/06/high-court-tells-uk-lawyers-to-urgently-stop-misuse-of-ai-in-legal-work"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-700 dark:text-primary-500"
+              className="text-custard-ink"
             >
-              The Guardian - High Court warns lawyers about AI misuse
+              The Guardian: High Court warns lawyers about AI misuse
             </a>{" "}
             <a href="#cite8" aria-label="Return to reference 8">
               ↩
@@ -1096,9 +1085,9 @@ export default (): ReactElement => (
               href="https://arxiv.org/abs/2508.15734"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-700 dark:text-primary-500"
+              className="text-custard-ink"
             >
-              arXiv - AI Energy Consumption Study
+              arXiv: AI Energy Consumption Study
             </a>{" "}
             <a href="#cite9" aria-label="Return to reference 9">
               ↩
@@ -1109,9 +1098,9 @@ export default (): ReactElement => (
               href="https://pubmed.ncbi.nlm.nih.gov/29853680/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-700 dark:text-primary-500"
+              className="text-custard-ink"
             >
-              PubMed - Food Energy Study
+              PubMed: Food Energy Study
             </a>{" "}
             <a href="#cite10" aria-label="Return to reference 10">
               ↩
@@ -1122,9 +1111,9 @@ export default (): ReactElement => (
               href="https://arxiv.org/abs/2508.15734"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-700 dark:text-primary-500"
+              className="text-custard-ink"
             >
-              arXiv - AI Water Usage Study
+              arXiv: AI Water Usage Study
             </a>{" "}
             <a href="#cite11" aria-label="Return to reference 11">
               ↩
@@ -1135,9 +1124,9 @@ export default (): ReactElement => (
               href="https://www.nature.com/articles/s41598-024-54271-x"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-700 dark:text-primary-500"
+              className="text-custard-ink"
             >
-              Nature - AI Environmental Impact
+              Nature: AI Environmental Impact
             </a>{" "}
             <a href="#cite12" aria-label="Return to reference 12">
               ↩
@@ -1148,9 +1137,9 @@ export default (): ReactElement => (
               href="https://blog.samaltman.com/the-gentle-singularity"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-700 dark:text-primary-500"
+              className="text-custard-ink"
             >
-              Sam Altman - The Gentle Singularity
+              Sam Altman: The Gentle Singularity
             </a>{" "}
             <a href="#cite13" aria-label="Return to reference 13">
               ↩
@@ -1161,9 +1150,9 @@ export default (): ReactElement => (
               href="https://cloud.google.com/blog/products/infrastructure/measuring-the-environmental-impact-of-ai-inference"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-700 dark:text-primary-500"
+              className="text-custard-ink"
             >
-              Google Cloud - Measuring AI Environmental Impact
+              Google Cloud: Measuring AI Environmental Impact
             </a>{" "}
             <a href="#cite14" aria-label="Return to reference 14">
               ↩
@@ -1174,9 +1163,9 @@ export default (): ReactElement => (
               href="https://www.sciencedirect.com/science/article/pii/S0308521X18305675"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-700 dark:text-primary-500"
+              className="text-custard-ink"
             >
-              ScienceDirect - Beef Environmental Impact
+              ScienceDirect: Beef Environmental Impact
             </a>{" "}
             <a href="#cite15" aria-label="Return to reference 15">
               ↩
@@ -1187,9 +1176,9 @@ export default (): ReactElement => (
               href="https://www.science.org/doi/10.1126/science.aaq0216"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-700 dark:text-primary-500"
+              className="text-custard-ink"
             >
-              Science - Food Production Environmental Impact
+              Science: Food Production Environmental Impact
             </a>{" "}
             <a href="#cite16" aria-label="Return to reference 16">
               ↩
@@ -1200,9 +1189,9 @@ export default (): ReactElement => (
               href="https://www.researchgate.net/publication/303031899_Life_Cycle_Assessment_of_Cheese_and_Whey_Production_in_the_USA"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-700 dark:text-primary-500"
+              className="text-custard-ink"
             >
-              ResearchGate - Cheese Production LCA
+              ResearchGate: Cheese Production LCA
             </a>{" "}
             <a href="#cite17" aria-label="Return to reference 17">
               ↩
@@ -1213,9 +1202,9 @@ export default (): ReactElement => (
               href="https://www.science.org/doi/10.1126/science.aaq0216"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-700 dark:text-primary-500"
+              className="text-custard-ink"
             >
-              Science - Dairy Environmental Impact
+              Science: Dairy Environmental Impact
             </a>{" "}
             <a href="#cite18" aria-label="Return to reference 18">
               ↩
@@ -1226,9 +1215,9 @@ export default (): ReactElement => (
               href="https://www.compleatfood.com/case-studies/net-zero-sausage-roll/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-700 dark:text-primary-500"
+              className="text-custard-ink"
             >
-              Compleat Food - Sausage Environmental Impact
+              Compleat Food: Sausage Environmental Impact
             </a>{" "}
             <a href="#cite19" aria-label="Return to reference 19">
               ↩
@@ -1239,9 +1228,9 @@ export default (): ReactElement => (
               href="https://www.carbonbrief.org/factcheck-what-is-the-carbon-footprint-of-streaming-video-on-netflix/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-700 dark:text-primary-500"
+              className="text-custard-ink"
             >
-              Carbon Brief - Streaming Video Carbon Footprint
+              Carbon Brief: Streaming Video Carbon Footprint
             </a>{" "}
             <a href="#cite20" aria-label="Return to reference 20">
               ↩
@@ -1252,9 +1241,9 @@ export default (): ReactElement => (
               href="https://www.carbonbrief.org/factcheck-what-is-the-carbon-footprint-of-streaming-video-on-netflix/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-700 dark:text-primary-500"
+              className="text-custard-ink"
             >
-              Carbon Brief - Streaming Water Usage
+              Carbon Brief: Streaming Water Usage
             </a>{" "}
             <a href="#cite21" aria-label="Return to reference 21">
               ↩

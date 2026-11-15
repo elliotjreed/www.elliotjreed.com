@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { createAmpLink, createMeta } from "./seo";
+import { createMeta } from "./seo";
 
 describe("createMeta", () => {
   const baseOptions = {
@@ -60,17 +60,5 @@ describe("createMeta", () => {
     const meta = createMeta(baseOptions);
 
     expect(meta.find((m) => "name" in m && m.name === "keywords")).toBeUndefined();
-  });
-});
-
-describe("createAmpLink", () => {
-  it("returns an amphtml link descriptor for the given path", () => {
-    const link = createAmpLink("/ai/some-guide");
-
-    expect(link).toEqual({
-      tagName: "link",
-      rel: "amphtml",
-      href: "https://www.elliotjreed.com/amp/ai/some-guide",
-    });
   });
 });

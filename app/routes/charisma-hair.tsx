@@ -1,7 +1,7 @@
 import type { ReactElement } from "react";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs } from "~/data/schemaData";
-import { createAmpLink, createMeta } from "~/utils/seo";
+import { createMeta } from "~/utils/seo";
 
 const DESCRIPTION = "Charisma Hair has closed. A thank you and farewell message from Charis, Jo, and Lily.";
 
@@ -32,13 +32,12 @@ export const meta = () => [
       { name: "Charisma Hair", url: "https://www.elliotjreed.com/charisma-hair" },
     ]),
   },
-  createAmpLink("/charisma-hair"),
 ];
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
+  <section className="ejr-article divide-line divide-y">
     <PageHeader title="Charisma Hair">
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose ejr-lead">
         Charisma Hair in Onehouse, Suffolk closed in March 2026 following the retirement of Charis.
         <br />
         <em>
@@ -54,7 +53,7 @@ export default (): ReactElement => (
         alt="The Charisma Hair salon sign"
         width={1200}
         height={1600}
-        className="h-auto w-full rounded-md border-2 border-gray-200 object-cover dark:border-gray-700"
+        className="border-line h-auto w-full rounded-md border-2 object-cover"
         loading="lazy"
       />
       <img
@@ -62,7 +61,7 @@ export default (): ReactElement => (
         alt="Charis, Jo, and Lily together at Charisma Hair"
         width={2048}
         height={1536}
-        className="h-auto w-full rounded-md border-2 border-gray-200 object-cover dark:border-gray-700"
+        className="border-line h-auto w-full rounded-md border-2 object-cover"
         loading="lazy"
       />
     </div>

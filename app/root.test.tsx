@@ -1,13 +1,20 @@
 import { render, screen } from "@testing-library/react";
 import { isRouteErrorResponse } from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import { NonceContext } from "~/context/nonce";
+import { themeScript } from "~/utils/themeScript";
 import { ErrorBoundary, Layout } from "./root";
 
 vi.mock("react-router", async () => {
   const actual = await vi.importActual("react-router");
   return {
     ...actual,
-    Links: () => <span data-testid="links">Links</span>,
+    Links: ({ nonce }: { nonce?: string }) => (
+      <span data-testid="links" data-nonce={nonce}>
+        Links
+      </span>
+    ),
     Meta: () => <span data-testid="meta">Meta</span>,
     ScrollRestoration: () => <span data-testid="scroll-restoration">ScrollRestoration</span>,
     Scripts: () => <span data-testid="scripts">Scripts</span>,
@@ -86,7 +93,7 @@ describe("root", () => {
 
       const skipLink = screen.getByRole("link", { name: "Skip to content" });
       expect(skipLink).toBeInTheDocument();
-      expect(skipLink).toHaveAttribute("href", "#main-content");
+      expect(skipLink).toHaveAttribute("href", "#website");
     });
 
     it("should have main content area with id", () => {
@@ -96,7 +103,7 @@ describe("root", () => {
         </Layout>,
       );
 
-      const main = container.querySelector("main#main-content");
+      const main = container.querySelector("main#website");
       expect(main).toBeInTheDocument();
     });
 
@@ -138,15 +145,54 @@ describe("root", () => {
       expect(manifest).toHaveAttribute("href", "/manifest.webmanifest");
     });
 
-    it("should have theme-color meta tag", () => {
+    it("should have a theme-color meta tag for each colour scheme", () => {
       render(
         <Layout>
           <div>Content</div>
         </Layout>,
       );
 
-      const themeColor = document.querySelector('meta[name="theme-color"]');
-      expect(themeColor).toHaveAttribute("content", "#1f2937");
+      const lightThemeColor = document.querySelector('meta[name="theme-color"][media="(prefers-color-scheme: light)"]');
+      const darkThemeColor = document.querySelector('meta[name="theme-color"][media="(prefers-color-scheme: dark)"]');
+      expect(lightThemeColor).toHaveAttribute("content", "#fbf5f4");
+      expect(darkThemeColor).toHaveAttribute("content", "#170f0e");
+    });
+
+    it("should run the theme script in the head before the page renders", () => {
+      render(
+        <Layout>
+          <div>Content</div>
+        </Layout>,
+      );
+
+      const scripts = Array.from(document.head.querySelectorAll("script"));
+      expect(scripts.some((script) => script.textContent === themeScript)).toBe(true);
+    });
+
+    it("should use the build-time Font Awesome stylesheet rather than injecting one at runtime", () => {
+      expect(config.autoAddCss).toBe(false);
+    });
+
+    it("should pass the CSP nonce to Links so server and client render the same attribute", () => {
+      render(
+        <NonceContext.Provider value="test-nonce">
+          <Layout>
+            <div>Content</div>
+          </Layout>
+        </NonceContext.Provider>,
+      );
+
+      expect(document.querySelector('[data-testid="links"]')).toHaveAttribute("data-nonce", "test-nonce");
+    });
+
+    it("should not pass an empty nonce to Links when there is no nonce", () => {
+      render(
+        <Layout>
+          <div>Content</div>
+        </Layout>,
+      );
+
+      expect(document.querySelector('[data-testid="links"]')).not.toHaveAttribute("data-nonce");
     });
 
     it("should render without throwing during error boundary path (no nonce context)", () => {
@@ -184,10 +230,10 @@ describe("root", () => {
       const nav = screen.getByRole("navigation", { name: "Suggested sections" });
       expect(nav).toBeInTheDocument();
 
-      expect(screen.getByRole("link", { name: "AI Guides" })).toHaveAttribute("href", "/ai");
-      expect(screen.getByRole("link", { name: "ZSH / Bash Shell Guides" })).toHaveAttribute("href", "/linux");
-      expect(screen.getByRole("link", { name: "Docker Guides" })).toHaveAttribute("href", "/docker");
-      expect(screen.getByRole("link", { name: "PHP Guides" })).toHaveAttribute("href", "/php");
+      expect(screen.getByRole("link", { name: "AI guides" })).toHaveAttribute("href", "/ai");
+      expect(screen.getByRole("link", { name: "ZSH / Bash shell guides" })).toHaveAttribute("href", "/linux");
+      expect(screen.getByRole("link", { name: "Docker guides" })).toHaveAttribute("href", "/docker");
+      expect(screen.getByRole("link", { name: "PHP guides" })).toHaveAttribute("href", "/php");
     });
 
     it("should render generic error message for other route errors", () => {
@@ -206,7 +252,7 @@ describe("root", () => {
       const error = null;
       render(<ErrorBoundary params={{}} error={error} />);
 
-      expect(screen.getByRole("heading", { name: "Oops!" })).toBeInTheDocument();
+      expect(screen.getByRole("heading", { name: "Something went wrong" })).toBeInTheDocument();
       expect(screen.getByText("An unexpected error occurred.")).toBeInTheDocument();
     });
 
@@ -216,7 +262,7 @@ describe("root", () => {
       const { container } = render(<ErrorBoundary params={{}} error={null} />);
       const section = container.querySelector("section");
 
-      expect(section).toHaveClass("divide-y", "divide-gray-200", "dark:divide-gray-700");
+      expect(section).toHaveClass("divide-y", "divide-line");
     });
   });
 });

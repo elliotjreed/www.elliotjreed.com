@@ -16,8 +16,7 @@ const YES_NO_OPTIONS = [
   { value: "no", label: "No" },
 ];
 
-const secondaryButtonClassName =
-  "rounded border border-gray-300 px-4 py-2 font-semibold text-gray-700 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500 focus:outline-none dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700";
+const secondaryButtonClassName = "ejr-btn ejr-btn-secondary";
 
 export const PersonalFinanceFlowchart: FC = (): ReactElement => {
   // Answers start empty so the server-rendered markup matches the first client
@@ -86,11 +85,11 @@ export const PersonalFinanceFlowchart: FC = (): ReactElement => {
   return (
     <div className="mx-auto max-w-4xl space-y-8 p-4">
       <div className="text-center">
-        <h1 className="mb-2 text-4xl font-bold text-gray-900 dark:text-gray-100">
+        <h1 className="text-display text-ink mb-2 font-bold">
           <FontAwesomeIcon icon={faSitemap as IconProp} className="mr-3" />
-          Where Should I Put My Money?
+          Where should I put my money?
         </h1>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-ink-muted">
           Answer a few questions to find the one thing worth doing next with your money, based on the UK Personal
           Finance flowchart.
         </p>
@@ -132,22 +131,14 @@ export const PersonalFinanceFlowchart: FC = (): ReactElement => {
 
       <FlowchartRoadmap clearedSteps={clearedSteps} currentStep={currentStep} />
 
-      <section
-        aria-labelledby="attribution-heading"
-        className="rounded-lg border border-gray-200 bg-white p-6 text-sm text-gray-700 shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300"
-      >
-        <h2 id="attribution-heading" className="text-base font-semibold text-gray-900 dark:text-gray-100">
+      <section aria-labelledby="attribution-heading" className="bg-surface-200 text-caption text-ink rounded-lg p-6">
+        <h2 id="attribution-heading" className="text-body text-ink font-semibold">
           Source and licence
         </h2>
         <p className="mt-3">
           This tool follows the order of operations set out in the UK Personal Finance flowchart (version{" "}
           {FLOWCHART_VERSION}), maintained by the{" "}
-          <a
-            href={FLOWCHART_SOURCE_URL}
-            className="text-primary-700 dark:text-primary-300 underline"
-            rel="noopener noreferrer external"
-            target="_blank"
-          >
+          <a href={FLOWCHART_SOURCE_URL} className="ejr-link" rel="noopener noreferrer external" target="_blank">
             ukpersonal.finance
           </a>{" "}
           community. The original is a diagram; this version asks you a question at each step instead, so you are told
@@ -157,7 +148,7 @@ export const PersonalFinanceFlowchart: FC = (): ReactElement => {
           The original flowchart is published under the{" "}
           <a
             href={FLOWCHART_LICENCE_URL}
-            className="text-primary-700 dark:text-primary-300 underline"
+            className="ejr-link"
             rel="noopener noreferrer external license"
             target="_blank"
           >
@@ -167,7 +158,7 @@ export const PersonalFinanceFlowchart: FC = (): ReactElement => {
         </p>
       </section>
 
-      <p className="rounded border border-amber-300 bg-amber-100 p-4 text-sm text-amber-900 dark:border-amber-600 dark:bg-amber-900 dark:text-amber-100">
+      <p className="bg-warning-soft text-caption text-ink rounded-md p-4">
         <strong>This is not financial advice.</strong> It is general guidance that suits most people most of the time,
         and it cannot account for your own circumstances. For free impartial help, contact MoneyHelper; for debt,
         contact StepChange, National Debtline or Citizens Advice, none of which charge. For advice on your own

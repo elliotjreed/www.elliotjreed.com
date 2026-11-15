@@ -3,7 +3,7 @@ import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createAmpLink, createMeta } from "~/utils/seo";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -38,7 +38,6 @@ export const meta = () => [
       },
     ]),
   },
-  createAmpLink("/linux/fix-ssh-permissions-after-moving-directory"),
 ];
 
 const directoryPermission: CodeSnippetInterface = {
@@ -78,26 +77,26 @@ const functionSnippet: CodeSnippetInterface = {
 };
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
+  <section className="ejr-article divide-line divide-y">
     <PageHeader
-      title="Fix SSH Directory Permissions"
+      tone="tint"
+      title="Fix SSH directory permissions"
       meta={
-        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div className="text-caption text-ink-subtle flex flex-wrap items-center gap-x-6 gap-y-1">
           <span>By Elliot J. Reed</span>
-          <span>•</span>
           <time dateTime="2026-02-10">
             Published: 10<sup>th</sup> February 2026
           </time>
         </div>
       }
     >
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose ejr-lead">
         When moving your .ssh directory to a new computer, incorrect file permissions can prevent SSH from working and
         create security vulnerabilities. This guide shows you how to correctly set SSH permissions on Linux and Mac.
       </p>
     </PageHeader>
 
-    <div className="prose dark:prose-dark max-w-none">
+    <div className="prose ejr-prose">
       <section>
         <p>
           SSH is strict about file permissions for security reasons. If your SSH keys or config files have permissions
@@ -107,7 +106,7 @@ export default (): ReactElement => (
           files between operating systems.
         </p>
 
-        <h2>Understanding SSH Permission Requirements</h2>
+        <h2>Understanding SSH permission requirements</h2>
 
         <p>SSH requires specific permissions to ensure your private keys remain secure:</p>
 
@@ -126,14 +125,14 @@ export default (): ReactElement => (
           </li>
         </ul>
 
-        <h2>Setting Correct SSH Permissions Step-by-Step</h2>
+        <h2>Setting correct SSH permissions step by step</h2>
 
         <p>
           Here's how to fix SSH permissions for each file type. These commands should be run from your home directory or
           use the full path to your .ssh directory.
         </p>
 
-        <h3>1. Fix .ssh Directory Permissions</h3>
+        <h3>1. Fix .ssh directory permissions</h3>
         <CodeSnippet language="bash" code={directoryPermission.code} title={directoryPermission.title} />
         <p>
           This sets the .ssh directory to <code>700</code> (read, write, and execute for owner only). The directory
@@ -141,7 +140,7 @@ export default (): ReactElement => (
           reading your SSH configuration or keys.
         </p>
 
-        <h3>2. Fix Private Key Permissions</h3>
+        <h3>2. Fix private key permissions</h3>
         <CodeSnippet language="bash" code={privateKeyPermission.code} title={privateKeyPermission.title} />
         <p>
           This sets your private key to <code>600</code> (read and write for owner only). Private keys must never be
@@ -149,14 +148,14 @@ export default (): ReactElement => (
           <code>id_ecdsa</code>), apply the same permissions to each one.
         </p>
 
-        <h3>3. Fix Config File Permissions</h3>
+        <h3>3. Fix config file permissions</h3>
         <CodeSnippet language="bash" code={configPermission.code} title={configPermission.title} />
         <p>
           This sets your SSH config file to <code>600</code>. The config file may contain sensitive information like
           hostnames, usernames, and key file locations, so it should only be accessible to you.
         </p>
 
-        <h3>4. Fix Public Key Permissions</h3>
+        <h3>4. Fix public key permissions</h3>
         <CodeSnippet language="bash" code={publicKeyPermission.code} title={publicKeyPermission.title} />
         <p>
           This sets your public key to <code>644</code> (read and write for owner, read-only for group and others).
@@ -164,14 +163,14 @@ export default (): ReactElement => (
           modify them.
         </p>
 
-        <h3>5. Fix authorized_keys Permissions</h3>
+        <h3>5. Fix authorized_keys permissions</h3>
         <CodeSnippet language="bash" code={authorizedKeysPermission.code} title={authorizedKeysPermission.title} />
         <p>
           This sets authorized_keys to <code>600</code>. This file contains public keys that are allowed to authenticate
           to your account, so only you should be able to read or modify it.
         </p>
 
-        <h2>Convenient Shell Function</h2>
+        <h2>Convenient shell function</h2>
 
         <p>
           Instead of running each command individually, you can create a shell function that fixes all SSH permissions
@@ -193,7 +192,7 @@ export default (): ReactElement => (
           that even if you have additional key files or subdirectories, they'll start with secure permissions.
         </p>
 
-        <HeadingAnchor id="faq">Frequently Asked Questions</HeadingAnchor>
+        <HeadingAnchor id="faq">Frequently asked questions</HeadingAnchor>
 
         <h3>Why is SSH so strict about file permissions?</h3>
         <p>

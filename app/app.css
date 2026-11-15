@@ -1,273 +1,322 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@import "./tokens.css";
+@import "./components.css";
 
-@tailwind utilities;
+@theme static {
+  --font-display: "Besley", "Rockwell", "Clarendon", Georgia, serif;
+  --font-text: "Atkinson Hyperlegible Next", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "Atkinson Hyperlegible Mono", ui-monospace, Menlo, Consolas, monospace;
+  --font-sans: var(--font-text);
 
-@custom-variant dark (&:where(.dark, .dark *));
-
-@theme {
-  --letter-spacing: 0.2rem;
-
-  --font-mono: "Fira Code", "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Courier New", "Courier", monospace;
-  --font-sans:
-    "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    "Noto Color Emoji";
-  --font-heading: "Fira Sans", ui-sans-serif, system-ui, sans-serif;
-
-  --color-white: #f9f8f6;
-
-  --color-navy-50: #f2f7fd;
-  --color-navy-100: #e4ecfa;
-  --color-navy-200: #c4d9f3;
-  --color-navy-300: #90b9e9;
-  --color-navy-400: #5595db;
-  --color-navy-500: #2f78c8;
-  --color-navy-600: #1f5daa;
-  --color-navy-700: #1b4a89;
-  --color-navy-800: #1a4072;
-  --color-navy-900: #1a365d;
-  --color-navy-950: #12233f;
-
-  --color-sage-50: #f2f7f5;
-  --color-sage-100: #dfece4;
-  --color-sage-200: #c1d9cc;
-  --color-sage-300: #98bdaa;
-  --color-sage-400: #6b9c85;
-  --color-sage-500: #518971;
-  --color-sage-600: #376452;
-  --color-sage-700: #2c5043;
-  --color-sage-800: #254035;
-  --color-sage-900: #1f352d;
-  --color-sage-950: #111d19;
-
-  --color-primary-50: var(--color-navy-50);
-  --color-primary-100: var(--color-navy-100);
-  --color-primary-200: var(--color-navy-200);
-  --color-primary-300: var(--color-navy-300);
-  --color-primary-400: var(--color-navy-400);
-  --color-primary-500: var(--color-navy-500);
-  --color-primary-600: var(--color-navy-600);
-  --color-primary-700: var(--color-navy-700);
-  --color-primary-800: var(--color-navy-800);
-  --color-primary-900: var(--color-navy-900);
-
-  --color-secondary-50: var(--color-sage-50);
-  --color-secondary-100: var(--color-sage-100);
-  --color-secondary-200: var(--color-sage-200);
-  --color-secondary-300: var(--color-sage-300);
-  --color-secondary-400: var(--color-sage-400);
-  --color-secondary-500: var(--color-sage-500);
-  --color-secondary-600: var(--color-sage-600);
-  --color-secondary-700: var(--color-sage-700);
-  --color-secondary-800: var(--color-sage-800);
-  --color-secondary-900: var(--color-sage-900);
-
-  --color-gray-50: var(--color-neutral-50);
-  --color-gray-100: var(--color-neutral-100);
-  --color-gray-200: var(--color-neutral-200);
-  --color-gray-300: var(--color-neutral-300);
-  --color-gray-400: var(--color-neutral-400);
-  --color-gray-500: var(--color-neutral-500);
-  --color-gray-600: var(--color-neutral-600);
-  --color-gray-700: var(--color-neutral-700);
-  --color-gray-800: var(--color-neutral-800);
-  --color-gray-900: var(--color-neutral-900);
+  --radius-*: initial;
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
 }
 
+@theme inline {
+  --color-*: initial;
+  --color-surface-000: var(--surface-000);
+  --color-surface-100: var(--surface-100);
+  --color-surface-200: var(--surface-200);
+  --color-surface-300: var(--surface-300);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
+  --color-custard: var(--custard);
+  --color-on-custard: var(--on-custard);
+  --color-custard-soft: var(--custard-soft);
+  --color-custard-ink: var(--custard-ink);
+  --color-rhubarb: var(--rhubarb);
+  --color-on-rhubarb: var(--on-rhubarb);
+  --color-rhubarb-soft: var(--rhubarb-soft);
+  --color-damson: var(--damson);
+  --color-damson-soft: var(--damson-soft);
+  --color-focus: var(--focus);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-code-bg: var(--code-bg);
+  --color-code-ink: var(--code-ink);
+  --color-code-comment: var(--code-comment);
+  --color-code-keyword: var(--code-keyword);
+  --color-code-string: var(--code-string);
+  --color-code-number: var(--code-number);
+  --color-code-function: var(--code-function);
+
+  --shadow-*: initial;
+}
+
+/* Static so the type tokens are always emitted: the component and prose CSS reads them directly. */
+@theme static {
+  --text-*: initial;
+  --text-display-xl: 4rem;
+  --text-display-xl--line-height: 4.125rem;
+  --text-display-xl--letter-spacing: -0.02em;
+  --text-display-xl--font-weight: 700;
+  --text-display: 2.75rem;
+  --text-display--line-height: 3.125rem;
+  --text-display--letter-spacing: -0.015em;
+  --text-display--font-weight: 700;
+  --text-heading-1: 2rem;
+  --text-heading-1--line-height: 2.375rem;
+  --text-heading-1--letter-spacing: -0.01em;
+  --text-heading-1--font-weight: 700;
+  --text-heading-2: 1.625rem;
+  --text-heading-2--line-height: 2rem;
+  --text-heading-2--font-weight: 600;
+  --text-heading-3: 1.3125rem;
+  --text-heading-3--line-height: 1.75rem;
+  --text-heading-3--font-weight: 600;
+  --text-lead: 1.3125rem;
+  --text-lead--line-height: 2rem;
+  --text-body-long: 1.125rem;
+  --text-body-long--line-height: 1.875rem;
+  --text-body: 1rem;
+  --text-body--line-height: 1.5rem;
+  --text-label: 0.875rem;
+  --text-label--line-height: 1.25rem;
+  --text-label--font-weight: 700;
+  --text-caption: 0.875rem;
+  --text-caption--line-height: 1.25rem;
+  --text-figure: 2rem;
+  --text-figure--line-height: 2.375rem;
+  --text-figure--font-weight: 600;
+  --text-code: 0.9375rem;
+  --text-code--line-height: 1.5rem;
+  --text-data: 0.875rem;
+  --text-data--line-height: 1.25rem;
+}
+
+@utility shadow-overlay {
+  box-shadow: var(--shadow-overlay);
+}
+
+@utility band-rhubarb {
+  background: var(--rhubarb);
+  color: var(--on-rhubarb);
+  box-shadow: 0 0 0 100vmax var(--rhubarb);
+  clip-path: inset(0 -100vmax);
+}
+
+@utility band-custard {
+  background: var(--custard);
+  box-shadow: 0 0 0 100vmax var(--custard);
+  clip-path: inset(0 -100vmax);
+}
+
+@utility band-soft {
+  background: var(--rhubarb-soft);
+  box-shadow: 0 0 0 100vmax var(--rhubarb-soft);
+  clip-path: inset(0 -100vmax);
+}
+
+@layer base {
+  .band-rhubarb :where(a, button):focus-visible {
+    box-shadow:
+      0 0 0 2px var(--rhubarb),
+      0 0 0 4px var(--on-rhubarb);
+  }
+}
+
+/* Declared after Tailwind's layers so it overrides the typography plugin, which emits into utilities.
+ * Only classes used alongside .prose belong here: anything in this layer also beats every utility. */
 @layer prose {
-  :where(.prose) {
-    color: var(--color-gray-700);
-    line-height: 1.8;
+  .prose {
+    --tw-prose-body: var(--ink);
+    --tw-prose-headings: var(--ink);
+    --tw-prose-lead: var(--ink-muted);
+    --tw-prose-links: var(--custard-ink);
+    --tw-prose-bold: var(--ink);
+    --tw-prose-counters: var(--custard-ink);
+    --tw-prose-bullets: var(--custard-ink);
+    --tw-prose-hr: var(--line);
+    --tw-prose-quotes: var(--ink);
+    --tw-prose-quote-borders: var(--line-strong);
+    --tw-prose-captions: var(--ink-subtle);
+    --tw-prose-kbd: var(--ink);
+    --tw-prose-code: var(--code-ink);
+    --tw-prose-pre-code: var(--code-ink);
+    --tw-prose-pre-bg: var(--code-bg);
+    --tw-prose-th-borders: var(--line-strong);
+    --tw-prose-td-borders: var(--line);
+    font-size: var(--text-body-long);
+    line-height: var(--text-body-long--line-height);
+    counter-reset: sidenote;
   }
-  :where(.prose) a {
-    color: var(--color-primary-700);
-    text-decoration: none;
-  }
-  :where(.prose) a:hover {
-    color: var(--color-primary-800);
+  .prose :where(a):not(:where(.not-prose, .not-prose *)) {
+    color: var(--custard-ink);
+    font-weight: inherit;
     text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
   }
-  :where(.prose) h1,
-  :where(.prose) h2,
-  :where(.prose) h3,
-  :where(.prose) h4,
-  :where(.prose) h5,
-  :where(.prose) h6 {
-    font-family: var(--font-heading);
+  .prose :where(a):not(:where(.not-prose, .not-prose *)):hover {
+    text-decoration-thickness: 2px;
   }
-  :where(.prose) h1,
-  :where(.prose) h2 {
+  .prose :where(h1, h2, h3, h4, h5, h6):not(:where(.not-prose, .not-prose *)) {
+    font-family: var(--font-display);
+    color: var(--ink);
+  }
+  .prose :where(h2):not(:where(.not-prose, .not-prose *)) {
+    font-size: var(--text-heading-2);
+    line-height: var(--text-heading-2--line-height);
+    font-weight: var(--text-heading-2--font-weight);
+    margin-top: var(--space-7);
+    margin-bottom: var(--space-4);
+  }
+  .prose :where(h3):not(:where(.not-prose, .not-prose *)) {
+    font-size: var(--text-heading-3);
+    line-height: var(--text-heading-3--line-height);
+    font-weight: var(--text-heading-3--font-weight);
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-3);
+  }
+  .prose :where(h4, h5, h6):not(:where(.not-prose, .not-prose *)) {
+    font-family: var(--font-text);
+    font-size: var(--text-body-long);
+    line-height: var(--text-body-long--line-height);
     font-weight: 700;
-    letter-spacing: var(--tracking-wide);
-    color: var(--color-gray-900);
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-2);
   }
-  :where(.prose) h2 {
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
+  .prose :where(p):not(:where(.not-prose, .not-prose *)) {
+    margin-top: 0;
+    margin-bottom: var(--space-5);
   }
-  :where(.prose) h3 {
+  .prose :where(ul, ol):not(:where(.not-prose, .not-prose *)) {
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+  .prose :where(li):not(:where(.not-prose, .not-prose *)) {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-2);
+  }
+  .prose :where(ol > li):not(:where(.not-prose, .not-prose *))::marker {
     font-weight: 700;
-    color: var(--color-gray-800);
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
-    letter-spacing: 0.01em;
   }
-  :where(.prose) h4 {
-    font-weight: 600;
-    color: var(--color-gray-800);
-    font-size: 1.125rem;
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
+  .prose :where(code):not(:where(.not-prose, .not-prose *, pre *)) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    font-weight: inherit;
+    padding: 0 var(--space-1);
+    border-radius: var(--radius-sm);
+    background: var(--code-bg);
+    color: var(--code-ink);
   }
-  :where(.prose) h5 {
-    font-weight: 600;
-    color: var(--color-gray-700);
-    font-style: italic;
-  }
-  :where(.prose) h6 {
-    font-weight: 500;
-    color: var(--color-gray-600);
-    text-transform: uppercase;
-    font-size: 0.875rem;
-    letter-spacing: 0.05em;
-  }
-  :where(.prose) p {
-    margin-bottom: 1.25rem;
-  }
-  :where(.prose) ul,
-  :where(.prose) ol {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-  :where(.prose) li {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-  :where(.prose) pre {
-    background-color: var(--color-gray-800);
-  }
-  :where(.prose) code {
-    color: var(--color-gray-300);
-    background-color: var(--color-gray-800);
-    padding: 2px 4px;
-    border-radius: 0.25rem;
-  }
-  :where(.prose) code::before,
-  :where(.prose) code::after {
+  .prose :where(code):not(:where(.not-prose, .not-prose *))::before,
+  .prose :where(code):not(:where(.not-prose, .not-prose *))::after {
     content: none;
   }
-  :where(.prose) a code {
-    color: var(--color-primary-500);
-  }
-  :where(.prose) details {
-    background-color: var(--color-gray-100);
-    padding: 2px 4px;
-    border-radius: 0.25rem;
-  }
-  :where(.prose) hr {
-    border-color: var(--color-gray-200);
-  }
-  :where(.prose) ol li::marker {
-    font-weight: 600;
-    color: var(--color-gray-500);
-  }
-  :where(.prose) ul li::marker {
-    color: var(--color-gray-500);
-  }
-  :where(.prose) strong {
-    color: var(--color-gray-600);
-  }
-  :where(.prose) blockquote {
-    color: var(--color-gray-900);
-    border-left-color: var(--color-gray-200);
-  }
-  :where(.prose) kbd {
-    background-color: var(--color-gray-100);
-    color: var(--color-gray-800);
-    padding: 0.125rem 0.375rem;
-    border-radius: 0.25rem;
-    border: 1px solid var(--color-gray-300);
-    box-shadow:
-      0 1px 0 0 var(--color-gray-300),
-      0 0 0 2px var(--color-white) inset;
+  .prose :where(pre):not(:where(.not-prose, .not-prose *)) {
     font-family: var(--font-mono);
-    font-size: 0.875em;
+    font-size: var(--text-code);
+    line-height: var(--text-code--line-height);
+    border-radius: var(--radius-md);
   }
-}
+  .prose :where(details):not(:where(.not-prose, .not-prose *)) {
+    background: var(--surface-200);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+  }
+  .prose :where(blockquote):not(:where(.not-prose, .not-prose *)) {
+    font-style: normal;
+    font-weight: inherit;
+    border-left-width: 1px;
+  }
+  .prose :where(kbd):not(:where(.not-prose, .not-prose *)) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    padding: 0 var(--space-1);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--line-strong);
+    background: var(--surface-200);
+    color: var(--ink);
+    box-shadow: none;
+  }
+  .prose :where(thead th):not(:where(.not-prose, .not-prose *)) {
+    font-size: var(--text-label);
+    line-height: var(--text-label--line-height);
+    font-weight: var(--text-label--font-weight);
+    color: var(--ink);
+  }
 
-@layer prose-dark {
-  .dark :where(.prose) {
-    color: var(--color-gray-300);
+  .ejr-lead {
+    font-size: var(--text-lead);
+    line-height: var(--text-lead--line-height);
+    color: var(--ink-muted);
+    max-width: var(--measure);
   }
-  .dark :where(.prose) a {
-    color: var(--color-primary-400);
-    text-decoration: none;
+  .prose .ejr-callout :where(p) {
+    margin: 0;
   }
-  .dark :where(.prose) a:hover {
-    color: var(--color-primary-400);
-    text-decoration: underline;
+  .prose .ejr-callout :where(p + p:not(.ejr-callout-label + p)) {
+    margin-top: var(--space-3);
   }
-  .dark :where(.prose) a code {
-    color: var(--color-primary-400);
+  .prose .ejr-callout,
+  .prose .ejr-code {
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-5);
   }
-  .dark :where(.prose) h1,
-  .dark :where(.prose) h2 {
+
+  .ejr-sn-ref {
+    counter-increment: sidenote;
+    font: inherit;
+    color: var(--custard-ink);
+    background: none;
+    border: 0;
+    padding: 0 1px;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+  }
+  .ejr-sn-ref::after {
+    content: counter(sidenote);
+    font-size: 0.8125rem;
     font-weight: 700;
-    letter-spacing: var(--tracking-wide);
-    color: var(--color-gray-100);
+    vertical-align: super;
+    line-height: 0;
   }
-  .dark :where(.prose) h3 {
+  .ejr-sidenote {
+    display: block;
+    margin: var(--space-2) 0 var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    background: var(--custard-soft);
+    font-size: var(--text-caption);
+    line-height: 1.3125rem;
+    color: var(--ink-muted);
+  }
+  .ejr-sidenote-num {
+    color: var(--custard-ink);
     font-weight: 700;
-    color: var(--color-gray-200);
+    margin-right: var(--space-1);
   }
-  .dark :where(.prose) h4 {
-    font-weight: 600;
-    color: var(--color-gray-200);
+  .ejr-article {
+    container: sidenotes / inline-size;
   }
-  .dark :where(.prose) h5 {
-    font-weight: 600;
-    color: var(--color-gray-300);
+  .ejr-prose {
+    max-width: var(--measure);
   }
-  .dark :where(.prose) h6 {
-    font-weight: 500;
-    color: var(--color-gray-400);
-  }
-  .dark :where(.prose) pre {
-    background-color: var(--color-gray-800);
-  }
-  .dark :where(.prose) code,
-  .dark :where(.prose) details {
-    background-color: var(--color-gray-800);
-  }
-  .dark :where(.prose) hr {
-    border-color: var(--color-gray-700);
-  }
-  .dark :where(.prose) ol li::marker {
-    font-weight: 600;
-    color: var(--color-gray-400);
-  }
-  .dark :where(.prose) ul li::marker {
-    color: var(--color-gray-400);
-  }
-  .dark :where(.prose) strong {
-    color: var(--color-gray-100);
-  }
-  .dark :where(.prose) thead th {
-    color: var(--color-gray-100);
-  }
-  .dark :where(.prose) tbody tr {
-    border-bottom-color: var(--color-gray-700);
-  }
-  .dark :where(.prose) blockquote {
-    color: var(--color-gray-100);
-    border-left-color: var(--color-gray-700);
-  }
-  .dark :where(.prose) kbd {
-    background-color: var(--color-gray-700);
-    color: var(--color-gray-100);
-    border: 1px solid var(--color-gray-600);
-    box-shadow:
-      0 1px 0 0 var(--color-gray-600),
-      0 0 0 2px var(--color-gray-800) inset;
+  @container sidenotes (min-width: 900px) {
+    .ejr-prose {
+      max-width: min(var(--measure), calc(100% - var(--sidenote-width) - var(--space-6)));
+    }
+    .ejr-sidenote {
+      float: right;
+      clear: right;
+      width: var(--sidenote-width);
+      margin: var(--space-1) calc(-1 * (var(--sidenote-width) + var(--space-6))) var(--space-4) 0;
+      padding: 0;
+      background: none;
+    }
   }
 }

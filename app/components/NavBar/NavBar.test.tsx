@@ -20,14 +20,14 @@ describe("NavBar", () => {
     expect(header).toBeInTheDocument();
   });
 
-  it("should render home link with EJR text", () => {
+  it("should render home link with the wordmark", () => {
     render(
       <BrowserRouter>
         <NavBar />
       </BrowserRouter>,
     );
 
-    const homeLink = screen.getByRole("link", { name: "EJR" });
+    const homeLink = screen.getByRole("link", { name: "Elliot J. Reed" });
     expect(homeLink).toBeInTheDocument();
     expect(homeLink).toHaveAttribute("href", "/");
   });

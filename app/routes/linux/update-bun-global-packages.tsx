@@ -3,7 +3,7 @@ import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createAmpLink, createMeta } from "~/utils/seo";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -36,7 +36,6 @@ export const meta = () => [
       { name: "Update Global Bun Packages", url: "https://www.elliotjreed.com/linux/update-bun-global-packages" },
     ]),
   },
-  createAmpLink("/linux/update-bun-global-packages"),
 ];
 
 const updateCommand: CodeSnippetInterface = {
@@ -55,28 +54,28 @@ const runAliasSnippet: CodeSnippetInterface = {
 };
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
+  <section className="ejr-article divide-line divide-y">
     <PageHeader
-      title="How to Update Global Packages with Bun"
+      tone="tint"
+      title="How to update global packages with Bun"
       meta={
-        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div className="text-caption text-ink-subtle flex flex-wrap items-center gap-x-6 gap-y-1">
           <span>By Elliot J. Reed</span>
-          <span>•</span>
           <time dateTime="2026-02-18">
             Published: 18<sup>th</sup> February 2026
           </time>
         </div>
       }
     >
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose ejr-lead">
         Bun does not support a <code>-g</code> flag for updating globally-installed packages. To update them, navigate
         to Bun's global install directory and run <code>bun update</code> from there.
       </p>
     </PageHeader>
 
-    <div className="prose dark:prose-dark max-w-none">
+    <div className="prose ejr-prose">
       <section>
-        <h2>The Problem: No -g Flag in Bun</h2>
+        <h2>The problem: No -g flag in Bun</h2>
         <p>
           When using npm, updating global packages is straightforward: <code>npm update -g</code>. Bun does not support
           this flag. Running <code>bun update -g</code> will not update your globally-installed packages.
@@ -87,11 +86,11 @@ export default (): ReactElement => (
           directory.
         </p>
 
-        <h2>How to Update Global Bun Packages</h2>
+        <h2>How to update global Bun packages</h2>
         <p>Navigate to Bun's global installation directory and run the update command:</p>
         <CodeSnippet language="bash" code={updateCommand.code} title={updateCommand.title} />
 
-        <h2>Adding a Shell Alias</h2>
+        <h2>Adding a shell alias</h2>
         <p>
           To avoid typing the full path each time, add an alias to your <code>.bashrc</code> or <code>.zshrc</code>{" "}
           file:
@@ -104,7 +103,7 @@ export default (): ReactElement => (
         </p>
         <CodeSnippet language="bash" code={runAliasSnippet.code} title={runAliasSnippet.title} />
 
-        <HeadingAnchor id="faq">Frequently Asked Questions</HeadingAnchor>
+        <HeadingAnchor id="faq">Frequently asked questions</HeadingAnchor>
 
         <h3>Why does Bun not support bun update -g?</h3>
         <p>

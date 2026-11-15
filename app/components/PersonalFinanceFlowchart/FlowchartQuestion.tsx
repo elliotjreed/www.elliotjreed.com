@@ -21,16 +21,12 @@ export const FlowchartQuestion: FC<FlowchartQuestionProps> = ({
   onAnswer,
   progressLabel,
 }): ReactElement => (
-  <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-md dark:border-gray-700 dark:bg-gray-800">
-    {progressLabel !== undefined && (
-      <p className="text-primary-700 dark:text-primary-300 mb-2 text-sm font-semibold tracking-wide uppercase">
-        {progressLabel}
-      </p>
-    )}
+  <div className="bg-surface-200 rounded-lg p-6">
+    {progressLabel !== undefined && <p className="text-caption text-ink-subtle mb-2">{progressLabel}</p>}
 
-    <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{question}</h2>
+    <h2 className="text-heading-3 text-ink font-semibold">{question}</h2>
 
-    {help !== undefined && <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">{help}</p>}
+    {help !== undefined && <p className="text-caption text-ink-muted mt-2">{help}</p>}
 
     <div className="mt-6 flex flex-wrap gap-3">
       {options.map((option) => (
@@ -38,7 +34,7 @@ export const FlowchartQuestion: FC<FlowchartQuestionProps> = ({
           key={option.value}
           type="button"
           onClick={(): void => onAnswer(option.value)}
-          className="border-primary-600 text-primary-700 hover:bg-primary-600 focus:ring-primary-500 dark:border-primary-400 dark:text-primary-200 dark:hover:bg-primary-700 flex-1 rounded border-2 px-4 py-3 font-semibold hover:text-white focus:ring-2 focus:ring-offset-2 focus:outline-none"
+          className="ejr-btn ejr-btn-secondary flex-1 justify-center"
         >
           {option.label}
         </button>

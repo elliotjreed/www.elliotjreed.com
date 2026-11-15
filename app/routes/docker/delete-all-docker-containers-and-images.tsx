@@ -1,9 +1,10 @@
 import type { ReactElement } from "react";
+import { Callout } from "~/components/Callout/Callout";
 import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createAmpLink, createMeta } from "~/utils/seo";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -36,7 +37,6 @@ export const meta = () => [
       { name: "Clean up Docker", url: "https://www.elliotjreed.com/docker/delete-all-docker-containers-and-images" },
     ]),
   },
-  createAmpLink("/docker/delete-all-docker-containers-and-images"),
 ];
 
 const snippet: CodeSnippetInterface = {
@@ -70,58 +70,57 @@ const snippet: CodeSnippetInterface = {
 };
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
+  <section className="ejr-article divide-line divide-y">
     <PageHeader
+      tone="tint"
       title="Remove all Docker containers, images, networks and volumes"
       meta={
-        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div className="text-caption text-ink-subtle flex flex-wrap items-center gap-x-6 gap-y-1">
           <span>By Elliot J. Reed</span>
-          <span>•</span>
           <time dateTime="2016-12-29">
             Published: 29<sup>th</sup> December 2016
           </time>
-          <span>•</span>
           <time dateTime="2026-01-30">
             Last updated: 30<sup>th</sup> January 2026
           </time>
         </div>
       }
     >
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose ejr-lead">
         The modern way to clean up Docker resources is the <code>docker system prune</code> command. However, this guide
         also covers manual cleanup methods and provides a convenient Bash function for comprehensive Docker maintenance.
       </p>
     </PageHeader>
 
-    <div className="prose dark:prose-dark max-w-none">
+    <div className="prose ejr-prose">
       <section>
-        <h2>Table of Contents</h2>
+        <h2>Table of contents</h2>
         <ul>
           <li>
-            <a href="#modern-approach" className="text-primary-700 dark:text-primary-500 hover:underline">
-              Modern Approach: docker system prune
+            <a href="#modern-approach" className="text-custard-ink hover:underline">
+              Modern approach: docker system prune
             </a>
           </li>
           <li>
-            <a href="#individual-cleanup" className="text-primary-700 dark:text-primary-500 hover:underline">
+            <a href="#individual-cleanup" className="text-custard-ink hover:underline">
               Cleaning up individually
             </a>
           </li>
           <li>
-            <a href="#bash-function" className="text-primary-700 dark:text-primary-500 hover:underline">
+            <a href="#bash-function" className="text-custard-ink hover:underline">
               Bash function for comprehensive cleanup
             </a>
           </li>
           <li>
-            <a href="#faq" className="text-primary-700 dark:text-primary-500 hover:underline">
-              Frequently Asked Questions
+            <a href="#faq" className="text-custard-ink hover:underline">
+              Frequently asked questions
             </a>
           </li>
         </ul>
       </section>
 
       <section>
-        <HeadingAnchor id="modern-approach">Modern Approach: docker system prune</HeadingAnchor>
+        <HeadingAnchor id="modern-approach">Modern approach: docker system prune</HeadingAnchor>
 
         <p>
           Docker provides a built-in command for cleaning up unused resources. The <code>docker system prune</code>{" "}
@@ -191,15 +190,14 @@ export default (): ReactElement => (
           again for the images (as you may want to keep these for development and not have to re-download them).
         </p>
 
-        <aside className="my-2 border-l-4 border-yellow-500 bg-yellow-50 p-4 dark:bg-yellow-900/20">
-          <p className="font-bold">Warning:</p>
+        <Callout variant="warning" label="Warning">
           <p>
             This function will permanently delete Docker containers, networks, volumes, and images. Make sure you have
             backups of any important data stored in volumes, and ensure you won't need to quickly restore any
             containers. Image deletion in particular can be time-consuming to reverse as images will need to be
             re-downloaded.
           </p>
-        </aside>
+        </Callout>
 
         <p>
           You could add this to your .bashrc file (eg. <code>nano ~/.bashrc</code>) so you always have it to use.
@@ -216,7 +214,7 @@ export default (): ReactElement => (
 
         <CodeSnippet language="bash" code={snippet.code} title={snippet.title} />
 
-        <HeadingAnchor id="faq">Frequently Asked Questions</HeadingAnchor>
+        <HeadingAnchor id="faq">Frequently asked questions</HeadingAnchor>
 
         <h3>Is this reversible?</h3>
         <p>

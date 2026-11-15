@@ -35,7 +35,7 @@ describe("FinanceCategoryRoute", () => {
     it("returns the page title and canonical URL", () => {
       const metaTags = meta();
 
-      expect(metaTags).toContainEqual({ title: "Finance Tools | EJR" });
+      expect(metaTags).toContainEqual({ title: "Finance tools | EJR" });
       expect(metaTags).toContainEqual({
         property: "og:url",
         content: "https://www.elliotjreed.com/finance",
@@ -53,14 +53,8 @@ describe("FinanceCategoryRoute", () => {
 
       expect(collection?.["script:ld+json"]).toMatchObject({
         "@type": "CollectionPage",
-        name: "Finance Tools",
+        name: "Finance tools",
       });
-    });
-
-    it("does not offer an AMP version", () => {
-      const metaTags = meta() as Array<Record<string, unknown>>;
-
-      expect(metaTags.some((tag) => tag.rel === "amphtml")).toBe(false);
     });
   });
 });

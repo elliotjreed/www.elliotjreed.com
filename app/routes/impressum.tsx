@@ -2,7 +2,7 @@ import type { ReactElement } from "react";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { emailAddress } from "~/data/emailAddress";
 import { createBreadcrumbs } from "~/data/schemaData";
-import { createAmpLink, createMeta } from "~/utils/seo";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -31,20 +31,17 @@ export const meta = () => [
       { name: "Impressum", url: "https://www.elliotjreed.com/impressum" },
     ]),
   },
-  createAmpLink("/impressum"),
 ];
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
+  <section className="ejr-article divide-line divide-y">
     <PageHeader title="Impressum">
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
-        Legal information and imprint in accordance with applicable regulations.
-      </p>
+      <p className="prose ejr-lead">Legal information and imprint in accordance with applicable regulations.</p>
     </PageHeader>
 
-    <div className="prose dark:prose-dark max-w-none">
+    <div className="prose ejr-prose">
       <section>
-        <h2>Information According to Law</h2>
+        <h2>Information according to law</h2>
         <p>
           <strong>Elliot J. Reed</strong>
           <br />
@@ -53,7 +50,7 @@ export default (): ReactElement => (
       </section>
 
       <section>
-        <h2>Responsibility for Content</h2>
+        <h2>Responsibility for content</h2>
         <p>
           The content of this website has been compiled with meticulous care and to the best of my knowledge. However, I
           cannot assume any liability for the up-to-dateness, completeness, or accuracy of any of the pages.
@@ -66,7 +63,7 @@ export default (): ReactElement => (
       </section>
 
       <section>
-        <h2>Responsibility for Links</h2>
+        <h2>Responsibility for links</h2>
         <p>
           This website contains links to third-party websites. I have no influence whatsoever on the information on
           these websites and accept no guarantee for its correctness. The content of such third-party sites is the
@@ -88,10 +85,10 @@ export default (): ReactElement => (
       </section>
 
       <section>
-        <h2>Data Protection</h2>
+        <h2>Data protection</h2>
         <p>
           For information about how I collect, use, and protect your personal data, please refer to my{" "}
-          <a href="/privacy">Privacy Policy</a>.
+          <a href="/privacy">Privacy policy</a>.
         </p>
       </section>
     </div>

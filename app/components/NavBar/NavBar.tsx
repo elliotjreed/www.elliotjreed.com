@@ -1,5 +1,5 @@
 import { type FC, type ReactElement, type RefObject, useEffect, useRef, useState } from "react";
-import { NavLink } from "react-router";
+import { NavLink, useLocation } from "react-router";
 import { DropdownMenuIcon } from "~/components/DropdownMenuIcon/DropdownMenuIcon";
 import { HamburgerIcon } from "~/components/HamburgerIcon/HamburgerIcon";
 import { NavLinkItem } from "~/components/NavLinkItem/NavLinkItem";
@@ -8,7 +8,14 @@ import { Search } from "~/components/Search/Search";
 import { ThemeSwitch } from "~/components/ThemeSwitch/ThemeSwitch";
 import { type StaticLink, staticLinks } from "~/data/staticLinks";
 
+const containsPath = (link: StaticLink, pathname: string): boolean =>
+  link.href === pathname || (link.children ?? []).some((child: StaticLink): boolean => containsPath(child, pathname));
+
+const dropdownLinkClassName = (isActive: boolean, inactiveClassName: string): string =>
+  isActive ? "bg-rhubarb-soft text-ink" : inactiveClassName;
+
 export const NavBar: FC = (): ReactElement => {
+  const { pathname } = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [openSubDropdown, setOpenSubDropdown] = useState<string | null>(null);
@@ -141,15 +148,17 @@ export const NavBar: FC = (): ReactElement => {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur-sm dark:border-gray-700 dark:bg-gray-900/95 print:hidden">
-        <div ref={navWrapperRef} className="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-4">
-          <NavLink to="/" className="flex items-center space-x-3 rtl:space-x-reverse" prefetch="render">
-            <span
-              className="text-primary-900 hover:text-primary-700 text-4xl font-bold transition-colors dark:text-gray-300 dark:hover:text-white"
-              style={{ fontFamily: "Fira Sans" }}
-            >
-              EJR
-            </span>
+      <header className="border-line bg-surface-100 sticky top-0 z-50 border-b print:hidden">
+        <div
+          ref={navWrapperRef}
+          className="mx-auto flex max-w-(--content-max) items-center justify-between px-4 py-3 sm:px-8"
+        >
+          <NavLink
+            to="/"
+            className="font-display text-heading-3 text-rhubarb rounded-sm font-bold whitespace-nowrap no-underline"
+            prefetch="render"
+          >
+            Elliot J<span className="text-custard-ink">.</span> Reed
           </NavLink>
 
           <div className="flex items-center gap-2">
@@ -186,7 +195,11 @@ export const NavBar: FC = (): ReactElement => {
                           aria-expanded={hoveredDropdown === link.title}
                           aria-controls={desktopMenuId}
                           onClick={() => setHoveredDropdown((current) => (current === link.title ? null : link.title))}
-                          className="flex items-center gap-1 rounded-lg px-4 py-2 font-medium text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+                          className={`flex items-center gap-1 rounded-md px-4 py-2 font-medium transition-colors ${
+                            containsPath(link, pathname)
+                              ? "bg-rhubarb text-on-rhubarb"
+                              : "text-ink hover:bg-surface-300"
+                          }`}
                         >
                           {link.title}
                           <DropdownMenuIcon isOpen={hoveredDropdown === link.title} />
@@ -200,18 +213,14 @@ export const NavBar: FC = (): ReactElement => {
                               : "pointer-events-none invisible opacity-0"
                           }`}
                         >
-                          <div className="max-w-[320px] min-w-[280px] overflow-hidden rounded-lg border border-gray-200 bg-white shadow-xl dark:border-gray-700 dark:bg-gray-800">
+                          <div className="bg-surface-200 shadow-overlay max-w-[320px] min-w-[280px] overflow-hidden rounded-lg">
                             <div className="max-h-[70vh] overflow-y-auto">
                               {validChildren.map((child, childIndex) => (
                                 <div key={child.title || child.href}>
                                   {child.children?.length ? (
                                     // Category with subcategories
-                                    <div
-                                      className={childIndex > 0 ? "border-t border-gray-200 dark:border-gray-700" : ""}
-                                    >
-                                      <div className="bg-gray-50 px-4 py-2 text-xs font-semibold tracking-wider text-gray-500 uppercase dark:bg-gray-900 dark:text-gray-400">
-                                        {child.title}
-                                      </div>
+                                    <div className={childIndex > 0 ? "border-line border-t" : ""}>
+                                      <div className="text-label text-ink-subtle px-4 pt-3 pb-1">{child.title}</div>
                                       <ul>
                                         {child.children
                                           .filter((subChild: StaticLink) => subChild.showInNavigation && subChild.href)
@@ -219,7 +228,9 @@ export const NavBar: FC = (): ReactElement => {
                                             <li key={subChild.href}>
                                               <NavLink
                                                 to={subChild.href as string}
-                                                className="hover:text-primary-700 dark:hover:text-primary-400 block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700"
+                                                className={({ isActive }): string =>
+                                                  `text-caption block px-4 py-2 transition-colors ${dropdownLinkClassName(isActive, "text-ink hover:bg-surface-300")}`
+                                                }
                                                 prefetch="intent"
                                               >
                                                 {subChild.title}
@@ -231,7 +242,9 @@ export const NavBar: FC = (): ReactElement => {
                                   ) : child.href ? (
                                     <NavLink
                                       to={child.href}
-                                      className="hover:text-primary-700 dark:hover:text-primary-400 block px-4 py-3 text-sm text-gray-700 transition-colors hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700"
+                                      className={({ isActive }): string =>
+                                        `text-caption block px-4 py-3 transition-colors ${dropdownLinkClassName(isActive, "text-ink hover:bg-surface-300")}`
+                                      }
                                       prefetch="intent"
                                     >
                                       {child.title}
@@ -266,7 +279,7 @@ export const NavBar: FC = (): ReactElement => {
               aria-label="Toggle navigation menu"
               onClick={toggleMenu}
               ref={menuButtonRef}
-              className="focus:ring-primary-500 dark:focus:ring-primary-600 inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-gray-500 transition-colors hover:bg-gray-100 focus:ring-2 focus:outline-none md:hidden dark:text-gray-400 dark:hover:bg-gray-800"
+              className="text-ink-muted hover:bg-surface-300 inline-flex h-11 w-11 items-center justify-center rounded-md p-2 transition-colors md:hidden"
             >
               <HamburgerIcon isOpen={isMenuOpen} />
             </button>
@@ -275,7 +288,7 @@ export const NavBar: FC = (): ReactElement => {
       </header>
 
       <div
-        className={`fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+        className={`bg-surface-000/80 fixed inset-0 z-[60] transition-opacity duration-300 md:hidden ${
           isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         onClick={closeMenu}
@@ -288,13 +301,13 @@ export const NavBar: FC = (): ReactElement => {
         role="dialog"
         aria-modal="true"
         aria-labelledby="mobile-navigation-title"
-        className={`fixed top-0 right-0 z-[70] h-full w-[280px] transform bg-white shadow-2xl transition-transform duration-300 ease-in-out md:hidden dark:bg-gray-900 ${
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
+        className={`bg-surface-200 fixed top-0 right-0 z-[70] h-full w-[280px] transform transition-[transform,visibility] duration-300 ease-in-out motion-reduce:transition-none md:hidden ${
+          isMenuOpen ? "shadow-overlay visible translate-x-0" : "invisible translate-x-full"
         }`}
       >
         <div className="flex h-full flex-col overflow-y-auto">
-          <div className="flex items-center justify-between border-b border-gray-200 p-4 dark:border-gray-700">
-            <span id="mobile-navigation-title" className="text-xl font-bold text-gray-900 dark:text-white">
+          <div className="border-line flex items-center justify-between border-b p-4">
+            <span id="mobile-navigation-title" className="font-display text-heading-3 text-ink font-bold">
               Menu
             </span>
             <button
@@ -302,7 +315,7 @@ export const NavBar: FC = (): ReactElement => {
               onClick={closeMenu}
               aria-label="Close menu"
               ref={closeButtonRef}
-              className="rounded-lg p-2 text-gray-500 transition-colors hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
+              className="text-ink-muted hover:bg-surface-300 inline-flex h-11 w-11 items-center justify-center rounded-md transition-colors"
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <title>Close icon</title>
@@ -311,7 +324,7 @@ export const NavBar: FC = (): ReactElement => {
             </button>
           </div>
 
-          <div className="border-b border-gray-200 p-4 dark:border-gray-700">
+          <div className="border-line border-b p-4">
             <MobileSearch onNavigate={closeMenu} />
           </div>
 
@@ -327,17 +340,15 @@ export const NavBar: FC = (): ReactElement => {
                     <button
                       type="button"
                       onClick={() => toggleDropdown(link.title)}
-                      className="flex w-full items-center justify-between rounded-lg px-4 py-3 font-medium text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+                      className={`flex w-full items-center justify-between rounded-md px-4 py-3 font-medium transition-colors ${
+                        containsPath(link, pathname) ? "bg-rhubarb text-on-rhubarb" : "text-ink hover:bg-surface-300"
+                      }`}
                     >
                       {link.title}
                       <DropdownMenuIcon isOpen={openDropdown === link.title} />
                     </button>
 
-                    <div
-                      className={`mt-1 ml-2 space-y-1 overflow-hidden transition-[max-height,opacity] duration-200 ${
-                        openDropdown === link.title ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
-                      }`}
-                    >
+                    <div className={`mt-1 ml-2 space-y-1 ${openDropdown === link.title ? "block" : "hidden"}`}>
                       {validChildren.map((child: StaticLink): ReactElement => (
                         <div key={child.title || child.href}>
                           {child.children?.length ? (
@@ -345,15 +356,13 @@ export const NavBar: FC = (): ReactElement => {
                               <button
                                 type="button"
                                 onClick={(): void => toggleSubDropdown(child.title)}
-                                className="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                                className="text-caption text-ink-muted hover:bg-surface-300 flex w-full items-center justify-between rounded-md px-3 py-2 font-medium transition-colors"
                               >
                                 {child.title}
                                 <DropdownMenuIcon isOpen={openSubDropdown === child.title} />
                               </button>
                               <ul
-                                className={`mt-1 ml-3 space-y-1 overflow-hidden transition-[max-height,opacity] duration-200 ${
-                                  openSubDropdown === child.title ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
-                                }`}
+                                className={`mt-1 ml-3 space-y-1 ${openSubDropdown === child.title ? "block" : "hidden"}`}
                               >
                                 {child.children
                                   .filter((subChild: StaticLink) => subChild.showInNavigation && subChild.href)
@@ -362,7 +371,9 @@ export const NavBar: FC = (): ReactElement => {
                                       <NavLink
                                         to={subChild.href as string}
                                         onClick={closeMenu}
-                                        className="hover:text-primary-700 dark:hover:text-primary-400 block rounded-lg px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-800"
+                                        className={({ isActive }): string =>
+                                          `text-caption block rounded-md px-3 py-2 transition-colors ${dropdownLinkClassName(isActive, "text-ink-muted hover:bg-surface-300 hover:text-ink")}`
+                                        }
                                         prefetch="intent"
                                       >
                                         {subChild.title}
@@ -375,7 +386,9 @@ export const NavBar: FC = (): ReactElement => {
                             <NavLink
                               to={child.href}
                               onClick={closeMenu}
-                              className="hover:text-primary-700 dark:hover:text-primary-400 block rounded-lg px-4 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-800"
+                              className={({ isActive }): string =>
+                                `text-caption block rounded-md px-4 py-2 transition-colors ${dropdownLinkClassName(isActive, "text-ink-muted hover:bg-surface-300 hover:text-ink")}`
+                              }
                               prefetch="intent"
                             >
                               {child.title}

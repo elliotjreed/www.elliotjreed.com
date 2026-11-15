@@ -59,7 +59,7 @@ describe("NavLinkItem", () => {
     );
 
     const link = screen.getByRole("link", { name: "Test Link" });
-    expect(link).toHaveClass("hover:bg-gray-100", "dark:hover:bg-gray-800");
+    expect(link).toHaveClass("hover:bg-surface-300");
   });
 
   it("should have base styling classes", () => {
@@ -71,7 +71,7 @@ describe("NavLinkItem", () => {
     );
 
     const link = screen.getByRole("link", { name: "Test Link" });
-    expect(link).toHaveClass("block", "px-4", "py-3", "md:py-2", "rounded-lg", "font-medium");
+    expect(link).toHaveClass("block", "px-4", "py-3", "md:py-2", "rounded-md", "font-medium");
   });
 
   it("should have text color classes", () => {
@@ -83,7 +83,7 @@ describe("NavLinkItem", () => {
     );
 
     const link = screen.getByRole("link", { name: "Test Link" });
-    expect(link).toHaveClass("text-gray-700", "dark:text-gray-200");
+    expect(link).toHaveClass("text-ink");
   });
 
   it("should have prefetch intent attribute", () => {
@@ -107,7 +107,7 @@ describe("NavLinkItem", () => {
     );
 
     const link = screen.getByRole("link", { name: "Test Link" });
-    expect(link).toHaveClass("text-primary-700", "dark:text-primary-400", "bg-primary-50", "dark:bg-gray-800");
+    expect(link).toHaveClass("bg-rhubarb", "text-on-rhubarb");
   });
 
   it("should render list item", () => {

@@ -64,11 +64,11 @@ export const PensionPlanner: FC = (): ReactElement => {
   return (
     <div className="mx-auto max-w-6xl space-y-8 p-4">
       <div className="text-center">
-        <h1 className="mb-2 text-4xl font-bold text-gray-900 dark:text-gray-100">
+        <h1 className="text-display text-ink mb-2 font-bold">
           <FontAwesomeIcon icon={faSterlingSign as IconProp} className="mr-3" />
-          UK Pension Planner
+          UK pension planner
         </h1>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-ink-muted">
           Forecast your pension using recognised UK models, factor in the state pension, and check whether early
           retirement adds up.
         </p>
@@ -87,10 +87,10 @@ export const PensionPlanner: FC = (): ReactElement => {
           <ResultsSummary results={results} />
 
           <section aria-labelledby="chart-heading" className="space-y-4">
-            <h2 id="chart-heading" className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+            <h2 id="chart-heading" className="text-heading-2 text-ink font-semibold">
               Projected pot over time
             </h2>
-            <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-md dark:border-gray-700 dark:bg-gray-800">
+            <div className="bg-surface-200 rounded-lg p-6">
               <ProjectionChart
                 median={results.chartMedian}
                 band={results.chartBand}
@@ -119,7 +119,7 @@ export const PensionPlanner: FC = (): ReactElement => {
       )}
 
       {results === null && (
-        <p className="rounded border border-amber-300 bg-amber-100 p-4 text-sm text-amber-900 dark:border-amber-600 dark:bg-amber-900 dark:text-amber-100">
+        <p className="bg-warning-soft text-caption text-ink rounded-md p-4">
           <strong>This is not financial advice.</strong> This calculator is a guidance tool using simplified
           assumptions. Investment returns are not guaranteed and tax rules change. For advice on your own circumstances,
           speak to a regulated financial adviser; free impartial guidance is available from MoneyHelper and Pension

@@ -3,7 +3,7 @@ import { CodeSnippet } from "~/components/CodeSnippet/CodeSnippet";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createAmpLink, createMeta } from "~/utils/seo";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -90,41 +90,39 @@ export const meta = () => [
       ],
     },
   },
-  createAmpLink("/ai/running-multiple-claude-code-instances"),
 ];
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
+  <section className="ejr-article divide-line divide-y">
     <PageHeader
-      title="How to Run Multiple Claude Code Instances"
+      tone="tint"
+      title="How to run multiple Claude Code instances"
       meta={
-        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div className="text-caption text-ink-subtle flex flex-wrap items-center gap-x-6 gap-y-1">
           <span>By Elliot J. Reed</span>
-          <span>•</span>
           <time dateTime="2026-02-10">
             Published: 10<sup>th</sup> February 2026
           </time>
-          <span>•</span>
           <time dateTime="2026-02-10">
             Last updated: 10<sup>th</sup> February 2026
           </time>
         </div>
       }
     >
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose ejr-lead">
         Run multiple Claude Code instances simultaneously for different accounts using custom configuration directories.
         Perfect for separating personal and work projects or managing multiple Claude subscriptions.
       </p>
     </PageHeader>
 
-    <div className="prose dark:prose-dark max-w-none">
+    <div className="prose ejr-prose">
       <section>
         <p>
           If you use two or more Claude accounts for Claude Code, for example a personal one and a work one, it is
           possible to run both at the same time, with optionally different configurations or the same configurations.
         </p>
 
-        <h2>Running a Second Instance</h2>
+        <h2>Running a second instance</h2>
 
         <p>
           On Linux and Mac, the default Claude Code settings directory is located in your home directory at{" "}
@@ -152,7 +150,7 @@ export default (): ReactElement => (
 
         <CodeSnippet language="bash" code="claude" title="Launch default Claude Code instance" />
 
-        <h2>Creating Shell Aliases</h2>
+        <h2>Creating shell aliases</h2>
 
         <p>
           You can also create aliases in Bash or ZSH, so running <code>cc</code> in your terminal will open your default
@@ -180,7 +178,7 @@ alias cc2='CLAUDE_CONFIG_DIR=~/.claude-secondary claude'`}
           <code>cc2</code>.
         </p>
 
-        <h3>Alternative Alias Names</h3>
+        <h3>Alternative alias names</h3>
 
         <p>
           You might prefer more descriptive alias names based on your use case. Here are some alternative naming
@@ -199,7 +197,7 @@ alias claude-client-b='CLAUDE_CONFIG_DIR=~/.claude-client-b claude'`}
           title="Alternative alias naming conventions"
         />
 
-        <h2>Synchronising Configuration Files</h2>
+        <h2>Synchronising configuration files</h2>
 
         <p>
           You can also create symbolic links (symlinks) to keep one configuration across both instances. This is useful
@@ -218,7 +216,7 @@ alias claude-client-b='CLAUDE_CONFIG_DIR=~/.claude-client-b claude'`}
           title="Create symbolic link to share Skills"
         />
 
-        <h3>Other Configuration Files You Can Share</h3>
+        <h3>Other configuration files you can share</h3>
 
         <p>Beyond Skills, you might want to share other configuration files between instances:</p>
 
@@ -241,7 +239,7 @@ ln -s ~/.claude/settings.json ~/.claude-secondary/settings.json`}
           this file if you want multiple instances to use the same account credentials.
         </p>
 
-        <HeadingAnchor id="faq">Frequently Asked Questions</HeadingAnchor>
+        <HeadingAnchor id="faq">Frequently asked questions</HeadingAnchor>
 
         <h3>Do I need multiple Claude subscriptions to run multiple instances?</h3>
         <p>

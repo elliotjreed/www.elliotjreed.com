@@ -5,7 +5,7 @@ import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
 import claudeCodeStatuslineImage from "~/images/articles/claude-code-custom-statusline.png";
 import claudeCodeStatuslineImageWebp from "~/images/articles/claude-code-custom-statusline.webp";
-import { createAmpLink, createMeta } from "~/utils/seo";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -96,28 +96,26 @@ export const meta = () => [
       ],
     },
   },
-  createAmpLink("/ai/claude-code-guide-and-tips"),
 ];
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
+  <section className="ejr-article divide-line divide-y">
     <PageHeader
-      title="Claude Code Guide: Features and Best Practices"
+      tone="tint"
+      title="Claude Code guide: Features and best practices"
       meta={
-        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div className="text-caption text-ink-subtle flex flex-wrap items-center gap-x-6 gap-y-1">
           <span>By Elliot J. Reed</span>
-          <span>•</span>
           <time dateTime="2026-01-24">
             Published: 24<sup>th</sup> January 2026
           </time>
-          <span>•</span>
           <time dateTime="2026-01-30">
             Last updated: 30<sup>th</sup> January 2026
           </time>
         </div>
       }
     >
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose ejr-lead">
         <strong>
           Claude Code is Anthropic's official command-line interface (CLI) that brings Claude AI directly into your
           terminal for AI-assisted software development.
@@ -125,19 +123,19 @@ export default (): ReactElement => (
         It enables developers to write, refactor, debug, and deploy code using natural language prompts whilst
         maintaining full control over file operations and command execution.
       </p>
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose ejr-lead">
         This guide covers installation, model selection, the CLAUDE.md context file, plan mode for feature
         implementation, checkpoints for undoing changes, Git integration, settings configuration, and advanced features
         including Claude Skills, subagents, and MCP servers for extending functionality.
       </p>
     </PageHeader>
 
-    <div className="prose dark:prose-dark max-w-none">
+    <div className="prose ejr-prose">
       <section id="table-of-contents">
         <h2>Contents</h2>
         <ol>
           <li>
-            <a href="#cheatsheet">Quick Reference Cheatsheet</a>
+            <a href="#cheatsheet">Quick reference cheatsheet</a>
           </li>
           <li>
             <a href="#installation">Installation</a>
@@ -152,40 +150,40 @@ export default (): ReactElement => (
             <a href="#models">Models</a>
           </li>
           <li>
-            <a href="#claudemd-providing-claude-code-with-context">CLAUDE.md - Providing Claude Code with Context</a>
+            <a href="#claudemd-providing-claude-code-with-context">CLAUDE.md - Providing Claude Code with context</a>
           </li>
           <li>
-            <a href="#prompting-planning-and-execution">Prompting, Planning, and Execution</a>
+            <a href="#prompting-planning-and-execution">Prompting, planning, and execution</a>
           </li>
           <li>
-            <a href="#checkpoints-undoing-code-and-context">Checkpoints: Undoing Code and Context</a>
+            <a href="#checkpoints-undoing-code-and-context">Checkpoints: Undoing code and context</a>
           </li>
           <li>
-            <a href="#git-and-version-control">Git and Version Control</a>
+            <a href="#git-and-version-control">Git and version control</a>
           </li>
           <li>
-            <a href="#usage-limits-and-context-control">Usage and Context Control</a>
+            <a href="#usage-limits-and-context-control">Usage and context control</a>
           </li>
           <li>
-            <a href="#settings-and-permissions">Settings and Permissions</a>
+            <a href="#settings-and-permissions">Settings and permissions</a>
           </li>
           <li>
-            <a href="#claude-plugins-and-plugin-marketplaces">Claude Plugins and Plugin Marketplaces</a>
+            <a href="#claude-plugins-and-plugin-marketplaces">Claude plugins and plugin marketplaces</a>
           </li>
           <li>
-            <a href="#claude-skills">Claude Skills</a>
+            <a href="#claude-skills">Claude skills</a>
           </li>
           <li>
-            <a href="#claude-subagents">Claude Subagents</a>
+            <a href="#claude-subagents">Claude subagents</a>
           </li>
           <li>
-            <a href="#claude-mcp-servers">Claude MCP Servers</a>
+            <a href="#claude-mcp-servers">Claude MCP servers</a>
           </li>
           <li>
-            <a href="#custom-statuslines">Custom Statuslines</a>
+            <a href="#custom-statuslines">Custom statuslines</a>
           </li>
           <li>
-            <a href="#faq">Frequently Asked Questions</a>
+            <a href="#faq">Frequently asked questions</a>
           </li>
           <li>
             <a href="#conclusion">Conclusion</a>
@@ -194,7 +192,7 @@ export default (): ReactElement => (
       </section>
 
       <section id="cheatsheet">
-        <h2>Quick Reference Cheatsheet</h2>
+        <h2>Quick reference cheatsheet</h2>
 
         <h3>Prefixes</h3>
         <ul>
@@ -206,7 +204,7 @@ export default (): ReactElement => (
           </li>
         </ul>
 
-        <h3>Keyboard Shortcuts</h3>
+        <h3>Keyboard shortcuts</h3>
         <ul>
           <li>
             <kbd>Esc</kbd>+<kbd>Esc</kbd> - Open rewind menu (undo changes)
@@ -219,7 +217,7 @@ export default (): ReactElement => (
           </li>
         </ul>
 
-        <h3>Slash Commands</h3>
+        <h3>Slash commands</h3>
         <ul>
           <li>
             <code>/init</code> - Creates a CLAUDE.md file
@@ -296,7 +294,7 @@ export default (): ReactElement => (
 
         <CodeSnippet language="bash" code="claude" title="Start Claude Code" />
 
-        <h3>Logging In</h3>
+        <h3>Logging in</h3>
 
         <p>
           When first running Claude Code, you should be prompted to log in. This will open up a web browser. You will
@@ -323,9 +321,9 @@ export default (): ReactElement => (
         </p>
 
         <section id="essential-commands-and-shortcuts">
-          <h3>Essential Commands and Shortcuts</h3>
+          <h3>Essential commands and shortcuts</h3>
 
-          <h4>"Slash" Commands</h4>
+          <h4>"Slash" commands</h4>
 
           <p>
             When typing a forward slash <code>/</code>, Claude Code will show available commands. This guide will go
@@ -363,7 +361,7 @@ export default (): ReactElement => (
             will go into more detail about this below.
           </p>
 
-          <h4>Bash Mode</h4>
+          <h4>Bash mode</h4>
 
           <p>
             You can switch into "Bash mode" to run terminal commands yourself without having to exit Claude Code or have
@@ -394,7 +392,7 @@ export default (): ReactElement => (
 
         <CodeSnippet code="/model" title="Switch Model" />
 
-        <h3>Which Models to Use</h3>
+        <h3>Which models to use</h3>
 
         <h4>Opus</h4>
 
@@ -423,7 +421,7 @@ export default (): ReactElement => (
           building conventional applications following established patterns.
         </p>
 
-        <h4>Hybrid: Recommended Setup</h4>
+        <h4>Hybrid: Recommended setup</h4>
 
         <p>
           Using Opus in Plan Mode, then executing the plan using Sonnet is a great default. Fortunately, there is a
@@ -437,7 +435,7 @@ export default (): ReactElement => (
 
       <section>
         <HeadingAnchor id="claudemd-providing-claude-code-with-context">
-          CLAUDE.md - Providing Claude Code with Context
+          CLAUDE.md - Providing Claude Code with context
         </HeadingAnchor>
 
         <p>
@@ -452,7 +450,7 @@ export default (): ReactElement => (
         </p>
 
         <section id="creating-a-claudemd-file">
-          <h3>Creating a CLAUDE.md File</h3>
+          <h3>Creating a CLAUDE.md file</h3>
 
           <p>
             You can have Claude Code create a <code>CLAUDE.md</code> file automatically using a slash command:
@@ -467,7 +465,7 @@ export default (): ReactElement => (
         </section>
 
         <section id="claudemd-example">
-          <h3>CLAUDE.md Example</h3>
+          <h3>CLAUDE.md example</h3>
 
           <p>
             Here is an example <code>CLAUDE.md</code> file for this website:
@@ -519,7 +517,7 @@ The architecture follows modern React patterns with server-side rendering suppor
       </section>
 
       <section>
-        <HeadingAnchor id="prompting-planning-and-execution">Prompting, Planning, and Execution</HeadingAnchor>
+        <HeadingAnchor id="prompting-planning-and-execution">Prompting, planning, and execution</HeadingAnchor>
 
         <p>Effective prompting and planning are key to Claude Code's performance.</p>
 
@@ -596,13 +594,13 @@ The architecture follows modern React patterns with server-side rendering suppor
 
           <p>
             Claude proceeds to implement the plan by creating and modifying files. The{" "}
-            <a href="#settings-and-permissions">Settings and Permissions</a> section below explains how to configure
-            command permissions to streamline your workflow whilst maintaining security.
+            <a href="#settings-and-permissions">Settings and permissions</a> section below explains how to configure
+            command permissions to cut out repeated prompts whilst keeping your system secure.
           </p>
         </section>
 
         <section id="parallel-agents-for-brainstorming-solutions">
-          <h3>Parallel Agents for Brainstorming Solutions</h3>
+          <h3>Parallel agents for brainstorming solutions</h3>
 
           <p>Sometimes you may want to have Claude brainstorm potential implementation strategies or general ideas.</p>
 
@@ -619,7 +617,7 @@ The architecture follows modern React patterns with server-side rendering suppor
       </section>
 
       <section>
-        <HeadingAnchor id="checkpoints-undoing-code-and-context">Checkpoints: Undoing Code and Context</HeadingAnchor>
+        <HeadingAnchor id="checkpoints-undoing-code-and-context">Checkpoints: Undoing code and context</HeadingAnchor>
 
         <p>
           When Claude Code takes an unintended direction or implements changes you want to reverse, you can use
@@ -640,10 +638,10 @@ The architecture follows modern React patterns with server-side rendering suppor
       </section>
 
       <section>
-        <HeadingAnchor id="git-and-version-control">Git and Version Control</HeadingAnchor>
+        <HeadingAnchor id="git-and-version-control">Git and version control</HeadingAnchor>
 
         <section id="committing-and-branching">
-          <h3>Committing and Branching</h3>
+          <h3>Committing and branching</h3>
 
           <p>
             After Claude implements a feature or fix, you can request it to commit changes to Git. Claude can also
@@ -652,7 +650,7 @@ The architecture follows modern React patterns with server-side rendering suppor
         </section>
 
         <section id="history-and-explanations">
-          <h3>History and Explanations</h3>
+          <h3>History and explanations</h3>
 
           <p>
             Claude Code can analyse Git history to understand the evolution of your codebase. This helps explain why
@@ -670,10 +668,10 @@ The architecture follows modern React patterns with server-side rendering suppor
       </section>
 
       <section>
-        <HeadingAnchor id="usage-limits-and-context-control">Usage and Context Control</HeadingAnchor>
+        <HeadingAnchor id="usage-limits-and-context-control">Usage and context control</HeadingAnchor>
 
         <section id="usage-limits">
-          <h3>Usage and Limits</h3>
+          <h3>Usage and limits</h3>
 
           <p>
             Claude Code consumes tokens from your Claude subscription limits. Long sessions, large file reads, and
@@ -686,20 +684,20 @@ The architecture follows modern React patterns with server-side rendering suppor
         </section>
 
         <section id="context-control">
-          <h3>Context Control</h3>
+          <h3>Context control</h3>
 
           <p>
             Context refers to the conversation history, file contents, and other information Claude Code maintains in
             the current session. This consumes tokens from your available context window.
           </p>
 
-          <h4>Viewing Context Use</h4>
+          <h4>Viewing context use</h4>
 
           <p>You can view the current context use with the following slash command:</p>
 
           <CodeSnippet code="/context" title="Viewing Context Usage" />
 
-          <h4>Clearing Context</h4>
+          <h4>Clearing context</h4>
 
           <p>
             For long-running sessions, context can accumulate rapidly. Whilst Claude Code manages this automatically,
@@ -708,7 +706,7 @@ The architecture follows modern React patterns with server-side rendering suppor
 
           <CodeSnippet code="/clear" title="Clear Context" />
 
-          <h4>Compacting Context</h4>
+          <h4>Compacting context</h4>
 
           <p>
             You can compact your message history to free up context space. This summarises previous conversations whilst
@@ -720,7 +718,7 @@ The architecture follows modern React patterns with server-side rendering suppor
       </section>
 
       <section>
-        <HeadingAnchor id="settings-and-permissions">Settings and Permissions</HeadingAnchor>
+        <HeadingAnchor id="settings-and-permissions">Settings and permissions</HeadingAnchor>
 
         <p>
           To avoid repetitive permission prompts, you can configure command permissions and other settings in a{" "}
@@ -815,7 +813,7 @@ The architecture follows modern React patterns with server-side rendering suppor
 
       <section>
         <HeadingAnchor id="claude-plugins-and-plugin-marketplaces">
-          Claude Plugins and Plugin Marketplaces
+          Claude plugins and plugin marketplaces
         </HeadingAnchor>
 
         <p>
@@ -872,7 +870,7 @@ The architecture follows modern React patterns with server-side rendering suppor
       </section>
 
       <section>
-        <HeadingAnchor id="claude-skills">Claude Skills</HeadingAnchor>
+        <HeadingAnchor id="claude-skills">Claude skills</HeadingAnchor>
 
         <p>
           Claude Skills are a way of loading specialised knowledge into Claude Code. The main benefit is that unlike the{" "}
@@ -890,7 +888,7 @@ The architecture follows modern React patterns with server-side rendering suppor
         </p>
 
         <section id="example-custom-skill-react-component-optimiser">
-          <h3>Example Custom Skill: React Component Optimiser</h3>
+          <h3>Example custom skill: React component optimiser</h3>
 
           <p>Here is how you could create your own Skill. This will be a Skill to help optimise React components.</p>
 
@@ -964,7 +962,7 @@ Focus on React and TypeScript performance patterns only. Avoid project-wide conf
       </section>
 
       <section>
-        <HeadingAnchor id="claude-subagents">Claude Subagents</HeadingAnchor>
+        <HeadingAnchor id="claude-subagents">Claude subagents</HeadingAnchor>
 
         <p>Custom subagents can be created to handle specific tasks.</p>
 
@@ -1029,7 +1027,7 @@ Focus on React and TypeScript performance patterns only. Avoid project-wide conf
       </section>
 
       <section>
-        <HeadingAnchor id="claude-mcp-servers">Claude MCP Servers</HeadingAnchor>
+        <HeadingAnchor id="claude-mcp-servers">Claude MCP servers</HeadingAnchor>
 
         <p>
           Model Context Protocol (MCP) is a standardised protocol that enables Claude to interact with external services
@@ -1085,7 +1083,7 @@ Focus on React and TypeScript performance patterns only. Avoid project-wide conf
       </section>
 
       <section>
-        <HeadingAnchor id="custom-statuslines">Custom Statuslines</HeadingAnchor>
+        <HeadingAnchor id="custom-statuslines">Custom statuslines</HeadingAnchor>
 
         <p>
           You can configure a custom statusline that appears below the input box in Claude Code to display session
@@ -1097,7 +1095,7 @@ Focus on React and TypeScript performance patterns only. Avoid project-wide conf
           ID, and other runtime information. This provides at-a-glance visibility into your Claude Code session state.
         </p>
 
-        <h3>Example Custom Statusline</h3>
+        <h3>Example custom statusline</h3>
 
         <p>Here is how to add a custom statusline that looks like the following:</p>
         <picture className="mx-auto block w-full max-w-4xl">
@@ -1105,7 +1103,7 @@ Focus on React and TypeScript performance patterns only. Avoid project-wide conf
           <img
             src={claudeCodeStatuslineImage}
             alt="Claude Code custom statusline showing session ID, directory, git branch, model, and context window"
-            className="w-full rounded border border-gray-300 dark:border-gray-700"
+            className="border-line-strong w-full rounded-md border"
           />
         </picture>
 
@@ -1305,9 +1303,9 @@ printf "%b" "$output"`}
       </section>
 
       <section>
-        <HeadingAnchor id="faq">Frequently Asked Questions</HeadingAnchor>
+        <HeadingAnchor id="faq">Frequently asked questions</HeadingAnchor>
 
-        <h3>What is the difference between Skills and Subagents?</h3>
+        <h3>What is the difference between skills and subagents?</h3>
         <p>
           Skills are reusable prompt templates that load specialised instructions when invoked, without consuming
           context until used. They're ideal for specific workflows like code reviews or optimisation tasks. Subagents

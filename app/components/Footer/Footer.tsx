@@ -4,20 +4,28 @@ import { SocialLinks } from "~/components/SocialLinks/SocialLinks";
 
 export const Footer: FC = (): ReactElement => {
   return (
-    <footer className="text-gray-700 dark:text-gray-200 print:hidden">
-      <div className="mt-16 flex flex-col items-center">
-        <div className="mb-3 flex space-x-4">
-          <SocialLinks />
-        </div>
+    <footer className="bg-surface-000 text-ink-muted mt-20 print:hidden">
+      <div className="mx-auto grid max-w-(--content-max) gap-8 px-4 py-16 sm:px-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-end md:py-20">
+        <Link
+          to="/"
+          className="font-display text-heading-3 text-ink justify-self-start rounded-sm whitespace-nowrap no-underline"
+        >
+          © <strong>Elliot J. Reed</strong>
+        </Link>
 
-        <div className="mb-2 text-sm">
-          <Link to="/privacy">Privacy Policy</Link>&nbsp;|&nbsp;<Link to="/sitemap">Sitemap</Link>
-        </div>
+        <div className="flex flex-col gap-4 md:items-end">
+          <nav aria-label="Footer" className="text-body flex gap-6">
+            <Link to="/privacy" className="ejr-link">
+              Privacy policy
+            </Link>
+            <Link to="/sitemap" className="ejr-link">
+              Sitemap
+            </Link>
+          </nav>
 
-        <div className="mb-8 text-sm">
-          <Link to="/">
-            © <strong>Elliot J. Reed</strong>
-          </Link>
+          <div className="-ml-3 flex flex-wrap md:mr-[-12px] md:ml-0">
+            <SocialLinks />
+          </div>
         </div>
       </div>
     </footer>

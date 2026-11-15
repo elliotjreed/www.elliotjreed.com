@@ -14,11 +14,8 @@ export const NavLinkItem: FC<{
       onClick={closeMenu}
       className={({ isActive: navIsActive }): string =>
         [
-          "block rounded-lg px-4 py-3 font-medium transition-colors md:py-2",
-          navIsActive || isActive
-            ? "text-primary-700 dark:text-primary-400 bg-primary-50 dark:bg-gray-800"
-            : "text-gray-700 dark:text-gray-200",
-          "hover:text-primary-700 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800",
+          "block rounded-md px-4 py-3 font-medium transition-colors md:py-2",
+          navIsActive || isActive ? "bg-rhubarb text-on-rhubarb" : "text-ink hover:bg-surface-300",
         ].join(" ")
       }
       prefetch="intent"

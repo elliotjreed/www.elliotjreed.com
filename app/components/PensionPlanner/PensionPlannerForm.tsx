@@ -16,13 +16,11 @@ interface PensionPlannerFormProps {
   isCalculating: boolean;
 }
 
-const inputClassName =
-  "w-full rounded border border-gray-300 bg-white px-3 py-2 text-gray-900 focus:border-primary-500 focus:ring-2 focus:ring-primary-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100";
-const labelClassName = "mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300";
-const fieldsetClassName =
-  "rounded-lg border border-gray-200 bg-white p-6 shadow-md dark:border-gray-700 dark:bg-gray-800";
-const legendClassName = "px-2 text-lg font-semibold text-gray-900 dark:text-gray-100";
-const checkboxClassName = "h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500";
+const inputClassName = "ejr-input w-full";
+const labelClassName = "mb-1 block text-label text-ink";
+const fieldsetClassName = "rounded-lg bg-surface-200 p-6";
+const legendClassName = "px-2 text-body-long font-semibold text-ink";
+const checkboxClassName = "h-4 w-4 rounded-sm";
 
 const Field: FC<{ id: string; label: string; children: ReactNode; hint?: string }> = ({
   id,
@@ -35,7 +33,7 @@ const Field: FC<{ id: string; label: string; children: ReactNode; hint?: string 
       {label}
     </label>
     {children}
-    {hint !== undefined && <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">{hint}</p>}
+    {hint !== undefined && <p className="text-caption text-ink-subtle mt-1">{hint}</p>}
   </div>
 );
 
@@ -232,7 +230,7 @@ export const PensionPlannerForm: FC<PensionPlannerFormProps> = ({
               }
               className={checkboxClassName}
             />
-            <label htmlFor="include-state-pension" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label htmlFor="include-state-pension" className="text-caption text-ink font-medium">
               Include the state pension in my retirement income
             </label>
           </div>
@@ -311,7 +309,7 @@ export const PensionPlannerForm: FC<PensionPlannerFormProps> = ({
               onChange={(event: ChangeEvent<HTMLInputElement>): void => onChange({ fireEnabled: event.target.checked })}
               className={checkboxClassName}
             />
-            <label htmlFor="fire-enabled" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label htmlFor="fire-enabled" className="text-caption text-ink font-medium">
               Check whether I can retire early
             </label>
           </div>
@@ -331,18 +329,14 @@ export const PensionPlannerForm: FC<PensionPlannerFormProps> = ({
       </fieldset>
 
       {errors.length > 0 && (
-        <ul className="rounded bg-red-100 p-4 text-sm text-red-800 dark:bg-red-900 dark:text-red-100">
+        <ul className="bg-danger-soft text-caption text-ink rounded-md p-4">
           {errors.map((error) => (
             <li key={error}>{error}</li>
           ))}
         </ul>
       )}
 
-      <button
-        type="submit"
-        disabled={isCalculating}
-        className="bg-primary-600 hover:bg-primary-700 focus:ring-primary-500 dark:bg-primary-700 dark:hover:bg-primary-800 w-full rounded px-4 py-3 font-semibold text-white focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:opacity-60"
-      >
+      <button type="submit" disabled={isCalculating} className="ejr-btn ejr-btn-primary w-full justify-center">
         {isCalculating ? "Calculating…" : "Calculate my pension"}
       </button>
     </form>

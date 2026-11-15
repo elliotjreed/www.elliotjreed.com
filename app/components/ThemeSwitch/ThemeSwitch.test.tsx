@@ -1,12 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { renderToString } from "react-dom/server";
 import { beforeEach, describe, expect, it } from "vitest";
 import { ThemeSwitch } from "./ThemeSwitch";
 
 describe("ThemeSwitch", () => {
   beforeEach(() => {
     localStorage.clear();
-    document.documentElement.classList.remove("dark");
+    document.documentElement.removeAttribute("data-theme");
   });
 
   it("should render button", () => {
@@ -30,7 +31,7 @@ describe("ThemeSwitch", () => {
     const button = screen.getByRole("button", { name: "Toggle dark mode" });
     await user.click(button);
 
-    expect(document.documentElement.classList.contains("dark")).toBe(true);
+    expect(document.documentElement).toHaveAttribute("data-theme", "dark");
     expect(button).toHaveAttribute("title", "Switch to light theme");
   });
 
@@ -42,7 +43,7 @@ describe("ThemeSwitch", () => {
     await user.click(button); // Switch to dark
     await user.click(button); // Switch back to light
 
-    expect(document.documentElement.classList.contains("dark")).toBe(false);
+    expect(document.documentElement).toHaveAttribute("data-theme", "light");
     expect(button).toHaveAttribute("title", "Switch to dark theme");
   });
 
@@ -61,7 +62,7 @@ describe("ThemeSwitch", () => {
 
     render(<ThemeSwitch />);
 
-    expect(document.documentElement.classList.contains("dark")).toBe(true);
+    expect(document.documentElement).toHaveAttribute("data-theme", "dark");
     const button = screen.getByRole("button", { name: "Toggle dark mode" });
     expect(button).toHaveAttribute("title", "Switch to light theme");
   });
@@ -70,7 +71,7 @@ describe("ThemeSwitch", () => {
     render(<ThemeSwitch />);
 
     const button = screen.getByRole("button", { name: "Toggle dark mode" });
-    expect(button).toHaveClass("ml-1", "mr-1", "h-8", "w-8", "rounded", "p-1", "sm:ml-4");
+    expect(button).toHaveClass("h-11", "w-11", "rounded-md", "text-ink-muted", "hover:bg-surface-300");
   });
 
   it("should have type button", () => {
@@ -80,23 +81,27 @@ describe("ThemeSwitch", () => {
     expect(button).toHaveAttribute("type", "button");
   });
 
-  it("should add dark class to document when theme is dark", async () => {
+  it("should set the dark data-theme on the document when theme is dark", async () => {
     const user = userEvent.setup();
     render(<ThemeSwitch />);
 
     const button = screen.getByRole("button", { name: "Toggle dark mode" });
     await user.click(button);
 
-    expect(document.documentElement.classList.contains("dark")).toBe(true);
+    expect(document.documentElement).toHaveAttribute("data-theme", "dark");
   });
 
-  it("should remove dark class from document when theme is light", async () => {
-    const _user = userEvent.setup();
-    document.documentElement.classList.add("dark");
+  it("should server-render the same markup regardless of the stored theme, so hydration matches", () => {
+    const withoutStoredTheme = renderToString(<ThemeSwitch />);
+    localStorage.setItem("theme", JSON.stringify("dark"));
+    const withStoredTheme = renderToString(<ThemeSwitch />);
 
+    expect(withStoredTheme).toBe(withoutStoredTheme);
+  });
+
+  it("should leave data-theme unset when no theme has been chosen, so the system setting applies", () => {
     render(<ThemeSwitch />);
 
-    // Initially should be light (default), so dark class should be removed
-    expect(document.documentElement.classList.contains("dark")).toBe(false);
+    expect(document.documentElement).not.toHaveAttribute("data-theme");
   });
 });

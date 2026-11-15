@@ -2,7 +2,7 @@ import type { ReactElement } from "react";
 import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createAmpLink, createMeta } from "~/utils/seo";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -33,7 +33,6 @@ export const meta = () => [
       { name: "ZSH & Bash Aliases", url: "https://www.elliotjreed.com/linux/zsh-bash-aliases" },
     ]),
   },
-  createAmpLink("/linux/zsh-bash-aliases"),
 ];
 
 const snippets: CodeSnippetInterface[] = [
@@ -98,29 +97,28 @@ alias flushdns='sudo resolvectl flush-caches'`,
 ];
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
+  <section className="ejr-article divide-line divide-y">
     <PageHeader
-      title="Shell Aliases"
+      tone="tint"
+      title="Shell aliases"
       meta={
-        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div className="text-caption text-ink-subtle flex flex-wrap items-center gap-x-6 gap-y-1">
           <span>By Elliot J. Reed</span>
-          <span>•</span>
           <time dateTime="2025-04-20">
             Published: 20<sup>th</sup> April 2025
           </time>
-          <span>•</span>
           <time dateTime="2026-01-30">
             Last updated: 30<sup>th</sup> January 2026
           </time>
         </div>
       }
     >
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose ejr-lead">
         Here you'll find a few handy aliases to use in ZSH and Bash Shell. Tested on Linux - likely work on Mac!
       </p>
     </PageHeader>
 
-    <div className="prose dark:prose-dark max-w-none">
+    <div className="prose ejr-prose">
       <section>
         {snippets.map((snippet: CodeSnippetInterface): ReactElement => (
           <CodeSnippet key={snippet.title} language="bash" code={snippet.code} title={snippet.title} />
@@ -130,8 +128,9 @@ export default (): ReactElement => (
         <p>
           These shell aliases demonstrate how small customizations can significantly improve your command-line
           productivity. By adding these to your ~/.bashrc or ~/.zshrc file, you'll have convenient shortcuts that make
-          common tasks faster and safer. From easier directory navigation with .. and ... to human-readable output with
-          modified ls, du, and free commands, each alias solves a specific friction point in daily terminal work.
+          common tasks faster and safer. From easier directory navigation with <code>..</code> and <code>...</code> to
+          human-readable output with modified ls, du, and free commands, each alias solves a specific friction point in
+          daily terminal work.
         </p>
         <p>
           Start by adding the aliases that align with your most frequent tasks, then gradually expand your collection as

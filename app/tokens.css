@@ -1,0 +1,67 @@
+:root {
+  --surface-000: light-dark(#f3eae9, #100908);
+  --surface-100: light-dark(#fbf5f4, #170f0e);
+  --surface-200: light-dark(#fffcfb, #201715);
+  --surface-300: light-dark(#eee3e1, #2b201e);
+  --line: light-dark(#ded3d1, #3c302d);
+  --line-strong: light-dark(#80706e, #897976);
+  --ink: light-dark(#231614, #f2ece4);
+  --ink-muted: light-dark(#534342, #cbc0b8);
+  --ink-subtle: light-dark(#695958, #a89b95);
+  --custard: light-dark(#f7c747, #f8d05c);
+  --on-custard: #231614;
+  --custard-soft: light-dark(#faeec9, #36290e);
+  --custard-ink: light-dark(#79520a, #f8d05c);
+  --rhubarb: light-dark(#af2b59, #f786a2);
+  --on-rhubarb: light-dark(#fef9f8, #231614);
+  --rhubarb-soft: light-dark(#fde6ea, #3a1b23);
+  --damson: light-dark(#642a53, #924d7d);
+  --damson-soft: light-dark(#f5e6ef, #311c2a);
+  --focus: light-dark(#79520a, #f8d05c);
+  --success: light-dark(#157365, #5dd2bd);
+  --success-soft: light-dark(#def4ef, #0b2d27);
+  --warning: light-dark(#9c5313, #fda856);
+  --warning-soft: light-dark(#ffead7, #392310);
+  --danger: light-dark(#b5360e, #f77c56);
+  --danger-soft: light-dark(#ffe7de, #3d1c12);
+  --info: light-dark(#2e64a6, #8ebcec);
+  --info-soft: light-dark(#e3eefa, #192837);
+  --code-bg: light-dark(#f5eeed, #0e0707);
+  --code-ink: light-dark(#231614, #e4dcd6);
+  --code-comment: light-dark(#695958, #a2958f);
+  --code-keyword: light-dark(#af2b59, #f786a2);
+  --code-string: light-dark(#79520a, #f8d05c);
+  --code-number: light-dark(#086d5f, #5dd2bd);
+  --code-function: light-dark(#285e9f, #8ebcec);
+  --shadow-overlay: 0 16px 40px light-dark(rgba(35, 22, 20, 0.16), transparent);
+  --focus-ring: 0 0 0 2px light-dark(#fbf5f4, #170f0e), 0 0 0 4px light-dark(#79520a, #f8d05c);
+}
+
+/* light-dark() resolves against color-scheme: unset follows the system, data-theme forces one. */
+:root {
+  color-scheme: light dark;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+/* Font families and radii are declared once, in the @theme block of app.css, under the same token names. */
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 80px;
+  --space-9: 128px;
+  --measure: 66ch;
+  --sidenote-width: 240px;
+  --content-max: 1360px;
+  --gutter-mobile: 16px;
+  --gutter-desktop: 32px;
+}

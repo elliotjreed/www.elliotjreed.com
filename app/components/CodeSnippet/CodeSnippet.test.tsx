@@ -38,36 +38,35 @@ describe("CodeSnippet", () => {
     expect(copyButton).toBeInTheDocument();
   });
 
-  it("should show 'Copied!' message after copying", async () => {
+  it("should show 'Copied' message after copying", async () => {
     const user = userEvent.setup();
     render(<CodeSnippet code={mockCode} title={mockTitle} />);
 
     const copyButton = screen.getByRole("button", { name: /copy/i });
     await user.click(copyButton);
 
-    expect(screen.getByText("Copied!")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Copied" })).toBeInTheDocument();
   });
 
-  it("should render pre element with syntax highlighting", () => {
+  it("should render the code inside a design system code block", () => {
     const { container } = render(<CodeSnippet code={mockCode} title={mockTitle} />);
 
-    const pre = container.querySelector("pre");
+    const figure = container.querySelector("figure");
 
-    expect(pre).toBeInTheDocument();
-    expect(pre).toHaveStyle({ backgroundColor: "#1f2937" });
+    expect(figure).toHaveClass("ejr-code", "not-prose");
+    expect(figure?.querySelector("pre code")).toBeInTheDocument();
   });
 
-  it("should have correct styling classes", () => {
+  it("should render the title as the block caption", () => {
     const { container } = render(<CodeSnippet code={mockCode} title={mockTitle} />);
 
-    const pre = container.querySelector("pre");
-    expect(pre).toHaveClass("p-4", "overflow-x-auto", "font-mono", "text-sm");
+    expect(container.querySelector("figcaption")).toHaveTextContent(mockTitle);
   });
 
-  it("should render copy icon SVG", () => {
+  it("should style the copy control as the design system copy button", () => {
     render(<CodeSnippet code={mockCode} title={mockTitle} />);
 
-    expect(screen.getByTitle("Copy button icon")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Copy" })).toHaveClass("ejr-code-copy");
   });
 
   it("should have button type attribute", () => {

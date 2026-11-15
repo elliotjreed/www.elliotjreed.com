@@ -15,16 +15,16 @@ export const YearByYearTable: FC<YearByYearTableProps> = ({ rows }): ReactElemen
   }
 
   return (
-    <details className="rounded-lg border border-gray-200 bg-white p-4 shadow-md dark:border-gray-700 dark:bg-gray-800">
-      <summary className="cursor-pointer font-semibold text-gray-900 dark:text-gray-100">Year-by-year figures</summary>
+    <details className="bg-surface-200 rounded-lg p-4">
+      <summary className="text-ink cursor-pointer font-semibold">Year-by-year figures</summary>
 
       <div className="mt-4 overflow-x-auto">
-        <table className="w-full text-sm text-gray-700 dark:text-gray-300">
+        <table className="text-caption text-ink w-full">
           <caption className="sr-only">
             Year-by-year pension projection showing pot value, contributions, growth, withdrawals, tax and income for
             each age
           </caption>
-          <thead className="border-b border-gray-200 text-gray-900 dark:border-gray-700 dark:text-gray-100">
+          <thead className="border-line text-ink border-b">
             <tr>
               <th scope="col" className="px-3 py-2 text-left font-semibold">
                 Age
@@ -57,7 +57,7 @@ export const YearByYearTable: FC<YearByYearTableProps> = ({ rows }): ReactElemen
           </thead>
           <tbody>
             {rows.map((row) => (
-              <tr key={row.age} className="border-b border-gray-100 dark:border-gray-700">
+              <tr key={row.age} className="border-line border-b">
                 <th scope="row" className="px-3 py-2 text-left font-normal">
                   {row.age}
                 </th>

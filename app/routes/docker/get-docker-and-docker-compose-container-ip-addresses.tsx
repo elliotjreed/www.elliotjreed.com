@@ -3,7 +3,7 @@ import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createAmpLink, createMeta } from "~/utils/seo";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -38,7 +38,6 @@ export const meta = () => [
       },
     ]),
   },
-  createAmpLink("/docker/get-docker-and-docker-compose-container-ip-addresses"),
 ];
 
 const docker: CodeSnippetInterface = {
@@ -57,31 +56,30 @@ alias dcips='docker inspect -f "{{.Name}}: {{range .NetworkSettings.Networks}}{{
 };
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
+  <section className="ejr-article divide-line divide-y">
     <PageHeader
+      tone="tint"
       title="Get the IP addresses of Docker containers"
       meta={
-        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div className="text-caption text-ink-subtle flex flex-wrap items-center gap-x-6 gap-y-1">
           <span>By Elliot J. Reed</span>
-          <span>•</span>
           <time dateTime="2020-09-02">
             Published: 2<sup>nd</sup> September 2020
           </time>
-          <span>•</span>
           <time dateTime="2026-01-30">
             Last updated: 30<sup>th</sup> January 2026
           </time>
         </div>
       }
     >
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose ejr-lead">
         Finding Docker container IP addresses is essential for debugging network connectivity, connecting services, and
         understanding how containers communicate. This guide shows you how to quickly retrieve IP addresses using
         Docker's inspect command with Go template formatting.
       </p>
     </PageHeader>
 
-    <div className="prose dark:prose-dark max-w-none">
+    <div className="prose ejr-prose">
       <section>
         <p>
           When working with Docker containers, you often need to know their IP addresses for debugging network issues,
@@ -89,7 +87,7 @@ export default (): ReactElement => (
           <code>docker inspect</code> command which can extract this information using Go template syntax.
         </p>
 
-        <h2>Understanding the Go Template Syntax</h2>
+        <h2>Understanding the Go template syntax</h2>
 
         <p>
           The commands below use Go template syntax (the <code>{`{{...}}`}</code> notation) to extract specific fields
@@ -112,7 +110,7 @@ export default (): ReactElement => (
 
         <p>This template syntax allows you to extract exactly the data you need without parsing JSON manually.</p>
 
-        <h2>Getting Container IP Addresses</h2>
+        <h2>Getting container IP addresses</h2>
 
         <p>To list all Docker containers and their corresponding IP addresses, run:</p>
         <CodeSnippet
@@ -144,7 +142,7 @@ export default (): ReactElement => (
 
         <CodeSnippet language="bash" code={dockerCompose.code} title={dockerCompose.title} />
 
-        <HeadingAnchor id="faq">Frequently Asked Questions</HeadingAnchor>
+        <HeadingAnchor id="faq">Frequently asked questions</HeadingAnchor>
 
         <h3>Why do I need Docker container IP addresses?</h3>
         <p>

@@ -19,18 +19,16 @@ export const FireVerdict: FC<FireVerdictProps> = ({
   targetPot,
   successProbability,
 }): ReactElement => {
-  const verdictClassName = assessment.viable
-    ? "border-secondary-300 bg-secondary-50 text-secondary-900 dark:border-secondary-600 dark:bg-secondary-900 dark:text-secondary-100"
-    : "border-red-300 bg-red-50 text-red-900 dark:border-red-600 dark:bg-red-900 dark:text-red-100";
+  const verdictClassName = assessment.viable ? "bg-success-soft text-ink" : "bg-danger-soft text-ink";
 
   return (
     <section aria-labelledby="fire-heading" className="space-y-4">
-      <h2 id="fire-heading" className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+      <h2 id="fire-heading" className="text-heading-2 text-ink font-semibold">
         Early retirement (FIRE) viability
       </h2>
 
-      <div className={`rounded-lg border p-6 ${verdictClassName}`}>
-        <p className="text-xl font-bold">
+      <div className={`rounded-lg p-6 ${verdictClassName}`}>
+        <p className="text-heading-3 font-bold">
           {assessment.viable
             ? `You are on track to retire at ${retirementAge}.`
             : `Retiring at ${retirementAge} does not work on these assumptions.`}
@@ -63,10 +61,10 @@ export const FireVerdict: FC<FireVerdictProps> = ({
         )}
       </div>
 
-      <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-md dark:border-gray-700 dark:bg-gray-800">
-        <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Your FIRE number</p>
-        <p className="text-secondary-800 dark:text-secondary-100 mt-2 text-3xl font-bold">{formatGBP(targetPot)}</p>
-        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+      <div className="ejr-stat">
+        <p className="ejr-stat-label">Your FIRE number</p>
+        <p className="ejr-stat-value">{formatGBP(targetPot)}</p>
+        <p className="ejr-stat-delta">
           Total savings needed to sustain your target spending at your chosen withdrawal rate.
         </p>
       </div>

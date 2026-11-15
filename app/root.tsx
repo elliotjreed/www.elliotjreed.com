@@ -11,10 +11,15 @@ import {
 import { Footer } from "~/components/Footer/Footer";
 import { NavBar } from "~/components/NavBar/NavBar";
 import { useNonce } from "~/context/nonce";
+import { themeScript } from "~/utils/themeScript";
 
 import type { Route } from "./+types/root";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import "./fonts.css";
 import "./app.css";
+
+config.autoAddCss = false;
 
 const SITE_URL = "https://www.elliotjreed.com";
 
@@ -80,43 +85,45 @@ export const Layout = ({ children }: { children: ReactNode }): ReactElement => {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1" />
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <meta property="og:image" content="https://www.elliotjreed.com/og.png" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@elliotjreed" />
         <meta name="twitter:image" content="https://www.elliotjreed.com/og.png" />
         <link rel="manifest" href="/manifest.webmanifest" />
-        <meta name="theme-color" content="#1f2937" />
+        <meta name="theme-color" content="#fbf5f4" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#170f0e" media="(prefers-color-scheme: dark)" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="EJR" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="mask-icon" href="/icon-maskable-512.png" color="#1f2937" />
-        <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link
           rel="preload"
-          href="/fonts/fira-sans-latin-700.woff2"
+          href="/fonts/atkinson-hyperlegible-next-latin.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
         />
+        <link rel="preload" href="/fonts/besley-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         {nonce && <meta name="csp-nonce" content={nonce} />}
         <Meta />
-        <Links />
+        <Links nonce={nonce || undefined} />
       </head>
-      <body className="bg-white text-black antialiased dark:bg-gray-900 dark:text-white">
-        <a href="#main-content" className="sr-only focus:not-sr-only">
+      <body>
+        <a
+          href="#website"
+          className="focus:bg-surface-200 focus:text-ink sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[80] focus:rounded-md focus:px-4 focus:py-3"
+        >
           Skip to content
         </a>
 
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
-          <div className="flex h-screen flex-col justify-between">
-            <NavBar />
-            <div id="page-content" className="flex flex-1 flex-col">
-              <main className="mb-auto" id="main-content">
-                {children}
-              </main>
-              <Footer />
-            </div>
+        <div className="flex min-h-screen flex-col">
+          <NavBar />
+          <div id="page-content" className="flex flex-1 flex-col">
+            <main className="mx-auto mb-auto w-full max-w-(--content-max) px-4 sm:px-8" id="website">
+              {children}
+            </main>
+            <Footer />
           </div>
         </div>
         <ScrollRestoration nonce={nonce} />
@@ -129,10 +136,10 @@ export const Layout = ({ children }: { children: ReactNode }): ReactElement => {
 export default (): ReactElement => <Outlet />;
 
 const CATEGORY_LINKS = [
-  { href: "/ai", label: "AI Guides" },
-  { href: "/linux", label: "ZSH / Bash Shell Guides" },
-  { href: "/docker", label: "Docker Guides" },
-  { href: "/php", label: "PHP Guides" },
+  { href: "/ai", label: "AI guides" },
+  { href: "/linux", label: "ZSH / Bash shell guides" },
+  { href: "/docker", label: "Docker guides" },
+  { href: "/php", label: "PHP guides" },
 ];
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps): ReactElement {
@@ -140,22 +147,17 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps): ReactElement
 
   if (isRouteError && error.status === 404) {
     return (
-      <section className="divide-y divide-gray-200 dark:divide-gray-700">
-        <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="font-heading text-3xl leading-9 font-extrabold tracking-tight text-gray-700 sm:text-4xl sm:leading-10 md:text-6xl dark:text-gray-200">
-            404
-          </h1>
-          <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <section className="ejr-article divide-line divide-y">
+        <div className="space-y-4 pt-12 pb-8">
+          <h1 className="text-heading-1 sm:text-display">404</h1>
+          <p className="prose ejr-lead">
             Sorry, that page doesn't exist. You might find what you're looking for in one of these sections:
           </p>
           <nav aria-label="Suggested sections">
-            <ul className="mt-4 space-y-2 text-lg">
+            <ul className="text-body-long mt-4 space-y-2">
               {CATEGORY_LINKS.map(({ href, label }) => (
                 <li key={href}>
-                  <a
-                    href={href}
-                    className="text-gray-700 underline hover:text-gray-900 dark:text-gray-200 dark:hover:text-white"
-                  >
+                  <a href={href} className="ejr-link">
                     {label}
                   </a>
                 </li>
@@ -167,7 +169,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps): ReactElement
     );
   }
 
-  let message = "Oops!";
+  let message = "Something went wrong";
   let details = "An unexpected error occurred.";
   let stack: string | undefined;
 
@@ -180,16 +182,14 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps): ReactElement
   }
 
   return (
-    <section className="divide-y divide-gray-200 dark:divide-gray-700">
-      <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-        <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-700 sm:text-4xl sm:leading-10 md:text-6xl dark:text-gray-200">
-          {message}
-        </h1>
-        <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">{details}</p>
+    <section className="ejr-article divide-line divide-y">
+      <div className="space-y-4 pt-12 pb-8">
+        <h1 className="text-heading-1 sm:text-display">{message}</h1>
+        <p className="prose ejr-lead">{details}</p>
       </div>
 
       {stack && (
-        <div className="prose dark:prose-dark max-w-none">
+        <div className="prose ejr-prose">
           <pre className="w-full overflow-x-auto p-4">
             <code>{stack}</code>
           </pre>

@@ -2,6 +2,10 @@ import { createRequestHandler, RouterContextProvider } from "react-router";
 import { cloudflareContext, nonceContext } from "../app/context/loadContext";
 import { lastModifiedByPath } from "../app/data/contentRegistry";
 import { type StaticLink, staticLinks } from "../app/data/staticLinks";
+import { themeScriptHash } from "../app/utils/themeScript";
+import { ampRedirectPath } from "./redirects";
+
+let themeHashPromise: Promise<string> | undefined;
 
 // biome-ignore lint/suspicious/noEmptyInterface: Env interface may be extended with environment variables in the future
 interface Env {}
@@ -69,7 +73,7 @@ export default {
     const url = new URL(request.url);
     const nonce = generateNonce();
 
-    const redirectTarget = PERMANENT_REDIRECTS[url.pathname];
+    const redirectTarget = PERMANENT_REDIRECTS[url.pathname] ?? ampRedirectPath(url.pathname);
     if (redirectTarget) {
       return Response.redirect(`${SITE_URL}${redirectTarget}`, 301);
     }
@@ -111,14 +115,17 @@ export default {
 
     headers.set("X-Content-Type-Options", "nosniff");
 
+    themeHashPromise ??= themeScriptHash();
+    const themeHash = await themeHashPromise;
+
     headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
 
     headers.set(
       "Content-Security-Policy",
       [
         "default-src 'self'",
-        `script-src 'self' 'nonce-${nonce}' https://static.cloudflareinsights.com`,
-        `script-src-elem 'self' 'nonce-${nonce}' https://static.cloudflareinsights.com`,
+        `script-src 'self' 'nonce-${nonce}' ${themeHash} https://static.cloudflareinsights.com`,
+        `script-src-elem 'self' 'nonce-${nonce}' ${themeHash} https://static.cloudflareinsights.com`,
         "style-src 'self' 'unsafe-inline'",
         "font-src 'self'",
         "img-src 'self' data: https:",
@@ -131,7 +138,7 @@ export default {
 
     headers.set(
       "Permissions-Policy",
-      "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), bluetooth=(), browsing-topics=(), camera=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(self), gamepad=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), local-fonts=(self), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), screen-wake-lock=(), serial=(), speaker-selection=(), usb=(), web-share=(self), xr-spatial-tracking=()",
+      "accelerometer=(), autoplay=(), browsing-topics=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), gamepad=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), local-fonts=(self), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), screen-wake-lock=(), serial=(), speaker-selection=(), usb=(), xr-spatial-tracking=()",
     );
 
     headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");

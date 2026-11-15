@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createAmpLink, createMeta } from "~/utils/seo";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -71,45 +71,39 @@ export const meta = () => [
       ],
     },
   },
-  createAmpLink("/ai/ai-prompt-engineering-guide"),
 ];
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
+  <section className="ejr-article divide-line divide-y">
     <PageHeader
-      title="AI Prompting Guide"
+      tone="tint"
+      title="AI prompting guide"
       meta={
-        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div className="text-caption text-ink-subtle flex flex-wrap items-center gap-x-6 gap-y-1">
           <span>By Elliot J. Reed</span>
-          <span>•</span>
           <time dateTime="2025-04-20">
             Published: 20<sup>th</sup> April 2025
           </time>
-          <span>•</span>
           <time dateTime="2026-01-30">
             Last updated: 30<sup>th</sup> January 2026
           </time>
         </div>
       }
     >
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose ejr-lead">
         This is a brief "getting started" guide on how to get the most out of AI Assistants through effective "prompt
         engineering".
       </p>
 
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose ejr-lead">
         You can find an easy-to-reference{" "}
-        <Link
-          to="/ai/cafe-ai-prompt-framework"
-          prefetch="render"
-          className="text-primary-700 dark:text-primary-500 underline"
-        >
+        <Link to="/ai/cafe-ai-prompt-framework" prefetch="render" className="text-custard-ink underline">
           simple guide here
         </Link>
         .
       </p>
 
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose ejr-lead">
         You can listen to the audio version of this guide here:
         {/* biome-ignore lint/a11y/useMediaCaption: this guide is the text version of the audio */}
         <audio controls>
@@ -120,19 +114,19 @@ export default (): ReactElement => (
         </audio>
       </p>
 
-      <aside className="leading-7 text-gray-600 dark:text-gray-300">
+      <aside className="text-ink-muted">
         <strong>Note:</strong> for this guide I shall use the term "<strong>AI Assistant</strong>" to refer to
         user-facing generative AI Large Language Model (LLM) applications such as <em>ChatGPT</em>, <em>Claude</em>,{" "}
         <em>Gemini</em>, and <em>DeepSeek</em>.
       </aside>
     </PageHeader>
 
-    <div className="prose dark:prose-dark max-w-none">
+    <div className="prose ejr-prose">
       <section>
-        <h2>Table of Contents</h2>
+        <h2>Table of contents</h2>
         <ul>
           <li>
-            <a href="#what-is-prompt-engineering">What is "Prompt Engineering"?</a>
+            <a href="#what-is-prompt-engineering">What is "prompt engineering"?</a>
           </li>
           <li>
             <a href="#what-makes-good-prompt">What makes a good prompt?</a>
@@ -141,7 +135,7 @@ export default (): ReactElement => (
             <a href="#prompt-structure">What is a useful prompt structure?</a>
           </li>
           <li>
-            <a href="#cafe-framework">CAFE Framework</a>
+            <a href="#cafe-framework">CAFE framework</a>
             <ul>
               <li>
                 <a href="#context">Context</a>
@@ -158,10 +152,10 @@ export default (): ReactElement => (
             </ul>
           </li>
           <li>
-            <a href="#iterate">Iterate on the Output</a>
+            <a href="#iterate">Iterate on the output</a>
           </li>
           <li>
-            <a href="#faq">Frequently Asked Questions</a>
+            <a href="#faq">Frequently asked questions</a>
           </li>
           <li>
             <a href="#conclusion">Conclusion</a>
@@ -170,7 +164,7 @@ export default (): ReactElement => (
       </section>
 
       <section id="what-is-prompt-engineering">
-        <h3>What is "Prompt Engineering"?</h3>
+        <h3>What is "prompt engineering"?</h3>
         <p>
           "<strong>Prompt Engineering</strong>" is the practice of crafting clear, structured instructions (prompts) to
           guide AI models towards producing your desired output. Think of it as learning how to communicate effectively
@@ -225,7 +219,7 @@ export default (): ReactElement => (
       </section>
 
       <section>
-        <HeadingAnchor id="cafe-framework">CAFE Framework</HeadingAnchor>
+        <HeadingAnchor id="cafe-framework">CAFE framework</HeadingAnchor>
         <p>
           Let's go through each of the elements of the CAFE framework. The order of the elements doesn't matter. The
           important things are <strong>clarity</strong> and <strong>simplicity</strong>: prompts should be clear and
@@ -246,13 +240,13 @@ export default (): ReactElement => (
           <p>Let's have a look at a bad example of a prompt without context, then a better one with context.</p>
 
           <section>
-            <h4>Bad Example</h4>
-            <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">Make a dinner party menu.</p>
+            <h4>Bad example</h4>
+            <p className="border-line border-s-4 px-4 italic">Make a dinner party menu.</p>
           </section>
 
           <section>
-            <h4>Better Example</h4>
-            <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
+            <h4>Better example</h4>
+            <p className="border-line border-s-4 px-4 italic">
               I am hosting a Saturday evening dinner party for 12 people. I would like to prepare as much as possible in
               advance so I have time to socialise. Make a dinner party menu.
             </p>
@@ -265,7 +259,7 @@ export default (): ReactElement => (
           </HeadingAnchor>
           <p>Describe in detail the action you want to be completed by the AI Assistant.</p>
 
-          <h4>Action Verbs</h4>
+          <h4>Action verbs</h4>
           <p>
             <strong>Use action verbs to describe the task</strong> you want completing.
           </p>
@@ -329,16 +323,16 @@ export default (): ReactElement => (
           </section>
 
           <section>
-            <h4>Bad Example</h4>
-            <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
+            <h4>Bad example</h4>
+            <p className="border-line border-s-4 px-4 italic">
               I need a dinner party menu. Don't include meat, fish, eggs, or dairy. Don't use ingredients which are
               difficult to find.
             </p>
           </section>
 
           <section>
-            <h4>Better Example</h4>
-            <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
+            <h4>Better example</h4>
+            <p className="border-line border-s-4 px-4 italic">
               Create a dinner party menu using plant-based ingredients suitable for vegans. The ingredients should be
               easily available in Britain.
             </p>
@@ -368,7 +362,7 @@ export default (): ReactElement => (
 
           <section>
             <h4>Example</h4>
-            <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
+            <p className="border-line border-s-4 px-4 italic">
               The menu should be concise and easy to reference, making use of clear sections headed by the time the
               different elements need attention.
             </p>
@@ -387,7 +381,7 @@ export default (): ReactElement => (
 
           <section>
             <h4>Example</h4>
-            <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
+            <p className="border-line border-s-4 px-4 italic">
               On two previous occasions, the meals I cooked went down really well with guests. The first was a dish
               based around crispy sesame tofu with a peanut sauce; and the second was a red wine mushroom bourguignon.
             </p>
@@ -401,7 +395,7 @@ export default (): ReactElement => (
               clear, however you can make it really specific by using XML tags. For example:
             </p>
 
-            <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
+            <p className="border-line border-s-4 px-4 italic">
               Here are examples of previous menu items which have been popular:
               <br />
               &lt;example&gt;Vegan Scallops with Paprika Sauce&lt;/example&gt;
@@ -424,7 +418,7 @@ export default (): ReactElement => (
               framework we could engineer our prompt to provide a much better output.
             </p>
 
-            <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
+            <p className="border-line border-s-4 px-4 italic">
               I am hosting a Saturday evening dinner party for 12 people. I would like to prepare as much as possible in
               advance so I have time to socialise.
               <br />
@@ -443,7 +437,7 @@ export default (): ReactElement => (
             <h4>Book recommendation prompt</h4>
             <p>For another example, here's a prompt I used recently to find new books to read before sleep.</p>
 
-            <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
+            <p className="border-line border-s-4 px-4 italic">
               I'm looking for some book recommendations, in particular ones which I can read before going to bed.
               <br />
               For this I would prefer shorter novels, or short stories.
@@ -479,7 +473,7 @@ export default (): ReactElement => (
 
             <section>
               <h5>Example</h5>
-              <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
+              <p className="border-line border-s-4 px-4 italic">
                 That plan looks good in general, however one of the guests has a severe allergy to tomatoes. Update the
                 menu to account for that.
                 <br />
@@ -511,7 +505,7 @@ export default (): ReactElement => (
               <section>
                 <h5>Example: Revisiting the CAFE framework</h5>
 
-                <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
+                <p className="border-line border-s-4 px-4 italic">
                   That looks good, however some of those ingredients will be difficult to find. Update the menu to
                   include ingredients easily available from standard British supermarkets, such as Tesco and ASDA.
                 </p>
@@ -520,7 +514,7 @@ export default (): ReactElement => (
               <section>
                 <h5>Example: Breaking the prompt down into smaller tasks</h5>
 
-                <div className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
+                <div className="border-line border-s-4 px-4 italic">
                   <ol>
                     <li className="italic">
                       I am hosting a Saturday evening dinner party for 12 people. I would like to prepare as much as
@@ -547,7 +541,7 @@ export default (): ReactElement => (
               <section>
                 <h5>Example: Changing to an analogous or synonymous task</h5>
 
-                <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
+                <p className="border-line border-s-4 px-4 italic">
                   I would like you to take on the role of a diligent and respectful dinner party host who is hosting a
                   Saturday evening dinner party for 12 people. In this role you would want to spend as much time in the
                   company of the guests, and prepare food suitable for all.
@@ -567,7 +561,7 @@ export default (): ReactElement => (
 
         <section>
           <HeadingAnchor id="faq" level={2}>
-            Frequently Asked Questions
+            Frequently asked questions
           </HeadingAnchor>
 
           <h3>What is the difference between zero-shot and few-shot prompting?</h3>
@@ -625,11 +619,7 @@ export default (): ReactElement => (
 
           <p>
             For a quick reference guide, check out the{" "}
-            <Link
-              to="/ai/cafe-ai-prompt-framework"
-              prefetch="render"
-              className="text-primary-700 dark:text-primary-500 underline"
-            >
+            <Link to="/ai/cafe-ai-prompt-framework" prefetch="render" className="text-custard-ink underline">
               CAFE AI Prompt Framework
             </Link>
             .

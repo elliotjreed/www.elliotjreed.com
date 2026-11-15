@@ -23,7 +23,7 @@ describe("useSearch", () => {
       { timeout: 500 },
     );
 
-    expect(result.current.results[0].category).toBe("Docker Guides");
+    expect(result.current.results[0].category).toBe("Docker guides");
   });
 
   it("should find results for 'ai' query", async () => {
@@ -41,7 +41,7 @@ describe("useSearch", () => {
     );
 
     const categories = result.current.results.map((r) => r.category);
-    expect(categories).toContain("AI Guides");
+    expect(categories).toContain("AI guides");
   });
 
   it("should perform fuzzy search for typos", async () => {
@@ -118,7 +118,7 @@ describe("useSearch", () => {
     );
 
     const titles = result.current.results.map((r) => r.title);
-    expect(titles).toContain("AI Prompt Guide");
+    expect(titles).toContain("AI prompt guide");
   });
 
   it("should find results by category", async () => {
@@ -135,6 +135,6 @@ describe("useSearch", () => {
       { timeout: 500 },
     );
 
-    expect(result.current.results[0].category).toBe("PHP Guides");
+    expect(result.current.results[0].category).toBe("PHP guides");
   });
 });

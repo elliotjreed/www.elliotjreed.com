@@ -199,42 +199,33 @@ export const PercentageCalculator: FC = (): ReactElement => {
     return `${item.input1} to ${item.input2} = ${item.result > 0 ? "+" : ""}${item.result}%`;
   };
 
-  const inputClassName =
-    "w-full rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-2 text-gray-900 dark:text-gray-100 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500";
-  const buttonClassName =
-    "w-full rounded bg-primary-600 px-4 py-2 font-semibold text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:bg-primary-700 dark:hover:bg-primary-800";
-  const resultClassName =
-    "mt-4 rounded bg-secondary-100 dark:bg-secondary-900 p-4 text-center text-2xl font-bold text-secondary-800 dark:text-secondary-100";
-  const errorClassName =
-    "mt-2 rounded bg-red-100 dark:bg-red-900 p-2 text-center text-sm text-red-800 dark:text-red-100";
-  const cardClassName =
-    "rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 shadow-md";
-  const historyItemClassName =
-    "flex items-center justify-between rounded border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 p-3 text-sm";
+  const inputClassName = "ejr-input w-full";
+  const buttonClassName = "ejr-btn ejr-btn-secondary w-full justify-center";
+  const resultClassName = "mt-4 rounded-md bg-surface-300 p-4 text-center text-figure text-ink tabular-nums";
+  const errorClassName = "mt-2 rounded-md bg-danger-soft p-2 text-center text-caption font-bold text-danger";
+  const cardClassName = "rounded-lg bg-surface-200 p-6";
+  const historyItemClassName = "flex items-center justify-between rounded-md bg-surface-300 p-3 text-caption";
   const iconButtonClassName =
-    "rounded p-1 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500";
-  const explanationClassName =
-    "mt-2 rounded bg-secondary-50 dark:bg-secondary-800 p-3 text-sm text-gray-700 dark:text-gray-100 border border-secondary-200 dark:border-secondary-600";
+    "inline-flex h-9 w-9 items-center justify-center rounded-md text-ink-muted hover:bg-surface-100 hover:text-ink";
+  const explanationClassName = "mt-2 rounded-md bg-surface-300 p-3 text-caption text-ink-muted";
 
   return (
     <div className="mx-auto max-w-6xl space-y-8 p-4">
       <div className="text-center">
-        <h1 className="mb-2 text-4xl font-bold text-gray-900 dark:text-gray-100">
+        <h1 className="text-display text-ink mb-2 font-bold">
           <FontAwesomeIcon icon={faCalculator as IconProp} className="mr-3" />
-          Percentage Calculator
+          Percentage calculator
         </h1>
-        <p className="text-gray-600 dark:text-gray-400">
-          Calculate percentages with ease and keep track of your calculation history
-        </p>
+        <p className="text-ink-muted">Calculate percentages with ease and keep track of your calculation history</p>
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {/* What is X% of Y? */}
         <div className={cardClassName}>
-          <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100">What is X% of Y?</h2>
+          <h2 className="text-heading-3 text-ink mb-4 font-semibold">What is X% of Y?</h2>
           <form onSubmit={handleCalculatePercentOf} className="space-y-4">
             <div>
-              <label htmlFor="percent-of" className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="percent-of" className="text-caption text-ink mb-1 block font-medium">
                 Percentage (%)
               </label>
               <input
@@ -249,7 +240,7 @@ export const PercentageCalculator: FC = (): ReactElement => {
               />
             </div>
             <div>
-              <label htmlFor="value-of" className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="value-of" className="text-caption text-ink mb-1 block font-medium">
                 Value
               </label>
               <input
@@ -281,11 +272,11 @@ export const PercentageCalculator: FC = (): ReactElement => {
           {getHistoryByType("whatIsPercentOf").length > 0 && (
             <div className="mt-6">
               <div className="mb-2 flex items-center justify-between">
-                <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300">Recent Calculations</h3>
+                <h3 className="text-caption text-ink font-semibold">Recent calculations</h3>
                 <button
                   type="button"
                   onClick={(): void => setHistory((prev) => prev.filter((item) => item.type !== "whatIsPercentOf"))}
-                  className="text-xs text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300"
+                  className="text-caption text-danger hover:text-ink"
                 >
                   Clear
                 </button>
@@ -293,7 +284,7 @@ export const PercentageCalculator: FC = (): ReactElement => {
               <div className="space-y-2">
                 {getHistoryByType("whatIsPercentOf").map((item) => (
                   <div key={item.timestamp} className={historyItemClassName}>
-                    <span className="flex-1 text-gray-700 dark:text-gray-300">{formatHistoryText(item)}</span>
+                    <span className="text-ink flex-1">{formatHistoryText(item)}</span>
                     <div className="ml-2 flex gap-1">
                       <button
                         type="button"
@@ -321,10 +312,10 @@ export const PercentageCalculator: FC = (): ReactElement => {
 
         {/* X is what percent of Y? */}
         <div className={cardClassName}>
-          <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100">X is what percent of Y?</h2>
+          <h2 className="text-heading-3 text-ink mb-4 font-semibold">X is what percent of Y?</h2>
           <form onSubmit={handleCalculateWhatPercent} className="space-y-4">
             <div>
-              <label htmlFor="part-value" className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="part-value" className="text-caption text-ink mb-1 block font-medium">
                 Part
               </label>
               <input
@@ -339,7 +330,7 @@ export const PercentageCalculator: FC = (): ReactElement => {
               />
             </div>
             <div>
-              <label htmlFor="whole-value" className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="whole-value" className="text-caption text-ink mb-1 block font-medium">
                 Whole
               </label>
               <input
@@ -372,11 +363,11 @@ export const PercentageCalculator: FC = (): ReactElement => {
           {getHistoryByType("whatPercentOf").length > 0 && (
             <div className="mt-6">
               <div className="mb-2 flex items-center justify-between">
-                <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300">Recent Calculations</h3>
+                <h3 className="text-caption text-ink font-semibold">Recent calculations</h3>
                 <button
                   type="button"
                   onClick={(): void => setHistory((prev) => prev.filter((item) => item.type !== "whatPercentOf"))}
-                  className="text-xs text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300"
+                  className="text-caption text-danger hover:text-ink"
                 >
                   Clear
                 </button>
@@ -384,7 +375,7 @@ export const PercentageCalculator: FC = (): ReactElement => {
               <div className="space-y-2">
                 {getHistoryByType("whatPercentOf").map((item) => (
                   <div key={item.timestamp} className={historyItemClassName}>
-                    <span className="flex-1 text-gray-700 dark:text-gray-300">{formatHistoryText(item)}</span>
+                    <span className="text-ink flex-1">{formatHistoryText(item)}</span>
                     <div className="ml-2 flex gap-1">
                       <button
                         type="button"
@@ -412,11 +403,11 @@ export const PercentageCalculator: FC = (): ReactElement => {
 
         {/* Percentage Change */}
         <div className={cardClassName}>
-          <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100">Percentage Change</h2>
+          <h2 className="text-heading-3 text-ink mb-4 font-semibold">Percentage change</h2>
           <form onSubmit={handleCalculateChange} className="space-y-4">
             <div>
-              <label htmlFor="start-value" className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                Start Value
+              <label htmlFor="start-value" className="text-caption text-ink mb-1 block font-medium">
+                Start value
               </label>
               <input
                 id="start-value"
@@ -430,8 +421,8 @@ export const PercentageCalculator: FC = (): ReactElement => {
               />
             </div>
             <div>
-              <label htmlFor="end-value" className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                End Value
+              <label htmlFor="end-value" className="text-caption text-ink mb-1 block font-medium">
+                End value
               </label>
               <input
                 id="end-value"
@@ -467,11 +458,11 @@ export const PercentageCalculator: FC = (): ReactElement => {
           {getHistoryByType("percentageChange").length > 0 && (
             <div className="mt-6">
               <div className="mb-2 flex items-center justify-between">
-                <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300">Recent Calculations</h3>
+                <h3 className="text-caption text-ink font-semibold">Recent calculations</h3>
                 <button
                   type="button"
                   onClick={(): void => setHistory((prev) => prev.filter((item) => item.type !== "percentageChange"))}
-                  className="text-xs text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300"
+                  className="text-caption text-danger hover:text-ink"
                 >
                   Clear
                 </button>
@@ -479,7 +470,7 @@ export const PercentageCalculator: FC = (): ReactElement => {
               <div className="space-y-2">
                 {getHistoryByType("percentageChange").map((item) => (
                   <div key={item.timestamp} className={historyItemClassName}>
-                    <span className="flex-1 text-gray-700 dark:text-gray-300">{formatHistoryText(item)}</span>
+                    <span className="text-ink flex-1">{formatHistoryText(item)}</span>
                     <div className="ml-2 flex gap-1">
                       <button
                         type="button"
@@ -508,13 +499,9 @@ export const PercentageCalculator: FC = (): ReactElement => {
 
       {history.length > 0 && (
         <div className="text-center">
-          <button
-            type="button"
-            onClick={handleClearHistory}
-            className="rounded bg-red-600 px-6 py-2 font-semibold text-white hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:outline-none dark:bg-red-700 dark:hover:bg-red-800"
-          >
+          <button type="button" onClick={handleClearHistory} className="ejr-btn ejr-btn-danger">
             <FontAwesomeIcon icon={faTrash as IconProp} className="mr-2" />
-            Clear All History
+            Clear all history
           </button>
         </div>
       )}

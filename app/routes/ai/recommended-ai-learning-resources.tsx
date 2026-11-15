@@ -1,7 +1,7 @@
 import type { ReactElement } from "react";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createAmpLink, createMeta } from "~/utils/seo";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -33,28 +33,26 @@ export const meta = () => [
       { name: "AI Resources", url: "https://www.elliotjreed.com/ai/recommended-ai-learning-resources" },
     ]),
   },
-  createAmpLink("/ai/recommended-ai-learning-resources"),
 ];
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
+  <section className="ejr-article divide-line divide-y">
     <PageHeader
-      title="AI Resources"
+      tone="tint"
+      title="AI resources"
       meta={
-        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div className="text-caption text-ink-subtle flex flex-wrap items-center gap-x-6 gap-y-1">
           <span>By Elliot J. Reed</span>
-          <span>•</span>
           <time dateTime="2025-04-20">
             Published: 20<sup>th</sup> April 2025
           </time>
-          <span>•</span>
           <time dateTime="2026-01-30">
             Last updated: 30<sup>th</sup> January 2026
           </time>
         </div>
       }
     >
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose ejr-lead">
         A curated collection of AI learning resources covering practical prompt engineering techniques, forward-thinking
         essays on AI's potential impact on society, responsible AI development policies, and useful tools for working
         with AI APIs. These resources span from hands-on technical guides to thoughtful explorations of AI safety and
@@ -62,15 +60,15 @@ export default (): ReactElement => (
       </p>
     </PageHeader>
 
-    <div className="prose dark:prose-dark max-w-none">
+    <div className="prose ejr-prose">
       <section>
-        <h2>Table of Contents</h2>
+        <h2>Table of contents</h2>
         <ul>
           <li>
-            <a href="#prompt_engineering">Prompts & Prompt Engineering</a>
+            <a href="#prompt_engineering">Prompts & prompt engineering</a>
           </li>
           <li>
-            <a href="#future_of_ai">The Future of AI</a>
+            <a href="#future_of_ai">The future of AI</a>
           </li>
           <li>
             <a href="#tools">Tools</a>
@@ -82,7 +80,7 @@ export default (): ReactElement => (
       </section>
 
       <section id="prompt_engineering">
-        <h3>Prompts &amp; Prompt Engineering</h3>
+        <h3>Prompts &amp; prompt engineering</h3>
         <ul>
           <li>
             <a href="https://www.kaggle.com/whitepaper-prompt-engineering" target="_blank" rel="noreferrer noopener">
@@ -94,7 +92,7 @@ export default (): ReactElement => (
       </section>
 
       <section id="future_of_ai">
-        <h3>The Future of AI</h3>
+        <h3>The future of AI</h3>
         <ul>
           <li>
             <a
@@ -134,8 +132,8 @@ export default (): ReactElement => (
         <h3>Conclusion</h3>
         <p>
           The resources listed above provide a solid foundation for understanding AI development, from practical prompt
-          engineering techniques to forward-thinking research on AI safety and responsible scaling. Whether you're just
-          starting your AI journey or looking to deepen your understanding of how AI could shape our future, these
+          engineering techniques to forward-thinking research on AI safety and responsible scaling. If you are just
+          starting your AI journey or want to deepen your understanding of how AI could shape our future, these
           carefully curated materials offer valuable insights from leading voices in the field.
         </p>
         <p>

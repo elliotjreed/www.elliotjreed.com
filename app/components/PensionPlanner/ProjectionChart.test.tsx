@@ -1,6 +1,14 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
-import { ProjectionChart, bandPath, linePath, niceTicks, scaleLinear } from "./ProjectionChart";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import {
+  ProjectionChart,
+  ageTickStep,
+  bandPath,
+  chartHeight,
+  linePath,
+  niceTicks,
+  scaleLinear,
+} from "./ProjectionChart";
 
 const median = [
   { age: 40, value: 100_000 },
@@ -109,7 +117,92 @@ describe("bandPath", () => {
   });
 });
 
+describe("chartHeight", () => {
+  it("keeps a 16:9 shape between the minimum and maximum heights", () => {
+    expect(chartHeight(480)).toBe(270);
+  });
+
+  it("never goes below 240px on narrow screens", () => {
+    expect(chartHeight(300)).toBe(240);
+  });
+
+  it("never goes above 360px on wide screens", () => {
+    expect(chartHeight(1200)).toBe(360);
+  });
+});
+
+describe("ageTickStep", () => {
+  it("labels every five years when there is room", () => {
+    expect(ageTickStep(560, 55)).toBe(5);
+  });
+
+  it("labels every ten years when five-year labels would be crowded", () => {
+    expect(ageTickStep(240, 55)).toBe(10);
+  });
+});
+
 describe("ProjectionChart", () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it("sets every label in the brand data type size", () => {
+    const { container } = render(
+      <ProjectionChart median={median} retirementAge={60} statePensionAge={67} depletionAge={70} ariaLabel="Chart" />,
+    );
+
+    const labels = Array.from(container.querySelectorAll("text"));
+    expect(labels.length).toBeGreaterThan(0);
+    for (const label of labels) {
+      expect(label).toHaveClass("text-data");
+      expect(label.getAttribute("class")).not.toMatch(/text-\[/);
+    }
+  });
+
+  it("draws at the measured width so labels are not scaled down", () => {
+    vi.stubGlobal(
+      "ResizeObserver",
+      class {
+        constructor(private readonly callback: (entries: { contentRect: { width: number } }[]) => void) {}
+        observe(): void {
+          this.callback([{ contentRect: { width: 320 } }]);
+        }
+        disconnect(): void {}
+      },
+    );
+
+    const { container } = render(<ProjectionChart median={median} retirementAge={60} ariaLabel="Chart" />);
+
+    expect(container.querySelector("svg")).toHaveAttribute("viewBox", "0 0 320 240");
+  });
+
+  it("places the retirement and state pension labels either side of their lines", () => {
+    render(<ProjectionChart median={median} retirementAge={60} statePensionAge={67} ariaLabel="Chart" />);
+
+    expect(screen.getByText("Retire")).toHaveAttribute("text-anchor", "end");
+    expect(screen.getByText("State pension")).toHaveAttribute("text-anchor", "start");
+  });
+
+  it("haloes the depletion label in the chart background so the line does not cross it", () => {
+    render(<ProjectionChart median={median} retirementAge={60} depletionAge={70} ariaLabel="Chart" />);
+
+    const label = screen.getByText("Pot runs out");
+    expect(label).toHaveAttribute("paint-order", "stroke");
+    expect(label).toHaveClass("stroke-surface-200");
+  });
+
+  it("caps the chart at 768px wide and centres it on desktop", () => {
+    const { container } = render(<ProjectionChart median={median} retirementAge={60} ariaLabel="Chart" />);
+
+    expect(container.firstElementChild).toHaveClass("mx-auto", "max-w-3xl");
+  });
+
+  it("centres a reference label when it is the only one", () => {
+    render(<ProjectionChart median={median} retirementAge={60} ariaLabel="Chart" />);
+
+    expect(screen.getByText("Retire")).toHaveAttribute("text-anchor", "middle");
+  });
+
   it("renders an accessible image with a label", () => {
     render(<ProjectionChart median={median} retirementAge={60} ariaLabel="Projected pension pot" />);
 

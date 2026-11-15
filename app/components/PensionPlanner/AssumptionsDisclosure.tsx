@@ -15,17 +15,17 @@ interface AssumptionsDisclosureProps {
 
 export const AssumptionsDisclosure: FC<AssumptionsDisclosureProps> = ({ modelLabel }): ReactElement => (
   <section aria-labelledby="assumptions-heading" className="space-y-4">
-    <h2 id="assumptions-heading" className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+    <h2 id="assumptions-heading" className="text-heading-2 text-ink font-semibold">
       Assumptions used
     </h2>
 
-    <div className="rounded-lg border border-gray-200 bg-white p-6 text-sm text-gray-700 shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300">
+    <div className="bg-surface-200 text-caption text-ink rounded-lg p-6">
       <p className="mb-3">
         Figures use the <strong>{TAX_YEAR}</strong> tax year and the growth model <strong>{modelLabel}</strong>. All
         amounts are shown in today&rsquo;s money, so they already allow for inflation.
       </p>
 
-      <ul className="list-disc space-y-2 pl-5">
+      <ul className="list-disc space-y-2 pl-6">
         <li>
           <strong>Growth models.</strong> AS TM1 rates come from the Financial Reporting Council standard behind annual
           pension statements and the Pensions Dashboards, which assigns each fund a volatility group. FCA rates are the
@@ -65,7 +65,7 @@ export const AssumptionsDisclosure: FC<AssumptionsDisclosureProps> = ({ modelLab
       </ul>
     </div>
 
-    <p className="rounded border border-amber-300 bg-amber-100 p-4 text-sm text-amber-900 dark:border-amber-600 dark:bg-amber-900 dark:text-amber-100">
+    <p className="bg-warning-soft text-caption text-ink rounded-md p-4">
       <strong>This is not financial advice.</strong> This calculator is a guidance tool using simplified assumptions,
       and its projections are not a promise of what you will receive. Investment returns are not guaranteed and tax
       rules change. For advice on your own circumstances, speak to a regulated financial adviser. Free, impartial

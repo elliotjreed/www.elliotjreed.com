@@ -1,9 +1,10 @@
 import type { ReactElement } from "react";
+import { Callout } from "~/components/Callout/Callout";
 import { CodeSnippet } from "~/components/CodeSnippet/CodeSnippet";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createAmpLink, createMeta } from "~/utils/seo";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -37,60 +38,56 @@ export const meta = () => [
       },
     ]),
   },
-  createAmpLink("/linux/install-mariadb-on-ubuntu-and-allow-remote-access"),
 ];
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
+  <section className="ejr-article divide-line divide-y">
     <PageHeader
+      tone="tint"
       title="Installing MariaDB on Ubuntu"
       meta={
-        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div className="text-caption text-ink-subtle flex flex-wrap items-center gap-x-6 gap-y-1">
           <span>By Elliot J. Reed</span>
-          <span>•</span>
           <time dateTime="2022-04-22">
             Published: 22<sup>nd</sup> April 2022
           </time>
-          <span>•</span>
           <time dateTime="2026-01-30">
             Last updated: 30<sup>th</sup> January 2026
           </time>
         </div>
       }
     >
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
-        How to install MariaDB (MySQL) on Ubuntu 20.04+ and allow remote access
-      </p>
+      <p className="prose ejr-lead">How to install MariaDB (MySQL) on Ubuntu 20.04+ and allow remote access</p>
     </PageHeader>
 
-    <div className="prose dark:prose-dark max-w-none">
+    <div className="prose ejr-prose">
       <section>
-        <h2>Table of Contents</h2>
+        <h2>Table of contents</h2>
         <ul className="list-none space-y-2 pl-0">
           <li>
-            <a href="#installation" className="text-primary-700 dark:text-primary-500 hover:underline">
-              Installation and Setup
+            <a href="#installation" className="text-custard-ink hover:underline">
+              Installation and setup
             </a>
           </li>
           <li>
-            <a href="#create-user" className="text-primary-700 dark:text-primary-500 hover:underline">
-              Creating a Database User
+            <a href="#create-user" className="text-custard-ink hover:underline">
+              Creating a database user
             </a>
           </li>
           <li>
-            <a href="#remote-access" className="text-primary-700 dark:text-primary-500 hover:underline">
-              Enabling Remote Access
+            <a href="#remote-access" className="text-custard-ink hover:underline">
+              Enabling remote access
             </a>
           </li>
           <li>
-            <a href="#faq" className="text-primary-700 dark:text-primary-500 hover:underline">
-              Frequently Asked Questions
+            <a href="#faq" className="text-custard-ink hover:underline">
+              Frequently asked questions
             </a>
           </li>
         </ul>
       </section>
       <section>
-        <HeadingAnchor id="installation">Installation and Setup</HeadingAnchor>
+        <HeadingAnchor id="installation">Installation and setup</HeadingAnchor>
 
         <p>
           The following assumes you are logged in as the <code>root</code> user on your system.
@@ -183,7 +180,7 @@ Set root password? [Y/n]"
 
         <CodeSnippet language="bash" code="mysql -uroot -p" title="" />
 
-        <HeadingAnchor id="create-user">Creating a Database User</HeadingAnchor>
+        <HeadingAnchor id="create-user">Creating a database user</HeadingAnchor>
 
         <p>
           Inside the <code>mysql</code> client, create a new user by running the following with a username (instead of
@@ -208,17 +205,16 @@ FLUSH PRIVILEGES;"
 
         <CodeSnippet language="bash" code="mysql -uelliot -p" title="" />
 
-        <HeadingAnchor id="remote-access">Enabling Remote Access</HeadingAnchor>
+        <HeadingAnchor id="remote-access">Enabling remote access</HeadingAnchor>
 
-        <aside className="my-4 border-l-4 border-yellow-500 bg-yellow-50 p-4 dark:bg-yellow-900/20">
-          <p className="font-bold">Security Warning:</p>
+        <Callout variant="warning" label="Security warning">
           <p>
             Allowing remote database access exposes your database to potential security risks. Only enable remote access
             if absolutely necessary, and always use strong passwords, firewall rules to restrict access to specific IP
             addresses, and consider setting up SSL/TLS encryption for database connections. Never expose a database with
             weak passwords or default configurations to the internet.
           </p>
-        </aside>
+        </Callout>
 
         <p>
           If you want to be able to access the database remotely you will need to comment-out the{" "}
@@ -280,7 +276,7 @@ bind-address            = 127.0.0.1"
 
         <CodeSnippet language="bash" code="ufw allow mysql" title="" />
 
-        <HeadingAnchor id="faq">Frequently Asked Questions</HeadingAnchor>
+        <HeadingAnchor id="faq">Frequently asked questions</HeadingAnchor>
 
         <h3>How do I secure remote connections with SSL/TLS?</h3>
         <p>

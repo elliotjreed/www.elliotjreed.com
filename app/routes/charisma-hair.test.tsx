@@ -41,7 +41,7 @@ describe("charisma-hair route", () => {
       const { container } = render(<CharismaHairRoute />);
       const section = container.querySelector("section");
 
-      expect(section).toHaveClass("divide-y", "divide-gray-200", "dark:divide-gray-700");
+      expect(section).toHaveClass("divide-y", "divide-line");
     });
   });
 });

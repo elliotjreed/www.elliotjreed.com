@@ -1,5 +1,6 @@
 import type { FC, ReactElement } from "react";
 import { useId } from "react";
+import { useElementWidth } from "~/hooks/useElementWidth";
 import type { ProjectionPoint } from "~/utils/pension/planner";
 
 export type ChartPoint = ProjectionPoint;
@@ -15,11 +16,26 @@ interface ProjectionChartProps {
   ariaLabel: string;
 }
 
-const WIDTH = 640;
-const HEIGHT = 360;
-const MARGIN = { top: 16, right: 16, bottom: 40, left: 64 };
-const PLOT_WIDTH = WIDTH - MARGIN.left - MARGIN.right;
-const PLOT_HEIGHT = HEIGHT - MARGIN.top - MARGIN.bottom;
+const DEFAULT_WIDTH = 640;
+const MINIMUM_HEIGHT = 240;
+const MAXIMUM_HEIGHT = 360;
+const MARGIN = { top: 28, right: 16, bottom: 48, left: 64 };
+const MINIMUM_AGE_LABEL_SPACING = 40;
+const LABEL_CLASS_NAME = "fill-ink-muted text-data";
+
+/**
+ * Chart height for a given drawn width: 16:9, clamped so it stays legible on phones and compact on desktops.
+ */
+export function chartHeight(width: number): number {
+  return Math.round(Math.min(MAXIMUM_HEIGHT, Math.max(MINIMUM_HEIGHT, (width * 9) / 16)));
+}
+
+/**
+ * Years between age labels: every five when they fit, otherwise every ten.
+ */
+export function ageTickStep(plotWidth: number, ageSpan: number): number {
+  return (plotWidth / ageSpan) * 5 >= MINIMUM_AGE_LABEL_SPACING ? 5 : 10;
+}
 
 /**
  * Rounded axis tick values spanning zero to the maximum, using a 1/2/5 step progression.
@@ -112,10 +128,15 @@ export const ProjectionChart: FC<ProjectionChartProps> = ({
 }): ReactElement | null => {
   const titleId = useId();
   const descriptionId = useId();
+  const [containerRef, width] = useElementWidth<HTMLDivElement>(DEFAULT_WIDTH);
 
   if (median.length === 0) {
     return null;
   }
+
+  const height = chartHeight(width);
+  const plotWidth = width - MARGIN.left - MARGIN.right;
+  const plotHeight = height - MARGIN.top - MARGIN.bottom;
 
   const ages = median.map((point) => point.age);
   const minimumAge = Math.min(...ages);
@@ -126,19 +147,27 @@ export const ProjectionChart: FC<ProjectionChartProps> = ({
   );
 
   const ticks = niceTicks(0, maximumValue);
-  const x = scaleLinear([minimumAge, maximumAge], [MARGIN.left, MARGIN.left + PLOT_WIDTH]);
-  const y = scaleLinear([0, ticks[ticks.length - 1]], [MARGIN.top + PLOT_HEIGHT, MARGIN.top]);
+  const x = scaleLinear([minimumAge, maximumAge], [MARGIN.left, MARGIN.left + plotWidth]);
+  const y = scaleLinear([0, ticks[ticks.length - 1]], [MARGIN.top + plotHeight, MARGIN.top]);
 
-  const ageTicks = ages.filter((age) => age % 5 === 0);
+  const ageStep = ageTickStep(plotWidth, maximumAge - minimumAge);
+  const ageTicks = ages.filter((age) => age % ageStep === 0);
   const peak = median.reduce((highest, point) => (point.value > highest.value ? point : highest), median[0]);
   const finalPoint = median[median.length - 1];
 
   const description = `Projected pot of ${formatAxisValue(median[0].value)} at age ${minimumAge}, peaking at ${formatAxisValue(peak.value)} around age ${peak.age}, and ${depletionAge != null ? `running out at age ${depletionAge}` : `ending at ${formatAxisValue(finalPoint.value)} at age ${finalPoint.age}`}.`;
 
-  const referenceLine = (age: number, label: string, testId: string): ReactElement | null => {
+  const referenceLine = (
+    age: number,
+    label: string,
+    testId: string,
+    anchor: "start" | "middle" | "end",
+  ): ReactElement | null => {
     if (age < minimumAge || age > maximumAge) {
       return null;
     }
+
+    const labelOffset = anchor === "start" ? 4 : anchor === "end" ? -4 : 0;
 
     return (
       <g data-testid={testId}>
@@ -146,26 +175,25 @@ export const ProjectionChart: FC<ProjectionChartProps> = ({
           x1={x(age)}
           x2={x(age)}
           y1={MARGIN.top}
-          y2={MARGIN.top + PLOT_HEIGHT}
+          y2={MARGIN.top + plotHeight}
           strokeDasharray="4 4"
-          className="stroke-gray-400 dark:stroke-gray-500"
+          className="stroke-line-strong"
         />
-        <text
-          x={x(age)}
-          y={MARGIN.top - 4}
-          textAnchor="middle"
-          className="fill-gray-600 text-[10px] dark:fill-gray-400"
-        >
+        <text x={x(age) + labelOffset} y={MARGIN.top - 8} textAnchor={anchor} className={LABEL_CLASS_NAME}>
           {label}
         </text>
       </g>
     );
   };
 
+  const hasBothReferenceLines = statePensionAge !== undefined;
+  const retirementAnchor = hasBothReferenceLines ? (retirementAge <= statePensionAge ? "end" : "start") : "middle";
+  const statePensionAnchor = retirementAnchor === "end" ? "start" : "end";
+
   return (
-    <div>
+    <div ref={containerRef} className="mx-auto max-w-3xl">
       <svg
-        viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
+        viewBox={`0 0 ${width} ${height}`}
         className="h-auto w-full"
         role="img"
         aria-labelledby={`${titleId} ${descriptionId}`}
@@ -175,19 +203,13 @@ export const ProjectionChart: FC<ProjectionChartProps> = ({
 
         {ticks.map((tick) => (
           <g key={tick}>
-            <line
-              x1={MARGIN.left}
-              x2={MARGIN.left + PLOT_WIDTH}
-              y1={y(tick)}
-              y2={y(tick)}
-              className="stroke-gray-200 dark:stroke-gray-700"
-            />
+            <line x1={MARGIN.left} x2={MARGIN.left + plotWidth} y1={y(tick)} y2={y(tick)} className="stroke-line" />
             <text
               x={MARGIN.left - 8}
               y={y(tick)}
               textAnchor="end"
               dominantBaseline="middle"
-              className="fill-gray-600 text-[10px] dark:fill-gray-400"
+              className={LABEL_CLASS_NAME}
             >
               {formatAxisValue(tick)}
             </text>
@@ -195,52 +217,36 @@ export const ProjectionChart: FC<ProjectionChartProps> = ({
         ))}
 
         {ageTicks.map((age) => (
-          <text
-            key={age}
-            x={x(age)}
-            y={MARGIN.top + PLOT_HEIGHT + 20}
-            textAnchor="middle"
-            className="fill-gray-600 text-[10px] dark:fill-gray-400"
-          >
+          <text key={age} x={x(age)} y={MARGIN.top + plotHeight + 20} textAnchor="middle" className={LABEL_CLASS_NAME}>
             {age}
           </text>
         ))}
 
-        <text
-          x={MARGIN.left + PLOT_WIDTH / 2}
-          y={HEIGHT - 4}
-          textAnchor="middle"
-          className="fill-gray-600 text-[11px] dark:fill-gray-400"
-        >
+        <text x={MARGIN.left + plotWidth / 2} y={height - 4} textAnchor="middle" className={LABEL_CLASS_NAME}>
           Age
         </text>
 
         {band !== undefined && (
-          <path
-            d={bandPath(band.lower, band.upper, x, y)}
-            data-testid="percentile-band"
-            className="fill-secondary-300/40 dark:fill-secondary-600/30"
-          />
+          <path d={bandPath(band.lower, band.upper, x, y)} data-testid="percentile-band" className="fill-damson-soft" />
         )}
 
-        <path
-          d={linePath(median, x, y)}
-          className="stroke-primary-600 dark:stroke-primary-400"
-          fill="none"
-          strokeWidth={2}
-        />
+        <path d={linePath(median, x, y)} className="stroke-rhubarb" fill="none" strokeWidth={2} />
 
-        {referenceLine(retirementAge, "Retire", "retirement-marker")}
-        {statePensionAge !== undefined && referenceLine(statePensionAge, "State pension", "state-pension-marker")}
+        {referenceLine(retirementAge, "Retire", "retirement-marker", retirementAnchor)}
+        {statePensionAge !== undefined &&
+          referenceLine(statePensionAge, "State pension", "state-pension-marker", statePensionAnchor)}
 
         {depletionAge != null && depletionAge >= minimumAge && depletionAge <= maximumAge && (
           <g data-testid="depletion-marker">
-            <circle cx={x(depletionAge)} cy={y(0)} r={4} className="fill-red-600 dark:fill-red-400" />
+            <circle cx={x(depletionAge)} cy={y(0)} r={4} className="fill-danger" />
             <text
               x={x(depletionAge)}
               y={y(0) - 8}
               textAnchor="middle"
-              className="fill-red-600 text-[10px] dark:fill-red-400"
+              paintOrder="stroke"
+              strokeWidth={4}
+              strokeLinejoin="round"
+              className="fill-danger stroke-surface-200 text-data"
             >
               Pot runs out
             </text>
@@ -248,14 +254,14 @@ export const ProjectionChart: FC<ProjectionChartProps> = ({
         )}
       </svg>
 
-      <div className="mt-2 flex flex-wrap items-center justify-center gap-4 text-xs text-gray-600 dark:text-gray-400">
+      <div className="text-caption text-ink-muted mt-2 flex flex-wrap items-center justify-center gap-4">
         <span className="flex items-center gap-2">
-          <span className="bg-primary-600 dark:bg-primary-400 inline-block h-0.5 w-4" aria-hidden="true" />
+          <span className="bg-rhubarb inline-block h-0.5 w-4" aria-hidden="true" />
           Projected pot
         </span>
         {band !== undefined && (
           <span className="flex items-center gap-2">
-            <span className="bg-secondary-300 dark:bg-secondary-600 inline-block h-3 w-4" aria-hidden="true" />
+            <span className="bg-damson-soft inline-block h-3 w-4" aria-hidden="true" />
             10th to 90th percentile
           </span>
         )}

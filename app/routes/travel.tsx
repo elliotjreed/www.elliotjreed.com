@@ -1,7 +1,7 @@
 import type { ReactElement } from "react";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs } from "~/data/schemaData";
-import { createAmpLink, createMeta } from "~/utils/seo";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -173,13 +173,12 @@ const travellingPhotographs: TitledPhotograph[] = [
     source:
       "https://res.cloudinary.com/elliotjreed/image/upload/f_auto,q_auto/v1553890700/Travelling/Rothemberg_Germany.jpg",
   },
-  createAmpLink("/travel"),
 ];
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
-    <PageHeader title="Travelling">
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+  <section className="ejr-article divide-line divide-y">
+    <PageHeader tone="band" title="Travelling">
+      <p className="prose ejr-lead">
         A few photographs from some of the places I&apos;ve visited (and remembered to take a photo!).
       </p>
     </PageHeader>
@@ -187,7 +186,7 @@ export default (): ReactElement => (
       <div className="-m-4 flex flex-wrap">
         {travellingPhotographs.map((photo: TitledPhotograph): ReactElement => (
           <div key={photo.source} className="md p-4 md:w-1/2" style={{ maxWidth: "544px" }}>
-            <div className="border-opacity-60 h-full overflow-hidden rounded-md border-2 border-gray-200 dark:border-gray-700">
+            <div className="border-opacity-60 border-line h-full overflow-hidden rounded-md border-2">
               <img
                 alt={`Photograph from my visit to ${photo.title}`}
                 src={photo.source}
@@ -197,7 +196,7 @@ export default (): ReactElement => (
                 loading="lazy"
               />
               <div className="p-6">
-                <h2 className="text-xl leading-8 font-bold tracking-tight">{photo.title}</h2>
+                <h2 className="text-heading-3 font-bold">{photo.title}</h2>
               </div>
             </div>
           </div>

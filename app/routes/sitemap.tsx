@@ -22,11 +22,11 @@ const renderLinks = (links: StaticLink[]): ReactElement => (
       .map((link: StaticLink): ReactElement => (
         <li key={link.href ?? link.title} className="mb-1">
           {link.href ? (
-            <Link to={link.href} className="text-gray-700 dark:text-gray-200">
+            <Link to={link.href} className="text-ink">
               {link.title}
             </Link>
           ) : (
-            <span className="font-semibold text-gray-700 dark:text-gray-200">{link.title}</span>
+            <span className="text-ink font-semibold">{link.title}</span>
           )}
           {link.children && renderLinks(link.children)}
         </li>
@@ -35,13 +35,11 @@ const renderLinks = (links: StaticLink[]): ReactElement => (
 );
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
+  <section className="ejr-article divide-line divide-y">
     <PageHeader title="Sitemap">
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
-        All the links on this site, including ones I don't keep in the navigation.
-      </p>
+      <p className="prose ejr-lead">All the links on this site, including ones I don't keep in the navigation.</p>
     </PageHeader>
 
-    <div className="prose dark:prose-dark max-w-none">{renderLinks(staticLinks)}</div>
+    <div className="prose ejr-prose">{renderLinks(staticLinks)}</div>
   </section>
 );

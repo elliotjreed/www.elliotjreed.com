@@ -27,10 +27,15 @@ The architecture follows modern React patterns with server-side rendering and SS
 - Server-side rendering configured in `react-router.config.ts`
 - Cloudflare Workers integration via `workers/app.ts`
 
-**Styling**: Tailwind CSS v4 with custom animations
+**Styling**: Tailwind CSS v4 on the Elliot J. Reed design system
 
-- Dark mode support with `dark:` classes
-- Typography plugin for prose content
+- Design tokens (colours, spacing, measure) live in `app/tokens.css`; `app/app.css` maps them into the Tailwind theme (`bg-surface-200`, `text-ink`, `text-heading-2`, `font-display`). Use these, never raw palette classes or hex values
+- Design system component classes (`ejr-btn`, `ejr-card`, `ejr-callout`, `ejr-code`, `ejr-stat`) live in `app/components.css`
+- Spacing: only Tailwind units `1, 2, 3, 4, 6, 8, 12, 20, 32` are on the brand scale (`--space-1` to `--space-9`: 4, 8, 12, 16, 24, 32, 48, 80, 128px); avoid off-scale units such as `5` or `10`
+- Type sizes are rem-based `--text-*` tokens; use `text-heading-2` etc. or `var(--text-*)` in CSS, never raw pixel font sizes
+- Themes switch through `data-theme` on `<html>`; unset follows the system setting. Colour tokens use `light-dark()`, so `dark:` classes are not needed. An inline script in `root.tsx` (`app/utils/themeScript.ts`) applies the saved theme before paint; its CSP hash is computed in `workers/app.ts`
+- Fonts (Besley, Atkinson Hyperlegible Next and Mono) are self-hosted in `public/fonts/`
+- Typography plugin for prose content, themed in the `prose` layer of `app/app.css`
 
 **Content Structure**:
 
@@ -44,6 +49,7 @@ The architecture follows modern React patterns with server-side rendering and SS
 - `Footer` - Site footer with links
 - `SocialLinks` - Social media icon links
 - `CodeSnippet` - Code highlighting component
+- `Callout`, `ArticleCard`, `CategoryListing`, `Sidenote` - Design system components
 - `ThemeSwitch` - Dark/light mode toggle
 
 ### Build Configuration

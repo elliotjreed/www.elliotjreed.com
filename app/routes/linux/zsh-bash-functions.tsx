@@ -2,7 +2,7 @@ import type { ReactElement } from "react";
 import { CodeSnippet, type CodeSnippetInterface } from "~/components/CodeSnippet/CodeSnippet";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createAmpLink, createMeta } from "~/utils/seo";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -33,7 +33,6 @@ export const meta = () => [
       { name: "ZSH & Bash Functions", url: "https://www.elliotjreed.com/linux/zsh-bash-functions" },
     ]),
   },
-  createAmpLink("/linux/zsh-bash-functions"),
 ];
 
 const snippets: CodeSnippetInterface[] = [
@@ -190,29 +189,28 @@ read -p "Do you want to add the CA certificate to your operating system trusted 
 ];
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
+  <section className="ejr-article divide-line divide-y">
     <PageHeader
-      title="Shell Functions"
+      tone="tint"
+      title="Shell functions"
       meta={
-        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div className="text-caption text-ink-subtle flex flex-wrap items-center gap-x-6 gap-y-1">
           <span>By Elliot J. Reed</span>
-          <span>•</span>
           <time dateTime="2025-04-20">
             Published: 20<sup>th</sup> April 2025
           </time>
-          <span>•</span>
           <time dateTime="2026-01-30">
             Last updated: 30<sup>th</sup> January 2026
           </time>
         </div>
       }
     >
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose ejr-lead">
         Here you'll find a few handy functions to use in ZSH and Bash Shell. Tested on Linux - likely work on Mac!
       </p>
     </PageHeader>
 
-    <div className="prose dark:prose-dark max-w-none">
+    <div className="prose ejr-prose">
       <section>
         {snippets.map((snippet: CodeSnippetInterface): ReactElement => (
           <CodeSnippet key={snippet.title} language="bash" code={snippet.code} title={snippet.title} />
@@ -223,8 +221,8 @@ export default (): ReactElement => (
           These shell functions provide powerful automation for common system administration and development tasks. From
           fixing file permissions to generating SSL certificates, each function encapsulates complex command sequences
           into simple, memorable commands. By adding these to your ~/.bashrc or ~/.zshrc configuration, you'll have a
-          robust toolkit available whenever you need it, reducing the cognitive load of remembering exact command syntax
-          for infrequent but important tasks.
+          dependable toolkit available whenever you need it, reducing the cognitive load of remembering exact command
+          syntax for infrequent but important tasks.
         </p>
         <p>
           Start by implementing the functions most relevant to your workflow, whether that's the myip function for

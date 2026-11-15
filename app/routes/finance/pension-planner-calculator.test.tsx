@@ -65,11 +65,5 @@ describe("PensionPlannerCalculatorRoute", () => {
       expect(JSON.stringify(faq)).toMatch(/AS TM1/);
       expect(JSON.stringify(faq)).toMatch(/FIRE number/);
     });
-
-    it("does not offer an AMP version", () => {
-      const metaTags = meta() as Array<Record<string, unknown>>;
-
-      expect(metaTags.some((tag) => tag.rel === "amphtml")).toBe(false);
-    });
   });
 });

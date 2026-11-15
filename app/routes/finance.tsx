@@ -1,12 +1,12 @@
 import type { ReactElement } from "react";
-import { Link } from "react-router";
 
+import { CategoryListing } from "~/components/CategoryListing/CategoryListing";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs } from "~/data/schemaData";
 import { getCategoryPages } from "~/utils/categoryListings";
 import { createMeta } from "~/utils/seo";
 
-const CATEGORY_TITLE = "Finance Tools";
+const CATEGORY_TITLE = "Finance tools";
 const CATEGORY_SLUG = "finance";
 const DESCRIPTION = "Calculators and planning tools for UK pensions, retirement, and personal finance.";
 const PAGE_URL = `https://www.elliotjreed.com/${CATEGORY_SLUG}`;
@@ -42,23 +42,11 @@ export const meta = () => [
 ];
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
-    <PageHeader title={CATEGORY_TITLE}>
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
-        {DESCRIPTION} These tools are for guidance only and are not financial advice.
-      </p>
+  <section>
+    <PageHeader tone="band" title={CATEGORY_TITLE}>
+      <p className="prose ejr-lead">{DESCRIPTION} These tools are for guidance only and are not financial advice.</p>
     </PageHeader>
 
-    <div className="prose dark:prose-dark max-w-none">
-      <ul>
-        {categoryPages.map((page) => (
-          <li key={page.path} className="mb-1">
-            <Link to={page.path} className="text-gray-700 dark:text-gray-200">
-              {page.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <CategoryListing pages={categoryPages} topic="Finance" />
   </section>
 );

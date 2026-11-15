@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { HeadingAnchor } from "~/components/HeadingAnchor/HeadingAnchor";
 import { PageHeader } from "~/components/PageHeader/PageHeader";
 import { createBreadcrumbs, createTechArticle } from "~/data/schemaData";
-import { createAmpLink, createMeta } from "~/utils/seo";
+import { createMeta } from "~/utils/seo";
 
 export const meta = () => [
   ...createMeta({
@@ -60,43 +60,37 @@ export const meta = () => [
       ],
     },
   },
-  createAmpLink("/ai/cafe-ai-prompt-framework"),
 ];
 
 export default (): ReactElement => (
-  <section className="divide-y divide-gray-200 dark:divide-gray-700">
+  <section className="ejr-article divide-line divide-y">
     <PageHeader
-      title="CAFE Prompt Framework"
+      tone="tint"
+      title="CAFE prompt framework"
       meta={
-        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div className="text-caption text-ink-subtle flex flex-wrap items-center gap-x-6 gap-y-1">
           <span>By Elliot J. Reed</span>
-          <span>•</span>
           <time dateTime="2025-04-20">
             Published: 20<sup>th</sup> April 2025
           </time>
-          <span>•</span>
           <time dateTime="2026-01-30">
             Last updated: 30<sup>th</sup> January 2026
           </time>
         </div>
       }
     >
-      <p className="prose dark:prose-dark max-w-none text-lg leading-7 text-gray-600 dark:text-gray-300">
+      <p className="prose ejr-lead">
         This is an outline of my <strong>CAFE</strong> prompt framework. For a more in-depth guide, take a look at my{" "}
-        <Link
-          to="/ai/ai-prompt-engineering-guide"
-          className="text-primary-700 dark:text-primary-500 underline"
-          prefetch="render"
-        >
+        <Link to="/ai/ai-prompt-engineering-guide" className="text-custard-ink underline" prefetch="render">
           AI Prompt Engineering Guide
         </Link>
         .
       </p>
     </PageHeader>
 
-    <div className="prose dark:prose-dark max-w-none">
+    <div className="prose ejr-prose">
       <section>
-        <h2>Table of Contents</h2>
+        <h2>Table of contents</h2>
         <ul>
           <li>
             <a href="#context">Context</a> - Background information and situation
@@ -111,7 +105,7 @@ export default (): ReactElement => (
             <a href="#examples">Examples</a> - Sample outputs or references
           </li>
           <li>
-            <a href="#faq">Frequently Asked Questions</a>
+            <a href="#faq">Frequently asked questions</a>
           </li>
           <li>
             <a href="#conclusion">Conclusion</a>
@@ -158,7 +152,7 @@ export default (): ReactElement => (
         <HeadingAnchor id="context">Context</HeadingAnchor>
 
         <p>This could include:</p>
-        <div className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
+        <div className="border-line border-s-4 px-4 italic">
           <ul>
             <li>the intended audience</li>
             <li>your skills or area of expertise</li>
@@ -174,7 +168,7 @@ export default (): ReactElement => (
         <p>
           <strong>Use active verbs</strong> to describe the task. For example:
         </p>
-        <div className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
+        <div className="border-line border-s-4 px-4 italic">
           <ul>
             <li>act as&hellip;</li>
             <li>analyse&hellip;</li>
@@ -195,7 +189,7 @@ export default (): ReactElement => (
         <HeadingAnchor id="format">Format</HeadingAnchor>
 
         <p>This can include information such as:</p>
-        <div className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
+        <div className="border-line border-s-4 px-4 italic">
           <ul>
             <li>
               <strong>tone</strong> (eg. <em>use a professional tone</em>)
@@ -226,7 +220,7 @@ export default (): ReactElement => (
         <HeadingAnchor id="iterate">Iterate</HeadingAnchor>
 
         <p>Iterate on the response. This could include:</p>
-        <div className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
+        <div className="border-line border-s-4 px-4 italic">
           <ul>
             <li>requesting a change in tone</li>
             <li>clarifying a point</li>
@@ -241,15 +235,15 @@ export default (): ReactElement => (
       </section>
 
       <section id="example_prompts">
-        <HeadingAnchor id="example_prompts">Example Prompts</HeadingAnchor>
+        <HeadingAnchor id="example_prompts">Example prompts</HeadingAnchor>
         <p>
           Here are three examples using the CAFE framework. The order of the CAFE elements doesn't matter (for example,
           the action could come before the context, or the format after the examples).
         </p>
 
         <section>
-          <h3>Garden Planning for Small Space</h3>
-          <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
+          <h3>Garden planning for small space</h3>
+          <p className="border-line border-s-4 px-4 italic">
             <strong>Context:</strong> I live in a terraced house in Manchester with a north-facing garden that's
             approximately 3m x 5m. The space gets limited direct sunlight except on summer mornings. The soil is
             clay-heavy and tends to waterlog during winter months.
@@ -267,8 +261,8 @@ export default (): ReactElement => (
         </section>
 
         <section>
-          <h3>Family History Research Strategy</h3>
-          <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
+          <h3>Family history research strategy</h3>
+          <p className="border-line border-s-4 px-4 italic">
             I'm researching my family history and have hit a roadblock with my maternal great-grandfather. I know he was
             born around 1885 in Glasgow and worked as a shipbuilder, but I've found conflicting information about his
             parents and siblings.
@@ -285,8 +279,8 @@ export default (): ReactElement => (
         </section>
 
         <section>
-          <h3>School Climate Change Presentation</h3>
-          <p className="border-s-4 border-gray-200 px-4 italic dark:border-gray-700">
+          <h3>School climate change presentation</h3>
+          <p className="border-line border-s-4 px-4 italic">
             I'm a volunteer at a local primary school and will be giving a 30-minute presentation to Year 4 pupils (ages
             8-9) about climate change. Most children have some awareness of the topic but limited understanding of the
             science.
@@ -306,7 +300,7 @@ export default (): ReactElement => (
 
         <section>
           <HeadingAnchor id="faq" level={2}>
-            Frequently Asked Questions
+            Frequently asked questions
           </HeadingAnchor>
 
           <h3>Do I need to use all four elements in every prompt?</h3>
@@ -344,11 +338,7 @@ export default (): ReactElement => (
 
           <p>
             For a comprehensive exploration of prompt engineering techniques and strategies, refer to the{" "}
-            <Link
-              to="/ai/ai-prompt-engineering-guide"
-              className="text-primary-700 dark:text-primary-500 underline"
-              prefetch="render"
-            >
+            <Link to="/ai/ai-prompt-engineering-guide" className="text-custard-ink underline" prefetch="render">
               AI Prompt Engineering Guide
             </Link>
             .
