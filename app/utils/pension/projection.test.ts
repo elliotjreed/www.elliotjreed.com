@@ -110,7 +110,9 @@ describe("projectAccumulation", () => {
   });
 
   it("throws when retirement age is not after current age", () => {
-    expect(() => projectAccumulation({ ...baseAccumulation, retirementAge: 40 }, zeroReturn)).toThrow();
+    expect(() => projectAccumulation({ ...baseAccumulation, retirementAge: 40 }, zeroReturn)).toThrow(
+      "Retirement age must be after current age",
+    );
   });
 });
 
@@ -182,7 +184,9 @@ describe("projectDrawdown", () => {
   });
 
   it("throws when the plan-to age is before retirement age", () => {
-    expect(() => projectDrawdown({ ...baseDrawdown, planToAge: 60 }, zeroReturn)).toThrow();
+    expect(() => projectDrawdown({ ...baseDrawdown, planToAge: 60 }, zeroReturn)).toThrow(
+      "Plan-to age must not be before retirement age",
+    );
   });
 });
 

@@ -13,7 +13,7 @@ describe("NavLinkItem", () => {
   };
 
   it("should render link with title", () => {
-    const closeMenu = vi.fn();
+    const closeMenu = vi.fn<() => void>();
     render(
       <MemoryRouter>
         <NavLinkItem link={mockLink} closeMenu={closeMenu} />
@@ -24,7 +24,7 @@ describe("NavLinkItem", () => {
   });
 
   it("should render link with correct href", () => {
-    const closeMenu = vi.fn();
+    const closeMenu = vi.fn<() => void>();
     render(
       <MemoryRouter>
         <NavLinkItem link={mockLink} closeMenu={closeMenu} />
@@ -37,7 +37,7 @@ describe("NavLinkItem", () => {
 
   it("should call closeMenu when clicked", async () => {
     const user = userEvent.setup();
-    const closeMenu = vi.fn();
+    const closeMenu = vi.fn<() => void>();
     render(
       <MemoryRouter>
         <NavLinkItem link={mockLink} closeMenu={closeMenu} />
@@ -51,7 +51,7 @@ describe("NavLinkItem", () => {
   });
 
   it("should have hover classes", () => {
-    const closeMenu = vi.fn();
+    const closeMenu = vi.fn<() => void>();
     render(
       <MemoryRouter>
         <NavLinkItem link={mockLink} closeMenu={closeMenu} />
@@ -63,7 +63,7 @@ describe("NavLinkItem", () => {
   });
 
   it("should have base styling classes", () => {
-    const closeMenu = vi.fn();
+    const closeMenu = vi.fn<() => void>();
     render(
       <MemoryRouter>
         <NavLinkItem link={mockLink} closeMenu={closeMenu} />
@@ -75,7 +75,7 @@ describe("NavLinkItem", () => {
   });
 
   it("should have text color classes", () => {
-    const closeMenu = vi.fn();
+    const closeMenu = vi.fn<() => void>();
     render(
       <MemoryRouter initialEntries={["/"]}>
         <NavLinkItem link={mockLink} closeMenu={closeMenu} />
@@ -87,7 +87,7 @@ describe("NavLinkItem", () => {
   });
 
   it("should have prefetch intent attribute", () => {
-    const closeMenu = vi.fn();
+    const closeMenu = vi.fn<() => void>();
     render(
       <MemoryRouter>
         <NavLinkItem link={mockLink} closeMenu={closeMenu} />
@@ -99,7 +99,7 @@ describe("NavLinkItem", () => {
   });
 
   it("should apply active styling classes when isActive is true", () => {
-    const closeMenu = vi.fn();
+    const closeMenu = vi.fn<() => void>();
     render(
       <MemoryRouter>
         <NavLinkItem link={mockLink} closeMenu={closeMenu} isActive={true} />
@@ -111,7 +111,7 @@ describe("NavLinkItem", () => {
   });
 
   it("should render list item", () => {
-    const closeMenu = vi.fn();
+    const closeMenu = vi.fn<() => void>();
     const { container } = render(
       <MemoryRouter>
         <NavLinkItem link={mockLink} closeMenu={closeMenu} />

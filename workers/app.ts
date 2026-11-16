@@ -9,7 +9,6 @@ import { generateSitemap } from "./sitemap";
 
 let themeHashPromise: Promise<string> | undefined;
 
-// biome-ignore lint/suspicious/noEmptyInterface: Env interface may be extended with environment variables in the future
 interface Env {}
 
 declare global {

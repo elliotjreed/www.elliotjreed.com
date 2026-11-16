@@ -107,7 +107,7 @@ describe("useLocalStorage", () => {
 
     // Mock localStorage.setItem to throw an error
     const originalSetItem = localStorage.setItem;
-    localStorage.setItem = vi.fn(() => {
+    localStorage.setItem = vi.fn<Storage["setItem"]>(() => {
       throw new Error("Storage full");
     });
 

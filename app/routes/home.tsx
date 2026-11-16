@@ -150,8 +150,8 @@ export default (): ReactElement => {
         <div className="flex max-w-(--measure) flex-col items-start gap-6">
           <p className="text-body-long text-ink text-pretty">
             If you work in the non-profit or charity sector and want to explore ways of using AI or have questions
-            around software development in general, please do give me a shout. I will be happy to volunteer my
-            time and provide advice.
+            around software development in general, please do give me a shout. I will be happy to volunteer my time and
+            provide advice.
           </p>
         </div>
       </section>

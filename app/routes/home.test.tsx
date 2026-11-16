@@ -45,13 +45,13 @@ describe("home route", () => {
       );
     });
 
-    it("should come before the where to start section", () => {
+    it("should come before the getting started with AI section", () => {
       renderHome();
 
       const openSource = screen.getByRole("heading", { name: "Open source", level: 2 });
-      const whereToStart = screen.getByRole("heading", { name: "Where to start", level: 2 });
+      const gettingStarted = screen.getByRole("heading", { name: "Getting started with AI", level: 2 });
 
-      expect(openSource.compareDocumentPosition(whereToStart) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+      expect(openSource.compareDocumentPosition(gettingStarted) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     });
   });
 });

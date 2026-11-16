@@ -104,7 +104,7 @@ export default (): ReactElement => (
 
       <p className="prose ejr-lead">
         You can listen to the audio version of this guide here:
-        {/* biome-ignore lint/a11y/useMediaCaption: this guide is the text version of the audio */}
+        {/* oxlint-disable-next-line jsx-a11y/media-has-caption -- this guide is the text version of the audio */}
         <audio controls>
           <source
             src="https://www.elliotjreed.com/2025-05-03_ai-prompt-engineering-audio-guide.mp3"

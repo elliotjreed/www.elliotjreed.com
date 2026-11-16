@@ -39,7 +39,6 @@ export const NavBar: FC = (): ReactElement => {
   };
   const toggleSubDropdown = (title: string): void => setOpenSubDropdown((c) => (c === title ? null : title));
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: closeMenu doesn't need to be a dependency
   useEffect(() => {
     const handleClick = (event: MouseEvent): void => {
       const target = event.target as Node;
@@ -56,7 +55,6 @@ export const NavBar: FC = (): ReactElement => {
     return (): void => document.removeEventListener("mousedown", handleClick);
   }, []);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: closeMenu doesn't need to be a dependency
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent): void => {
       if (event.key === "Escape" && isMenuOpen) {
@@ -170,6 +168,7 @@ export const NavBar: FC = (): ReactElement => {
                     const desktopMenuId = `desktop-menu-${link.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 
                     return (
+                      // oxlint-disable-next-line jsx-a11y/no-noninteractive-element-interactions -- hover opens the dropdown; the button inside handles keyboard and click
                       <li
                         key={link.title}
                         className="group relative"

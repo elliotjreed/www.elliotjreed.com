@@ -2,7 +2,7 @@ import type { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faMoon } from "@fortawesome/free-solid-svg-icons/faMoon";
 import { faSun } from "@fortawesome/free-solid-svg-icons/faSun";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { type FC, type ReactElement, useEffect, useState } from "react";
+import { type FC, type ReactElement, useEffect, useSyncExternalStore } from "react";
 import { useLocalStorage } from "~/hooks/useLocalStorage";
 
 type Theme = "dark" | "light";
@@ -10,12 +10,16 @@ type Theme = "dark" | "light";
 const systemTheme = (): Theme =>
   typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)")?.matches ? "dark" : "light";
 
+const subscribeToNothing = (): (() => void) => (): void => {};
+
 export const ThemeSwitch: FC = (): ReactElement => {
   const [chosenTheme, setChosenTheme] = useLocalStorage<Theme | null>("theme", null);
-  const [isHydrated, setIsHydrated] = useState(false);
+  const isHydrated = useSyncExternalStore(
+    subscribeToNothing,
+    () => true,
+    () => false,
+  );
   const theme: Theme = isHydrated ? (chosenTheme ?? systemTheme()) : "light";
-
-  useEffect((): void => setIsHydrated(true), []);
 
   useEffect((): void => {
     if (chosenTheme) {

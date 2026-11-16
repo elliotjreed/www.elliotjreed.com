@@ -31,6 +31,7 @@ export const PersonalFinanceFlowchart: FC = (): ReactElement => {
       if (saved !== null) {
         const parsed = JSON.parse(saved) as { answers: Answers; answeredOrder: string[] };
 
+        // oxlint-disable-next-line react/set-state-in-effect -- saved state loads after hydration so the server and first client render match
         setAnswers(parsed.answers ?? {});
         setAnsweredOrder(parsed.answeredOrder ?? []);
       }

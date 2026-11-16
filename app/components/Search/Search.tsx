@@ -68,7 +68,6 @@ export const Search: FC = (): ReactElement => {
     }
   };
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: handleClose doesn't need to be a dependency
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent): void => {
       const target = event.target as Node;
@@ -84,6 +83,7 @@ export const Search: FC = (): ReactElement => {
     return (): void => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
+    // oxlint-disable-next-line react-hooks/exhaustive-deps -- handleClose doesn't need to be a dependency
   }, [isExpanded]);
 
   useEffect(() => {

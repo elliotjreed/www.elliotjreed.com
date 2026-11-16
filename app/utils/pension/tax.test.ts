@@ -26,12 +26,12 @@ describe("personalAllowanceFor", () => {
   });
 
   it("throws for non-finite income", () => {
-    expect(() => personalAllowanceFor(Number.NaN)).toThrow();
-    expect(() => personalAllowanceFor(Number.POSITIVE_INFINITY)).toThrow();
+    expect(() => personalAllowanceFor(Number.NaN)).toThrow("must be a finite number");
+    expect(() => personalAllowanceFor(Number.POSITIVE_INFINITY)).toThrow("must be a finite number");
   });
 
   it("throws for negative income", () => {
-    expect(() => personalAllowanceFor(-1)).toThrow();
+    expect(() => personalAllowanceFor(-1)).toThrow("cannot be negative");
   });
 });
 
@@ -73,8 +73,8 @@ describe("incomeTaxDue", () => {
   });
 
   it("throws for non-finite or negative income", () => {
-    expect(() => incomeTaxDue(Number.NaN)).toThrow();
-    expect(() => incomeTaxDue(-100)).toThrow();
+    expect(() => incomeTaxDue(Number.NaN)).toThrow("must be a finite number");
+    expect(() => incomeTaxDue(-100)).toThrow("cannot be negative");
   });
 });
 
@@ -92,8 +92,8 @@ describe("netFromGross and grossFromNet", () => {
   });
 
   it("throws for non-finite or negative input", () => {
-    expect(() => netFromGross(Number.NaN)).toThrow();
-    expect(() => grossFromNet(-5)).toThrow();
+    expect(() => netFromGross(Number.NaN)).toThrow("must be a finite number");
+    expect(() => grossFromNet(-5)).toThrow("cannot be negative");
   });
 });
 
@@ -115,8 +115,8 @@ describe("netFromPensionWithdrawal", () => {
   });
 
   it("throws for invalid fractions", () => {
-    expect(() => netFromPensionWithdrawal(1_000, -0.1, 0)).toThrow();
-    expect(() => netFromPensionWithdrawal(1_000, 1.1, 0)).toThrow();
+    expect(() => netFromPensionWithdrawal(1_000, -0.1, 0)).toThrow("must be between 0 and 1");
+    expect(() => netFromPensionWithdrawal(1_000, 1.1, 0)).toThrow("must be between 0 and 1");
   });
 });
 
@@ -139,6 +139,6 @@ describe("grossPensionWithdrawalForNet", () => {
   });
 
   it("throws for negative targets", () => {
-    expect(() => grossPensionWithdrawalForNet(-1, 0.25, 0)).toThrow();
+    expect(() => grossPensionWithdrawalForNet(-1, 0.25, 0)).toThrow("cannot be negative");
   });
 });

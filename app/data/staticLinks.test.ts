@@ -70,33 +70,25 @@ describe("staticLinks", () => {
   });
 
   it("should have valid hrefs for all children", () => {
-    const checkChildren = (link: StaticLink): void => {
-      if (link.children) {
-        link.children.forEach((child) => {
-          if (child.href) {
-            expect(child.href).toBeDefined();
-            expect(typeof child.href).toBe("string");
-            expect(child.href?.startsWith("/")).toBe(true);
-          }
-          // Recursively check nested children
-          if (child.children) {
-            checkChildren(child);
-          }
-        });
-      }
-    };
+    const descendants = (link: StaticLink): StaticLink[] =>
+      (link.children ?? []).flatMap((child) => [child, ...descendants(child)]);
+    const childHrefs = staticLinks
+      .flatMap(descendants)
+      .map((child) => child.href)
+      .filter((href): href is string => Boolean(href));
 
-    staticLinks.forEach(checkChildren);
+    expect(childHrefs.length).toBeGreaterThan(0);
+    childHrefs.forEach((href) => {
+      expect(href).toMatch(/^\//);
+    });
   });
 
   it("should have showInNavigation property for all children", () => {
-    staticLinks.forEach((link) => {
-      if (link.children) {
-        link.children.forEach((child) => {
-          expect(child).toHaveProperty("showInNavigation");
-          expect(typeof child.showInNavigation).toBe("boolean");
-        });
-      }
+    const children = staticLinks.flatMap((link) => link.children ?? []);
+
+    children.forEach((child) => {
+      expect(child).toHaveProperty("showInNavigation");
+      expect(typeof child.showInNavigation).toBe("boolean");
     });
   });
 

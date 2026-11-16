@@ -115,7 +115,6 @@ describe("NavBar", () => {
     // Click on Guides dropdown
     const guidesButtons = screen.getAllByRole("button", { name: /Guides/i });
     const guidesButton = guidesButtons.find((btn) => btn.textContent === "Guides");
-    // biome-ignore lint/style/noNonNullAssertion: test ensures button exists via screen.getAllByRole
     await user.click(guidesButton!);
 
     // Check if child links are visible - should find the AI Prompt Guide link
@@ -246,7 +245,6 @@ describe("NavBar", () => {
     const mobileNav = container.querySelector("#mobile-navigation");
     const guidesButtons = screen.getAllByRole("button", { name: /Guides/i });
     const guidesButton = guidesButtons.find((btn) => mobileNav?.contains(btn));
-    // biome-ignore lint/style/noNonNullAssertion: test ensures button exists via screen.getAllByRole
     await user.click(guidesButton!);
 
     await waitFor(() => {
@@ -257,7 +255,6 @@ describe("NavBar", () => {
     const childLinks = screen.getAllByRole("link", { name: "AI Prompt Guide" });
     const childLink = childLinks.find((link) => mobileNav?.contains(link));
     expect(childLink).toBeDefined();
-    // biome-ignore lint/style/noNonNullAssertion: test ensures child link exists
     await user.click(childLink!);
 
     const nav = container.querySelector("#mobile-navigation");

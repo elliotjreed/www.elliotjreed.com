@@ -31,8 +31,8 @@ describe("fireNumber", () => {
   });
 
   it("throws for a non-positive withdrawal rate", () => {
-    expect(() => fireNumber(20_000, 0)).toThrow();
-    expect(() => fireNumber(20_000, -0.01)).toThrow();
+    expect(() => fireNumber(20_000, 0)).toThrow("Withdrawal rate must be a positive finite number");
+    expect(() => fireNumber(20_000, -0.01)).toThrow("Withdrawal rate must be a positive finite number");
   });
 });
 
@@ -105,7 +105,7 @@ describe("assessFireAtAge", () => {
   });
 
   it("throws when the retirement age is not after the current age", () => {
-    expect(() => assessFireAtAge(40, baseInputs)).toThrow();
+    expect(() => assessFireAtAge(40, baseInputs)).toThrow("Retirement age must be after current age");
   });
 });
 

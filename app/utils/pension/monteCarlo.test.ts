@@ -146,6 +146,8 @@ describe("runMonteCarlo", () => {
   });
 
   it("throws for a non-positive iteration count", () => {
-    expect(() => runMonteCarlo(accumulation, drawdown, preset, { iterations: 0, seed: 1 })).toThrow();
+    expect(() => runMonteCarlo(accumulation, drawdown, preset, { iterations: 0, seed: 1 })).toThrow(
+      "Iterations must be a positive integer",
+    );
   });
 });

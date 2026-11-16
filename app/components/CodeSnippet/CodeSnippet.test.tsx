@@ -1,15 +1,15 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, type Mock, vi } from "vitest";
 import { CodeSnippet } from "./CodeSnippet";
 
 describe("CodeSnippet", () => {
   const mockCode = "console.log('Hello, World!')";
   const mockTitle = "Test Code";
-  let mockWriteText: ReturnType<typeof vi.fn>;
+  let mockWriteText: Mock<Clipboard["writeText"]>;
 
   beforeEach(() => {
-    mockWriteText = vi.fn().mockResolvedValue(undefined);
+    mockWriteText = vi.fn<Clipboard["writeText"]>().mockResolvedValue(undefined);
     Object.defineProperty(navigator, "clipboard", {
       writable: true,
       configurable: true,
@@ -88,7 +88,6 @@ describe("CodeSnippet", () => {
     const { container } = render(<CodeSnippet code={phpCode} title="PHP Example" language="php" />);
 
     const pre = container.querySelector("pre");
-    expect(pre).toBeInTheDocument();
-    expect(screen.getByText(phpCode)).toBeInTheDocument();
+    expect(pre).toHaveTextContent(phpCode);
   });
 });

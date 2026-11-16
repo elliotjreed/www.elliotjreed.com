@@ -25,6 +25,7 @@ export const PensionPlanner: FC = (): ReactElement => {
       const saved = window.localStorage.getItem(STORAGE_KEY);
 
       if (saved !== null) {
+        // oxlint-disable-next-line react/set-state-in-effect -- saved state loads after hydration so the server and first client render match
         setInputs((current) => ({ ...current, ...JSON.parse(saved) }));
       }
     } catch (error: unknown) {

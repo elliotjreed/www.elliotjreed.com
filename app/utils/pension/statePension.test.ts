@@ -21,8 +21,8 @@ describe("annualStatePension", () => {
   });
 
   it("throws for non-finite or negative years", () => {
-    expect(() => annualStatePension(Number.NaN)).toThrow();
-    expect(() => annualStatePension(-1)).toThrow();
+    expect(() => annualStatePension(Number.NaN)).toThrow("must be a finite number");
+    expect(() => annualStatePension(-1)).toThrow("cannot be negative");
   });
 });
 
@@ -43,7 +43,7 @@ describe("statePensionAge", () => {
   });
 
   it("throws for non-finite or negative ages", () => {
-    expect(() => statePensionAge(Number.NaN)).toThrow();
-    expect(() => statePensionAge(-1)).toThrow();
+    expect(() => statePensionAge(Number.NaN)).toThrow("must be a finite number");
+    expect(() => statePensionAge(-1)).toThrow("cannot be negative");
   });
 });

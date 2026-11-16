@@ -11,7 +11,9 @@ This file provides guidance to AI applications such as Claude Code, Gemini CLI, 
 - `bun run typecheck` - Run TypeScript type checking and generate route types
 - `bun run test` - Run Vitest tests with simplified output (customer minimal reporter)
 - `bun run test:full` - Run Vitest tests with full output ("dot" reporter)
-- `bun run format` - Format code with Prettier
+- `bun run format` - Format code with oxfmt
+- `bun run format:check` - Check formatting with oxfmt
+- `bun run lint` - Lint code with oxlint
 
 ## Project Architecture
 
@@ -64,10 +66,12 @@ The architecture follows modern React patterns with server-side rendering and SS
 - Main config references `tsconfig.node.json` and `tsconfig.cloudflare.json`
 - Type generation handled by React Router CLI
 
-**Prettier**: Code formatting
+**oxfmt**: Code formatting (`.oxfmtrc.json`)
 
 - Double quotes, 120 character line width
-- Tailwind CSS class sorting via `prettier-plugin-tailwindcss`
+- Tailwind CSS class sorting via oxfmt's built-in `sortTailwindcss`
+
+**oxlint**: Linting (`.oxlintrc.json`)
 
 ### Deployment Infrastructure
 

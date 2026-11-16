@@ -18,7 +18,7 @@ vi.mock("react-router", async () => {
     Meta: () => <span data-testid="meta">Meta</span>,
     ScrollRestoration: () => <span data-testid="scroll-restoration">ScrollRestoration</span>,
     Scripts: () => <span data-testid="scripts">Scripts</span>,
-    isRouteErrorResponse: vi.fn(),
+    isRouteErrorResponse: vi.fn<(error: unknown) => boolean>(),
   };
 });
 
